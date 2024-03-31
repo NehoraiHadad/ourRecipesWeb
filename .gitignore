@@ -1,0 +1,63 @@
+# dependencies
+/backend/.venv/
+/frontend/ourRecipesFront/node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Python compiled files and virtualenv
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Flask instance-specific data
+/backend/instance/
+
+# Database files
+*.sqlite
+
+# Session file
+connect_to_our_recipes_channel.session
+
+# Testing
+/coverage
+
+# Next.js
+/frontend/ourRecipesFront/.next/
+/frontend/ourRecipesFront/out/
+
+# Production
+/build
+
+# Logs and databases
+*.log
+*.sql
+*.db
+
+# Environment variables and configuration
+.env
+.env*.local
+/backend/config.py
+
+# IDEs and text editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+
+# Security
+*.pem
+
+# TypeScript
+*.tsbuildinfo
+
+# Next.js specific
+frontend/ourRecipesFront/next-env.d.ts
+
+# Misc
+*.bak
+*.tmp

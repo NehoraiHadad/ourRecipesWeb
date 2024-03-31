@@ -1,0 +1,4 @@
+flask
+flask[async]
+telethon
+python-dotenv
