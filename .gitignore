@@ -55,9 +55,6 @@ connect_to_our_recipes_channel.session
 # TypeScript
 *.tsbuildinfo
 
-# Next.js specific
-frontend/ourRecipesFront/next-env.d.ts
-
 # Misc
 *.bak
 *.tmp
