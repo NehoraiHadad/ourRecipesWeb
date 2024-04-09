@@ -1,0 +1,24 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend/ourRecipesBack:/app/ourRecipesBack
+    env_file: ./backend/.env
+    environment:
+      - FLASK_APP=ourRecipesBack
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    environment:
+      - WATCHPACK_POLLING=true
+    env_file: ./frontend/ourRecipesFront/.env.local
+
+    volumes:
+      - ./frontend/ourRecipesFront/src:/app/src
+      - ./frontend/ourRecipesFront/public:/app/public
+      - ./frontend/ourRecipesFront/types:/app/types
+      - ./frontend/ourRecipesFront/utils:/app/utils
