@@ -1,5 +1,4 @@
-import React from "react";
-import { recipe } from "../../types";
+import { recipe } from "../types";
 
 interface RecipeDetailProps {
   recipe: recipe;

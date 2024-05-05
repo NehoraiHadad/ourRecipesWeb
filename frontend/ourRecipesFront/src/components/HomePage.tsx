@@ -2,25 +2,13 @@
 import { useState } from "react";
 import Image from "next/image";
 import homeImage from "../../../public/homeImage.png";
-import Spinner from "@/components/Spinner";
 import Recipes from "@/components/Recipes";
 import Search from "@/components/Search";
-import { recipe } from "../../types";
-import { useAuth } from "@/hooks/useAuth";
+import { recipe } from "../types";
 
-export default function Page() {
-  const { isAuthenticated, isChecking } = useAuth("/login", false);
-
+export default function Home() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
   const [resultCount, setResultCount] = useState<number | "">();
-
-  if (isChecking) {
-    return <Spinner message="בודק אימות..." />;
-  }
-
-  if (!isAuthenticated) {
-    return <Spinner message="עובד לדף הכניסה..." />;
-  }
 
   const resetResultCount = () => {
     setResultCount("");
@@ -43,15 +31,10 @@ export default function Page() {
       setRecipes([]);
     }
   };
-
   return (
     <main className="flex flex-col h-[calc(100dvh-52px)] items-center">
       <div className="flex justify-center px-5 w-full lg:px-72">
-        <Image
-          src={homeImage}
-          alt="Just home Image Description"
-          priority={true}
-        />
+        <Image src={homeImage} alt="Just home Image Description" />
       </div>
       <div className="text-center w-full pb-2">
         <h1 className="font-bold text-2xl">המתכונים:</h1>

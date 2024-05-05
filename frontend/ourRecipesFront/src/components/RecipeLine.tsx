@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { recipe } from '../../types';
+import { recipe } from '../types';
 
 import Image1 from "../../public/categories_photos/1.png"
 import Image2 from "../../public/categories_photos/2.png"

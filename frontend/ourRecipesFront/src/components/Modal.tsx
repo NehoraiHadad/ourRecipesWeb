@@ -7,8 +7,7 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  if (!isOpen) return null;
-
+  
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -22,17 +21,19 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
         onClose();
       }
     };
-
+    
     window.addEventListener("keydown", handleEsc);
     window.addEventListener("click", handleOutsideClick);
-
+    
     // Cleanup
     return () => {
       window.removeEventListener("keydown", handleEsc);
       window.removeEventListener("click", handleOutsideClick);
     };
   }, [onClose]);
-
+  
+  if (!isOpen) return null;
+  
   return (
     <div
       id="modal-backdrop"

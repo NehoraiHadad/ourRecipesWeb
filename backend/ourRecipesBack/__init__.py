@@ -1,18 +1,50 @@
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
+
 import os
 
 from telethon import TelegramClient
 import base64
 from io import BytesIO
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, session
 from flask_cors import CORS
+
+import hashlib
+import hmac
+
+from flask_jwt_extended import (
+    JWTManager,
+    create_access_token,
+    get_jwt,
+    jwt_required,
+    get_jwt_identity,
+    set_access_cookies,
+)
 
 
 def create_app(test_config=None):
 
     # create and configure the app.
     app = Flask(__name__, instance_relative_config=True)
-    CORS(app, resources={r"/api/*": {"origins": "*"}})
+    CORS(
+        app,
+        supports_credentials=True,
+        resources={r"/api/*": {"origins": "http://127.0.0.1"}},
+    )
+
+    jwt = JWTManager(app)
+    # Configure the JWT secret key
+    app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_JWT") 
+    app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+    app.config["JWT_COOKIE_SECURE"] = True
+    app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+    app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # 1 hour
+
+    app.config["SESSION_COOKIE_SECURE"] = True
+    app.config["SESSION_COOKIE_HTTPONLY"] = True
+    app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
 
     app.config.from_mapping(
         SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "baba.sqlite")
@@ -97,15 +129,78 @@ def create_app(test_config=None):
         if query == "":
             return jsonify(recipes_dict)
         recipes_list = await fetch_recipes(query)
-        print(recipes_list)
         recipes_dict = await organize_recipes_dict(recipes_list=recipes_list)
         return jsonify(recipes_dict)
 
     @app.route("/api/login", methods=["POST"])
     def verify_telegram_user():
-        # Extract the incoming JSON data
+        user_data = request.json
+        user_id = user_data.get("id")
+
+        if not user_id or not verify_telegram_login(user_data):
+            return jsonify({"error": "Authentication failed"}), 401
+
+        # Session management
+        session["user_id"] = user_id
+        print(f"User ID {user_id} authenticated.", flush=True)
+
+        access_token = create_access_token(identity=user_id)
+        response = jsonify({"login": True})
+        set_access_cookies(response, access_token)
+        return response
+
+    @app.route("/api/validate_session", methods=["GET"])
+    @jwt_required()
+    def validate_session():
+        current_user = get_jwt_identity()
+        user_id = session.get("user_id")
+        if user_id == current_user:
+            app.logger.info(f"Session valid for user_id: {user_id}")
+            return jsonify({"authenticated": True, "user_id": user_id}), 200
+        else:
+            app.logger.warning("Session validation failed.")
+            return jsonify({"authenticated": False}), 401
+
+    @app.after_request
+    def refresh_expiring_jwts(response):
+        try:
+            exp_timestamp = get_jwt()["exp"]
+            now = datetime.now(timezone.utc)
+            target_timestamp = datetime.timestamp(now + timedelta(minutes=30))
+            if target_timestamp > exp_timestamp:
+                access_token = create_access_token(identity=get_jwt_identity())
+                set_access_cookies(response, access_token)
+            return response
+        except (RuntimeError, KeyError):
+            # Case where there is not a valid JWT. Just return the original response
+            return response
+
+    def verify_telegram_login(auth_data):
         auth_data = request.json
-        print(auth_data)
+        check_hash = auth_data.pop("hash")
+
+        BOT_TOKEN = os.getenv("BOT_TOKEN")
+
+        # Create the data check string
+        data_check_string = "\n".join(
+            f"{key}={value}" for key, value in sorted(auth_data.items())
+        )
+
+        # Create a secret key from the bot token (take the SHA-256 hash of the bot token and use it as the secret key)
+        secret_key = hashlib.sha256(BOT_TOKEN.encode()).digest()
+
+        # Calculate HMAC SHA-256 hash of the data check string using the secret key
+        hmac_hash = hmac.new(
+            secret_key, data_check_string.encode(), hashlib.sha256
+        ).hexdigest()
+
+        # Verify if the calculated hash matches the received hash
+        if hmac_hash == check_hash:
+            # The data is from Telegram.
+            return True
+        else:
+            # The data is NOT from Telegram, respond accordingly
+            return False
 
     # from . import db
 

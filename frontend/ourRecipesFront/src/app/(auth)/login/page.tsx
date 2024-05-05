@@ -2,13 +2,39 @@
 
 import Script from "next/script";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
-const LoginPage = () => {
+const Page = () => {
+  const router = useRouter();
+
   useEffect(() => {
     // Define the callback function globally to ensure Telegram can access it
-    (window as any).handleTelegramAuth = (userData: any) => {
+    (window as any).handleTelegramAuth = async (userData: any) => {
       console.log(userData); // userData contains information provided by Telegram
-      // Here, you'd typically send userData to your backend for validation and further processing
+
+      try {
+        // Sending userData to the backend for verification
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/login`  ,
+          {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            credentials: "include",
+            body: JSON.stringify(userData),
+        });
+
+        if (!response.ok) {
+            throw new Error('Login failed');
+        }
+
+        const data = await response.json();
+        console.log(data);
+        
+        // Update state based on successful login
+        router.push("/") 
+    } catch (error: unknown) {
+      console.error("Error posting data:", error);
+    }
     };
   }, []);
 
@@ -31,4 +57,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Page;

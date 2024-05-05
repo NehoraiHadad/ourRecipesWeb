@@ -2,3 +2,4 @@ flask
 flask[async]
 Flask-Cors
 telethon
+flask-jwt-extended

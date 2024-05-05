@@ -1,6 +1,6 @@
 import { useState } from "react";
 import RecipeLine from "./RecipeLine";
-import { recipe } from "../../types";
+import { recipe } from "../types";
 import Modal from "./Modal";
 import RecipeDetail from "./RecipeDetail";
 

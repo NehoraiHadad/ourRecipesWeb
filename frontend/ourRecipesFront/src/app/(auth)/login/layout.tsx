@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { heebo } from "../../../../utils/fonts";
+import { heebo } from "../../../utils/fonts";
 import "../../(home)/globals.css";
 
 export const metadata: Metadata = {
