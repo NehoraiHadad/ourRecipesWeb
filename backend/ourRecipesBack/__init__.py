@@ -36,7 +36,7 @@ def create_app(test_config=None):
 
     jwt = JWTManager(app)
     # Configure the JWT secret key
-    app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_JWT") 
+    app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_JWT")
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
     app.config["JWT_COOKIE_SECURE"] = True
     app.config["JWT_COOKIE_CSRF_PROTECT"] = True
@@ -124,6 +124,7 @@ def create_app(test_config=None):
         return recipes_dict
 
     @app.route("/api/search")
+    @jwt_required()
     async def search():
         query = request.args.get("query")
         if query == "":
@@ -133,15 +134,16 @@ def create_app(test_config=None):
         return jsonify(recipes_dict)
 
     @app.route("/api/login", methods=["POST"])
-    def verify_telegram_user():
+    async def login():
         user_data = request.json
         user_id = user_data.get("id")
 
-        if not user_id or not verify_telegram_login(user_data):
+        if not verify_telegram_login(user_data):
             return jsonify({"error": "Authentication failed"}), 401
 
         # Session management
         session["user_id"] = user_id
+
         print(f"User ID {user_id} authenticated.", flush=True)
 
         access_token = create_access_token(identity=user_id)
@@ -151,15 +153,28 @@ def create_app(test_config=None):
 
     @app.route("/api/validate_session", methods=["GET"])
     @jwt_required()
-    def validate_session():
+    async def validate_session():
         current_user = get_jwt_identity()
         user_id = session.get("user_id")
         if user_id == current_user:
+            permission = await check_user_edit_permission(user_id, channel_url)
+            session['edit_permission'] = permission
             app.logger.info(f"Session valid for user_id: {user_id}")
-            return jsonify({"authenticated": True, "user_id": user_id}), 200
+            return jsonify({"authenticated": True, "canEdit": permission, "user_id": user_id}), 200
         else:
             app.logger.warning("Session validation failed.")
-            return jsonify({"authenticated": False}), 401
+            return jsonify({"authenticated": False, "can_edit": False}), 401
+
+    @app.route("/api/login_guest", methods=["POST"])
+    def login_guest():
+        # Generate a token for a guest user
+        guest_user = "guest"
+        session["user_id"] = guest_user
+
+        access_token = create_access_token(identity=guest_user)
+        response = jsonify({"login": True})
+        set_access_cookies(response, access_token)
+        return response
 
     @app.after_request
     def refresh_expiring_jwts(response):
@@ -201,6 +216,25 @@ def create_app(test_config=None):
         else:
             # The data is NOT from Telegram, respond accordingly
             return False
+
+    async def check_user_edit_permission(user_id, channel_url):
+        client = TelegramClient(session_name, bot_id, api_hash)
+        async with client:
+            channel_entity = await client.get_entity(channel_url)
+            try:
+                # Fetch the user's permissions in the channel
+                permissions = await client.get_permissions(channel_entity, user_id)
+
+                # Check if the user has the right to edit messages
+                if permissions.is_admin and permissions.edit_messages:
+                    print(f"User {user_id} can edit messages in the channel.")
+                    return True
+                else:
+                    print(f"User {user_id} cannot edit messages in the channel.")
+                    return False
+            except Exception as e:
+                print(f"Failed to check permissions: {str(e)}")
+                return False
 
     # from . import db
 

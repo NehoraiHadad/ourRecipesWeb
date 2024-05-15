@@ -3,6 +3,7 @@
 import Script from "next/script";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
+import GuestLogin from "@/components/GuestLogin";
 
 const Page = () => {
   const router = useRouter();
@@ -10,31 +11,26 @@ const Page = () => {
   useEffect(() => {
     // Define the callback function globally to ensure Telegram can access it
     (window as any).handleTelegramAuth = async (userData: any) => {
-      console.log(userData); // userData contains information provided by Telegram
-
       try {
         // Sending userData to the backend for verification
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/login`  ,
+          `${process.env.NEXT_PUBLIC_API_URL}/login`,
           {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
             credentials: "include",
             body: JSON.stringify(userData),
-        });
+          }
+        );
 
         if (!response.ok) {
-            throw new Error('Login failed');
+          throw new Error("Login failed");
         }
 
-        const data = await response.json();
-        console.log(data);
-        
-        // Update state based on successful login
-        router.push("/") 
-    } catch (error: unknown) {
-      console.error("Error posting data:", error);
-    }
+        router.push("/");
+      } catch (error: unknown) {
+        console.error("Error posting data:", error);
+      }
     };
   }, []);
 
@@ -53,6 +49,8 @@ const Page = () => {
         strategy="afterInteractive"
         data-onauth="handleTelegramAuth(user)"
       />
+      <GuestLogin />
+      <h2 className="text-center text-xl font-semibold my-2">או</h2>
     </>
   );
 };

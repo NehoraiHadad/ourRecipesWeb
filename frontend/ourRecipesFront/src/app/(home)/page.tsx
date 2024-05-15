@@ -9,11 +9,11 @@ import { recipe } from "../../types";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function Page() {
-  const { isAuthenticated, isChecking } = useAuth("/login", false);
-
   const [recipes, setRecipes] = useState<recipe[]>([]);
   const [resultCount, setResultCount] = useState<number | "">();
 
+  const { isAuthenticated,canEdit,  isChecking } = useAuth("/login", false);
+  
   if (isChecking) {
     return <Spinner message="בודק אימות..." />;
   }
@@ -32,9 +32,13 @@ export default function Page() {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/search?query=${encodeURIComponent(
           query
-        )}`
+        )}`,
+        {
+          credentials: "include",
+        }
       );
-      if (!response.ok) throw new Error("Failed to fetch");
+      if (!response.ok)
+        throw new Error("Failed to fetch. Try refresh the page.");
       const data: recipe[] = await response.json();
       setRecipes(data);
       setResultCount(Object.keys(data).length);
