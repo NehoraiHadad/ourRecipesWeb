@@ -7,33 +7,32 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  
+  //  TODO - use "useOutsideClick" Hook.
   useEffect(() => {
     const handleEsc = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         onClose();
       }
     };
-
     const handleOutsideClick = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       if (target.id === "modal-backdrop") {
         onClose();
       }
     };
-    
+
     window.addEventListener("keydown", handleEsc);
     window.addEventListener("click", handleOutsideClick);
-    
+
     // Cleanup
     return () => {
       window.removeEventListener("keydown", handleEsc);
       window.removeEventListener("click", handleOutsideClick);
     };
   }, [onClose]);
-  
+
   if (!isOpen) return null;
-  
+
   return (
     <div
       id="modal-backdrop"

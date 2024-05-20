@@ -1,22 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "@/app/context/AuthContext";
-
-// interface AuthState {
-//   isAuthenticated: boolean;
-//   canEdit: boolean;
-//   isChecking: boolean;
-// }
 
 export function useAuth(
   redirectTo: string = "",
   redirectIfFound: boolean = false
 ) {
-  // const [authState, setAuthState] = useState<AuthState>({
-  //   isAuthenticated: false,
-  //   canEdit: false,
-  //   isChecking: true,
-  // });
   const { authState, setAuthState } = useAuthContext();
   const router = useRouter();
 

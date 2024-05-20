@@ -128,7 +128,7 @@ def create_app(test_config=None):
     async def search():
         query = request.args.get("query")
         if query == "":
-            return jsonify(recipes_dict)
+            return None
         recipes_list = await fetch_recipes(query)
         recipes_dict = await organize_recipes_dict(recipes_list=recipes_list)
         return jsonify(recipes_dict)
@@ -156,7 +156,11 @@ def create_app(test_config=None):
     async def validate_session():
         current_user = get_jwt_identity()
         user_id = session.get("user_id")
-        if user_id == current_user:
+        if user_id == "guest":
+            session['edit_permission'] = False
+            app.logger.info(f"Session valid for user_id: {user_id}")
+            return jsonify({"authenticated": True, "canEdit": False, "user_id": user_id}), 200
+        elif user_id == current_user:
             permission = await check_user_edit_permission(user_id, channel_url)
             session['edit_permission'] = permission
             app.logger.info(f"Session valid for user_id: {user_id}")
@@ -174,6 +178,13 @@ def create_app(test_config=None):
         access_token = create_access_token(identity=guest_user)
         response = jsonify({"login": True})
         set_access_cookies(response, access_token)
+        return response
+    
+    @app.route("/api/logout", methods=["GET"])
+    def logout():
+        session.pop("user_id", None)
+
+        response = jsonify({"logout": True})
         return response
 
     @app.after_request

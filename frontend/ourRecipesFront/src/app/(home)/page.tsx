@@ -12,7 +12,7 @@ export default function Page() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
   const [resultCount, setResultCount] = useState<number | "">();
 
-  const { isAuthenticated,canEdit,  isChecking } = useAuth("/login", false);
+  const { isAuthenticated, canEdit,  isChecking } = useAuth("/login", false);
   
   if (isChecking) {
     return <Spinner message="בודק אימות..." />;
