@@ -4,7 +4,7 @@ import "./globals.css";
 
 import NavBar from "@/components/NavBar";
 
-import { AuthProvider } from "../context/AuthContext";
+import { AuthProvider } from "../../context/AuthContext";
 
 export const metadata: Metadata = {
   title: "recipes web app",

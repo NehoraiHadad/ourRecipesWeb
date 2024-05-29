@@ -72,6 +72,7 @@ const Search = ({ onSearch, resultCount = 0 }: SearchProps) => {
           value={query}
           onChange={handleInputChange}
           className="outline-none py-0.5 px-2 rounded-lg w-full"
+          required
         />
         <button
           type="submit"

@@ -4,7 +4,7 @@ from datetime import timezone
 
 import os
 
-from telethon import TelegramClient
+from telethon import TelegramClient, errors
 import base64
 from io import BytesIO
 
@@ -22,6 +22,8 @@ from flask_jwt_extended import (
     get_jwt_identity,
     set_access_cookies,
 )
+
+import openai
 
 
 def create_app(test_config=None):
@@ -45,6 +47,8 @@ def create_app(test_config=None):
     app.config["SESSION_COOKIE_SECURE"] = True
     app.config["SESSION_COOKIE_HTTPONLY"] = True
     app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+
+    openAiClient = openai.OpenAI()
 
     app.config.from_mapping(
         SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "baba.sqlite")
@@ -157,14 +161,22 @@ def create_app(test_config=None):
         current_user = get_jwt_identity()
         user_id = session.get("user_id")
         if user_id == "guest":
-            session['edit_permission'] = False
+            session["edit_permission"] = False
             app.logger.info(f"Session valid for user_id: {user_id}")
-            return jsonify({"authenticated": True, "canEdit": False, "user_id": user_id}), 200
+            return (
+                jsonify({"authenticated": True, "canEdit": False, "user_id": user_id}),
+                200,
+            )
         elif user_id == current_user:
             permission = await check_user_edit_permission(user_id, channel_url)
-            session['edit_permission'] = permission
+            session["edit_permission"] = permission
             app.logger.info(f"Session valid for user_id: {user_id}")
-            return jsonify({"authenticated": True, "canEdit": permission, "user_id": user_id}), 200
+            return (
+                jsonify(
+                    {"authenticated": True, "canEdit": permission, "user_id": user_id}
+                ),
+                200,
+            )
         else:
             app.logger.warning("Session validation failed.")
             return jsonify({"authenticated": False, "can_edit": False}), 401
@@ -179,7 +191,7 @@ def create_app(test_config=None):
         response = jsonify({"login": True})
         set_access_cookies(response, access_token)
         return response
-    
+
     @app.route("/api/logout", methods=["GET"])
     def logout():
         session.pop("user_id", None)
@@ -246,6 +258,106 @@ def create_app(test_config=None):
             except Exception as e:
                 print(f"Failed to check permissions: {str(e)}")
                 return False
+
+    @app.route("/api/reformat_recipe", methods=["POST"])
+    def reformat_recipe():
+        data = request.get_json()
+        if "text" not in data:
+            return jsonify({"error": "Missing text"}), 400
+
+        prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו גמויות או פעולות לביצוע - המטרה לארגן.
+
+דוגמה למתכון לפני העיבוד:
+"עוגת שוקולד פשוטה ומהירה: לקחת 2 ביצים, 1 כוס סוכר, 1 כוס קמח, חצי כוס שמן, חצי חבילה של שוקולד, וחצי שקית אבקת אפייה. לערבב הכל יחד ולאפות בתנור שחומם מראש ל-180 מעלות עד שהעוגה מוכנה."
+
+דוגמה למתכון אחרי העיבוד:
+כותרת: עוגת שוקולד פשוטה ומהירה
+רשימת מצרכים:
+- 2 ביצים
+- 1 כוס סוכר
+- 1 כוס קמח
+- חצי כוס שמן
+- חצי חבילה של שוקולד
+- חצי שקית אבקת אפייה
+הוראות הכנה:
+1. נחמם את התנור ל-180 מעלות.
+2. בקערה גדולה, נרבב יחד את הביצים, הסוכר, הקמח, השמן, השוקולד ואבקת האפייה.
+3. נשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.
+
+"""
+
+        try:
+            response = openAiClient.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": prompt},
+                    {"role": "user", "content": data["text"]},
+                ],
+                max_tokens=500,
+                temperature=0.5,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0,
+            )
+            print(response)
+            return ({"reformatted_text": response.choices[0].message.content}), 200
+        except Exception as e:
+            print(e)
+            return jsonify({"error": str(e)}), 500
+
+    @app.route("/api/update_recipe", methods=["POST"])
+    async def update_recipe():
+        data = request.get_json()
+        print(data)
+        message_id = int(data.get("messageId"))
+        new_text = data.get("newText")
+        client = TelegramClient(session_name, bot_id, api_hash)
+
+        try:
+            async with client:
+                channel_entity = await client.get_entity(channel_url)
+                message = await client.get_messages(channel_entity, ids=message_id)
+                print(message, flush=True)
+                if message:
+                    try:
+                        await client.edit_message(channel_entity, message, new_text)
+                        return jsonify({"status": "message_updated"}), 200
+                    except errors.MessageNotModifiedError as e:
+                        print(e, flush=True)
+                        try:
+                            if message.photo:
+                                new_msg = await client.send_message(
+                                    channel_entity, new_text, file=message.photo
+                                )
+                            else:
+                                new_msg = await client.send_message(
+                                    channel_entity, new_text
+                                )
+
+                            await client.delete_messages(channel_entity, [message_id])
+                            return (
+                                jsonify(
+                                    {
+                                        "status": "new_message_sent",
+                                        "new_message_id": new_msg.id,
+                                    }
+                                ),
+                                200,
+                            )
+                        except Exception as e:
+                            return (
+                                jsonify(
+                                    {
+                                        "error": "Failed to send new message or delete old one",
+                                        "details": str(e),
+                                    }
+                                ),
+                                500,
+                            )
+                else:
+                    return jsonify({"error": "Message not found"}), 404
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
 
     # from . import db
 

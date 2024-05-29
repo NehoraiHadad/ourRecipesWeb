@@ -7,6 +7,7 @@ import Image3 from "../../public/categories_photos/3.png"
 import Image4 from "../../public/categories_photos/4.png"
 import Image5 from "../../public/categories_photos/5.png"
 import Image6 from "../../public/categories_photos/6.png"
+import { isRecipeUpdated, parseRecipe } from '@/utils/formatChecker';
 
 export default function RecipeLine({ recipe }: {recipe: recipe }) {
   return (
@@ -21,7 +22,7 @@ export default function RecipeLine({ recipe }: {recipe: recipe }) {
         />
       </div>
       <div className="flex-grow mx-4">
-        <h3 className="font-bold text-base">{recipe.title}</h3>
+        <h3 className="font-bold text-base">{isRecipeUpdated(recipe.title + "\n" + recipe.details) ? parseRecipe(recipe.title + "\n" + recipe.details).title : recipe.title}</h3>
         {/* <h3 className="text-xs">{recipe.time} דקות הכנה</h3> */}
       </div>
     </div>

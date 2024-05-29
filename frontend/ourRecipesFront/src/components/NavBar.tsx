@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import { useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/app/context/AuthContext";
+import { useAuthContext } from "@/context/AuthContext";
 
 const NavBar = () => {
   const router = useRouter();
@@ -12,7 +12,7 @@ const NavBar = () => {
   const menuRef = useRef(null);
 
   useOutsideClick(menuRef, () => setIsMenuOpen(false));
-  const { authState, setAuthState } = useAuthContext();
+  const { setAuthState } = useAuthContext();
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
