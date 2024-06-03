@@ -32,7 +32,7 @@ const Page = () => {
         console.error("Error posting data:", error);
       }
     };
-  }, []);
+  }, [router]);
 
   return (
     <>

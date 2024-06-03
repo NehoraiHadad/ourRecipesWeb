@@ -33,20 +33,21 @@ def create_app(test_config=None):
     CORS(
         app,
         supports_credentials=True,
-        resources={r"/api/*": {"origins": "http://127.0.0.1"}},
+        resources={r"/api/*": {"origins": os.getenv("ORIGIN_CORS")}},
     )
 
     jwt = JWTManager(app)
     # Configure the JWT secret key
     app.config["JWT_SECRET_KEY"] = os.getenv("SECRET_JWT")
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+    app.config["JWT_COOKIE_SAMESITE"] = "None"
     app.config["JWT_COOKIE_SECURE"] = True
     app.config["JWT_COOKIE_CSRF_PROTECT"] = True
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # 1 hour
 
     app.config["SESSION_COOKIE_SECURE"] = True
     app.config["SESSION_COOKIE_HTTPONLY"] = True
-    app.config["SESSION_COOKIE_SAMESITE"] = "Lax"
+    app.config["SESSION_COOKIE_SAMESITE"] = "None"
 
     openAiClient = openai.OpenAI()
 

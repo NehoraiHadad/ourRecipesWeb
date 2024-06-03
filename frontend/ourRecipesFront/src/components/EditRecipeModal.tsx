@@ -15,11 +15,11 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
   onClose,
   children,
 }) => {
-  if (!show) return null;
   
   const editModalRef = useRef(null);
   useOutsideClick(editModalRef, onClose);
-
+  
+  if (!show) return null;
 
   return (
     <div  className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 transition-all duration-700 ease-in-out">
