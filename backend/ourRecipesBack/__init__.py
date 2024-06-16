@@ -161,6 +161,8 @@ def create_app(test_config=None):
     async def validate_session():
         current_user = get_jwt_identity()
         user_id = session.get("user_id")
+        print("current_user: " + str(current_user), flush=True)
+        print("session userId: " + str(user_id), flush=True) 
         if user_id == "guest":
             session["edit_permission"] = False
             app.logger.info(f"Session valid for user_id: {user_id}")
@@ -359,6 +361,10 @@ def create_app(test_config=None):
                     return jsonify({"error": "Message not found"}), 404
         except Exception as e:
             return jsonify({"error": str(e)}), 500
+
+    @app.route('/ping')
+    def ping():
+        return 'Pong!', 200
 
     # from . import db
 
