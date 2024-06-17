@@ -172,7 +172,16 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       ) : (
         <div className="p-4">
           <h2>{recipe.title}</h2>
-          <p>{recipe.details}</p>
+          <p className="whitespace-pre text-balance">
+            {recipe.details
+              .replace(/(\n)+/g, (match) => {
+                let numOfNewLines = match.length;
+                return "\n".repeat(
+                  numOfNewLines > 1 ? numOfNewLines - 1 : numOfNewLines
+                );
+              })
+              }
+          </p>
         </div>
       )}
       {authState.canEdit && reformat_recipe == "" && (
