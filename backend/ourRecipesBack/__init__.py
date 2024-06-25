@@ -34,6 +34,7 @@ def create_app(test_config=None):
         app,
         supports_credentials=True,
         resources={r"/api/*": {"origins": os.getenv("ORIGIN_CORS")}},
+        allow_methods=["GET", "POST"]
     )
 
     jwt = JWTManager(app)
@@ -42,7 +43,7 @@ def create_app(test_config=None):
     app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
     app.config["JWT_COOKIE_SAMESITE"] = "None"
     app.config["JWT_COOKIE_SECURE"] = True
-    app.config["JWT_COOKIE_CSRF_PROTECT"] = True
+    app.config["JWT_COOKIE_CSRF_PROTECT"] = False
     app.config["JWT_ACCESS_TOKEN_EXPIRES"] = 3600  # 1 hour
 
     app.config["SESSION_COOKIE_SECURE"] = True
@@ -263,6 +264,7 @@ def create_app(test_config=None):
                 return False
 
     @app.route("/api/reformat_recipe", methods=["POST"])
+    @jwt_required()
     def reformat_recipe():
         data = request.get_json()
         if "text" not in data:
@@ -309,6 +311,7 @@ def create_app(test_config=None):
             return jsonify({"error": str(e)}), 500
 
     @app.route("/api/update_recipe", methods=["POST"])
+    @jwt_required()
     async def update_recipe():
         data = request.get_json()
         print(data)

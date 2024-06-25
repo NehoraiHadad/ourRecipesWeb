@@ -63,6 +63,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
         `${process.env.NEXT_PUBLIC_API_URL}/reformat_recipe`,
         {
           method: "POST",
+          credentials: "include",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: recipe.title + "\n" + recipe.details }),
         }
@@ -96,6 +97,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify(data),
         }
       );
