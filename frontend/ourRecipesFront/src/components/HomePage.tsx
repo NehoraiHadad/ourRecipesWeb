@@ -21,7 +21,9 @@ export default function Home() {
         `${process.env.NEXT_PUBLIC_API_URL}/search?query=${encodeURIComponent(
           query
         )}`
-      );
+      ,{
+        credentials: "include"
+      });
       if (!response.ok) throw new Error("Failed to fetch");
       const data: recipe[] = await response.json();
       setRecipes(data);

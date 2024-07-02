@@ -12,8 +12,8 @@ export default function Page() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
   const [resultCount, setResultCount] = useState<number | "">();
 
-  const { isAuthenticated, canEdit,  isChecking } = useAuth("/login", false);
-  
+  const { isAuthenticated, canEdit, isChecking } = useAuth("/login", false);
+
   if (isChecking) {
     return <Spinner message="בודק אימות..." />;
   }
@@ -30,9 +30,7 @@ export default function Page() {
     try {
       resetResultCount();
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/search?query=${encodeURIComponent(
-          query
-        )}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/search?query=${query}`,
         {
           credentials: "include",
         }
