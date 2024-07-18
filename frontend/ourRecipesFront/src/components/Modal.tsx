@@ -1,4 +1,5 @@
-import { useEffect } from "react";
+import useOutsideClick from "@/hooks/useOutsideClick";
+import { useRef } from "react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -7,29 +8,8 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-  //  TODO - use "useOutsideClick" Hook.
-  useEffect(() => {
-    const handleEsc = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        onClose();
-      }
-    };
-    const handleOutsideClick = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (target.id === "modal-backdrop") {
-        onClose();
-      }
-    };
-
-    window.addEventListener("keydown", handleEsc);
-    window.addEventListener("click", handleOutsideClick);
-
-    // Cleanup
-    return () => {
-      window.removeEventListener("keydown", handleEsc);
-      window.removeEventListener("click", handleOutsideClick);
-    };
-  }, [onClose]);
+  const modalRef = useRef<HTMLDivElement>(null);
+  useOutsideClick(modalRef, onClose);
 
   if (!isOpen) return null;
 
@@ -38,7 +18,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       id="modal-backdrop"
       className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center p-4 transition-all duration-700 ease-in-out"
     >
-      <div className="bg-white p-4 rounded-lg shadow-lg w-3xl max-h-[90vh] overflow-auto">
+      <div
+        ref={modalRef}
+        className="bg-white p-4 rounded-lg shadow-lg w-3xl max-h-[90vh] overflow-auto"
+      >
         <div className="bg-white flex items-top  justify-start w-full h-7">
           <button
             onClick={onClose}
