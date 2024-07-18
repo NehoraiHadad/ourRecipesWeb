@@ -34,7 +34,7 @@ def create_app(test_config=None):
         app,
         supports_credentials=True,
         resources={r"/api/*": {"origins": os.getenv("ORIGIN_CORS")}},
-        allow_methods=["GET", "POST"]
+        allow_methods=["GET", "POST"],
     )
 
     jwt = JWTManager(app)
@@ -163,7 +163,7 @@ def create_app(test_config=None):
         current_user = get_jwt_identity()
         user_id = session.get("user_id")
         print("current_user: " + str(current_user), flush=True)
-        print("session userId: " + str(user_id), flush=True) 
+        print("session userId: " + str(user_id), flush=True)
         if user_id == "guest":
             session["edit_permission"] = False
             app.logger.info(f"Session valid for user_id: {user_id}")
@@ -365,9 +365,61 @@ def create_app(test_config=None):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
-    @app.route('/ping')
+    @app.route("/api/meal-suggestions", methods=["POST"])
+    @jwt_required()
+    def handle_meal_suggestion():
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "No data provided"}), 400
+
+        print("Received data:", data, flush=True)
+        try:
+            prompt = """
+            התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לפי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בצורה בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
+
+            דוגמא לבקשת משתמש:
+
+            יש לי את המרכיבים הבאים: עגבניות, בצל, פרג, וגבינה מלוחה. אני רוצה להכין ארוחת צהריים. זה צריך להיות מתאים להכנה מהירה. יש לך הצעה למתכון?
+
+            דוגמא לתשובה - התשובה צריכה להיות בדיוק בפורמט שמופיע בדוגמא:
+
+            כותרת: סלט עגבניות ובצל עם פרג
+            רשימת מצרכים:
+            3 עגבניות בינוניות
+            1 בצל גדול
+            100 גרם פרג
+            50 גרם גבינה מלוחה
+            2 כפות שמן זית
+            מלח ופלפל לפי הטעם
+            הוראות הכנה:
+            נחתוך את העגבניות והבצל לקוביות קטנות.
+            נערבב בקערה את העגבניות, הבצל, הפרג והרזונה.
+            נתבל בשמן זית, מלח ופלפל ונערבב הכל יחד עד לקבלת טעם אחיד.
+            """
+            # 'ingredients': '', 'mealType': [], 'quickPrep': False, 'childFriendly': False, 'additionalRequests': ''
+            user_prompt=f" {'יש לי את המרכיבים הבאים: ' + data["ingredients"] if data["ingredients"] else ""}. אני רוצה להכין {data["mealType"]}.{"זה צריך להיות מתאים להכנה מהירה." if data["quickPrep"] else ""}{"זה צריך להיות מותאם לילדים." if data["childFriendly"] else ""}{"בנוסף התייחס לזה: "+ data["additionalRequests"] if data["additionalRequests"] else ""} יש לך הצעה למתכון?" 
+
+            response = openAiClient.chat.completions.create(
+                model="gpt-4o",
+                messages=[
+                    {"role": "system", "content": prompt},
+                    {"role": "user", "content": user_prompt},
+                ],
+                max_tokens=500,
+                temperature=0.5,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0,
+            )
+            return({"status": "success", "message": response.choices[0].message.content}), 200
+            # Process the data, save to database, etc.
+        except Exception as e:
+            print(e)
+            return jsonify({"error": str(e)}), 500
+
+    @app.route("/ping")
     def ping():
-        return 'Pong!', 200
+        return "Pong!", 200
 
     # from . import db
 

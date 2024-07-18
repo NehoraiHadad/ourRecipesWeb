@@ -7,10 +7,14 @@ import Recipes from "@/components/Recipes";
 import Search from "@/components/Search";
 import { recipe } from "../../types";
 import { useAuth } from "@/hooks/useAuth";
+import Modal from "@/components/Modal";
+import DraggableBubble from "@/components/DraggableButton";
+import MealSuggestionForm from "@/components/MealSuggestionForm";
 
 export default function Page() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
   const [resultCount, setResultCount] = useState<number | "">();
+  const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
 
   const { isAuthenticated, canEdit, isChecking } = useAuth("/login", false);
 
@@ -48,6 +52,13 @@ export default function Page() {
 
   return (
     <main className="flex flex-col h-[calc(100dvh-52px)] items-center">
+      <DraggableBubble onClick={() => setMealSuggestionForm(!mealSuggestionForm)} />
+      <Modal
+        isOpen={mealSuggestionForm}
+        onClose={() => setMealSuggestionForm(false)}
+      >
+        <MealSuggestionForm />
+      </Modal>
       <div className="flex justify-center px-5 w-full lg:px-72">
         <Image
           src={homeImage}
