@@ -11,6 +11,7 @@ const MealSuggestionForm: React.FC = () => {
   const [quickPrep, setQuickPrep] = useState<boolean>(false);
   const [childFriendly, setChildFriendly] = useState<boolean>(false);
   const [additionalRequests, setAdditionalRequests] = useState<string>("");
+  const [photo, setPhoto] = useState<boolean>(false);
   const [recipe, setRecipe] = useState<{
     title: string;
     ingredients: string[];
@@ -40,6 +41,7 @@ const MealSuggestionForm: React.FC = () => {
             quickPrep,
             childFriendly,
             additionalRequests,
+            photo,
           }),
         }
       );
@@ -48,14 +50,18 @@ const MealSuggestionForm: React.FC = () => {
         throw new Error("Failed to submit the form");
       }
 
+      
       const result = await response.json();
+      const result_photo = result.photo ? result.photo : "";
+      console.log(result);
+      console.log(result.photo);
       if (result.message !== "") {
         const recipeData = parseRecipe(result.message);
         setRecipe({
           title: recipeData.title,
           ingredients: recipeData.ingredients,
           instructions: recipeData.instructions,
-          image: "",
+          image: result_photo,
         });
       } else {
         throw new Error("שגיאה - לא התקבל מתכון");
@@ -84,6 +90,7 @@ const MealSuggestionForm: React.FC = () => {
     setQuickPrep(false);
     setChildFriendly(false);
     setAdditionalRequests("");
+    setPhoto(false);
     setRecipe(null);
     setError("");
   };
@@ -182,6 +189,17 @@ const MealSuggestionForm: React.FC = () => {
               rows={3}
             />
           </div>
+          <label className="inline-flex items-center">
+              <input
+                type="checkbox"
+                checked={photo}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPhoto(e.target.checked)
+                }
+                className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
+              />
+              <span className="ml-2 text-gray-700">מה עם תמונה?</span>
+            </label>
           <div className="flex flex-row justify-center">
             {!loading ? (
               <button

@@ -30,7 +30,7 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
   return (
     <div>
       {recipe.image && (
-        <img src={recipe.image} alt={recipe.title} className="rounded-lg" />
+        <img src={"data:image/jpeg;base64," + recipe.image} alt={recipe.title} className="rounded-lg" />
       )}
       <div className="p-4">
         <h2 className="text-2xl font-bold text-center mb-4">{recipe.title}</h2>
