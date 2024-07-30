@@ -2,7 +2,7 @@ import { useState } from "react";
 import RecipeLine from "./RecipeLine";
 import { recipe } from "../types";
 import Modal from "./Modal";
-import RecipeDetail from "./RecipeDetail";
+import RecipeDetail from "./RecipeDetails";
 
 export default function Recipes(recipes: recipe[]) {
   const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);

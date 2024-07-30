@@ -2,16 +2,19 @@ import React, { useState, ChangeEvent } from "react";
 import Spinner from "./Spinner";
 import RecipeDisplay from "./RecipeDisplay";
 import { parseRecipe } from "../utils/formatChecker";
+import { useAuthContext } from "@/context/AuthContext";
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
 const MealSuggestionForm: React.FC = () => {
+  const { authState } = useAuthContext();
   const [ingredients, setIngredients] = useState<string>("");
   const [mealType, setMealType] = useState<MealType[]>(["ארוחת בוקר"]);
   const [quickPrep, setQuickPrep] = useState<boolean>(false);
   const [childFriendly, setChildFriendly] = useState<boolean>(false);
   const [additionalRequests, setAdditionalRequests] = useState<string>("");
   const [photo, setPhoto] = useState<boolean>(false);
+  const [recipeText, setRecipeText] = useState<string>("");
   const [recipe, setRecipe] = useState<{
     title: string;
     ingredients: string[];
@@ -50,12 +53,12 @@ const MealSuggestionForm: React.FC = () => {
         throw new Error("Failed to submit the form");
       }
 
-      
       const result = await response.json();
       const result_photo = result.photo ? result.photo : "";
       console.log(result);
       console.log(result.photo);
       if (result.message !== "") {
+        setRecipeText(result.message);
         const recipeData = parseRecipe(result.message);
         setRecipe({
           title: recipeData.title,
@@ -95,17 +98,65 @@ const MealSuggestionForm: React.FC = () => {
     setError("");
   };
 
+  const sendToTelegram = async (data: {}) => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/send_recipe`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to update the recipe in Telegram.");
+      }
+
+      const result = await response.json();
+      console.log("Update successful:", result);
+      // setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
+    } catch (error) {
+      console.error("Error updating recipe:", error);
+      // setShowMessage({ status: true, message: "שגיאה בשמירת המתכון" });
+      throw error;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div>
       {recipe && recipe.title ? (
         <div>
           <RecipeDisplay recipe={recipe} />
-          <button
-            onClick={handleCancel}
-            className="mt-4 px-4 py-2 bg-gray-500 text-white font-bold rounded hover:bg-gray-700"
-          >
-            פתח הצעה חדשה
-          </button>
+          {loading ? <Spinner message="שולח.." ></Spinner> : 
+            <div className="flex justify-between">
+              <button
+                onClick={handleCancel}
+                className="mt-4 px-4 py-2 bg-gray-500 text-white font-bold rounded hover:bg-gray-700"
+              >
+                פתח הצעה חדשה
+              </button>
+              {authState.canEdit && (
+                <button
+                  onClick={() =>
+                    sendToTelegram({
+                      newText: recipeText,
+                      image: recipe.image,
+                    })
+                  }
+                  className="mt-4 px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded "
+                >
+                  שמור בטלגרם
+                </button>
+              )}
+            </div>
+          }
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="p-2 bg-white">
@@ -190,16 +241,16 @@ const MealSuggestionForm: React.FC = () => {
             />
           </div>
           <label className="inline-flex items-center">
-              <input
-                type="checkbox"
-                checked={photo}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setPhoto(e.target.checked)
-                }
-                className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
-              />
-              <span className="ml-2 text-gray-700">מה עם תמונה?</span>
-            </label>
+            <input
+              type="checkbox"
+              checked={photo}
+              onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                setPhoto(e.target.checked)
+              }
+              className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
+            />
+            <span className="ml-2 text-gray-700">מה עם תמונה?</span>
+          </label>
           <div className="flex flex-row justify-center">
             {!loading ? (
               <button

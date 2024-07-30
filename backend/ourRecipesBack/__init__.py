@@ -4,9 +4,11 @@ from datetime import timezone
 
 import os
 
-from telethon import TelegramClient, errors
+from telethon import TelegramClient, errors, events
 import base64
 from io import BytesIO
+from tempfile import NamedTemporaryFile
+
 
 from flask import Flask, request, jsonify, session
 from flask_cors import CORS
@@ -71,7 +73,33 @@ def create_app(test_config=None):
     bot_id = os.getenv("BOT_ID")
     api_hash = os.getenv("API_HASH")
     channel_url = os.getenv("CHANNEL_URL")
+    old_channel_url = os.getenv("OLD_CHANNEL_URL")
     session_name = "connect_to_our_recipes_channel"
+    client = TelegramClient(session_name, bot_id, api_hash)
+
+
+    @client.on(events.NewMessage(chats=old_channel_url))
+    async def handle_new_message(event):
+        # Check if the message has text
+        if event.text:
+            # new_text = await reformat_with_chatgpt(event.text)
+            print(event.text)
+        else:
+            new_text = None
+
+        # Check if the message has a photo
+        if event.media:
+            # Download the photo to a temporary path
+            path = await event.download_media()
+        else:
+            path = None
+
+        # Send the reformatted text and/or photo to the new channel
+        await client.send_message(channel_url, new_text, file=path)
+
+        # Clean up downloaded media file if it exists
+        if path:
+            os.remove(path)
 
     async def fetch_recipes(query):
         client = TelegramClient(session_name, bot_id, api_hash)
@@ -270,7 +298,7 @@ def create_app(test_config=None):
         if "text" not in data:
             return jsonify({"error": "Missing text"}), 400
 
-        prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו גמויות או פעולות לביצוע - המטרה לארגן.
+        prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו רכיבים או כמויות או פעולות לביצוע - המטרה לארגן. אם יש רכיב או פעולה שאינך מבין החזר אותו כמו שהוא.
 
 דוגמה למתכון לפני העיבוד:
 "עוגת שוקולד פשוטה ומהירה: לקחת 2 ביצים, 1 כוס סוכר, 1 כוס קמח, חצי כוס שמן, חצי חבילה של שוקולד, וחצי שקית אבקת אפייה. לערבב הכל יחד ולאפות בתנור שחומם מראש ל-180 מעלות עד שהעוגה מוכנה."
@@ -285,9 +313,9 @@ def create_app(test_config=None):
 - חצי חבילה של שוקולד
 - חצי שקית אבקת אפייה
 הוראות הכנה:
-1. נחמם את התנור ל-180 מעלות.
-2. בקערה גדולה, נרבב יחד את הביצים, הסוכר, הקמח, השמן, השוקולד ואבקת האפייה.
-3. נשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.
+1. לחמם את התנור ל-180 מעלות.
+2. בקערה גדולה, לערבב יחד את הביצים, הסוכר, הקמח, השמן, השוקולד ואבקת האפייה.
+3. לשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.
 
 """
 
@@ -365,6 +393,42 @@ def create_app(test_config=None):
         except Exception as e:
             return jsonify({"error": str(e)}), 500
 
+
+    @app.route("/api/send_recipe", methods=["POST"])
+    @jwt_required()
+    async def send_recipe():
+        data = request.get_json()
+
+        new_text = data.get("newText")
+        image = data.get("image")
+        if not new_text:
+            return jsonify({"error": "No text provided"}), 400
+    
+        client = TelegramClient(session_name, bot_id, api_hash)
+
+        try:
+            async with client:
+                channel_entity = await client.get_entity(channel_url)
+                if image:
+                    image_bytes = base64.b64decode(image)
+                    with NamedTemporaryFile(delete=False, suffix='.jpg') as temp_image:
+                        temp_image.write(image_bytes)
+                        temp_image.flush()
+                        # Send message with photo
+                        new_msg = await client.send_message(channel_entity, new_text, file=temp_image.name)
+        
+                    return jsonify({"status": "message_sent", "message_id": new_msg.id}), 200
+                else:
+                    new_msg = await client.send_message(
+                        channel_entity, new_text
+                    )                
+                    print(f"Message sent with ID: {new_msg.id}", flush=True)
+                    return jsonify({"status": "message_sent", "message_id": new_msg.id}), 200
+        except Exception as e:
+            print(f"Failed to send message: {str(e)}", flush=True)
+            return jsonify({"error": str(e)}), 500
+    
+
     @app.route("/api/meal-suggestions", methods=["POST"])
     @jwt_required()
     def handle_meal_suggestion():
@@ -435,6 +499,32 @@ def create_app(test_config=None):
 
             return({"status": "success", "message": response.choices[0].message.content}), 200
 
+        except Exception as e:
+            print(e)
+            return jsonify({"error": str(e)}), 500
+        
+    @app.route('/api/generate-image', methods=['POST'])
+    def generate_image():
+        data = request.get_json()
+        recipe_data = data['recipe_data']
+        try:
+            photo_prompt = f"""
+            Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
+
+            The food should be freshly prepared, showcasing vibrant colors and a tempting appearance. Pay attention to the arrangement of the ingredients, aiming for an organic yet deliberate placement that highlights the main components of the dish. Include garnishes that enhance the visual appeal and suggest the freshness of the dish, such as a sprinkle of fresh herbs, a drizzle of a rich sauce, or a decorative edible flower on the side.
+
+            For the specific recipe - {recipe_data}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.
+            """
+
+            response = openai.Image.create(
+                model="dall-e-2",  # or "dall-e-3" if available
+                prompt=photo_prompt,
+                n=1,
+                size="1024x1024"
+            )
+            image_data = response['data'][0]
+            return jsonify({"status": "success", "image": base64.b64encode(image_data).decode('utf-8')}), 200
+        
         except Exception as e:
             print(e)
             return jsonify({"error": str(e)}), 500
