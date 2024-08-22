@@ -170,6 +170,7 @@ def create_app(test_config=None):
     @app.route("/api/login", methods=["POST"])
     async def login():
         user_data = request.json
+        print(user_data, flush=True)
         user_id = user_data.get("id")
 
         if not verify_telegram_login(user_data):
@@ -200,7 +201,7 @@ def create_app(test_config=None):
                 200,
             )
         elif user_id == current_user:
-            permission = await check_user_edit_permission(user_id, channel_url)
+            permission = await check_user_edit_permission(user_id, old_channel_url)
             session["edit_permission"] = permission
             app.logger.info(f"Session valid for user_id: {user_id}")
             return (
@@ -476,26 +477,25 @@ def create_app(test_config=None):
                 presence_penalty=0.0,
             )
 
-            if 'photo' in data and data["photo"]:
+            # if 'photo' in data and data["photo"]:
 
-                photo_prompt = f"""
-                Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
+            #     photo_prompt = f"""
+            #     Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
 
-                The food should be freshly prepared, showcasing vibrant colors and a tempting appearance. Pay attention to the arrangement of the ingredients, aiming for an organic yet deliberate placement that highlights the main components of the dish. Include garnishes that enhance the visual appeal and suggest the freshness of the dish, such as a sprinkle of fresh herbs, a drizzle of a rich sauce, or a decorative edible flower on the side.
+            #     The food should be freshly prepared, showcasing vibrant colors and a tempting appearance. Pay attention to the arrangement of the ingredients, aiming for an organic yet deliberate placement that highlights the main components of the dish. Include garnishes that enhance the visual appeal and suggest the freshness of the dish, such as a sprinkle of fresh herbs, a drizzle of a rich sauce, or a decorative edible flower on the side.
 
-                For the specific recipe - {response.choices[0].message.content}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.   
-                """
+            #     For the specific recipe - {response.choices[0].message.content}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.   
+            #     """
 
-                response_photo = openAiClient.images.generate(
-                    model="dall-e-3",
-                    prompt=photo_prompt,
-                    n=1,
-                    size="1024x1024",
-                    response_format="b64_json"
-                )
-                print(response_photo.data[0])
-                response_photo = response_photo.data[0].b64_json
-                return ({"status": "success", "message": response.choices[0].message.content, "photo": response_photo}), 200
+            #     response_photo = openAiClient.images.generate(
+            #         model="dall-e-3",
+            #         prompt=photo_prompt,
+            #         n=1,
+            #         size="1024x1024",
+            #         response_format="b64_json"
+            #     )
+            #     response_photo = response_photo.data[0].b64_json
+            #     return ({"status": "success", "message": response.choices[0].message.content, "photo": response_photo}), 200
 
             return({"status": "success", "message": response.choices[0].message.content}), 200
 
@@ -504,9 +504,10 @@ def create_app(test_config=None):
             return jsonify({"error": str(e)}), 500
         
     @app.route('/api/generate-image', methods=['POST'])
+    @jwt_required()
     def generate_image():
         data = request.get_json()
-        recipe_data = data['recipe_data']
+        recipe_data = data['recipeContent']
         try:
             photo_prompt = f"""
             Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
@@ -516,14 +517,17 @@ def create_app(test_config=None):
             For the specific recipe - {recipe_data}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.
             """
 
-            response = openai.Image.create(
-                model="dall-e-2",  # or "dall-e-3" if available
+            response = openAiClient.images.generate(
+                model="dall-e-3",
                 prompt=photo_prompt,
                 n=1,
-                size="1024x1024"
+                size="1024x1024",
+                response_format="b64_json"
             )
-            image_data = response['data'][0]
-            return jsonify({"status": "success", "image": base64.b64encode(image_data).decode('utf-8')}), 200
+            response_photo = response.data[0].b64_json
+            # return ({"status": "success", "message": response.choices[0].message.content, "photo": 
+            # image_data = response['data'][0]
+            return jsonify({"status": "success", "image": response_photo}), 200
         
         except Exception as e:
             print(e)

@@ -9,26 +9,26 @@ type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת 
 const MealSuggestionForm: React.FC = () => {
   const { authState } = useAuthContext();
   const [ingredients, setIngredients] = useState<string>("");
-  const [mealType, setMealType] = useState<MealType[]>(["ארוחת בוקר"]);
+  const [mealType, setMealType] = useState<MealType>("ארוחת בוקר");
   const [quickPrep, setQuickPrep] = useState<boolean>(false);
   const [childFriendly, setChildFriendly] = useState<boolean>(false);
   const [additionalRequests, setAdditionalRequests] = useState<string>("");
-  const [photo, setPhoto] = useState<boolean>(false);
-  const [recipeText, setRecipeText] = useState<string>("");
+  const [photoRequested, setPhotoRequested] = useState<boolean>(false);
   const [recipe, setRecipe] = useState<{
-    title: string;
-    ingredients: string[];
-    instructions: string;
-    image: string;
+    title?: string;
+    ingredients?: string[];
+    instructions?: string;
+    image?: string;
   } | null>(null);
+  const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
+  const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
+  const [recipeText, setRecipeText] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
+  const fetchRecipe = async () => {
+    setLoadingRecipe(true);
     setError("");
-
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/meal-suggestions`,
@@ -44,56 +44,82 @@ const MealSuggestionForm: React.FC = () => {
             quickPrep,
             childFriendly,
             additionalRequests,
-            photo,
           }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to submit the form");
+        throw new Error("Failed to fetch the recipe");
       }
 
       const result = await response.json();
-      const result_photo = result.photo ? result.photo : "";
-      console.log(result);
-      console.log(result.photo);
-      if (result.message !== "") {
+      if (result.message) {
         setRecipeText(result.message);
-        const recipeData = parseRecipe(result.message);
+        const parsedRecipe = parseRecipe(result.message);
         setRecipe({
-          title: recipeData.title,
-          ingredients: recipeData.ingredients,
-          instructions: recipeData.instructions,
-          image: result_photo,
+          title: parsedRecipe.title,
+          ingredients: parsedRecipe.ingredients,
+          instructions: parsedRecipe.instructions,
         });
+
+        // Fetch photo if requested
+        if (photoRequested) {
+          fetchPhoto(result.message);
+        }
       } else {
-        throw new Error("שגיאה - לא התקבל מתכון");
+        throw new Error("No recipe received");
       }
     } catch (error: any) {
       setError(error.message);
       setRecipe(null);
     } finally {
-      setLoading(false);
+      setLoadingRecipe(false);
     }
   };
 
-  const handleMealTypeChange = (
-    event: ChangeEvent<HTMLSelectElement>
-  ): void => {
-    const selectedOptions = Array.from(
-      event.target.selectedOptions,
-      (option) => option.value as MealType
-    );
-    setMealType(selectedOptions);
+  const fetchPhoto = async (recipeText: string) => {
+    setLoadingPhoto(true);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/generate-image`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+          body: JSON.stringify({ recipeContent: recipeText }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch the photo");
+      }
+
+      const result = await response.json();
+      setRecipe((prevRecipe) => ({ ...prevRecipe, image: result.image }));
+    } catch (error: any) {
+      setError(error.message); // Optionally handle photo error separately
+    } finally {
+      setLoadingPhoto(false);
+    }
   };
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    fetchRecipe();
+  };
+
+  const handleMealTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    setMealType(event.target.value as MealType);
+  };
   const handleCancel = () => {
     setIngredients("");
-    setMealType(["ארוחת בוקר"]);
+    setMealType("ארוחת בוקר");
     setQuickPrep(false);
     setChildFriendly(false);
     setAdditionalRequests("");
-    setPhoto(false);
+    setPhotoRequested(false);
     setRecipe(null);
     setError("");
   };
@@ -128,11 +154,11 @@ const MealSuggestionForm: React.FC = () => {
       setLoading(false);
     }
   };
-
   return (
     <div>
-      {recipe && recipe.title ? (
-        <div>
+      {recipe ? (
+        <>
+          {loadingPhoto && <Spinner message="Loading photo..." />}
           <RecipeDisplay recipe={recipe} />
           {loading ? <Spinner message="שולח.." ></Spinner> : 
             <div className="flex justify-between">
@@ -157,7 +183,7 @@ const MealSuggestionForm: React.FC = () => {
               )}
             </div>
           }
-        </div>
+        </>
       ) : (
         <form onSubmit={handleSubmit} className="p-2 bg-white">
           <div className="mb-4">
@@ -243,16 +269,16 @@ const MealSuggestionForm: React.FC = () => {
           <label className="inline-flex items-center">
             <input
               type="checkbox"
-              checked={photo}
+              checked={photoRequested}
               onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPhoto(e.target.checked)
+                setPhotoRequested(e.target.checked)
               }
               className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
             />
             <span className="ml-2 text-gray-700">מה עם תמונה?</span>
           </label>
           <div className="flex flex-row justify-center">
-            {!loading ? (
+            {!loadingRecipe ? (
               <button
                 type="submit"
                 className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700"
@@ -266,6 +292,7 @@ const MealSuggestionForm: React.FC = () => {
           {error && <p className="text-red-500">{error}</p>}
         </form>
       )}
+      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };

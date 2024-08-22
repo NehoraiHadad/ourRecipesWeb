@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="he" dir="rtl">
       <body
-        className={`${heebo} font-heebo h-dvh flex flex-col-reverse items-center justify-center`}
+        className={`${heebo} font-heebo h-dvh flex flex-col items-center justify-center`}
       >
         {children}
       </body>

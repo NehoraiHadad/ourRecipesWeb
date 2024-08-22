@@ -3,14 +3,16 @@ import IngredientList from "./IngredientList";
 
 interface RecipeProps {
   recipe: {
-    title: string;
-    ingredients: string[];
-    instructions: string;
-    image: string;
+    title?: string;
+    ingredients?: string[];
+    instructions?: string;
+    image?: string;
   };
 }
 
 const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
+  console.log(recipe);
+  
   const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
 
   useEffect(() => {
