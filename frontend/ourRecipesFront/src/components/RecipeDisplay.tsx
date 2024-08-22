@@ -3,9 +3,9 @@ import IngredientList from "./IngredientList";
 
 interface RecipeProps {
   recipe: {
-    title?: string;
-    ingredients?: string[];
-    instructions?: string;
+    title: string;
+    ingredients: string[];
+    instructions: string;
     image?: string;
   };
 }

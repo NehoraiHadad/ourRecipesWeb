@@ -156,10 +156,10 @@ const MealSuggestionForm: React.FC = () => {
   };
   return (
     <div>
-      {recipe ? (
+      {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
         <>
           {loadingPhoto && <Spinner message="Loading photo..." />}
-          <RecipeDisplay recipe={recipe} />
+          <RecipeDisplay recipe={recipe as Required<typeof recipe>} />
           {loading ? <Spinner message="שולח.." ></Spinner> : 
             <div className="flex justify-between">
               <button
