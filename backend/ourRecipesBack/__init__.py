@@ -343,55 +343,82 @@ def create_app(test_config=None):
     @jwt_required()
     async def update_recipe():
         data = request.get_json()
-        print(data)
+        print("Received data:", data, flush=True)
         message_id = int(data.get("messageId"))
         new_text = data.get("newText")
+        image_data = data.get("image")
         client = TelegramClient(session_name, bot_id, api_hash)
 
         try:
             async with client:
                 channel_entity = await client.get_entity(channel_url)
                 message = await client.get_messages(channel_entity, ids=message_id)
-                print(message, flush=True)
+                print("Existing message:", message, flush=True)
                 if message:
                     try:
-                        await client.edit_message(channel_entity, message, new_text)
+                        if image_data:
+                            print("Image data received, length:", len(image_data), flush=True)
+                            try:
+                                # Convert base64 image to bytes
+                                image_parts = image_data.split(',')
+                                if len(image_parts) > 1:
+                                    image_bytes = base64.b64decode(image_parts[1])
+                                else:
+                                    image_bytes = base64.b64decode(image_data)
+                                file = BytesIO(image_bytes)
+                                file.name = 'image.jpg'
+                                
+                                # Edit message with new text and image
+                                await client.edit_message(channel_entity, message, new_text, file=file)
+                            except Exception as e:
+                                print(f"Error processing image: {str(e)}", flush=True)
+                                # If image processing fails, just update the text
+                                await client.edit_message(channel_entity, message, new_text)
+                        else:
+                            # Edit message with new text only
+                            await client.edit_message(channel_entity, message, new_text)
+                        
                         return jsonify({"status": "message_updated"}), 200
                     except errors.MessageNotModifiedError as e:
-                        print(e, flush=True)
+                        print(f"MessageNotModifiedError: {str(e)}", flush=True)
                         try:
-                            if message.photo:
-                                new_msg = await client.send_message(
-                                    channel_entity, new_text, file=message.photo
-                                )
+                            if image_data:
+                                try:
+                                    # Convert base64 image to bytes
+                                    image_parts = image_data.split(',')
+                                    if len(image_parts) > 1:
+                                        image_bytes = base64.b64decode(image_parts[1])
+                                    else:
+                                        image_bytes = base64.b64decode(image_data)
+                                    file = BytesIO(image_bytes)
+                                    file.name = 'image.jpg'
+                                    
+                                    new_msg = await client.send_message(channel_entity, new_text, file=file)
+                                except Exception as e:
+                                    print(f"Error processing image for new message: {str(e)}", flush=True)
+                                    new_msg = await client.send_message(channel_entity, new_text)
                             else:
-                                new_msg = await client.send_message(
-                                    channel_entity, new_text
-                                )
+                                new_msg = await client.send_message(channel_entity, new_text)
 
                             await client.delete_messages(channel_entity, [message_id])
-                            return (
-                                jsonify(
-                                    {
-                                        "status": "new_message_sent",
-                                        "new_message_id": new_msg.id,
-                                    }
-                                ),
-                                200,
-                            )
+                            return jsonify(
+                                {
+                                    "status": "new_message_sent",
+                                    "new_message_id": new_msg.id,
+                                }
+                            ), 200
                         except Exception as e:
-                            return (
-                                jsonify(
-                                    {
-                                        "error": "Failed to send new message or delete old one",
-                                        "details": str(e),
-                                    }
-                                ),
-                                500,
-                            )
+                            print(f"Error sending new message: {str(e)}", flush=True)
+                            return jsonify(
+                                {
+                                    "error": "Failed to send new message or delete old one",
+                                    "details": str(e),
+                                }
+                            ), 500
                 else:
                     return jsonify({"error": "Message not found"}), 404
         except Exception as e:
+            print(f"Unexpected error: {str(e)}", flush=True)
             return jsonify({"error": str(e)}), 500
 
 
@@ -437,7 +464,6 @@ def create_app(test_config=None):
         if not data:
             return jsonify({"error": "No data provided"}), 400
 
-        print("Received data:", data, flush=True)
         try:
             prompt = """
             התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לפי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בצורה בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
@@ -477,26 +503,6 @@ def create_app(test_config=None):
                 presence_penalty=0.0,
             )
 
-            # if 'photo' in data and data["photo"]:
-
-            #     photo_prompt = f"""
-            #     Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
-
-            #     The food should be freshly prepared, showcasing vibrant colors and a tempting appearance. Pay attention to the arrangement of the ingredients, aiming for an organic yet deliberate placement that highlights the main components of the dish. Include garnishes that enhance the visual appeal and suggest the freshness of the dish, such as a sprinkle of fresh herbs, a drizzle of a rich sauce, or a decorative edible flower on the side.
-
-            #     For the specific recipe - {response.choices[0].message.content}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.   
-            #     """
-
-            #     response_photo = openAiClient.images.generate(
-            #         model="dall-e-3",
-            #         prompt=photo_prompt,
-            #         n=1,
-            #         size="1024x1024",
-            #         response_format="b64_json"
-            #     )
-            #     response_photo = response_photo.data[0].b64_json
-            #     return ({"status": "success", "message": response.choices[0].message.content, "photo": response_photo}), 200
-
             return({"status": "success", "message": response.choices[0].message.content}), 200
 
         except Exception as e:
@@ -525,8 +531,6 @@ def create_app(test_config=None):
                 response_format="b64_json"
             )
             response_photo = response.data[0].b64_json
-            # return ({"status": "success", "message": response.choices[0].message.content, "photo": 
-            # image_data = response['data'][0]
             return jsonify({"status": "success", "image": response_photo}), 200
         
         except Exception as e:

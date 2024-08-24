@@ -6,7 +6,7 @@ interface RecipeProps {
     title: string;
     ingredients: string[];
     instructions: string;
-    image?: string;
+    image: string | null;
   };
 }
 
@@ -32,7 +32,11 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
   return (
     <div>
       {recipe.image && (
-        <img src={"data:image/jpeg;base64," + recipe.image} alt={recipe.title} className="rounded-lg" />
+        <img 
+          src={recipe.image.startsWith('data:') ? recipe.image : `data:image/jpeg;base64,${recipe.image}`} 
+          alt={recipe.title} 
+          className="rounded-lg w-full h-auto mb-4" 
+        />
       )}
       <div className="p-4">
         <h2 className="text-2xl font-bold text-center mb-4">{recipe.title}</h2>

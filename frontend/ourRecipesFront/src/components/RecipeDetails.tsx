@@ -5,6 +5,7 @@ import Spinner from "./Spinner";
 import { isRecipeUpdated, parseRecipe } from "../utils/formatChecker";
 import TypingEffect from "./TypingEffect";
 import EditRecipeModal from "./EditRecipeModal";
+import RecipeDisplay from "./RecipeDisplay";
 
 interface RecipeDetailProps {
   recipe: recipe;
@@ -27,34 +28,31 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
   const [reformat_recipe, setReformat_recipe] = useState("");
 
   const [isLoading, setIsLoading] = useState(false);
-  const [recipeData, setRecipeData] = useState({
-    title: "",
-    ingredients: [] as string[],
-    instructions: "",
-  });
-  const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
+  const [recipeData, setRecipeData] = useState<{
+    title: string;
+    ingredients: string[];
+    instructions: string;
+    image: string | null;
+  } | null>(null);
   const [editManualModal, setEditManualModal] = useState(false);
 
   useEffect(() => {
-    recipeData.title = recipe.title;
-    // Check and parse the recipe immediately if it's already in the updated format
     if (isRecipeUpdated(recipe.title + "\n" + recipe.details)) {
       const formattedRecipe = parseRecipe(recipe.title + "\n" + recipe.details);
-      setRecipeData(formattedRecipe);
-      setSelectedIngredients(
-        new Array(formattedRecipe.ingredients.length).fill(false)
-      );
+      setRecipeData({
+        ...formattedRecipe,
+        image: recipe.image || null
+      });
       setNewFormat(true);
+    } else {
+      setRecipeData({
+        title: recipe.title,
+        ingredients: [],
+        instructions: recipe.details,
+        image: recipe.image || null
+      });
     }
   }, [recipe]);
-
-  const handleIngredientClick = (index: number) => {
-    setSelectedIngredients((prev) => {
-      const newSelected = [...prev];
-      newSelected[index] = !newSelected[index];
-      return newSelected;
-    });
-  };
 
   const fetchReformattedRecipe = async () => {
     setIsLoading(true);
@@ -72,10 +70,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       if (response.ok) {
         setReformat_recipe(data.reformatted_text);
         const formattedRecipe = parseRecipe(data.reformatted_text);
-        setRecipeData(formattedRecipe);
-        setSelectedIngredients(
-          new Array(formattedRecipe.ingredients.length).fill(false)
-        );
+        setRecipeData({ ...formattedRecipe, image: recipe.image || null });
         setNewFormat(true);
       } else {
         throw new Error(data.error);
@@ -90,6 +85,12 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
   const updateRecipeInTelegram = async (data: UpdateRecipeData) => {
     setIsLoading(true);
     try {
+      let imageData = null;
+      if (recipeData?.image) {
+        // Always send the image data as is, without any processing on the client side
+        imageData = recipeData.image;
+      }
+
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/update_recipe`,
         {
@@ -98,7 +99,10 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
             "Content-Type": "application/json",
           },
           credentials: "include",
-          body: JSON.stringify(data),
+          body: JSON.stringify({
+            ...data,
+            image: imageData,
+          }),
         }
       );
 
@@ -111,8 +115,6 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       if (result.new_message_id) {
         recipe.id = result.new_message_id;
       }
-      console.log(recipe.id);
-      console.log(recipe);
       setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
       return result;
     } catch (error) {
@@ -132,10 +134,10 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
   const handleSaveManualEdit = () => {
     setReformat_recipe(
       `כותרת: ${
-        recipeData.title
-      }\n\nרשימת מצרכים:\n-${recipeData.ingredients.join(
+        recipeData?.title || ""
+      }\n\nרשימת מצרכים:\n-${recipeData?.ingredients.join(
         "\n-"
-      )}\n\nהוראות הכנה:\n${recipeData.instructions}`
+      )}\n\nהוראות הכנה:\n${recipeData?.instructions || ""}`
     );
 
     setNewFormat(true);
@@ -144,47 +146,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
 
   return (
     <div>
-      {recipe.image && (
-        <img src={recipe.image} alt={recipe.title} className="rounded-lg" />
-      )}
-      {newFormat ? (
-        <div className="p-4">
-          <h2 className="text-2xl font-bold text-center mb-4">
-            {recipeData.title}
-          </h2>
-          <ul>
-            {recipeData.ingredients.map((ingredient, index) => (
-              <li
-                key={index}
-                className="cursor-pointer"
-                onClick={() => handleIngredientClick(index)}
-              >
-                <span>
-                  {selectedIngredients[index] ? "✓ " : "• "} {ingredient}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <div className="whitespace-pre-line my-4">
-            {recipeData.instructions.split("\n").map((line, index) => (
-              <p key={index}>{line}</p>
-            ))}
-          </div>
-        </div>
-      ) : (
-        <div className="p-4">
-          <h2>{recipe.title}</h2>
-          <p className="whitespace-pre text-balance">
-            {recipe.details
-              .replace(/(\n)+/g, (match) => {
-                let numOfNewLines = match.length;
-                return "\n".repeat(
-                  numOfNewLines > 1 ? numOfNewLines - 1 : numOfNewLines
-                );
-              })
-              }
-          </p>
-        </div>
+      {recipeData && (
+        <RecipeDisplay recipe={recipeData} />
       )}
       {authState.canEdit && reformat_recipe == "" && (
         <div>
@@ -246,75 +209,10 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       <EditRecipeModal
         show={editManualModal}
         onClose={() => setEditManualModal(false)}
-      >
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSaveManualEdit();
-          }}
-        >
-          <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                כותרת:
-              </label>
-              <input
-                type="text"
-                value={recipeData.title ? recipeData.title : recipe.title}
-                onChange={(e) =>
-                  setRecipeData({ ...recipeData, title: e.target.value })
-                }
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                רשימת מצרכים:
-              </label>
-              <textarea
-                value={
-                  recipeData.ingredients.length > 0
-                    ? recipeData.ingredients.join("\n")
-                    : ""
-                }
-                onChange={(e) =>
-                  setRecipeData({
-                    ...recipeData,
-                    ingredients: e.target.value.split("\n"),
-                  })
-                }
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                rows={5}
-                placeholder="כל מצרך בשורה חדשה"
-              />
-            </div>
-            <div>
-              <label className="block text-sm font-medium text-gray-700">
-                הוראות הכנה:
-              </label>
-              <textarea
-                value={
-                  recipeData.instructions
-                    ? recipeData.instructions
-                    : recipe.details
-                }
-                onChange={(e) =>
-                  setRecipeData({ ...recipeData, instructions: e.target.value })
-                }
-                className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                rows={5}
-                placeholder="למען הסדר הטוב - נחלק את ההכנה לשלבים ובכל שלב נרד שורה.  כדאי גם להוסיף מספור בתחילת השורה."
-              />
-            </div>
-            <button
-              type="submit"
-              className="py-2 px-4 bg-green-500 text-white rounded hover:bg-green-700"
-            >
-              הצג
-            </button>
-          </div>
-        </form>
-      </EditRecipeModal>
+        recipeData={recipeData}
+        setRecipeData={setRecipeData}
+        onSave={handleSaveManualEdit}
+      />
     </div>
   );
 };
