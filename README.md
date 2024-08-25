@@ -14,15 +14,15 @@ Our Recipes is a modern, user-friendly web application designed to bring the joy
 
 Here are some screenshots of our application:
 
-![Home Page](2.png)
+![Home Page](demo/2.png)
 
-![Recipe Search](5.png)
+![Recipe Search](demo/5.png)
 
-![Meal Suggestion](1.png)
+![Meal Suggestion](demo/1.png)
 
-![Recipe Details](4.png)
+![Recipe Details](demo/4.png)
 
-![Recipe List](3.png)
+![Recipe List](demo/3.png)
 
 ## Key Features
 
