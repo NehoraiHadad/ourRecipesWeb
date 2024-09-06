@@ -86,7 +86,6 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
         </div>
         <form onSubmit={(e) => { e.preventDefault(); onSave(); }} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">תמונה:</label>
             {isLoading ? (
               <div className="mt-2">
                 <Spinner message="מייצר תמונה..." />

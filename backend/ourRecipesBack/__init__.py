@@ -365,10 +365,12 @@ def create_app(test_config=None):
                                     image_bytes = base64.b64decode(image_parts[1])
                                 else:
                                     image_bytes = base64.b64decode(image_data)
+                                
+                                # Send the image as a file to enable Telegram's built-in compression
                                 file = BytesIO(image_bytes)
                                 file.name = 'image.jpg'
                                 
-                                # Edit message with new text and image
+                                # Edit message with new text and image as a file
                                 await client.edit_message(channel_entity, message, new_text, file=file)
                             except Exception as e:
                                 print(f"Error processing image: {str(e)}", flush=True)
@@ -390,6 +392,8 @@ def create_app(test_config=None):
                                         image_bytes = base64.b64decode(image_parts[1])
                                     else:
                                         image_bytes = base64.b64decode(image_data)
+                                    
+                                    # Send the image as a file to enable Telegram's built-in compression
                                     file = BytesIO(image_bytes)
                                     file.name = 'image.jpg'
                                     
@@ -514,15 +518,29 @@ def create_app(test_config=None):
     def generate_image():
         data = request.get_json()
         recipe_data = data['recipeContent']
+        
+        # שלב מקדים: קבלת פרומפט מותאם מהמודל שפה
         try:
-            photo_prompt = f"""
-            Create a high-resolution image of a prepared dish, styled professionally for a gourmet food magazine. The composition should be a top-down view, emulating a professional DSLR camera setup with soft, natural lighting to enhance the textures and colors of the food. The background should be a subtle, soft-focus kitchen or dining setting that complements the dish without distracting from it. The dish should be presented on an elegant, matte-finished plate or bowl, with a clean and minimalist aesthetic.
-
-            The food should be freshly prepared, showcasing vibrant colors and a tempting appearance. Pay attention to the arrangement of the ingredients, aiming for an organic yet deliberate placement that highlights the main components of the dish. Include garnishes that enhance the visual appeal and suggest the freshness of the dish, such as a sprinkle of fresh herbs, a drizzle of a rich sauce, or a decorative edible flower on the side.
-
-            For the specific recipe - {recipe_data}, the image should feature the ingredients, prepared according to the method described in the recipe. Highlight the key elements of the dish, such as the crispiness of the outer layer, the juiciness of the meats, or the creamy texture of the sauces. If applicable, show a slight steam rising from the hot food to convey warmth and freshness. Ensure that the final presentation looks appetizing, inviting, and perfectly cooked.
+            prompt_for_image = f"""
+            עליך ליצור פרומפט לתמונה עבור המתכון הבא: {recipe_data}. 
+            תן לי פרומפט מפורט שיתאר את התמונה המושלמת עבור המנה הזו.
             """
-
+            
+            response_prompt = openAiClient.chat.completions.create(
+                model="gpt-4o-mini",
+                messages=[
+                    {"role": "system", "content": "אתה מודל שפה שמספק פרומפטים לתמונות."},
+                    {"role": "user", "content": prompt_for_image},
+                ],
+                max_tokens=150,
+                temperature=0.5,
+                top_p=1.0,
+                frequency_penalty=0.0,
+                presence_penalty=0.0,
+            )
+            photo_prompt = response_prompt.choices[0].message.content
+            
+            # שלב יצירת התמונה
             response = openAiClient.images.generate(
                 model="dall-e-3",
                 prompt=photo_prompt,
