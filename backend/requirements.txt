@@ -4,3 +4,5 @@ Flask-Cors
 telethon
 flask-jwt-extended
 openai
+requests
+google-generativeai

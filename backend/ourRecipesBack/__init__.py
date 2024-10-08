@@ -25,7 +25,11 @@ from flask_jwt_extended import (
     set_access_cookies,
 )
 
-import openai
+import openai   
+
+import google.generativeai as genai
+import os
+
 
 
 def create_app(test_config=None):
@@ -52,7 +56,7 @@ def create_app(test_config=None):
     app.config["SESSION_COOKIE_HTTPONLY"] = True
     app.config["SESSION_COOKIE_SAMESITE"] = "None"
 
-    openAiClient = openai.OpenAI()
+    genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
     app.config.from_mapping(
         SECRET_KEY="dev", DATABASE=os.path.join(app.instance_path, "baba.sqlite")
@@ -305,6 +309,7 @@ def create_app(test_config=None):
 "עוגת שוקולד פשוטה ומהירה: לקחת 2 ביצים, 1 כוס סוכר, 1 כוס קמח, חצי כוס שמן, חצי חבילה של שוקולד, וחצי שקית אבקת אפייה. לערבב הכל יחד ולאפות בתנור שחומם מראש ל-180 מעלות עד שהעוגה מוכנה."
 
 דוגמה למתכון אחרי העיבוד:
+
 כותרת: עוגת שוקולד פשוטה ומהירה
 רשימת מצרכים:
 - 2 ביצים
@@ -318,23 +323,16 @@ def create_app(test_config=None):
 2. בקערה גדולה, לערבב יחד את הביצים, הסוכר, הקמח, השמן, השוקולד ואבקת האפייה.
 3. לשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.
 
+שים לב - ללא עיצוב טקסט והתשובה שלך מדוייקת ללא תוספות או שינויים
 """
 
         try:
-            response = openAiClient.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": prompt},
-                    {"role": "user", "content": data["text"]},
-                ],
-                max_tokens=500,
-                temperature=0.5,
-                top_p=1.0,
-                frequency_penalty=0.0,
-                presence_penalty=0.0,
-            )
-            print(response)
-            return ({"reformatted_text": response.choices[0].message.content}), 200
+            model=genai.GenerativeModel(
+            model_name="gemini-1.5-flash",
+            system_instruction=prompt)
+            response = model.generate_content(data["text"])
+
+            return ({"reformatted_text": response.text}), 200
         except Exception as e:
             print(e)
             return jsonify({"error": str(e)}), 500
@@ -470,44 +468,36 @@ def create_app(test_config=None):
 
         try:
             prompt = """
-            התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לפי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בצורה בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
+            התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לפי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
 
             דוגמא לבקשת משתמש:
 
-            יש לי את המרכיבים הבאים: עגבניות, בצל, פרג, וגבינה מלוחה. אני רוצה להכין ארוחת צהריים. זה צריך להיות מתאים להכנה מהירה. יש לך הצעה למתכון?
+            יש לי את המרכיבים הבאים: עגבניות, בצל, פרג, וגבינה מלוחה. אני רוצה להכין ארוחת צהריים. המתכון צריך להיות מתאים להכנה מהירה. יש לך הצעה למתכון?
 
-            דוגמא לתשובה - התשובה צריכה להיות בדיוק בפורמט שמופיע בדוגמא:
+            דוגמא לתשובה - התשובה צריכה להיות בדיוק בפורמט שמופיע בדוגמא ללא עיצוב טקסט או תוספות:
 
             כותרת: סלט עגבניות ובצל עם פרג
             רשימת מצרכים:
-            3 עגבניות בינוניות
-            1 בצל גדול
-            100 גרם פרג
-            50 גרם גבינה מלוחה
-            2 כפות שמן זית
-            מלח ופלפל לפי הטעם
+            - 3 עגבניות בינוניות
+            - 1 בצל גדול
+            - 100 גרם פרג
+            - 50 גרם גבינה מלוחה
+            - 2 כפות שמן זית
+            - מלח ופלפל לפי הטעם
             הוראות הכנה:
             נחתוך את העגבניות והבצל לקוביות קטנות.
             נערבב בקערה את העגבניות, הבצל, הפרג והרזונה.
             נתבל בשמן זית, מלח ופלפל ונערבב הכל יחד עד לקבלת טעם אחיד.
             """
             # 'ingredients': '', 'mealType': [], 'quickPrep': False, 'childFriendly': False, 'additionalRequests': '', 'photo': False
-            user_prompt=f" {'יש לי את המרכיבים הבאים: ' + data["ingredients"] if data["ingredients"] else ""}. אני רוצה להכין {data["mealType"]}.{"זה צריך להיות מתאים להכנה מהירה." if data["quickPrep"] else ""}{"זה צריך להיות מותאם לילדים." if data["childFriendly"] else ""}{"בנוסף התייחס לזה: "+ data["additionalRequests"] if data["additionalRequests"] else ""} יש לך הצעה למתכון?" 
+            user_prompt=f" {'יש לי את המרכיבים הבאים: ' + data["ingredients"] if data["ingredients"] else ""}. אני רוצה להכין {data["mealType"]}.{"המתכון צריך להיות מתאים להכנה מהירה." if data["quickPrep"] else ""}{"המתכון צריך להיות מותאם לילדים." if data["childFriendly"] else ""}{"בנוסף התייחס לזה: "+ data["additionalRequests"] if data["additionalRequests"] else ""} יש לך הצעה למתכון?" 
 
-            response = openAiClient.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": prompt},
-                    {"role": "user", "content": user_prompt},
-                ],
-                max_tokens=500,
-                temperature=0.5,
-                top_p=1.0,
-                frequency_penalty=0.0,
-                presence_penalty=0.0,
-            )
+            model=genai.GenerativeModel(
+            model_name="gemini-1.5-flash",
+            system_instruction=prompt)
+            response = model.generate_content(user_prompt)
 
-            return({"status": "success", "message": response.choices[0].message.content}), 200
+            return({"status": "success", "message": response.text}), 200
 
         except Exception as e:
             print(e)
@@ -519,40 +509,39 @@ def create_app(test_config=None):
         data = request.get_json()
         recipe_data = data['recipeContent']
         
-        # שלב מקדים: קבלת פרומפט מותאם מהמודל שפה
+        # שלב מקדים: קבלת פרומפט מותאם ממודל שפה
         try:
             prompt_for_image = f"""
-            עליך ליצור פרומפט לתמונה עבור המתכון הבא: {recipe_data}. 
+            עליך ליצור פרומפט באנגלית לתמונה עבור המתכון הבא: {recipe_data}. 
             תן לי פרומפט מפורט שיתאר את התמונה המושלמת עבור המנה הזו.
             """
+
+            model = genai.GenerativeModel("gemini-1.5-flash")
+            response = model.generate_content(prompt_for_image)
             
-            response_prompt = openAiClient.chat.completions.create(
-                model="gpt-4o-mini",
-                messages=[
-                    {"role": "system", "content": "אתה מודל שפה שמספק פרומפטים לתמונות."},
-                    {"role": "user", "content": prompt_for_image},
-                ],
-                max_tokens=150,
-                temperature=0.5,
-                top_p=1.0,
-                frequency_penalty=0.0,
-                presence_penalty=0.0,
-            )
-            photo_prompt = response_prompt.choices[0].message.content
+            API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev"
+            headers = {"Authorization": os.getenv("HF_TOKEN")}
             
-            # שלב יצירת התמונה
-            response = openAiClient.images.generate(
-                model="dall-e-3",
-                prompt=photo_prompt,
-                n=1,
-                size="1024x1024",
-                response_format="b64_json"
-            )
-            response_photo = response.data[0].b64_json
+            import requests
+
+            payload = {
+                "inputs": response.text,
+            }
+            response = requests.post(API_URL, headers=headers, json=payload)
+            
+            if response.status_code != 200:
+                raise Exception(f"Request failed with status code {response.status_code}: {response.text}")
+            
+            image_bytes = response.content
+            
+            # Convert image bytes to base64
+            response_photo = base64.b64encode(image_bytes).decode('utf-8')
+
+
             return jsonify({"status": "success", "image": response_photo}), 200
         
         except Exception as e:
-            print(e)
+            print(e, flush=True)
             return jsonify({"error": str(e)}), 500
 
     @app.route("/ping")
