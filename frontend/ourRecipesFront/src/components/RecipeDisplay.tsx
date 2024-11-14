@@ -209,8 +209,11 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
             </div>
           )}
           <IngredientList
-            ingredients={ingredients.map(ing => multiplier === 2 ? (
-              <span dangerouslySetInnerHTML={{ __html: ing }} />
+            ingredients={ingredients.map((ing, index) => multiplier === 2 ? (
+              <span 
+                key={index}
+                dangerouslySetInnerHTML={{ __html: ing }} 
+              />
             ) : ing)}
             selectedIngredients={selectedIngredients}
             onIngredientClick={handleIngredientClick}
