@@ -19,11 +19,19 @@ export default function Page() {
   const { isAuthenticated, canEdit, isChecking } = useAuth("/login", false);
 
   if (isChecking) {
-    return <Spinner message="בודק אימות..." />;
+    return (
+      <div className="h-full flex items-center justify-center">
+        <Spinner message="מאמת..." />
+      </div>
+    );
   }
 
   if (!isAuthenticated) {
-    return <Spinner message="עובד לדף הכניסה..." />;
+    return (
+      <div className="h-full flex items-center justify-center">
+        <Spinner message="חוזר לדף הכניסה..." />
+      </div>
+    );
   }
 
   const resetResultCount = () => {

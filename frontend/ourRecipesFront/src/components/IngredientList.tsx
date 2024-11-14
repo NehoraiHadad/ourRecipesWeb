@@ -1,5 +1,5 @@
 interface IngredientListProps {
-  ingredients: string[];
+  ingredients: (string | JSX.Element)[];
   selectedIngredients: boolean[];
   onIngredientClick: (index: number) => void;
 }
