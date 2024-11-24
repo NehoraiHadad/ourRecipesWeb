@@ -10,9 +10,10 @@ const NavBar = () => {
   const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const menuRef = useRef(null);
+  const [isSyncing, setIsSyncing] = useState(false);
 
   useOutsideClick(menuRef, () => setIsMenuOpen(false));
-  const { setAuthState } = useAuthContext();
+  const { setAuthState, authState } = useAuthContext();
 
   const toggleMenu = () => {
     setIsMenuOpen((prevState) => !prevState);
@@ -49,6 +50,27 @@ const NavBar = () => {
       console.error("Error posting data:", error);
     }
   };
+
+  const handleSync = async () => {
+    setIsSyncing(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync`, {
+        method: 'POST',
+        credentials: 'include'
+      });
+      
+      if (!response.ok) throw new Error('Sync failed');
+      
+      const data = await response.json();
+      console.log('Sync results:', data);
+      //Add a notification here for the user about the sync results
+    } catch (error) {
+      console.error('Sync error:', error);
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
   return (
     <header>
       <nav className="w-full px-3 py-3 text-center flex items-center justify-between">
@@ -66,6 +88,24 @@ const NavBar = () => {
         {isMenuOpen && (
           <div ref={menuRef} className="absolute top-9 mt-1 z-50">
             <ul className="bg-white rounded-md shadow-lg">
+              {authState.canEdit && (
+                <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                  <button
+                    className="w-full h-full px-4 py-2 flex items-center justify-center gap-2"
+                    onClick={handleSync}
+                    disabled={isSyncing}
+                  >
+                    {isSyncing ? (
+                      <>
+                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
+                        מסנכרן...
+                      </>
+                    ) : (
+                      'סנכרן מתכונים'
+                    )}
+                  </button>
+                </li>
+              )}
               <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
                 <button
                   className="w-full h-full px-4 py-2"

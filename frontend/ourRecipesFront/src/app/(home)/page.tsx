@@ -12,7 +12,7 @@ import DraggableBubble from "@/components/DraggableButton";
 import MealSuggestionForm from "@/components/MealSuggestionForm";
 
 export default function Page() {
-  const [recipes, setRecipes] = useState<recipe[]>([]);
+  const [recipes, setRecipes] = useState<Record<string, recipe>>({});
   const [resultCount, setResultCount] = useState<number | "">();
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
 
@@ -34,28 +34,9 @@ export default function Page() {
     );
   }
 
-  const resetResultCount = () => {
-    setResultCount("");
-  };
-
-  const fetchRecipes = async (query: string) => {
-    try {
-      resetResultCount();
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/search?query=${query}`,
-        {
-          credentials: "include",
-        }
-      );
-      if (!response.ok)
-        throw new Error("Failed to fetch. Try refresh the page.");
-      const data: recipe[] = await response.json();
-      setRecipes(data);
-      setResultCount(Object.keys(data).length);
-    } catch (error) {
-      console.error("Fetching error:", error);
-      setRecipes([]);
-    }
+  const handleSearch = (newRecipes: Record<string, recipe>) => {
+    setRecipes(newRecipes);
+    setResultCount(Object.keys(newRecipes).length);
   };
 
   return (
@@ -79,7 +60,7 @@ export default function Page() {
         <p className="text-xs opacity-40 ">לחץ כדי להרחיב</p>
       </div>
       <Recipes {...recipes} />
-      <Search onSearch={fetchRecipes} resultCount={resultCount} />
+      <Search onSearch={handleSearch} resultCount={resultCount} />
     </main>
   );
 }
