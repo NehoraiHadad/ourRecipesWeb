@@ -59,7 +59,7 @@ export default function Page() {
         <h1 className="font-bold text-2xl">המתכונים:</h1>
         <p className="text-xs opacity-40 ">לחץ כדי להרחיב</p>
       </div>
-      <Recipes {...recipes} />
+      <Recipes {...Object.values(recipes)} />
       <Search onSearch={handleSearch} resultCount={resultCount} />
     </main>
   );
