@@ -44,6 +44,7 @@ connect_to_our_recipes_channel.session
 .vscode/
 .idea/
 *.swp
+*.swc
 *.swo
 
 # OS generated files
