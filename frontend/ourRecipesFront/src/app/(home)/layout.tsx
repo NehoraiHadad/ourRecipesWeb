@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { heebo } from "../../utils/fonts";
 import "./globals.css";
 
-import NavBar from "@/components/NavBar";
+import NavBar from "../../components/NavBar";
 
 import { AuthProvider } from "../../context/AuthContext";
 

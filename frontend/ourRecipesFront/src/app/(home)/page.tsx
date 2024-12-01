@@ -2,14 +2,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import homeImage from "../../../public/homeImage.png";
-import Spinner from "@/components/Spinner";
-import Recipes from "@/components/Recipes";
-import Search from "@/components/Search";
+import Spinner from "../../components/Spinner";
+import Recipes from "../../components/Recipes";
+import Search from "../../components/Search";
 import { recipe } from "../../types";
-import { useAuth } from "@/hooks/useAuth";
-import Modal from "@/components/Modal";
-import DraggableBubble from "@/components/DraggableButton";
-import MealSuggestionForm from "@/components/MealSuggestionForm";
+import { useAuth } from "../../hooks/useAuth";
+import Modal from "../../components/Modal";
+import DraggableBubble from "../../components/DraggableButton";
+import MealSuggestionForm from "../../components/MealSuggestionForm";
 
 export default function Page() {
   const [recipes, setRecipes] = useState<Record<string, recipe>>({});

@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import Spinner from "./Spinner";
 import RecipeDisplay from "./RecipeDisplay";
 import { parseRecipe } from "../utils/formatChecker";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 

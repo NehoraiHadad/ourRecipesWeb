@@ -1,7 +1,7 @@
 "use client";
 
-import GuestLogin from "@/components/GuestLogin";
-import TelegramLoginWidget from "@/components/TelegramLoginWidget";
+import GuestLogin from "../../../components/GuestLogin";
+import TelegramLoginWidget from "../../../components/TelegramLoginWidget";
 
 const Page = () => {
 

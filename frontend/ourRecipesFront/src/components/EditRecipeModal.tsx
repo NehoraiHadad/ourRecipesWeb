@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import useOutsideClick from "@/hooks/useOutsideClick";
+import useOutsideClick from "../hooks/useOutsideClick";
 import Spinner from "./Spinner"; // Make sure you have this component
 import CategoryTags from './CategoryTags';
 

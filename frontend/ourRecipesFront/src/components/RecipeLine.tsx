@@ -7,7 +7,7 @@ import Image3 from "../../public/categories_photos/3.png"
 import Image4 from "../../public/categories_photos/4.png"
 import Image5 from "../../public/categories_photos/5.png"
 import Image6 from "../../public/categories_photos/6.png"
-import { isRecipeUpdated, parseRecipe } from '@/utils/formatChecker';
+import { isRecipeUpdated, parseRecipe } from '../utils/formatChecker';
 
 export default function RecipeLine({ recipe }: {recipe: recipe }) {
   return (

@@ -4,7 +4,7 @@ import Logo from "./Logo";
 import { useRef } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 const NavBar = () => {
   const router = useRouter();
