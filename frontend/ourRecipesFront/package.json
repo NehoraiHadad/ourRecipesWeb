@@ -17,14 +17,14 @@
     "react-dom": "^18"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.1.4",
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/react": "^14.2.1",
     "@testing-library/user-event": "^14.4.3",
-    "@vitejs/plugin-react": "^4.0.4",
+    "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.20",
-    "jsdom": "^22.1.0",
+    "jsdom": "^24.0.0",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.15",
-    "vitest": "^1.6.0"
+    "vitest": "^2.1.5"
   }
 }
