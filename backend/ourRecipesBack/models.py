@@ -3,6 +3,8 @@ from sqlalchemy.sql import func
 from .extensions import db
 import base64
 from enum import Enum
+from sqlalchemy.exc import OperationalError
+import time
 
 # Add Enums at the top of the file
 class RecipeStatus(Enum):
@@ -31,6 +33,12 @@ class QueueActionType(Enum):
     UPDATE = 'update'
     DELETE = 'delete'
 
+# Add this at the top of the file
+recipe_categories = db.Table('recipe_categories',
+    db.Column('recipe_id', db.Integer, db.ForeignKey('recipe.id'), primary_key=True),
+    db.Column('category_id', db.Integer, db.ForeignKey('category.id'), primary_key=True)
+)
+
 class Recipe(db.Model):
     """
     Recipe model that handles various edge cases and flexible content structure
@@ -43,8 +51,8 @@ class Recipe(db.Model):
     raw_content = db.Column(db.Text, nullable=False)  # Original unprocessed content
     
     # Structured content
-    ingredients = db.Column(db.Text)  # Optional structured ingredients
-    instructions = db.Column(db.Text)  # Optional structured instructions
+    _ingredients = db.Column('ingredients', db.Text)
+    _instructions = db.Column('instructions', db.Text)
     recipe_metadata = db.Column(db.JSON)
     
     # Media handling
@@ -75,12 +83,17 @@ class Recipe(db.Model):
     # Content and sync status
     formatted_content = db.Column(db.JSON)
     is_verified = db.Column(db.Boolean, default=False)
-    sync_status = db.Column(db.String(20))
+    sync_status = db.Column(db.String(20), default='synced')  # synced, pending, failed
     sync_error = db.Column(db.Text)
     
     # Relationships
     versions = db.relationship('RecipeVersion', backref='recipe', lazy=True)
     user_data = db.relationship('UserRecipe', backref='recipe', lazy=True)
+    
+    # Update the categories relationship
+    categories = db.relationship('Category', 
+                               secondary=recipe_categories,
+                               backref=db.backref('recipes_list', lazy='dynamic'))
     
     def __init__(self, telegram_id, raw_content, **kwargs):
         self.telegram_id = telegram_id
@@ -125,12 +138,86 @@ class Recipe(db.Model):
         if self.difficulty and self.difficulty not in [d.value for d in RecipeDifficulty]:
             raise ValueError(f"Invalid difficulty: {self.difficulty}")
 
+    def set_image(self, image_data):
+        """Set the image data for the recipe"""
+        self.image_data = image_data
+
+    def has_image(self):
+        """Check if the recipe has an image"""
+        return self.image_data is not None
+
+    def get_image_url(self):
+        """Get base64 encoded image URL if image exists"""
+        if self.has_image():
+            return f"data:image/jpeg;base64,{base64.b64encode(self.image_data).decode('utf-8')}"
+        return None
+
+    def __repr__(self):
+        return f'<Recipe {self.title}>'
+
+    def update_content(self, title, raw_content, image_data=None):
+        """Update recipe content and track changes"""
+        self.title = title
+        self.raw_content = raw_content
+        if image_data:
+            self.set_image(image_data)
+        
+        # Parse and update structured content
+        if raw_content:
+            try:
+                recipe_parts = raw_content.split('\n')
+                # Clear existing categories
+                self.categories = []
+                
+                for part in recipe_parts:
+                    if part.strip().startswith('קטגוריות:'):
+                        categories = part.replace('קטגוריות:', '').split(',')
+                        categories = [cat.strip() for cat in categories if cat.strip()]
+                        # Update recipe categories
+                        for category_name in categories:
+                            category = Category.get_or_create(category_name)
+                            if category not in self.categories:
+                                self.categories.append(category)
+                
+                self.sync_status = 'synced'
+                
+            except Exception as e:
+                print(f"Error parsing recipe content: {str(e)}")
+                self.sync_status = 'error'
+                self.sync_error = str(e)
+
+    @property
+    def ingredients(self):
+        """Get ingredients as a list"""
+        return self._ingredients.split('||') if self._ingredients else []
+    
+    @ingredients.setter
+    def ingredients(self, value):
+        """Store ingredients as string"""
+        if isinstance(value, list):
+            self._ingredients = '||'.join(value)
+        else:
+            self._ingredients = value
+    
+    @property
+    def instructions(self):
+        """Get instructions as string"""
+        return self._instructions
+    
+    @instructions.setter
+    def instructions(self, value):
+        """Store instructions as string"""
+        if isinstance(value, list):
+            self._instructions = '\n'.join(value)
+        else:
+            self._instructions = value
+
 class Category(db.Model):
     """
     Category model with hierarchical support
     """
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100), nullable=False, unique=True)
     parent_id = db.Column(db.Integer, db.ForeignKey('category.id'))
     created_at = db.Column(db.DateTime, nullable=False, default=func.now())
     
@@ -157,11 +244,65 @@ class Category(db.Model):
     def update_path(self):
         """Update the full path of the category"""
         if self.parent:
-            self.path = f"{self.parent.path}/{self.name}"
-            self.level = self.parent.level + 1
+            parent_path = self.parent.path or self.parent.name
+            self.path = f"{parent_path}/{self.name}"
+            self.level = (self.parent.level or 0) + 1
         else:
             self.path = self.name
             self.level = 0
+
+    @classmethod
+    def get_or_create(cls, name, max_retries=3):
+        """Get existing category or create new one with retries"""
+        retries = 0
+        while retries < max_retries:
+            try:
+                category = cls.query.filter_by(name=name).first()
+                if not category:
+                    category = cls(name=name)
+                    db.session.add(category)
+                    db.session.commit()
+                return category
+            except OperationalError as e:
+                if "database is locked" in str(e):
+                    retries += 1
+                    if retries == max_retries:
+                        raise
+                    time.sleep(0.1 * retries)  # Exponential backoff
+                    db.session.rollback()
+                else:
+                    raise
+
+    @classmethod
+    def sync_categories_from_recipes(cls):
+        """Sync categories from recipe content"""
+        from sqlalchemy import text
+        
+        try:
+            # Get all recipes
+            recipes = Recipe.query.all()
+            new_categories = set()
+            
+            # Extract categories from recipes
+            for recipe in recipes:
+                if recipe.raw_content:
+                    recipe_parts = recipe.raw_content.split('\n')
+                    for part in recipe_parts:
+                        if part.strip().startswith('קטגוריות:'):
+                            categories = part.replace('קטגוריות:', '').split(',')
+                            new_categories.update(cat.strip() for cat in categories if cat.strip())
+            
+            # Add new categories
+            for category_name in new_categories:
+                cls.get_or_create(category_name)
+            
+            return True
+        except Exception as e:
+            print(f"Error syncing categories: {str(e)}")
+            return False
+
+    def __repr__(self):
+        return f'<Category {self.name}>'
 
 class SyncLog(db.Model):
     """

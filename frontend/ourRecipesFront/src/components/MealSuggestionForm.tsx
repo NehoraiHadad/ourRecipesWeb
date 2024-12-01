@@ -19,6 +19,7 @@ const MealSuggestionForm: React.FC = () => {
     ingredients?: string[];
     instructions?: string;
     image?: string;
+    categories?: string[];
   } | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
   const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
@@ -60,6 +61,7 @@ const MealSuggestionForm: React.FC = () => {
           title: parsedRecipe.title,
           ingredients: parsedRecipe.ingredients,
           instructions: parsedRecipe.instructions,
+          categories: parsedRecipe.categories,
         });
 
         // Fetch photo if requested

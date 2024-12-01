@@ -1,107 +1,168 @@
-import { useState, useEffect } from "react";
-import { recipe } from "../types";
+import React, { useState, useEffect } from 'react';
+import Spinner from './Spinner';
+import CategoryTags from './CategoryTags';
 
 interface SearchProps {
-  onSearch: (recipes: Record<string, recipe>) => void;
+  onSearch: (results: any) => void;
   resultCount?: number | "";
 }
 
-const Search = ({ onSearch, resultCount }: SearchProps) => {
+const Search: React.FC<SearchProps> = ({ onSearch, resultCount }) => {
   const [query, setQuery] = useState("");
   const [isSearching, setIsSearching] = useState(false);
   const [startAnimation, setStartAnimation] = useState(false);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [availableCategories, setAvailableCategories] = useState<string[]>([]);
+  const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+  const [showCategories, setShowCategories] = useState(false);
 
   useEffect(() => {
-    if (isSearching) {
-      const timer = setTimeout(() => {
-        setStartAnimation(true);
-      }, 1);
-      return () => clearTimeout(timer);
-    } else {
-      setStartAnimation(false);
+    fetchCategories();
+    
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('form')) {
+        setShowCategories(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  const fetchCategories = async () => {
+    setIsLoadingCategories(true);
+    try {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
+        credentials: 'include'
+      });
+      if (!response.ok) throw new Error('Failed to fetch categories');
+      const categories = await response.json();
+      setAvailableCategories(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    } finally {
+      setIsLoadingCategories(false);
     }
-  }, [isSearching]);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (query === "") return;
-
     setIsSearching(true);
+    setStartAnimation(true);
 
     try {
-      // Search local DB
+      const searchParams = new URLSearchParams();
+      if (query) searchParams.append('query', query);
+      if (selectedCategories.length > 0) {
+        searchParams.append('categories', selectedCategories.join(','));
+      }
+
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/search?query=${encodeURIComponent(query)}`,
-        { credentials: "include" }
+        `${process.env.NEXT_PUBLIC_API_URL}/search?${searchParams.toString()}`,
+        {
+          credentials: 'include',
+        }
       );
-      
-      if (!response.ok) throw new Error("Search failed");
-      
+
+      if (!response.ok) {
+        throw new Error('Search failed');
+      }
+
       const data = await response.json();
-      console.log("Local search results:", data.results);
-      onSearch(data.results);
-      
-      // Search in Telegram
-      const telegramResponse = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/search/telegram?query=${encodeURIComponent(query)}&existing_ids[]=${Object.keys(data.results).join("&existing_ids[]=")}`,
-        { credentials: "include" }
-      );
-      
-      if (!telegramResponse.ok) throw new Error("Telegram search failed");
-      
-      const telegramData = await telegramResponse.json();
-      console.log("Telegram search results:", telegramData.results);
-      const allResults = {...data.results, ...telegramData.results};
-      onSearch(allResults);
-      
+      onSearch(data.results || {});
     } catch (error) {
-      console.error("Search error:", error);
-      onSearch({});
+      console.error('Search error:', error);
     } finally {
       setIsSearching(false);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value);
+  const handleCategoryClick = (category: string) => {
+    setSelectedCategories(prev => 
+      prev.includes(category)
+        ? prev.filter(c => c !== category)
+        : [...prev, category]
+    );
+  };
+
+  const handleInputFocus = () => {
+    setShowCategories(true);
   };
 
   return (
-    <div className="flex items-center justify-around w-full px-2 py-2">
-      {(resultCount !== "" || isSearching) && (
-        <div className={`flex items-center justify-center h-7 ${
-          startAnimation ? "w-7" : "w-0"
-        } bg-brown text-white rounded-full transition-all duration-700 ease-in-out font-bold ${
-          startAnimation && isSearching ? "animate-bounce" : ""
-        }`}>
-          {!isSearching && resultCount}
-        </div>
-      )}
-      
+    <div className="fixed bottom-0 w-full bg-[#f8f2ea] shadow-md z-10">
       <form
+        role="search"
         onSubmit={handleSubmit}
-        className={`flex justify-between p-0.5 bg-white shadow rounded-lg ${
-          startAnimation ? "mr-2" : ""
-        }`}
-        style={{
-          transition: "width 0.7s ease",
-          width: resultCount !== "" || isSearching ? "calc(100% - 2.5rem)" : "100%",
-        }}
+        className="max-w-3xl mx-auto px-2 py-1"
       >
-        <input
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          className="outline-none py-0.5 px-2 rounded-lg w-full"
-          required
-        />
-        <button
-          type="submit"
-          className="px-2 py-0.5 text-white rounded-lg hover:bg-slate-100 transition-colors"
-          disabled={isSearching}
-        >
-          🔎
-        </button>
+        {/* Search Bar and Count */}
+        <div className="flex items-center gap-1">
+          {(resultCount !== "" || isSearching) && (
+            <div 
+              className={`
+                flex items-center justify-center h-7 
+                ${startAnimation ? "w-7" : "w-0"}
+                bg-brown text-white rounded-full text-sm
+                transition-all duration-700 ease-in-out font-bold
+                ${startAnimation && isSearching ? "animate-bounce" : ""}
+              `}
+            >
+              {!isSearching && resultCount}
+            </div>
+          )}
+          
+          <div 
+            className={`
+              flex-1 flex items-center h-8
+              bg-white rounded-lg 
+              overflow-hidden
+            `}
+          >
+            <input
+              type="text"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              onFocus={handleInputFocus}
+              className="flex-1 px-2 py-1 text-sm outline-none"
+              placeholder="חיפוש מתכונים..."
+              aria-label="חיפוש מתכונים"
+            />
+            <button
+              type="submit"
+              className="px-3 py-1 hover:bg-gray-100 transition-colors text-sm"
+              disabled={isSearching}
+              aria-label="חפש"
+            >
+              🔎
+            </button>
+          </div>
+        </div>
+
+        {/* Categories Section - Hidden by default */}
+        {showCategories && (
+          <div className={`
+            transition-all duration-300 ease-in-out
+            ${showCategories ? 'max-h-20 opacity-100' : 'max-h-0 opacity-0'}
+          `}>
+            {isLoadingCategories ? (
+              <div className="h-6 flex items-center justify-center">
+                <Spinner message="טוען..." />
+              </div>
+            ) : availableCategories.length > 0 && (
+              <div className="overflow-x-auto -mx-2 px-2">
+                <div className="py-1">
+                  <CategoryTags 
+                    categories={availableCategories}
+                    selectedCategories={selectedCategories}
+                    onClick={handleCategoryClick}
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        )}
       </form>
     </div>
   );

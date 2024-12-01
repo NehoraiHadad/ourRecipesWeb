@@ -16,7 +16,9 @@ class TestSearchAPI:
         client.set_cookie(key='access_token_cookie', value=auth_cookies['access_token_cookie'])
         response = client.get('/api/search?query=')
         assert response.status_code == 200
-        assert response.get_json() == {}
+        data = response.get_json()
+        assert 'results' in data
+        assert data['results'] == {}
 
     @patch('telethon.TelegramClient')
     def test_search_with_local_results(self, mock_client, app, client, auth_cookies):

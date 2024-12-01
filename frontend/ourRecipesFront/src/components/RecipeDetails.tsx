@@ -33,6 +33,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     ingredients: string[];
     instructions: string;
     image: string | null;
+    categories?: string[];
   } | null>(null);
   const [editManualModal, setEditManualModal] = useState(false);
 
@@ -41,7 +42,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       const formattedRecipe = parseRecipe(recipe.title + "\n" + recipe.details);
       setRecipeData({
         ...formattedRecipe,
-        image: recipe.image || null
+        image: recipe.image || null,
+        categories: formattedRecipe.categories || []
       });
       setNewFormat(true);
     } else {
@@ -49,7 +51,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
         title: recipe.title,
         ingredients: [],
         instructions: recipe.details,
-        image: recipe.image || null
+        image: recipe.image || null,
+        categories: []
       });
     }
   }, [recipe]);
@@ -133,11 +136,10 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
 
   const handleSaveManualEdit = () => {
     setReformat_recipe(
-      `כותרת: ${
-        recipeData?.title || ""
-      }\n\nרשימת מצרכים:\n-${recipeData?.ingredients.join(
-        "\n-"
-      )}\n\nהוראות הכנה:\n${recipeData?.instructions || ""}`
+      `כותרת: ${recipeData?.title || ""}
+${recipeData?.categories?.length ? `\nקטגוריות: ${recipeData.categories.join(', ')}` : ''}
+\nרשימת מצרכים:\n-${recipeData?.ingredients.join("\n-")}
+\nהוראות הכנה:\n${recipeData?.instructions || ""}`
     );
 
     setNewFormat(true);

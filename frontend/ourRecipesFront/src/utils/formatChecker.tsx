@@ -10,6 +10,11 @@ export const parseRecipe = (text: string) => {
   const parts = text.split("\n");
   const title = parts[0].replace("כותרת:", "").trim();
 
+  const categoriesIndex = parts.findIndex((part) => part.trim().startsWith("קטגוריות:"));
+  const categories = categoriesIndex !== -1 
+    ? parts[categoriesIndex].replace("קטגוריות:", "").split(",").map(cat => cat.trim())
+    : [];
+
   const ingredientsIndex = parts.findIndex((part) => part.trim() === "רשימת מצרכים:");
   const instructionsIndex = parts.findIndex(
     (part) => part.trim() === "הוראות הכנה:"
@@ -33,6 +38,7 @@ export const parseRecipe = (text: string) => {
 
   return {
     title,
+    categories,
     ingredients,
     instructions,
   };

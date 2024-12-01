@@ -1,6 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import useOutsideClick from "@/hooks/useOutsideClick";
 import Spinner from "./Spinner"; // Make sure you have this component
+import CategoryTags from './CategoryTags';
 
 interface EditRecipeModalProps {
   show: boolean;
@@ -10,12 +11,14 @@ interface EditRecipeModalProps {
     ingredients: string[];
     instructions: string;
     image: string | null;
+    categories?: string[];
   } | null;
   setRecipeData: React.Dispatch<React.SetStateAction<{
     title: string;
     ingredients: string[];
     instructions: string;
     image: string | null;
+    categories?: string[];
   } | null>>;
   onSave: () => void;
 }
@@ -28,8 +31,82 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
   onSave,
 }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [existingCategories, setExistingCategories] = useState<string[]>([]);
+  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
+  const [categoryInput, setCategoryInput] = useState('');
   const modalRef = useRef(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   useOutsideClick(modalRef, onClose);
+
+  useEffect(() => {
+    if (show) {
+      const initCategories = async () => {
+        try {
+          // Check categories status
+          const statusResponse = await fetch(
+            `${process.env.NEXT_PUBLIC_API_URL}/categories/status`,
+            { credentials: "include" }
+          );
+          const statusData = await statusResponse.json();
+          
+          if (statusData.total_count === 0) {
+            // Initialize categories if none exist
+            await fetch(
+              `${process.env.NEXT_PUBLIC_API_URL}/categories/init`,
+              { 
+                method: 'POST',
+                credentials: "include" 
+              }
+            );
+          }
+          
+          // Fetch categories after potential initialization
+          fetchExistingCategories();
+        } catch (error) {
+          console.error("Error initializing categories:", error);
+        }
+      };
+      
+      initCategories();
+    }
+  }, [show]);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowCategoryDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const fetchExistingCategories = async () => {
+    try {
+      console.log("Fetching categories...");
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/categories`,
+        {
+          credentials: "include",
+        }
+      );
+      console.log("Response status:", response.status);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Raw response data:", data);
+        if (Array.isArray(data)) {
+          setExistingCategories(data);
+          console.log("Set categories:", data);
+        } else {
+          console.error("Unexpected data format:", data);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch categories:", error);
+    }
+  };
 
   if (!show || !recipeData) return null;
 
@@ -165,6 +242,92 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
               onChange={(e) => setRecipeData(prev => prev ? { ...prev, title: e.target.value } : null)}
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
             />
+          </div>
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700">קטגוריות:</label>
+            <div className="flex flex-wrap gap-2 mb-2">
+              <div className="relative w-full">
+                <input
+                  type="text"
+                  value={categoryInput}
+                  onChange={(e) => {
+                    setCategoryInput(e.target.value);
+                    setShowCategoryDropdown(true);
+                  }}
+                  placeholder="הוסף או בחר קטגוריה"
+                  className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const newCategory = categoryInput.trim();
+                      if (newCategory && !recipeData.categories?.includes(newCategory)) {
+                        setRecipeData(prev => prev ? {
+                          ...prev,
+                          categories: [...(prev.categories || []), newCategory]
+                        } : null);
+                        setCategoryInput('');
+                        setShowCategoryDropdown(false);
+                      }
+                    }
+                  }}
+                  onFocus={() => setShowCategoryDropdown(true)}
+                />
+                
+                {/* Dropdown for existing categories */}
+                {showCategoryDropdown && (
+                  <div ref={dropdownRef} className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto">
+                    {existingCategories.length > 0 ? (
+                      <>
+                        <div className="sticky top-0 bg-gray-50 px-4 py-2 text-sm text-gray-500">
+                          {existingCategories.length} קטגוריות קיימות
+                        </div>
+                        {existingCategories
+                          .filter(cat => 
+                            !recipeData.categories?.includes(cat) && 
+                            cat.toLowerCase().includes(categoryInput.toLowerCase())
+                          )
+                          .map((category, index) => (
+                            <div
+                              key={index}
+                              className="px-4 py-2 hover:bg-gray-100 cursor-pointer text-right"
+                              onClick={() => {
+                                setRecipeData(prev => prev ? {
+                                  ...prev,
+                                  categories: [...(prev.categories || []), category]
+                                } : null);
+                                setCategoryInput('');
+                                setShowCategoryDropdown(false);
+                              }}
+                            >
+                              {category}
+                            </div>
+                          ))}
+                      </>
+                    ) : (
+                      <div className="px-4 py-2 text-gray-500 text-sm">
+                        אין עדיין קטגוריות. הקלד קטגוריה חדשה והקש Enter
+                      </div>
+                    )}
+                  </div>
+                )}
+              </div>
+            </div>
+
+            {/* Selected categories */}
+            {recipeData.categories && recipeData.categories.length > 0 && (
+              <div className="mt-4">
+                <label className="block text-sm font-medium text-gray-700 mb-2">קטגוריות נבחרות:</label>
+                <CategoryTags
+                  categories={recipeData.categories}
+                  onClick={(category) => {
+                    setRecipeData(prev => prev ? {
+                      ...prev,
+                      categories: prev.categories?.filter(c => c !== category)
+                    } : null);
+                  }}
+                />
+              </div>
+            )}
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700">רשימת מצרכים:</label>

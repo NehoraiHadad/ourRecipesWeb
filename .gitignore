@@ -10,6 +10,7 @@
 *.pyc
 *.pyo
 *.pyd
+*.pytest_cache
 
 # Flask instance-specific data
 /backend/instance/

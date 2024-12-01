@@ -31,8 +31,10 @@ import os
 
 
 
-from .models import Recipe, SyncLog
-from .extensions import db
+from .models import Recipe, RecipeVersion, SyncLog, db, Category
+from sqlalchemy import func
+from sqlalchemy.exc import OperationalError
+import time
 
 
 def create_app(test_config=None):
@@ -60,6 +62,14 @@ def create_app(test_config=None):
         SESSION_COOKIE_SECURE=True,
         SESSION_COOKIE_HTTPONLY=True,
         SESSION_COOKIE_SAMESITE="None",
+        SQLALCHEMY_ENGINE_OPTIONS={
+            'pool_pre_ping': True,
+            'pool_recycle': 300,
+            'connect_args': {
+                'timeout': 15,  # SQLite busy timeout in seconds
+                'check_same_thread': False
+            }
+        }
     )
     genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
 
@@ -159,31 +169,173 @@ def create_app(test_config=None):
         
         return recipes_dict
 
-    @app.route("/api/search")
+    @app.route("/api/search", methods=["GET"])
     @jwt_required()
-    async def search():
-        query = request.args.get("query")
-        if not query:
-            return jsonify({})
-
-        # Search in local database first
-        local_recipes = Recipe.query.filter(
-            (Recipe.raw_content.ilike(f"%{query}%"))
-            | (Recipe.title.ilike(f"%{query}%"))
-        ).all()
-
-        recipes_dict = {}
+    def search_recipes():
+        query = request.args.get("query", "").strip()
+        categories = request.args.get("categories", "").split(',') if request.args.get("categories") else []
+        categories = [cat.strip() for cat in categories if cat.strip()]
         
-        # Add local results to dict
-        for recipe in local_recipes:
-            recipes_dict[recipe.telegram_id] = {
-                "id": recipe.telegram_id,
-                "title": recipe.title,
-                "details": recipe.raw_content,
-                "image": recipe.image["data"] if recipe.image else None,
+        try:
+            recipes_query = Recipe.query
+            
+            # Apply text search if query exists
+            if query:
+                search_pattern = f"%{query}%"
+                recipes_query = recipes_query.filter(
+                    db.or_(
+                        Recipe.title.ilike(search_pattern),
+                        Recipe.raw_content.ilike(search_pattern)
+                    )
+                )
+            
+            # Apply category filter if categories specified
+            if categories:
+                category_conditions = []
+                for category in categories:
+                    category_pattern = f"%קטגוריות:%{category}%"
+                    category_conditions.append(Recipe.raw_content.ilike(category_pattern))
+                recipes_query = recipes_query.filter(db.or_(*category_conditions))
+            
+            recipes = recipes_query.all()
+            results = {}
+            
+            for recipe in recipes:
+                results[str(recipe.telegram_id)] = {
+                    "id": recipe.telegram_id,
+                    "title": recipe.title,
+                    "details": recipe.raw_content,
+                    "image": recipe.get_image_url() if recipe.has_image() else None
+                }
+            
+            return jsonify({"results": results}), 200
+            
+        except Exception as e:
+            print(f"Search error: {str(e)}")
+            return jsonify({"error": str(e)}), 500
+
+    def parse_recipe_content(text: str):
+        """Parse recipe text into structured data, supporting both old and new formats"""
+        try:
+            if not text:
+                raise ValueError("Empty text")
+
+            parts = text.split('\n')
+            data = {
+                'title': '',
+                'categories': [],
+                'ingredients': [],
+                'instructions': ''
+            }
+            
+            # First try to get title - supporting both formats
+            first_line = parts[0].strip() if parts else ""
+            if first_line.startswith('כותרת:'):
+                data['title'] = first_line.replace('כותרת:', '').strip()
+            else:
+                # Old format - title might end with colon
+                data['title'] = first_line.split(':', 1)[0].strip()
+            
+            # If we couldn't get a title, use the fallback
+            if not data['title']:
+                data['title'] = get_first_line_of_recipe(text)
+                
+            # Get the rest of the content
+            remaining_text = get_details_of_recipe(text)
+            
+            # Try to parse structured format
+            try:
+                current_section = None
+                for line in remaining_text.split('\n'):
+                    line = line.strip()
+                    if not line:
+                        continue
+                        
+                    if line.startswith('קטגוריות:'):
+                        categories = line.replace('קטגוריות:', '').split(',')
+                        data['categories'] = [cat.strip() for cat in categories if cat.strip()]
+                    elif line == 'רשימת מצרכים:':
+                        current_section = 'ingredients'
+                    elif line == 'הוראות הכנה:':
+                        current_section = 'instructions'
+                    elif current_section == 'ingredients' and line.startswith('-'):
+                        data['ingredients'].append(line.lstrip('- '))
+                    elif current_section == 'instructions':
+                        if data['instructions']:
+                            data['instructions'] += '\n'
+                        data['instructions'] += line
+                    elif line.startswith('-'):  # Handle ingredients without explicit section
+                        data['ingredients'].append(line.lstrip('- '))
+                    elif not current_section and not any(line.startswith(x) for x in ['כותרת:', 'קטגוריות:']):
+                        # If we're not in any section and line doesn't start with known markers,
+                        # treat it as instructions
+                        if data['instructions']:
+                            data['instructions'] += '\n'
+                        data['instructions'] += line
+            except Exception as parsing_error:
+                print(f"Error parsing structured format: {str(parsing_error)}")
+                # If structured parsing fails, store everything as instructions
+                data['instructions'] = remaining_text
+                
+            return data
+            
+        except Exception as e:
+            print(f"Error in parse_recipe_content: {str(e)}")
+            # Always return valid data structure, even in case of error
+            return {
+                'title': get_first_line_of_recipe(text),
+                'categories': [],
+                'ingredients': [],
+                'instructions': get_details_of_recipe(text)
             }
 
-        return jsonify({"results": recipes_dict})
+    # Update the Recipe creation/update logic
+    async def create_or_update_recipe(telegram_id, message_text, image_data=None):
+        """Create or update recipe with error handling and fallback"""
+        try:
+            if not message_text:
+                raise ValueError("Empty message text")
+                
+            # Try to parse the content
+            parsed_data = parse_recipe_content(message_text)
+            
+            # Create recipe with available data
+            recipe = Recipe(
+                telegram_id=telegram_id,
+                title=parsed_data['title'] or get_first_line_of_recipe(message_text),
+                raw_content=message_text
+            )
+            
+            # Set structured data if available
+            if parsed_data['ingredients']:
+                recipe.ingredients = parsed_data['ingredients']
+            if parsed_data['instructions']:
+                recipe.instructions = parsed_data['instructions']
+                
+            # Handle image if provided
+            if image_data:
+                recipe.set_image(image_data=image_data)
+                
+            # Handle categories if available
+            if parsed_data['categories']:
+                for category_name in parsed_data['categories']:
+                    try:
+                        category = Category.get_or_create(category_name)
+                        if category and category not in recipe.categories:
+                            recipe.categories.append(category)
+                    except Exception as cat_error:
+                        print(f"Error handling category {category_name}: {str(cat_error)}")
+                        
+            return recipe
+            
+        except Exception as e:
+            print(f"Error in create_or_update_recipe: {str(e)}")
+            # Create basic recipe as fallback
+            return Recipe(
+                telegram_id=telegram_id,
+                title=get_first_line_of_recipe(message_text),
+                raw_content=message_text
+            )
 
     @app.route("/api/search/telegram")
     @jwt_required()
@@ -217,19 +369,14 @@ def create_app(test_config=None):
                             try:
                                 existing_recipe = Recipe.query.filter_by(telegram_id=telegram_id).first()
                                 if not existing_recipe:
-                                    new_recipe = Recipe(
+                                    new_recipe = await create_or_update_recipe(
                                         telegram_id=telegram_id,
-                                        title=recipe_data["title"],
-                                        raw_content=message.text,  # Store the full message text
+                                        message_text=message.text,
+                                        image_data=image_data if recipe_data.get("image") else None
                                     )
-                                    # Set image using the set_image method
-                                    if recipe_data.get("image"):
-                                        # Convert base64 image to binary
-                                        image_data = base64.b64decode(recipe_data["image"].split(",")[1])
-                                        new_recipe.set_image(image_data=image_data)
-                                    
-                                    db.session.add(new_recipe)
-                                    print(f"Added new recipe {telegram_id} to DB", flush=True)
+                                    if new_recipe:
+                                        db.session.add(new_recipe)
+                                        print(f"Added new recipe {telegram_id} to DB", flush=True)
                             except Exception as e:
                                 print(f"Error syncing recipe {telegram_id}: {str(e)}", flush=True)
                 
@@ -382,14 +529,15 @@ def create_app(test_config=None):
         if "text" not in data:
             return jsonify({"error": "Missing text"}), 400
 
-        prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו רכיבים או כמויות או פעולות לביצוע - המטרה לארגן. אם יש רכיב או פעולה שאינך מבין החזר אותו כמו שהוא.
+        prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול ארבעה חלקים עיקריים: כותרת, קטגוריות, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו רכיבים או כמויות או פעולות לביצוע - המטרה לארגן. אם יש רכיב או פעולה שאינך מבין החזר אותו כמו שהוא.
 
-דוגמה למתכון לפני העיבוד:
+דוגמה למתכון לפני עיבוד:
 "עוגת שוקולד פשוטה ומהירה: לקחת 2 ביצים, 1 כוס סוכר, 1 כוס קמח, חצי כוס שמן, חצי חבילה של שוקולד, וחצי שקית אבקת אפייה. לערבב הכל יחד ולאפות בתנור שחומם מראש ל-180 מעלות עד שהעוגה מוכנה."
 
 דוגמה למתכון אחרי העיבוד:
 
 כותרת: עוגת שוקולד פשוטה ומהירה
+קטגוריות: עוגות, מאפים מתוקים, קינוחים
 רשימת מצרכים:
 - 2 ביצים
 - 1 כוס סוכר
@@ -402,7 +550,7 @@ def create_app(test_config=None):
 2. בקערה גדולה, לערבב יחד את הביצים, הסוכר, הקמח, השמן, השוקולד ואבקת האפייה.
 3. לשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.
 
-שים לב - ללא עיצוב טקסט והתשובה שלך מדוייקת ללא תוספות או שינויים
+שים לב - ללא עיצוב טקסט והתשובה שלך מדוייקת ללא תוספות או שינויים. הקטגוריות צריכות להיות מופרדות בפסיקים.
 """
 
         try:
@@ -420,112 +568,156 @@ def create_app(test_config=None):
     @jwt_required()
     async def update_recipe():
         data = request.get_json()
-        print("Received data:", data, flush=True)
-        message_id = int(data.get("messageId"))
-        new_text = data.get("newText")
-        image_data = data.get("image")
-        client = TelegramClient(
-            app.config["SESSION_NAME"], app.config["BOT_ID"], app.config["API_HASH"]
-        )
+        max_retries = 3
+        retries = 0
 
-        try:
-            async with client:
-                channel_entity = await client.get_entity(app.config["CHANNEL_URL"])
-                message = await client.get_messages(channel_entity, ids=message_id)
-                print("Existing message:", message, flush=True)
-                if message:
-                    try:
-                        if image_data:
-                            print(
-                                "Image data received, length:",
-                                len(image_data),
-                                flush=True,
-                            )
-                            try:
-                                # Convert base64 image to bytes
-                                image_parts = image_data.split(",")
-                                if len(image_parts) > 1:
-                                    image_bytes = base64.b64decode(image_parts[1])
-                                else:
-                                    image_bytes = base64.b64decode(image_data)
+        while retries < max_retries:
+            try:
+                print("Received data:", data, flush=True)
+                message_id = int(data.get("messageId"))
+                new_text = data.get("newText")
+                image_data = data.get("image")
 
-                                # Send the image as a file to enable Telegram's built-in compression
+                # First, update in DB
+                recipe = Recipe.query.filter_by(telegram_id=message_id).first()
+                if not recipe:
+                    return jsonify({"error": "Recipe not found in DB"}), 404
+
+                # Parse recipe content using our new parser
+                parsed_data = parse_recipe_content(new_text)
+                if parsed_data:
+                    # Update recipe with parsed data
+                    recipe.title = parsed_data['title']
+                    recipe.raw_content = new_text
+                    
+                    # These setters will now handle the conversion automatically
+                    recipe.ingredients = parsed_data['ingredients']
+                    recipe.instructions = parsed_data['instructions']
+                    
+                    # Update categories
+                    recipe.categories = []  # Clear existing categories
+                    for category_name in parsed_data['categories']:
+                        category = Category.query.filter_by(name=category_name).first()
+                        if category:
+                            recipe.categories.append(category)
+                else:
+                    # Fallback to basic update if parsing fails
+                    recipe_parts = new_text.split('\n', 1)
+                    title = recipe_parts[0].replace("כותרת:", "").strip()
+                    recipe.title = title
+                    recipe.raw_content = new_text
+
+                # Handle image update
+                image_bytes = None
+                if image_data:
+                    if image_data.startswith('data:'):
+                        image_parts = image_data.split(',')
+                        if len(image_parts) > 1:
+                            image_bytes = base64.b64decode(image_parts[1])
+                        else:
+                            image_bytes = base64.b64decode(image_data)
+                        recipe.set_image(image_data=image_bytes)
+
+                # Create a new version record
+                new_version = RecipeVersion(
+                    recipe_id=recipe.id,
+                    version_num=(db.session.query(func.max(RecipeVersion.version_num))
+                                .filter_by(recipe_id=recipe.id).scalar() or 0) + 1,
+                    content={
+                        'title': recipe.title,
+                        'raw_content': recipe.raw_content,
+                        'ingredients': recipe.ingredients if hasattr(recipe, 'ingredients') else None,
+                        'instructions': recipe.instructions if hasattr(recipe, 'instructions') else None,
+                        'categories': [cat.name for cat in recipe.categories] if recipe.categories else [],
+                        'has_image': bool(image_data)
+                    },
+                    created_by=get_jwt_identity()
+                )
+                db.session.add(new_version)
+
+                # Try to update in Telegram
+                client = TelegramClient(
+                    app.config["SESSION_NAME"], 
+                    app.config["BOT_ID"], 
+                    app.config["API_HASH"]
+                )
+
+                async with client:
+                    channel_entity = await client.get_entity(app.config["CHANNEL_URL"])
+                    message = await client.get_messages(channel_entity, ids=message_id)
+                    
+                    if message:
+                        try:
+                            if image_bytes:
                                 file = BytesIO(image_bytes)
                                 file.name = "image.jpg"
-
-                                # Edit message with new text and image as a file
                                 await client.edit_message(
                                     channel_entity, message, new_text, file=file
                                 )
-                            except Exception as e:
-                                print(f"Error processing image: {str(e)}", flush=True)
-                                # If image processing fails, just update the text
-                                await client.edit_message(
-                                    channel_entity, message, new_text
-                                )
-                        else:
-                            # Edit message with new text only
-                            await client.edit_message(channel_entity, message, new_text)
+                            else:
+                                await client.edit_message(channel_entity, message, new_text)
 
-                        return jsonify({"status": "message_updated"}), 200
-                    except errors.MessageNotModifiedError as e:
-                        print(f"MessageNotModifiedError: {str(e)}", flush=True)
-                        try:
-                            if image_data:
-                                try:
-                                    # Convert base64 image to bytes
-                                    image_parts = image_data.split(",")
-                                    if len(image_parts) > 1:
-                                        image_bytes = base64.b64decode(image_parts[1])
-                                    else:
-                                        image_bytes = base64.b64decode(image_data)
+                            # If Telegram update successful, commit DB changes
+                            db.session.commit()
+                            
+                            # Return updated categories in response
+                            updated_categories = [cat.name for cat in recipe.categories] if recipe.categories else []
+                            return jsonify({
+                                "status": "message_updated",
+                                "categories": updated_categories
+                            }), 200
 
-                                    # Send the image as a file to enable Telegram's built-in compression
+                        except errors.MessageNotModifiedError:
+                            # If message not modified, try to send as new message
+                            try:
+                                if image_bytes:
                                     file = BytesIO(image_bytes)
                                     file.name = "image.jpg"
-
                                     new_msg = await client.send_message(
                                         channel_entity, new_text, file=file
                                     )
-                                except Exception as e:
-                                    print(
-                                        f"Error processing image for new message: {str(e)}",
-                                        flush=True,
-                                    )
+                                else:
                                     new_msg = await client.send_message(
                                         channel_entity, new_text
                                     )
-                            else:
-                                new_msg = await client.send_message(
-                                    channel_entity, new_text
-                                )
 
-                            await client.delete_messages(channel_entity, [message_id])
-                            return (
-                                jsonify(
-                                    {
-                                        "status": "new_message_sent",
-                                        "new_message_id": new_msg.id,
-                                    }
-                                ),
-                                200,
-                            )
-                        except Exception as e:
-                            print(f"Error sending new message: {str(e)}", flush=True)
-                            return (
-                                jsonify(
-                                    {
-                                        "error": "Failed to send new message or delete old one",
-                                        "details": str(e),
-                                    }
-                                ),
-                                500,
-                            )
+                                # Update telegram_id in DB
+                                recipe.telegram_id = new_msg.id
+                                await client.delete_messages(channel_entity, [message_id])
+                                
+                                # Commit all changes
+                                db.session.commit()
+                                return jsonify({
+                                    "status": "new_message_sent",
+                                    "new_message_id": new_msg.id
+                                }), 200
+
+                            except Exception as e:
+                                db.session.rollback()
+                                print(f"Error sending new message: {str(e)}", flush=True)
+                                return jsonify({
+                                    "error": "Failed to send new message or delete old one",
+                                    "details": str(e)
+                                }), 500
+                    else:
+                        db.session.rollback()
+                        return jsonify({"error": "Message not found in Telegram"}), 404
+
+            except OperationalError as e:
+                if "database is locked" in str(e):
+                    retries += 1
+                    if retries == max_retries:
+                        db.session.rollback()
+                        return jsonify({"error": "Database is temporarily unavailable"}), 503
+                    time.sleep(0.1 * retries)
+                    db.session.rollback()
                 else:
-                    return jsonify({"error": "Message not found"}), 404
-        except Exception as e:
-            print(f"Unexpected error: {str(e)}", flush=True)
-            return jsonify({"error": str(e)}), 500
+                    raise
+
+            except Exception as e:
+                db.session.rollback()
+                print(f"Unexpected error: {str(e)}", flush=True)
+                return jsonify({"error": str(e)}), 500
 
     @app.route("/api/send_recipe", methods=["POST"])
     @jwt_required()
@@ -578,15 +770,16 @@ def create_app(test_config=None):
 
         try:
             prompt = """
-            התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לפי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
+            התנהג כמו שף מקצועי שיודע להכין מתכונים ביתיים לי דרישות שונות. הכן מתכונים שמתאימים לרכיבים שהמשתמש מספק (אם הוא מספק. אם לא - בחר רכיבים ביתיים בעצמך), ולפי סוג הארוחה (ארוחת בוקר, צהריים, ערב או חטיף), שקול גם אם המתכון צריך להיות מתאים לילדים, להכנה מהירה, או לבקשות נוספות שהמשתמש עשוי להציע.
 
             דוגמא לבקשת משתמש:
 
             יש לי את המרכיבים הבאים: עגבניות, בצל, פרג, וגבינה מלוחה. אני רוצה להכין ארוחת צהריים. המתכון צריך להיות מתאים להכנה מהירה. יש לך הצעה למתכון?
 
-            דוגמא לתשובה - התשובה צריכה להיות בדיוק בפורמט שמופיע בדוגמא ללא עיצוב טקסט או תוספות:
+            דוגמא לתשובה - התשובה צריכה להיות בדיוק בפורמט שמופיע דוגמא ללא עיצוב טקסט או תוספות:
 
-            כותרת: סלט עבניות ובצל עם פרג
+            כותרת: סלט עגבניות ובצל עם פרג
+            קטגוריות: סלטים, מנות צמחוניות, מנות מהירות
             רשימת מצרכים:
             - 3 עגבניות בינוניות
             - 1 בצל גדול
@@ -596,8 +789,10 @@ def create_app(test_config=None):
             - מלח ופלפל לפי הטעם
             הוראות הכנה:
             נחתוך את העגבניות והבצל לקוביות קטנות.
-            נערבב בקערה את העגבניות, הבצל, הפרג והרזונה.
-            נתבל בשמן זית, מח ופלפל ונערבב הכל יחד עד לקבלת טעם אחיד.
+            נערבב בקערה את העגבניות, הבצל, הפרג והגבינה המלוחה.
+            נתבל בשמן זית, מלח ופלפל ונערבב הכל יחד עד לקבלת טעם אחיד.
+
+            שים לב שהקטגוריות צריכות להיות מופרדות בפסיקים ולשקף את סוג המנה, סגנון הבישול, והתאמות מיוחדות (כמו צמחוני, טבעוני, ללא גלוטן וכו').
             """
             # 'ingredients': '', 'mealType': [], 'quickPrep': False, 'childFriendly': False, 'additionalRequests': '', 'photo': False
             user_prompt = f" {'יש לי את המרכיבים הבאים: ' + data["ingredients"] if data["ingredients"] else ""}. אני רוצה להכין {data["mealType"]}.{"המתכון צריך להיות מתאים להכנה מהירה." if data["quickPrep"] else ""}{"המתכון צריך להיות מותאם לילדים." if data["childFriendly"] else ""}{"בנוסף התייחס לזה: "+ data["additionalRequests"] if data["additionalRequests"] else ""} יש לך הצעה למתכון?"
@@ -737,7 +932,94 @@ def create_app(test_config=None):
                 db.session.commit()
             return jsonify({"status": "error", "message": str(e)}), 500
 
-    # ... rest of your routes ...
+    @app.route("/api/categories", methods=["GET"])
+    @jwt_required()
+    def get_categories():
+        try:
+            # Get all active categories, ordered by name
+            categories = Category.query.filter_by(is_active=True).order_by(Category.name).all()
+            print(f"Found {len(categories)} categories in DB")
+            
+            # Return just the category names for now
+            categories_list = [category.name for category in categories]
+            print(f"Categories list: {categories_list}")
+            return jsonify(categories_list), 200
+
+        except Exception as e:
+            print(f"Error fetching categories: {str(e)}")
+            return jsonify({"error": str(e)}), 500
+
+    @app.route("/api/categories/sync", methods=["POST"])
+    @jwt_required()
+    def sync_categories():
+        try:
+            # Check if user has edit permissions
+            current_user = get_jwt_identity()
+            if current_user == "guest" or not session.get("edit_permission"):
+                return jsonify({"error": "Unauthorized"}), 403
+
+            # Sync categories from recipes
+            success = Category.sync_categories_from_recipes()
+            
+            if success:
+                return jsonify({"message": "Categories synced successfully"}), 200
+            else:
+                return jsonify({"error": "Failed to sync categories"}), 500
+
+        except Exception as e:
+            print(f"Error in sync_categories: {str(e)}")
+            return jsonify({"error": str(e)}), 500
+
+    @app.route("/api/categories/status", methods=["GET"])
+    @jwt_required()
+    def get_categories_status():
+        try:
+            total_categories = Category.query.count()
+            active_categories = Category.query.filter_by(is_active=True).count()
+            
+            # Get sample of categories
+            sample_categories = Category.query.limit(5).all()
+            sample_names = [cat.name for cat in sample_categories]
+            
+            return jsonify({
+                "total_count": total_categories,
+                "active_count": active_categories,
+                "sample_categories": sample_names
+            }), 200
+        except Exception as e:
+            return jsonify({"error": str(e)}), 500
+
+    @app.route("/api/categories/init", methods=["POST"])
+    @jwt_required()
+    def initialize_categories():
+        try:
+            # Check if categories exist
+            if Category.query.count() == 0:
+                # Extract categories from existing recipes
+                recipes = Recipe.query.all()
+                categories_set = set()
+                
+                for recipe in recipes:
+                    if recipe.raw_content:
+                        recipe_parts = recipe.raw_content.split('\n')
+                        for part in recipe_parts:
+                            if part.strip().startswith('קטגוריות:'):
+                                categories = part.replace('קטגוריות:', '').split(',')
+                                categories_set.update(cat.strip() for cat in categories if cat.strip())
+                
+                # Create categories
+                for category_name in categories_set:
+                    category = Category(name=category_name, is_active=True)
+                    db.session.add(category)
+                
+                db.session.commit()
+                return jsonify({"message": f"Initialized {len(categories_set)} categories"}), 200
+            else:
+                return jsonify({"message": "Categories already exist"}), 200
+                
+        except Exception as e:
+            db.session.rollback()
+            return jsonify({"error": str(e)}), 500
 
     # Error handlers
     @jwt.invalid_token_loader

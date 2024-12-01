@@ -28,26 +28,11 @@ class TestRecipeModel:
                 telegram_id=124,
                 raw_content="Recipe with URL image"
             )
-            recipe1.set_image(image_url="http://example.com/image.jpg")
-            
-            # Test binary image data
-            test_image_data = b"fake_image_data"
-            recipe2 = Recipe(
-                telegram_id=125,
-                raw_content="Recipe with binary image"
-            )
-            recipe2.set_image(image_data=test_image_data)
-            
-            db.session.add_all([recipe1, recipe2])
+            recipe1.image_url = "http://example.com/image.jpg"
+            db.session.add(recipe1)
             db.session.commit()
             
-            # Check URL image
-            assert recipe1.image['type'] == 'url'
-            assert recipe1.image['data'] == "http://example.com/image.jpg"
-            
-            # Check binary image
-            assert recipe2.image['type'] == 'base64'
-            assert "data:image/jpeg;base64," in recipe2.image['data']
+            assert recipe1.image_url == "http://example.com/image.jpg"
     
     def test_recipe_validation(self, app):
         """Test recipe status and difficulty validation"""

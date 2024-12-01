@@ -60,9 +60,11 @@ def auth_cookies(access_token):
 
 @pytest.fixture(autouse=True)
 def cleanup_database(app):
-    """Clean up database before and after each test"""
+    """Clean up database after each test"""
     with app.app_context():
+        db.session.remove()
         db.drop_all()
         db.create_all()
         yield
-        db.session.remove() 
+        db.session.remove()
+        db.drop_all() 

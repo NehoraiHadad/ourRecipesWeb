@@ -17,9 +17,9 @@ const IngredientList: React.FC<IngredientListProps> = ({
           className="cursor-pointer"
           onClick={() => onIngredientClick(index)}
         >
-          <span>
-            {selectedIngredients[index] ? "✓ " : "• "} {ingredient}
-          </span>
+          <span dangerouslySetInnerHTML={{ 
+            __html: `${selectedIngredients[index] ? "✓ " : "• "} ${ingredient}` 
+          }} />
         </li>
       ))}
     </ul>
