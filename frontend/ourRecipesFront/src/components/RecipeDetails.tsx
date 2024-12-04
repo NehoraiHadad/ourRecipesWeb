@@ -29,9 +29,11 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
 
   const [isLoading, setIsLoading] = useState(false);
   const [recipeData, setRecipeData] = useState<{
+    id: number;
     title: string;
-    ingredients: string[];
-    instructions: string;
+    ingredients: string[] | string;
+    instructions?: string;
+    raw_content?: string;
     image: string | null;
     categories?: string[];
   } | null>(null);
@@ -41,6 +43,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     if (isRecipeUpdated(recipe.title + "\n" + recipe.details)) {
       const formattedRecipe = parseRecipe(recipe.title + "\n" + recipe.details);
       setRecipeData({
+        id: recipe.id,
         ...formattedRecipe,
         image: recipe.image || null,
         categories: formattedRecipe.categories || []
@@ -48,6 +51,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       setNewFormat(true);
     } else {
       setRecipeData({
+        id: recipe.id,
         title: recipe.title,
         ingredients: [],
         instructions: recipe.details,
@@ -73,7 +77,11 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       if (response.ok) {
         setReformat_recipe(data.reformatted_text);
         const formattedRecipe = parseRecipe(data.reformatted_text);
-        setRecipeData({ ...formattedRecipe, image: recipe.image || null });
+        setRecipeData({ 
+          id: recipe.id,
+          ...formattedRecipe, 
+          image: recipe.image || null 
+        });
         setNewFormat(true);
       } else {
         throw new Error(data.error);
@@ -138,7 +146,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     setReformat_recipe(
       `כותרת: ${recipeData?.title || ""}
 ${recipeData?.categories?.length ? `\nקטגוריות: ${recipeData.categories.join(', ')}` : ''}
-\nרשימת מצרכים:\n-${recipeData?.ingredients.join("\n-")}
+\nרשימת מצרכים:\n-${Array.isArray(recipeData?.ingredients) ? recipeData.ingredients.join("\n-") : recipeData?.ingredients}
 \nהוראות הכנה:\n${recipeData?.instructions || ""}`
     );
 

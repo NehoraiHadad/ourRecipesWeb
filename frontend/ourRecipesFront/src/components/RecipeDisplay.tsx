@@ -4,9 +4,11 @@ import CategoryTags from './CategoryTags';
 
 interface RecipeDisplayProps {
   recipe: {
+    id: number;
     title: string;
-    ingredients: string[];
-    instructions: string;
+    ingredients?: string[] | string;
+    instructions?: string;
+    raw_content?: string;
     image?: string | null;
     categories?: string[];
   };
@@ -139,10 +141,14 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
   };
 
   const handleMultiplyQuantities = () => {
-    if (multiplier === 1) {
-      const multipliedIngredients = recipe.ingredients.map(ingredient => 
-        multiplyNumbersInString(ingredient, true)
-      );
+    if (multiplier === 1 && recipe.ingredients) {
+      const multipliedIngredients = Array.isArray(recipe.ingredients)
+        ? recipe.ingredients.map((ingredient: string) => 
+            multiplyNumbersInString(ingredient, true)
+          )
+        : recipe.ingredients.split('\n').map((ingredient: string) =>
+            multiplyNumbersInString(ingredient, true)
+          );
       setIngredients(multipliedIngredients);
       setMultiplier(2);
     } else {
@@ -174,7 +180,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
         )}
 
         <div className="relative">
-          {recipe.ingredients && recipe.ingredients.length > 0 && (
+          {recipe.ingredients && (Array.isArray(recipe.ingredients) ? recipe.ingredients.length > 0 : recipe.ingredients) && (
             <div className="absolute left-1 top-0">
               <button
                 onClick={handleMultiplyQuantities}
@@ -195,16 +201,22 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
             </div>
           )}
           <IngredientList
-            ingredients={ingredients}
+            ingredients={Array.isArray(ingredients) ? ingredients : ingredients?.split('\n') || []}
             selectedIngredients={selectedIngredients}
             onIngredientClick={handleIngredientClick}
           />
         </div>
 
         <div className="whitespace-pre-line my-4">
-          {recipe.instructions.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
+          {recipe.raw_content ? (
+            recipe.raw_content.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))
+          ) : recipe.instructions ? (
+            recipe.instructions.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))
+          ) : null}
         </div>
       </div>
     </div>

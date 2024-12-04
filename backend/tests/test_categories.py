@@ -20,11 +20,13 @@ def test_get_categories(client, auth_cookies):
             telegram_id=1,
             title="Test Recipe 1",
             raw_content="כותרת: מתכון 1\nקטגוריות: קינוחים, עוגות\nמצרכים:\n- סוכר",
+            categories=[Category(name="קינוחים"), Category(name="עוגות")]
         ),
         Recipe(
             telegram_id=2,
             title="Test Recipe 2",
             raw_content="כותרת: מתכון 2\nקטגוריות: בשרי, מרקים\nמצרכים:\n- בשר",
+            categories=[Category(name="בשרי"), Category(name="מרקים")]
         ),
     ]
     
@@ -37,8 +39,12 @@ def test_get_categories(client, auth_cookies):
     
     assert response.status_code == 200
     data = response.get_json()
-    assert 'categories' in data
-    assert set(data['categories']) == {'קינוחים', 'עוגות', 'בשרי', 'מרקים'}
+    assert isinstance(data, list)
+    assert len(data) == 4
+    assert 'קינוחים' in data
+    assert 'עוגות' in data
+    assert 'בשרי' in data
+    assert 'מרקים' in data
 
 def test_search_with_categories(client, auth_cookies):
     """Test search endpoint with category filtering"""

@@ -15,6 +15,7 @@ const MealSuggestionForm: React.FC = () => {
   const [additionalRequests, setAdditionalRequests] = useState<string>("");
   const [photoRequested, setPhotoRequested] = useState<boolean>(false);
   const [recipe, setRecipe] = useState<{
+    id?: number;
     title?: string;
     ingredients?: string[];
     instructions?: string;
@@ -161,7 +162,7 @@ const MealSuggestionForm: React.FC = () => {
       {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
         <>
           {loadingPhoto && <Spinner message="Loading photo..." />}
-          <RecipeDisplay recipe={recipe as Required<typeof recipe>} />
+          <RecipeDisplay recipe={{ ...recipe, id: 0 } as Required<typeof recipe>} />
           {loading ? <Spinner message="שולח.." ></Spinner> : 
             <div className="flex justify-between">
               <button

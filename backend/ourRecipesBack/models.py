@@ -39,6 +39,59 @@ recipe_categories = db.Table('recipe_categories',
     db.Column('category_id', db.Integer, db.ForeignKey('category.id'), primary_key=True)
 )
 
+class RecipeVersion(db.Model):
+    """Track recipe changes"""
+    id = db.Column(db.Integer, primary_key=True)
+    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
+    version_num = db.Column(db.Integer, nullable=False)
+    content = db.Column(db.JSON)
+    created_at = db.Column(db.DateTime, default=func.now())
+    created_by = db.Column(db.String)
+    change_description = db.Column(db.String)
+    is_current = db.Column(db.Boolean, default=False)
+    image_data = db.Column(db.LargeBinary)
+
+    def __init__(self, recipe_id, content, created_by=None, change_description=None, image_data=None):
+        self.recipe_id = recipe_id
+        self.created_by = created_by
+        self.change_description = change_description
+        self.image_data = image_data
+        
+        # Handle image data from content if exists
+        if content and isinstance(content, dict):
+            if 'image' in content:
+                try:
+                    # Decode base64 image
+                    image_str = content.pop('image')  # Remove image from content
+                    if image_str and isinstance(image_str, str):
+                        if ',' in image_str:
+                            image_str = image_str.split(',')[1]  # Remove data:image/jpeg;base64,
+                        self.image_data = base64.b64decode(image_str)
+                except Exception as e:
+                    print(f"Error processing image: {str(e)}")
+                    self.image_data = None
+            self.content = content
+        else:
+            self.content = {}
+            self.image_data = None
+            
+        # Set version number
+        last_version = RecipeVersion.query.filter_by(recipe_id=recipe_id).order_by(RecipeVersion.version_num.desc()).first()
+        self.version_num = (last_version.version_num + 1) if last_version else 1
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'version_num': self.version_num,
+            'content': self.content,
+            'created_at': self.created_at.isoformat(),
+            'created_by': self.created_by,
+            'change_description': self.change_description,
+            'is_current': self.is_current,
+            'image': (f"data:image/jpeg;base64,{base64.b64encode(self.image_data).decode('utf-8')}" 
+                     if self.image_data else None)
+        }
+
 class Recipe(db.Model):
     """
     Recipe model that handles various edge cases and flexible content structure
@@ -87,7 +140,6 @@ class Recipe(db.Model):
     sync_error = db.Column(db.Text)
     
     # Relationships
-    versions = db.relationship('RecipeVersion', backref='recipe', lazy=True)
     user_data = db.relationship('UserRecipe', backref='recipe', lazy=True)
     
     # Update the categories relationship
@@ -155,36 +207,75 @@ class Recipe(db.Model):
     def __repr__(self):
         return f'<Recipe {self.title}>'
 
-    def update_content(self, title, raw_content, image_data=None):
+    def cleanup_versions(self):
+        """Clean up old versions, keeping only the 3 most recent ones"""
+        versions = RecipeVersion.query.filter_by(recipe_id=self.id).order_by(RecipeVersion.version_num.desc()).all()
+        if len(versions) >= 3:
+            for old_version in versions[2:]:
+                db.session.delete(old_version)
+
+    def update_content(self, title, raw_content, image_data=None, created_by=None, change_description=None):
         """Update recipe content and track changes"""
-        self.title = title
-        self.raw_content = raw_content
-        if image_data:
-            self.set_image(image_data)
-        
-        # Parse and update structured content
-        if raw_content:
-            try:
-                recipe_parts = raw_content.split('\n')
-                # Clear existing categories
-                self.categories = []
+        try:
+            print(f"Creating new version for recipe {self.id} (telegram_id: {self.telegram_id})")
+            
+            # Clean up old versions first
+            self.cleanup_versions()
+            
+            # Create version content
+            version_content = {
+                'title': self.title,
+                'raw_content': self.raw_content,
+                'categories': [cat.name for cat in self.categories],
+                'ingredients': self.ingredients if hasattr(self, 'ingredients') else None,
+                'instructions': self.instructions if hasattr(self, 'instructions') else None,
+            }
+            
+            # Create new version
+            new_version = RecipeVersion(
+                recipe_id=self.id,
+                content=version_content,
+                created_by=created_by,
+                change_description=change_description,
+                image_data=self.image_data
+            )
+            db.session.add(new_version)
+            
+            # Update current recipe
+            self.title = title
+            self.raw_content = raw_content
+            if image_data:
+                self.image_data = image_data
+            
+            # Parse and update structured content
+            if raw_content:
+                try:
+                    recipe_parts = raw_content.split('\n')
+                    self.categories = []
+                    
+                    for part in recipe_parts:
+                        if part.strip().startswith('קטגוריות:'):
+                            categories = part.replace('קטגוריות:', '').split(',')
+                            categories = [cat.strip() for cat in categories if cat.strip()]
+                            for category_name in categories:
+                                category = Category.get_or_create(category_name)
+                                if category not in self.categories:
+                                    self.categories.append(category)
                 
-                for part in recipe_parts:
-                    if part.strip().startswith('קטגוריות:'):
-                        categories = part.replace('קטגוריות:', '').split(',')
-                        categories = [cat.strip() for cat in categories if cat.strip()]
-                        # Update recipe categories
-                        for category_name in categories:
-                            category = Category.get_or_create(category_name)
-                            if category not in self.categories:
-                                self.categories.append(category)
-                
-                self.sync_status = 'synced'
-                
-            except Exception as e:
-                print(f"Error parsing recipe content: {str(e)}")
-                self.sync_status = 'error'
-                self.sync_error = str(e)
+                    self.sync_status = 'synced'
+                    
+                except Exception as e:
+                    print(f"Error parsing recipe content: {str(e)}")
+                    self.sync_status = 'error'
+                    self.sync_error = str(e)
+                    raise
+            
+            db.session.commit()
+            
+        except Exception as e:
+            db.session.rollback()
+            print(f"Error in update_content: {str(e)}")
+            raise
 
     @property
     def ingredients(self):
@@ -339,16 +430,6 @@ class UserRecipe(db.Model):
     last_viewed = db.Column(db.DateTime)
     
     __table_args__ = (db.UniqueConstraint('user_id', 'recipe_id'),)
-
-class RecipeVersion(db.Model):
-    """Track recipe changes"""
-    id = db.Column(db.Integer, primary_key=True)
-    recipe_id = db.Column(db.Integer, db.ForeignKey('recipe.id'))
-    version_num = db.Column(db.Integer, nullable=False)
-    content = db.Column(db.JSON)  # Store full recipe state
-    created_at = db.Column(db.DateTime, default=func.now())
-    created_by = db.Column(db.String)
-    change_description = db.Column(db.Text)
 
 class SyncQueue(db.Model):
     """Queue for offline changes"""

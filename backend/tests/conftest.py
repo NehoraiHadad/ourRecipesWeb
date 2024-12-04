@@ -2,6 +2,7 @@ import pytest
 import asyncio
 from ourRecipesBack import create_app
 from ourRecipesBack.extensions import db
+from ourRecipesBack.models import Recipe, RecipeVersion
 from flask_jwt_extended import create_access_token
 
 def pytest_configure(config):
@@ -67,4 +68,37 @@ def cleanup_database(app):
         db.create_all()
         yield
         db.session.remove()
-        db.drop_all() 
+        db.drop_all()
+
+@pytest.fixture
+def test_client(app):
+    return app.test_client()
+
+@pytest.fixture
+def init_database():
+    """Initialize test database with a recipe"""
+    recipe = Recipe(
+        telegram_id=12345,
+        title="Test Recipe",
+        raw_content="Test content"
+    )
+    db.session.add(recipe)
+    db.session.commit()
+    
+    # Create initial version
+    version = RecipeVersion(
+        recipe_id=recipe.id,
+        content={
+            "title": recipe.title,
+            "raw_content": recipe.raw_content,
+            "categories": [],
+            "ingredients": [],
+            "instructions": ""
+        },
+        created_by="test_user",
+        change_description="Initial version"
+    )
+    db.session.add(version)
+    db.session.commit()
+    
+    return recipe
