@@ -33,7 +33,7 @@ const MealSuggestionForm: React.FC = () => {
     setError("");
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/meal-suggestions`,
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/suggest`,
         {
           method: "POST",
           credentials: "include",
@@ -84,7 +84,7 @@ const MealSuggestionForm: React.FC = () => {
     setLoadingPhoto(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/generate-image`,
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-image`,
         {
           method: "POST",
           headers: {

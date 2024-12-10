@@ -13,7 +13,7 @@ export function useAuth(
     async function checkAuth() {
       try {
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/validate_session`,
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
           {
             method: "GET",
             credentials: "include",

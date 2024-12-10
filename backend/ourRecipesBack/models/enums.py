@@ -1,0 +1,32 @@
+from enum import Enum
+
+class RecipeStatus(Enum):
+    """Recipe status options"""
+    ACTIVE = 'active'
+    ARCHIVED = 'archived'
+    DELETED = 'deleted'
+
+class RecipeDifficulty(Enum):
+    """Recipe difficulty levels"""
+    EASY = 'easy'
+    MEDIUM = 'medium'
+    HARD = 'hard'
+
+class SyncStatus(Enum):
+    """Sync operation status"""
+    SUCCESS = 'success'
+    FAILED = 'failed'
+    PENDING = 'pending'
+    IN_PROGRESS = 'in_progress'
+
+class QueueStatus(Enum):
+    """Queue item status"""
+    PENDING = 'pending'
+    COMPLETED = 'completed'
+    FAILED = 'failed'
+
+class QueueActionType(Enum):
+    """Queue action types"""
+    CREATE = 'create'
+    UPDATE = 'update'
+    DELETE = 'delete' 

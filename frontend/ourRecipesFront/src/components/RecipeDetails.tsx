@@ -98,27 +98,28 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     try {
       let imageData = null;
       if (recipeData?.image) {
-        // Always send the image data as is, without any processing on the client side
         imageData = recipeData.image;
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/update_recipe`,
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/update/${data.messageId}`,
         {
-          method: "POST",
+          method: "PUT",
           headers: {
             "Content-Type": "application/json",
+            "Accept": "application/json"
           },
           credentials: "include",
           body: JSON.stringify({
-            ...data,
+            newText: data.newText,
             image: imageData,
           }),
         }
       );
 
       if (!response.ok) {
-        throw new Error("Failed to update the recipe in Telegram.");
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to update the recipe in Telegram.");
       }
 
       const result = await response.json();
@@ -128,9 +129,12 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       }
       setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
       return result;
-    } catch (error) {
+    } catch (error: any) {
       console.error("Error updating recipe:", error);
-      setShowMessage({ status: true, message: "שגיאה בשמירת המתכון" });
+      const errorMessage = error.message?.toLowerCase().includes("not modified") 
+        ? "לא בוצעו שינויים במתכון"
+        : "שגיאה בשמירת המתכון";
+      setShowMessage({ status: true, message: errorMessage });
       throw error;
     } finally {
       setReformat_recipe("");

@@ -59,7 +59,7 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount }) => {
       }
 
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/search?${searchParams.toString()}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/search?${searchParams.toString()}`,
         {
           credentials: 'include',
         }

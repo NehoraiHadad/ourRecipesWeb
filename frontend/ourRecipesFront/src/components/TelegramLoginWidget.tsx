@@ -36,7 +36,7 @@ const TelegramLoginWidget: React.FC = () => {
   const handleContinue = async (user: {}) => {
     try {
       // Sending user data to the backend for verification
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

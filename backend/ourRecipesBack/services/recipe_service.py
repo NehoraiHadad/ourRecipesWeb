@@ -1,0 +1,209 @@
+from datetime import datetime, timezone
+from io import BytesIO
+import base64
+from flask import current_app
+from ..extensions import db
+from ..models.recipe import Recipe
+from ..models.sync import SyncLog
+from .telegram_service import telegram_service
+from ..utils.formatters import format_recipe_text, parse_recipe_text
+
+class RecipeService:
+    """Service class for handling recipe operations"""
+
+    @staticmethod
+    def get_recipe(telegram_id):
+        """Get recipe by telegram ID"""
+        return Recipe.query.filter_by(telegram_id=telegram_id).first()
+
+    @staticmethod
+    def get_first_line(text):
+        """Extract first line from recipe text"""
+        if not text:
+            return ""
+        return text.split("\n", 1)[0].strip("*:")
+
+    @staticmethod
+    def get_details(text):
+        """Get recipe details (everything after first line)"""
+        if not text:
+            return ""
+        parts = text.splitlines()
+        return "\n".join(parts[1:]) if len(parts) > 1 else ""
+
+    @classmethod
+    async def create_recipe(cls, text, image_data=None, created_by=None):
+        """Create new recipe and send to Telegram"""
+        try:
+            client = await telegram_service.get_client()
+            async with client:
+                channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
+                
+                if image_data:
+                    file = BytesIO(image_data)
+                    file.name = "image.jpg"
+                    message = await client.send_message(
+                        channel_entity,
+                        text,
+                        file=file
+                    )
+                else:
+                    message = await client.send_message(channel_entity, text)
+
+                if not message:
+                    return None, None
+
+                recipe = Recipe(
+                    telegram_id=message.id,
+                    title=cls.get_first_line(text),
+                    raw_content=text,
+                    image_data=image_data
+                )
+                
+                db.session.add(recipe)
+                db.session.commit()
+                
+                return recipe, message.id
+
+        except Exception as e:
+            print(f"Error creating recipe: {str(e)}")
+            db.session.rollback()
+            return None, None
+
+    @classmethod
+    async def update_recipe(cls, telegram_id, new_text, image_data=None, created_by=None):
+        """Update existing recipe"""
+        recipe = cls.get_recipe(telegram_id)
+        if not recipe:
+            return None, "Recipe not found"
+        
+        try:
+            # Check if content is actually different
+            if recipe.raw_content == new_text and not image_data:
+                # Content hasn't changed, return success without making Telegram API call
+                return recipe, None
+            
+            recipe.update_content(
+                title=cls.get_first_line(new_text),
+                raw_content=new_text,
+                image_data=image_data,
+                created_by=created_by,
+                change_description="Recipe update"
+            )
+            
+            success = await telegram_service.edit_message(
+                telegram_id,
+                new_text,
+                image_data
+            )
+            
+            if success:
+                db.session.commit()
+                return recipe, None
+            else:
+                db.session.rollback()
+                return None, "Failed to update Telegram message"
+            
+        except Exception as e:
+            db.session.rollback()
+            error_msg = str(e)
+            # Handle Telegram's "message not modified" error gracefully
+            if "message was not modified" in error_msg.lower():
+                # If the message wasn't modified but everything else is fine, 
+                # we can consider this a success
+                return recipe, "not modified"
+            return None, error_msg
+
+    @classmethod
+    async def sync_message(cls, client, message, sync_log):
+        """Sync single Telegram message to database"""
+        try:
+            if not message or not message.text:
+                sync_log.recipes_failed += 1
+                return
+
+            existing_recipe = Recipe.query.filter_by(telegram_id=message.id).first()
+
+            async with client:
+                if existing_recipe:
+                    existing_recipe.title = cls.get_first_line(message.text)
+                    existing_recipe.raw_content = message.text
+                    if message.media:
+                        media_bytes = BytesIO()
+                        await client.download_media(message.media, file=media_bytes)
+                        media_bytes.seek(0)
+                        existing_recipe.set_image(image_data=media_bytes.read())
+                    sync_log.recipes_updated += 1
+                else:
+                    new_recipe = Recipe(
+                        telegram_id=message.id,
+                        title=cls.get_first_line(message.text),
+                        raw_content=message.text
+                    )
+                    if message.media:
+                        media_bytes = BytesIO()
+                        await client.download_media(message.media, file=media_bytes)
+                        media_bytes.seek(0)
+                        new_recipe.set_image(image_data=media_bytes.read())
+                    db.session.add(new_recipe)
+                    sync_log.recipes_added += 1
+                
+        except Exception as e:
+            sync_log.recipes_failed += 1
+            print(f"Error processing message {message.id}: {str(e)}")
+            raise
+
+    @classmethod
+    def search_recipes(cls, query=None, categories=None):
+        """
+        Search recipes by text and categories
+        
+        Args:
+            query (str): Text to search for in title and content
+            categories (list): List of categories to filter by
+            
+        Returns:
+            dict: Dictionary of recipe results
+        """
+        try:
+            recipes_query = Recipe.query
+
+            # Apply text search
+            if query:
+                search_pattern = f"%{query}%"
+                recipes_query = recipes_query.filter(
+                    db.or_(
+                        Recipe.title.ilike(search_pattern),
+                        Recipe.raw_content.ilike(search_pattern)
+                    )
+                )
+
+            # Apply category filter
+            if categories:
+                category_conditions = []
+                for category in categories:
+                    category_pattern = f"%קטגוריות:%{category}%"
+                    category_conditions.append(Recipe.raw_content.ilike(category_pattern))
+                recipes_query = recipes_query.filter(db.or_(*category_conditions))
+
+            # Execute query and format results
+            recipes = recipes_query.all()
+            return cls._format_search_results(recipes)
+
+        except Exception as e:
+            print(f"Search error in service: {str(e)}", flush=True)
+            raise
+
+    @staticmethod
+    def _format_search_results(recipes):
+        """Format recipes for search results"""
+        results = {}
+        for recipe in recipes:
+            results[str(recipe.telegram_id)] = {
+                "id": recipe.telegram_id,
+                "title": recipe.title,
+                "details": recipe.raw_content,
+                "image": recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
+                "categories": [cat.name for cat in recipe.categories] if recipe.categories else []
+            }
+        return results
