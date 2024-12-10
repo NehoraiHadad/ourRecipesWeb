@@ -7,9 +7,6 @@ from .recipes import (
 )
 from .categories import (
     get_categories,
-    sync_categories,
-    get_categories_status,
-    initialize_categories
 )
 from .versions import (
     get_recipe_versions,

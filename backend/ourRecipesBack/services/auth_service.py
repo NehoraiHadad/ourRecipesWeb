@@ -107,7 +107,6 @@ class AuthService:
         
         @jwt.token_in_blocklist_loader
         def check_if_token_revoked(jwt_header, jwt_payload):
-            print(f"Checking token: {jwt_payload}", flush=True)
             return False  # Implement token blocklist if needed
 
         @jwt.expired_token_loader
@@ -146,7 +145,6 @@ class AuthService:
             
         @jwt.token_verification_loader
         def verify_token_callback(jwt_header, jwt_payload):
-            print(f"Verifying token: {jwt_payload}", flush=True)
             return True
             
         @jwt.token_verification_failed_loader

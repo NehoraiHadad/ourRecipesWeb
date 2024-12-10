@@ -12,6 +12,15 @@ class RecipeDifficulty(Enum):
     MEDIUM = 'medium'
     HARD = 'hard'
 
+    @classmethod
+    def get_display_name(cls, value):
+        display_names = {
+            'easy': 'קל',
+            'medium': 'בינוני',
+            'hard': 'מורכב'
+        }
+        return display_names.get(value, value)
+
 class SyncStatus(Enum):
     """Sync operation status"""
     SUCCESS = 'success'

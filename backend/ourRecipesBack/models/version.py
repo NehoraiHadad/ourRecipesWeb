@@ -10,19 +10,14 @@ class RecipeVersion(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     recipe_id = db.Column(db.Integer, db.ForeignKey('recipes.id', ondelete='CASCADE'), nullable=False)
     version_num = db.Column(db.Integer)
-    content = db.Column(db.JSON, nullable=False)
-    created_at = db.Column(db.DateTime, default=func.now())
-    created_by = db.Column(db.String(50))
+    content = db.Column(db.JSON)
+    created_at = db.Column(db.DateTime, nullable=False, default=func.now())
+    created_by = db.Column(db.String(100))
     change_description = db.Column(db.Text)
-    image_data = db.Column(db.LargeBinary)
     is_current = db.Column(db.Boolean, default=False)
-
-    # Relationship back to Recipe
-    recipe = db.relationship(
-        'Recipe',
-        back_populates='versions',
-        primaryjoin="Recipe.id == RecipeVersion.recipe_id"
-    )
+    image_data = db.Column(db.LargeBinary)
+    
+    recipe = db.relationship('Recipe', back_populates='versions')
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)

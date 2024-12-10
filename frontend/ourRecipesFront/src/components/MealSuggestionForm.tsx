@@ -21,6 +21,8 @@ const MealSuggestionForm: React.FC = () => {
     instructions?: string;
     image?: string;
     categories?: string[];
+    preparation_time?: number;
+    difficulty?: 'easy' | 'medium' | 'hard';
   } | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
   const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
@@ -58,11 +60,14 @@ const MealSuggestionForm: React.FC = () => {
       if (result.message) {
         setRecipeText(result.message);
         const parsedRecipe = parseRecipe(result.message);
+        console.log(parsedRecipe);
         setRecipe({
           title: parsedRecipe.title,
           ingredients: parsedRecipe.ingredients,
           instructions: parsedRecipe.instructions,
           categories: parsedRecipe.categories,
+          preparation_time: parsedRecipe.preparation_time,
+          difficulty: parsedRecipe.difficulty,
         });
 
         // Fetch photo if requested

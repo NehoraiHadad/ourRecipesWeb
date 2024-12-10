@@ -7,6 +7,7 @@ from ..models.recipe import Recipe
 from ..models.sync import SyncLog
 from .telegram_service import telegram_service
 from ..utils.formatters import format_recipe_text, parse_recipe_text
+from ..models.enums import RecipeDifficulty
 
 class RecipeService:
     """Service class for handling recipe operations"""
@@ -128,6 +129,7 @@ class RecipeService:
                 if existing_recipe:
                     existing_recipe.title = cls.get_first_line(message.text)
                     existing_recipe.raw_content = message.text
+                    existing_recipe._parse_content(message.text)
                     if message.media:
                         media_bytes = BytesIO()
                         await client.download_media(message.media, file=media_bytes)
@@ -140,6 +142,7 @@ class RecipeService:
                         title=cls.get_first_line(message.text),
                         raw_content=message.text
                     )
+                    new_recipe._parse_content(message.text)
                     if message.media:
                         media_bytes = BytesIO()
                         await client.download_media(message.media, file=media_bytes)
@@ -148,27 +151,31 @@ class RecipeService:
                     db.session.add(new_recipe)
                     sync_log.recipes_added += 1
                 
+                db.session.commit()
+
         except Exception as e:
             sync_log.recipes_failed += 1
             print(f"Error processing message {message.id}: {str(e)}")
             raise
 
     @classmethod
-    def search_recipes(cls, query=None, categories=None):
+    def search_recipes(cls, query=None, categories=None, prep_time=None, difficulty=None, 
+                      include_terms=None, exclude_terms=None):
         """
-        Search recipes by text and categories
+        Search recipes with advanced filters
         
         Args:
-            query (str): Text to search for in title and content
-            categories (list): List of categories to filter by
-            
-        Returns:
-            dict: Dictionary of recipe results
+            query (str): Text to search for
+            categories (list): Categories to filter by
+            prep_time (int): Maximum preparation time in minutes
+            difficulty (str): Recipe difficulty level
+            include_terms (list): Terms that must be included
+            exclude_terms (list): Terms that must not be included
         """
         try:
             recipes_query = Recipe.query
 
-            # Apply text search
+            # Text search
             if query:
                 search_pattern = f"%{query}%"
                 recipes_query = recipes_query.filter(
@@ -178,13 +185,31 @@ class RecipeService:
                     )
                 )
 
-            # Apply category filter
+            # Category filter
             if categories:
-                category_conditions = []
                 for category in categories:
-                    category_pattern = f"%קטגוריות:%{category}%"
-                    category_conditions.append(Recipe.raw_content.ilike(category_pattern))
-                recipes_query = recipes_query.filter(db.or_(*category_conditions))
+                    recipes_query = recipes_query.filter(Recipe._categories.ilike(f"%{category}%"))
+
+            # Preparation time filter
+            if prep_time:
+                recipes_query = recipes_query.filter(Recipe.preparation_time <= int(prep_time))
+
+            # Difficulty filter
+            if difficulty:
+                try:
+                    difficulty_enum = RecipeDifficulty[difficulty.upper()]
+                    recipes_query = recipes_query.filter(Recipe.difficulty == difficulty_enum)
+                except KeyError:
+                    print(f"Invalid difficulty value: {difficulty}")
+
+            # Text content filters
+            if include_terms:
+                for term in include_terms:
+                    recipes_query = recipes_query.filter(Recipe.raw_content.ilike(f"%{term}%"))
+            
+            if exclude_terms:
+                for term in exclude_terms:
+                    recipes_query = recipes_query.filter(~Recipe.raw_content.ilike(f"%{term}%"))
 
             # Execute query and format results
             recipes = recipes_query.all()
@@ -204,6 +229,8 @@ class RecipeService:
                 "title": recipe.title,
                 "details": recipe.raw_content,
                 "image": recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
-                "categories": [cat.name for cat in recipe.categories] if recipe.categories else []
+                "categories": recipe.categories,
+                "preparation_time": recipe.preparation_time,
+                "difficulty": recipe.difficulty.value if recipe.difficulty else None
             }
         return results

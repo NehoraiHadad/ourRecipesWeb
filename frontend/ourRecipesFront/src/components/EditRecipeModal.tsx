@@ -15,6 +15,8 @@ interface EditRecipeModalProps {
     raw_content?: string;
     image: string | null;
     categories?: string[];
+    preparation_time?: number;
+    difficulty?: 'easy' | 'medium' | 'hard';
   } | null;
   setRecipeData: React.Dispatch<React.SetStateAction<{
     id: number;
@@ -24,9 +26,17 @@ interface EditRecipeModalProps {
     raw_content?: string;
     image: string | null;
     categories?: string[];
+    preparation_time?: number;
+    difficulty?: 'easy' | 'medium' | 'hard';
   } | null>>;
   onSave: () => void;
 }
+
+const difficultyOptions = [
+  { value: 'easy', label: 'קל' },
+  { value: 'medium', label: 'בינוני' },
+  { value: 'hard', label: 'מורכב' }
+];
 
 const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
   show,
@@ -49,23 +59,7 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
     if (show) {
       const initCategories = async () => {
         try {
-          // Check categories status
-          const statusResponse = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/categories/status`,
-            { credentials: "include" }
-          );
-          const statusData = await statusResponse.json();
           
-          if (statusData.total_count === 0) {
-            // Initialize categories if none exist
-            await fetch(
-              `${process.env.NEXT_PUBLIC_API_URL}/categories/init`,
-              { 
-                method: 'POST',
-                credentials: "include" 
-              }
-            );
-          }
           
           // Fetch categories after potential initialization
           fetchExistingCategories();
@@ -303,6 +297,41 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
                 onChange={(e) => setRecipeData(prev => prev ? { ...prev, title: e.target.value } : null)}
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
               />
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="block text-sm font-medium text-gray-700">זמן הכנה (בדקות):</label>
+                <input
+                  type="number"
+                  min="0"
+                  value={recipeData.preparation_time || ''}
+                  onChange={(e) => setRecipeData(prev => prev ? {
+                    ...prev,
+                    preparation_time: e.target.value ? Number(e.target.value) : undefined
+                  } : null)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="למשל: 30"
+                />
+              </div>
+              
+              <div>
+                <label className="block text-sm font-medium text-gray-700">רמת קושי:</label>
+                <select
+                  value={recipeData.difficulty || ''}
+                  onChange={(e) => setRecipeData(prev => prev ? {
+                    ...prev,
+                    difficulty: e.target.value as 'easy' | 'medium' | 'hard' | undefined
+                  } : null)}
+                  className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                >
+                  <option value="">בחר רמת קושי</option>
+                  {difficultyOptions.map(option => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
             </div>
             <div className="relative">
               <label className="block text-sm font-medium text-gray-700">קטגוריות:</label>

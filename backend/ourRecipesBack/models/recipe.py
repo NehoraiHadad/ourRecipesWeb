@@ -3,7 +3,6 @@ from sqlalchemy.sql import func
 import base64
 from ..extensions import db
 from .enums import RecipeStatus, RecipeDifficulty
-from .recipe_categories import recipe_categories
 from .version import RecipeVersion
 from .user_recipe import UserRecipe
 
@@ -22,6 +21,7 @@ class Recipe(db.Model):
     raw_content = db.Column(db.Text, nullable=False)
     _ingredients = db.Column('ingredients', db.Text)
     _instructions = db.Column('instructions', db.Text)
+    _categories = db.Column('_categories', db.Text)  # Store categories as comma-separated string
     recipe_metadata = db.Column(db.JSON)
     
     # Media
@@ -34,10 +34,6 @@ class Recipe(db.Model):
     updated_at = db.Column(db.DateTime, onupdate=func.now())
     last_sync = db.Column(db.DateTime)
     
-    # Categories and organization
-    category_id = db.Column(db.Integer, db.ForeignKey('category.id'))
-    tags = db.Column(db.JSON, default=list)
-    
     # Status flags
     is_parsed = db.Column(db.Boolean, default=False)
     parse_errors = db.Column(db.Text)
@@ -46,8 +42,9 @@ class Recipe(db.Model):
     # Recipe details
     ingredients_list = db.Column(db.JSON)
     cooking_time = db.Column(db.Integer)
-    difficulty = db.Column(db.String(20))
+    difficulty = db.Column(db.Enum(RecipeDifficulty), nullable=True)
     servings = db.Column(db.Integer)
+    preparation_time = db.Column(db.Integer, nullable=True)
     
     # Sync status
     formatted_content = db.Column(db.JSON)
@@ -60,13 +57,6 @@ class Recipe(db.Model):
                                  back_populates='recipe',
                                  cascade='all, delete-orphan')
     
-    categories = db.relationship(
-        'Category',
-        secondary=recipe_categories,
-        back_populates='recipes',
-        lazy='joined'
-    )
-
     versions = db.relationship(
         'RecipeVersion',
         back_populates='recipe',
@@ -109,6 +99,21 @@ class Recipe(db.Model):
         else:
             self._instructions = value
 
+    @property
+    def categories(self):
+        """Get categories as a list"""
+        if not self._categories:
+            return []
+        return [cat.strip() for cat in self._categories.split(',') if cat.strip()]
+    
+    @categories.setter
+    def categories(self, value):
+        """Store categories as comma-separated string"""
+        if isinstance(value, list):
+            self._categories = ','.join(str(v).strip() for v in value if v)
+        else:
+            self._categories = str(value) if value else None
+
     def update_content(self, title, raw_content, image_data=None, created_by=None, change_description=None):
         """Update recipe content and create new version"""
         try:
@@ -119,7 +124,7 @@ class Recipe(db.Model):
             version_content = {
                 'title': self.title,
                 'raw_content': self.raw_content,
-                'categories': [cat.name for cat in self.categories],
+                'categories': self.categories,
                 'ingredients': self.ingredients if hasattr(self, 'ingredients') else None,
                 'instructions': self.instructions if hasattr(self, 'instructions') else None,
             }
@@ -159,17 +164,35 @@ class Recipe(db.Model):
     def _parse_content(self, raw_content):
         """Parse raw content and extract structured data"""
         recipe_parts = raw_content.split('\n')
-        self.categories = []
+        
+        # Reset fields
+        self.preparation_time = None
+        self.difficulty = None
+        new_categories = []
         
         for part in recipe_parts:
-            if part.strip().startswith('קטגוריות:'):
+            part = part.strip()
+            if part.startswith('זמן הכנה:'):
+                try:
+                    time_str = part.replace('זמן הכנה:', '').strip()
+                    import re
+                    numbers = re.findall(r'\d+', time_str)
+                    if numbers:
+                        self.preparation_time = int(numbers[0])
+                except ValueError:
+                    pass
+            elif part.startswith('רמת קושי:'):
+                difficulty_str = part.replace('רמת קושי:', '').strip().lower()
+                difficulty_map = {
+                    'קל': RecipeDifficulty.EASY,
+                    'בינוני': RecipeDifficulty.MEDIUM,
+                    'מורכב': RecipeDifficulty.HARD
+                }
+                self.difficulty = difficulty_map.get(difficulty_str)
+            elif part.startswith('קטגוריות:'):
                 categories = part.replace('קטגוריות:', '').split(',')
-                categories = [cat.strip() for cat in categories if cat.strip()]
-                for category_name in categories:
-                    from .category import Category
-                    category = Category.get_or_create(category_name)
-                    if category not in self.categories:
-                        self.categories.append(category)
+                new_categories = [cat.strip() for cat in categories if cat.strip()]
+                self.categories = new_categories
         
         self.sync_status = 'synced'
 
