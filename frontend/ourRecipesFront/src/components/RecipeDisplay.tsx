@@ -11,6 +11,8 @@ interface RecipeDisplayProps {
     raw_content?: string;
     image?: string | null;
     categories?: string[];
+    preparation_time?: number;
+    difficulty?: 'easy' | 'medium' | 'hard';
   };
 }
 
@@ -60,7 +62,11 @@ const hebrewWordsMap: { [key: string]: string } = {
   קורט: "קורט²",
 };
 
-
+const difficultyDisplay: { [key: string]: string } = {
+  easy: 'קל',
+  medium: 'בינוני',
+  hard: 'מורכב'
+};
 
 const multiplyNumbersInString = (str: string, shouldMultiply: boolean = true): string => {
   if (!shouldMultiply) return str;
@@ -172,6 +178,21 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
       )}
       <div className="p-4">
         <h2 className="text-2xl font-bold text-center mb-4">{recipe.title}</h2>
+
+        <div className="flex justify-center gap-4 mb-4 text-sm text-gray-600">
+          {recipe.preparation_time && (
+            <div className="flex items-center gap-1">
+              <span>⏱️</span>
+              <span>{recipe.preparation_time} דקות</span>
+            </div>
+          )}
+          {recipe.difficulty && (
+            <div className="flex items-center gap-1">
+              <span>📊</span>
+              <span>{difficultyDisplay[recipe.difficulty]}</span>
+            </div>
+          )}
+        </div>
 
         {recipe.categories && recipe.categories.length > 0 && (
           <div className="mb-4">

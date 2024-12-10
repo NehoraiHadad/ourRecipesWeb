@@ -15,6 +15,13 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount }) => {
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
   const [showCategories, setShowCategories] = useState(false);
+  const [advancedFilters, setAdvancedFilters] = useState({
+    preparationTime: '',
+    difficulty: '',
+    includeTerms: [] as string[],
+    excludeTerms: [] as string[]
+  });
+  const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
 
   useEffect(() => {
     fetchCategories();
@@ -56,6 +63,19 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount }) => {
       if (query) searchParams.append('query', query);
       if (selectedCategories.length > 0) {
         searchParams.append('categories', selectedCategories.join(','));
+      }
+      
+      if (advancedFilters.preparationTime) {
+        searchParams.append('prepTime', advancedFilters.preparationTime);
+      }
+      if (advancedFilters.difficulty) {
+        searchParams.append('difficulty', advancedFilters.difficulty);
+      }
+      if (advancedFilters.includeTerms.length > 0) {
+        searchParams.append('includeTerms', advancedFilters.includeTerms.join(','));
+      }
+      if (advancedFilters.excludeTerms.length > 0) {
+        searchParams.append('excludeTerms', advancedFilters.excludeTerms.join(','));
       }
 
       const response = await fetch(
@@ -161,6 +181,84 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount }) => {
                 </div>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Advanced Filters Toggle */}
+        <button
+          type="button"
+          onClick={() => setShowAdvancedFilters(!showAdvancedFilters)}
+          className="text-sm text-gray-600 hover:text-gray-800 mt-1"
+        >
+          {showAdvancedFilters ? 'הסתר חיפוש מתקדם' : 'חיפוש מתקדם'}
+        </button>
+
+        {/* Advanced Filters Section */}
+        {showAdvancedFilters && (
+          <div className="grid grid-cols-2 gap-2 mt-2 pb-2">
+            <div>
+              <label className="text-sm">זמן הכנה (בדקות):</label>
+              <select
+                value={advancedFilters.preparationTime}
+                onChange={(e) => setAdvancedFilters(prev => ({
+                  ...prev,
+                  preparationTime: e.target.value
+                }))}
+                className="w-full px-2 py-1 text-sm border rounded"
+              >
+                <option value="">הכל</option>
+                <option value="15">עד 15 דקות</option>
+                <option value="30">עד 30 דקות</option>
+                <option value="60">עד שעה</option>
+                <option value="120">עד שעתיים</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="text-sm">רמת קושי:</label>
+              <select
+                value={advancedFilters.difficulty}
+                onChange={(e) => setAdvancedFilters(prev => ({
+                  ...prev,
+                  difficulty: e.target.value
+                }))}
+                className="w-full px-2 py-1 text-sm border rounded"
+              >
+                <option value="">הכל</option>
+                <option value="easy">קל</option>
+                <option value="medium">בינוני</option>
+                <option value="hard">מורכב</option>
+              </select>
+            </div>
+
+            {/* Ingredients Filter */}
+            <div className="col-span-2">
+              <label className="text-sm">חייב להכיל את המילים:</label>
+              <input
+                type="text"
+                placeholder="הקלד מילים מופרדות בפסיקים"
+                value={advancedFilters.includeTerms.join(', ')}
+                onChange={(e) => setAdvancedFilters(prev => ({
+                  ...prev,
+                  includeTerms: e.target.value.split(',').map(i => i.trim()).filter(Boolean)
+                }))}
+                className="w-full px-2 py-1 text-sm border rounded"
+              />
+            </div>
+
+            <div className="col-span-2">
+              <label className="text-sm">לא להכיל את המילים:</label>
+              <input
+                type="text"
+                placeholder="הקלד מילים מופרדות בפסיקים"
+                value={advancedFilters.excludeTerms.join(', ')}
+                onChange={(e) => setAdvancedFilters(prev => ({
+                  ...prev,
+                  excludeTerms: e.target.value.split(',').map(i => i.trim()).filter(Boolean)
+                }))}
+                className="w-full px-2 py-1 text-sm border rounded"
+              />
+            </div>
           </div>
         )}
       </form>

@@ -15,6 +15,22 @@ export const parseRecipe = (text: string) => {
     ? parts[categoriesIndex].replace("קטגוריות:", "").split(",").map(cat => cat.trim())
     : [];
 
+  const prepTimeIndex = parts.findIndex((part) => part.trim().startsWith("זמן הכנה:"));
+  const preparationTime = prepTimeIndex !== -1
+    ? Number(parts[prepTimeIndex].replace("זמן הכנה:", "").replace(/[^\d]/g, ""))
+    : undefined;
+
+  const difficultyIndex = parts.findIndex((part) => part.trim().startsWith("רמת קושי:"));
+  const difficultyMap: { [key: string]: 'easy' | 'medium' | 'hard' } = {
+    'קל': 'easy',
+    'בינוני': 'medium',
+    'מורכב': 'hard'
+  };
+  const difficultyText = difficultyIndex !== -1
+    ? parts[difficultyIndex].replace("רמת קושי:", "").trim()
+    : '';
+  const difficulty = difficultyMap[difficultyText];
+
   const ingredientsIndex = parts.findIndex((part) => part.trim() === "רשימת מצרכים:");
   const instructionsIndex = parts.findIndex(
     (part) => part.trim() === "הוראות הכנה:"
@@ -39,6 +55,8 @@ export const parseRecipe = (text: string) => {
   return {
     title,
     categories,
+    preparation_time: preparationTime || undefined,
+    difficulty: difficulty || undefined,
     ingredients,
     instructions,
   };

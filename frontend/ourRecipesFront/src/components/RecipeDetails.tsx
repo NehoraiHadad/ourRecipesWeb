@@ -65,7 +65,7 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/reformat_recipe`,
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/reformat_recipe`,
         {
           method: "POST",
           credentials: "include",
@@ -77,6 +77,10 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
       if (response.ok) {
         setReformat_recipe(data.reformatted_text);
         const formattedRecipe = parseRecipe(data.reformatted_text);
+        console.log(data.reformatted_text);
+        
+        console.log(formattedRecipe);
+        
         setRecipeData({ 
           id: recipe.id,
           ...formattedRecipe, 

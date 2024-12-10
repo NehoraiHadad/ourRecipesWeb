@@ -11,19 +11,44 @@ recipes_bp = Blueprint("recipes", __name__)
 @recipes_bp.route("/search", methods=["GET"])
 @jwt_required()
 def search_recipes():
-    """Search recipes by text and categories"""
+    """Search recipes with advanced filters"""
     try:
         # Get and clean search parameters
         query = request.args.get("query", "").strip()
-        categories = (
-            request.args.get("categories", "").split(",")
-            if request.args.get("categories")
-            else []
-        )
+        categories = request.args.get("categories", "").split(",") if request.args.get("categories") else []
         categories = [cat.strip() for cat in categories if cat.strip()]
+        
+        # Get advanced filters
+        prep_time = request.args.get("prepTime")
+        difficulty = request.args.get("difficulty")
+        include_terms = request.args.get("includeTerms", "").split(",") if request.args.get("includeTerms") else []
+        exclude_terms = request.args.get("excludeTerms", "").split(",") if request.args.get("excludeTerms") else []
+
+        print(f"""
+        Search parameters:
+        - Query: {query}
+        - Categories: {categories}
+        - Prep Time: {prep_time}
+        - Difficulty: {difficulty}
+        - Include Terms: {include_terms}
+        - Exclude Terms: {exclude_terms}
+        """, flush=True)
+
+        # Clean lists
+        include_terms = [term.strip() for term in include_terms if term.strip()]
+        exclude_terms = [term.strip() for term in exclude_terms if term.strip()]
 
         # Perform search
-        results = RecipeService.search_recipes(query, categories)
+        results = RecipeService.search_recipes(
+            query=query,
+            categories=categories,
+            prep_time=prep_time,
+            difficulty=difficulty,
+            include_terms=include_terms,
+            exclude_terms=exclude_terms
+        )
+        
+        print(f"Found {len(results)} results", flush=True)
         return jsonify({"results": results}), 200
 
     except Exception as e:
@@ -37,10 +62,10 @@ async def update_recipe(telegram_id):
     """Update existing recipe"""
     try:
         data = request.get_json()
-        
+
         if not data or not data.get("newText"):
             return jsonify({"error": "Missing required fields"}), 400
-        
+
         recipe, error = await RecipeService.update_recipe(
             telegram_id=telegram_id,
             new_text=data["newText"],
@@ -51,10 +76,15 @@ async def update_recipe(telegram_id):
         if error:
             return jsonify({"error": error}), 500
 
-        return jsonify({
-            "status": "message_updated",
-            "new_message_id": recipe.telegram_id if recipe else None
-        }), 200
+        return (
+            jsonify(
+                {
+                    "status": "message_updated",
+                    "new_message_id": recipe.telegram_id if recipe else None,
+                }
+            ),
+            200,
+        )
 
     except Exception as e:
         print(f"Update error: {str(e)}", flush=True)
@@ -124,6 +154,23 @@ async def generate_recipe_image():
     except Exception as e:
         print(f"Image generation error in route: {str(e)}", flush=True)
         return jsonify({"error": "Image generation failed"}), 500
+
+
+@recipes_bp.route("/reformat_recipe", methods=["POST"])
+@jwt_required()
+def reformat_recipe():
+    """Reformat recipe text using AI"""
+    try:
+        data = request.get_json()
+        if "text" not in data:
+            return jsonify({"error": "Missing text"}), 400
+
+        reformatted_text = AIService.reformat_recipe(data["text"])
+        return jsonify({"reformatted_text": reformatted_text}), 200
+
+    except Exception as e:
+        print(f"Recipe reformatting error in route: {str(e)}", flush=True)
+        return jsonify({"error": str(e)}), 500
 
 
 # Helper functions
