@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import useOutsideClick from "../hooks/useOutsideClick";
-import Spinner from "./Spinner"; // Make sure you have this component
+import Spinner from "./Spinner"; 
 import CategoryTags from "./CategoryTags";
 import VersionHistory from "./VersionHistory";
 
@@ -37,7 +37,7 @@ interface EditRecipeModalProps {
 const difficultyOptions = [
   { value: "easy", label: "קל" },
   { value: "medium", label: "בינוני" },
-  { value: "hard", label: "מורכב" },
+  { value: "hard", label: "קשה" },
 ];
 
 const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
@@ -149,8 +149,7 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
         if (!response.ok) throw new Error("Failed to generate image");
 
         const result = await response.json();
-        console.log(result);
-        
+                      
         setRecipeData((prev) =>
           prev
             ? { ...prev, image: result.image }

@@ -41,7 +41,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
   const handleEditClick = (e: React.MouseEvent, recipe: recipe) => {
     e.stopPropagation();
     setEditModalRecipe({
-      id: recipe.id,
+      id: recipe.telegram_id,
       title: recipe.title,
       ingredients: recipe.ingredients || [],
       instructions: recipe.is_parsed 
@@ -66,14 +66,14 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
   {
     'easy': 'קל',
     'medium': 'בינוני',
-    'hard': 'מורכב'
+    'hard': 'קשה'
   }[editModalRecipe.difficulty]
 }` : ''}
 \nרשימת מצרכים:\n-${Array.isArray(editModalRecipe.ingredients) ? editModalRecipe.ingredients.join("\n-") : editModalRecipe.ingredients}
 \nהוראות הכנה:\n${editModalRecipe.instructions || ""}`;
 
       try {
-        const recipe = recipes.find(r => r.id === editModalRecipe.id);
+        const recipe = recipes.find(r => r.telegram_id === editModalRecipe.id);
         if (!recipe?.telegram_id) {
           throw new Error("Missing telegram_id");
         }
