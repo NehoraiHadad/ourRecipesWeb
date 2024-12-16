@@ -149,9 +149,11 @@ const EditRecipeModal: React.FC<EditRecipeModalProps> = ({
         if (!response.ok) throw new Error("Failed to generate image");
 
         const result = await response.json();
+        console.log(result);
+        
         setRecipeData((prev) =>
           prev
-            ? { ...prev, image: `data:image/jpeg;base64,${result.image}` }
+            ? { ...prev, image: result.image }
             : null
         );
       } catch (error) {
