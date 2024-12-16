@@ -173,6 +173,48 @@ def reformat_recipe():
         return jsonify({"error": str(e)}), 500
 
 
+@recipes_bp.route("/manage", methods=["GET"])
+@jwt_required()
+def get_recipes_for_management():
+    """Get all recipes with management metadata"""
+    try:
+        
+        # Get all recipes with management metadata
+        recipes = RecipeService.get_recipes_for_management()
+        
+        return jsonify(recipes), 200
+
+    except Exception as e:
+        print(f"Management fetch error: {str(e)}", flush=True)
+        return jsonify({"error": "Failed to fetch recipes"}), 500
+
+
+@recipes_bp.route("/bulk", methods=["POST"])
+@jwt_required()
+async def bulk_action():
+    """Handle bulk actions on recipes"""
+    try:
+        data = request.get_json()
+        if not data or "action" not in data or "recipeIds" not in data:
+            return jsonify({"error": "Missing required fields"}), 400
+            
+        action = data["action"]
+        recipe_ids = data["recipeIds"]
+        
+        if not isinstance(recipe_ids, list):
+            return jsonify({"error": "recipeIds must be a list"}), 400
+            
+        if action == "parse":
+            result = await RecipeService.bulk_parse_recipes(recipe_ids)
+            return jsonify(result), 200
+        else:
+            return jsonify({"error": "Invalid action"}), 400
+            
+    except Exception as e:
+        print(f"Bulk action error: {str(e)}")
+        return jsonify({"error": "Bulk action failed", "message": str(e)}), 500
+
+
 # Helper functions
 def _process_image_data(image_data):
     """Process and validate image data"""

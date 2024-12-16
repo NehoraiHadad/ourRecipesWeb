@@ -91,22 +91,35 @@ const NavBar = () => {
           <div ref={menuRef} className="absolute top-9 mt-1 z-50">
             <ul className="bg-white rounded-md shadow-lg">
               {authState.canEdit && (
-                <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
-                  <button
-                    className="w-full h-full px-4 py-2 flex items-center justify-center gap-2"
-                    onClick={handleSync}
-                    disabled={isSyncing}
-                  >
-                    {isSyncing ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
-                        מסנכרן...
-                      </>
-                    ) : (
-                      'סנכרן מתכונים'
-                    )}
-                  </button>
-                </li>
+                <>
+                  <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                    <button
+                      className="w-full h-full px-4 py-2"
+                      onClick={() => {
+                        router.push('/manage');
+                        handleCloseMenu();
+                      }}
+                    >
+                      ניהול מתכונים
+                    </button>
+                  </li>
+                  <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                    <button
+                      className="w-full h-full px-4 py-2 flex items-center justify-center gap-2"
+                      onClick={handleSync}
+                      disabled={isSyncing}
+                    >
+                      {isSyncing ? (
+                        <>
+                          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900"></div>
+                          מסנכרן...
+                        </>
+                      ) : (
+                        'סנכרן מתכונים'
+                      )}
+                    </button>
+                  </li>
+                </>
               )}
               <li className="text-sm text-gray-700 hover:bg-gray-100 rounded-md">
                 <button

@@ -36,6 +36,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     raw_content?: string;
     image: string | null;
     categories?: string[];
+    preparation_time?: number;
+    difficulty?: "easy" | "medium" | "hard";
   } | null>(null);
   const [editManualModal, setEditManualModal] = useState(false);
 
@@ -136,8 +138,8 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     } catch (error: any) {
       console.error("Error updating recipe:", error);
       const errorMessage = error.message?.toLowerCase().includes("not modified") 
-        ? "לא בוצעו שינויים במתכון"
-        : "שגיאה בשמירת המתכון";
+        ? "לא בוצעו שינויים במתכון" // need to fix - its not working
+        : "שגיאה בשמירת המתכון"; 
       setShowMessage({ status: true, message: errorMessage });
       throw error;
     } finally {
@@ -154,6 +156,14 @@ const RecipeDetail: React.FC<RecipeDetailProps> = ({ recipe }) => {
     setReformat_recipe(
       `כותרת: ${recipeData?.title || ""}
 ${recipeData?.categories?.length ? `\nקטגוריות: ${recipeData.categories.join(', ')}` : ''}
+${recipeData?.preparation_time ? `\nזמן הכנה: ${recipeData.preparation_time} דקות` : ''}
+${recipeData?.difficulty ? `\nרמת קושי: ${
+  {
+    'easy': 'קל',
+    'medium': 'בינוני',
+    'hard': 'מורכב'
+  }[recipeData.difficulty]
+}` : ''}
 \nרשימת מצרכים:\n-${Array.isArray(recipeData?.ingredients) ? recipeData.ingredients.join("\n-") : recipeData?.ingredients}
 \nהוראות הכנה:\n${recipeData?.instructions || ""}`
     );

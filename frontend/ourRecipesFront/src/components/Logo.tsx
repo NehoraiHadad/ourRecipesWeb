@@ -1,5 +1,16 @@
+import { useRouter } from "next/navigation";
+
 const Logo = () => {
-  return <div>המתכונים שלנו 💕</div>;
+  const router = useRouter();
+
+  return (
+    <div 
+      onClick={() => router.push('/')}
+      className="cursor-pointer hover:opacity-80 transition-opacity"
+    >
+      המתכונים שלנו 💕
+    </div>
+  );
 };
 
 export default Logo;

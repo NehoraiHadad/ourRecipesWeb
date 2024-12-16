@@ -41,7 +41,7 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
   const fetchVersions = async () => {
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipeId}/versions`,
+        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipeId}`,
         {
           credentials: 'include',
         }

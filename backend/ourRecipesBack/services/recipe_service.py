@@ -8,6 +8,7 @@ from ..models.sync import SyncLog
 from .telegram_service import telegram_service
 from ..utils.formatters import format_recipe_text, parse_recipe_text
 from ..models.enums import RecipeDifficulty
+from .ai_service import AIService
 
 class RecipeService:
     """Service class for handling recipe operations"""
@@ -84,6 +85,7 @@ class RecipeService:
                 # Content hasn't changed, return success without making Telegram API call
                 return recipe, None
             
+            # DB update
             recipe.update_content(
                 title=cls.get_first_line(new_text),
                 raw_content=new_text,
@@ -92,6 +94,7 @@ class RecipeService:
                 change_description="Recipe update"
             )
             
+            # Telegram update
             success = await telegram_service.edit_message(
                 telegram_id,
                 new_text,
@@ -234,3 +237,92 @@ class RecipeService:
                 "difficulty": recipe.difficulty.value if recipe.difficulty else None
             }
         return results
+
+    @staticmethod
+    def get_recipes_for_management():
+        """Get all recipes with management metadata"""
+        try:
+            recipes = Recipe.query.order_by(Recipe.created_at.desc()).all()
+            return [
+                {
+                    "id": recipe.id,
+                    "telegram_id": recipe.telegram_id,
+                    "title": recipe.title,
+                    "raw_content": recipe.raw_content,
+                    "categories": recipe.categories,
+                    "difficulty": recipe.difficulty.value if recipe.difficulty else None,
+                    "preparation_time": recipe.preparation_time,
+                    "ingredients": recipe.ingredients,
+                    "instructions": recipe.instructions,
+                    "is_parsed": recipe.is_parsed,
+                    "parse_errors": recipe.parse_errors,
+                    "created_at": recipe.created_at.isoformat() if recipe.created_at else None,
+                    "updated_at": recipe.updated_at.isoformat() if recipe.updated_at else None,
+                    "image": recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
+                }
+                for recipe in recipes
+            ]
+        except Exception as e:
+            print(f"Error fetching recipes for management: {str(e)}", flush=True)
+            raise
+
+    @classmethod
+    async def bulk_parse_recipes(cls, recipe_ids):
+        """
+        Parse multiple recipes in bulk using AI and update both DB and Telegram
+        
+        Args:
+            recipe_ids (list): List of recipe IDs to parse
+            
+        Returns:
+            dict: Results of bulk operation
+        """
+        try:
+            processed = 0
+            failed = 0
+            recipes = Recipe.query.filter(Recipe.id.in_(recipe_ids)).all()
+            
+            for recipe in recipes:
+                try:
+                    if recipe.raw_content and recipe.telegram_id:
+                        # AI reformatting
+                        reformatted_text = AIService.reformat_recipe(recipe.raw_content)
+                        
+                        # Update Telegram first
+                        telegram_success = await telegram_service.edit_message(
+                            recipe.telegram_id,
+                            reformatted_text,
+                            recipe.image_data if hasattr(recipe, 'image_data') else None
+                        )
+                        
+                        if telegram_success:
+                            # If Telegram update succeeded, update DB
+                            recipe.update_content(
+                                title=cls.get_first_line(reformatted_text),
+                                raw_content=reformatted_text,
+                                created_by="AI Parser",
+                                change_description="AI Bulk Parse"
+                            )
+                            processed += 1
+                        else:
+                            failed += 1
+                            print(f"Telegram update failed for recipe {recipe.id}")
+                    else:
+                        failed += 1
+                        print(f"Recipe {recipe.id} missing content or telegram_id")
+                except Exception as e:
+                    print(f"Error parsing recipe {recipe.id}: {str(e)}")
+                    failed += 1
+                    continue
+            
+            db.session.commit()
+            return {
+                "processed": processed,
+                "failed": failed,
+                "total": len(recipe_ids)
+            }
+            
+        except Exception as e:
+            db.session.rollback()
+            print(f"Bulk parse error: {str(e)}")
+            raise

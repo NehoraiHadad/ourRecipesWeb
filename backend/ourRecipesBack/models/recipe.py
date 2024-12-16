@@ -36,7 +36,7 @@ class Recipe(db.Model):
     
     # Status flags
     is_parsed = db.Column(db.Boolean, default=False)
-    parse_errors = db.Column(db.Text)
+    parse_errors = db.Column(db.String)
     status = db.Column(db.String(20), default=RecipeStatus.ACTIVE.value)
     
     # Recipe details
@@ -80,7 +80,7 @@ class Recipe(db.Model):
     
     @ingredients.setter
     def ingredients(self, value):
-        """Store ingredients as string"""
+        """Set ingredients from list"""
         if isinstance(value, list):
             self._ingredients = '||'.join(value)
         else:
@@ -163,38 +163,121 @@ class Recipe(db.Model):
 
     def _parse_content(self, raw_content):
         """Parse raw content and extract structured data"""
+        parse_errors = []  # Initialize empty errors array
         recipe_parts = raw_content.split('\n')
         
         # Reset fields
         self.preparation_time = None
         self.difficulty = None
-        new_categories = []
+        self.categories = []
+        temp_ingredients = []  
+        temp_instructions = [] 
         
+        # Basic validation
+        if not raw_content.strip():
+            parse_errors.append("תוכן המתכון ריק")
+            return
+        
+        # Parse title
+        if not recipe_parts[0].startswith('כותרת:'):
+            parse_errors.append("חסרה כותרת מתכון")
+        else:
+            self.title = recipe_parts[0].replace('כותרת:', '').strip()
+            if not self.title:
+                parse_errors.append("כותרת המתכון ריקה")
+
+        current_section = None
         for part in recipe_parts:
             part = part.strip()
+            if not part:
+                continue
+            
+            # Parse preparation time
             if part.startswith('זמן הכנה:'):
                 try:
                     time_str = part.replace('זמן הכנה:', '').strip()
                     import re
                     numbers = re.findall(r'\d+', time_str)
                     if numbers:
-                        self.preparation_time = int(numbers[0])
+                        time_value = int(numbers[0])
+                        if time_value <= 0 or time_value > 1440:  # 24 hours max
+                            parse_errors.append("זמן הכנה חייב להיות בין 1 ל-1440 דקות")
+                        else:
+                            self.preparation_time = time_value
+                    else:
+                        parse_errors.append("זמן הכנה לא תקין - חסר מספר")
                 except ValueError:
-                    pass
+                    parse_errors.append("שגיאה בפרסור זמן הכנה")
+                
+            # Parse difficulty
             elif part.startswith('רמת קושי:'):
                 difficulty_str = part.replace('רמת קושי:', '').strip().lower()
                 difficulty_map = {
                     'קל': RecipeDifficulty.EASY,
                     'בינוני': RecipeDifficulty.MEDIUM,
-                    'מורכב': RecipeDifficulty.HARD
+                    'קשה': RecipeDifficulty.HARD
                 }
-                self.difficulty = difficulty_map.get(difficulty_str)
+                if difficulty_str not in difficulty_map:
+                    parse_errors.append(f"רמת קושי לא תקינה: {difficulty_str}")
+                else:
+                    self.difficulty = difficulty_map[difficulty_str]
+                
+            # Parse categories
             elif part.startswith('קטגוריות:'):
                 categories = part.replace('קטגוריות:', '').split(',')
                 new_categories = [cat.strip() for cat in categories if cat.strip()]
-                self.categories = new_categories
-        
-        self.sync_status = 'synced'
+                if not new_categories:
+                    parse_errors.append("לא נמצאו קטגוריות תקינות")
+                elif len(new_categories) > 5:
+                    parse_errors.append("יותר מדי קטגוריות (מקסימום 5)")
+                else:
+                    self.categories = new_categories
+
+            # Parse ingredients section
+            elif part.startswith('רשימת מצרכים:'):
+                current_section = 'ingredients'
+            elif current_section == 'ingredients' and part.startswith('-'):
+                ingredient = part.lstrip('- ').strip()
+                if ingredient:
+                    temp_ingredients.append(ingredient)
+
+            # Parse instructions section
+            elif part.startswith('הוראות הכנה:'):
+                current_section = 'instructions'
+                if not temp_ingredients:  # בדיקה מול הרשימה הזמנית
+                    parse_errors.append("חסרה רשימת מצרכים")
+            elif current_section == 'instructions':
+                if part != 'הוראות הכנה:' and part: 
+                    instruction = part.strip()
+                    
+                    if instruction:
+                        temp_instructions.append(instruction)
+
+        # בסוף הפרסור, עדכון השדות
+        self.ingredients = temp_ingredients  # שימוש ב-setter
+        self.instructions = temp_instructions  # שימוש ב-setter
+
+        # Validate required sections
+        if not temp_ingredients:
+            parse_errors.append("לא נמצאו מצרכים")
+        if not temp_instructions:
+            parse_errors.append("לא נמצאו הוראות הכנה")
+        if not self.categories:
+            parse_errors.append("לא נמצאו קטגוריות")
+        if not self.preparation_time:
+            parse_errors.append("לא צוין זמן הכנה")
+        if not self.difficulty:
+            parse_errors.append("לא צוינה רמת קושי")
+
+        # עדכון סטטוס פרסור
+        if parse_errors:
+            self.is_parsed = False
+            self.parse_errors = '||'.join(parse_errors)  # Convert array to string with delimiter
+            self.sync_status = 'parsed_with_errors'
+        else:
+            self.is_parsed = True
+            self.parse_errors = ''  # Empty string instead of None
+            self.sync_status = 'synced'
 
     # Image handling methods
     def set_image(self, image_data=None, image_url=None):
