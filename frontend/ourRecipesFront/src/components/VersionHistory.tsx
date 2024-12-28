@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { parseRecipe, isRecipeUpdated } from "../utils/formatChecker";
 import useOutsideClick from '../hooks/useOutsideClick';
+import { Button } from "@/components/ui/Button";
+import { Typography } from '@/components/ui/Typography';
+import Spinner from "@/components/ui/Spinner";
+import TypingEffect from "@/components/TypingEffect";
 
 interface Version {
   id: number;
@@ -90,67 +94,70 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
     return (
       <div className="space-y-4">
         {isFormatted ? (
-          // תצוגה למתכון בפורמט החדש
           <>
             <div>
-              <h4 className="font-medium text-gray-700">כותרת:</h4>
-              <p>{formattedContent.title}</p>
+              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">כותרת:</Typography>
+              <Typography variant="body" className="text-sm sm:text-base">{formattedContent.title}</Typography>
             </div>
 
             {formattedContent.categories?.length > 0 && (
               <div>
-                <h4 className="font-medium text-gray-700">קטגוריות:</h4>
-                <p>{formattedContent.categories.join(', ')}</p>
+                <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">קטגוריות:</Typography>
+                <Typography variant="body" className="text-sm sm:text-base">{formattedContent.categories.join(', ')}</Typography>
               </div>
             )}
 
             {formattedContent.ingredients?.length > 0 && (
               <div>
-                <h4 className="font-medium text-gray-700">מצרכים:</h4>
-                <ul className="list-disc list-inside">
+                <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-2">מצרכים:</Typography>
+                <div className="space-y-1 pr-4">
                   {formattedContent.ingredients.map((ingredient, idx) => (
-                    <li key={idx}>{ingredient}</li>
+                    <div key={idx} className="flex items-start gap-2">
+                      <div className="min-w-[6px] h-[6px] rounded-full bg-secondary-500 mt-2"></div>
+                      <Typography variant="body" className="text-sm sm:text-base leading-relaxed">
+                        {ingredient}
+                      </Typography>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
 
             <div>
-              <h4 className="font-medium text-gray-700">הוראות הכנה:</h4>
-              <p className="whitespace-pre-wrap">{formattedContent.instructions}</p>
+              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">הוראות הכנה:</Typography>
+              <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">{formattedContent.instructions}</Typography>
             </div>
           </>
         ) : (
-          // תצוגה למתכון בפורמט הישן
           <>
             <div>
-              <h4 className="font-medium text-gray-700">כותרת:</h4>
-              <p>{version.content.title}</p>
+              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">כותרת:</Typography>
+              <Typography variant="body" className="text-sm sm:text-base">{version.content.title}</Typography>
             </div>
 
             {version.content.categories?.length > 0 && (
               <div>
-                <h4 className="font-medium text-gray-700">קטגוריות:</h4>
-                <p>{version.content.categories.join(', ')}</p>
+                <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">קטגוריות:</Typography>
+                <Typography variant="body" className="text-sm sm:text-base">{version.content.categories.join(', ')}</Typography>
               </div>
             )}
 
             <div>
-              <h4 className="font-medium text-gray-700">תוכן המתכון:</h4>
-              <p className="whitespace-pre-wrap">
+              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">תוכן המתכון:</Typography>
+              <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">
                 {rawContent.split('\n').filter(line => line.trim()).join('\n')}
-              </p>
+              </Typography>
             </div>
           </>
         )}
 
         {version.image && (
           <div>
-            <h4 className="font-medium text-gray-700">תמונה:</h4>
+            <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">תמונה:</Typography>
             <img 
               src={version.image} 
               alt={`תמונה לגרסה ${version.version_num}`}
-              className="mt-2 max-w-full h-auto rounded-lg"
+              className="mt-2 max-w-full h-auto rounded-lg shadow-warm"
             />
           </div>
         )}
@@ -159,85 +166,96 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
   };
 
   return (
-    <div className="p-4" ref={modalRef}>
-      <div className="flex justify-between items-center mb-4">
-        <div className="flex items-center gap-4">
-          <button
+    <div className="p-3 sm:p-6" ref={modalRef}>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 sm:mb-6">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
+          <Button
+            variant="secondary"
             onClick={onClose}
-            className="text-gray-600 hover:text-gray-800 flex items-center gap-1"
+            className="shadow-warm hover:shadow-lg transition-all w-full sm:w-auto"
           >
-            <span>←</span>
-            <span>חזור לעריכה</span>
-          </button>
-          <h2 className="text-xl font-bold">היסטוריית גרסאות</h2>
+            <Typography variant="body" className="font-handwriting-amit flex items-center gap-1 text-sm sm:text-base">
+              <span>←</span>
+              <span>חזור למתכון</span>
+            </Typography>
+          </Button>
+          <Typography variant="h2" className="font-handwriting-amit text-lg sm:text-2xl">היסטוריית גרסאות</Typography>
         </div>
       </div>
 
+      {loading && (
+        <div className="flex justify-center p-2 sm:p-4">
+          <Spinner message="טוען היסטוריית גרסאות..." />
+        </div>
+      )}
+
       {error && (
-        <div className="mb-4 p-2 rounded text-center bg-red-100 text-red-700">
-          {error}
+        <div className="mb-4 sm:mb-6 text-center">
+          <Typography variant="body" className="text-sm sm:text-base">
+            <TypingEffect message={error} onComplete={() => {}} />
+          </Typography>
         </div>
       )}
 
       {restoreMessage && (
-        <div className={`mb-4 p-2 rounded text-center ${
-          restoreMessage.includes('שגיאה') 
-          ? 'bg-red-100 text-red-700' 
-          : 'bg-green-100 text-green-700'
-        }`}>
-          {restoreMessage}
+        <div className="mb-4 sm:mb-6 text-center">
+          <Typography variant="body" className="text-sm sm:text-base">
+            <TypingEffect message={restoreMessage} onComplete={() => setRestoreMessage(null)} />
+          </Typography>
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="space-y-4 sm:space-y-6">
         {versions.map((version) => (
           <div
             key={version.id}
-            className="bg-white border rounded-lg p-4 hover:shadow-md transition-all duration-200"
+            className="bg-white rounded-2xl p-3 sm:p-6 shadow-warm hover:shadow-lg transition-all duration-200"
           >
-            <div className="flex justify-between items-center">
-              <div className="flex-1">
-                <h3 className="font-semibold">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 sm:gap-0">
+              <div className="flex-1 w-full sm:w-auto">
+                <Typography variant="h3" className="font-handwriting-amit text-base sm:text-lg">
                   גרסה {version.version_num} 
                   {version.change_description && (
-                    <span className="text-sm text-gray-500 mr-2">
+                    <span className="block sm:inline text-xs sm:text-sm text-gray-500 mt-1 sm:mt-0 sm:mr-2 font-sans">
                       ({version.change_description})
                     </span>
                   )}
                   {version.is_current && (
-                    <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full mr-2">
+                    <span className="block sm:inline bg-secondary-100 text-secondary-800 text-xs px-2 py-0.5 rounded-full mt-1 sm:mt-0 sm:mr-2 font-sans">
                       נוכחי
                     </span>
                   )}
-                </h3>
-                <p className="text-sm text-gray-500 mt-1">
+                </Typography>
+                <Typography variant="body" className="text-gray-500 mt-1 text-xs sm:text-sm">
                   {new Date(version.created_at).toLocaleString('he-IL')}
-                </p>
+                </Typography>
               </div>
-              <div className="space-x-2 rtl:space-x-reverse">
-                <button
+              <div className="flex gap-2 w-full sm:w-auto">
+                <Button
+                  variant="secondary"
                   onClick={() => setExpandedVersion(expandedVersion === version.id ? null : version.id)}
-                  className={`px-3 py-1 text-sm rounded transition-colors duration-200 ${
-                    expandedVersion === version.id 
-                    ? 'bg-gray-100 text-gray-700 border border-gray-300' 
-                    : 'border border-gray-300 hover:bg-gray-50'
-                  }`}
+                  className="shadow-warm hover:shadow-lg transition-all flex-1 sm:flex-none"
                 >
-                  {expandedVersion === version.id ? 'הסתר תוכן' : 'הצג תוכן'}
-                </button>
+                  <Typography variant="body" className="font-handwriting-amit text-sm sm:text-base">
+                    {expandedVersion === version.id ? 'הסתר תוכן' : 'הצג תוכן'}
+                  </Typography>
+                </Button>
                 {!version.is_current && (
-                  <button
+                  <Button
+                    variant="primary"
                     onClick={() => handleRestore(version.id)}
-                    className="px-3 py-1 text-sm bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+                    className="shadow-warm hover:shadow-lg transition-all flex-1 sm:flex-none"
                   >
-                    שחזר גרסה זו
-                  </button>
+                    <Typography variant="body" className="font-handwriting-amit text-sm sm:text-base">
+                      שחזר גרסה זו
+                    </Typography>
+                  </Button>
                 )}
               </div>
             </div>
 
             {expandedVersion === version.id && (
-              <div className="mt-4 pt-4 border-t border-gray-100">
+              <div className="mt-4 pt-4 sm:mt-6 sm:pt-6 border-t border-secondary-100">
                 {renderVersionContent(version)}
               </div>
             )}

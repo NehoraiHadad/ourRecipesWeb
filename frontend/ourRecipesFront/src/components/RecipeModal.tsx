@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { recipe } from "../types";
 import Modal from "./Modal";
 import { useAuthContext } from "../context/AuthContext";
-import Spinner from "./Spinner";
+import Spinner from "@/components/ui/Spinner";
 import ParseErrors from "./ParseErrors";
+import { useNotification } from '@/context/NotificationContext'
 
 interface RecipeModalProps {
   recipe: recipe;
@@ -20,6 +21,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
   const [error, setError] = useState<string | null>(null);
   const [editedRecipe, setEditedRecipe] = useState(recipe);
   const { authState } = useAuthContext();
+  const { addNotification } = useNotification()
 
   const handleUpdate = async () => {
     if (!authState.canEdit) return;
@@ -43,10 +45,20 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
       if (!response.ok) throw new Error("Failed to update recipe");
 
       const updatedRecipe = await response.json();
-      await onUpdate(updatedRecipe);
+      onUpdate(updatedRecipe);
+      addNotification({
+        message: 'המתכון עודכן בהצלחה',
+        type: 'success',
+        duration: 3000
+      })
       onClose();
     } catch (err) {
-      setError(err instanceof Error ? err.message : "An error occurred");
+      const message = err instanceof Error ? err.message : 'אירעה שגיאה בעדכון המתכון'
+      addNotification({
+        message,
+        type: 'error',
+        duration: 5000
+      })
     } finally {
       setIsLoading(false);
     }
@@ -149,7 +161,7 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
             showEmpty
           >
             {recipe.raw_content ? (
-              <pre className="p-3 text-xs text-gray-600 whitespace-pre-wrap">
+              <pre className="p-3 text-xs text-gray-600 whitespace-pre-wrap text-right">
                 {recipe.raw_content}
               </pre>
             ) : (

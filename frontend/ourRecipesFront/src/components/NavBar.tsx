@@ -36,6 +36,12 @@ const NavBar = () => {
         method: 'POST',
       });
       if (!response.ok) {
+        setAuthState({
+          isAuthenticated: false,
+          canEdit: false,
+          isChecking: true,
+          error: response.statusText,
+        });
         throw new Error("Login failed");
       }
 
@@ -43,6 +49,7 @@ const NavBar = () => {
         isAuthenticated: false,
         canEdit: false,
         isChecking: true,
+        error: null,
       });
 
       setIsMenuOpen(false);

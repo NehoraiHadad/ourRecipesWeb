@@ -1,0 +1,16 @@
+<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <pattern id="cooking-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
+    <!-- Utensils -->
+    <g stroke="currentColor" fill="none" stroke-width="0.5" opacity="0.4">
+      <!-- Spoon -->
+      <path d="M10,10 C10,13 13,16 16,16 L14,24 L16,24 L18,16 C21,16 24,13 24,10 C24,7 21,7 17,7 C13,7 10,7 10,10"/>
+      
+      <!-- Fork -->
+      <path d="M35,7 L35,13 M32,7 L32,13 M38,7 L38,13 M35,13 C35,16 35,24 35,24"/>
+      
+      <!-- Heart -->
+      <path d="M15,35 C15,32 12,32 10,35 C8,38 12,42 15,44 C18,42 22,38 20,35 C18,32 15,32 15,35" fill="currentColor"/>
+    </g>
+  </pattern>
+  <rect width="100" height="100" fill="url(#cooking-pattern)"/>
+</svg>

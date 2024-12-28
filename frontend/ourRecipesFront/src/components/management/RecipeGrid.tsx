@@ -3,8 +3,11 @@ import { RecipeGridProps } from "../../types/management";
 import ParseErrors from "../ParseErrors";
 import RecipeModal from "../RecipeModal";
 import { recipe } from "../../types/index";
-import EditRecipeModal from "../EditRecipeModal";
 import { useAuthContext } from "../../context/AuthContext";
+import Image from "next/image";
+import Modal from "../Modal";
+import { RecipeEditForm } from '../recipe/RecipeEditForm';
+import { difficultyDisplay } from "@/utils/difficulty";
 
 const RecipeGrid: React.FC<RecipeGridProps> = ({
   recipes,
@@ -14,17 +17,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
 }) => {
   const { authState } = useAuthContext();
   const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
-  const [editModalRecipe, setEditModalRecipe] = useState<{
-    id: number;
-    title: string;
-    ingredients: string[] | string;
-    instructions?: string;
-    raw_content?: string;
-    image: string | null;
-    categories?: string[];
-    preparation_time?: number;
-    difficulty?: "easy" | "medium" | "hard";
-  } | null>(null);
+  const [editModalRecipe, setEditModalRecipe] = useState<recipe | null>(null);
 
   const handleRecipeClick = (recipe: recipe) => {
     setModalRecipe(recipe);
@@ -38,19 +31,9 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
   const handleEditClick = (e: React.MouseEvent, recipe: recipe) => {
     e.stopPropagation();
     setEditModalRecipe({
-      id: recipe.telegram_id,
-      title: recipe.title,
-      ingredients: recipe.ingredients || [],
+      ...recipe,
       instructions: recipe.is_parsed 
-        ? Array.isArray(recipe.instructions) 
-          ? recipe.instructions.join('\n') 
-          : recipe.instructions
-        : recipe.details || '',
-      raw_content: recipe.raw_content,
-      image: recipe.image || null,
-      categories: recipe.categories || [],
-      preparation_time: recipe.preparation_time,
-      difficulty: recipe.difficulty?.toLowerCase() as "easy" | "medium" | "hard" | undefined
+        ? recipe.instructions : recipe.raw_content
     });
   };
 
@@ -59,13 +42,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
       const formattedRecipe = `כותרת: ${editModalRecipe.title}
 ${editModalRecipe.categories?.length ? `\nקטגוריות: ${editModalRecipe.categories.join(', ')}` : ''}
 ${editModalRecipe.preparation_time ? `\nזמן הכנה: ${editModalRecipe.preparation_time} דקות` : ''}
-${editModalRecipe.difficulty ? `\nרמת קושי: ${
-  {
-    'easy': 'קל',
-    'medium': 'בינוני',
-    'hard': 'קשה'
-  }[editModalRecipe.difficulty]
-}` : ''}
+${editModalRecipe.difficulty ? `\nרמת קושי: ${difficultyDisplay[editModalRecipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}` : ''}
 \nרשימת מצרכים:\n-${Array.isArray(editModalRecipe.ingredients) ? editModalRecipe.ingredients.join("\n-") : editModalRecipe.ingredients}
 \nהוראות הכנה:\n${editModalRecipe.instructions || ""}`;
 
@@ -105,13 +82,12 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
         <div
           key={recipe.id}
           className={`
-            relative bg-white rounded-xl shadow-lg overflow-hidden
+            relative bg-white rounded-xl shadow-warm overflow-hidden transition-all duration-300 hover:shadow-warm-lg hover:-translate-y-1
             border ${
               recipe.is_parsed ? "border-green-400" : "border-yellow-400"
             }
             ${selectedIds.includes(recipe.id) ? "ring-2 ring-blue-400" : ""}
             cursor-pointer
-            transform transition-all duration-200 hover:scale-102 hover:shadow-xl
           `}
           onClick={() => handleRecipeClick(recipe)}
         >
@@ -128,15 +104,23 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
             />
           </div>
 
-          {recipe.image && (
-            <div className="aspect-w-16 aspect-h-9">
-              <img
-                src={recipe.image}
-                alt={recipe.title}
-                className="object-cover w-full h-48 hover:opacity-90 transition-opacity duration-200"
-              />
-            </div>
-          )}
+          <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
+            {recipe.image ? (
+              <div className="relative w-full h-48">
+                <Image
+                  src={recipe.image}
+                  alt={recipe.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  className="object-cover transition-transform duration-300 hover:scale-105"
+                />
+              </div>
+            ) : (
+              <div className="w-full h-48 bg-secondary-100 flex items-center justify-center">
+                <span className="text-4xl">🍳</span>
+              </div>
+            )}
+          </div>
 
           <div className="p-5">
             <h3 className="text-xl font-semibold mb-3 line-clamp-2 text-gray-800 text-center">
@@ -225,15 +209,24 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
         />
       )}
 
-      {editModalRecipe && (
-        <EditRecipeModal
-          show={true}
-          onClose={() => setEditModalRecipe(null)}
-          recipeData={editModalRecipe}
-          setRecipeData={setEditModalRecipe}
-          onSave={handleSaveEdit}
-        />
-      )}
+      {/* Modal for Recipe Edit */}
+      <Modal 
+        isOpen={!!editModalRecipe}
+        onClose={() => setEditModalRecipe(null)}
+        title="עריכת מתכון"
+        size="lg"
+      >
+        {editModalRecipe && (
+          <RecipeEditForm
+            recipeData={editModalRecipe}
+            onSave={async (updatedRecipe) => {
+              await handleSaveEdit();
+              setEditModalRecipe(null);
+            }}
+            onCancel={() => setEditModalRecipe(null)}
+          />
+        )}
+      </Modal>
     </div>
   );
 };

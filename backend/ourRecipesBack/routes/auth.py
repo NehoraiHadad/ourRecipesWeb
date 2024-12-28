@@ -1,8 +1,10 @@
 from flask import current_app, jsonify, request, session
 from flask_jwt_extended import jwt_required, get_jwt_identity, set_access_cookies
-from ..services.telegram_service import telegram_service
 from ..services.auth_service import AuthService
 from flask import Blueprint
+from datetime import datetime, timezone
+import uuid
+import logging
 
 auth_bp = Blueprint('auth', __name__)
 
@@ -14,55 +16,75 @@ async def login():
         print(f"Login attempt with data: {user_data}", flush=True)
         
         if not user_data or not user_data.get("id"):
-            return jsonify({"error": "Invalid user data"}), 400
+            return jsonify({"error": "נתוני משתמש לא תקינים"}), 400
 
         user_id = str(user_data["id"])
 
         # Verify Telegram authentication
         if not AuthService.verify_telegram_login(user_data):
-            return jsonify({"error": "Authentication failed"}), 401
+            return jsonify({"error": "אימות נכשל"}), 401
 
-        # Create session
+        # בדיקת הרשאות בטלגרם
+        has_permission = await AuthService.check_edit_permission(user_id)
+        
+        # יצירת סשן עם מידע מורחב
         session["user_id"] = user_id
-        print(f"Session created for user {user_id}", flush=True)
+        session["auth_type"] = "telegram"
+        session["login_time"] = datetime.now(timezone.utc).isoformat()
+        session["edit_permission"] = has_permission
+        
+        # יצירת טוקן עם מידע נוסף
+        access_token = AuthService.create_user_session(
+            user_id, 
+            auth_type="telegram",
+            permissions={"can_edit": has_permission}
+        )
 
-        # Create access token
-        access_token = AuthService.create_user_session(user_id)
-        print(f"Access token created for user {user_id}", flush=True)
-
-        # Create response with cookies
-        response = jsonify({"login": True})
+        response = jsonify({
+            "login": True,
+            "canEdit": has_permission,
+            "user": {
+                "id": user_id,
+                "name": user_data.get("first_name", ""),
+                "type": "telegram"
+            }
+        })
         set_access_cookies(response, access_token)
-        print(f"Cookies set for user {user_id}", flush=True)
-
+        
         return response
 
     except Exception as e:
         print(f"Login error: {str(e)}", flush=True)
-        return jsonify({"error": "Login failed"}), 500
+        return jsonify({"error": "התחברות נכשלה"}), 500
 
 @auth_bp.route('/guest', methods=['POST'])
 def login_guest():
     """Handle guest login"""
     try:
-        # Create guest session
-        session["user_id"] = "guest"
+        guest_id = f"guest_{uuid.uuid4().hex[:8]}"
+        
+        session["user_id"] = guest_id
+        session["auth_type"] = "guest"
+        session["login_time"] = datetime.now(timezone.utc).isoformat()
         session["edit_permission"] = False
-        access_token = AuthService.create_guest_session()
+        
+        access_token = AuthService.create_guest_session(guest_id)
 
-        # Create response
         response = jsonify({
             "login": True,
-            "canEdit": False
+            "canEdit": False,
+            "user": {
+                "id": guest_id,
+                "type": "guest"
+            }
         })
         set_access_cookies(response, access_token)
-        # _set_secure_cookie_params(response)
 
         return response
 
     except Exception as e:
         print(f"Guest login error: {str(e)}", flush=True)
-        return jsonify({"error": "Guest login failed"}), 500
+        return jsonify({"error": "התחברות כאורח נכשלה"}), 500
 
 @auth_bp.route('/logout', methods=['POST'])
 def logout():
@@ -97,7 +119,7 @@ async def validate_session():
             }), 200
 
         if user_id == current_user:
-            permission = await telegram_service.check_permissions(
+            permission = await AuthService.check_edit_permission(
                 user_id, 
                 current_app.config["OLD_CHANNEL_URL"]
             )
@@ -114,4 +136,28 @@ async def validate_session():
     except Exception as e:
         print(f"Session validation error: {str(e)}", flush=True)
         return jsonify({"error": "Validation failed"}), 500
+
+@auth_bp.route('/clear-permissions-cache', methods=['POST'])
+@jwt_required()
+async def clear_permissions_cache():
+    """Clear permissions cache endpoint"""
+    try:
+        current_user = get_jwt_identity()
+        
+        # Only users with special permissions
+        has_permission = await AuthService.check_edit_permission(current_user)
+        if not has_permission:
+            return jsonify({"error": "Insufficient permissions"}), 403
+
+        user_to_clear = request.json.get('user_id') if request.json else None
+        AuthService.clear_permissions_cache(user_to_clear)
+        
+        return jsonify({
+            "success": True,
+            "message": f"Cache cleared successfully{' for user ' + user_to_clear if user_to_clear else ''}"
+        })
+
+    except Exception as e:
+        logging.error(f"Error in clear_permissions_cache: {str(e)}")
+        return jsonify({"error": "Error clearing cache"}), 500
 

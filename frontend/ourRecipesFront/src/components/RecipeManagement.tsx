@@ -4,8 +4,7 @@ import { ViewMode, BulkAction } from '../types/management';
 import RecipeToolbar from './RecipeToolbar';
 import RecipeList from './management/RecipeList';
 import RecipeGrid from './management/RecipeGrid';
-import useMediaQuery from '../hooks/useMediaQuery';
-import Spinner from './Spinner';
+import Spinner from '@/components/ui/Spinner';
 import { useAuthContext } from '../context/AuthContext';
 import TypingEffect from './TypingEffect';
 
@@ -20,7 +19,6 @@ export default function RecipeManagement() {
   const [sortBy, setSortBy] = useState('date_desc');
   const [filterBy, setFilterBy] = useState('all');
   
-  const isMobile = useMediaQuery('(max-width: 768px)');
   const { authState } = useAuthContext();
   
   const fetchRecipes = useCallback(async () => {
