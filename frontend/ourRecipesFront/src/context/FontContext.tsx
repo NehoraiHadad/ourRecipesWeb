@@ -14,7 +14,7 @@ const FontContext = createContext<FontContextType | undefined>(undefined)
 export function FontProvider({ children }: { children: React.ReactNode }) {
   const [currentFont, setCurrentFont] = useState<FontFamily>('heebo')
 
-  const fonts = [
+  const fonts: Array<{ id: FontFamily; name: string; description: string }> = [
     { id: 'heebo', name: 'HEBBO', description: 'פונט ברירת מחדל' },
     { id: 'alemnew', name: 'אלמנו פלקה', description: 'כתב יד מסורתי' },
     { id: 'amit', name: 'עמית מן', description: 'כתב יד מודרני' },
@@ -24,7 +24,7 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
     { id: 'shilo', name: 'שילה ראוכברגר', description: 'כתב יד קלאסי' },
     { id: 'shir', name: 'שיר חנה גורגי', description: 'כתב יד נשי' },
     { id: 'uriyah', name: 'אוריה מש', description: 'כתב יד מסורתי' }
-  ] as const
+  ]
 
   useEffect(() => {
     // Update CSS variable when font changes
