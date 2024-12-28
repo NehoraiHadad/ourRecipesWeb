@@ -9,9 +9,9 @@ export const isRecipeUpdated = (text: string): boolean => {
 };
 
 const difficultyMap: Record<string, Difficulty> = {
-  'קל': 'EASY',
-  'בינוני': 'MEDIUM',
-  'מורכב': 'HARD'
+  'קל': 'easy',
+  'בינוני': 'medium',
+  'מורכב': 'hard'
 };
 
 export const parseRecipe = (text: string) => {
