@@ -52,6 +52,12 @@ const uriyah = localFont({
   variable: '--font-uriyah'
 })
 
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1
+}
+
 export const metadata: Metadata = {
   title: 'Our Recipes',
   description: 'המתכונים המשפחתיים שלנו',
@@ -63,11 +69,6 @@ export const metadata: Metadata = {
     title: 'Our Recipes',
     description: 'המתכונים המשפחתיים שלנו',
     images: '/home-image.png'
-  },
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1
   }
 }
 
