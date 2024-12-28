@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function LoginErrorPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-secondary-50 px-4">
