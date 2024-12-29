@@ -4,6 +4,31 @@ from datetime import datetime, timezone, timedelta
 from flask import current_app, jsonify
 from flask_jwt_extended import create_access_token
 from .telegram_service import telegram_service
+from flask_caching import Cache
+import logging
+
+# Cache configuration
+cache = Cache(config={
+    'CACHE_TYPE': 'simple',
+    'CACHE_DEFAULT_TIMEOUT': 3600  # One hour
+})
+
+# Logger configuration
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+
+# Set log format
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+# Add console handler
+console_handler = logging.StreamHandler()
+console_handler.setFormatter(formatter)
+logger.addHandler(console_handler)
+
+def init_cache(app):
+    """Initialize cache with the Flask application"""
+    global cache
+    cache.init_app(app)
 
 class AuthService:
     """Service for handling authentication and authorization"""
@@ -42,61 +67,108 @@ class AuthService:
     @classmethod
     async def check_edit_permission(cls, user_id, channel_url=None):
         """
-        Check if user has edit permissions in channel
+        Check edit permissions with enhanced caching system
         
         Args:
             user_id (str): Telegram user ID
-            channel_url (str, optional): Channel to check permissions for
+            channel_url (str, optional): Channel URL to check permissions for
             
         Returns:
-            bool: Whether user has edit permissions
+            bool: Whether the user has edit permissions
         """
         try:
             if not channel_url:
                 channel_url = current_app.config["CHANNEL_URL"]
-
-            client = await telegram_service.get_client()
-            async with client:
-                channel_entity = await client.get_entity(channel_url)
-                permissions = await client.get_permissions(channel_entity, int(user_id))
                 
-                return permissions.is_admin and permissions.edit_messages
+            cache_key = f"permissions_{user_id}_{channel_url}"
+            current_time = datetime.now(timezone.utc).isoformat()
+            
+            # Check if exists in Cache
+            cached_result = cache.get(cache_key)
+            if cached_result is not None:
+                logger.info(
+                    "Cache hit for permissions check - "
+                    f"User: {user_id}, "
+                    f"Channel: {channel_url}, "
+                    f"Result: {cached_result}, "
+                    f"Time: {current_time}"
+                )
+                return cached_result
+
+            # If not in Cache, check with Telegram
+            logger.info(
+                "Cache miss - checking Telegram permissions - "
+                f"User: {user_id}, "
+                f"Channel: {channel_url}, "
+                f"Time: {current_time}"
+            )
+
+            result = await telegram_service.check_permissions(user_id, channel_url)
+
+            # Save to Cache
+            cache.set(cache_key, result, timeout=3600)  # Expires in 1 hour
+
+            logger.info(
+                "New permissions cached - "
+                f"User: {user_id}, "
+                f"Channel: {channel_url}, "
+                f"Result: {result}, "
+                f"Time: {current_time}, "
+                f"Expires: {datetime.fromtimestamp(datetime.now().timestamp() + 3600, timezone.utc).isoformat()}"
+            )
+
+            return result
 
         except Exception as e:
-            print(f"Permission check error: {str(e)}")
+            logger.error(
+                "Permission check error - "
+                f"User: {user_id}, "
+                f"Channel: {channel_url}, "
+                f"Error: {str(e)}, "
+                f"Time: {datetime.now(timezone.utc).isoformat()}"
+            )
             return False
 
     @staticmethod
-    def create_user_session(user_id):
+    def create_user_session(user_id, auth_type="telegram", permissions=None):
         """Create session for authenticated user"""
         try:
-            print(f"Creating access token for user {user_id}", flush=True)
-            access_token = create_access_token(identity=str(user_id))
-            print(f"Access token created successfully", flush=True)
+            expires_delta = timedelta(days=7) 
+            additional_claims = {
+                "type": auth_type,
+                "permissions": permissions or {},
+                "created_at": datetime.now(timezone.utc).isoformat()
+            }
+            
+            access_token = create_access_token(
+                identity=str(user_id),
+                expires_delta=expires_delta,
+                additional_claims=additional_claims
+            )
+            
             return access_token
         except Exception as e:
             print(f"Error creating access token: {str(e)}", flush=True)
             raise
 
     @classmethod
-    def create_guest_session(cls):
+    def create_guest_session(cls, guest_id):
         """Create session for guest user"""
         try:
-            expires_delta = timedelta(hours=1)
+            expires_delta = timedelta(hours=24) 
             additional_claims = {
                 "type": "guest",
+                "permissions": {"can_edit": False},
                 "created_at": datetime.now(timezone.utc).isoformat()
             }
             
             access_token = create_access_token(
-                identity="guest",
+                identity=guest_id,
                 expires_delta=expires_delta,
                 additional_claims=additional_claims
             )
             
-            print("Created guest token", flush=True)
             return access_token
-
         except Exception as e:
             print(f"Guest session error: {str(e)}", flush=True)
             raise 
@@ -171,3 +243,22 @@ class AuthService:
                     "payload": jwt_payload
                 }
             }), 401
+
+    @staticmethod
+    def clear_permissions_cache(user_id=None):
+        """
+        Clear permissions cache
+        
+        Args:
+            user_id (str, optional): If specified, clear only for specific user
+        """
+        try:
+            if user_id:
+                pattern = f"permissions_{user_id}_*"
+                keys_to_delete = cache.delete_pattern(pattern)
+                logger.info(f"Cleared permissions cache for user {user_id} - Deleted {len(keys_to_delete)} keys")
+            else:
+                cache.delete_pattern("permissions_*")
+                logger.info("Cleared all permissions cache")
+        except Exception as e:
+            logger.error(f"Error clearing permissions cache: {str(e)}")

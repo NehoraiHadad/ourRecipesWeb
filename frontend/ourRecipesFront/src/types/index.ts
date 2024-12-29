@@ -1,3 +1,5 @@
+export type Difficulty = "easy" | "medium" | "hard";
+
 export interface recipe {
   id: number;
   telegram_id: number;
@@ -5,10 +7,10 @@ export interface recipe {
   raw_content: string;
   details: string;
   categories: string[];
-  difficulty?: 'EASY' | 'MEDIUM' | 'HARD';
+  difficulty?: Difficulty;
   preparation_time?: number;
   ingredients?: string[];
-  instructions?: string[];
+  instructions?: string[] | string;
   is_parsed: boolean;
   parse_errors: string | null;
   created_at: string;

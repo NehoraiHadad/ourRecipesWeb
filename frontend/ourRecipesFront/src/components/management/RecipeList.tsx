@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { recipe } from "../../types";
-import { SwipeableListItem } from "../SwipeableListItem";
 import RecipeModal from "../RecipeModal";
 import { useAuthContext } from "../../context/AuthContext";
 import ParseErrors from "../ParseErrors";
-import EditRecipeModal from "../EditRecipeModal";
+import Modal from "../Modal";
+import { RecipeEditForm } from '../recipe/RecipeEditForm';
+import { difficultyDisplay } from "@/utils/difficulty";
 
 interface RecipeListProps {
   recipes: recipe[];
@@ -20,17 +21,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
   onRecipeUpdate,
 }) => {
   const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
-  const [editModalRecipe, setEditModalRecipe] = useState<{
-    id: number;
-    title: string;
-    ingredients: string[] | string;
-    instructions?: string;
-    raw_content?: string;
-    image: string | null;
-    categories?: string[];
-    preparation_time?: number;
-    difficulty?: "easy" | "medium" | "hard";
-  } | null>(null);
+  const [editModalRecipe, setEditModalRecipe] = useState<recipe | null>(null);
   
   const { authState } = useAuthContext();
 
@@ -40,21 +31,8 @@ const RecipeList: React.FC<RecipeListProps> = ({
 
   const handleEditClick = (e: React.MouseEvent, recipe: recipe) => {
     e.stopPropagation();
-    setEditModalRecipe({
-      id: recipe.telegram_id,
-      title: recipe.title,
-      ingredients: recipe.ingredients || [],
-      instructions: recipe.is_parsed 
-        ? Array.isArray(recipe.instructions) 
-          ? recipe.instructions.join('\n') 
-          : recipe.instructions
-        : recipe.details || '',
-      raw_content: recipe.raw_content,
-      image: recipe.image || null,
-      categories: recipe.categories || [],
-      preparation_time: recipe.preparation_time,
-      difficulty: recipe.difficulty?.toLowerCase() as "easy" | "medium" | "hard" | undefined
-    });
+    
+    setEditModalRecipe(recipe);
   };
 
   const handleSaveEdit = async () => {
@@ -62,13 +40,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
       const formattedRecipe = `כותרת: ${editModalRecipe.title}
 ${editModalRecipe.categories?.length ? `\nקטגוריות: ${editModalRecipe.categories.join(', ')}` : ''}
 ${editModalRecipe.preparation_time ? `\nזמן הכנה: ${editModalRecipe.preparation_time} דקות` : ''}
-${editModalRecipe.difficulty ? `\nרמת קושי: ${
-  {
-    'easy': 'קל',
-    'medium': 'בינוני',
-    'hard': 'קשה'
-  }[editModalRecipe.difficulty]
-}` : ''}
+${editModalRecipe.difficulty ? `\nרמת קושי: ${editModalRecipe.difficulty}` : ''}
 \nרשימת מצרכים:\n-${Array.isArray(editModalRecipe.ingredients) ? editModalRecipe.ingredients.join("\n-") : editModalRecipe.ingredients}
 \nהוראות הכנה:\n${editModalRecipe.instructions || ""}`;
 
@@ -118,19 +90,15 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
               <span
                 className={`px-2 py-1 rounded-full text-xs ${
                   {
-                    EASY: "bg-green-100 text-green-800",
-                    MEDIUM: "bg-yellow-100 text-yellow-800",
-                    HARD: "bg-red-100 text-red-800",
+                    easy: "bg-green-100 text-green-800",
+                    medium: "bg-yellow-100 text-yellow-800",
+                    hard: "bg-red-100 text-red-800",
                   }[recipe.difficulty]
                 }`}
               >
                 {
-                  {
-                    EASY: "קל",
-                    MEDIUM: "בינוני",
-                    HARD: "אתגר",
-                  }[recipe.difficulty]
-                }
+                  difficultyDisplay[recipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]
+                } 
               </span>
             )}
             <div
@@ -254,16 +222,24 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${
         />
       )}
 
-      {/* Edit Modal */}
-      {editModalRecipe && (
-        <EditRecipeModal
-          show={true}
-          onClose={() => setEditModalRecipe(null)}
-          recipeData={editModalRecipe}
-          setRecipeData={setEditModalRecipe}
-          onSave={handleSaveEdit}
-        />
-      )}
+      {/* Modal for Recipe Edit */}
+      <Modal 
+        isOpen={!!editModalRecipe}
+        onClose={() => setEditModalRecipe(null)}
+        title="עריכת מתכון"
+        size="lg"
+      >
+        {editModalRecipe && (
+          <RecipeEditForm
+            recipeData={editModalRecipe}
+            onSave={async (updatedRecipe) => {
+              await handleSaveEdit();
+              setEditModalRecipe(null);
+            }}
+            onCancel={() => setEditModalRecipe(null)}
+          />
+        )}
+      </Modal>
     </div>
   );
 };

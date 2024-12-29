@@ -1,9 +1,17 @@
+import { Difficulty } from '@/types';
+
 export const isRecipeUpdated = (text: string): boolean => {
   const hasTitle = text.includes("כותרת:");
   const hasIngredients = text.includes("מצרכים:");
   const hasInstructions = text.includes("הוראות הכנה:");
 
   return hasTitle && hasIngredients && hasInstructions;
+};
+
+const difficultyMap: Record<string, Difficulty> = {
+  'קל': 'easy',
+  'בינוני': 'medium',
+  'מורכב': 'hard'
 };
 
 export const parseRecipe = (text: string) => {
@@ -21,15 +29,10 @@ export const parseRecipe = (text: string) => {
     : undefined;
 
   const difficultyIndex = parts.findIndex((part) => part.trim().startsWith("רמת קושי:"));
-  const difficultyMap: { [key: string]: 'easy' | 'medium' | 'hard' } = {
-    'קל': 'easy',
-    'בינוני': 'medium',
-    'מורכב': 'hard'
-  };
   const difficultyText = difficultyIndex !== -1
     ? parts[difficultyIndex].replace("רמת קושי:", "").trim()
     : '';
-  const difficulty = difficultyMap[difficultyText];
+  const difficulty = difficultyMap[difficultyText] || undefined;
 
   const ingredientsIndex = parts.findIndex((part) => part.trim() === "רשימת מצרכים:");
   const instructionsIndex = parts.findIndex(
@@ -56,7 +59,7 @@ export const parseRecipe = (text: string) => {
     title,
     categories,
     preparation_time: preparationTime || undefined,
-    difficulty: difficulty || undefined,
+    difficulty,
     ingredients,
     instructions,
   };

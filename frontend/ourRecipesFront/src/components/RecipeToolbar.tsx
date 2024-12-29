@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAuthContext } from '../context/AuthContext';
-import Spinner from './Spinner';
+import Spinner from '@/components/ui/Spinner';
 import { ViewMode } from '@/types/management';
 import { BulkAction } from '@/types/management';
 
@@ -50,7 +50,7 @@ const RecipeToolbar: React.FC<RecipeToolbarProps> = ({
           <select 
             className="text-sm border rounded-md px-3 py-1.5 bg-white hover:bg-gray-50 
                      transition-colors cursor-pointer focus:ring-2 focus:ring-blue-200 focus:border-blue-400
-                     min-w-[120px]"
+                     min-w-[120px] text-right"
             onChange={handleSort}
           >
             <option value="date_desc">חדש לישן</option>
@@ -64,7 +64,7 @@ const RecipeToolbar: React.FC<RecipeToolbarProps> = ({
           <select 
             className="text-sm border rounded-md px-3 py-1.5 bg-white hover:bg-gray-50 
                      transition-colors cursor-pointer focus:ring-2 focus:ring-blue-200 focus:border-blue-400
-                     min-w-[120px]"
+                     min-w-[120px] text-right"
             onChange={handleFilter}
           >
             <option value="all">הכל</option>

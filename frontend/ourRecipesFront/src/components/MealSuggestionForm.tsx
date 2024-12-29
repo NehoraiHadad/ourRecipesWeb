@@ -1,8 +1,10 @@
 import React, { useState, ChangeEvent } from "react";
-import Spinner from "./Spinner";
+import Spinner from "@/components/ui/Spinner";
 import RecipeDisplay from "./RecipeDisplay";
 import { parseRecipe } from "../utils/formatChecker";
 import { useAuthContext } from "../context/AuthContext";
+import { useNotification } from '@/context/NotificationContext'
+import { Button } from '@/components/ui/Button'
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
@@ -29,6 +31,7 @@ const MealSuggestionForm: React.FC = () => {
   const [recipeText, setRecipeText] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
+  const { addNotification } = useNotification()
 
   const fetchRecipe = async () => {
     setLoadingRecipe(true);
@@ -113,10 +116,21 @@ const MealSuggestionForm: React.FC = () => {
     }
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    fetchRecipe();
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+    try {
+      fetchRecipe();
+    } catch (error) {
+      addNotification({
+        message: 'שגיאה בקבלת הצעת ארוחה',
+        type: 'error',
+        duration: 5000
+      })
+    } finally {
+      setLoading(false)
+    }
+  }
 
   const handleMealTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setMealType(event.target.value as MealType);
@@ -163,50 +177,53 @@ const MealSuggestionForm: React.FC = () => {
     }
   };
   return (
-    <div>
+    <div className="w-full">
       {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
-        <>
-          {loadingPhoto && <Spinner message="Loading photo..." />}
-          <RecipeDisplay recipe={{ ...recipe, id: 0 } as Required<typeof recipe>} />
-          {loading ? <Spinner message="שולח.." ></Spinner> : 
-            <div className="flex justify-between">
-              <button
-                onClick={handleCancel}
-                className="mt-4 px-4 py-2 bg-gray-500 text-white font-bold rounded hover:bg-gray-700"
-              >
-                פתח הצעה חדשה
-              </button>
-              {authState.canEdit && (
-                <button
-                  onClick={() =>
-                    sendToTelegram({
-                      newText: recipeText,
-                      image: recipe.image,
-                    })
-                  }
-                  className="mt-4 px-4 py-2 bg-green-500 hover:bg-green-700 text-white font-bold rounded "
-                >
-                  שמור בטלגרם
-                </button>
-              )}
+        <div className="space-y-4">
+          {loadingPhoto && (
+            <div className="flex items-center justify-center">
+              <Spinner message="מייצר תמונה..." />
             </div>
-          }
-        </>
-      ) : (
-        <form onSubmit={handleSubmit} className="p-2 bg-white">
-          <div className="mb-4">
-            <label
-              htmlFor="mealType"
-              className="block text-sm font-medium text-gray-700"
+          )}
+          <RecipeDisplay recipe={{ ...recipe, id: 0 } as Required<typeof recipe>} />
+          <div className="flex justify-between gap-3">
+            <Button
+              variant="secondary"
+              onClick={handleCancel}
+              className="flex-1"
             >
-              סוג הארוחה:
+              הצעה חדשה
+            </Button>
+            {authState.canEdit && (
+              <Button
+                variant="primary"
+                onClick={() => sendToTelegram({
+                  newText: recipeText,
+                  image: recipe.image,
+                })}
+                isLoading={loading}
+                className="flex-1"
+              >
+                שמור בטלגרם
+              </Button>
+            )}
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* Meal Type Selection */}
+          <div className="space-y-1.5">
+            <label htmlFor="mealType" className="block text-sm font-medium text-secondary-700">
+              סוג הארוחה
             </label>
             <select
               required
               id="mealType"
               value={mealType}
               onChange={handleMealTypeChange}
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 overflow-hidden"
+              className="w-full px-3 py-2 text-secondary-900 bg-white border border-secondary-200 
+                       rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-primary-300
+                       transition-colors duration-200"
             >
               <option value="ארוחת בוקר">ארוחת בוקר</option>
               <option value="ארוחת צהריים">ארוחת צהריים</option>
@@ -214,93 +231,98 @@ const MealSuggestionForm: React.FC = () => {
               <option value="חטיף">חטיף</option>
             </select>
           </div>
-          <div className="mb-4">
-            <label className="inline-flex items-center">
+
+          {/* Preferences */}
+          <div className="flex flex-wrap gap-3">
+            <label className="flex items-center gap-2 px-3 py-1.5 bg-secondary-50 rounded-lg
+                           hover:bg-secondary-100 transition-colors duration-200 cursor-pointer">
               <input
                 type="checkbox"
                 checked={quickPrep}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setQuickPrep(e.target.checked)
-                }
-                className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
+                onChange={(e) => setQuickPrep(e.target.checked)}
+                className="w-4 h-4 text-primary-500 border-secondary-300 rounded
+                         focus:ring-primary-500 transition-colors duration-200"
               />
-              <span className="ml-2 text-gray-700">הכנה מהירה</span>
+              <span className="text-sm text-secondary-700">הכנה מהירה</span>
             </label>
-            <label className="inline-flex items-center">
+            <label className="flex items-center gap-2 px-3 py-1.5 bg-secondary-50 rounded-lg
+                           hover:bg-secondary-100 transition-colors duration-200 cursor-pointer">
               <input
                 type="checkbox"
                 checked={childFriendly}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setChildFriendly(e.target.checked)
-                }
-                className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
+                onChange={(e) => setChildFriendly(e.target.checked)}
+                className="w-4 h-4 text-primary-500 border-secondary-300 rounded
+                         focus:ring-primary-500 transition-colors duration-200"
               />
-              <span className="ml-2 text-gray-700">ידידותי לילדים</span>
+              <span className="text-sm text-secondary-700">ידידותי לילדים</span>
             </label>
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="ingredients"
-              className="block text-sm font-medium text-gray-700"
-            >
-              רכיבים:
+
+          {/* Ingredients Input */}
+          <div className="space-y-1.5">
+            <label htmlFor="ingredients" className="block text-sm font-medium text-secondary-700">
+              רכיבים זמינים
             </label>
             <input
               type="text"
               id="ingredients"
               value={ingredients}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setIngredients(e.target.value)
-              }
+              onChange={(e) => setIngredients(e.target.value)}
               placeholder="הכנס רכיבים מופרדים בפסיקים"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              className="w-full px-3 py-2 text-secondary-900 bg-white border border-secondary-200 
+                       rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-primary-300
+                       transition-colors duration-200"
             />
           </div>
-          <div className="mb-4">
-            <label
-              htmlFor="additionalRequests"
-              className="block text-sm font-medium text-gray-700"
-            >
-              בקשות נוספות:
+
+          {/* Additional Requests */}
+          <div className="space-y-1.5">
+            <label htmlFor="additionalRequests" className="block text-sm font-medium text-secondary-700">
+              בקשות נוספות
             </label>
             <textarea
               id="additionalRequests"
               value={additionalRequests}
-              onChange={(e: ChangeEvent<HTMLTextAreaElement>) =>
-                setAdditionalRequests(e.target.value)
-              }
+              onChange={(e) => setAdditionalRequests(e.target.value)}
               placeholder="הכנס כל בקשה או העדפה נוספת כאן"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-              rows={3}
+              rows={2}
+              className="w-full px-3 py-2 text-secondary-900 bg-white border border-secondary-200 
+                       rounded-lg focus:ring-2 focus:ring-primary-100 focus:border-primary-300
+                       transition-colors duration-200 resize-none"
             />
           </div>
-          <label className="inline-flex items-center">
+
+          {/* Photo Option */}
+          <label className="flex items-center gap-2 px-3 py-1.5 bg-secondary-50 rounded-lg
+                         hover:bg-secondary-100 transition-colors duration-200 cursor-pointer">
             <input
               type="checkbox"
               checked={photoRequested}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPhotoRequested(e.target.checked)
-              }
-              className="form-checkbox h-5 w-5 text-indigo-600 ml-1"
+              onChange={(e) => setPhotoRequested(e.target.checked)}
+              className="w-4 h-4 text-primary-500 border-secondary-300 rounded
+                       focus:ring-primary-500 transition-colors duration-200"
             />
-            <span className="ml-2 text-gray-700">מה עם תמונה?</span>
+            <span className="text-sm text-secondary-700">הוסף תמונה להצעה</span>
           </label>
-          <div className="flex flex-row justify-center">
-            {!loadingRecipe ? (
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-500 text-white font-bold rounded hover:bg-blue-700"
-              >
-                שלח הצעה
-              </button>
-            ) : (
-              <Spinner message="עובדים על זה..."></Spinner>
-            )}
-          </div>
-          {error && <p className="text-red-500">{error}</p>}
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            variant="primary"
+            size="lg"
+            isLoading={loadingRecipe}
+            className="w-full"
+          >
+            קבל הצעת מתכון
+          </Button>
+
+          {error && (
+            <div className="mt-3 px-3 py-2 text-sm text-red-600 bg-red-50 rounded-lg">
+              {error}
+            </div>
+          )}
         </form>
       )}
-      {error && <p className="text-red-500">{error}</p>}
     </div>
   );
 };

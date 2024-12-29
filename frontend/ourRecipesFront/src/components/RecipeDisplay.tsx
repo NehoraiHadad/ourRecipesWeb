@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import IngredientList from "./IngredientList";
 import CategoryTags from './CategoryTags';
+import { difficultyDisplay } from '@/utils/difficulty';
+import { Difficulty } from '@/types';
 
 interface RecipeDisplayProps {
   recipe: {
@@ -12,7 +14,7 @@ interface RecipeDisplayProps {
     image?: string | null;
     categories?: string[];
     preparation_time?: number;
-    difficulty?: 'easy' | 'medium' | 'hard';
+    difficulty?: Difficulty;
   };
 }
 
@@ -60,12 +62,6 @@ const hebrewWordsMap: { [key: string]: string } = {
   "שני שליש": "1⅓",
   "שלושת רבעי": "1½",
   קורט: "קורט²",
-};
-
-const difficultyDisplay: { [key: string]: string } = {
-  easy: 'קל',
-  medium: 'בינוני',
-  hard: 'מורכב'
 };
 
 const multiplyNumbersInString = (str: string, shouldMultiply: boolean = true): string => {
@@ -189,7 +185,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
           {recipe.difficulty && (
             <div className="flex items-center gap-1">
               <span>📊</span>
-              <span>{difficultyDisplay[recipe.difficulty]}</span>
+              <span>{difficultyDisplay[recipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}</span>
             </div>
           )}
         </div>
@@ -206,15 +202,19 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
               <button
                 onClick={handleMultiplyQuantities}
                 className={`
-                flex items-center gap-2 
+                flex items-center justify-center
+                min-w-[48px] h-[32px]
                 ${
                   multiplier === 1
-                    ? "bg-brown hover:bg-opacity-90"
-                    : "bg-green-600 hover:bg-green-700"
+                    ? "bg-primary-600 hover:bg-primary-700"
+                    : "bg-accent-600 hover:bg-accent-700"
                 }
-                text-white px-4 py-2 rounded-lg 
-                transition-all duration-300 
-                shadow-md hover:shadow-lg
+                text-white font-medium text-sm
+                px-3 py-1.5 rounded-lg
+                transition-colors duration-200
+                shadow-warm hover:shadow-warm-lg
+                focus:outline-none focus:ring-2 focus:ring-offset-1
+                ${multiplier === 1 ? "focus:ring-primary-500" : "focus:ring-accent-500"}
               `}
               >
                 {multiplier === 1 ? "2X" : "1X"}

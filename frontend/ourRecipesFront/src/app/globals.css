@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 248, 250, 252;
+  --current-font: var(--font-heebo);
+}
+
+@layer base {
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: theme('colors.secondary.100');
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: theme('colors.secondary.300');
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: theme('colors.secondary.400');
+  }
+
+  /* Base styles */
+  body {
+    @apply font-current;
+    color: rgb(var(--foreground-rgb));
+    background: rgb(var(--background-rgb));
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography */
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold text-secondary-900;
+  }
+}
+
+@layer components {
+  /* Button base */
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 rounded-lg
+           font-medium transition-all duration-200
+           focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary-500 text-white hover:bg-primary-600
+           focus:ring-primary-500 disabled:bg-primary-300;
+  }
+
+  .btn-secondary {
+    @apply btn bg-secondary-200 text-secondary-800 hover:bg-secondary-300
+           focus:ring-secondary-300;
+  }
+
+  /* Input base */
+  .input {
+    @apply w-full px-4 py-2 rounded-lg border border-secondary-300
+           focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent
+           placeholder-secondary-400;
+  }
+
+  /* Card base */
+  .card {
+    @apply bg-white rounded-lg shadow-warm transition-shadow duration-200
+           hover:shadow-warm-lg;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-gradient {
+    @apply bg-gradient-to-br from-primary-500 to-primary-600;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-500;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .recipe-card {
+    @apply relative bg-white rounded-lg shadow-warm hover:shadow-warm-lg 
+           transition-all duration-200 overflow-hidden;
+  }
+}
+
+/* RTL Support */
+* {
+  direction: rtl;
+}
+
+.ltr {
+  direction: ltr;
+}
+
+/* RTL Fixes */
+ul, ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+input, textarea {
+  text-align: right;
+}

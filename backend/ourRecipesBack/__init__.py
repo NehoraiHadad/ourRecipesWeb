@@ -4,7 +4,7 @@ from flask_jwt_extended import JWTManager, get_jwt, get_jwt_identity, create_acc
 from datetime import datetime, timezone, timedelta
 from .extensions import db
 from .config import config
-from .services.auth_service import AuthService
+from .services.auth_service import AuthService, init_cache
 
 def create_app(config_name='default'):
     """Create and configure the Flask application"""
@@ -45,6 +45,9 @@ def create_app(config_name='default'):
     # Create database tables
     with app.app_context():
         db.create_all()
+    
+    # אתחול ה-Cache
+    init_cache(app)
     
     @app.after_request
     def refresh_expiring_jwts(response):
