@@ -15,7 +15,13 @@ from .versions import (
 )
 from .sync import sync_recipes
 
+def pong():
+    return {"status": "success", "message": "pong"}
+
 __all__ = [
+    # Health check
+    'pong',
+    
     # Auth routes
     'login',
     'login_guest',

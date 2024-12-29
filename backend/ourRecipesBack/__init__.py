@@ -35,12 +35,14 @@ def create_app(config_name='default'):
     from .routes.categories import categories_bp
     from .routes.versions import versions_bp
     from .routes.sync import sync_bp
+    from .routes.basic import basic_bp
     
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(recipes_bp, url_prefix='/api/recipes')
     app.register_blueprint(categories_bp, url_prefix='/api/categories')
     app.register_blueprint(versions_bp, url_prefix='/api/versions')
     app.register_blueprint(sync_bp, url_prefix='/api/sync')
+    app.register_blueprint(basic_bp, url_prefix='/api')
     
     # Create database tables
     with app.app_context():
