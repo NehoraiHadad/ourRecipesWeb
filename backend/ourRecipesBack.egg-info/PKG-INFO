@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: ourRecipesBack
+Version: 0.1
+Requires-Dist: flask
+Requires-Dist: flask-cors
+Requires-Dist: telethon
+Requires-Dist: flask-jwt-extended
+Requires-Dist: openai
+Requires-Dist: requests
+Requires-Dist: google-generativeai
+Requires-Dist: flask-sqlalchemy

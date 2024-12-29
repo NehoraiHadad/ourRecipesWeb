@@ -1,8 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { useNotification } from "@/context/NotificationContext";
 
 const TelegramLoginWidget: React.FC = () => {
   const router = useRouter();
+  const { addNotification } = useNotification();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -33,10 +36,10 @@ const TelegramLoginWidget: React.FC = () => {
     };
   }, []);
 
-  const handleContinue = async (user: {}) => {
+  const handleContinue = async (user: any) => {
+    setIsLoading(true);
     try {
-      // Sending user data to the backend for verification
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -44,19 +47,37 @@ const TelegramLoginWidget: React.FC = () => {
       });
 
       if (!response.ok) {
-        throw new Error("Login failed");
+        const error = await response.json();
+        throw new Error(error.message || "Login failed");
       }
 
+      addNotification({
+        type: 'success',
+        message: 'התחברת בהצלחה!',
+        duration: 3000
+      });
+      
       router.push("/");
-    } catch (error: unknown) {
-      console.error("Error posting data:", error);
+    } catch (error) {
+      addNotification({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'שגיאה בהתחברות',
+        duration: 5000
+      });
+    } finally {
+      setIsLoading(false);
     }
   };
-
 
   return (
     <div className="flex flex-col items-center justify-center my-2">
       <div id="telegram-widget-container" />
+      {isLoading && (
+        <div className="mt-2 text-sm text-secondary-600 flex items-center gap-2">
+          <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-secondary-600" />
+          מתחבר...
+        </div>
+      )}
     </div>
   );
 };

@@ -10,6 +10,7 @@
 *.pyc
 *.pyo
 *.pyd
+*.pytest_cache
 
 # Flask instance-specific data
 /backend/instance/
@@ -44,6 +45,7 @@ connect_to_our_recipes_channel.session
 .vscode/
 .idea/
 *.swp
+*.swc
 *.swo
 
 # OS generated files

@@ -22,3 +22,4 @@ services:
       - ./frontend/ourRecipesFront/public:/app/public
       - ./frontend/ourRecipesFront/types:/app/types
       - ./frontend/ourRecipesFront/utils:/app/utils
+      - ./frontend/ourRecipesFront/tailwind.config.ts:/app/tailwind.config.ts

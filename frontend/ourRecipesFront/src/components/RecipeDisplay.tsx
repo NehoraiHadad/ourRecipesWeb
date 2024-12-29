@@ -1,12 +1,20 @@
 import React, { useState, useEffect } from "react";
 import IngredientList from "./IngredientList";
+import CategoryTags from './CategoryTags';
+import { difficultyDisplay } from '@/utils/difficulty';
+import { Difficulty } from '@/types';
 
-interface RecipeProps {
+interface RecipeDisplayProps {
   recipe: {
+    id: number;
     title: string;
-    ingredients: string[];
-    instructions: string;
-    image: string | null;
+    ingredients?: string[] | string;
+    instructions?: string;
+    raw_content?: string;
+    image?: string | null;
+    categories?: string[];
+    preparation_time?: number;
+    difficulty?: Difficulty;
   };
 }
 
@@ -33,6 +41,7 @@ const decimalToFraction: { [key: number]: string } = {
   0.5: "½",
   0.75: "¾",
   0.333: "⅓",
+  0.666: "⅔",
   0.667: "⅔",
   0.2: "⅕",
   0.4: "⅖",
@@ -55,90 +64,65 @@ const hebrewWordsMap: { [key: string]: string } = {
   קורט: "קורט²",
 };
 
-const convertToMixedFraction = (decimal: number): string => {
-  const wholeNumber = Math.floor(decimal);
-  const fraction = decimal - wholeNumber;
-
-  // Round to 3 decimal places for comparison
-  const roundedFraction = Number(fraction.toFixed(3));
-
-  // If no fractional part, return just the whole number
-  if (roundedFraction === 0) {
-    return wholeNumber.toString();
-  }
-
-  // Get Unicode fraction symbol if exists
-  const fractionSymbol = decimalToFraction[roundedFraction];
-
-  // If no whole number, return just the fraction
-  if (wholeNumber === 0) {
-    return fractionSymbol || decimal.toFixed(2);
-  }
-
-  // Combine whole number and fraction
-  return fractionSymbol
-    ? `${fractionSymbol}${wholeNumber}`
-    : decimal.toFixed(2);
-};
-
-const multiplyNumbersInString = (str: string): string => {
+const multiplyNumbersInString = (str: string, shouldMultiply: boolean = true): string => {
+  if (!shouldMultiply) return str;
+  
   let processedStr = str;
   let wasProcessed = false;
-
-  // First handle regular numbers
-  processedStr = processedStr.replace(/(\d+(?:\/\d+)?|\d*\.\d+)/g, (match) => {
+  
+  processedStr = processedStr.replace(/(\d*)([½¼¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/g, (match, whole, fraction) => {
     wasProcessed = true;
-    if (match.includes("/")) {
-      const [numerator, denominator] = match.split("/").map(Number);
-      const decimal = (numerator / denominator) * 2;
-      return `<span class="font-bold text-green-600">${convertToMixedFraction(decimal)}</span>`;
+    let total = 0;
+    
+    if (whole) {
+      total += parseInt(whole);
     }
-    const num = parseFloat(match);
-    return `<span class="font-bold text-green-600">${convertToMixedFraction(num * 2)}</span>`;
+    
+    if (fraction && fraction in fractionMap) {
+      total += fractionMap[fraction];
+    }
+    
+    total *= 2;
+    
+    const wholePart = Math.floor(total);
+    const fractionalPart = +(total - wholePart).toFixed(3);
+    
+    if (fractionalPart in decimalToFraction) {
+      return `<span class="text-green-600">${wholePart || ''}${decimalToFraction[fractionalPart]}</span>`;
+    }
+    
+    return `<span class="text-green-600">${total}</span>`;
   });
 
-  // Then handle Unicode fractions
-  for (const [fraction, value] of Object.entries(fractionMap)) {
-    if (processedStr.includes(fraction)) {
-      wasProcessed = true;
-      const newValue = value * 2;
-      const wholeNumber = Math.floor(newValue);
-      const remainingFraction = newValue - wholeNumber;
 
-      const newFractionSymbol =
-        decimalToFraction[Number(remainingFraction.toFixed(3))];
-
-      const replacement =
-        wholeNumber > 0
-          ? `<span class="font-bold text-green-600">${newFractionSymbol || ""}${wholeNumber || ""}</span>`
-          : `<span class="font-bold text-green-600">${newFractionSymbol || newValue.toString()}</span>`;
-
-      processedStr = processedStr.replace(fraction, replacement);
-    }
+  if (!wasProcessed) {
+    const words = processedStr.split(' ');
+    const newWords = words.map(word => {
+      const cleanWord = word.trim().replace(/[^\u0590-\u05FF]/g, '');
+      
+      if (cleanWord in hebrewWordsMap) {
+        wasProcessed = true;
+        return word.replace(cleanWord, `<span class="text-green-600">${hebrewWordsMap[cleanWord]}</span>`);
+      }
+      return word;
+    });
+    
+    processedStr = newWords.join(' ');
   }
 
-  // Finally handle Hebrew words
-  for (const [word, replacement] of Object.entries(hebrewWordsMap)) {
-    const words = processedStr.split(/\s+/);
 
-    const newWords = words.map((currentWord) => {
-      const cleanWord = currentWord.replace(/[^\u0590-\u05FF]/g, "");
-      return cleanWord === word 
-        ? `<span class="font-bold text-green-600">${replacement}</span>` 
-        : currentWord;
+  if (!wasProcessed) {
+    processedStr = processedStr.replace(/(?<!<")\b(\d+(?:\.\d+)?)\b(?!<")/g, (match) => {
+      const number = parseFloat(match);
+      const result = number * 2;
+      return `<span class="text-green-600">${result}</span>`;
     });
-
-    const newStr = newWords.join(" ");
-
-    if (newStr !== processedStr) {
-      processedStr = newStr;
-    }
   }
 
   return processedStr;
 };
 
-const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
+const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
   const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
   const [multiplier, setMultiplier] = useState(1);
   const [ingredients, setIngredients] = useState(recipe.ingredients);
@@ -159,10 +143,14 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
   };
 
   const handleMultiplyQuantities = () => {
-    if (multiplier === 1) {
-      const multipliedIngredients = recipe.ingredients.map((ingredient) =>
-        multiplyNumbersInString(ingredient)
-      );
+    if (multiplier === 1 && recipe.ingredients) {
+      const multipliedIngredients = Array.isArray(recipe.ingredients)
+        ? recipe.ingredients.map((ingredient: string) => 
+            multiplyNumbersInString(ingredient, true)
+          )
+        : recipe.ingredients.split('\n').map((ingredient: string) =>
+            multiplyNumbersInString(ingredient, true)
+          );
       setIngredients(multipliedIngredients);
       setMultiplier(2);
     } else {
@@ -172,7 +160,7 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
   };
 
   return (
-    <div>
+    <div className="recipe-container">
       {recipe.image && (
         <img
           src={
@@ -187,21 +175,46 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
       <div className="p-4">
         <h2 className="text-2xl font-bold text-center mb-4">{recipe.title}</h2>
 
+        <div className="flex justify-center gap-4 mb-4 text-sm text-gray-600">
+          {recipe.preparation_time && (
+            <div className="flex items-center gap-1">
+              <span>⏱️</span>
+              <span>{recipe.preparation_time} דקות</span>
+            </div>
+          )}
+          {recipe.difficulty && (
+            <div className="flex items-center gap-1">
+              <span>📊</span>
+              <span>{difficultyDisplay[recipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}</span>
+            </div>
+          )}
+        </div>
+
+        {recipe.categories && recipe.categories.length > 0 && (
+          <div className="mb-4">
+            <CategoryTags categories={recipe.categories} />
+          </div>
+        )}
+
         <div className="relative">
-          {recipe.ingredients && recipe.ingredients.length > 0 && (
+          {recipe.ingredients && (Array.isArray(recipe.ingredients) ? recipe.ingredients.length > 0 : recipe.ingredients) && (
             <div className="absolute left-1 top-0">
               <button
                 onClick={handleMultiplyQuantities}
                 className={`
-                flex items-center gap-2 
+                flex items-center justify-center
+                min-w-[48px] h-[32px]
                 ${
                   multiplier === 1
-                    ? "bg-brown hover:bg-opacity-90"
-                    : "bg-green-600 hover:bg-green-700"
+                    ? "bg-primary-600 hover:bg-primary-700"
+                    : "bg-accent-600 hover:bg-accent-700"
                 }
-                text-white px-4 py-2 rounded-lg 
-                transition-all duration-300 
-                shadow-md hover:shadow-lg
+                text-white font-medium text-sm
+                px-3 py-1.5 rounded-lg
+                transition-colors duration-200
+                shadow-warm hover:shadow-warm-lg
+                focus:outline-none focus:ring-2 focus:ring-offset-1
+                ${multiplier === 1 ? "focus:ring-primary-500" : "focus:ring-accent-500"}
               `}
               >
                 {multiplier === 1 ? "2X" : "1X"}
@@ -209,21 +222,22 @@ const RecipeDisplay: React.FC<RecipeProps> = ({ recipe }) => {
             </div>
           )}
           <IngredientList
-            ingredients={ingredients.map((ing, index) => multiplier === 2 ? (
-              <span 
-                key={index}
-                dangerouslySetInnerHTML={{ __html: ing }} 
-              />
-            ) : ing)}
+            ingredients={Array.isArray(ingredients) ? ingredients : ingredients?.split('\n') || []}
             selectedIngredients={selectedIngredients}
             onIngredientClick={handleIngredientClick}
           />
         </div>
 
         <div className="whitespace-pre-line my-4">
-          {recipe.instructions.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
+          {recipe.raw_content ? (
+            recipe.raw_content.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))
+          ) : recipe.instructions ? (
+            recipe.instructions.split("\n").map((line, index) => (
+              <p key={index}>{line}</p>
+            ))
+          ) : null}
         </div>
       </div>
     </div>
