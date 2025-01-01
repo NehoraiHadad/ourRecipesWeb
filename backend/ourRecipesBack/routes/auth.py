@@ -32,6 +32,7 @@ async def login():
         session["auth_type"] = "telegram"
         session["login_time"] = datetime.now(timezone.utc).isoformat()
         session["edit_permission"] = has_permission
+        session["user_name"] = user_data.get("first_name", "") or user_data.get("username", "") or user_id  # Store user's name
         
         # יצירת טוקן עם מידע נוסף
         access_token = AuthService.create_user_session(

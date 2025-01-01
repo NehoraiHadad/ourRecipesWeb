@@ -473,3 +473,32 @@ class SyncQueue(db.Model):
         self.action_type = action_type
         self.recipe_id = recipe_id
         self.status = QueueStatus.PENDING.value  # Set default status explicitly
+
+class Restaurant(db.Model):
+    """Restaurant recommendations model"""
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(200), nullable=False)
+    website = db.Column(db.String(500))
+    description = db.Column(db.Text)
+    location = db.Column(db.String(500))
+    waze_link = db.Column(db.String(500))
+    created_at = db.Column(db.DateTime, nullable=False, default=func.now())
+    updated_at = db.Column(db.DateTime, onupdate=func.now())
+    created_by = db.Column(db.String)
+    telegram_message_id = db.Column(db.Integer)  # For backup in Telegram
+    
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'website': self.website,
+            'description': self.description,
+            'location': self.location,
+            'waze_link': self.waze_link,
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None,
+            'created_by': self.created_by
+        }
+
+    def __repr__(self):
+        return f'<Restaurant {self.name}>'

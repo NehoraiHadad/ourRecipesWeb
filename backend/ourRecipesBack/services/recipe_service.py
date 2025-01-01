@@ -1,14 +1,11 @@
-from datetime import datetime, timezone
 from io import BytesIO
-import base64
 from flask import current_app
 from ..extensions import db
 from ..models.recipe import Recipe
-from ..models.sync import SyncLog
 from .telegram_service import telegram_service
-from ..utils.formatters import format_recipe_text, parse_recipe_text
 from ..models.enums import RecipeDifficulty
 from .ai_service import AIService
+from sqlalchemy.sql import func
 
 class RecipeService:
     """Service class for handling recipe operations"""
@@ -138,12 +135,14 @@ class RecipeService:
                         await client.download_media(message.media, file=media_bytes)
                         media_bytes.seek(0)
                         existing_recipe.set_image(image_data=media_bytes.read())
+                    existing_recipe.last_sync = func.now()  # Mark as synced
                     sync_log.recipes_updated += 1
                 else:
                     new_recipe = Recipe(
                         telegram_id=message.id,
                         title=cls.get_first_line(message.text),
-                        raw_content=message.text
+                        raw_content=message.text,
+                        last_sync=func.now()  # Set initial sync time
                     )
                     new_recipe._parse_content(message.text)
                     if message.media:

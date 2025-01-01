@@ -74,6 +74,9 @@ export function Header() {
             <Link href="/" className="text-secondary-600 hover:text-secondary-900 transition-colors">
               בית
             </Link>
+            <Link href="/places" className="text-secondary-600 hover:text-secondary-900">
+              המלצות
+            </Link>
             {authState.canEdit && (
               <Link href="/manage" className="text-secondary-600 hover:text-secondary-900 transition-colors">
                 ניהול מתכונים
@@ -158,7 +161,7 @@ export function Header() {
                     מסנכרן...
                   </>
                 ) : (
-                  'סנכרן מתכונים'
+                  'סנכרן'
                 )}
               </Button>
             )}
