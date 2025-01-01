@@ -4,7 +4,6 @@ import base64
 from ..extensions import db
 from .enums import RecipeStatus, RecipeDifficulty
 from .version import RecipeVersion
-from .user_recipe import UserRecipe
 
 class Recipe(db.Model):
     """
