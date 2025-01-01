@@ -30,9 +30,9 @@ const formatRecipeForSharing = (recipe: recipe): string => {
   if (recipe.instructions) {
     content += '📝 הוראות הכנה:\n';
     if (Array.isArray(recipe.instructions)) {
-      content += recipe.instructions.map((step, i) => `${i + 1}. ${step}`).join('\n');
+      content += recipe.instructions.join('\n');
     } else {
-      content += recipe.instructions.split('\n').map((step, i) => `${i + 1}. ${step.trim()}`).join('\n');
+      content += recipe.instructions;
     }
     content += '\n';
   } else if (recipe.raw_content) {
