@@ -234,12 +234,11 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-warm overflow-hidden">
+    <div className="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
       {/* Recipe Content */}
       <div className="relative">
         {!isEditing ? (
-          // תצוגת מתכון רגילה
-          recipeData && <RecipeDisplay recipe={recipeData} />
+          recipeData && <RecipeDisplay recipe={recipeData as recipe} />
         ) : (
           // מצב עריכה
           <RecipeEditForm
@@ -263,7 +262,7 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
 
       {/* Action Buttons Container - Only show when not editing */}
       {!isEditing && (
-        <div className="p-6 bg-gradient-to-t from-secondary-50/50">
+        <div className="p-6">
           {/* Edit Controls - AI and Manual Edit */}
           {authState.canEdit && reformat_recipe === "" && (
             <div className="flex justify-center gap-4">

@@ -24,7 +24,7 @@ export default function Page() {
 
   if (isLoading) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="h-[100dvh] flex items-center justify-center">
         <Spinner message="מאמת..." />
       </div>
     );
@@ -32,7 +32,7 @@ export default function Page() {
 
   if (!isAuthenticated) {
     return (
-      <div className="h-full flex items-center justify-center">
+      <div className="h-[100dvh] flex items-center justify-center">
         <Spinner message="חוזר לדף הכניסה..." />
       </div>
     );

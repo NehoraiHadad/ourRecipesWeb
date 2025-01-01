@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Spinner from '@/components/ui/Spinner';
-import CategoryTags from './CategoryTags';
-import { Tooltip } from '@/components/ui/Tooltip';
 import { useNotification } from '@/context/NotificationContext'
 import { useFont } from '@/context/FontContext';
 import { recipe } from '@/types'
@@ -12,10 +10,6 @@ interface SearchProps {
   className?: string
 }
 
-interface SpinnerProps {
-  message?: string;
-  size?: 'sm' | 'md' | 'lg';
-}
 
 const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => {
   const [query, setQuery] = useState("");

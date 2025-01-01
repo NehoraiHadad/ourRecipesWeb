@@ -1,6 +1,7 @@
 from telethon import TelegramClient
 from flask import current_app
 from io import BytesIO
+import asyncio
 
 class TelegramService:
     """Service for handling Telegram operations"""
@@ -87,6 +88,24 @@ class TelegramService:
         except Exception as e:
             print(f"Error sending message: {str(e)}", flush=True)
             return None
+
+    @classmethod
+    async def get_message_text(cls, message_id):
+        """Get text content of a message"""
+        try:
+            client = await cls.create_client()
+            async with client:
+                channel = await client.get_entity(current_app.config["CHANNEL_URL"])
+                message = await client.get_messages(channel, ids=message_id)
+                return message.text if message else None
+        except Exception as e:
+            print(f"Error getting message text: {str(e)}", flush=True)
+            return None
+
+    @classmethod
+    def get_message_text_sync(cls, message_id):
+        """Synchronous wrapper for get_message_text"""
+        return asyncio.run(cls.get_message_text(message_id))
 
 # Create service instance
 telegram_service = TelegramService()

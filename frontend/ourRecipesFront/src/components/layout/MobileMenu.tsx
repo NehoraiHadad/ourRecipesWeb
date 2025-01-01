@@ -78,6 +78,11 @@ export function MobileMenu({
                 בית
               </Link>
 
+
+              <Link href="/places" className="flex items-center px-4 py-2 text-secondary-600 hover:bg-secondary-50">
+                מקומות
+              </Link>
+
               {/* Font Selection */}
               <div className="mt-4 pt-4 border-t border-secondary-100">
                 <button
@@ -158,7 +163,7 @@ export function MobileMenu({
                         מסנכרן...
                       </>
                     ) : (
-                      'סנכרן מתכונים'
+                      'מתכונים'
                     )}
                   </button>
                 </div>

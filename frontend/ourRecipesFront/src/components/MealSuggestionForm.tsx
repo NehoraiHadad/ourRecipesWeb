@@ -185,7 +185,18 @@ const MealSuggestionForm: React.FC = () => {
               <Spinner message="מייצר תמונה..." />
             </div>
           )}
-          <RecipeDisplay recipe={{ ...recipe, id: 0 } as Required<typeof recipe>} />
+          <RecipeDisplay recipe={{
+            ...recipe,
+            id: 0,
+            telegram_id: 0,
+            title: recipe.title || 'מתכון חדש',
+            categories: recipe.categories || [],
+            raw_content: '',
+            details: recipe.instructions || '',
+            is_parsed: true,
+            parse_errors: null,
+            created_at: new Date().toISOString(),
+          }} />
           <div className="flex justify-between gap-3">
             <Button
               variant="secondary"

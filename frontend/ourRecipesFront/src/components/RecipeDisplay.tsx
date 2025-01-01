@@ -2,140 +2,28 @@ import React, { useState, useEffect } from "react";
 import IngredientList from "./IngredientList";
 import CategoryTags from './CategoryTags';
 import { difficultyDisplay } from '@/utils/difficulty';
-import { Difficulty } from '@/types';
+import { Difficulty, recipe } from '@/types';
+import { shareRecipe } from '@/utils/share';
+import { Button } from './ui/Button';
 
 interface RecipeDisplayProps {
-  recipe: {
-    id: number;
-    title: string;
-    ingredients?: string[] | string;
-    instructions?: string;
-    raw_content?: string;
-    image?: string | null;
-    categories?: string[];
-    preparation_time?: number;
-    difficulty?: Difficulty;
-  };
+  recipe: recipe;
 }
 
-const fractionMap: { [key: string]: number } = {
-  "¼": 0.25,
-  "½": 0.5,
-  "¾": 0.75,
-  "⅓": 1 / 3,
-  "⅔": 2 / 3,
-  "⅕": 0.2,
-  "⅖": 0.4,
-  "⅗": 0.6,
-  "⅘": 0.8,
-  "⅙": 1 / 6,
-  "⅚": 5 / 6,
-  "⅛": 0.125,
-  "⅜": 0.375,
-  "⅝": 0.625,
-  "⅞": 0.875,
-};
-
-const decimalToFraction: { [key: number]: string } = {
-  0.25: "¼",
-  0.5: "½",
-  0.75: "¾",
-  0.333: "⅓",
-  0.666: "⅔",
-  0.667: "⅔",
-  0.2: "⅕",
-  0.4: "⅖",
-  0.6: "⅗",
-  0.8: "⅘",
-  0.167: "⅙",
-  0.833: "⅚",
-  0.125: "⅛",
-  0.375: "⅜",
-  0.625: "⅝",
-  0.875: "⅞",
-};
-
-const hebrewWordsMap: { [key: string]: string } = {
-  חצי: "1",
-  רבע: "חצי",
-  שליש: "שני שליש",
-  "שני שליש": "1⅓",
-  "שלושת רבעי": "1½",
-  קורט: "קורט²",
-};
-
-const multiplyNumbersInString = (str: string, shouldMultiply: boolean = true): string => {
-  if (!shouldMultiply) return str;
-  
-  let processedStr = str;
-  let wasProcessed = false;
-  
-  processedStr = processedStr.replace(/(\d*)([½¼¾⅓⅔⅕⅖⅗⅘⅙⅚⅛⅜⅝⅞])/g, (match, whole, fraction) => {
-    wasProcessed = true;
-    let total = 0;
-    
-    if (whole) {
-      total += parseInt(whole);
-    }
-    
-    if (fraction && fraction in fractionMap) {
-      total += fractionMap[fraction];
-    }
-    
-    total *= 2;
-    
-    const wholePart = Math.floor(total);
-    const fractionalPart = +(total - wholePart).toFixed(3);
-    
-    if (fractionalPart in decimalToFraction) {
-      return `<span class="text-green-600">${wholePart || ''}${decimalToFraction[fractionalPart]}</span>`;
-    }
-    
-    return `<span class="text-green-600">${total}</span>`;
-  });
-
-
-  if (!wasProcessed) {
-    const words = processedStr.split(' ');
-    const newWords = words.map(word => {
-      const cleanWord = word.trim().replace(/[^\u0590-\u05FF]/g, '');
-      
-      if (cleanWord in hebrewWordsMap) {
-        wasProcessed = true;
-        return word.replace(cleanWord, `<span class="text-green-600">${hebrewWordsMap[cleanWord]}</span>`);
-      }
-      return word;
-    });
-    
-    processedStr = newWords.join(' ');
-  }
-
-
-  if (!wasProcessed) {
-    processedStr = processedStr.replace(/(?<!<")\b(\d+(?:\.\d+)?)\b(?!<")/g, (match) => {
-      const number = parseFloat(match);
-      const result = number * 2;
-      return `<span class="text-green-600">${result}</span>`;
-    });
-  }
-
-  return processedStr;
-};
-
 const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
-  const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
   const [multiplier, setMultiplier] = useState(1);
-  const [ingredients, setIngredients] = useState(recipe.ingredients);
+  const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
+  const [ingredients, setIngredients] = useState<(string | JSX.Element)[]>([]);
 
   useEffect(() => {
     if (recipe.ingredients) {
-      setSelectedIngredients(new Array(recipe.ingredients.length).fill(false));
       setIngredients(recipe.ingredients);
+      setSelectedIngredients(new Array(recipe.ingredients.length).fill(false));
     }
   }, [recipe.ingredients]);
 
   const handleIngredientClick = (index: number) => {
-    setSelectedIngredients((prev) => {
+    setSelectedIngredients(prev => {
       const newSelected = [...prev];
       newSelected[index] = !newSelected[index];
       return newSelected;
@@ -143,24 +31,11 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
   };
 
   const handleMultiplyQuantities = () => {
-    if (multiplier === 1 && recipe.ingredients) {
-      const multipliedIngredients = Array.isArray(recipe.ingredients)
-        ? recipe.ingredients.map((ingredient: string) => 
-            multiplyNumbersInString(ingredient, true)
-          )
-        : recipe.ingredients.split('\n').map((ingredient: string) =>
-            multiplyNumbersInString(ingredient, true)
-          );
-      setIngredients(multipliedIngredients);
-      setMultiplier(2);
-    } else {
-      setIngredients(recipe.ingredients);
-      setMultiplier(1);
-    }
+    setMultiplier(prev => (prev === 1 ? 2 : 1));
   };
 
   return (
-    <div className="recipe-container">
+    <div className="bg-white rounded-lg overflow-hidden">
       {recipe.image && (
         <img
           src={
@@ -173,7 +48,21 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
         />
       )}
       <div className="p-4">
-        <h2 className="text-2xl font-bold text-center mb-4">{recipe.title}</h2>
+        <div className="flex justify-between items-start mb-4">
+          <h2 className="text-2xl font-bold text-center">{recipe.title}</h2>
+          <Button
+            variant="ghost"
+            onClick={() => shareRecipe(recipe)}
+            className="p-1.5 hover:bg-secondary-50"
+            title="שתף מתכון"
+          >
+            <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8" strokeLinecap="round" strokeLinejoin="round"/>
+              <polyline points="16 6 12 2 8 6" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="12" y1="2" x2="12" y2="15" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Button>
+        </div>
 
         <div className="flex justify-center gap-4 mb-4 text-sm text-gray-600">
           {recipe.preparation_time && (
@@ -197,32 +86,30 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
         )}
 
         <div className="relative">
-          {recipe.ingredients && (Array.isArray(recipe.ingredients) ? recipe.ingredients.length > 0 : recipe.ingredients) && (
+          {recipe.ingredients && recipe.ingredients.length > 0 && (
             <div className="absolute left-1 top-0">
               <button
                 onClick={handleMultiplyQuantities}
                 className={`
-                flex items-center justify-center
-                min-w-[48px] h-[32px]
-                ${
-                  multiplier === 1
-                    ? "bg-primary-600 hover:bg-primary-700"
-                    : "bg-accent-600 hover:bg-accent-700"
-                }
-                text-white font-medium text-sm
-                px-3 py-1.5 rounded-lg
-                transition-colors duration-200
-                shadow-warm hover:shadow-warm-lg
-                focus:outline-none focus:ring-2 focus:ring-offset-1
-                ${multiplier === 1 ? "focus:ring-primary-500" : "focus:ring-accent-500"}
-              `}
+                  ${
+                    multiplier === 1
+                      ? "bg-primary-600 hover:bg-primary-700"
+                      : "bg-accent-600 hover:bg-accent-700"
+                  }
+                  text-white font-medium text-sm
+                  px-3 py-1.5 rounded-lg
+                  transition-colors duration-200
+                  shadow-warm hover:shadow-warm-lg
+                  focus:outline-none focus:ring-2 focus:ring-offset-1
+                  ${multiplier === 1 ? "focus:ring-primary-500" : "focus:ring-accent-500"}
+                `}
               >
                 {multiplier === 1 ? "2X" : "1X"}
               </button>
             </div>
           )}
           <IngredientList
-            ingredients={Array.isArray(ingredients) ? ingredients : ingredients?.split('\n') || []}
+            ingredients={ingredients}
             selectedIngredients={selectedIngredients}
             onIngredientClick={handleIngredientClick}
           />
@@ -230,13 +117,19 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
 
         <div className="whitespace-pre-line my-4">
           {recipe.raw_content ? (
-            recipe.raw_content.split("\n").map((line, index) => (
+            recipe.raw_content.split("\n").map((line: string, index: number) => (
               <p key={index}>{line}</p>
             ))
           ) : recipe.instructions ? (
-            recipe.instructions.split("\n").map((line, index) => (
-              <p key={index}>{line}</p>
-            ))
+            Array.isArray(recipe.instructions) ? (
+              recipe.instructions.map((instruction: string, index: number) => (
+                <p key={index}>{instruction}</p>
+              ))
+            ) : (
+              recipe.instructions.split("\n").map((line: string, index: number) => (
+                <p key={index}>{line}</p>
+              ))
+            )
           ) : null}
         </div>
       </div>

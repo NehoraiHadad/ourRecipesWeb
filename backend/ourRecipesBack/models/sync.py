@@ -15,11 +15,15 @@ class SyncLog(db.Model):
     error_message = db.Column(db.Text)
     sync_type = db.Column(db.String(50))  # full/partial/initial
     
-    # Statistics
+    # Recipe statistics
     recipes_processed = db.Column(db.Integer, default=0)
     recipes_failed = db.Column(db.Integer, default=0)
     recipes_added = db.Column(db.Integer, default=0)
     recipes_updated = db.Column(db.Integer, default=0)
+
+    # Place statistics
+    places_processed = db.Column(db.Integer, default=0)
+    places_failed = db.Column(db.Integer, default=0)
 
     def __init__(self, sync_type='full'):
         self.started_at = datetime.now(timezone.utc)
