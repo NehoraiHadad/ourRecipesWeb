@@ -112,8 +112,8 @@ export function MobileMenu({
 
                 {/* Font Options */}
                 <div className={`
-                  mt-2 space-y-1 transition-all duration-200 overflow-hidden
-                  ${isFontSectionOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}
+                  mt-2 space-y-1 transition-all duration-200 overflow-y-auto
+                  ${isFontSectionOpen ? 'max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'}
                 `}>
                   {fonts.map((font) => (
                     <button
@@ -163,7 +163,7 @@ export function MobileMenu({
                         מסנכרן...
                       </>
                     ) : (
-                      'מתכונים'
+                      'סנכרן'
                     )}
                   </button>
                 </div>
