@@ -186,9 +186,9 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
 
         <div className="relative">
           {recipe.ingredients && recipe.ingredients.length > 0 && (
-            <div className="absolute left-1 top-0 flex items-center gap-0.5 bg-white/95 backdrop-blur 
-                          border border-primary-100 rounded-full py-1 pl-1 pr-2
-                          shadow-sm hover:shadow-md transition-all duration-300">
+            <div className="absolute left-1 top-0 flex sm:flex-row flex-col items-center gap-0.5 bg-white/95 backdrop-blur 
+                          border border-primary-100 rounded-full sm:py-1 sm:pl-1 sm:pr-2 p-0.5
+                          shadow-sm hover:shadow-md transition-all duration-300 z-10">
               <button
                 onClick={() => adjustMultiplier(-0.5)}
                 className="text-primary-600 hover:text-primary-700 hover:bg-primary-50/50
@@ -203,7 +203,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
                   <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round"/>
                 </svg>
               </button>
-              <div className="w-12 text-center font-medium text-primary-700 text-sm tabular-nums">
+              <div className="w-8 sm:w-12 text-center font-medium text-primary-700 text-sm tabular-nums">
                 {multiplier}X
               </div>
               <button
@@ -223,11 +223,14 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
               </button>
             </div>
           )}
-          <IngredientList
-            ingredients={ingredients}
-            selectedIngredients={selectedIngredients}
-            onIngredientClick={handleIngredientClick}
-          />
+          <div>
+            <IngredientList
+              ingredients={ingredients}
+              selectedIngredients={selectedIngredients}
+              onIngredientClick={handleIngredientClick}
+              multiplier={multiplier}
+            />
+          </div>
         </div>
 
         <div className="whitespace-pre-line my-4">
