@@ -15,12 +15,115 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
   const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
   const [ingredients, setIngredients] = useState<(string | JSX.Element)[]>([]);
 
+  const adjustMultiplier = (delta: number) => {
+    setMultiplier(prev => {
+      const newValue = Math.round((prev + delta) * 2) / 2; // Round to nearest 0.5
+      return Math.min(Math.max(newValue, 0.5), 4); // Clamp between 0.5 and 4
+    });
+  };
+
   useEffect(() => {
     if (recipe.ingredients) {
-      setIngredients(recipe.ingredients);
+      const adjustedIngredients = recipe.ingredients.map(ingredient => {
+        // Searching for numbers, fractions, or quantity words in English at the beginning of the string
+        const match = ingredient.match(/^([\d./]+|\d*\s*[½¼¾]|\d*\s*(חצי|רבע|שלושת רבעי|שליש|שני שליש|רבעי|שמינית))\s*/);
+        if (match) {
+          const quantity = match[1];
+          const rest = ingredient.slice(match[0].length);
+          
+          // Converting the fraction or word to a number
+          let numericQuantity = 0;
+          
+          // Converting Hebrew words to numbers
+          if (typeof quantity === 'string') {
+            switch(quantity.trim()) {
+              case 'חצי':
+                numericQuantity = 0.5;
+                break;
+              case 'רבע':
+                numericQuantity = 0.25;
+                break;
+              case 'שלושת רבעי':
+                numericQuantity = 0.75;
+                break;
+              case 'שליש':
+                numericQuantity = 1/3;
+                break;
+              case 'שני שליש':
+                numericQuantity = 2/3;
+                break;
+              case 'שמינית':
+                numericQuantity = 0.125;
+                break;
+              default:
+                // Checking for fractions
+                if (quantity.includes('½')) {
+                  numericQuantity = quantity.includes(' ') ? 
+                    parseInt(quantity) + 0.5 : 
+                    0.5;
+                } else if (quantity.includes('¼')) {
+                  numericQuantity = quantity.includes(' ') ? 
+                    parseInt(quantity) + 0.25 : 
+                    0.25;
+                } else if (quantity.includes('¾')) {
+                  numericQuantity = quantity.includes(' ') ? 
+                    parseInt(quantity) + 0.75 : 
+                    0.75;
+                } else if (quantity.includes('/')) {
+                  const [numerator, denominator] = quantity.split('/');
+                  numericQuantity = parseInt(numerator) / parseInt(denominator);
+                } else {
+                  numericQuantity = parseFloat(quantity);
+                }
+            }
+          }
+
+          // Calculating the new quantity
+          let newQuantity = (numericQuantity * multiplier).toFixed(2);
+          const numValue = parseFloat(newQuantity);
+
+          // Conversion back to the appropriate format
+          if (numValue % 1 === 0) {
+            // Integer
+            newQuantity = numValue.toString();
+          } else if (numValue === 0.5) {
+            newQuantity = 'חצי';
+          } else if (numValue === 0.25) {
+            newQuantity = 'רבע';
+          } else if (numValue === 0.75) {
+            newQuantity = 'שלושת רבעי';
+          } else if (numValue === 1/3) {
+            newQuantity = 'שליש';
+          } else if (numValue === 2/3) {
+            newQuantity = 'שני שליש';
+          } else if (numValue === 0.125) {
+            newQuantity = 'שמינית';
+          } else if (numValue % 0.5 === 0) {
+            // Number and half
+            const whole = Math.floor(numValue);
+            newQuantity = whole === 0 ? 'חצי' : `${whole} וחצי`;
+          } else if (numValue % 0.25 === 0) {
+            // Number and quarter/three quarters
+            const whole = Math.floor(numValue);
+            const fraction = numValue - whole;
+            if (fraction === 0.25) {
+              newQuantity = whole === 0 ? 'רבע' : `${whole} ורבע`;
+            } else if (fraction === 0.75) {
+              newQuantity = whole === 0 ? 'שלושת רבעי' : `${whole} ושלושת רבעי`;
+            }
+          } else {
+            // If we didn't find a nice representation, leave it as a decimal
+            newQuantity = numValue.toFixed(2);
+          }
+
+          return `${newQuantity} ${rest}`;
+        }
+        return ingredient;
+      });
+      setIngredients(adjustedIngredients);
       setSelectedIngredients(new Array(recipe.ingredients.length).fill(false));
     }
-  }, [recipe.ingredients]);
+  }, [recipe.ingredients, multiplier]);
 
   const handleIngredientClick = (index: number) => {
     setSelectedIngredients(prev => {
@@ -28,10 +131,6 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
       newSelected[index] = !newSelected[index];
       return newSelected;
     });
-  };
-
-  const handleMultiplyQuantities = () => {
-    setMultiplier(prev => (prev === 1 ? 2 : 1));
   };
 
   return (
@@ -87,24 +186,40 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
 
         <div className="relative">
           {recipe.ingredients && recipe.ingredients.length > 0 && (
-            <div className="absolute left-1 top-0">
+            <div className="absolute left-1 top-0 flex items-center gap-0.5 bg-white/95 backdrop-blur 
+                          border border-primary-100 rounded-full py-1 pl-1 pr-2
+                          shadow-sm hover:shadow-md transition-all duration-300">
               <button
-                onClick={handleMultiplyQuantities}
-                className={`
-                  ${
-                    multiplier === 1
-                      ? "bg-primary-600 hover:bg-primary-700"
-                      : "bg-accent-600 hover:bg-accent-700"
-                  }
-                  text-white font-medium text-sm
-                  px-3 py-1.5 rounded-lg
-                  transition-colors duration-200
-                  shadow-warm hover:shadow-warm-lg
-                  focus:outline-none focus:ring-2 focus:ring-offset-1
-                  ${multiplier === 1 ? "focus:ring-primary-500" : "focus:ring-accent-500"}
-                `}
+                onClick={() => adjustMultiplier(-0.5)}
+                className="text-primary-600 hover:text-primary-700 hover:bg-primary-50/50
+                  w-6 h-6 rounded-full flex items-center justify-center
+                  transition-all duration-200 relative
+                  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-300/50
+                  disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled={multiplier <= 0.5}
+                title="הקטן כמויות"
               >
-                {multiplier === 1 ? "2X" : "1X"}
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round"/>
+                </svg>
+              </button>
+              <div className="w-12 text-center font-medium text-primary-700 text-sm tabular-nums">
+                {multiplier}X
+              </div>
+              <button
+                onClick={() => adjustMultiplier(0.5)}
+                className="text-primary-600 hover:text-primary-700 hover:bg-primary-50/50
+                  w-6 h-6 rounded-full flex items-center justify-center
+                  transition-all duration-200 relative
+                  focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-300/50
+                  disabled:opacity-40 disabled:cursor-not-allowed"
+                disabled={multiplier >= 4}
+                title="הגדל כמויות"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <line x1="12" y1="7" x2="12" y2="17" strokeLinecap="round"/>
+                  <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round"/>
+                </svg>
               </button>
             </div>
           )}

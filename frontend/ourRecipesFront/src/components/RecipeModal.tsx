@@ -182,7 +182,11 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
             />
           </Collapsible>
 
-          <Collapsible title="תמונה" showEmpty>
+          <Collapsible 
+            title="תמונה" 
+            badge={recipe.image ? "✓" : undefined}
+            showEmpty={!recipe.image}
+          >
             <div className="p-3">
               {recipe.image ? (
                 <img
