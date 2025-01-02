@@ -48,7 +48,8 @@ async def login():
                 "id": user_id,
                 "name": user_data.get("first_name", ""),
                 "type": "telegram"
-            }
+            },
+            "message": "אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות." if not has_permission else None
         })
         set_access_cookies(response, access_token)
         
@@ -111,12 +112,14 @@ async def validate_session():
         if not user_id:
             return jsonify({"authenticated": False}), 401
 
-        if user_id == "guest":
+        # Guest users are always authenticated but never have edit permissions
+        if isinstance(user_id, str) and user_id.startswith('guest_'):
             session["edit_permission"] = False
             return jsonify({
                 "authenticated": True,
                 "canEdit": False,
-                "user_id": user_id
+                "user_id": user_id,
+                "message": "משתמשי אורח לא יכולים לערוך מתכונים"
             }), 200
 
         if user_id == current_user:
@@ -129,7 +132,8 @@ async def validate_session():
             return jsonify({
                 "authenticated": True,
                 "canEdit": permission,
-                "user_id": user_id
+                "user_id": user_id,
+                "message": "אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות." if not permission else None
             }), 200
 
         return jsonify({"authenticated": False}), 401

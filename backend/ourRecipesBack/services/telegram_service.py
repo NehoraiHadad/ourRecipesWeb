@@ -21,14 +21,27 @@ class TelegramService:
         """Check user permissions in channel"""
         try:
             print(f"Checking permissions for user {user_id} in channel {channel_url}", flush=True)
+            # Guest users never have permissions
+            if isinstance(user_id, str) and user_id.startswith('guest_'):
+                return False
+                
             client = await cls.create_client()
             async with client:
-                channel_entity = await client.get_entity(channel_url)
-                permissions = await client.get_permissions(channel_entity, int(user_id))
-                
-                has_permission = permissions.is_admin and permissions.edit_messages
-                print(f"User {user_id} {'can' if has_permission else 'cannot'} edit messages in the channel.", flush=True)
-                return has_permission
+                try:
+                    channel_entity = await client.get_entity(channel_url)
+                    permissions = await client.get_permissions(channel_entity, int(user_id))
+                    
+                    has_permission = permissions.is_admin and permissions.edit_messages
+                    print(f"User {user_id} {'can' if has_permission else 'cannot'} edit messages in the channel.", flush=True)
+                    return has_permission
+                except ValueError as e:
+                    print(f"Invalid user ID format: {str(e)}", flush=True)
+                    return False
+                except Exception as e:
+                    if "not a member" in str(e).lower() or "no user" in str(e).lower():
+                        print(f"User {user_id} is not a member of the channel", flush=True)
+                        return False
+                    raise  # Re-raise other exceptions
                     
         except Exception as e:
             print(f"Permission check error: {str(e)}", flush=True)

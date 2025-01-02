@@ -77,6 +77,16 @@ class AuthService:
             bool: Whether the user has edit permissions
         """
         try:
+            # Guest users never have permissions - check this before cache
+            if isinstance(user_id, str) and user_id.startswith('guest_'):
+                logger.info(
+                    "Guest user permission check - "
+                    f"User: {user_id}, "
+                    f"Result: False, "
+                    f"Time: {datetime.now(timezone.utc).isoformat()}"
+                )
+                return False
+
             if not channel_url:
                 channel_url = current_app.config["CHANNEL_URL"]
                 
@@ -105,28 +115,38 @@ class AuthService:
 
             result = await telegram_service.check_permissions(user_id, channel_url)
 
-            # Save to Cache
-            cache.set(cache_key, result, timeout=3600)  # Expires in 1 hour
-
-            logger.info(
-                "New permissions cached - "
-                f"User: {user_id}, "
-                f"Channel: {channel_url}, "
-                f"Result: {result}, "
-                f"Time: {current_time}, "
-                f"Expires: {datetime.fromtimestamp(datetime.now().timestamp() + 3600, timezone.utc).isoformat()}"
-            )
+            # Only cache successful permission checks or explicit membership checks
+            # Don't cache errors or temporary failures
+            if result is not None:
+                cache.set(cache_key, result, timeout=3600)  # Expires in 1 hour
+                logger.info(
+                    "New permissions cached - "
+                    f"User: {user_id}, "
+                    f"Channel: {channel_url}, "
+                    f"Result: {result}, "
+                    f"Time: {current_time}, "
+                    f"Expires: {datetime.fromtimestamp(datetime.now().timestamp() + 3600, timezone.utc).isoformat()}"
+                )
 
             return result
 
         except Exception as e:
-            logger.error(
-                "Permission check error - "
-                f"User: {user_id}, "
-                f"Channel: {channel_url}, "
-                f"Error: {str(e)}, "
-                f"Time: {datetime.now(timezone.utc).isoformat()}"
-            )
+            error_msg = str(e)
+            if "not a member" in error_msg.lower():
+                logger.warning(
+                    "User not in channel - "
+                    f"User: {user_id}, "
+                    f"Channel: {channel_url}, "
+                    f"Time: {datetime.now(timezone.utc).isoformat()}"
+                )
+            else:
+                logger.error(
+                    "Permission check error - "
+                    f"User: {user_id}, "
+                    f"Channel: {channel_url}, "
+                    f"Error: {error_msg}, "
+                    f"Time: {datetime.now(timezone.utc).isoformat()}"
+                )
             return False
 
     @staticmethod
