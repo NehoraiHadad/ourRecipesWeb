@@ -5,6 +5,7 @@ services:
       - "5000:5000"
     volumes:
       - ./backend/ourRecipesBack:/app/ourRecipesBack
+      - ./backend/monitor_session.session:/app/monitor_session.session
     env_file: ./backend/.env
     environment:
       - FLASK_APP=ourRecipesBack

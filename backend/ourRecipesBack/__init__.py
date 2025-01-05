@@ -5,6 +5,7 @@ from datetime import datetime, timezone, timedelta
 from .extensions import db
 from .config import config
 from .services.auth_service import AuthService, init_cache
+from .background_tasks import start_background_tasks
 
 def create_app(config_name='default'):
     """Create and configure the Flask application"""
@@ -72,5 +73,9 @@ def create_app(config_name='default'):
             return response
         except (RuntimeError, KeyError):
             return response
+
+    # Start background tasks if not in testing mode
+    if not app.config['TESTING']:
+        start_background_tasks(app)
     
     return app
