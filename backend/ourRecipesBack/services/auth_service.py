@@ -2,7 +2,7 @@ import hashlib
 import hmac
 from datetime import datetime, timezone, timedelta
 from flask import current_app, jsonify
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, set_access_cookies
 from .telegram_service import telegram_service
 from flask_caching import Cache
 import logging
@@ -203,10 +203,27 @@ class AuthService:
 
         @jwt.expired_token_loader
         def expired_token_callback(jwt_header, jwt_payload):
-            print(f"Token expired: {jwt_payload}", flush=True)
+            try:
+                # Try to refresh the token if it's expired
+                user_id = jwt_payload.get('sub')
+                if user_id:
+                    new_token = create_access_token(identity=user_id)
+                    response = jsonify({
+                        "authenticated": True,
+                        "message": "Token refreshed",
+                        "debug": {
+                            "header": jwt_header,
+                            "payload": jwt_payload
+                        }
+                    })
+                    set_access_cookies(response, new_token)
+                    return response, 200
+            except Exception as e:
+                logger.error(f"Token refresh failed: {str(e)}")
+            
             return jsonify({
                 "authenticated": False,
-                "message": "Token has expired",
+                "message": "Token has expired and couldn't be refreshed",
                 "debug": {
                     "header": jwt_header,
                     "payload": jwt_payload
@@ -215,7 +232,7 @@ class AuthService:
 
         @jwt.invalid_token_loader
         def invalid_token_callback(error_string):
-            print(f"Invalid token: {error_string}", flush=True)
+            logger.warning(f"Invalid token: {error_string}")
             return jsonify({
                 "authenticated": False,
                 "message": f"Invalid token: {error_string}",
@@ -226,7 +243,7 @@ class AuthService:
 
         @jwt.unauthorized_loader
         def missing_token_callback(error_string):
-            print(f"Missing token: {error_string}", flush=True)
+            logger.info(f"Missing token: {error_string}")
             return jsonify({
                 "authenticated": False,
                 "message": "No authentication token found",
@@ -237,11 +254,20 @@ class AuthService:
             
         @jwt.token_verification_loader
         def verify_token_callback(jwt_header, jwt_payload):
-            return True
+            try:
+                exp_timestamp = jwt_payload["exp"]
+                now = datetime.now(timezone.utc)
+                if datetime.fromtimestamp(exp_timestamp, timezone.utc) > now:
+                    return True
+                logger.warning("Token verification failed - token expired")
+                return False
+            except Exception as e:
+                logger.error(f"Token verification error: {str(e)}")
+                return False
             
         @jwt.token_verification_failed_loader
         def token_verification_failed_callback(jwt_header, jwt_payload, error_string):
-            print(f"Token verification failed: {error_string}", flush=True)
+            logger.warning(f"Token verification failed: {error_string}")
             return jsonify({
                 "authenticated": False,
                 "message": "Token verification failed",
