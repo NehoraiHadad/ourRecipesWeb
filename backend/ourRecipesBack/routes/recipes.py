@@ -1,6 +1,6 @@
 from flask import jsonify, request
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from ..services.recipe_service import RecipeService
+from ..services.recipe_service import RecipeService, get_recipe_by_id
 from ..services.ai_service import AIService
 from flask import Blueprint
 import base64
@@ -213,6 +213,21 @@ async def bulk_action():
     except Exception as e:
         print(f"Bulk action error: {str(e)}")
         return jsonify({"error": "Bulk action failed", "message": str(e)}), 500
+
+
+@recipes_bp.route('/<int:recipe_id>', methods=['GET'])
+@jwt_required()
+def get_recipe(recipe_id):
+    """Get recipe details by ID"""
+    try:
+        recipe = get_recipe_by_id(recipe_id)
+        if recipe is None:
+            return jsonify({'error': 'Recipe not found'}), 404
+            
+        return jsonify(recipe), 200
+        
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 
 # Helper functions

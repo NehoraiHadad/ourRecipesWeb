@@ -6,6 +6,7 @@ from .telegram_service import telegram_service
 from ..models.enums import RecipeDifficulty
 from .ai_service import AIService
 from sqlalchemy.sql import func
+from datetime import datetime, timezone
 
 class RecipeService:
     """Service class for handling recipe operations"""
@@ -325,3 +326,34 @@ class RecipeService:
             db.session.rollback()
             print(f"Bulk parse error: {str(e)}")
             raise
+
+def get_recipe_by_id(telegram_id: int) -> dict:
+    """
+    Get recipe details by Telegram ID
+    
+    Args:
+        telegram_id (int): The Telegram ID of the recipe to fetch
+        
+    Returns:
+        dict: Recipe details or None if not found
+    """
+    recipe = Recipe.query.filter_by(telegram_id=telegram_id).first()
+    if recipe is None:
+        return None
+        
+    return {
+        'id': recipe.telegram_id,  # Use telegram_id as the main identifier
+        'title': recipe.title,
+        'details': recipe.raw_content,  # Use raw_content instead of details
+        'image': recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
+        'telegram_id': recipe.telegram_id,
+        'created_at': recipe.created_at.isoformat(),
+        'updated_at': recipe.updated_at.isoformat() if recipe.updated_at else None,
+        'is_parsed': recipe.is_parsed,
+        'parse_errors': recipe.parse_errors,
+        'ingredients': recipe.ingredients,
+        'instructions': recipe.instructions,
+        'categories': recipe.categories,
+        'preparation_time': recipe.preparation_time,
+        'difficulty': recipe.difficulty.value if recipe.difficulty else None
+    }

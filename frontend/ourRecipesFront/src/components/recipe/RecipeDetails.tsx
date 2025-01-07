@@ -10,6 +10,7 @@ import { RecipeEditForm } from './RecipeEditForm';
 import { Typography } from '@/components/ui/Typography';
 import { difficultyDisplay } from '@/utils/difficulty';
 import VersionHistory from '@/components/VersionHistory';
+import { useRecipeHistory } from '@/hooks/useRecipeHistory';
 
 interface RecipeDetailProps {
   recipe: recipe;
@@ -29,6 +30,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
   onEditStart, 
   onEditEnd 
 }) => {
+  const { addToRecentlyViewed } = useRecipeHistory();
   const [showMessage, setShowMessage] = useState({
     status: false,
     message: "",
@@ -73,6 +75,39 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
       });
     }
   }, [recipe]);
+
+  useEffect(() => {
+    // Track recipe view only when the recipe first loads
+    console.log('Recipe changed:', { telegram_id: recipe?.telegram_id, title: recipe?.title });
+    console.log('RecipeData:', recipeData);
+    
+    if (recipeData?.id && recipeData?.title) {
+      const currentTime = new Date().getTime();
+      const lastViewTime = localStorage.getItem(`last_view_${recipeData.id}`);
+      
+      console.log('Checking view time:', {
+        currentTime,
+        lastViewTime,
+        timeDiff: lastViewTime ? currentTime - parseInt(lastViewTime) : 'first view'
+      });
+      
+      // Only track if haven't viewed in the last minute
+      if (!lastViewTime || currentTime - parseInt(lastViewTime) > 60000) {
+        console.log('Adding to recently viewed:', {
+          id: recipeData.id,
+          title: recipeData.title
+        });
+        
+        localStorage.setItem(`last_view_${recipeData.id}`, currentTime.toString());
+        addToRecentlyViewed({
+          id: recipeData.id,
+          title: recipeData.title
+        });
+      } else {
+        console.log('Skipping view tracking - viewed too recently');
+      }
+    }
+  }, [recipeData?.id, recipeData?.title, addToRecentlyViewed]);
 
   const fetchReformattedRecipe = async () => {
     setIsLoading(true);
