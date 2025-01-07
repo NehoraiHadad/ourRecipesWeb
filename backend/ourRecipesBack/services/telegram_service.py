@@ -17,6 +17,18 @@ class TelegramService:
         return client
 
     @classmethod
+    def create_client_with_session(cls, session_name, api_id, api_hash):
+        """Create a new TelegramClient instance with a custom session name"""
+        print(f"Creating TelegramClient with session name: {session_name}", flush=True)
+        client = TelegramClient(
+            session=session_name,
+            api_id=api_id,
+            api_hash=api_hash
+        )
+        print(f"TelegramClient created with session name: {session_name}", flush=True)
+        return client
+
+    @classmethod
     async def check_permissions(cls, user_id, channel_url):
         """Check user permissions in channel"""
         try:

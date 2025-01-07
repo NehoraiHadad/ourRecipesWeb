@@ -4,6 +4,7 @@ import { Typography } from "@/components/ui/Typography";
 import { Tag } from "@/components/ui/Tag";
 import { Card } from "@/components/ui/Card";
 import { ClockIcon } from "@/components/ui/ClockIcon";
+import { useRecipeHistory } from '@/hooks/useRecipeHistory';
 
 interface RecipeListItemProps {
   recipe: recipe;
@@ -12,6 +13,8 @@ interface RecipeListItemProps {
 }
 
 export function RecipeListItem({ recipe, onClick, font }: RecipeListItemProps) {
+  const { toggleLocalFavorite, isLocalFavorite } = useRecipeHistory();
+
   const getDifficultyInfo = (difficulty: string) => {
     const levels = {
       easy: { label: 'קל', variant: 'success' },
@@ -33,13 +36,43 @@ export function RecipeListItem({ recipe, onClick, font }: RecipeListItemProps) {
     >
       {/* Recipe Info - Always Right Aligned */}
       <div className="flex-1 min-w-0 flex flex-col py-1 relative z-10">
-        <Typography 
-          variant="h3" 
-          className={`font-handwriting-${font} mb-2 line-clamp-1 group-hover:text-primary-800 
+        <div className="flex items-center justify-between gap-2">
+          <Typography 
+            variant="h3" 
+            className={`font-handwriting-${font} line-clamp-1 group-hover:text-primary-800 
                      transition-colors relative`}
-        >
-          {recipe.title}
-        </Typography>
+          >
+            {recipe.title}
+          </Typography>
+
+          {/* Favorite Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              toggleLocalFavorite(recipe.id);
+            }}
+            className={`p-1.5 rounded-full transition-all duration-200
+                     ${isLocalFavorite(recipe.id)
+                       ? 'bg-red-50 text-red-500'
+                       : 'hover:bg-red-50 text-secondary-400 hover:text-red-500'
+                     }`}
+            title={isLocalFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
+          >
+            <svg
+              className="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill={isLocalFavorite(recipe.id) ? 'currentColor' : 'none'}
+              stroke="currentColor"
+              strokeWidth="2"
+            >
+              <path
+                d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
 
         {/* Recipe Meta */}
         <div className="flex flex-wrap items-center gap-2 sm:gap-4 text-sm text-secondary-600 mb-2">

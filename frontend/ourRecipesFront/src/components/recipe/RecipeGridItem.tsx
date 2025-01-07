@@ -4,6 +4,7 @@ import { Typography } from "@/components/ui/Typography";
 import { Tag } from "@/components/ui/Tag";
 import { Card } from "@/components/ui/Card";
 import { ClockIcon } from "@/components/ui/ClockIcon";
+import { useRecipeHistory } from '@/hooks/useRecipeHistory';
 
 interface RecipeGridItemProps {
   recipe: recipe;
@@ -12,6 +13,8 @@ interface RecipeGridItemProps {
 }
 
 export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
+  const { toggleLocalFavorite, isLocalFavorite } = useRecipeHistory();
+
   const getDifficultyInfo = (difficulty: string) => {
     const levels = {
       easy: { label: 'קל', variant: 'success' },
@@ -28,6 +31,37 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
       className="group cursor-pointer overflow-hidden transition-all duration-300 hover:scale-[1.02] 
                 hover:shadow-xl bg-white relative h-full flex flex-col"
     >
+      {/* Favorite Button */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleLocalFavorite(recipe.id);
+        }}
+        className={`absolute top-2 right-2 p-1.5 rounded-full z-10
+                   transition-all duration-200
+                   ${isLocalFavorite(recipe.id)
+                     ? 'bg-red-50 text-red-500 opacity-100'
+                     : 'opacity-0 group-hover:opacity-100 hover:bg-red-50 text-secondary-400 hover:text-red-500'
+                   }
+                   scale-90 group-hover:scale-100
+                   hover:shadow-sm`}
+        title={isLocalFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
+      >
+        <svg
+          className="w-4 h-4"
+          viewBox="0 0 24 24"
+          fill={isLocalFavorite(recipe.id) ? 'currentColor' : 'none'}
+          stroke="currentColor"
+          strokeWidth="2"
+        >
+          <path
+            d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
       {/* Image Section */}
       <div className="aspect-[3/2] relative overflow-hidden flex-shrink-0">
         {recipe.image ? (

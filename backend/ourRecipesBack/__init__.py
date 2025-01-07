@@ -1,17 +1,35 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, get_jwt, get_jwt_identity, create_access_token, set_access_cookies
 from datetime import datetime, timezone, timedelta
 from .extensions import db
 from .config import config
 from .services.auth_service import AuthService, init_cache
+from .services.monitoring_service import MonitoringService
+from .services.security_service import SecurityService
+from .background_tasks import start_background_tasks
+import logging
+
+# Configure logger
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+handler = logging.StreamHandler()
+handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+logger.addHandler(handler)
 
 def create_app(config_name='default'):
     """Create and configure the Flask application"""
     app = Flask(__name__)
     
+    # Force development config when running locally
+    if app.debug or config_name == 'development':
+        config_name = 'development'
+        logger.info("Loading development configuration")
+    
     # Load configuration
     app.config.from_object(config[config_name])
+    logger.info(f"Loaded configuration: {config_name}")
+    logger.info(f"CORS Origins: {app.config['CORS_ORIGINS']}")
     
     # Initialize extensions
     db.init_app(app)
@@ -28,14 +46,19 @@ def create_app(config_name='default'):
         resources={r"/*": {
             "origins": app.config["CORS_ORIGINS"],
             "allow_credentials": True,
-            "expose_headers": ["Set-Cookie", "Authorization"],
-            "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
-            "allow_headers": ["Content-Type", "Authorization", "X-Requested-With", "Accept", "Origin"],
-            "supports_credentials": True,
-            "max_age": 120  # Cache preflight requests for 2 minutes
+            "expose_headers": app.config["CORS_EXPOSE_HEADERS"],
+            "methods": app.config["CORS_METHODS"],
+            "allow_headers": app.config["CORS_ALLOW_HEADERS"],
+            "supports_credentials": app.config["CORS_SUPPORTS_CREDENTIALS"],
+            "max_age": app.config["CORS_MAX_AGE"],
+            "vary_header": True  # Important for mobile browsers
         }},
         supports_credentials=True
     )
+    
+    # Setup monitoring and security services
+    MonitoringService.setup_monitoring(app)
+    SecurityService.setup_security_headers(app)
     
     # Register blueprints
     from .routes.auth import auth_bp
@@ -72,5 +95,9 @@ def create_app(config_name='default'):
             return response
         except (RuntimeError, KeyError):
             return response
+
+    # Start background tasks if not in testing mode
+    if not app.config['TESTING']:
+        start_background_tasks(app)
     
     return app

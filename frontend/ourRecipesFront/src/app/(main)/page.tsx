@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import homeImage from "../../../public/homeImage.png";
 import Spinner from "@/components/ui/Spinner";
@@ -13,14 +13,45 @@ import MealSuggestionForm from "@/components/MealSuggestionForm";
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton'
 import { Typography } from "@/components/ui/Typography";
 import { Container } from "@/components/ui/Container";
+import { RecentlyViewedRecipes } from '@/components/RecentlyViewedRecipes';
+import { useRecipeHistory } from "@/hooks/useRecipeHistory";
 
 
 export default function Page() {
   const [recipes, setRecipes] = useState<Record<string, recipe>>({});
   const [resultCount, setResultCount] = useState<number | "">();
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
-
+  const [favoriteRecipes, setFavoriteRecipes] = useState<recipe[]>([]);
+  const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
+  const { localFavorites } = useRecipeHistory();
+
+  // Fetch favorite recipes
+  useEffect(() => {
+    const fetchFavorites = async () => {
+      setIsLoadingFavorites(true);
+      try {
+        const promises = localFavorites?.map(id =>
+          fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${id}`, {
+            credentials: 'include',
+          }).then(res => res.json())
+        ) || [];
+        const results = await Promise.all(promises);
+        setFavoriteRecipes(results);
+      } catch (error) {
+        console.error('Error fetching favorites:', error);
+      } finally {
+        setIsLoadingFavorites(false);
+      }
+    };
+
+    if (localFavorites?.length > 0) {
+      fetchFavorites();
+    } else {
+      setFavoriteRecipes([]);
+      setIsLoadingFavorites(false);
+    }
+  }, [localFavorites]);
 
   if (isLoading) {
     return (
@@ -106,11 +137,35 @@ export default function Page() {
 
           <div className="overflow-y-auto flex-1 -mx-4 px-4">
             {Object.keys(recipes).length === 0 ? (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 pb-4">
-                {[1, 2, 3, 4, 5, 6, 7, 8].map((n) => (
-                  <RecipeCardSkeleton key={n} />
-                ))}
-              </div>
+              <>
+                <RecentlyViewedRecipes />
+                
+                {/* Favorite Recipes Section */}
+                <div className="mt-6">
+                  <div className="bg-gradient-to-br from-white to-primary-50/30 rounded-lg shadow-warm p-4 border border-primary-100/30">
+                    <div className="flex items-center gap-2 mb-4">
+                      <div className="p-1.5 rounded-full bg-red-100/50">
+                        <svg className="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                      </div>
+                      <Typography variant="h3" className="text-base font-medium text-primary-900">
+                        מתכונים מועדפים
+                      </Typography>
+                    </div>
+
+                    {isLoadingFavorites ? (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+                        {[1, 2, 3, 4].map((n) => (
+                          <RecipeCardSkeleton key={n} />
+                        ))}
+                      </div>
+                    ) : favoriteRecipes.length > 0 ? (
+                      <Recipes recipes={favoriteRecipes} />
+                    ) : null}
+                  </div>
+                </div>
+              </>
             ) : (
               <Recipes recipes={Object.values(recipes)} />
             )}

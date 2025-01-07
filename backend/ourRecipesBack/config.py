@@ -28,7 +28,8 @@ class Config:
     # Session settings
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = "None"
+    SESSION_COOKIE_SAMESITE = "None"  # Required for cross-origin
+    SESSION_COOKIE_NAME = "session_our_recipes"  # Custom name to avoid conflicts
     PERMANENT_SESSION_LIFETIME = timedelta(hours=1)
 
     # JWT settings
@@ -36,14 +37,37 @@ class Config:
     JWT_TOKEN_LOCATION = ["cookies"]
     JWT_COOKIE_SECURE = True
     JWT_COOKIE_CSRF_PROTECT = False
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=1)
-    JWT_COOKIE_SAMESITE = "None"
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=7)
+    JWT_COOKIE_SAMESITE = "None"  # Required for cross-origin
     JWT_ERROR_MESSAGE_KEY = "message"
-    JWT_ACCESS_COOKIE_NAME = "access_token_cookie"
+    JWT_ACCESS_COOKIE_NAME = "our_recipes_access_token"  # Custom name to avoid conflicts
     JWT_COOKIE_DOMAIN = None
+    JWT_COOKIE_HTTPONLY = True
+    JWT_COOKIE_MAX_AGE = 7 * 24 * 60 * 60  # 7 days in seconds
+    JWT_COOKIE_PATH = "/"  # Ensure cookie is available across all paths
 
     # CORS settings
-    CORS_ORIGINS = os.getenv("ORIGIN_CORS", "http://127.0.0.1").split(",")
+    CORS_ORIGINS = os.getenv("ORIGIN_CORS", "http://127.0.0.1,http://localhost").split(",")
+    CORS_SUPPORTS_CREDENTIALS = True  # Required for cookies
+    CORS_ALLOW_HEADERS = [
+        "Content-Type",
+        "Authorization",
+        "X-CSRF-TOKEN",
+        "Accept",
+        "Origin",
+        "X-Requested-With",
+        "Access-Control-Request-Method",
+        "Access-Control-Request-Headers"
+    ]
+    CORS_EXPOSE_HEADERS = [
+        "Content-Type",
+        "Authorization",
+        "Set-Cookie",
+        "Access-Control-Allow-Origin",
+        "Access-Control-Allow-Credentials"
+    ]
+    CORS_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
+    CORS_MAX_AGE = 600  # Cache preflight requests for 10 minutes
 
     # AI Service settings
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
@@ -55,8 +79,22 @@ class DevelopmentConfig(Config):
 
     DEBUG = True
     JWT_COOKIE_SECURE = False
-    SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
     SESSION_COOKIE_SECURE = False
+    SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
+    
+    # More permissive CORS for development
+    CORS_ORIGINS = [
+        "http://localhost:3000",
+        "http://localhost:5000",
+        "http://127.0.0.1:3000",
+        "http://127.0.0.1:5000",
+        "http://127.0.0.1",
+        "http://localhost"
+    ]
+    JWT_COOKIE_SAMESITE = "Lax"  # More permissive for local development
+    SESSION_COOKIE_SAMESITE = "Lax"
+    JWT_COOKIE_DOMAIN = None
+    JWT_COOKIE_SECURE = False  # Allow HTTP in development
 
 
 class TestingConfig(Config):

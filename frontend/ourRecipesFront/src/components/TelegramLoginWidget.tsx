@@ -31,14 +31,32 @@ const TelegramLoginWidget: React.FC = () => {
 
   useEffect(() => {
     (window as any).handleTelegramAuth = (user: any) => {
-      console.log(user);
-      handleContinue(user)
+      console.group('Telegram Auth Process');
+      console.log('Telegram Auth Data:', {
+        id: user.id,
+        first_name: user.first_name,
+        username: user.username,
+        auth_date: new Date(user.auth_date * 1000).toISOString(),
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        timestamp: new Date().toISOString()
+      });
+      handleContinue(user);
+      console.groupEnd();
     };
   }, []);
 
   const handleContinue = async (user: any) => {
     setIsLoading(true);
+    console.group('Telegram Login Process');
+    
     try {
+      console.log('Initiating login request to:', `${process.env.NEXT_PUBLIC_API_URL}/auth/login`);
+      console.log('Request Headers:', {
+        'Content-Type': 'application/json',
+        'User-Agent': navigator.userAgent
+      });
+
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -46,10 +64,67 @@ const TelegramLoginWidget: React.FC = () => {
         body: JSON.stringify(user),
       });
 
+      console.log('Server Response:', {
+        status: response.status,
+        statusText: response.statusText,
+        headers: Object.fromEntries(response.headers.entries())
+      });
+
       if (!response.ok) {
-        const error = await response.json();
+        const error = await response.json().catch(() => ({ message: 'No error details provided' }));
+        
+        // Log specific HTTP errors
+        const errorDetails = {
+          status: response.status,
+          statusText: response.statusText,
+          message: error.message,
+          timestamp: new Date().toISOString(),
+          endpoint: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+          method: 'POST'
+        };
+
+        switch (response.status) {
+          case 405:
+            console.error('Method Not Allowed Error:', {
+              ...errorDetails,
+              allowedMethods: response.headers.get('Allow'),
+              suggestion: 'Check if the endpoint supports POST method'
+            });
+            break;
+          case 401:
+            console.error('Unauthorized Error:', {
+              ...errorDetails,
+              suggestion: 'Telegram authentication might have expired'
+            });
+            break;
+          case 403:
+            console.error('Forbidden Error:', {
+              ...errorDetails,
+              suggestion: 'Check user permissions'
+            });
+            break;
+          case 429:
+            console.error('Rate Limit Error:', {
+              ...errorDetails,
+              retryAfter: response.headers.get('Retry-After'),
+              suggestion: 'Too many requests, implement backoff'
+            });
+            break;
+          default:
+            console.error('Login Error Response:', errorDetails);
+        }
+
         throw new Error(error.message || "Login failed");
       }
+
+      console.log('Login Success');
+      console.log('Cookies:', {
+        raw: document.cookie,
+        parsed: document.cookie.split(';').reduce((acc, cookie) => {
+          const [key, value] = cookie.split('=').map(c => c.trim());
+          return { ...acc, [key]: value };
+        }, {})
+      });
 
       addNotification({
         type: 'success',
@@ -59,6 +134,12 @@ const TelegramLoginWidget: React.FC = () => {
       
       router.push("/");
     } catch (error) {
+      console.error('Login Error:', {
+        message: error instanceof Error ? error.message : 'Unknown error',
+        stack: error instanceof Error ? error.stack : undefined,
+        timestamp: new Date().toISOString()
+      });
+
       addNotification({
         type: 'error',
         message: error instanceof Error ? error.message : 'שגיאה בהתחברות',
@@ -66,6 +147,7 @@ const TelegramLoginWidget: React.FC = () => {
       });
     } finally {
       setIsLoading(false);
+      console.groupEnd();
     }
   };
 
