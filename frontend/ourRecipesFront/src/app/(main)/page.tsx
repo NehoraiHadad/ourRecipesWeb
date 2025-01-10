@@ -15,6 +15,7 @@ import { Typography } from "@/components/ui/Typography";
 import { Container } from "@/components/ui/Container";
 import { RecentlyViewedRecipes } from '@/components/RecentlyViewedRecipes';
 import { useRecipeHistory } from "@/hooks/useRecipeHistory";
+import RecipeDetails from "@/components/recipe/RecipeDetails";
 
 
 export default function Page() {
@@ -25,6 +26,24 @@ export default function Page() {
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
   const { localFavorites } = useRecipeHistory();
+  
+  // Recipe Modal State
+  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleRecipeClick = (recipeId: number) => {
+    // Try to find recipe in existing data sources
+    const recipe = Object.values(recipes).find(r => r.id === recipeId) || 
+                  favoriteRecipes.find(r => r.id === recipeId);
+    
+    if (recipe) {
+      setSelectedRecipe(recipe);
+    } else {
+      setError('לא ניתן למצוא את המתכון');
+    }
+  };
 
   // Fetch favorite recipes
   useEffect(() => {
@@ -76,103 +95,86 @@ export default function Page() {
 
   return (
     <main className="h-[calc(100dvh-52px)] bg-secondary-50 flex flex-col overflow-hidden">
-      <Container className="h-full flex flex-col overflow-hidden py-6 px-4 sm:px-6">
-        {/* Hero Section - Refined version */}
-        <div className="relative rounded-3xl overflow-hidden bg-white shadow-warm border border-primary-100 flex-shrink-0 h-[160px] lg:h-[180px] transition-all duration-300 hover:shadow-lg">
-          {/* Background Pattern - More subtle */}
-          <div className="absolute inset-0 bg-gradient-to-br from-primary-50/30 via-transparent to-secondary-50/20">
-            <Image
-              src="/cooking-pattern.svg"
-              alt=""
-              fill
-              className="opacity-[0.1] object-cover mix-blend-multiply"
-            />
-          </div>
-
-          <div className="relative z-10 p-5 md:p-6 h-full flex items-center justify-between">
-            {/* Text Content - With subtle animation */}
-            <div className="max-w-xl">
-              <div>
-                <Typography 
-                  variant="h1" 
-                  className="text-3xl md:text-4xl text-primary-800 mb-3 font-handwriting transform hover:-rotate-1 transition-transform duration-300"
-                >
-                  המתכונים המשפחתיים שלנו
-                </Typography>
-              </div>
-              <div >
-                <Typography 
-                  variant="body" 
-                  className="text-base md:text-lg text-secondary-600 transform transition-all duration-300"
-                >
-                  מקום בו כל המתכונים המשפחתיים 
-                  <span className="text-primary-600 font-medium mx-1 opacity-75">נשמרים</span> 
-                  ו<span className="text-primary-600 font-medium opacity-75">משותפים</span>
-                </Typography>
-              </div>
+      <Container className="h-full flex flex-col overflow-hidden py-4 sm:py-6 px-4 sm:px-6">
+        {Object.keys(recipes).length === 0 && (
+          /* Hero Section */
+          <div className="flex items-center gap-4 sm:gap-6 mb-6">
+            {/* Text Content */}
+            <div className="flex-1 text-right">
+              <Typography 
+                variant="h1" 
+                className="text-xl sm:text-2xl text-primary-800 mb-1.5 font-medium"
+              >
+                המתכונים המשפחתיים שלנו
+              </Typography>
+              <Typography 
+                variant="body" 
+                className="text-sm sm:text-base text-secondary-600"
+              >
+                מקום בו כל המתכונים המשפחתיים 
+                <span className="text-primary-600 font-medium mx-1">נשמרים</span> 
+                ו<span className="text-primary-600 font-medium">משותפים</span>
+              </Typography>
             </div>
 
-            {/* Illustration Container - With enhanced effects */}
-            <div className="relative w-40 h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 flex-shrink-0 transform transition-transform duration-300">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-white/10 rounded-full" />
-              <div className="absolute inset-0 bg-primary-50/10 rounded-full filter blur-xl scale-95" />
+            {/* Image */}
+            <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex-shrink-0 -my-4">
               <Image
                 src="/home-image.png"
                 alt=""
                 fill
                 priority
-                sizes="(max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
-                className="object-contain drop-shadow-xl transform transition-transform duration-300 hover:scale-105"
+                sizes="(max-width: 640px) 112px, 144px"
+                className="object-contain"
               />
             </div>
           </div>
+        )}
 
-          {/* Decorative elements */}
-          <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary-200/20 to-transparent" />
-        </div>
-
-        {/* Subtle spacing adjustment */}
-        <div className="flex flex-col min-h-0 flex-1 mt-6">
-
-
+        {/* Content Area */}
+        <div className="flex flex-col min-h-0 flex-1">
           <div className="overflow-y-auto flex-1 -mx-4 px-4">
-            {Object.keys(recipes).length === 0 ? (
-              <>
-                <RecentlyViewedRecipes />
-                
-                {/* Favorite Recipes Section */}
-                <div className="mt-6">
-                  <div className="bg-gradient-to-br from-white to-primary-50/30 rounded-lg shadow-warm p-4 border border-primary-100/30">
-                    <div className="flex items-center gap-2 mb-4">
-                      <div className="p-1.5 rounded-full bg-red-100/50">
-                        <svg className="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                          <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                        </svg>
-                      </div>
-                      <Typography variant="h3" className="text-base font-medium text-primary-900">
-                        מתכונים מועדפים
-                      </Typography>
+            <div className={`transition-all duration-500 ease-in-out ${Object.keys(recipes).length === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 h-0 overflow-hidden'}`}>
+              <RecentlyViewedRecipes onRecipeClick={handleRecipeClick} />
+              
+              {/* Favorite Recipes Section */}
+              <div className="mt-4 sm:mt-6">
+                <div className="bg-gradient-to-br from-white to-primary-50/30 rounded-lg shadow-warm p-4 border border-primary-100/30">
+                  <div className="flex items-center gap-2 mb-4">
+                    <div className="p-1.5 rounded-full bg-red-100/50">
+                      <svg className="w-4 h-4 text-red-500" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                      </svg>
                     </div>
-
-                    {isLoadingFavorites ? (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
-                        {[1, 2, 3, 4].map((n) => (
-                          <RecipeCardSkeleton key={n} />
-                        ))}
-                      </div>
-                    ) : favoriteRecipes.length > 0 ? (
-                      <Recipes recipes={favoriteRecipes} />
-                    ) : null}
+                    <Typography variant="h3" className="text-base font-medium text-primary-900">
+                      מתכונים מועדפים
+                    </Typography>
                   </div>
+
+                  {isLoadingFavorites ? (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+                      {[1, 2, 3, 4].map((n) => (
+                        <RecipeCardSkeleton key={n} />
+                      ))}
+                    </div>
+                  ) : favoriteRecipes.length > 0 ? (
+                    <Recipes recipes={favoriteRecipes} onRecipeClick={handleRecipeClick} />
+                  ) : null}
                 </div>
-              </>
-            ) : (
-              <Recipes recipes={Object.values(recipes)} />
-            )}
+              </div>
+            </div>
+
+            <div className={`transition-all duration-500 ease-in-out ${Object.keys(recipes).length > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 h-0 overflow-hidden'}`}>
+              {Object.keys(recipes).length > 0 && (
+                <div className="pt-2">
+                  <Recipes recipes={Object.values(recipes)} onRecipeClick={handleRecipeClick} />
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
-        {/* Search Component - Updated Styling */}
+        {/* Search Component */}
         <div className="mt-6 flex-shrink-0">
           <Search 
             onSearch={handleSearch}
@@ -182,13 +184,49 @@ export default function Page() {
         </div>
       </Container>
 
-      {/* Floating Action Button & Modal */}
+      {/* Floating Action Button & Modals */}
       <DraggableBubble onClick={() => setMealSuggestionForm(!mealSuggestionForm)} />
+      
+      {/* Meal Suggestion Modal */}
       <Modal
         isOpen={mealSuggestionForm}
         onClose={() => setMealSuggestionForm(false)}
       >
         <MealSuggestionForm />
+      </Modal>
+
+      {/* Recipe Modal */}
+      <Modal
+        isOpen={!!selectedRecipe || isLoadingRecipe || !!error}
+        onClose={() => {
+          setSelectedRecipe(null);
+          setIsEditing(false);
+          setError(null);
+        }}
+        title={isEditing ? 'עריכת מתכון' : selectedRecipe?.title}
+      >
+        {isLoadingRecipe && (
+          <div className="flex justify-center items-center p-8">
+            <Spinner message="טוען מתכון..." />
+          </div>
+        )}
+        
+        {error && (
+          <div className="p-8 text-center">
+            <Typography variant="body" className="text-red-600">
+              {error}
+            </Typography>
+          </div>
+        )}
+        
+        {selectedRecipe && !isLoadingRecipe && !error && (
+          <RecipeDetails
+            recipe={selectedRecipe}
+            isEditing={isEditing}
+            onEditStart={() => setIsEditing(true)}
+            onEditEnd={() => setIsEditing(false)}
+          />
+        )}
       </Modal>
     </main>
   );

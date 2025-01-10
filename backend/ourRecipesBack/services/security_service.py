@@ -42,7 +42,9 @@ class SecurityService:
             
             # Ensure HTTPS except in development
             if not app.debug:
-                response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+                # Allow HTTP for health check endpoint
+                if request.path != '/health':
+                    response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
             
             # Security headers
             response.headers['X-Frame-Options'] = 'SAMEORIGIN'

@@ -52,7 +52,7 @@ async def monitor_old_channel(app):
             
             # Create monitor client
             monitor_client = TelegramClient(
-                session="/app/monitor_session",
+                session=f"{app.config['SESSION_NAME']}_monitor",
                 api_id=int(app.config["BOT_ID"]),
                 api_hash=app.config["API_HASH"]
             )

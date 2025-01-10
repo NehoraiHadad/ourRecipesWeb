@@ -163,43 +163,43 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe }) => {
           </Button>
         </div>
 
-        <div className="flex justify-center gap-4 mb-4 text-sm text-gray-600">
+        <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-4 text-xs sm:text-sm text-gray-600">
           {recipe.preparation_time && (
             <div className="flex items-center gap-1">
               <span>⏱️</span>
-              <span>{recipe.preparation_time} דקות</span>
+              <span className="break-words">{recipe.preparation_time} דקות</span>
             </div>
           )}
           {recipe.difficulty && (
             <div className="flex items-center gap-1">
               <span>📊</span>
-              <span>{difficultyDisplay[recipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}</span>
+              <span className="break-words">{difficultyDisplay[recipe.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}</span>
             </div>
           )}
         </div>
 
         {recipe.categories && recipe.categories.length > 0 && (
-          <div className="mb-4">
+          <div className="mb-4 overflow-x-auto pb-1 -mx-1 px-1 scrollbar-hide">
             <CategoryTags categories={recipe.categories} />
           </div>
         )}
 
         <div className="relative">
           {recipe.ingredients && recipe.ingredients.length > 0 && (
-            <div className="absolute left-1 top-0 flex sm:flex-row flex-col items-center gap-0.5 bg-white/95 backdrop-blur 
-                          border border-primary-100 rounded-full sm:py-1 sm:pl-1 sm:pr-2 p-0.5
+            <div className="absolute left-1 top-0 flex flex-col sm:flex-row items-center gap-0.5 bg-white/95 backdrop-blur 
+                          border border-primary-100 rounded-lg sm:rounded-full sm:py-1 sm:pl-1 sm:pr-2 p-1
                           shadow-sm hover:shadow-md transition-all duration-300 z-10">
               <button
                 onClick={() => adjustMultiplier(-0.5)}
                 className="text-primary-600 hover:text-primary-700 hover:bg-primary-50/50
-                  w-6 h-6 rounded-full flex items-center justify-center
+                  w-5 h-5 sm:w-6 sm:h-6 rounded-full flex items-center justify-center
                   transition-all duration-200 relative
                   focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary-300/50
                   disabled:opacity-40 disabled:cursor-not-allowed"
                 disabled={multiplier <= 0.5}
                 title="הקטן כמויות"
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <svg className="w-3 h-3 sm:w-4 sm:h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                   <line x1="7" y1="12" x2="17" y2="12" strokeLinecap="round"/>
                 </svg>
               </button>

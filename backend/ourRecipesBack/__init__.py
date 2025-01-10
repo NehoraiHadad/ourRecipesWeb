@@ -100,4 +100,9 @@ def create_app(config_name='default'):
     if not app.config['TESTING']:
         start_background_tasks(app)
     
+    # Add health check route that bypasses CORS
+    @app.route('/health')
+    def health_check():
+        return {"status": "healthy"}, 200
+    
     return app

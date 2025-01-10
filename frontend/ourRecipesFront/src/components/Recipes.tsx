@@ -1,7 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { recipe } from "@/types";
-import Modal from "./Modal";
-import RecipeDetails from "@/components/recipe/RecipeDetails";
 import { RecipeGridItem } from "./recipe/RecipeGridItem";
 import { RecipeListItem } from "./recipe/RecipeListItem";
 import { useFont } from '@/context/FontContext';
@@ -12,30 +10,27 @@ type ViewMode = 'grid' | 'list';
 interface RecipesProps {
   recipes: recipe[];
   defaultView?: ViewMode;
+  onRecipeClick?: (recipeId: number) => void;
 }
 
-export default function Recipes({ recipes, defaultView = 'grid' }: RecipesProps) {
-  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
-  const [viewMode, setViewMode] = useState<ViewMode>(defaultView);
+const VIEW_MODE_KEY = 'recipeViewMode';
+
+export default function Recipes({ recipes, defaultView = 'grid', onRecipeClick }: RecipesProps) {
+  // Initialize with saved preference or default
+  const [viewMode, setViewMode] = useState<ViewMode>(() => {
+    if (typeof window !== 'undefined') {
+      const savedMode = localStorage.getItem(VIEW_MODE_KEY);
+      return (savedMode === 'grid' || savedMode === 'list') ? savedMode : defaultView;
+    }
+    return defaultView;
+  });
+  
   const { currentFont } = useFont();
-  const [isEditing, setIsEditing] = useState(false);
 
-  const handleRecipeClick = (recipe: recipe) => {
-    setSelectedRecipe(recipe);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedRecipe(null);
-  };
-
-  const renderModalTitle = () => {
-    if (!selectedRecipe) return null;
-    return (
-      <div className="flex items-center justify-center">
-        <span>{isEditing ? 'עריכת מתכון' : selectedRecipe.title}</span>
-      </div>
-    );
-  };
+  // Save preference when changed
+  useEffect(() => {
+    localStorage.setItem(VIEW_MODE_KEY, viewMode);
+  }, [viewMode]);
 
   return (
     <div className="flex flex-col min-h-full">
@@ -57,7 +52,7 @@ export default function Recipes({ recipes, defaultView = 'grid' }: RecipesProps)
                 <RecipeGridItem
                   key={recipe.id}
                   recipe={recipe}
-                  onClick={() => handleRecipeClick(recipe)}
+                  onClick={() => onRecipeClick?.(recipe.id)}
                   font={currentFont}
                 />
               ))}
@@ -74,7 +69,7 @@ export default function Recipes({ recipes, defaultView = 'grid' }: RecipesProps)
                 <RecipeListItem
                   key={recipe.id}
                   recipe={recipe}
-                  onClick={() => handleRecipeClick(recipe)}
+                  onClick={() => onRecipeClick?.(recipe.id)}
                   font={currentFont}
                 />
               ))}
@@ -82,29 +77,6 @@ export default function Recipes({ recipes, defaultView = 'grid' }: RecipesProps)
           </div>
         </div>
       </div>
-
-      {/* Recipe Modal */}
-      <Modal 
-        isOpen={!!selectedRecipe} 
-        onClose={() => {
-          handleCloseModal();
-          setIsEditing(false);
-        }}
-        title={renderModalTitle()}
-        size={isEditing ? 'lg' : 'md'}
-        className="transform transition-all duration-300 ease-out"
-      >
-        {selectedRecipe && (
-          <div className="animate-fadeIn">
-            <RecipeDetails 
-              recipe={selectedRecipe}
-              isEditing={isEditing}
-              onEditStart={() => setIsEditing(true)}
-              onEditEnd={() => setIsEditing(false)}
-            />
-          </div>
-        )}
-      </Modal>
     </div>
   );
 }
