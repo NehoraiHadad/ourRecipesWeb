@@ -22,6 +22,12 @@ class MonitoringService:
             logger.info(f"Request method: {request.method}")
             logger.info(f"Request origin: {request.headers.get('Origin')}")
             logger.info(f"Request path: {request.path}")
+            logger.info(f"Request headers: {dict(request.headers)}")
+
+            # Only warn about insecure requests for non-health check paths
+            if not request.is_secure and request.path != '/health':
+                logger.warning("Insecure request detected: http")
+
             if request.method == 'OPTIONS':
                 logger.info("Handling preflight request")
                 logger.info(f"Access-Control-Request-Method: {request.headers.get('Access-Control-Request-Method')}")
@@ -56,6 +62,21 @@ class MonitoringService:
                 return
                 
             # For production, ensure HTTPS
-            if not app.config['DEBUG'] and request.scheme != 'https':
+            cf_visitor = request.headers.get('Cf-Visitor', '')
+            is_cloudflare_https = False
+            try:
+                if cf_visitor and ':' in cf_visitor:
+                    scheme = cf_visitor.strip('{}').replace('"', '').split(':')[1].strip()
+                    is_cloudflare_https = scheme == 'https'
+            except (IndexError, Exception) as e:
+                logger.warning(f"Error parsing Cf-Visitor header: {str(e)}")
+            
+            is_https = (
+                request.scheme == 'https' or
+                request.headers.get('X-Forwarded-Proto') == 'https' or
+                is_cloudflare_https
+            )
+            
+            if not app.config['DEBUG'] and not is_https and request.path != '/health':
                 logger.warning(f"Insecure request detected: {request.scheme}")
                 return {"error": "HTTPS required"}, 403 

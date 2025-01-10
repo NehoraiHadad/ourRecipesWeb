@@ -7,7 +7,11 @@ import Spinner from '@/components/ui/Spinner';
 import { Typography } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
 
-export function RecentlyViewedRecipes() {
+interface RecentlyViewedRecipesProps {
+  onRecipeClick?: (recipeId: number) => void;
+}
+
+export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesProps) {
   const { recentlyViewed, removeFromHistory, clearHistory, toggleLocalFavorite, isLocalFavorite } = useRecipeHistory();
   const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
   const [isEditing, setIsEditing] = useState(false);
@@ -17,32 +21,6 @@ export function RecentlyViewedRecipes() {
   if (recentlyViewed.length === 0) {
     return null;
   }
-
-  const handleRecipeClick = async (recipeId: number) => {
-    setIsLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipeId}`,
-        {
-          credentials: 'include',
-        }
-      );
-      if (response.ok) {
-        const recipe = await response.json();
-        setSelectedRecipe(recipe);
-      } else {
-        const errorText = await response.text();
-        console.error('Failed to fetch recipe:', errorText);
-        setError('לא ניתן לטעון את המתכון');
-      }
-    } catch (error) {
-      console.error('Error fetching recipe:', error);
-      setError('אירעה שגיאה בטעינת המתכון');
-    } finally {
-      setIsLoading(false);
-    }
-  };
 
   const handleRemove = (e: React.MouseEvent, recipeId: number) => {
     e.stopPropagation();
@@ -96,36 +74,36 @@ export function RecentlyViewedRecipes() {
           {recentlyViewed.map((recipe) => (
             <div
               key={recipe.id}
-              className="flex-shrink-0 w-48 group relative"
+              className="flex-shrink-0 w-36 sm:w-48 group relative"
             >
               <div
-                onClick={() => handleRecipeClick(recipe.id)}
+                onClick={() => onRecipeClick?.(recipe.id)}
                 className="w-full text-right bg-white hover:bg-primary-50/50 
-                         rounded-lg p-3 transition-all duration-200 relative cursor-pointer
+                         rounded-lg p-2 sm:p-3 transition-all duration-200 relative cursor-pointer
                          border border-primary-100/20 shadow-sm hover:shadow-md
                          hover:border-primary-200/30"
               >
-                <h3 className="text-sm font-medium text-secondary-800 line-clamp-1 group-hover:text-primary-900 mb-1">
+                <h3 className="text-xs sm:text-sm font-medium text-secondary-800 line-clamp-2 group-hover:text-primary-900 mb-1 break-words">
                   {recipe.title}
                 </h3>
 
-                <p className="text-xs text-secondary-500 group-hover:text-primary-600">
+                <p className="text-[0.65rem] sm:text-xs text-secondary-500 group-hover:text-primary-600 truncate">
                   {formatTimeAgo(recipe.lastViewedAt)}
                 </p>
 
                 {/* Action Buttons */}
-                <div className="absolute top-2 left-2 flex gap-1">
+                <div className="absolute top-1 sm:top-2 left-1 sm:left-2 flex gap-0.5 sm:gap-1">
                   {/* Delete Button */}
                   <button
                     onClick={(e) => handleRemove(e, recipe.id)}
-                    className="p-1.5 rounded-full
+                    className="p-1 sm:p-1.5 rounded-full
                              opacity-0 group-hover:opacity-100 transition-all duration-200
                              hover:bg-red-50 text-secondary-400 hover:text-red-500
                              scale-90 group-hover:scale-100
                              hover:shadow-sm"
                     title="הסר מההיסטוריה"
                   >
-                    <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg className="w-3 sm:w-3.5 h-3 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                       <path d="M6 18L18 6M6 6l12 12" strokeLinecap="round" strokeLinejoin="round"/>
                     </svg>
                   </button>
