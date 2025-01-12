@@ -20,6 +20,7 @@
 
 # Session file
 connect_to_our_recipes_channel.session
+connect_to_our_recipes_channel_monitor.session
 
 # Testing
 /coverage

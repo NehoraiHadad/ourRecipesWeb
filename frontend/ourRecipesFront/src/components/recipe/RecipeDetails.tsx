@@ -275,7 +275,7 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
         {!isEditing ? (
           recipeData && <RecipeDisplay recipe={recipeData as recipe} />
         ) : (
-          // מצב עריכה
+          // Edit mood 
           <RecipeEditForm
             recipeData={{
               ...recipeData,

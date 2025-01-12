@@ -31,34 +31,55 @@ const RecipeList: React.FC<RecipeListProps> = ({
 
   const handleEditClick = (e: React.MouseEvent, recipe: recipe) => {
     e.stopPropagation();
-    
-    setEditModalRecipe(recipe);
+    setEditModalRecipe({
+      ...recipe,
+      id: recipe.id,
+      telegram_id: recipe.telegram_id,
+      ingredients: recipe.ingredients || [],
+      instructions: recipe.instructions || recipe.details || "",
+      categories: recipe.categories || [],
+      preparation_time: recipe.preparation_time,
+      difficulty: recipe.difficulty,
+    });
   };
 
-  const handleSaveEdit = async () => {
+  const handleSaveEdit = async (updatedFormData: recipe) => {
+    console.log('Saving updated recipe:', updatedFormData); // Debug log
+    
     if (editModalRecipe && onRecipeUpdate) {
-      const formattedRecipe = `כותרת: ${editModalRecipe.title}
-${editModalRecipe.categories?.length ? `\nקטגוריות: ${editModalRecipe.categories.join(', ')}` : ''}
-${editModalRecipe.preparation_time ? `\nזמן הכנה: ${editModalRecipe.preparation_time} דקות` : ''}
-${editModalRecipe.difficulty ? `\nרמת קושי: ${editModalRecipe.difficulty}` : ''}
-\nרשימת מצרכים:\n-${Array.isArray(editModalRecipe.ingredients) ? editModalRecipe.ingredients.join("\n-") : editModalRecipe.ingredients}
-\nהוראות הכנה:\n${editModalRecipe.instructions || ""}`;
-
       try {
-        const recipe = recipes.find(r => r.telegram_id === editModalRecipe.id);
-        if (!recipe?.telegram_id) {
+        if (!editModalRecipe.telegram_id) {
           throw new Error("Missing telegram_id");
         }
 
+        // Update the recipe data with the form changes
+        const updatedRecipeData = {
+          ...editModalRecipe,
+          title: updatedFormData.title,
+          ingredients: updatedFormData.ingredients,
+          instructions: updatedFormData.instructions,
+          image: updatedFormData.image,
+          categories: updatedFormData.categories,
+          preparation_time: updatedFormData.preparation_time,
+          difficulty: updatedFormData.difficulty,
+        };
+
+        const formattedRecipe = `כותרת: ${updatedRecipeData.title}
+${updatedRecipeData.categories?.length ? `\nקטגוריות: ${updatedRecipeData.categories.join(', ')}` : ''}
+${updatedRecipeData.preparation_time ? `\nזמן הכנה: ${updatedRecipeData.preparation_time} דקות` : ''}
+${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedRecipeData.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}` : ''}
+\nרשימת מצרכים:\n-${Array.isArray(updatedRecipeData.ingredients) ? updatedRecipeData.ingredients.join("\n-") : updatedRecipeData.ingredients}
+\nהוראות הכנה:\n${updatedRecipeData.instructions || ""}`;
+
         const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/recipes/update/${recipe.telegram_id}`,
+          `${process.env.NEXT_PUBLIC_API_URL}/recipes/update/${editModalRecipe.telegram_id}`,
           {
             method: "PUT",
             headers: { "Content-Type": "application/json" },
             credentials: "include",
             body: JSON.stringify({
               newText: formattedRecipe,
-              image: editModalRecipe.image,
+              image: updatedRecipeData.image,
             }),
           }
         );
@@ -67,11 +88,11 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${editModalRecipe.difficulty}
 
         const updatedRecipe = await response.json();
         await onRecipeUpdate(updatedRecipe);
+        setEditModalRecipe(null);
       } catch (error) {
         console.error("Error updating recipe:", error);
       }
     }
-    setEditModalRecipe(null);
   };
 
   const renderRecipePreview = (recipe: recipe) => {
@@ -233,8 +254,8 @@ ${editModalRecipe.difficulty ? `\nרמת קושי: ${editModalRecipe.difficulty}
           <RecipeEditForm
             recipeData={editModalRecipe}
             onSave={async (updatedRecipe) => {
-              await handleSaveEdit();
-              setEditModalRecipe(null);
+             
+              await handleSaveEdit(updatedRecipe);
             }}
             onCancel={() => setEditModalRecipe(null)}
           />
