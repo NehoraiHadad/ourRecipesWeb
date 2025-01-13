@@ -4,75 +4,173 @@ import { useState, useEffect } from 'react'
 import { useNotification } from '@/context/NotificationContext'
 import { useFont } from '@/context/FontContext'
 
+// Add notification sound
+const timerEndSound = typeof window !== 'undefined' 
+  ? new Audio('/sounds/timer-end.mp3') 
+  : null;
+
+// Add mute state management
+if (typeof window !== 'undefined') {
+  window.isSoundMuted = window.isSoundMuted || false;
+}
+
+export const toggleSound = () => {
+  if (typeof window !== 'undefined') {
+    window.isSoundMuted = !window.isSoundMuted;
+    window.listeners.forEach(listener => listener());
+  }
+}
+
+// Add to global window object
+if (typeof window !== 'undefined') {
+  window.toggleSound = toggleSound;
+}
+
 interface ActiveTimer {
   id: string
   stepNumber: number
   timeLeft: number
   description: string
+  isPaused?: boolean
+  isEnding?: boolean
 }
 
 const formatTime = (seconds: number): string => {
   const minutes = Math.floor(seconds / 60)
   const remainingSeconds = seconds % 60
-  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`
+  return `${minutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}`
+}
+
+// Global state for active timers
+declare global {
+  interface Window {
+    activeTimersState: ActiveTimer[]
+    listeners: (() => void)[]
+    addActiveTimer: (timer: Omit<ActiveTimer, 'id' | 'isPaused'>) => string
+    removeActiveTimer: (id: string) => void
+    updateActiveTimer: (id: string, updates: Partial<ActiveTimer>) => void
+    pauseTimer: (id: string) => void
+    resumeTimer: (id: string) => void
+    isSoundMuted: boolean
+    toggleSound: () => void
+  }
+}
+
+if (typeof window !== 'undefined') {
+  window.activeTimersState = window.activeTimersState || []
+  window.listeners = window.listeners || []
+}
+
+export const addActiveTimer = (timer: Omit<ActiveTimer, 'id' | 'isPaused'>) => {
+  const newTimer = { ...timer, id: Math.random().toString(36).slice(2), isPaused: true }
+  if (typeof window !== 'undefined') {
+    window.activeTimersState = [...window.activeTimersState, newTimer]
+    window.listeners.forEach(listener => listener())
+  }
+  return newTimer.id
+}
+
+export const removeActiveTimer = (id: string) => {
+  if (typeof window !== 'undefined') {
+    window.activeTimersState = window.activeTimersState.filter(timer => timer.id !== id)
+    window.listeners.forEach(listener => listener())
+  }
+}
+
+export const updateActiveTimer = (id: string, updates: Partial<ActiveTimer>) => {
+  if (typeof window !== 'undefined') {
+    window.activeTimersState = window.activeTimersState.map(timer => 
+      timer.id === id ? { ...timer, ...updates } : timer
+    )
+    window.listeners.forEach(listener => listener())
+  }
+}
+
+export const pauseTimer = (id: string) => {
+  if (typeof window !== 'undefined') {
+    window.activeTimersState = window.activeTimersState.map(timer => 
+      timer.id === id ? { ...timer, isPaused: true } : timer
+    )
+    window.listeners.forEach(listener => listener())
+  }
+}
+
+export const resumeTimer = (id: string) => {
+  if (typeof window !== 'undefined') {
+    window.activeTimersState = window.activeTimersState.map(timer => 
+      timer.id === id ? { ...timer, isPaused: false } : timer
+    )
+    window.listeners.forEach(listener => listener())
+  }
+}
+
+// Expose functions globally
+if (typeof window !== 'undefined') {
+  window.addActiveTimer = addActiveTimer
+  window.removeActiveTimer = removeActiveTimer
+  window.updateActiveTimer = updateActiveTimer
+  window.pauseTimer = pauseTimer
+  window.resumeTimer = resumeTimer
 }
 
 export function ActiveTimers() {
-  const [activeTimers, setActiveTimers] = useState<ActiveTimer[]>([])
+  const [timers, setTimers] = useState<ActiveTimer[]>(typeof window !== 'undefined' ? window.activeTimersState : [])
   const { addNotification } = useNotification()
   const { currentFont } = useFont()
 
   useEffect(() => {
+    const handleUpdate = () => {
+      if (typeof window !== 'undefined') {
+        setTimers([...window.activeTimersState])
+      }
+    }
+    if (typeof window !== 'undefined') {
+      window.listeners.push(handleUpdate)
+    }
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.listeners = window.listeners.filter(l => l !== handleUpdate)
+      }
+    }
+  }, [])
+
+  useEffect(() => {
     const interval = setInterval(() => {
-      setActiveTimers(prevTimers => {
-        const updatedTimers = prevTimers.map(timer => ({
+      if (typeof window !== 'undefined') {
+        window.activeTimersState = window.activeTimersState.map(timer => ({
           ...timer,
-          timeLeft: Math.max(0, timer.timeLeft - 1)
+          timeLeft: timer.isPaused ? timer.timeLeft : Math.max(0, timer.timeLeft - 1)
         }))
 
-        updatedTimers.forEach(timer => {
+        window.activeTimersState.forEach(timer => {
           if (timer.timeLeft === 0) {
+            // Play sound only if not muted
+            if (timerEndSound && !window.isSoundMuted) {
+              timerEndSound.play().catch(() => {
+                // Handle any playback errors silently
+              });
+            }
+            
+            // Vibrate if available
+            if ('vibrate' in navigator) {
+              navigator.vibrate([200, 100, 200]);
+            }
+
             addNotification({
-              message: `טיימר ${timer.stepNumber} הסתיים!`,
+              message: `טיימר ${timer.description} הסתיים!`,
               type: 'info',
               duration: 5000
             })
           }
         })
 
-        return updatedTimers.filter(timer => timer.timeLeft > 0)
-      })
+        window.activeTimersState = window.activeTimersState.filter(timer => timer.timeLeft > 0)
+        window.listeners.forEach(listener => listener())
+      }
     }, 1000)
 
     return () => clearInterval(interval)
   }, [addNotification])
 
-  if (activeTimers.length === 0) return null
-
-  return (
-    <div className="fixed bottom-4 left-4 z-40">
-      <div className="bg-white/95 backdrop-blur-sm rounded-xl shadow-warm border border-primary-100 p-4 space-y-3">
-        <h3 className={`font-handwriting-${currentFont} text-lg text-secondary-800 border-b border-secondary-100 pb-2`}>
-          טיימרים פעילים
-        </h3>
-        <div className="space-y-2.5">
-          {activeTimers.map(timer => (
-            <div key={timer.id} className="flex items-center gap-3 bg-secondary-50/50 rounded-lg p-2">
-              <div className="font-mono text-lg font-medium text-primary-600 bg-white px-2 py-1 rounded-md shadow-sm">
-                {formatTime(timer.timeLeft)}
-              </div>
-              <div className="flex-1">
-                <div className={`font-handwriting-${currentFont} text-base text-secondary-700`}>
-                  שלב {timer.stepNumber}
-                </div>
-                <div className="text-xs text-secondary-500 line-clamp-1">
-                  {timer.description}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  )
+  return null // We don't need to render anything anymore
 } 

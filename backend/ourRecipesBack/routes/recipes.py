@@ -230,6 +230,26 @@ def get_recipe(recipe_id):
         return jsonify({'error': str(e)}), 500
 
 
+@recipes_bp.route("/refine", methods=["POST"])
+@jwt_required()
+def refine_recipe():
+    """Refine an existing recipe using AI based on user feedback"""
+    try:
+        data = request.get_json()
+        if not data or not data.get("recipe_text") or not data.get("refinement_request"):
+            return jsonify({"error": "Missing required fields"}), 400
+
+        refined_recipe = AIService.refine_recipe(
+            recipe_text=data["recipe_text"],
+            refinement_request=data["refinement_request"]
+        )
+        return jsonify({"status": "success", "message": refined_recipe}), 200
+
+    except Exception as e:
+        print(f"Recipe refinement error in route: {str(e)}", flush=True)
+        return jsonify({"error": "Refinement failed"}), 500
+
+
 # Helper functions
 def _process_image_data(image_data):
     """Process and validate image data"""

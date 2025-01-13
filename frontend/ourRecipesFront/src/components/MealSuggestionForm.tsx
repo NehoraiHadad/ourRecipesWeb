@@ -5,6 +5,7 @@ import { parseRecipe } from "../utils/formatChecker";
 import { useAuthContext } from "../context/AuthContext";
 import { useNotification } from '@/context/NotificationContext'
 import { Button } from '@/components/ui/Button'
+import { Input } from '@/components/ui/Input'
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
@@ -30,8 +31,13 @@ const MealSuggestionForm: React.FC = () => {
   const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
   const [recipeText, setRecipeText] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
+  const [savingToTelegram, setSavingToTelegram] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const { addNotification } = useNotification()
+  const [refinementRequest, setRefinementRequest] = useState<string>("");
+  const [isRefining, setIsRefining] = useState<boolean>(false);
+  const [refinementCount, setRefinementCount] = useState<number>(0);
+  const [refinementHistory, setRefinementHistory] = useState<string[]>([]);
 
   const fetchRecipe = async () => {
     setLoadingRecipe(true);
@@ -63,7 +69,6 @@ const MealSuggestionForm: React.FC = () => {
       if (result.message) {
         setRecipeText(result.message);
         const parsedRecipe = parseRecipe(result.message);
-        console.log(parsedRecipe);
         setRecipe({
           title: parsedRecipe.title,
           ingredients: parsedRecipe.ingredients,
@@ -83,6 +88,73 @@ const MealSuggestionForm: React.FC = () => {
     } catch (error: any) {
       setError(error.message);
       setRecipe(null);
+    } finally {
+      setLoadingRecipe(false);
+    }
+  };
+
+  const refineRecipe = async () => {
+    if (!recipeText || !refinementRequest) return;
+    if (refinementCount >= 3) {
+      addNotification({
+        message: 'הגעת למקסימום השיפורים האפשרי (3)',
+        type: 'warning',
+        duration: 5000
+      });
+      return;
+    }
+
+    setLoadingRecipe(true);
+    setError("");
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/refine`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            recipe_text: recipeText,
+            refinement_request: refinementRequest,
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to refine the recipe");
+      }
+
+      const result = await response.json();
+      if (result.message) {
+        setRecipeText(result.message);
+        const parsedRecipe = parseRecipe(result.message);
+        setRecipe({
+          title: parsedRecipe.title,
+          ingredients: parsedRecipe.ingredients,
+          instructions: parsedRecipe.instructions,
+          categories: parsedRecipe.categories,
+          preparation_time: parsedRecipe.preparation_time,
+          difficulty: parsedRecipe.difficulty,
+        });
+
+        // Update refinement history and count
+        setRefinementHistory(prev => [...prev, refinementRequest]);
+        setRefinementCount(prev => prev + 1);
+        
+        // Clear refinement request after successful refinement
+        setRefinementRequest("");
+        
+        // Fetch new photo if requested
+        if (photoRequested) {
+          fetchPhoto(result.message);
+        }
+      } else {
+        throw new Error("No recipe received");
+      }
+    } catch (error: any) {
+      setError(error.message);
     } finally {
       setLoadingRecipe(false);
     }
@@ -132,9 +204,28 @@ const MealSuggestionForm: React.FC = () => {
     }
   }
 
+  const handleRefinementSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!refinementRequest.trim()) return;
+    
+    setLoadingRecipe(true);
+    try {
+      await refineRecipe();
+    } catch (error) {
+      addNotification({
+        message: 'שגיאה בשיפור המתכון',
+        type: 'error',
+        duration: 5000
+      });
+    } finally {
+      setLoadingRecipe(false);
+    }
+  };
+
   const handleMealTypeChange = (event: ChangeEvent<HTMLSelectElement>) => {
     setMealType(event.target.value as MealType);
   };
+
   const handleCancel = () => {
     setIngredients("");
     setMealType("ארוחת בוקר");
@@ -144,10 +235,14 @@ const MealSuggestionForm: React.FC = () => {
     setPhotoRequested(false);
     setRecipe(null);
     setError("");
+    setRefinementRequest("");
+    setIsRefining(false);
+    setRefinementCount(0);
+    setRefinementHistory([]);
   };
 
   const sendToTelegram = async (data: {}) => {
-    setLoading(true);
+    setSavingToTelegram(true);
     try {
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/send_recipe`,
@@ -173,9 +268,10 @@ const MealSuggestionForm: React.FC = () => {
       // setShowMessage({ status: true, message: "שגיאה בשמירת המתכון" });
       throw error;
     } finally {
-      setLoading(false);
+      setSavingToTelegram(false);
     }
   };
+
   return (
     <div className="w-full">
       {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
@@ -197,27 +293,71 @@ const MealSuggestionForm: React.FC = () => {
             parse_errors: null,
             created_at: new Date().toISOString(),
           }} />
-          <div className="flex justify-between gap-3">
-            <Button
-              variant="secondary"
-              onClick={handleCancel}
-              className="flex-1"
-            >
-              הצעה חדשה
-            </Button>
-            {authState.canEdit && (
+
+          {/* Recipe Refinement Form */}
+          <div className="mt-4 space-y-4">
+            {refinementHistory.length > 0 && (
+              <div className="space-y-2">
+                <h3 className="text-sm font-medium text-secondary-700">היסטוריית שיפורים:</h3>
+                <div className="space-y-1">
+                  {refinementHistory.map((request, index) => (
+                    <div key={index} className="text-sm text-secondary-600 bg-secondary-50 p-2 rounded-md">
+                      {index + 1}. {request}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            <div className="flex flex-col space-y-2">
+              <div className="flex justify-between items-center">
+                <label htmlFor="refinement" className="text-sm font-medium text-secondary-700">
+                  רוצה לשפר את המתכון? ספר לי איך
+                </label>
+                <span className="text-sm text-secondary-500">
+                  {refinementCount}/3 שיפורים
+                </span>
+              </div>
+              <Input
+                id="refinement"
+                value={refinementRequest}
+                onChange={(e) => setRefinementRequest(e.target.value)}
+                placeholder="לדוגמה: תוסיף יותר ירקות, הפוך אותו לטבעוני, הפחת את הכמויות..."
+                className="w-full"
+                disabled={refinementCount >= 3}
+              />
+            </div>
+            <div className="flex justify-between gap-3">
               <Button
-                variant="primary"
-                onClick={() => sendToTelegram({
-                  newText: recipeText,
-                  image: recipe.image,
-                })}
-                isLoading={loading}
+                variant="secondary"
+                onClick={handleCancel}
                 className="flex-1"
               >
-                שמור בטלגרם
+                מתכון חדש
               </Button>
-            )}
+              <Button
+                variant="primary"
+                onClick={handleRefinementSubmit}
+                isLoading={loadingRecipe}
+                disabled={!refinementRequest.trim() || refinementCount >= 3}
+                className="flex-1"
+              >
+                שפר מתכון {refinementCount < 3 ? "" : "(הגעת למקסימום)"}
+              </Button>
+              {authState.canEdit && (
+                <Button
+                  variant="primary"
+                  onClick={() => sendToTelegram({
+                    newText: recipeText,
+                    image: recipe.image,
+                  })}
+                  isLoading={savingToTelegram}
+                  className="flex-1"
+                >
+                  שמור בטלגרם
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       ) : (

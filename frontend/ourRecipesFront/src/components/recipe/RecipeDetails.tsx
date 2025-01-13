@@ -11,6 +11,7 @@ import { Typography } from '@/components/ui/Typography';
 import { difficultyDisplay } from '@/utils/difficulty';
 import VersionHistory from '@/components/VersionHistory';
 import { useRecipeHistory } from '@/hooks/useRecipeHistory';
+import { ActiveTimers } from './ActiveTimers';
 
 interface RecipeDetailProps {
   recipe: recipe;
@@ -51,6 +52,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
     preparation_time?: number;
     difficulty?: Difficulty;
   } | null>(null);
+  const [showTimer, setShowTimer] = useState(false);
 
   useEffect(() => {
     if (isRecipeUpdated(recipe.title + "\n" + recipe.details)) {
@@ -269,126 +271,139 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
   };
 
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
-      {/* Recipe Content */}
-      <div className="relative">
-        {!isEditing ? (
-          recipeData && <RecipeDisplay recipe={recipeData as recipe} />
-        ) : (
-          // מצב עריכה
-          <RecipeEditForm
-            recipeData={{
-              ...recipeData,
-              telegram_id: recipe.telegram_id,
-              details: recipe.details,
-              is_parsed: recipe.is_parsed,
-              parse_errors: recipe.parse_errors,
-              created_at: recipe.created_at,
-              difficulty: recipeData?.difficulty,
-              ingredients: recipeData?.ingredients || [],
-              preparation_time: recipeData?.preparation_time,
-              categories: recipeData?.categories || [],
-            } as recipe}
-            onSave={handleSaveManualEdit}
-            onCancel={onEditEnd}
-          />
+    <>
+      <div className="max-w-4xl mx-auto bg-white rounded-2xl overflow-hidden">
+        {/* Recipe Content */}
+        <div className="relative">
+          {!isEditing ? (
+            <>
+              {recipeData && (
+                <RecipeDisplay 
+                  recipe={recipeData as recipe} 
+                  onPrepTimeClick={() => setShowTimer(prev => !prev)}
+                  showTimer={showTimer}
+                />
+              )}
+            </>
+          ) : (
+            // Edit mood 
+            <RecipeEditForm
+              recipeData={{
+                ...recipeData,
+                telegram_id: recipe.telegram_id,
+                details: recipe.details,
+                is_parsed: recipe.is_parsed,
+                parse_errors: recipe.parse_errors,
+                created_at: recipe.created_at,
+                difficulty: recipeData?.difficulty,
+                ingredients: recipeData?.ingredients || [],
+                preparation_time: recipeData?.preparation_time,
+                categories: recipeData?.categories || [],
+              } as recipe}
+              onSave={handleSaveManualEdit}
+              onCancel={onEditEnd}
+            />
+          )}
+        </div>
+
+        {/* Action Buttons Container - Only show when not editing */}
+        {!isEditing && (
+          <div className="p-6">
+            {/* Edit Controls - AI and Manual Edit */}
+            {authState.canEdit && reformat_recipe === "" && (
+              <div className="flex justify-center gap-4">
+                <Button
+                  variant="primary"
+                  onClick={fetchReformattedRecipe}
+                  isLoading={isLoading}
+                  className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all"
+                >
+                  <Typography variant="body" className="font-handwriting-amit">AI</Typography>
+                  <Typography variant="h3" className="text-lg">✨</Typography>
+                </Button>
+                <Button 
+                  variant="secondary" 
+                  onClick={handleEditClick}
+                  className="shadow-warm hover:shadow-lg transition-all"
+                >
+                  <Typography variant="body" className="font-handwriting-amit">עריכה ידנית</Typography>
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => setShowVersionHistory(true)}
+                  className="shadow-warm hover:shadow-lg transition-all"
+                >
+                  <Typography variant="body" className="font-handwriting-amit">היסטוריית גרסאות</Typography>
+                </Button>
+              </div>
+            )}
+
+            {/* Version History Modal */}
+            {showVersionHistory && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+                <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
+                  <VersionHistory
+                    recipeId={recipe.id}
+                    onRestore={handleVersionRestore}
+                    onClose={() => setShowVersionHistory(false)}
+                  />
+                </div>
+              </div>
+            )}
+
+            {/* Save/Cancel Controls for AI edits */}
+            {authState.canEdit && reformat_recipe && !isLoading && (
+              <div className="flex justify-center gap-4">
+                <Button
+                  variant="primary"
+                  onClick={() => updateRecipeInTelegram({
+                    messageId: recipe.id,
+                    newText: reformat_recipe,
+                  })}
+                  className="shadow-warm hover:shadow-lg transition-all"
+                >
+                  <Typography variant="body" className="font-handwriting-amit">שמור</Typography>
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    if (!isRecipeUpdated(recipe.title + "\n" + recipe.details)) {
+                      setNewFormat(false);
+                    }
+                    setReformat_recipe("");
+                  }}
+                  className="shadow-warm hover:shadow-lg transition-all"
+                >
+                  <Typography variant="body" className="font-handwriting-amit">בטל</Typography>
+                </Button>
+              </div>
+            )}
+
+            {/* Loading State */}
+            {isLoading && reformat_recipe && (
+              <div className="flex justify-center">
+                <Spinner message="מעבד את המתכון..." />
+              </div>
+            )}
+
+            {/* Status Message */}
+            {showMessage.status && (
+              <div className="mt-4 text-center">
+                <Typography variant="body">
+                  <TypingEffect
+                    message={showMessage.message}
+                    onComplete={handleComplete}
+                  />
+                </Typography>
+              </div>
+            )}
+          </div>
         )}
       </div>
 
-      {/* Action Buttons Container - Only show when not editing */}
-      {!isEditing && (
-        <div className="p-6">
-          {/* Edit Controls - AI and Manual Edit */}
-          {authState.canEdit && reformat_recipe === "" && (
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="primary"
-                onClick={fetchReformattedRecipe}
-                isLoading={isLoading}
-                className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all"
-              >
-                <Typography variant="body" className="font-handwriting-amit">AI</Typography>
-                <Typography variant="h3" className="text-lg">✨</Typography>
-              </Button>
-              <Button 
-                variant="secondary" 
-                onClick={handleEditClick}
-                className="shadow-warm hover:shadow-lg transition-all"
-              >
-                <Typography variant="body" className="font-handwriting-amit">עריכה ידנית</Typography>
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => setShowVersionHistory(true)}
-                className="shadow-warm hover:shadow-lg transition-all"
-              >
-                <Typography variant="body" className="font-handwriting-amit">היסטוריית גרסאות</Typography>
-              </Button>
-            </div>
-          )}
-
-          {/* Version History Modal */}
-          {showVersionHistory && (
-            <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-              <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-                <VersionHistory
-                  recipeId={recipe.id}
-                  onRestore={handleVersionRestore}
-                  onClose={() => setShowVersionHistory(false)}
-                />
-              </div>
-            </div>
-          )}
-
-          {/* Save/Cancel Controls for AI edits */}
-          {authState.canEdit && reformat_recipe && !isLoading && (
-            <div className="flex justify-center gap-4">
-              <Button
-                variant="primary"
-                onClick={() => updateRecipeInTelegram({
-                  messageId: recipe.id,
-                  newText: reformat_recipe,
-                })}
-                className="shadow-warm hover:shadow-lg transition-all"
-              >
-                <Typography variant="body" className="font-handwriting-amit">שמור</Typography>
-              </Button>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  if (!isRecipeUpdated(recipe.title + "\n" + recipe.details)) {
-                    setNewFormat(false);
-                  }
-                  setReformat_recipe("");
-                }}
-                className="shadow-warm hover:shadow-lg transition-all"
-              >
-                <Typography variant="body" className="font-handwriting-amit">בטל</Typography>
-              </Button>
-            </div>
-          )}
-
-          {/* Loading State */}
-          {isLoading && reformat_recipe && (
-            <div className="flex justify-center">
-              <Spinner message="מעבד את המתכון..." />
-            </div>
-          )}
-
-          {/* Status Message */}
-          {showMessage.status && (
-            <div className="mt-4 text-center">
-              <Typography variant="body">
-                <TypingEffect
-                  message={showMessage.message}
-                  onComplete={handleComplete}
-                />
-              </Typography>
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+      {/* Active Timers */}
+      <ActiveTimers />
+    </>
   );
 };
 
