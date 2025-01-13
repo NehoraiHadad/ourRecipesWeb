@@ -114,12 +114,34 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
             className="absolute top-3 right-3 z-10"
             onClick={(e) => handleCheckboxClick(e, recipe.id)}
           >
-            <input
-              type="checkbox"
-              checked={selectedIds.includes(recipe.id)}
-              className="h-5 w-5 text-blue-500 rounded border-gray-300 focus:ring-blue-400 cursor-pointer"
-              readOnly
-            />
+            <div className="relative flex items-center justify-center bg-white/80 backdrop-blur-sm rounded-md p-0.5">
+              <input
+                type="checkbox"
+                checked={selectedIds.includes(recipe.id)}
+                className="peer h-[18px] w-[18px] cursor-pointer appearance-none rounded-[4px] border-2 border-secondary-300
+                       checked:border-primary-500 checked:bg-primary-500
+                       hover:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:ring-offset-1
+                       transition-all duration-200"
+                readOnly
+              />
+              <svg
+                className="pointer-events-none absolute opacity-0 peer-checked:opacity-100
+                       transition-opacity duration-200"
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.5 4L3.5 6L8.5 1"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
           </div>
 
           <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">

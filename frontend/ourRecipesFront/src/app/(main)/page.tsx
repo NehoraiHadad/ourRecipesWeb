@@ -33,15 +33,32 @@ export default function Page() {
   const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleRecipeClick = (recipeId: number) => {
-    // Try to find recipe in existing data sources
-    const recipe = Object.values(recipes).find(r => r.id === recipeId) || 
-                  favoriteRecipes.find(r => r.id === recipeId);
-    
-    if (recipe) {
-      setSelectedRecipe(recipe);
-    } else {
-      setError('לא ניתן למצוא את המתכון');
+  const handleRecipeClick = async (recipeId: number) => {
+    setIsLoadingRecipe(true);
+    try {
+      // Try to find recipe in existing data sources
+      const recipe = Object.values(recipes).find(r => r.id === recipeId) || 
+                    favoriteRecipes.find(r => r.id === recipeId);
+      
+      if (recipe) {
+        setSelectedRecipe(recipe);
+      } else {
+        // Fetch from server if not found locally
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipeId}`, {
+          credentials: 'include'
+        });
+        
+        if (!response.ok) {
+          throw new Error('לא ניתן למצוא את המתכון');
+        }
+        
+        const fetchedRecipe = await response.json();
+        setSelectedRecipe(fetchedRecipe);
+      }
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'לא ניתן למצוא את המתכון');
+    } finally {
+      setIsLoadingRecipe(false);
     }
   };
 

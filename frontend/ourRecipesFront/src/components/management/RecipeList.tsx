@@ -206,13 +206,36 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
         >
           <div className="flex items-center gap-4">
             {/* Checkbox */}
-            <div onClick={(e) => e.stopPropagation()}>
+            <div 
+              onClick={(e) => e.stopPropagation()}
+              className="relative flex items-center justify-center"
+            >
               <input
                 type="checkbox"
                 checked={selectedIds.includes(recipe.id)}
                 onChange={() => onSelect(recipe.id)}
-                className="h-4 w-4 text-blue-600 rounded border-gray-300"
+                className="peer h-[18px] w-[18px] cursor-pointer appearance-none rounded-[4px] border-2 border-secondary-300
+                         checked:border-primary-500 checked:bg-primary-500
+                         hover:border-primary-400 focus:ring-2 focus:ring-primary-100 focus:ring-offset-1
+                         transition-all duration-200"
               />
+              <svg
+                className="pointer-events-none absolute opacity-0 peer-checked:opacity-100
+                         transition-opacity duration-200"
+                width="10"
+                height="8"
+                viewBox="0 0 10 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1.5 4L3.5 6L8.5 1"
+                  stroke="white"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </div>
 
             {/* Recipe Content */}

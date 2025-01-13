@@ -558,7 +558,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
 
         <div className="relative">
           {recipe.ingredients && recipe.ingredients.length > 0 && (
-            <div className="absolute left-1 top-0 flex flex-col sm:flex-row items-center gap-0.5 bg-white/95 backdrop-blur 
+            <div className="absolute sm:left-1 -left-4 -top-8 flex flex-col sm:flex-row items-center gap-0.5 bg-white/95 backdrop-blur 
                           border border-primary-100 rounded-lg sm:rounded-full sm:py-1 sm:pl-1 sm:pr-2 p-1
                           shadow-sm hover:shadow-md transition-all duration-300 z-10">
               <button
