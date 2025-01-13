@@ -184,3 +184,57 @@ class AIService:
         except Exception as e:
             print(f"Recipe reformatting error: {str(e)}")
             raise
+
+    @classmethod
+    def refine_recipe(cls, recipe_text, refinement_request):
+        """
+        Refine an existing recipe based on user feedback
+
+        Args:
+            recipe_text (str): The original recipe text
+            refinement_request (str): User's refinement request
+
+        Returns:
+            str: Refined recipe text
+        """
+        try:
+            # Configure AI model
+            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
+            model = genai.GenerativeModel(
+                model_name="gemini-1.5-flash",
+                system_instruction="""
+                התנהג כמו שף מקצועי שיודע לשפר מתכונים קיימים לפי בקשות המשתמש.
+                אתה מקבל מתכון קיים ובקשה לשיפור. עליך לשמור על מבנה המתכון המקורי אבל לשנות אותו לפי הבקשה.
+                
+                המתכון צריך להישאר בדיוק באותו פורמט:
+                
+                כותרת: [שם המתכון]
+                קטגוריות: [קטגוריות מופרדות בפסיקים]
+                זמן הכנה: [זמן בדקות]
+                רמת קושי: [קל/בינוני/מורכב]
+                רשימת מצרכים:
+                - [מצרך 1]
+                - [מצרך 2]
+                הוראות הכנה:
+                [הוראות ההכנה]
+                """
+            )
+
+            # Build prompt
+            prompt = f"""
+            זהו המתכון המקורי:
+            {recipe_text}
+            
+            בקשת השיפור של המשתמש:
+            {refinement_request}
+            
+            אנא שפר את המתכון לפי הבקשה תוך שמירה על אותו פורמט בדיוק.
+            """
+
+            # Generate response
+            response = model.generate_content(prompt)
+            return response.text
+
+        except Exception as e:
+            print(f"Recipe refinement error: {str(e)}")
+            raise
