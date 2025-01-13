@@ -1,5 +1,5 @@
 import useOutsideClick from "../hooks/useOutsideClick";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useFont } from '@/context/FontContext';
 import { Button } from '@/components/ui/Button';
 import { cn } from '@/utils/cn';
@@ -33,14 +33,25 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const { currentFont } = useFont();
+  const [isClosing, setIsClosing] = useState(false);
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsClosing(false);
+      requestAnimationFrame(() => {
+        document.body.style.overflow = 'hidden';
+      });
+    } else {
+      setIsClosing(true);
+      document.body.style.overflow = '';
+    }
+  }, [isOpen]);
 
   useOutsideClick(modalRef, () => {
     if (closeOnOutsideClick) {
       onClose();
     }
   });
-
-  if (!isOpen) return null;
 
   const sizeClasses = {
     sm: 'max-w-md',
@@ -52,13 +63,27 @@ const Modal: React.FC<ModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0 z-50 overflow-y-auto"
+      className={cn(
+        "fixed inset-0 z-50 overflow-y-auto",
+        "transition-all duration-300 ease-in-out",
+        isOpen && !isClosing 
+          ? "opacity-100 visible pointer-events-auto" 
+          : "opacity-0 invisible pointer-events-none"
+      )}
       aria-labelledby="modal-title"
       role="dialog"
       aria-modal="true"
+      style={{ perspective: '1000px' }}
     >
       {/* Overlay */}
-      <div className="fixed inset-0 bg-secondary-900/40 backdrop-blur-sm transition-opacity" />
+      <div 
+        className={cn(
+          "fixed inset-0 bg-secondary-900/60 backdrop-blur-[4px]",
+          "transition-all duration-300",
+          isOpen && !isClosing ? "opacity-100" : "opacity-0"
+        )} 
+        onClick={() => closeOnOutsideClick && onClose()}
+      />
 
       {/* Modal Container */}
       <div className="flex min-h-full items-center justify-center p-4 text-center">
@@ -66,10 +91,18 @@ const Modal: React.FC<ModalProps> = ({
           ref={modalRef}
           className={cn(
             'relative w-full transform overflow-hidden rounded-2xl bg-white text-right',
-            'shadow-warm-lg transition-all duration-300 ease-out',
+            'shadow-warm-lg transition-all duration-300',
+            isOpen && !isClosing 
+              ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
+              : 'opacity-0 -translate-y-4 scale-95 rotate-1',
             sizeClasses[size],
             className
           )}
+          style={{
+            transformOrigin: 'center 100px',
+            willChange: 'transform, opacity',
+            transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
+          }}
         >
           {/* Header */}
           {(title || showCloseButton) && (
@@ -107,7 +140,7 @@ const Modal: React.FC<ModalProps> = ({
                       variant="ghost"
                       size="sm"
                       onClick={onClose}
-                      className="w-8 h-8 !p-0 rounded-full"
+                      className="w-8 h-8 !p-0 rounded-full transition-all duration-200 hover:scale-125 hover:rotate-90 active:scale-95"
                       aria-label="סגור"
                     >
                       ✖
