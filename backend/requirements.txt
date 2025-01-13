@@ -8,6 +8,7 @@ requests
 google-generativeai
 Flask-SQLAlchemy>=2.5.0
 flask-caching
+gunicorn
 
 pytest>=7.0.0
 pytest-flask>=1.2.0
