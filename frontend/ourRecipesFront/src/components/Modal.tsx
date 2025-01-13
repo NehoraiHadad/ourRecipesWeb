@@ -45,6 +45,10 @@ const Modal: React.FC<ModalProps> = ({
       setIsClosing(true);
       document.body.style.overflow = '';
     }
+
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isOpen]);
 
   useOutsideClick(modalRef, () => {
@@ -61,10 +65,12 @@ const Modal: React.FC<ModalProps> = ({
     full: 'max-w-[95vw] h-[95vh]'
   };
 
+  if (!isOpen) return null;
+
   return (
     <div 
       className={cn(
-        "fixed inset-0 z-50 overflow-y-auto",
+        "fixed inset-0 z-50",
         "transition-all duration-300 ease-in-out",
         isOpen && !isClosing 
           ? "opacity-100 visible pointer-events-auto" 
@@ -79,89 +85,93 @@ const Modal: React.FC<ModalProps> = ({
       <div 
         className={cn(
           "fixed inset-0 bg-secondary-900/60 backdrop-blur-[4px]",
-          "transition-all duration-300",
+          "transition-all duration-300 min-h-screen",
           isOpen && !isClosing ? "opacity-100" : "opacity-0"
         )} 
         onClick={() => closeOnOutsideClick && onClose()}
+        style={{ minHeight: '100vh' }}
       />
 
       {/* Modal Container */}
-      <div className="flex min-h-full items-center justify-center p-4 text-center">
-        <div
-          ref={modalRef}
-          className={cn(
-            'relative w-full transform overflow-hidden rounded-2xl bg-white text-right',
-            'shadow-warm-lg transition-all duration-300',
-            isOpen && !isClosing 
-              ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
-              : 'opacity-0 -translate-y-4 scale-95 rotate-1',
-            sizeClasses[size],
-            className
-          )}
-          style={{
-            transformOrigin: 'center 100px',
-            willChange: 'transform, opacity',
-            transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)'
-          }}
-        >
-          {/* Header */}
-          {(title || showCloseButton) && (
-            <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-100">
-              <div className="px-6 py-4">
-                <div className="flex items-center justify-between gap-4">
-                  {/* Empty div for spacing when no close button */}
-                  {!showCloseButton && <div className="w-8" />}
-                  
-                  {/* Title Section */}
-                  <div className="flex-1">
-                    {typeof title === 'string' ? (
-                      <h2 
-                        className={cn(
-                          `font-handwriting-${currentFont}`,
-                          'text-xl text-secondary-800 text-center'
-                        )}
-                        id="modal-title"
+      <div className="fixed inset-0">
+        <div className="flex min-h-screen items-center justify-center p-4 text-center">
+          <div
+            ref={modalRef}
+            className={cn(
+              'relative w-full transform overflow-y-auto rounded-2xl bg-white text-right',
+              'shadow-warm-lg transition-all duration-300',
+              isOpen && !isClosing 
+                ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
+                : 'opacity-0 -translate-y-4 scale-95 rotate-1',
+              sizeClasses[size],
+              className
+            )}
+            style={{
+              transformOrigin: 'center 100px',
+              willChange: 'transform, opacity',
+              transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              maxHeight: 'calc(100vh - 2rem)'
+            }}
+          >
+            {/* Header */}
+            {(title || showCloseButton) && (
+              <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-sm border-b border-secondary-100">
+                <div className="px-6 py-4">
+                  <div className="flex items-center justify-between gap-4">
+                    {/* Empty div for spacing when no close button */}
+                    {!showCloseButton && <div className="w-8" />}
+                    
+                    {/* Title Section */}
+                    <div className="flex-1">
+                      {typeof title === 'string' ? (
+                        <h2 
+                          className={cn(
+                            `font-handwriting-${currentFont}`,
+                            'text-xl text-secondary-800 text-center'
+                          )}
+                          id="modal-title"
+                        >
+                          {title}
+                        </h2>
+                      ) : (
+                        title
+                      )}
+                      {description && (
+                        <p className="mt-1 text-sm text-secondary-500 text-center">
+                          {description}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Close Button */}
+                    {showCloseButton && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        onClick={onClose}
+                        className="w-8 h-8 !p-0 rounded-full transition-all duration-200 hover:scale-125 hover:rotate-90 active:scale-95"
+                        aria-label="סגור"
                       >
-                        {title}
-                      </h2>
-                    ) : (
-                      title
-                    )}
-                    {description && (
-                      <p className="mt-1 text-sm text-secondary-500 text-center">
-                        {description}
-                      </p>
+                        ✖
+                      </Button>
                     )}
                   </div>
-
-                  {/* Close Button */}
-                  {showCloseButton && (
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={onClose}
-                      className="w-8 h-8 !p-0 rounded-full transition-all duration-200 hover:scale-125 hover:rotate-90 active:scale-95"
-                      aria-label="סגור"
-                    >
-                      ✖
-                    </Button>
-                  )}
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Content */}
-          <div className={cn('p-6', contentClassName)}>
-            {children}
+            {/* Content */}
+            <div className={cn('p-6', contentClassName)}>
+              {children}
+            </div>
+
+            {/* Footer */}
+            {footer && (
+              <div className="sticky bottom-0 bg-white/80 backdrop-blur-sm border-t border-secondary-100 px-6 py-4">
+                {footer}
+              </div>
+            )}
           </div>
-
-          {/* Footer */}
-          {footer && (
-            <div className="sticky bottom-0 bg-white/80 backdrop-blur-sm border-t border-secondary-100 px-6 py-4">
-              {footer}
-            </div>
-          )}
         </div>
       </div>
     </div>
