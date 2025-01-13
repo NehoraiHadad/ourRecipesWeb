@@ -4,6 +4,7 @@ import localFont from 'next/font/local'
 import { AuthProvider } from '@/context/AuthContext'
 import { NotificationProvider } from '@/context/NotificationContext'
 import { FontProvider } from '@/context/FontContext'
+import { TimerProvider } from '@/context/TimerContext'
 import './globals.css'
 
 const heebo = Heebo({ 
@@ -11,7 +12,6 @@ const heebo = Heebo({
   variable: '--font-heebo'
 })
 
-// הגדרת הגופנים העבריים
 const alemnew = localFont({
   src: '../fonts/Oh_AlemnewEmanuelFeleke-Regular.woff2',
   variable: '--font-alemnew'
@@ -95,7 +95,9 @@ export default function RootLayout({
         <AuthProvider>
           <NotificationProvider>
             <FontProvider>
-              {children}
+              <TimerProvider>
+                {children}
+              </TimerProvider>
             </FontProvider>
           </NotificationProvider>
         </AuthProvider>
