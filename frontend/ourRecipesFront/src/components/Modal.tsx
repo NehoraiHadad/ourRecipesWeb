@@ -33,17 +33,42 @@ const Modal: React.FC<ModalProps> = ({
 }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const { currentFont } = useFont();
-  const [isClosing, setIsClosing] = useState(false);
+  const [isClosing, setIsClosing] = useState(true);
+  const [shouldRender, setShouldRender] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const handleClose = () => {
+    if (!isClosing && !isAnimating) {
+      setIsAnimating(true);
+      setIsClosing(true);
+      setTimeout(() => {
+        onClose();
+        setIsAnimating(false);
+      }, 1000);
+    }
+  };
 
   useEffect(() => {
     if (isOpen) {
-      setIsClosing(false);
-      requestAnimationFrame(() => {
+      setShouldRender(true);
+      setIsAnimating(true);
+      const timer1 = setTimeout(() => {
+        setIsClosing(false);
         document.body.style.overflow = 'hidden';
-      });
+      }, 50);
+      const timer2 = setTimeout(() => {
+        setIsAnimating(false);
+      }, 1000);
+      return () => {
+        clearTimeout(timer1);
+        clearTimeout(timer2);
+      };
     } else {
-      setIsClosing(true);
-      document.body.style.overflow = '';
+      const timer = setTimeout(() => {
+        setShouldRender(false);
+        document.body.style.overflow = '';
+      }, 1000);
+      return () => clearTimeout(timer);
     }
 
     return () => {
@@ -53,7 +78,7 @@ const Modal: React.FC<ModalProps> = ({
 
   useOutsideClick(modalRef, () => {
     if (closeOnOutsideClick) {
-      onClose();
+      handleClose();
     }
   });
 
@@ -65,13 +90,13 @@ const Modal: React.FC<ModalProps> = ({
     full: 'max-w-[95vw] h-[95vh]'
   };
 
-  if (!isOpen) return null;
+  if (!shouldRender) return null;
 
   return (
     <div 
       className={cn(
         "fixed inset-0 z-50",
-        "transition-all duration-300 ease-in-out",
+        "transition-all duration-1000 ease-in-out",
         isOpen && !isClosing 
           ? "opacity-100 visible pointer-events-auto" 
           : "opacity-0 invisible pointer-events-none"
@@ -85,10 +110,10 @@ const Modal: React.FC<ModalProps> = ({
       <div 
         className={cn(
           "fixed inset-0 bg-secondary-900/60 backdrop-blur-[4px]",
-          "transition-all duration-300 min-h-screen",
+          "transition-all duration-1000 ease-in-out min-h-screen",
           isOpen && !isClosing ? "opacity-100" : "opacity-0"
         )} 
-        onClick={() => closeOnOutsideClick && onClose()}
+        onClick={() => closeOnOutsideClick && handleClose()}
         style={{ minHeight: '100vh' }}
       />
 
@@ -99,7 +124,7 @@ const Modal: React.FC<ModalProps> = ({
             ref={modalRef}
             className={cn(
               'relative w-full transform overflow-y-auto rounded-2xl bg-white text-right',
-              'shadow-warm-lg transition-all duration-300',
+              'shadow-warm-lg transition-all duration-1000',
               isOpen && !isClosing 
                 ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
                 : 'opacity-0 -translate-y-4 scale-95 rotate-1',
@@ -109,7 +134,7 @@ const Modal: React.FC<ModalProps> = ({
             style={{
               transformOrigin: 'center 100px',
               willChange: 'transform, opacity',
-              transitionTimingFunction: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
+              transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.4, 1)',
               maxHeight: 'calc(100vh - 2rem)'
             }}
           >
@@ -148,7 +173,7 @@ const Modal: React.FC<ModalProps> = ({
                       <Button
                         variant="ghost"
                         size="sm"
-                        onClick={onClose}
+                        onClick={handleClose}
                         className="w-8 h-8 !p-0 rounded-full transition-all duration-200 hover:scale-125 hover:rotate-90 active:scale-95"
                         aria-label="סגור"
                       >
