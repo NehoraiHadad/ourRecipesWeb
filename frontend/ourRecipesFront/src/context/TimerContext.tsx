@@ -40,12 +40,7 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
   const [isSoundMuted, setIsSoundMuted] = useState(false);
   const { addNotification } = useNotification();
   const [isInitialized, setIsInitialized] = useState(false);
-  const { 
-    sendNotification, 
-    isSupported: isServiceWorkerSupported, 
-    requestNotificationPermission,
-    notificationPermission 
-  } = useServiceWorker();
+  const { sendNotification, isSupported: isServiceWorkerSupported } = useServiceWorker();
 
   // Initialize DB and load saved state
   useEffect(() => {
@@ -58,11 +53,6 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
         setTimers(savedTimers);
         setIsSoundMuted(settings.isSoundMuted);
         setIsInitialized(true);
-
-        // Request notification permission if not already granted
-        if (notificationPermission === 'default') {
-          await requestNotificationPermission();
-        }
       } catch (error) {
         console.error('Failed to initialize timer database:', error);
         addNotification({
@@ -74,7 +64,7 @@ export function TimerProvider({ children }: { children: React.ReactNode }) {
     };
 
     init();
-  }, [addNotification, notificationPermission, requestNotificationPermission]);
+  }, [addNotification]);
 
   const addTimer = async (timer: Omit<Timer, 'id' | 'isPaused'>) => {
     const id = Math.random().toString(36).slice(2);
