@@ -5,21 +5,16 @@ interface ServiceWorkerState {
   registration: ServiceWorkerRegistration | null;
   error: Error | null;
   isSupported: boolean;
-  notificationPermission: NotificationPermission;
 }
 
 export function useServiceWorker() {
   const [state, setState] = useState<ServiceWorkerState>({
     registration: null,
     error: null,
-    isSupported: typeof window !== 'undefined' && 'serviceWorker' in navigator,
-    notificationPermission: typeof window !== 'undefined' && 'Notification' in window 
-      ? Notification.permission 
-      : 'denied'
+    isSupported: typeof window !== 'undefined' && 'serviceWorker' in navigator
   });
   const { addNotification } = useNotification();
 
-  // Handle service worker registration
   useEffect(() => {
     if (!state.isSupported) {
       console.log('Service Workers are not supported');
@@ -28,6 +23,7 @@ export function useServiceWorker() {
 
     const registerServiceWorker = async () => {
       try {
+        // Register Service Worker
         const registration = await navigator.serviceWorker.register('/sw.js');
         setState(prev => ({ ...prev, registration }));
       } catch (error) {
@@ -39,67 +35,33 @@ export function useServiceWorker() {
     registerServiceWorker();
   }, [state.isSupported]);
 
-  // Handle notification permission separately
-  useEffect(() => {
-    if (!('Notification' in window)) return;
-
-    const updatePermissionState = () => {
-      setState(prev => ({ ...prev, notificationPermission: Notification.permission }));
-    };
-
-    // Update initial state
-    updatePermissionState();
-
-    // Listen for permission changes
-    if (typeof window !== 'undefined' && 'permissions' in navigator) {
-      // @ts-ignore - Notification permission change API
-      navigator.permissions.query({ name: 'notifications' }).then(permissionStatus => {
-        permissionStatus.onchange = () => {
-          updatePermissionState();
-        };
-      });
-    }
-  }, []);
-
   const requestNotificationPermission = async () => {
-    if (!('Notification' in window)) {
-      addNotification({
-        message: 'הדפדפן שלך לא תומך בהתראות',
-        type: 'error',
-        duration: 5000
-      });
-      return;
-    }
-
+    if (!('Notification' in window)) return false;
+    
     try {
       const permission = await Notification.requestPermission();
-      setState(prev => ({ ...prev, notificationPermission: permission }));
-      
       if (permission === 'granted') {
         addNotification({
           message: 'התראות טיימר הופעלו בהצלחה',
           type: 'success',
           duration: 3000
         });
-      } else if (permission === 'denied') {
-        addNotification({
-          message: 'לא ניתן להפעיל התראות טיימר ללא אישור',
-          type: 'warning',
-          duration: 5000
-        });
+        return true;
       }
     } catch (error) {
       console.error('Failed to request notification permission:', error);
-      addNotification({
-        message: 'שגיאה בהפעלת התראות',
-        type: 'error',
-        duration: 5000
-      });
     }
+    return false;
   };
 
   const sendNotification = async (description: string) => {
-    if (!state.registration || state.notificationPermission !== 'granted') return;
+    if (!state.registration) return;
+
+    // Request permission if not already granted
+    if (Notification.permission !== 'granted') {
+      const granted = await requestNotificationPermission();
+      if (!granted) return;
+    }
 
     try {
       await state.registration.active?.postMessage({
@@ -113,7 +75,6 @@ export function useServiceWorker() {
 
   return {
     ...state,
-    sendNotification,
-    requestNotificationPermission
+    sendNotification
   };
 } 
