@@ -2,11 +2,14 @@ import asyncio
 import os
 import threading
 from telethon import TelegramClient, events
+from datetime import datetime, timezone
 
 from .services.telegram_service import TelegramService
 from .services.recipe_service import RecipeService
 from .models.sync import SyncLog
+from .models.recipe import Recipe
 from .extensions import db
+from .routes.sync import _perform_sync, _create_sync_log
 
 async def process_new_message(send_client, message, new_channel, sync_log):
     """Process a single new message - copy it to the new channel and sync to DB"""
@@ -102,7 +105,58 @@ def run_monitor(app):
     finally:
         loop.close()
 
+def run_recipe_check(app):
+    """Run the recipe check in a separate thread"""
+    async def _run():
+        await check_and_sync_recipes(app)
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(_run())
+
 def start_background_tasks(app):
     """Start all background tasks"""
+    # Start monitor thread
     monitor_thread = threading.Thread(target=run_monitor, args=(app,), daemon=True)
     monitor_thread.start()
+    
+    # Start recipe check thread
+    recipe_check_thread = threading.Thread(target=run_recipe_check, args=(app,), daemon=True)
+    recipe_check_thread.start()
+
+async def check_and_sync_recipes(app):
+    """Periodically check if recipes exist in DB and trigger sync if needed"""
+    print("Starting periodic recipe check...", flush=True)
+    
+    with app.app_context():
+        while True:
+            try:
+                # Check if there are any recipes in the database
+                recipe_count = Recipe.query.count()
+                
+                if recipe_count == 0:
+                    print("No recipes found in database, triggering full sync...", flush=True)
+                    
+                    # Create sync log for the full sync
+                    sync_log = _create_sync_log()
+                    
+                    try:
+                        # Perform full sync
+                        await _perform_sync(sync_log)
+                        sync_log.status = "completed"
+                        print("Full sync completed successfully", flush=True)
+                    except Exception as e:
+                        print(f"Error during full sync: {str(e)}", flush=True)
+                        sync_log.status = "failed"
+                        sync_log.error_message = str(e)
+                    finally:
+                        sync_log.completed_at = datetime.now(timezone.utc)
+                        db.session.commit()
+                
+                # Wait for 5 minutes before next check
+                await asyncio.sleep(300)
+                
+            except Exception as e:
+                print(f"Error in recipe check: {str(e)}", flush=True)
+                # Wait for 1 minute before retry in case of error
+                await asyncio.sleep(60)
