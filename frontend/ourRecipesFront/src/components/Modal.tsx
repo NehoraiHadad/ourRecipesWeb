@@ -44,7 +44,7 @@ const Modal: React.FC<ModalProps> = ({
       setTimeout(() => {
         onClose();
         setIsAnimating(false);
-      }, 1000);
+      }, 500);
     }
   };
 
@@ -54,11 +54,10 @@ const Modal: React.FC<ModalProps> = ({
       setIsAnimating(true);
       const timer1 = setTimeout(() => {
         setIsClosing(false);
-        document.body.style.overflow = 'hidden';
-      }, 50);
+      }, 10);
       const timer2 = setTimeout(() => {
         setIsAnimating(false);
-      }, 1000);
+      }, 300);
       return () => {
         clearTimeout(timer1);
         clearTimeout(timer2);
@@ -66,14 +65,10 @@ const Modal: React.FC<ModalProps> = ({
     } else {
       const timer = setTimeout(() => {
         setShouldRender(false);
-        document.body.style.overflow = '';
-      }, 1000);
+      }, 300);
       return () => clearTimeout(timer);
     }
 
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpen]);
 
   useOutsideClick(modalRef, () => {
@@ -96,7 +91,7 @@ const Modal: React.FC<ModalProps> = ({
     <div 
       className={cn(
         "fixed inset-0 z-50",
-        "transition-all duration-1000 ease-in-out",
+        "transition-all duration-500 ease-in-out",
         isOpen && !isClosing 
           ? "opacity-100 visible pointer-events-auto" 
           : "opacity-0 invisible pointer-events-none"
@@ -110,7 +105,7 @@ const Modal: React.FC<ModalProps> = ({
       <div 
         className={cn(
           "fixed inset-0 bg-secondary-900/60 backdrop-blur-[4px]",
-          "transition-all duration-1000 ease-in-out min-h-screen",
+          "transition-all duration-500 ease-in-out min-h-screen",
           isOpen && !isClosing ? "opacity-100" : "opacity-0"
         )} 
         onClick={() => closeOnOutsideClick && handleClose()}
@@ -124,7 +119,7 @@ const Modal: React.FC<ModalProps> = ({
             ref={modalRef}
             className={cn(
               'relative w-full transform overflow-y-auto rounded-2xl bg-white text-right',
-              'shadow-warm-lg transition-all duration-1000',
+              'shadow-warm-lg transition-all duration-500',
               isOpen && !isClosing 
                 ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
                 : 'opacity-0 -translate-y-4 scale-95 rotate-1',
