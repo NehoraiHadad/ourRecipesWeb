@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useMemo } from "react";
 import { useTimer } from '@/context/TimerContext';
 import type { Timer } from '@/context/TimerContext';
+import { useFeatureAnnouncement } from '@/context/FeatureAnnouncementContext';
+import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 import IngredientList from "./IngredientList";
 import CategoryTags from './CategoryTags';
 import { difficultyDisplay } from '@/utils/difficulty';
@@ -33,6 +35,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
     isSoundMuted,
     toggleSound
   } = useTimer();
+  const { showFeature } = useFeatureAnnouncement();
   const [multiplier, setMultiplier] = useState(1);
   const [selectedIngredients, setSelectedIngredients] = useState<boolean[]>([]);
   const [ingredients, setIngredients] = useState<(string | JSX.Element)[]>([]);
@@ -276,6 +279,17 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
     });
   };
 
+  // Show timer feature announcement when prep time is clicked for the first time
+  useEffect(() => {
+    if (showTimer) {
+      showFeature({
+        id: 'recipe-timer',
+        title: 'טיימר חכם למתכונים',
+        description: 'לחץ על זמן ההכנה כדי להפעיל טיימר. המערכת תזהה אוטומטית זמני המתנה במתכון!'
+      });
+    }
+  }, [showTimer, showFeature]);
+
   return (
     <div className="bg-white rounded-lg overflow-hidden">
       {recipe.image && (
@@ -309,16 +323,18 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
         <div className="flex flex-col items-center mb-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-2 text-xs sm:text-sm text-gray-600">
             {recipe.preparation_time && (
-              <div 
-                className={`flex items-center gap-1 cursor-pointer transition-colors
-                  ${showTimer ? 'text-primary-600' : 'hover:text-primary-600'}`}
-                onClick={onPrepTimeClick}
-                role="button"
-                title="לחץ להפעלת טיימר"
-              >
-                <span>⏱️</span>
-                <span className="break-words">{recipe.preparation_time} דקות</span>
-              </div>
+              <FeatureIndicator featureId="recipe-timer">
+                <div 
+                  className={`flex items-center gap-1 cursor-pointer transition-colors
+                    ${showTimer ? 'text-primary-600' : 'hover:text-primary-600'}`}
+                  onClick={onPrepTimeClick}
+                  role="button"
+                  title="לחץ להפעלת טיימר"
+                >
+                  <span>⏱️</span>
+                  <span className="break-words">{recipe.preparation_time} דקות</span>
+                </div>
+              </FeatureIndicator>
             )}
             {recipe.difficulty && (
               <div className="flex items-center gap-1">

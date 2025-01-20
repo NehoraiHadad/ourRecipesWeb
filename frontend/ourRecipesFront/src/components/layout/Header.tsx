@@ -8,6 +8,7 @@ import { MobileMenu } from './MobileMenu'
 import { useAuthContext } from '@/context/AuthContext'
 import Logo from '../Logo'
 import { useFont } from '@/context/FontContext'
+import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -72,11 +73,15 @@ export function Header() {
           {/* Main Navigation */}
           <nav className="hidden md:flex items-center gap-6">
             <Link href="/" className="text-secondary-600 hover:text-secondary-900 transition-colors">
-              בית
+              מתכונים
             </Link>
-            <Link href="/places" className="text-secondary-600 hover:text-secondary-900">
-              המלצות
-            </Link>
+            <FeatureIndicator
+              featureId="places-info"
+            >
+              <Link href="/places" className="text-secondary-600 hover:text-secondary-900">
+                מקומות
+              </Link>
+            </FeatureIndicator>
             {authState.canEdit && (
               <Link href="/manage" className="text-secondary-600 hover:text-secondary-900 transition-colors">
                 ניהול מתכונים
@@ -88,21 +93,25 @@ export function Header() {
           <div className="flex items-center gap-4">
             {/* User Menu */}
             <div className="relative hidden md:block">
-              <button
-                onClick={() => setShowUserMenu(!showUserMenu)}
-                className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-secondary-50 
-                         text-secondary-700 transition-colors"
+              <FeatureIndicator
+                featureId="font-selection"
               >
-                <span className="hidden sm:inline">העדפות</span>
-                <svg
-                  className={`w-4 h-4 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-secondary-50 
+                           text-secondary-700 transition-colors"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
+                  <span className="hidden sm:inline">העדפות</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+              </FeatureIndicator>
 
               {/* Dropdown Menu */}
               {showUserMenu && (

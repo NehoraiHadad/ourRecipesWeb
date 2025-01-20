@@ -1,31 +1,39 @@
 import { useEffect, RefObject } from "react";
 
-function useOutsideClick(ref: RefObject<HTMLElement>, callback: () => void) {
+type RefType = RefObject<HTMLElement> | null;
+
+function useOutsideClick(
+  refs: RefType | RefType[],
+  callback: () => void,
+  enabled: boolean = true
+) {
   useEffect(() => {
-    // Function to check for outside click
-    const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current.contains(event.target as Node)) {
+    if (!enabled) return;
+
+    const handleClickOutside = (event: MouseEvent | TouchEvent) => {
+      // Convert single ref to array for unified processing
+      const refsArray = Array.isArray(refs) ? refs : [refs];
+      
+      // Check if click target is outside all refs
+      const isOutside = refsArray.every((ref) => {
+        if (!ref?.current) return true;
+        return !ref.current.contains(event.target as Node);
+      });
+
+      if (isOutside) {
         callback();
       }
     };
 
-    // Function to check for 'Esc' key press
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        callback();
-      }
-    };
-
-    // Bind the event listeners
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleKeyDown);
+    // Add both mouse and touch events for better mobile support
+    document.addEventListener("mousedown", handleClickOutside, true);
+    document.addEventListener("touchstart", handleClickOutside, true);
 
     return () => {
-      // Unbind the event listeners on clean up
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("mousedown", handleClickOutside, true);
+      document.removeEventListener("touchstart", handleClickOutside, true);
     };
-  }, [ref, callback]); // Only re-bind if ref or callback changes
+  }, [refs, callback, enabled]);
 }
 
 export default useOutsideClick;
