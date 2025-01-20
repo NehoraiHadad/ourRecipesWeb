@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/utils/cn'
 import { useFont } from '@/context/FontContext'
+import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -75,40 +76,47 @@ export function MobileMenu({
                 className="block text-secondary-600 hover:text-secondary-900 transition-all duration-200 py-2 px-3 rounded-md hover:bg-secondary-50"
                 onClick={onClose}
               >
-                בית
+                מתכונים
               </Link>
 
-
-              <Link href="/places" className="flex items-center px-4 py-2 text-secondary-600 hover:bg-secondary-50">
-                מקומות
-              </Link>
+              <FeatureIndicator
+                featureId="places-info"
+              >
+                <Link href="/places" className="flex items-center px-4 py-2 text-secondary-600 hover:bg-secondary-50">
+                  מקומות
+                </Link>
+              </FeatureIndicator>
 
               {/* Font Selection */}
               <div className="mt-4 pt-4 border-t border-secondary-100">
-                <button
-                  onClick={() => setIsFontSectionOpen(!isFontSectionOpen)}
-                  className="w-full flex items-center justify-between px-3 py-2 text-secondary-700 hover:bg-secondary-50 rounded-md transition-colors"
+                <FeatureIndicator
+                  featureId="font-selection"
                 >
-                  <div className="flex flex-col items-start">
-                    <span className="text-sm font-medium">סגנון כתב</span>
-                    <span 
-                      className="text-xs text-secondary-500"
-                      style={{ fontFamily: `var(--font-${currentFont})` }}
-                    >
-                      {selectedFont?.name}
-                    </span>
-                  </div>
-                  <svg
-                    className={`w-5 h-5 transition-transform duration-200 ${
-                      isFontSectionOpen ? 'rotate-180' : ''
-                    }`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
+                  <button
+                    onClick={() => setIsFontSectionOpen(!isFontSectionOpen)}
+                    className="w-full flex items-center justify-between px-3 py-2 text-secondary-700 hover:bg-secondary-50 rounded-md transition-colors"
                   >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
+                    <div className="flex flex-col items-start">
+                      <span className="text-sm font-medium">סגנון כתב</span>
+                      <span 
+                        className="text-xs text-secondary-500"
+                        style={{ fontFamily: `var(--font-${currentFont})` }}
+                      >
+                        {selectedFont?.name}
+                      </span>
+                    </div>
+                    <svg
+                      className={`w-5 h-5 transition-transform duration-200 ${
+                        isFontSectionOpen ? 'rotate-180' : ''
+                      }`}
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                </FeatureIndicator>
 
                 {/* Font Options */}
                 <div className={`

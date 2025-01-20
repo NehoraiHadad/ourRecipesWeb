@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/AuthContext";
 import { useNotification } from '@/context/NotificationContext'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
+import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
@@ -457,15 +458,20 @@ const MealSuggestionForm: React.FC = () => {
           </label>
 
           {/* Submit Button */}
-          <Button
-            type="submit"
-            variant="primary"
-            size="lg"
-            isLoading={loadingRecipe}
-            className="w-full"
+          <FeatureIndicator
+            featureId="ai-recipe"
+            className="w-2 h-2"
           >
-            קבל הצעת מתכון
-          </Button>
+            <Button
+              type="submit"
+              variant="primary"
+              size="lg"
+              isLoading={loadingRecipe}
+              className="w-full"
+            >
+              קבל הצעת מתכון
+            </Button>
+          </FeatureIndicator>
 
           {error && (
             <div className="mt-3 px-3 py-2 text-sm text-red-600 bg-red-50 rounded-lg">

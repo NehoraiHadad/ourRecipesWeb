@@ -226,7 +226,7 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/versions/restore/${versionId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipe.id}/restore/${versionId}`,
         {
           method: "POST",
           credentials: "include",

@@ -116,48 +116,87 @@ class Recipe(db.Model):
     def update_content(self, title, raw_content, image_data=None, created_by=None, change_description=None):
         """Update recipe content and create new version"""
         try:
+            print(f"Starting update_content for recipe {self.id}", flush=True)
+            
             # Clean up old versions
             self.cleanup_versions()
+            print("Cleaned up old versions", flush=True)
             
-            # Create version content
+            # Create version content with all recipe data
             version_content = {
                 'title': self.title,
                 'raw_content': self.raw_content,
                 'categories': self.categories,
                 'ingredients': self.ingredients if hasattr(self, 'ingredients') else None,
                 'instructions': self.instructions if hasattr(self, 'instructions') else None,
+                'preparation_time': self.preparation_time,
+                'difficulty': self.difficulty.value if self.difficulty else None,
+                'parsed_data': {
+                    'preparation_time': self.preparation_time,
+                    'difficulty': self.difficulty.value if self.difficulty else None,
+                    'categories': self.categories,
+                    'ingredients': self.ingredients if hasattr(self, 'ingredients') else None,
+                    'instructions': self.instructions if hasattr(self, 'instructions') else None,
+                }
             }
+            print("Created version content", flush=True)
             
-            # Create new version
+            # Update current version status
+            current_version = RecipeVersion.query.filter_by(recipe_id=self.id, is_current=True).first()
+            if current_version:
+                current_version.is_current = False
+                db.session.add(current_version)
+                print(f"Updated current version {current_version.version_num} status", flush=True)
+            
+            # Create new version with old content
             new_version = RecipeVersion(
                 recipe_id=self.id,
                 content=version_content,
                 created_by=created_by,
                 change_description=change_description,
-                image_data=self.image_data
+                image_data=self.image_data,
+                is_current=True
             )
             db.session.add(new_version)
+            print(f"Created new version {new_version.version_num}", flush=True)
             
             # Update current recipe
+            print(f"Updating recipe content. Old title: {self.title}, New title: {title}", flush=True)
             self.title = title
             self.raw_content = raw_content
-            if image_data:
+            if image_data is not None:  # Allow empty image data for clearing
                 self.image_data = image_data
+            print("Updated recipe content", flush=True)
             
             # Parse content
             if raw_content:
                 try:
+                    print("Starting content parsing", flush=True)
                     self._parse_content(raw_content)
+                    print("Content parsed successfully", flush=True)
                 except Exception as e:
                     self.sync_status = 'error'
                     self.sync_error = str(e)
-                    raise
+                    print(f"Error parsing content: {str(e)}", flush=True)
+                    print(f"Parse error type: {type(e)}", flush=True)
+                    # Don't raise the exception, just log it
             
-            db.session.commit()
+            # Final commit
+            try:
+                print("Attempting to commit changes", flush=True)
+                db.session.commit()
+                print("Changes committed successfully", flush=True)
+            except Exception as e:
+                db.session.rollback()
+                print(f"Error committing changes: {str(e)}", flush=True)
+                print(f"Commit error type: {type(e)}", flush=True)
+                raise Exception(f"Failed to commit changes: {str(e)}")
             
         except Exception as e:
             db.session.rollback()
-            print(f"Error in update_content: {str(e)}")
+            print(f"Error in update_content: {str(e)}", flush=True)
+            print(f"Error type: {type(e)}", flush=True)
+            print(f"Error details: {e.__dict__}", flush=True)
             raise
 
     def _parse_content(self, raw_content):
@@ -174,12 +213,15 @@ class Recipe(db.Model):
         
         # Basic validation
         if not raw_content.strip():
-            parse_errors.append("תוכן המתכון ריק")
+            self.is_parsed = False
+            self.parse_errors = "תוכן המתכון ריק"
+            self.sync_status = 'parsed_with_errors'
             return
         
         # Parse title
         if not recipe_parts[0].startswith('כותרת:'):
             parse_errors.append("חסרה כותרת מתכון")
+            self.title = recipe_parts[0].strip()  # Use first line as title anyway
         else:
             self.title = recipe_parts[0].replace('כותרת:', '').strip()
             if not self.title:
@@ -243,20 +285,17 @@ class Recipe(db.Model):
             # Parse instructions section
             elif part.startswith('הוראות הכנה:'):
                 current_section = 'instructions'
-                if not temp_ingredients:  # בדיקה מול הרשימה הזמנית
-                    parse_errors.append("חסרה רשימת מצרכים")
             elif current_section == 'instructions':
                 if part != 'הוראות הכנה:' and part: 
                     instruction = part.strip()
-                    
                     if instruction:
                         temp_instructions.append(instruction)
 
-        # בסוף הפרסור, עדכון השדות
-        self.ingredients = temp_ingredients  # שימוש ב-setter
-        self.instructions = temp_instructions  # שימוש ב-setter
+        # Update fields even if there are errors
+        self.ingredients = temp_ingredients
+        self.instructions = temp_instructions
 
-        # Validate required sections
+        # Log warnings for missing sections but don't block the update
         if not temp_ingredients:
             parse_errors.append("לא נמצאו מצרכים")
         if not temp_instructions:
@@ -268,15 +307,10 @@ class Recipe(db.Model):
         if not self.difficulty:
             parse_errors.append("לא צוינה רמת קושי")
 
-        # עדכון סטטוס פרסור
-        if parse_errors:
-            self.is_parsed = False
-            self.parse_errors = '||'.join(parse_errors)  # Convert array to string with delimiter
-            self.sync_status = 'parsed_with_errors'
-        else:
-            self.is_parsed = True
-            self.parse_errors = ''  # Empty string instead of None
-            self.sync_status = 'synced'
+        # Update parse status
+        self.is_parsed = len(parse_errors) == 0
+        self.parse_errors = '||'.join(parse_errors) if parse_errors else ''
+        self.sync_status = 'parsed_with_errors' if parse_errors else 'synced'
 
     # Image handling methods
     def set_image(self, image_data=None, image_url=None):
@@ -318,4 +352,22 @@ class Recipe(db.Model):
             raise ValueError(f"Invalid difficulty: {self.difficulty}")
 
     def __repr__(self):
-        return f'<Recipe {self.title or self.telegram_id}>' 
+        return f'<Recipe {self.title or self.telegram_id}>'
+
+    def to_dict(self):
+        """Convert recipe to dictionary format"""
+        return {
+            'id': self.telegram_id,
+            'title': self.title,
+            'details': self.raw_content,
+            'ingredients': self.ingredients,
+            'instructions': self.instructions,
+            'categories': self.categories,
+            'preparation_time': self.preparation_time,
+            'difficulty': self.difficulty.value if self.difficulty else None,
+            'image': self.get_image_url(),
+            'is_parsed': self.is_parsed,
+            'parse_errors': self.parse_errors.split('||') if self.parse_errors else [],
+            'created_at': self.created_at.isoformat() if self.created_at else None,
+            'updated_at': self.updated_at.isoformat() if self.updated_at else None
+        } 

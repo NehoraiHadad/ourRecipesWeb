@@ -1,4 +1,4 @@
-import useOutsideClick from "../hooks/useOutsideClick";
+import useEscapeKey from "../hooks/useEscapeKey";
 import { useRef, useState, useEffect } from "react";
 import { useFont } from '@/context/FontContext';
 import { Button } from '@/components/ui/Button';
@@ -18,6 +18,8 @@ interface ModalProps {
   closeOnOutsideClick?: boolean;
 }
 
+const ANIMATION_DURATION = 10;
+
 const Modal: React.FC<ModalProps> = ({ 
   isOpen, 
   onClose, 
@@ -34,48 +36,35 @@ const Modal: React.FC<ModalProps> = ({
   const modalRef = useRef<HTMLDivElement>(null);
   const { currentFont } = useFont();
   const [isClosing, setIsClosing] = useState(true);
-  const [shouldRender, setShouldRender] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   const handleClose = () => {
-    if (!isClosing && !isAnimating) {
-      setIsAnimating(true);
+    if (!isClosing && closeOnOutsideClick) {
       setIsClosing(true);
       setTimeout(() => {
         onClose();
-        setIsAnimating(false);
-      }, 500);
+        setIsClosing(false);
+      }, ANIMATION_DURATION);
     }
   };
 
   useEffect(() => {
     if (isOpen) {
-      setShouldRender(true);
-      setIsAnimating(true);
-      const timer1 = setTimeout(() => {
+      setIsMounted(true);
+      // Give the browser time to paint the initial state
+      setTimeout(() => {
         setIsClosing(false);
       }, 10);
-      const timer2 = setTimeout(() => {
-        setIsAnimating(false);
-      }, 300);
-      return () => {
-        clearTimeout(timer1);
-        clearTimeout(timer2);
-      };
     } else {
+      setIsClosing(true);
       const timer = setTimeout(() => {
-        setShouldRender(false);
-      }, 300);
+        setIsMounted(false);
+      }, ANIMATION_DURATION);
       return () => clearTimeout(timer);
     }
-
   }, [isOpen]);
 
-  useOutsideClick(modalRef, () => {
-    if (closeOnOutsideClick) {
-      handleClose();
-    }
-  });
+  useEscapeKey(handleClose, isOpen && !isClosing);
 
   const sizeClasses = {
     sm: 'max-w-md',
@@ -85,14 +74,16 @@ const Modal: React.FC<ModalProps> = ({
     full: 'max-w-[95vw] h-[95vh]'
   };
 
-  if (!shouldRender) return null;
+  if (!isMounted) return null;
+
+  const isVisible = isOpen && !isClosing;
 
   return (
     <div 
       className={cn(
         "fixed inset-0 z-50",
-        "transition-all duration-500 ease-in-out",
-        isOpen && !isClosing 
+        "transition-all duration-300 ease-in-out",
+        isVisible
           ? "opacity-100 visible pointer-events-auto" 
           : "opacity-0 invisible pointer-events-none"
       )}
@@ -100,15 +91,15 @@ const Modal: React.FC<ModalProps> = ({
       role="dialog"
       aria-modal="true"
       style={{ perspective: '1000px' }}
+      onClick={handleClose}
     >
       {/* Overlay */}
       <div 
         className={cn(
           "fixed inset-0 bg-secondary-900/60 backdrop-blur-[4px]",
-          "transition-all duration-500 ease-in-out min-h-screen",
-          isOpen && !isClosing ? "opacity-100" : "opacity-0"
+          "transition-all duration-300 ease-in-out min-h-screen",
+          isVisible ? "opacity-100" : "opacity-0"
         )} 
-        onClick={() => closeOnOutsideClick && handleClose()}
         style={{ minHeight: '100vh' }}
       />
 
@@ -117,10 +108,11 @@ const Modal: React.FC<ModalProps> = ({
         <div className="flex min-h-screen items-center justify-center p-4 text-center">
           <div
             ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
             className={cn(
               'relative w-full transform overflow-y-auto rounded-2xl bg-white text-right',
-              'shadow-warm-lg transition-all duration-500',
-              isOpen && !isClosing 
+              'shadow-warm-lg transition-all duration-300',
+              isVisible
                 ? 'opacity-100 translate-y-0 scale-100 rotate-0' 
                 : 'opacity-0 -translate-y-4 scale-95 rotate-1',
               sizeClasses[size],

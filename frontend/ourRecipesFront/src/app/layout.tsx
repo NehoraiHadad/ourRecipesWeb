@@ -5,6 +5,7 @@ import { AuthProvider } from '@/context/AuthContext'
 import { NotificationProvider } from '@/context/NotificationContext'
 import { FontProvider } from '@/context/FontContext'
 import { TimerProvider } from '@/context/TimerContext'
+import { FeatureAnnouncementProvider } from '@/context/FeatureAnnouncementContext'
 import './globals.css'
 
 const heebo = Heebo({ 
@@ -94,11 +95,13 @@ export default function RootLayout({
       <body className="bg-secondary-50 bg-paper text-secondary-900 max-h-screen overflow-hidden">
         <AuthProvider>
           <NotificationProvider>
-            <FontProvider>
-              <TimerProvider>
-                {children}
-              </TimerProvider>
-            </FontProvider>
+            <FeatureAnnouncementProvider>
+              <FontProvider>
+                <TimerProvider>
+                  {children}
+                </TimerProvider>
+              </FontProvider>
+            </FeatureAnnouncementProvider>
           </NotificationProvider>
         </AuthProvider>
       </body>

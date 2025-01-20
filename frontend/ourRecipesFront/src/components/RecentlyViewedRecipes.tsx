@@ -96,11 +96,11 @@ export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesPr
                   {/* Delete Button */}
                   <button
                     onClick={(e) => handleRemove(e, recipe.id)}
-                    className="p-1 sm:p-1.5 rounded-full
-                             opacity-0 group-hover:opacity-100 transition-all duration-200
+                    className="p-1.5 sm:p-2 rounded-full
+                             sm:opacity-0 sm:group-hover:opacity-100 transition-all duration-200
                              hover:bg-red-50 text-secondary-400 hover:text-red-500
-                             scale-90 group-hover:scale-100
-                             hover:shadow-sm"
+                             scale-95 sm:scale-90 sm:group-hover:scale-100
+                             hover:shadow-sm bg-white/80 backdrop-blur-sm"
                     title="הסר מההיסטוריה"
                   >
                     <svg className="w-3 sm:w-3.5 h-3 sm:h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -114,12 +114,12 @@ export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesPr
                       e.stopPropagation();
                       toggleLocalFavorite(recipe.id);
                     }}
-                    className={`p-1.5 rounded-full transition-all duration-200
+                    className={`p-1.5 sm:p-2 rounded-full transition-all duration-200
                              ${isLocalFavorite(recipe.id)
                                ? 'bg-red-50 text-red-500'
-                               : 'opacity-0 group-hover:opacity-100 hover:bg-red-50 text-secondary-400 hover:text-red-500'
+                               : 'sm:opacity-0 sm:group-hover:opacity-100 hover:bg-red-50 text-secondary-400 hover:text-red-500 bg-white/80 backdrop-blur-sm'
                              }
-                             scale-90 group-hover:scale-100`}
+                             scale-95 sm:scale-90 sm:group-hover:scale-100`}
                     title={isLocalFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
                   >
                     <svg
