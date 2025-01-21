@@ -7,6 +7,9 @@ from ..models.enums import RecipeDifficulty
 from .ai_service import AIService
 from sqlalchemy.sql import func
 from datetime import datetime, timezone
+import logging
+
+logger = logging.getLogger(__name__)
 
 class RecipeService:
     """Service class for handling recipe operations"""
@@ -126,35 +129,37 @@ class RecipeService:
 
             existing_recipe = Recipe.query.filter_by(telegram_id=message.id).first()
 
-            async with client:
-                if existing_recipe:
-                    existing_recipe.title = cls.get_first_line(message.text)
-                    existing_recipe.raw_content = message.text
-                    existing_recipe._parse_content(message.text)
-                    if message.media:
-                        media_bytes = BytesIO()
-                        await client.download_media(message.media, file=media_bytes)
-                        media_bytes.seek(0)
-                        existing_recipe.set_image(image_data=media_bytes.read())
-                    existing_recipe.last_sync = func.now()  # Mark as synced
-                    sync_log.recipes_updated += 1
-                else:
-                    new_recipe = Recipe(
-                        telegram_id=message.id,
-                        title=cls.get_first_line(message.text),
-                        raw_content=message.text,
-                        last_sync=func.now()  # Set initial sync time
-                    )
-                    new_recipe._parse_content(message.text)
-                    if message.media:
-                        media_bytes = BytesIO()
-                        await client.download_media(message.media, file=media_bytes)
-                        media_bytes.seek(0)
-                        new_recipe.set_image(image_data=media_bytes.read())
-                    db.session.add(new_recipe)
-                    sync_log.recipes_added += 1
+            # Download media in parallel if it exists
+            media_data = None
+            if message.media:
+                media_bytes = BytesIO()
+                await client.download_media(message.media, file=media_bytes)
+                media_bytes.seek(0)
+                media_data = media_bytes.read()
+
+            if existing_recipe:
+                existing_recipe.title = cls.get_first_line(message.text)
+                existing_recipe.raw_content = message.text
+                existing_recipe._parse_content(message.text)
+                if media_data:
+                    existing_recipe.set_image(image_data=media_data)
+                existing_recipe.last_sync = func.now()  # Mark as synced
+                sync_log.recipes_updated += 1
+            else:
+                new_recipe = Recipe(
+                    telegram_id=message.id,
+                    title=cls.get_first_line(message.text),
+                    raw_content=message.text,
+                    last_sync=func.now()  # Set initial sync time
+                )
+                new_recipe._parse_content(message.text)
+                if media_data:
+                    new_recipe.set_image(image_data=media_data)
+                db.session.add(new_recipe)
+                sync_log.recipes_added += 1
                 
-                db.session.commit()
+            sync_log.recipes_processed += 1
+            logger.info(f"Recipe message {message.id} synced successfully")
 
         except Exception as e:
             sync_log.recipes_failed += 1

@@ -9,6 +9,7 @@ from ..models.place import Place
 from ..models import Recipe
 import logging
 from flask import Blueprint
+import asyncio
 
 sync_bp = Blueprint("sync", __name__)
 logger = logging.getLogger(__name__)
@@ -87,60 +88,55 @@ async def _perform_sync(sync_log):
         channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
         messages = await client.get_messages(channel_entity, limit=None)
 
+        # Separate messages into recipes and places
+        recipe_messages = []
+        place_messages = []
+
         for message in messages:
+            if not message.text:
+                continue
+
+            if "המלצה" in message.text:
+                place_messages.append(message)
+            else:
+                recipe_messages.append(message)
+
+        # Process recipes in parallel
+        BATCH_SIZE = 10  # Process 10 recipes at a time
+        for i in range(0, len(recipe_messages), BATCH_SIZE):
+            batch = recipe_messages[i:i + BATCH_SIZE]
+            tasks = [RecipeService.sync_message(client, msg, sync_log) for msg in batch]
+            await asyncio.gather(*tasks)
+            # Commit after each batch
+            db.session.commit()
+
+        # Process places (keeping this sequential as it's simpler and places are less common)
+        for message in place_messages:
             try:
-                # Skip if message has no text
-                if not message.text:
+                existing_place = Place.query.filter_by(telegram_message_id=message.id).first()
+                if existing_place:
+                    if not existing_place.is_synced:
+                        existing_place.mark_as_synced(message.id)
                     continue
 
-                # Check if this is a place recommendation by looking for "סוג:" field
-                is_place = "המלצה" in message.text
-
-                # If it's not a place, check if it's a recipe by looking for recipe-specific fields
-                is_recipe = not is_place 
-
-                if is_place:
-                    # Process place recommendation
-                    existing_place = Place.query.filter_by(telegram_message_id=message.id).first()
-                    if existing_place:
-                        if not existing_place.is_synced:
-                            existing_place.mark_as_synced(message.id)
-                        continue
-
-                    # Skip if message indicates deletion
-                    if "❌ נמחק על ידי:" in message.text:
-                        continue
-
-                    # Parse place data from message
-                    place_data = _parse_place_from_message(message.text)
-                    if place_data:
-                        place = Place(**place_data, telegram_message_id=message.id)
-                        db.session.add(place)
-                        place.mark_as_synced(message.id)
-                        sync_log.places_processed += 1
-                        logger.info(f"Place from message {message.id} synced successfully")
-
-                elif is_recipe:
-                    # Process recipe
-                    await RecipeService.sync_message(client, message, sync_log)
-                    sync_log.recipes_processed += 1
-                    logger.info(f"Recipe message {message.id} synced successfully")
-
-                else:
-                    # Skip messages that are neither places nor recipes
-                    logger.info(f"Message {message.id} skipped - not a place or recipe")
+                # Skip if message indicates deletion
+                if "❌ נמחק על ידי:" in message.text:
                     continue
+
+                # Parse place data from message
+                place_data = _parse_place_from_message(message.text)
+                if place_data:
+                    place = Place(**place_data, telegram_message_id=message.id)
+                    db.session.add(place)
+                    place.mark_as_synced(message.id)
+                    sync_log.places_processed += 1
+                    logger.info(f"Place from message {message.id} synced successfully")
 
             except Exception as e:
-                if is_place:
-                    sync_log.places_failed += 1
-                    logger.error(f"Error processing place message {message.id}: {str(e)}")
-                elif is_recipe:
-                    sync_log.recipes_failed += 1
-                    logger.error(f"Error processing recipe message {message.id}: {str(e)}")
-                else:
-                    logger.error(f"Error processing message {message.id}: {str(e)}")
+                sync_log.places_failed += 1
+                logger.error(f"Error processing place message {message.id}: {str(e)}")
 
+        # Final commit for places
         db.session.commit()
 
 
