@@ -83,7 +83,11 @@ export function MobileMenu({
               <FeatureIndicator
                 featureId="places-info"
               >
-                <Link href="/places" className="flex items-center px-4 py-2 text-secondary-600 hover:bg-secondary-50">
+                <Link 
+                  href="/places" 
+                  className="flex items-center px-4 py-2 text-secondary-600 hover:bg-secondary-50"
+                  onClick={onClose}
+                >
                   מקומות
                 </Link>
               </FeatureIndicator>
