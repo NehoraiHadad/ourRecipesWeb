@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { cn } from '@/utils/cn'
 import { useFont } from '@/context/FontContext'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
+import { FontSwitcher } from '@/components/FontSwitcher'
 
 interface MobileMenuProps {
   isOpen: boolean
@@ -89,22 +90,12 @@ export function MobileMenu({
 
               {/* Font Selection */}
               <div className="mt-4 pt-4 border-t border-secondary-100">
-                <FeatureIndicator
-                  featureId="font-selection"
-                >
+                <FeatureIndicator featureId="font-selection">
                   <button
                     onClick={() => setIsFontSectionOpen(!isFontSectionOpen)}
                     className="w-full flex items-center justify-between px-3 py-2 text-secondary-700 hover:bg-secondary-50 rounded-md transition-colors"
                   >
-                    <div className="flex flex-col items-start">
-                      <span className="text-sm font-medium">סגנון כתב</span>
-                      <span 
-                        className="text-xs text-secondary-500"
-                        style={{ fontFamily: `var(--font-${currentFont})` }}
-                      >
-                        {selectedFont?.name}
-                      </span>
-                    </div>
+                    <span className="text-sm font-medium">סגנון כתב</span>
                     <svg
                       className={`w-5 h-5 transition-transform duration-200 ${
                         isFontSectionOpen ? 'rotate-180' : ''
@@ -120,30 +111,13 @@ export function MobileMenu({
 
                 {/* Font Options */}
                 <div className={`
-                  mt-2 space-y-1 transition-all duration-200 overflow-y-auto
+                  mt-2 transition-all duration-200 overflow-hidden
                   ${isFontSectionOpen ? 'max-h-[60vh] opacity-100' : 'max-h-0 opacity-0'}
                 `}>
-                  {fonts.map((font) => (
-                    <button
-                      key={font.id}
-                      onClick={() => {
-                        setFont(font.id);
-                        setIsFontSectionOpen(false);
-                      }}
-                      className={`
-                        w-full text-right px-3 py-2 rounded-md text-sm
-                        transition-all duration-200
-                        ${currentFont === font.id 
-                          ? 'bg-primary-50 text-primary-700' 
-                          : 'hover:bg-secondary-50 text-secondary-600'
-                        }
-                      `}
-                      style={{ fontFamily: `var(--font-${font.id})` }}
-                    >
-                      <div className="text-base">{font.name}</div>
-                      <div className="text-xs opacity-75">{font.description}</div>
-                    </button>
-                  ))}
+                  <FontSwitcher 
+                    variant="menu" 
+                    onSelect={() => setIsFontSectionOpen(false)} 
+                  />
                 </div>
               </div>
 

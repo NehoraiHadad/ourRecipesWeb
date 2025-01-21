@@ -9,6 +9,7 @@ import { useAuthContext } from '@/context/AuthContext'
 import Logo from '../Logo'
 import { useFont } from '@/context/FontContext'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
+import { FontSwitcher } from '@/components/FontSwitcher'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -93,57 +94,13 @@ export function Header() {
           <div className="flex items-center gap-4">
             {/* User Menu */}
             <div className="relative hidden md:block">
-              <FeatureIndicator
-                featureId="font-selection"
-              >
-                <button
-                  onClick={() => setShowUserMenu(!showUserMenu)}
-                  className="flex items-center gap-2 px-2 sm:px-3 py-2 rounded-lg hover:bg-secondary-50 
-                           text-secondary-700 transition-colors"
-                >
-                  <span className="hidden sm:inline">העדפות</span>
-                  <svg
-                    className={`w-4 h-4 transition-transform duration-200 ${showUserMenu ? 'rotate-180' : ''}`}
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                  </svg>
-                </button>
+              <FeatureIndicator featureId="font-selection">
+                <FontSwitcher />
               </FeatureIndicator>
 
               {/* Dropdown Menu */}
               {showUserMenu && (
                 <div className="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-secondary-200 py-2 z-50">
-                  {/* Font Selection */}
-                  <div className="px-4 py-2">
-                    <h3 className="text-sm font-medium text-secondary-700 mb-2">סגנון כתב:</h3>
-                    <div className="space-y-1">
-                      {fonts.map((font) => (
-                        <button
-                          key={font.id}
-                          onClick={() => {
-                            setFont(font.id);
-                            setShowUserMenu(false);
-                          }}
-                          className={`
-                            w-full text-right px-3 py-2 rounded-md text-sm
-                            transition-all duration-200
-                            ${currentFont === font.id 
-                              ? 'bg-primary-50 text-primary-700' 
-                              : 'hover:bg-secondary-50 text-secondary-600'
-                            }
-                          `}
-                          style={{ fontFamily: `var(--font-${font.id})` }}
-                        >
-                          <div className="text-base">{font.name}</div>
-                          <div className="text-xs opacity-75">{font.description}</div>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
                   <div className="border-t border-secondary-200 mt-2 pt-2">
                     <button
                       onClick={handleLogout}
