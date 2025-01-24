@@ -73,6 +73,13 @@ class Config:
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     HF_TOKEN = os.getenv("HF_TOKEN")
 
+    # google drive settings
+    GOOGLE_DRIVE_TOKEN = os.getenv("GOOGLE_DRIVE_TOKEN")
+    GOOGLE_DRIVE_REFRESH_TOKEN = os.getenv("GOOGLE_DRIVE_REFRESH_TOKEN")
+    GOOGLE_DRIVE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
+    GOOGLE_DRIVE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
+    SESSION_FILE_1_ID = os.getenv("SESSION_FILE_1_ID")
+    SESSION_FILE_2_ID = os.getenv("SESSION_FILE_2_ID")
 
 class DevelopmentConfig(Config):
     """Development configuration"""
