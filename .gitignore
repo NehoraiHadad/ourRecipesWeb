@@ -40,6 +40,7 @@ test_session.session
 
 # Environment variables and configuration
 .env
+.env.development
 .env*.local
 google_credentials.json
 /backend/config.py
