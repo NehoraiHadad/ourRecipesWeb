@@ -2,15 +2,107 @@ from telethon import TelegramClient
 from flask import current_app
 from io import BytesIO
 import asyncio
+import os
+from datetime import datetime, timezone
 
 class TelegramService:
     """Service for handling Telegram operations"""
 
     @classmethod
+    def get_session_path(cls, session_name):
+        """Get the full path for a session file"""
+        sessions_dir = '/app/sessions'
+        if not os.path.exists(sessions_dir):
+            sessions_dir = os.path.join(os.getcwd(), 'sessions')
+        return os.path.join(sessions_dir, f"{session_name}.session")
+
+    @classmethod
+    async def check_session_status(cls, app):
+        """Check status of all session files and return detailed information"""
+        session_files = {
+            'connect_to_our_recipes_channel.session': {
+                'required': True,
+                'min_size': 100,  # Minimum expected size in bytes
+                'description': 'Main channel session'
+            },
+            'connect_to_our_recipes_channel_monitor.session': {
+                'required': True,
+                'min_size': 100,
+                'description': 'Monitor channel session'
+            }
+        }
+        
+        status = {
+            'status': 'healthy',
+            'files': {},
+            'details': {},
+            'last_check': datetime.now(timezone.utc).isoformat()
+        }
+        
+        for filename, config in session_files.items():
+            path = cls.get_session_path(filename.replace('.session', ''))
+            file_status = {
+                'exists': os.path.exists(path),
+                'size': os.path.getsize(path) if os.path.exists(path) else 0,
+                'last_modified': datetime.fromtimestamp(os.path.getmtime(path)).isoformat() if os.path.exists(path) else None,
+                'description': config['description']
+            }
+            
+            # Check if file exists and meets size requirements
+            if not file_status['exists']:
+                file_status['status'] = 'missing'
+                if config['required']:
+                    status['status'] = 'error'
+            elif file_status['size'] < config['min_size']:
+                file_status['status'] = 'possibly_corrupt'
+                if config['required']:
+                    status['status'] = 'error'
+            else:
+                file_status['status'] = 'ok'
+            
+            status['files'][filename] = file_status['status']
+            status['details'][filename] = file_status
+            
+        return status
+
+    @classmethod
+    async def refresh_session_files(cls, app):
+        """Download fresh session files from Google Drive"""
+        from .google_drive_service import download_session_files
+        
+        try:
+            # First check current status
+            current_status = await cls.check_session_status(app)
+            if current_status['status'] == 'healthy':
+                return {'status': 'ok', 'message': 'Session files are healthy, no refresh needed'}
+            
+            # Download fresh files
+            download_session_files(app)
+            
+            # Check status again
+            new_status = await cls.check_session_status(app)
+            
+            return {
+                'status': 'ok' if new_status['status'] == 'healthy' else 'error',
+                'message': 'Session files refreshed successfully' if new_status['status'] == 'healthy' else 'Session files refresh failed',
+                'details': new_status
+            }
+            
+        except Exception as e:
+            app.logger.error(f"Failed to refresh session files: {str(e)}")
+            return {
+                'status': 'error',
+                'message': f"Failed to refresh session files: {str(e)}",
+                'error': str(e)
+            }
+
+    @classmethod
     async def create_client(cls):
         """Create a new TelegramClient instance"""
+        session_path = cls.get_session_path(current_app.config["SESSION_NAME"])
+        print(f"Creating TelegramClient with session path: {session_path}", flush=True)
         client = TelegramClient(
-            session=current_app.config["SESSION_NAME"],
+            session=session_path,
             api_id=int(current_app.config["BOT_ID"]),
             api_hash=current_app.config["API_HASH"]
         )
@@ -19,13 +111,14 @@ class TelegramService:
     @classmethod
     def create_client_with_session(cls, session_name, api_id, api_hash):
         """Create a new TelegramClient instance with a custom session name"""
-        print(f"Creating TelegramClient with session name: {session_name}", flush=True)
+        session_path = cls.get_session_path(session_name)
+        print(f"Creating TelegramClient with session path: {session_path}", flush=True)
         client = TelegramClient(
-            session=session_name,
+            session=session_path,
             api_id=api_id,
             api_hash=api_hash
         )
-        print(f"TelegramClient created with session name: {session_name}", flush=True)
+        print(f"TelegramClient created with session path: {session_path}", flush=True)
         return client
 
     @classmethod

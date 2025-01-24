@@ -11,6 +11,13 @@ from .models.recipe import Recipe
 from .extensions import db
 from .routes.sync import _perform_sync, _create_sync_log
 
+def get_session_path(app, session_name):
+    """Get the full path for a session file"""
+    sessions_dir = '/app/sessions'
+    if not os.path.exists(sessions_dir):
+        sessions_dir = os.path.join(os.getcwd(), 'sessions')
+    return os.path.join(sessions_dir, f"{session_name}.session")
+
 async def process_new_message(send_client, message, new_channel, sync_log):
     """Process a single new message - copy it to the new channel and sync to DB"""
     try:
@@ -54,8 +61,11 @@ async def monitor_old_channel(app):
             db.session.commit()
             
             # Create monitor client
+            monitor_session_path = get_session_path(app, f"{app.config['SESSION_NAME']}_monitor")
+            print(f"Creating monitor client with session path: {monitor_session_path}", flush=True)
+            
             monitor_client = TelegramClient(
-                session=f"{app.config['SESSION_NAME']}_monitor",
+                session=monitor_session_path,
                 api_id=int(app.config["BOT_ID"]),
                 api_hash=app.config["API_HASH"]
             )

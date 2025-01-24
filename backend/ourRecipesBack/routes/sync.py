@@ -3,7 +3,7 @@ from flask import jsonify, current_app
 from flask_jwt_extended import jwt_required
 from ..extensions import db
 from ..models.sync import SyncLog
-from ..services.telegram_service import telegram_service
+from ..services.telegram_service import telegram_service, TelegramService
 from ..services.recipe_service import RecipeService
 from ..models.place import Place
 from ..models import Recipe
@@ -69,6 +69,36 @@ async def sync_all():
         _handle_sync_error(sync_log, sync_error)
         print(f"Sync error: {str(sync_error)}", flush=True)
         return jsonify({"status": "error", "message": str(sync_error)}), 500
+
+
+@sync_bp.route("/session/status", methods=["GET"])
+@jwt_required()
+async def get_session_status():
+    """Get detailed status of session files"""
+    try:
+        status = await TelegramService.check_session_status(current_app)
+        return jsonify(status)
+    except Exception as e:
+        logger.error(f"Error checking session status: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": f"Failed to check session status: {str(e)}"
+        }), 500
+
+
+@sync_bp.route("/session/refresh", methods=["POST"])
+@jwt_required()
+async def refresh_session():
+    """Force refresh of session files from Google Drive"""
+    try:
+        result = await TelegramService.refresh_session_files(current_app)
+        return jsonify(result), 200 if result['status'] == 'ok' else 500
+    except Exception as e:
+        logger.error(f"Error refreshing session files: {str(e)}")
+        return jsonify({
+            "status": "error",
+            "message": f"Failed to refresh session files: {str(e)}"
+        }), 500
 
 
 # Helper functions

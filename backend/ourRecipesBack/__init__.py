@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, jsonify
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, get_jwt, get_jwt_identity, create_access_token, set_access_cookies
 from datetime import datetime, timezone, timedelta
@@ -7,8 +7,10 @@ from .config import config
 from .services.auth_service import AuthService, init_cache
 from .services.monitoring_service import MonitoringService
 from .services.security_service import SecurityService
+from .services.google_drive_service import download_session_files
 from .background_tasks import start_background_tasks
 import logging
+import os
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -33,6 +35,10 @@ def create_app(config_name='default'):
     
     # Initialize extensions
     db.init_app(app)
+    
+    # Download session files if needed
+    if not app.config['TESTING']:
+        download_session_files(app)
     
     # Initialize JWT first
     jwt = JWTManager(app)
@@ -103,6 +109,30 @@ def create_app(config_name='default'):
     # Add health check route that bypasses CORS
     @app.route('/health')
     def health_check():
+        """Basic health check for Render"""
         return {"status": "healthy"}, 200
+        
+    @app.route('/api/session-status')
+    def session_status():
+        """Detailed check of session files"""
+        session_files = [
+            'connect_to_our_recipes_channel.session',
+            'connect_to_our_recipes_channel_monitor.session'
+        ]
+        
+        status = {'status': 'healthy', 'files': {}}
+        
+        for filename in session_files:
+            path = f'/app/sessions/{filename}'
+            if not os.path.exists(path):
+                status['files'][filename] = 'missing'
+                status['status'] = 'error'
+            elif os.path.getsize(path) < 100:
+                status['files'][filename] = 'possibly corrupt'
+                status['status'] = 'error'
+            else:
+                status['files'][filename] = 'ok'
+                
+        return jsonify(status), 200 if status['status'] == 'healthy' else 500
     
     return app
