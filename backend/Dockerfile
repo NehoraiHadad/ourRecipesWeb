@@ -1,5 +1,5 @@
 # backend/Dockerfile
-FROM python:3.12.1-slim as builder
+FROM python:3.12.1-slim AS builder
 
 # Set working directory
 WORKDIR /app

@@ -9,23 +9,25 @@ class TelegramService:
     """Service for handling Telegram operations"""
 
     @classmethod
-    def get_session_path(cls, session_name):
+    def get_session_path(cls, session_name, app=None):
         """Get the full path for a session file"""
         sessions_dir = '/app/sessions'
         if not os.path.exists(sessions_dir):
             sessions_dir = os.path.join(os.getcwd(), 'sessions')
+
+        # Add _dev suffix in development environment
         return os.path.join(sessions_dir, f"{session_name}.session")
 
     @classmethod
     async def check_session_status(cls, app):
         """Check status of all session files and return detailed information"""
-        session_files = {
-            'connect_to_our_recipes_channel.session': {
+        base_session_files = {
+            'connect_to_our_recipes_channel': {
                 'required': True,
                 'min_size': 100,  # Minimum expected size in bytes
                 'description': 'Main channel session'
             },
-            'connect_to_our_recipes_channel_monitor.session': {
+            'connect_to_our_recipes_channel_monitor': {
                 'required': True,
                 'min_size': 100,
                 'description': 'Monitor channel session'
@@ -39,8 +41,14 @@ class TelegramService:
             'last_check': datetime.now(timezone.utc).isoformat()
         }
         
-        for filename, config in session_files.items():
-            path = cls.get_session_path(filename.replace('.session', ''))
+        # In development, we only check if the dev session files exist
+        is_dev = app.config.get('DEBUG', False)
+        
+        for base_name, config in base_session_files.items():
+            # Get the appropriate session name (with or without _dev suffix)
+            path = cls.get_session_path(base_name, app)  # Pass app to ensure consistent behavior
+            filename = f"{base_name}_dev.session" if is_dev else f"{base_name}.session"
+            
             file_status = {
                 'exists': os.path.exists(path),
                 'size': os.path.getsize(path) if os.path.exists(path) else 0,
@@ -48,35 +56,60 @@ class TelegramService:
                 'description': config['description']
             }
             
-            # Check if file exists and meets size requirements
-            if not file_status['exists']:
-                file_status['status'] = 'missing'
-                if config['required']:
+            # Different validation rules for dev and prod
+            if is_dev:
+                # In dev, we only care if the file exists (size doesn't matter)
+                if not file_status['exists']:
+                    file_status['status'] = 'missing'
                     status['status'] = 'error'
-            elif file_status['size'] < config['min_size']:
-                file_status['status'] = 'possibly_corrupt'
-                if config['required']:
-                    status['status'] = 'error'
+                    file_status['message'] = 'Development session file missing. Run create_dev_session.py to create it.'
+                else:
+                    file_status['status'] = 'ok'
+                    file_status['message'] = 'Development session file exists'
             else:
-                file_status['status'] = 'ok'
+                # In production, we check both existence and size
+                if not file_status['exists']:
+                    file_status['status'] = 'missing'
+                    if config['required']:
+                        status['status'] = 'error'
+                elif file_status['size'] < config['min_size']:
+                    file_status['status'] = 'possibly_corrupt'
+                    if config['required']:
+                        status['status'] = 'error'
+                else:
+                    file_status['status'] = 'ok'
             
             status['files'][filename] = file_status['status']
             status['details'][filename] = file_status
-            
+        
+        # Add environment-specific message
+        if is_dev:
+            status['environment'] = 'development'
+            if status['status'] == 'error':
+                status['message'] = 'Some development session files are missing. Run create_dev_session.py to create them.'
+            else:
+                status['message'] = 'All development session files are present'
+        
         return status
 
     @classmethod
     async def refresh_session_files(cls, app):
         """Download fresh session files from Google Drive"""
-        from .google_drive_service import download_session_files
-        
         try:
             # First check current status
             current_status = await cls.check_session_status(app)
             if current_status['status'] == 'healthy':
                 return {'status': 'ok', 'message': 'Session files are healthy, no refresh needed'}
             
-            # Download fresh files
+            # Skip Google Drive download in development environment
+            if app.config.get('DEBUG'):
+                return {
+                    'status': 'ok',
+                    'message': 'Development environment - skipping session files refresh from Google Drive'
+                }
+            
+            # Download fresh files from Google Drive in production
+            from .google_drive_service import download_session_files
             download_session_files(app)
             
             # Check status again
@@ -99,7 +132,7 @@ class TelegramService:
     @classmethod
     async def create_client(cls):
         """Create a new TelegramClient instance"""
-        session_path = cls.get_session_path(current_app.config["SESSION_NAME"])
+        session_path = cls.get_session_path(current_app.config["SESSION_NAME"], current_app)
         print(f"Creating TelegramClient with session path: {session_path}", flush=True)
         client = TelegramClient(
             session=session_path,

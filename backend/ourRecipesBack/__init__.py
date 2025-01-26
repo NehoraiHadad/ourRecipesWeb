@@ -36,9 +36,12 @@ def create_app(config_name='default'):
     # Initialize extensions
     db.init_app(app)
     
-    # Download session files if needed
-    if not app.config['TESTING']:
+    # Download session files if needed (only in production)
+    if not (app.config['TESTING'] or app.config['DEBUG']):
+        logger.info("Production environment detected - checking session files")
         download_session_files(app)
+    else:
+        logger.info(f"Development/Testing environment detected - skipping session files download")
     
     # Initialize JWT first
     jwt = JWTManager(app)
