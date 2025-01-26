@@ -89,6 +89,17 @@ class DevelopmentConfig(Config):
     SESSION_COOKIE_SECURE = False
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
     
+    # Development-specific session names
+    SESSION_NAME = "connect_to_our_recipes_channel_dev"
+    
+    # Disable Google Drive session file download in development
+    GOOGLE_DRIVE_TOKEN = None
+    GOOGLE_DRIVE_REFRESH_TOKEN = None
+    GOOGLE_DRIVE_CLIENT_ID = None
+    GOOGLE_DRIVE_CLIENT_SECRET = None
+    SESSION_FILE_1_ID = None
+    SESSION_FILE_2_ID = None
+    
     # More permissive CORS for development
     CORS_ORIGINS = [
         "http://localhost:3000",

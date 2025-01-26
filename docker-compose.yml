@@ -6,6 +6,7 @@ services:
     volumes:
       - ./backend/ourRecipesBack:/app/ourRecipesBack
       - ./backend/.env.development:/app/.env
+      - ./backend/sessions_dev:/app/sessions
     env_file: ./backend/.env.development
     environment:
       - FLASK_APP=ourRecipesBack

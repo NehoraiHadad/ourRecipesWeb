@@ -64,3 +64,7 @@ google_credentials.json
 # Misc
 *.bak
 *.tmp
+
+# Development Telegram sessions
+backend/sessions_dev/
+backend/sessions_dev/*.session

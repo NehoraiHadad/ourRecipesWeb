@@ -44,28 +44,28 @@ async def process_new_message(send_client, message, new_channel, sync_log):
                 return True
     except Exception as e:
         print(f"Error processing message {message.id}: {str(e)}", flush=True)
-        sync_log.recipes_failed += 1
-        db.session.commit()
+        with db.session.begin():
+            sync_log.recipes_failed += 1
     
     return False
 
 async def monitor_old_channel(app):
-    """Monitor old channel for new messages and sync them to new channel"""
-    print("Starting old channel monitoring...", flush=True)
-    
+    """Monitor old channel for new messages and copy them to new channel"""
     with app.app_context():
         try:
+            old_channel = app.config["OLD_CHANNEL_URL"]
+            new_channel = app.config["CHANNEL_URL"]
+            
             # Create sync log for monitoring session
-            sync_log = SyncLog(sync_type="monitor")
-            db.session.add(sync_log)
-            db.session.commit()
+            sync_log = _create_sync_log()
             
-            # Create monitor client
-            monitor_session_path = get_session_path(app, f"{app.config['SESSION_NAME']}_monitor")
-            print(f"Creating monitor client with session path: {monitor_session_path}", flush=True)
+            # Use development session name if in debug mode
+            monitor_session_name = "connect_to_our_recipes_channel_monitor_dev" if app.config['TESTING'] or app.config['DEBUG'] else "connect_to_our_recipes_channel_monitor"
+            session_path = get_session_path(app, monitor_session_name)
             
+            # Create clients for monitoring and sending
             monitor_client = TelegramClient(
-                session=monitor_session_path,
+                session=session_path,
                 api_id=int(app.config["BOT_ID"]),
                 api_hash=app.config["API_HASH"]
             )
