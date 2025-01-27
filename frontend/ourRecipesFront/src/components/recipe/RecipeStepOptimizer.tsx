@@ -125,18 +125,20 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
       )}
 
       {!optimizedSteps && (
-        <FeatureIndicator
-          featureId="recipe-optimizer"
-        >
-          <Button
-            variant="ghost"
-            onClick={optimizeSteps}
-            className="flex items-center gap-2 text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-lg px-3 py-2 transition-colors"
+        <div className="relative inline-block mr-4">
+          <FeatureIndicator
+            featureId="recipe-optimizer"
           >
-            <OptimizeIcon />
-            <span className="text-sm">ייעול זמני הכנה</span>
-          </Button>
-        </FeatureIndicator>
+            <Button
+              variant="ghost"
+              onClick={optimizeSteps}
+              className="flex items-center gap-2 text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-lg px-3 py-2 transition-colors"
+            >
+              <OptimizeIcon />
+              <span className="text-sm">ייעול זמני הכנה</span>
+            </Button>
+          </FeatureIndicator>
+        </div>
       )}
 
       {optimizedSteps &&
