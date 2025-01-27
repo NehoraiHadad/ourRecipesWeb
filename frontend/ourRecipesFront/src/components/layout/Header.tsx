@@ -10,6 +10,7 @@ import Logo from '../Logo'
 import { useFont } from '@/context/FontContext'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
 import { FontSwitcher } from '@/components/FontSwitcher'
+import { useSearchContext } from '@/contexts/SearchContext'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -18,6 +19,7 @@ export function Header() {
   const { setAuthState, authState } = useAuthContext()
   const [showUserMenu, setShowUserMenu] = useState(false)
   const { currentFont, setFont, fonts } = useFont()
+  const { clearSearch } = useSearchContext()
 
   const handleLogout = async () => {
     try {
@@ -62,14 +64,20 @@ export function Header() {
     }
   }
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault()
+    clearSearch()
+    router.push('/')
+  }
+
   return (
     <header className="bg-white border-b border-secondary-200 sticky top-0 z-30 w-full">
       <Container>
         <div className="flex items-center justify-between h-16 px-4 sm:px-0">
           {/* Logo & Brand */}
-          <Link href="/" className="flex items-center">
+          <div onClick={handleLogoClick} className="flex items-center cursor-pointer">
             <Logo />
-          </Link>
+          </div>
 
           {/* Main Navigation */}
           <nav className="hidden md:flex items-center gap-6">

@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useRecipeHistory } from '@/hooks/useRecipeHistory';
+import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
+import { useFavorites } from '@/contexts/FavoritesContext';
 import Modal from '@/components/Modal';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
 import { recipe } from '@/types';
@@ -12,7 +13,8 @@ interface RecentlyViewedRecipesProps {
 }
 
 export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesProps) {
-  const { recentlyViewed, removeFromHistory, clearHistory, toggleLocalFavorite, isLocalFavorite } = useRecipeHistory();
+  const { recentlyViewed, removeFromHistory, clearHistory } = useRecipeHistory();
+  const { toggleFavorite, isFavorite } = useFavorites();
   const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -112,20 +114,20 @@ export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesPr
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
-                      toggleLocalFavorite(recipe.id);
+                      toggleFavorite(recipe.id);
                     }}
                     className={`p-1.5 sm:p-2 rounded-full transition-all duration-200
-                             ${isLocalFavorite(recipe.id)
+                             ${isFavorite(recipe.id)
                                ? 'bg-red-50 text-red-500'
                                : 'sm:opacity-0 sm:group-hover:opacity-100 hover:bg-red-50 text-secondary-400 hover:text-red-500 bg-white/80 backdrop-blur-sm'
                              }
                              scale-95 sm:scale-90 sm:group-hover:scale-100`}
-                    title={isLocalFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
+                    title={isFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
                   >
                     <svg
                       className="w-3.5 h-3.5"
                       viewBox="0 0 24 24"
-                      fill={isLocalFavorite(recipe.id) ? 'currentColor' : 'none'}
+                      fill={isFavorite(recipe.id) ? 'currentColor' : 'none'}
                       stroke="currentColor"
                       strokeWidth="2"
                     >

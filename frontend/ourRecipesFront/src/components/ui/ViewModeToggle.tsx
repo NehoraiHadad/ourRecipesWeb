@@ -9,7 +9,7 @@ interface ViewModeToggleProps {
 
 export function ViewModeToggle({ viewMode, onViewModeChange }: ViewModeToggleProps) {
   return (
-    <div className="sticky top-0 z-10">
+    <div className="sticky top-0 z-20">
       <div className="flex justify-end max-w-7xl mx-auto py-1.5">
         <div className="inline-flex gap-1">
           <Button

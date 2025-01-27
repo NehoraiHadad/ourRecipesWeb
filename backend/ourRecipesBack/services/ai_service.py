@@ -2,6 +2,7 @@ import google.generativeai as genai
 from flask import current_app
 import requests
 import base64
+import json
 
 
 class AIService:
@@ -237,4 +238,125 @@ class AIService:
 
         except Exception as e:
             print(f"Recipe refinement error: {str(e)}")
+            raise
+
+    @classmethod
+    def optimize_recipe_steps(cls, recipe_text):
+        """
+        Analyze recipe steps and return optimized sequence using AI
+        
+        Args:
+            recipe_text (str): Raw recipe text to analyze
+            
+        Returns:
+            dict: Optimized recipe information with parallel steps
+        """
+        try:
+            # Configure AI model
+            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
+            
+            prompt = """
+            נתח את שלבי המתכון וייעל אותם על ידי:
+            1. זיהוי שלבים שלוקחים זמן ויכולים להתבצע במקביל לשלבים אחרים
+            2. הצעת סדר פעולות אופטימלי
+            3. קיבוץ שלבים שניתן לבצע בו-זמנית
+            4. הדגשת שלבי הכנה שניתן לבצע מראש
+
+            הנחיות לחישוב זמנים:
+            1. השתמש בזמן ההכנה המצוין במתכון המקורי בתור total_sequential_time
+            2. אם לא מצוין זמן הכנה במתכון, חשב את הזמן המקורי כסכום של כל הפעולות
+            3. חשב את הזמן המיועל (total_optimized_time) כזמן הארוך ביותר שנדרש כשמבצעים פעולות במקביל
+            4. חשב את החיסכון בזמן (time_saved) כהפרש בין הזמן המקורי לזמן המיועל
+            5. וודא שהחיסכון בזמן תמיד חיובי או 0 (אם אין אפשרות לייעול)
+
+            החזר את הניתוח בפורמט JSON הבא בדיוק:
+            {
+                "optimized_steps": [
+                    {
+                        "step_group": "שם הקבוצה",
+                        "parallel_steps": [
+                            {
+                                "description": "תיאור הצעד",
+                                "estimated_time": "זמן משוער בדקות",
+                                "dependencies": ["תלויות בצעדים קודמים"]
+                            }
+                        ]
+                    }
+                ],
+                "prep_ahead_steps": [
+                    {
+                        "description": "צעד שניתן להכין מראש",
+                        "max_prep_time": "זמן מקסימלי מראש בשעות"
+                    }
+                ],
+                "total_optimized_time": "זמן כולל אחרי ייעול בדקות",
+                "total_sequential_time": "זמן כולל ללא ייעול בדקות",
+                "time_saved": "זמן שנחסך בדקות"
+            }
+
+            חשוב מאוד:
+            1. החזר JSON תקין בלבד, ללא טקסט נוסף לפני או אחרי
+            2. וודא שכל המערכים מאותחלים (לפחות ריקים)
+            3. השתמש במספרים בלבד (ללא טקסט) בשדות של זמנים
+            4. שמור על תלויות הגיוניות בין השלבים
+            5. התייחס לאיכות האוכל ובטיחות המזון בהמלצות
+            6. אל תשנה את שמות השדות או את המבנה של ה-JSON
+            7. אל תוסיף הערות או הסברים - רק JSON
+            """
+            
+            model = genai.GenerativeModel(
+                model_name="gemini-1.5-flash",
+                system_instruction=prompt
+            )
+
+            # Generate response
+            response = model.generate_content(recipe_text)
+            response_text = response.text.strip()
+            
+            # Clean the response text from markdown code blocks
+            if response_text.startswith('```json'):
+                response_text = response_text[7:]  # Remove ```json prefix
+            if response_text.startswith('```'):
+                response_text = response_text[3:]  # Remove ``` prefix
+            if response_text.endswith('```'):
+                response_text = response_text[:-3]  # Remove ``` suffix
+            
+            response_text = response_text.strip()
+            
+            # Try to parse the response as JSON
+            try:
+                parsed_steps = json.loads(response_text)
+                
+                # Validate structure
+                if not isinstance(parsed_steps, dict):
+                    raise ValueError("Response must be a JSON object")
+                
+                required_fields = ["optimized_steps", "prep_ahead_steps", "total_optimized_time", 
+                                 "total_sequential_time", "time_saved"]
+                for field in required_fields:
+                    if field not in parsed_steps:
+                        raise ValueError(f"Missing required field: {field}")
+                
+                if not isinstance(parsed_steps["optimized_steps"], list):
+                    raise ValueError("optimized_steps must be an array")
+                
+                if not isinstance(parsed_steps["prep_ahead_steps"], list):
+                    raise ValueError("prep_ahead_steps must be an array")
+                
+                # Convert string times to integers if needed
+                for field in ["total_optimized_time", "total_sequential_time", "time_saved"]:
+                    if isinstance(parsed_steps[field], str):
+                        parsed_steps[field] = int(''.join(filter(str.isdigit, parsed_steps[field])))
+                
+                return parsed_steps
+                
+            except json.JSONDecodeError as e:
+                print(f"Invalid JSON from AI: {response_text}")
+                raise ValueError("AI response is not valid JSON")
+            except Exception as e:
+                print(f"Validation error: {str(e)}")
+                raise ValueError(f"Invalid response structure: {str(e)}")
+
+        except Exception as e:
+            print(f"Recipe step optimization error: {str(e)}")
             raise

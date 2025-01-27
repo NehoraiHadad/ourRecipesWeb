@@ -14,18 +14,18 @@ import { RecipeCardSkeleton } from '@/components/ui/Skeleton'
 import { Typography } from "@/components/ui/Typography";
 import { Container } from "@/components/ui/Container";
 import { RecentlyViewedRecipes } from '@/components/RecentlyViewedRecipes';
-import { useRecipeHistory } from "@/hooks/useRecipeHistory";
+import { useFavorites } from '@/contexts/FavoritesContext';
+import { useSearchContext } from '@/contexts/SearchContext';
 import RecipeDetails from "@/components/recipe/RecipeDetails";
 
 
 export default function Page() {
-  const [recipes, setRecipes] = useState<Record<string, recipe>>({});
-  const [resultCount, setResultCount] = useState<number | "">();
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState<recipe[]>([]);
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
-  const { localFavorites } = useRecipeHistory();
+  const { favorites } = useFavorites();
+  const { searchResults, resultCount, setSearchResults, setResultCount } = useSearchContext();
   
   // Recipe Modal State
   const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
@@ -37,7 +37,7 @@ export default function Page() {
     setIsLoadingRecipe(true);
     try {
       // Try to find recipe in existing data sources
-      const recipe = Object.values(recipes).find(r => r.id === recipeId) || 
+      const recipe = Object.values(searchResults).find(r => r.id === recipeId) || 
                     favoriteRecipes.find(r => r.id === recipeId);
       
       if (recipe) {
@@ -62,32 +62,33 @@ export default function Page() {
     }
   };
 
-  // Fetch favorite recipes
+  // Update useEffect to fetch favorite recipes
   useEffect(() => {
-    const fetchFavorites = async () => {
-      setIsLoadingFavorites(true);
+    const fetchFavoriteRecipes = async () => {
+      if (favorites.length === 0) {
+        setFavoriteRecipes([]);
+        setIsLoadingFavorites(false);
+        return;
+      }
+
       try {
-        const promises = localFavorites?.map(id =>
+        const promises = favorites.map(id =>
           fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${id}`, {
-            credentials: 'include',
+            credentials: 'include'
           }).then(res => res.json())
-        ) || [];
-        const results = await Promise.all(promises);
-        setFavoriteRecipes(results);
+        );
+
+        const recipes = await Promise.all(promises);
+        setFavoriteRecipes(recipes);
       } catch (error) {
-        console.error('Error fetching favorites:', error);
+        console.error('Error fetching favorite recipes:', error);
       } finally {
         setIsLoadingFavorites(false);
       }
     };
 
-    if (localFavorites?.length > 0) {
-      fetchFavorites();
-    } else {
-      setFavoriteRecipes([]);
-      setIsLoadingFavorites(false);
-    }
-  }, [localFavorites]);
+    fetchFavoriteRecipes();
+  }, [favorites]);
 
   if (isLoading) {
     return (
@@ -106,52 +107,54 @@ export default function Page() {
   }
 
   const handleSearch = (newRecipes: Record<string, recipe>) => {
-    setRecipes(newRecipes);   
+    setSearchResults(newRecipes);   
     setResultCount(Object.keys(newRecipes).length);
   };
 
   return (
     <main className="h-[calc(100dvh-52px)] bg-secondary-50 flex flex-col overflow-hidden">
       <Container className="h-full flex flex-col overflow-hidden py-4 sm:py-6 px-4 sm:px-6">
-        {Object.keys(recipes).length === 0 && (
-          /* Hero Section */
-          <div className="flex items-center gap-4 sm:gap-6 mb-6">
-            {/* Text Content */}
-            <div className="flex-1 text-right">
-              <Typography 
-                variant="h1" 
-                className="text-xl sm:text-2xl text-primary-800 mb-1.5 font-medium"
-              >
-                המתכונים המשפחתיים שלנו
-              </Typography>
-              <Typography 
-                variant="body" 
-                className="text-sm sm:text-base text-secondary-600"
-              >
-                מקום בו כל המתכונים המשפחתיים 
-                <span className="text-primary-600 font-medium mx-1">נשמרים</span> 
-                ו<span className="text-primary-600 font-medium">משותפים</span>
-              </Typography>
-            </div>
-
-            {/* Image */}
-            <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex-shrink-0 -my-4">
-              <Image
-                src="/home-image.png"
-                alt=""
-                fill
-                priority
-                sizes="(max-width: 640px) 112px, 144px"
-                className="object-contain"
-              />
-            </div>
-          </div>
-        )}
-
         {/* Content Area */}
-        <div className="flex flex-col min-h-0 flex-1">
-          <div className="overflow-y-auto flex-1 -mx-4 px-4">
-            <div className={`transition-all duration-500 ease-in-out ${Object.keys(recipes).length === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 h-0 overflow-hidden'}`}>
+        <div className="flex-1 flex flex-col min-h-0">
+          {/* Hero Section - Only show when no search results */}
+          {Object.keys(searchResults).length === 0 && (
+            <div className="flex items-center gap-4 sm:gap-6 mb-6 flex-shrink-0">
+              {/* Text Content */}
+              <div className="flex-1 text-right">
+                <Typography 
+                  variant="h1" 
+                  className="text-xl sm:text-2xl text-primary-800 mb-1.5 font-medium"
+                >
+                  המתכונים המשפחתיים שלנו
+                </Typography>
+                <Typography 
+                  variant="body" 
+                  className="text-sm sm:text-base text-secondary-600"
+                >
+                  מקום בו כל המתכונים המשפחתיים 
+                  <span className="text-primary-600 font-medium mx-1">נשמרים</span> 
+                  ו<span className="text-primary-600 font-medium">משותפים</span>
+                </Typography>
+              </div>
+
+              {/* Image */}
+              <div className="relative w-28 h-28 sm:w-36 sm:h-36 flex-shrink-0 -my-4">
+                <Image
+                  src="/home-image.png"
+                  alt=""
+                  fill
+                  priority
+                  sizes="(max-width: 640px) 112px, 144px"
+                  className="object-contain"
+                />
+              </div>
+            </div>
+          )}
+
+          {/* Scrollable Content */}
+          <div className="overflow-y-auto flex-1 min-h-0 -mx-4 px-4 pb-8">
+            {/* Recently Viewed & Favorites - Only show when no search results */}
+            <div className={`transition-all duration-500 ease-in-out ${Object.keys(searchResults).length === 0 ? 'opacity-100 scale-100' : 'opacity-0 scale-95 h-0 overflow-hidden'}`}>
               <RecentlyViewedRecipes onRecipeClick={handleRecipeClick} />
               
               {/* Favorite Recipes Section */}
@@ -181,18 +184,19 @@ export default function Page() {
               </div>
             </div>
 
-            <div className={`transition-all duration-500 ease-in-out ${Object.keys(recipes).length > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 h-0 overflow-hidden'}`}>
-              {Object.keys(recipes).length > 0 && (
+            {/* Search Results */}
+            <div className={`transition-all duration-500 ease-in-out ${Object.keys(searchResults).length > 0 ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 h-0 overflow-hidden'}`}>
+              {Object.keys(searchResults).length > 0 && (
                 <div className="pt-2">
-                  <Recipes recipes={Object.values(recipes)} onRecipeClick={handleRecipeClick} />
+                  <Recipes recipes={Object.values(searchResults)} onRecipeClick={handleRecipeClick} />
                 </div>
               )}
             </div>
           </div>
         </div>
 
-        {/* Search Component */}
-        <div className="mt-6 flex-shrink-0">
+        {/* Search Component - Fixed at bottom */}
+        <div className="flex-shrink-0 sticky bottom-0 bg-secondary-50 pt-4 -mx-4 px-4 sm:-mx-6 sm:px-6">
           <Search 
             onSearch={handleSearch}
             resultCount={resultCount}

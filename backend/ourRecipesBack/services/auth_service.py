@@ -173,13 +173,14 @@ class AuthService:
 
     @classmethod
     def create_guest_session(cls, guest_id):
-        """Create session for guest user"""
+        """Create session for guest user with relaxed security for incognito support"""
         try:
-            expires_delta = timedelta(hours=24) 
+            expires_delta = timedelta(hours=4)  # Shorter session for guests
             additional_claims = {
                 "type": "guest",
                 "permissions": {"can_edit": False},
-                "created_at": datetime.now(timezone.utc).isoformat()
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "relaxed_security": True  # Flag to indicate relaxed security settings
             }
             
             access_token = create_access_token(
