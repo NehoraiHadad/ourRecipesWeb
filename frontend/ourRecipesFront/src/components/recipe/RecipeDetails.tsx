@@ -12,6 +12,8 @@ import { difficultyDisplay } from '@/utils/difficulty';
 import VersionHistory from '@/components/VersionHistory';
 import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
 import { ActiveTimers } from './ActiveTimers';
+import RecipeStepOptimizer from './RecipeStepOptimizer';
+
 
 interface RecipeDetailProps {
   recipe: recipe;
@@ -304,6 +306,11 @@ ${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.d
               onCancel={onEditEnd}
             />
           )}
+        </div>
+
+        {/* Add this after the recipe instructions section */}
+        <div className="mt-4">
+          <RecipeStepOptimizer recipeText={recipe.details} />
         </div>
 
         {/* Action Buttons Container - Only show when not editing */}

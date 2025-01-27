@@ -303,7 +303,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
           className="rounded-lg w-full h-auto mb-4"
         />
       )}
-      <div className="p-4">
+      <div className="px-4 pt-4">
         <div className="flex justify-between items-start mb-4">
           <h2 className="text-2xl font-bold text-center">{recipe.title}</h2>
           <Button
@@ -621,7 +621,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
           </div>
         </div>
 
-        <div className="whitespace-pre-line my-4">
+        <div className="whitespace-pre-line mt-4">
           {recipe.raw_content ? (
             recipe.raw_content.split("\n").map((line: string, index: number) => (
               <p key={index}>{line}</p>
