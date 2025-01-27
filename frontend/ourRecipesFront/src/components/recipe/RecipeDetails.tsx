@@ -10,7 +10,7 @@ import { RecipeEditForm } from './RecipeEditForm';
 import { Typography } from '@/components/ui/Typography';
 import { difficultyDisplay } from '@/utils/difficulty';
 import VersionHistory from '@/components/VersionHistory';
-import { useRecipeHistory } from '@/hooks/useRecipeHistory';
+import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
 import { ActiveTimers } from './ActiveTimers';
 
 interface RecipeDetailProps {

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useRecipeHistory } from '@/hooks/useRecipeHistory';
+import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import Modal from '@/components/Modal';
 import RecipeDetails from '@/components/recipe/RecipeDetails';

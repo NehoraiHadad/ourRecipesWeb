@@ -30,7 +30,7 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
       <Card 
         onClick={onClick}
         className="group cursor-pointer transition-all duration-300
-                  bg-white relative h-full flex flex-col
+                  bg-white relative flex flex-col
                   border border-transparent hover:border-primary-100/50
                   shadow-sm hover:shadow-md hover:z-10"
       >
@@ -65,7 +65,7 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
           </svg>
         </button>
 
-        {/* Image Section */}
+        {/* Image Section - Fixed aspect ratio */}
         <div className="aspect-[3/2] relative overflow-hidden flex-shrink-0 rounded-t-lg">
           {recipe.image ? (
             <>
@@ -80,22 +80,23 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
             </>
           ) : (
             <div className="h-full bg-gradient-to-br from-secondary-100 to-secondary-50 flex items-center justify-center">
-              <span className="text-5xl">��</span>
+              <span className="text-5xl">🍳</span>
             </div>
           )}
         </div>
         
-        {/* Content Section */}
+        {/* Content Section - Flex with fixed spacing */}
         <div className="p-3 md:p-4 flex flex-col flex-1">
+          {/* Title - Fixed height */}
           <Typography 
             variant="h4" 
-            className={`font-handwriting-${font} line-clamp-1 mb-2 group-hover:text-primary-600 transition-colors`}
+            className={`font-handwriting-${font} line-clamp-1 mb-4 group-hover:text-primary-600 transition-colors`}
           >
             {recipe.title}
           </Typography>
 
-          {/* Categories */}
-          <div className="flex flex-wrap gap-1.5 mb-3">
+          {/* Categories - Fixed section height */}
+          <div className="flex flex-wrap gap-1.5 min-h-[2rem] mb-4">
             {recipe.categories?.slice(0, 3).map((category, idx) => (
               <Tag 
                 key={idx} 
@@ -112,8 +113,8 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
             )}
           </div>
 
-          {/* Recipe Meta */}
-          <div className="mt-auto flex items-center gap-3 text-sm text-secondary-600">
+          {/* Recipe Meta - Fixed height with flex */}
+          <div className="mt-auto flex items-center gap-3 text-sm text-secondary-600 min-h-[1.5rem]">
             {recipe.preparation_time && (
               <div className="flex items-center gap-1.5">
                 <ClockIcon className="w-4 h-4" />

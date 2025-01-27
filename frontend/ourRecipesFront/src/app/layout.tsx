@@ -8,6 +8,7 @@ import { TimerProvider } from '@/context/TimerContext'
 import { FeatureAnnouncementProvider } from '@/context/FeatureAnnouncementContext'
 import { FavoritesProvider } from '@/contexts/FavoritesContext'
 import { SearchProvider } from '@/contexts/SearchContext'
+import { RecipeHistoryProvider } from '@/contexts/RecipeHistoryContext'
 import './globals.css'
 
 const heebo = Heebo({ 
@@ -101,9 +102,11 @@ export default function RootLayout({
               <FontProvider>
                 <TimerProvider>
                   <FavoritesProvider>
-                    <SearchProvider>
-                      {children}
-                    </SearchProvider>
+                    <RecipeHistoryProvider>
+                      <SearchProvider>
+                        {children}
+                      </SearchProvider>
+                    </RecipeHistoryProvider>
                   </FavoritesProvider>
                 </TimerProvider>
               </FontProvider>
