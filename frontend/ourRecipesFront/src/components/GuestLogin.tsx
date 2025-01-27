@@ -93,6 +93,22 @@ const GuestLogin = () => {
         throw new Error(errorMessage);
       }
 
+      const data = await response.json();
+      
+      // Store guest token in localStorage as backup for incognito mode
+      if (data.user?.id && data.user?.type === 'guest') {
+        try {
+          localStorage.setItem('guest_backup', JSON.stringify({
+            id: data.user.id,
+            type: 'guest',
+            timestamp: new Date().toISOString()
+          }));
+        } catch (e) {
+          console.warn('Failed to store guest backup:', e);
+          // Continue even if localStorage is not available
+        }
+      }
+
       console.log('Guest Login Success');
       console.log('Cookies:', {
         raw: document.cookie,

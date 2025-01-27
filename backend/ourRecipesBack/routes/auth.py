@@ -105,7 +105,7 @@ async def login():
 
 @auth_bp.route('/guest', methods=['POST'])
 def login_guest():
-    """Handle guest login"""
+    """Handle guest login with relaxed security for incognito support"""
     try:
         # Log request details
         logger.info("=== Guest Login Request ===")
@@ -124,24 +124,25 @@ def login_guest():
         guest_id = f"guest_{uuid.uuid4().hex[:8]}"
         logger.info(f"Generated guest ID: {guest_id}")
         
-        # Create session data
+        # Create session data with relaxed settings for guests
         session["user_id"] = guest_id
         session["auth_type"] = "guest"
         session["login_time"] = datetime.now(timezone.utc).isoformat()
         session["edit_permission"] = False
         session["user_name"] = f"אורח_{guest_id[-4:]}"  # Last 4 chars of guest ID
         
-        # Create access token
+        # Create access token with relaxed settings
         access_token = AuthService.create_guest_session(guest_id)
 
-        # Determine cookie settings based on environment
+        # Determine cookie settings based on environment and guest status
         is_development = current_app.debug
         cookie_settings = {
             'secure': not is_development,
-            'httponly': True,
-            'samesite': 'Lax' if is_development else 'None',
+            'httponly': False,  # Allow JavaScript access for guests
+            'samesite': 'Lax',  # Less strict SameSite policy
             'path': '/',
-            'domain': None  # Let the browser set the domain
+            'domain': None,  # Let the browser set the domain
+            'max_age': 14400  # 4 hours in seconds
         }
 
         response = jsonify({
@@ -161,8 +162,13 @@ def login_guest():
             response.headers['Access-Control-Allow-Credentials'] = 'true'
             response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
 
-        # Set cookies with improved settings
+        # Set cookies with relaxed settings for guests
         set_access_cookies(response, access_token)
+        for cookie in response.headers.getlist('Set-Cookie'):
+            if 'HttpOnly' in cookie:
+                # Remove HttpOnly flag for guest cookies
+                cookie = cookie.replace('; HttpOnly', '')
+                response.headers.add('Set-Cookie', cookie)
         
         # Log response details
         logger.info("=== Guest Login Response ===")
