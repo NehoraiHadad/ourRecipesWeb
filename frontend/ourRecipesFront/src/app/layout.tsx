@@ -6,6 +6,8 @@ import { NotificationProvider } from '@/context/NotificationContext'
 import { FontProvider } from '@/context/FontContext'
 import { TimerProvider } from '@/context/TimerContext'
 import { FeatureAnnouncementProvider } from '@/context/FeatureAnnouncementContext'
+import { FavoritesProvider } from '@/contexts/FavoritesContext'
+import { SearchProvider } from '@/contexts/SearchContext'
 import './globals.css'
 
 const heebo = Heebo({ 
@@ -98,7 +100,11 @@ export default function RootLayout({
             <FeatureAnnouncementProvider>
               <FontProvider>
                 <TimerProvider>
-                  {children}
+                  <FavoritesProvider>
+                    <SearchProvider>
+                      {children}
+                    </SearchProvider>
+                  </FavoritesProvider>
                 </TimerProvider>
               </FontProvider>
             </FeatureAnnouncementProvider>
