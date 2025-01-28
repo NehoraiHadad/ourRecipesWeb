@@ -1,12 +1,9 @@
 import logging
 from flask import request
+from .logging_service import LoggingService
 
 # Configure logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-logger.addHandler(handler)
+logger = logging.getLogger('security')
 
 class SecurityService:
     """Service for handling security headers and CORS"""
@@ -18,16 +15,17 @@ class SecurityService:
         @app.after_request
         def add_security_headers(response):
             """Add security headers to response"""
-            # Debug response headers
-            logger.info(f"Response headers before: {dict(response.headers)}")
-            
-            # Add CORS headers
             origin = request.headers.get('Origin')
             
             # In development, allow direct browser access
             if app.debug and not origin:
                 origin = "http://localhost:5000"
-                logger.info("Development mode: Setting default origin")
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "Development mode: Setting default origin",
+                    origin=origin
+                )
             
             if origin:
                 if app.debug or origin in app.config["CORS_ORIGINS"]:
@@ -39,12 +37,27 @@ class SecurityService:
                         response.headers['Access-Control-Allow-Methods'] = ', '.join(app.config["CORS_METHODS"])
                         response.headers['Access-Control-Allow-Headers'] = ', '.join(app.config["CORS_ALLOW_HEADERS"])
                         response.headers['Access-Control-Max-Age'] = str(app.config["CORS_MAX_AGE"])
+                else:
+                    LoggingService.log_with_context(
+                        logger,
+                        logging.WARNING,
+                        "Rejected CORS request from unauthorized origin",
+                        origin=origin,
+                        allowed_origins=app.config["CORS_ORIGINS"]
+                    )
             
             # Ensure HTTPS except in development
             if not app.debug:
                 # Allow HTTP for health check endpoint
                 if request.path != '/health':
                     response.headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains'
+                    LoggingService.log_with_context(
+                        logger,
+                        logging.INFO,
+                        "Applied HSTS header",
+                        path=request.path,
+                        max_age=31536000
+                    )
             
             # Security headers
             response.headers['X-Frame-Options'] = 'SAMEORIGIN'
@@ -62,9 +75,15 @@ class SecurityService:
             # Add Vary header for proper caching
             response.headers['Vary'] = 'Origin, Accept-Encoding'
             
-            # Debug response headers
-            logger.info(f"Response headers after: {dict(response.headers)}")
-            logger.info(f"Origin header: {origin}")
-            logger.info(f"Allowed origins: {app.config['CORS_ORIGINS']}")
+            if app.config.get('DEBUG', False):
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "Security headers applied",
+                    origin=origin,
+                    is_api=request.path.startswith('/api/'),
+                    is_options=request.method == 'OPTIONS',
+                    headers=dict(response.headers)
+                )
             
             return response 
