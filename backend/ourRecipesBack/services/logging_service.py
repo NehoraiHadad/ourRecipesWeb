@@ -46,20 +46,22 @@ class JSONFormatter(logging.Formatter):
 class RequestFormatter(logging.Formatter):
     """Custom formatter that includes request information when available"""
     
+    def __init__(self, fmt=None, *args, **kwargs):
+        self.request_fmt = fmt
+        self.default_fmt = '%(asctime)s - %(levelname)s in %(module)s: %(message)s'
+        super().__init__(fmt=self.default_fmt, *args, **kwargs)
+    
     def format(self, record):
         if has_request_context():
+            self._style._fmt = self.request_fmt
             record.url = request.url
             record.remote_addr = request.remote_addr
             record.method = request.method
             record.path = request.path
             record.user_agent = request.headers.get('User-Agent')
         else:
-            record.url = None
-            record.remote_addr = None
-            record.method = None
-            record.path = None
-            record.user_agent = None
-            
+            self._style._fmt = self.default_fmt
+        
         return super().format(record)
 
 class LoggingService:
@@ -75,9 +77,7 @@ class LoggingService:
             
         # Configure formatters
         debug_formatter = RequestFormatter(
-            '[%(asctime)s] %(remote_addr)s - %(method)s %(url)s\n'
-            '%(levelname)s in %(module)s: %(message)s\n'
-            'User-Agent: %(user_agent)s'
+            '[%(asctime)s] %(remote_addr)s - %(method)s %(url)s\n%(levelname)s in %(module)s: %(message)s\n%(user_agent)s'
         )
         
         prod_formatter = RequestFormatter(
@@ -85,6 +85,22 @@ class LoggingService:
         )
 
         json_formatter = JSONFormatter()
+        
+        # Raise logging level for Telethon/MTProto
+        telethon_logger = logging.getLogger('telethon')
+        telethon_logger.setLevel(logging.INFO)
+        mtproto_logger = logging.getLogger('mtprotosender')
+        mtproto_logger.setLevel(logging.INFO)
+        
+        # Adjust Flask/Werkzeug logging levels
+        werkzeug_logger = logging.getLogger('werkzeug')
+        werkzeug_logger.setLevel(logging.WARNING)
+        flask_logger = logging.getLogger('flask.app')
+        flask_logger.setLevel(logging.WARNING)
+        
+        # Suppress python-dotenv tip
+        dotenv_logger = logging.getLogger('dotenv')
+        dotenv_logger.setLevel(logging.WARNING)
         
         # Setup file handlers
         debug_handler = RotatingFileHandler(

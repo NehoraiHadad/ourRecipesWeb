@@ -18,31 +18,44 @@ export function Header() {
   const router = useRouter()
   const { setAuthState, authState } = useAuthContext()
   const [showUserMenu, setShowUserMenu] = useState(false)
-  const { currentFont, setFont, fonts } = useFont()
   const { clearSearch } = useSearchContext()
 
   const handleLogout = async () => {
     try {
+      console.group('Logout Process');
+      console.log('Starting logout...');
+      console.log('Current guest token:', localStorage.getItem('guest_token'));
+      
       const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
         method: 'POST',
-      })
+        credentials: 'include'
+      });
+
       if (!response.ok) {
-        throw new Error("Logout failed")
+        throw new Error('Logout failed');
       }
+
+      // Clear guest token from localStorage
+      console.log('Server logout successful, removing guest token...');
+      localStorage.removeItem('guest_token');
+      console.log('Guest token after removal:', localStorage.getItem('guest_token'));
 
       setAuthState({
         isAuthenticated: false,
         canEdit: false,
-        isLoading: true,
-        error: response.statusText,
+        isLoading: false,
+        error: null,
         user: null
-      })
+      });
 
-      router.push("/login")
+      clearSearch();
+      router.push('/login');
+      console.groupEnd();
     } catch (error) {
-      console.error("Error logging out:", error)
+      console.error('Logout failed:', error);
+      console.groupEnd();
     }
-  }
+  };
 
   const handleSync = async () => {
     setIsSyncing(true)
