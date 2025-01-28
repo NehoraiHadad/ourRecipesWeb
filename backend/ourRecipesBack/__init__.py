@@ -7,17 +7,14 @@ from .config import config
 from .services.auth_service import AuthService, init_cache
 from .services.monitoring_service import MonitoringService
 from .services.security_service import SecurityService
+from .services.logging_service import LoggingService
 from .services.google_drive_service import download_session_files
 from .background_tasks import start_background_tasks
 import logging
 import os
 
-# Configure logger
+# Configure root logger for initial setup
 logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-logger.addHandler(handler)
 
 def create_app(config_name='default'):
     """Create and configure the Flask application"""
@@ -26,10 +23,12 @@ def create_app(config_name='default'):
     # Force development config when running locally
     if app.debug or config_name == 'development':
         config_name = 'development'
-        logger.info("Loading development configuration")
     
     # Load configuration
     app.config.from_object(config[config_name])
+    
+    # Setup logging first
+    LoggingService.setup_logging(app)
     logger.info(f"Loaded configuration: {config_name}")
     logger.info(f"CORS Origins: {app.config['CORS_ORIGINS']}")
     
@@ -41,7 +40,7 @@ def create_app(config_name='default'):
         logger.info("Production environment detected - checking session files")
         download_session_files(app)
     else:
-        logger.info(f"Development/Testing environment detected - skipping session files download")
+        logger.debug("Development/Testing environment detected - skipping session files download")
     
     # Initialize JWT first
     jwt = JWTManager(app)
@@ -101,18 +100,22 @@ def create_app(config_name='default'):
             if target_timestamp > exp_timestamp:
                 access_token = create_access_token(identity=get_jwt_identity())
                 set_access_cookies(response, access_token)
+                logger.debug("JWT token refreshed")
             return response
         except (RuntimeError, KeyError):
+            # Not a JWT request
             return response
 
     # Start background tasks if not in testing mode
     if not app.config['TESTING']:
         start_background_tasks(app)
+        logger.info("Background tasks started")
     
     # Add health check route that bypasses CORS
     @app.route('/health')
     def health_check():
         """Basic health check for Render"""
+        logger.debug("Health check requested")
         return {"status": "healthy"}, 200
         
     @app.route('/api/session-status')
@@ -130,12 +133,19 @@ def create_app(config_name='default'):
             if not os.path.exists(path):
                 status['files'][filename] = 'missing'
                 status['status'] = 'error'
+                logger.error(f"Session file missing: {filename}")
             elif os.path.getsize(path) < 100:
                 status['files'][filename] = 'possibly corrupt'
                 status['status'] = 'error'
+                logger.error(f"Session file possibly corrupt: {filename}")
             else:
                 status['files'][filename] = 'ok'
+                logger.debug(f"Session file OK: {filename}")
                 
+        if status['status'] != 'healthy':
+            logger.warning("Session status check failed", extra={'status': status})
+        
         return jsonify(status), 200 if status['status'] == 'healthy' else 500
     
+    logger.info("Application initialization completed")
     return app

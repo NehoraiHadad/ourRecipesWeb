@@ -1,13 +1,10 @@
 import logging
 from datetime import datetime, timezone
 from flask import request
+from .logging_service import LoggingService
 
 # Configure logger
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.INFO)
-handler = logging.StreamHandler()
-handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
-logger.addHandler(handler)
+logger = logging.getLogger('monitoring')
 
 class MonitoringService:
     """Service for monitoring and device detection"""
@@ -19,19 +16,35 @@ class MonitoringService:
         @app.before_request
         def debug_cors():
             """Log CORS-related information"""
-            logger.info(f"Request method: {request.method}")
-            logger.info(f"Request origin: {request.headers.get('Origin')}")
-            logger.info(f"Request path: {request.path}")
-            logger.info(f"Request headers: {dict(request.headers)}")
-
+            if app.config.get('DEBUG', False):
+                # Only log detailed CORS info in debug mode
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "CORS Request received",
+                    method=request.method,
+                    origin=request.headers.get('Origin'),
+                    path=request.path
+                )
+            
             # Only warn about insecure requests for non-health check paths
             if not request.is_secure and request.path != '/health':
-                logger.warning("Insecure request detected: http")
+                LoggingService.log_with_context(
+                    logger,
+                    logging.WARNING,
+                    "Insecure request detected",
+                    scheme=request.scheme,
+                    path=request.path
+                )
 
-            if request.method == 'OPTIONS':
-                logger.info("Handling preflight request")
-                logger.info(f"Access-Control-Request-Method: {request.headers.get('Access-Control-Request-Method')}")
-                logger.info(f"Access-Control-Request-Headers: {request.headers.get('Access-Control-Request-Headers')}")
+            if request.method == 'OPTIONS' and app.config.get('DEBUG', False):
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "Preflight request details",
+                    method=request.headers.get('Access-Control-Request-Method'),
+                    headers=request.headers.get('Access-Control-Request-Headers')
+                )
 
         @app.before_request
         def handle_mobile_requests():
@@ -41,10 +54,15 @@ class MonitoringService:
             is_safari = 'safari' in user_agent and 'chrome' not in user_agent
             
             if is_mobile or is_safari:
-                logger.info(f"Mobile/Safari request detected: UA={user_agent}, Mobile={is_mobile}, Safari={is_safari}")
-            
-            # Set appropriate cookie settings for mobile/Safari
-            if is_mobile or is_safari:
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "Mobile/Safari client detected",
+                    is_mobile=is_mobile,
+                    is_safari=is_safari,
+                    user_agent=user_agent
+                )
+                # Set appropriate cookie settings for mobile/Safari
                 app.config['JWT_COOKIE_SAMESITE'] = 'None'
                 app.config['SESSION_COOKIE_SAMESITE'] = 'None'
                 app.config['JWT_COOKIE_SECURE'] = True
@@ -53,12 +71,24 @@ class MonitoringService:
         @app.before_request
         def verify_cookies():
             """Verify and log cookie information"""
-            logger.info(f"Request cookies: {request.cookies}")
-            logger.info(f"Request headers: {dict(request.headers)}")
+            if app.config.get('DEBUG', False):
+                LoggingService.log_with_context(
+                    logger,
+                    logging.DEBUG,
+                    "Cookie verification",
+                    cookies_present=bool(request.cookies),
+                    cookie_count=len(request.cookies)
+                )
             
             # Check if we're in development and using HTTP
             if app.config['DEBUG'] and request.scheme == 'http':
-                logger.warning("Running in development mode with HTTP")
+                LoggingService.log_with_context(
+                    logger,
+                    logging.INFO,
+                    "Development mode HTTP request",
+                    scheme=request.scheme,
+                    path=request.path
+                )
                 return
                 
             # For production, ensure HTTPS
@@ -68,8 +98,15 @@ class MonitoringService:
                 if cf_visitor and ':' in cf_visitor:
                     scheme = cf_visitor.strip('{}').replace('"', '').split(':')[1].strip()
                     is_cloudflare_https = scheme == 'https'
-            except (IndexError, Exception) as e:
-                logger.warning(f"Error parsing Cf-Visitor header: {str(e)}")
+            except Exception as e:
+                LoggingService.log_with_context(
+                    logger,
+                    logging.ERROR,
+                    "Failed to parse Cf-Visitor header",
+                    error=str(e),
+                    header_value=cf_visitor,
+                    exc_info=True
+                )
             
             is_https = (
                 request.scheme == 'https' or
@@ -78,5 +115,12 @@ class MonitoringService:
             )
             
             if not app.config['DEBUG'] and not is_https and request.path != '/health':
-                logger.warning(f"Insecure request detected: {request.scheme}")
+                LoggingService.log_with_context(
+                    logger,
+                    logging.ERROR,
+                    "Security violation: Non-HTTPS request",
+                    path=request.path,
+                    scheme=request.scheme,
+                    headers=dict(request.headers)
+                )
                 return {"error": "HTTPS required"}, 403 

@@ -139,7 +139,7 @@ def login_guest():
         cookie_settings = {
             'secure': not is_development,
             'httponly': False,  # Allow JavaScript access for guests
-            'samesite': 'Lax',  # Less strict SameSite policy
+            'samesite': 'None',  # Required for cross-origin in Safari
             'path': '/',
             'domain': None,  # Let the browser set the domain
             'max_age': 14400  # 4 hours in seconds
@@ -160,15 +160,10 @@ def login_guest():
         if origin:
             response.headers['Access-Control-Allow-Origin'] = origin
             response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
+            response.headers['Access-Control-Expose-Headers'] = 'Content-Type, Authorization, Set-Cookie, Access-Control-Allow-Origin, Access-Control-Allow-Credentials'
 
         # Set cookies with relaxed settings for guests
         set_access_cookies(response, access_token)
-        for cookie in response.headers.getlist('Set-Cookie'):
-            if 'HttpOnly' in cookie:
-                # Remove HttpOnly flag for guest cookies
-                cookie = cookie.replace('; HttpOnly', '')
-                response.headers.add('Set-Cookie', cookie)
         
         # Log response details
         logger.info("=== Guest Login Response ===")
