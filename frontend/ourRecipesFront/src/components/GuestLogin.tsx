@@ -2,11 +2,13 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/Button";
 import { useNotification } from "@/context/NotificationContext";
+import { useAuthContext } from "@/context/AuthContext";
 
 const GuestLogin = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const { addNotification } = useNotification();
+  const { setAuthState } = useAuthContext();
   const maxRetries = 3;
 
   const handleGuestLogin = async (retryCount = 0) => {
@@ -95,16 +97,31 @@ const GuestLogin = () => {
 
       const data = await response.json();
       
-      // Store guest token in localStorage as backup for incognito mode
-      if (data.user?.id && data.user?.type === 'guest') {
+      // Store guest token in localStorage and update auth state
+      if (data.token) {
         try {
-          localStorage.setItem('guest_backup', JSON.stringify({
-            id: data.user.id,
-            type: 'guest',
-            timestamp: new Date().toISOString()
-          }));
+          localStorage.setItem('guest_token', data.token);
+          
+          // Update auth state immediately
+          setAuthState({
+            isAuthenticated: true,
+            canEdit: false,
+            isLoading: false,
+            error: null,
+            user: {
+              id: data.user.id,
+              name: data.user.name,
+              type: 'guest'
+            }
+          });
+
+          addNotification({
+            type: 'success',
+            message: data.message || "התחברת בהצלחה כאורח",
+            duration: 5000
+          });
         } catch (e) {
-          console.warn('Failed to store guest backup:', e);
+          console.warn('Failed to store guest token:', e);
           // Continue even if localStorage is not available
         }
       }

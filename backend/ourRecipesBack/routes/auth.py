@@ -153,6 +153,7 @@ def login_guest():
                 "name": session["user_name"],
                 "type": "guest"
             },
+            "token": access_token,  # Include token in response for iOS
             "message": "ברוכים הבאים! שימו לב שכמשתמש אורח אין אפשרות לערוך מתכונים."
         })
 
@@ -240,17 +241,40 @@ def logout():
         }), 500
 
 @auth_bp.route('/validate', methods=['GET'])
-@jwt_required()
+@jwt_required(optional=True)  # Make JWT optional
 async def validate_session():
     """Validate current session"""
     try:
-        current_user = get_jwt_identity()
+        # Try to get token from Authorization header first
+        auth_header = request.headers.get('Authorization')
+        if auth_header and auth_header.startswith('Bearer '):
+            from flask_jwt_extended import decode_token
+            try:
+                token = auth_header.split(' ')[1]
+                decoded = decode_token(token)
+                current_user = decoded['sub']
+            except Exception as e:
+                logger.error(f"Bearer token validation error: {str(e)}")
+                current_user = None
+        else:
+            # Fallback to JWT from cookie
+            current_user = get_jwt_identity()
+
         user_id = session.get("user_id")
         
-        print(f"current_user: {current_user}", flush=True)
-        print(f"session userId: {user_id}", flush=True)
+        logger.info(f"current_user: {current_user}")
+        logger.info(f"session userId: {user_id}")
 
-        if not user_id:
+        # For guest users, accept either cookie or Authorization header
+        if current_user and current_user.startswith('guest_'):
+            return jsonify({
+                "authenticated": True,
+                "canEdit": False,
+                "user_id": current_user,
+                "message": "משתמשי אורח לא יכולים לערוך מתכונים"
+            }), 200
+
+        if not user_id and not current_user:
             return jsonify({"authenticated": False}), 401
 
         # Guest users are always authenticated but never have edit permissions
@@ -280,7 +304,7 @@ async def validate_session():
         return jsonify({"authenticated": False}), 401
 
     except Exception as e:
-        print(f"Session validation error: {str(e)}", flush=True)
+        logger.error(f"Session validation error: {str(e)}")
         return jsonify({"error": "Validation failed"}), 500
 
 @auth_bp.route('/clear-permissions-cache', methods=['POST'])
