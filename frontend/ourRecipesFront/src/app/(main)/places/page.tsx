@@ -11,6 +11,8 @@ import { PlaceFilters } from '@/components/place/PlaceFilters';
 import { Place, PlaceFormData, getLocationParts } from '@/components/place/types';
 import { filterAndSortPlaces } from '@/components/place/utils';
 import Spinner from '@/components/ui/Spinner';
+import { PlaceService } from '@/services/placeService';
+import type { ApiResponse } from '@/types/api';
 
 const INITIAL_FORM_DATA: PlaceFormData = {
   name: '',
@@ -22,7 +24,7 @@ const INITIAL_FORM_DATA: PlaceFormData = {
 };
 
 export default function PlacesPage() {
-  const [places, setPlaces] = useState<Place[]>([]);
+  const [places, setPlaces] = useState<ApiResponse<Place[]> | Place[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPlace, setEditingPlace] = useState<Place | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -38,22 +40,27 @@ export default function PlacesPage() {
   const [sortBy, setSortBy] = useState('newest');
 
   // Get unique areas from places
-  const areas = Array.from(new Set(places.map(place => {
-    const locationParts = getLocationParts(place.location);
-    return locationParts.area || locationParts.city;
-  }).filter(Boolean))).map(area => ({
-    value: area,
-    label: area
-  }));
-  areas.unshift({ value: '', label: 'כל האזורים' });
+  const areas = isLoading || !places ? [{ value: '', label: 'כל האזורים' }] : [
+    { value: '', label: 'כל האזורים' },
+    ...Array.from(new Set((Array.isArray(places) ? places : places.data).map(place => {
+      const locationParts = getLocationParts(place.location);
+      return locationParts.area || locationParts.city;
+    }).filter(Boolean))).map(area => ({
+      value: area,
+      label: area
+    }))
+  ];
 
   // Filter and sort places
-  const filteredAndSortedPlaces = filterAndSortPlaces(places, {
-    searchQuery,
-    selectedType,
-    selectedArea,
-    sortBy
-  });
+  const filteredAndSortedPlaces = filterAndSortPlaces(
+    Array.isArray(places) ? places : places.data,
+    {
+      searchQuery,
+      selectedType,
+      selectedArea,
+      sortBy
+    }
+  );
 
   useEffect(() => {
     fetchPlaces();
@@ -62,12 +69,8 @@ export default function PlacesPage() {
   const fetchPlaces = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/places`, {
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error('Failed to fetch places');
-      const data = await response.json();
-      setPlaces(data);
+      const response = await PlaceService.getPlaces();
+      setPlaces(response);
     } catch (error) {
       console.error('Failed to load places:', error);
     } finally {
@@ -79,23 +82,15 @@ export default function PlacesPage() {
     e.preventDefault();
     setIsSaving(true);
     try {
-      const url = editingPlace 
-        ? `${process.env.NEXT_PUBLIC_API_URL}/places/${editingPlace.id}`
-        : `${process.env.NEXT_PUBLIC_API_URL}/places`;
-      
-      const response = await fetch(url, {
-        method: editingPlace ? 'PUT' : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify(formData),
-      });
-
-      if (!response.ok) throw new Error('Failed to save place');
+      if (editingPlace) {
+        await PlaceService.updatePlace(editingPlace.id, formData);
+      } else {
+        await PlaceService.createPlace(formData);
+      }
       
       await fetchPlaces();
       setIsModalOpen(false);
       resetForm();
-      
     } catch (error) {
       console.error('Failed to save place:', error);
     } finally {
@@ -112,13 +107,7 @@ export default function PlacesPage() {
     if (!placeToDelete) return;
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/places/${placeToDelete.id}`, {
-        method: 'DELETE',
-        credentials: 'include'
-      });
-
-      if (!response.ok) throw new Error('Failed to delete place');
-      
+      await PlaceService.deletePlace(placeToDelete.id);
       await fetchPlaces();
       setIsDeleteModalOpen(false);
       setPlaceToDelete(null);

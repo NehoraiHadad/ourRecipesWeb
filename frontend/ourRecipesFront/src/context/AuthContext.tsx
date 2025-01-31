@@ -1,16 +1,23 @@
 "use client"
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
+import { authService } from '@/services/authService';
+import type { User } from '@/types/auth';
+import { ApiResponse } from '@/types/api';
+
+type ValidateResponse = ApiResponse<{
+  authenticated: boolean;
+  canEdit: boolean;
+  user_id?: string;
+  name?: string;
+  type?: string;
+}>;
 
 interface AuthState {
   isAuthenticated: boolean;
   canEdit: boolean;
   isLoading: boolean;
   error: string | null;
-  user: {
-    id?: number;
-    name?: string;
-    type: 'guest' | 'telegram' | null;
-  } | null;
+  user: User | null;
 }
 
 export const AuthContext = createContext<{
@@ -38,23 +45,18 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = useCallback(async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/check`, {
-        credentials: 'include'
-      });
+      const response = (await authService.validate() as unknown) as ValidateResponse;
       
-      if (!response.ok) throw new Error('Auth check failed');
-      
-      const data = await response.json();
       setAuthState({
-        isAuthenticated: true,
-        canEdit: data.canEdit,
+        isAuthenticated: response.data.authenticated,
+        canEdit: response.data.canEdit,
         isLoading: false,
         error: null,
-        user: {
-          id: data.id,
-          name: data.name,
-          type: data.type
-        }
+        user: response.data.user_id ? {
+          id: response.data.user_id,
+          name: response.data.name || '',
+          type: (response.data.type as "guest" | "telegram") || null
+        } : null
       });
     } catch (error) {
       setAuthState({

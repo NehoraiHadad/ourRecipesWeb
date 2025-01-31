@@ -1,6 +1,33 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/AuthContext";
+import { authService } from "../services/authService";
+
+type UserType = "guest" | "telegram" | null;
+
+interface User {
+  id: string;
+  name: string;
+  type: UserType;
+}
+
+interface AuthData {
+  authenticated: boolean;
+  canEdit: boolean;
+  user_id?: string;
+  name?: string;
+  type?: UserType;
+}
+
+type ValidateResponse = {
+  authenticated: boolean;
+  canEdit: boolean;
+  user_id?: string;
+  name?: string;
+  type?: string;
+  status: string;
+  message: string;
+};
 
 export function useAuth(
   redirectTo: string = "",
@@ -13,18 +40,8 @@ export function useAuth(
     try {
       console.group('Logout Process');
       console.log('Starting logout...');
-      console.log('Current guest token:', localStorage.getItem('guest_token'));
       
-      console.log('Sending logout request to server...');
-      await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include'
-      });
-      
-      console.log('Server logout successful, removing guest token...');
-      // Clear guest token from localStorage
-      localStorage.removeItem('guest_token');
-      console.log('Guest token after removal:', localStorage.getItem('guest_token'));
+      await authService.logout();
       
       console.log('Resetting auth state...');
       setAuthState({
@@ -45,54 +62,34 @@ export function useAuth(
   };
 
   useEffect(() => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
+
     async function checkAuth() {
       try {
-        const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
-        // Get guest token from localStorage if exists
-        const guestToken = localStorage.getItem('guest_token');
-        const headers: HeadersInit = {
-          'Content-Type': 'application/json'
+        const response = (await authService.validate() as unknown) as ValidateResponse;
+        const authData: AuthData = {
+          authenticated: response.authenticated,
+          canEdit: response.canEdit,
+          user_id: response.user_id,
+          name: response.name,
+          type: response.type as UserType
         };
-        
-        if (guestToken) {
-          headers['Authorization'] = `Bearer ${guestToken}`;
-        }
-
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/auth/validate`,
-          {
-            method: "GET",
-            credentials: "include",
-            headers,
-            signal: controller.signal
-          }
-        );
-
-        clearTimeout(timeoutId);
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}));
-          throw new Error(errorData.message || "Failed to verify authentication status");
-        }
-
-        const data = await response.json();
 
         setAuthState({
-          isAuthenticated: data.authenticated,
-          canEdit: data.canEdit,
+          isAuthenticated: authData.authenticated,
+          canEdit: authData.canEdit,
           isLoading: false,
           error: null,
-          user: {
-            id: data.user_id,
-            name: data.name,
-            type: data.type
-          }
+          user: authData.user_id ? {
+            id: authData.user_id,
+            name: authData.name!,
+            type: authData.type ?? null
+          } : null
         });
 
-        if (data.authenticated && redirectIfFound) {
-          router.push(redirectTo);
+        if (authData.authenticated && redirectIfFound) {
+            router.push(redirectTo);
         }
       } catch (error) {
         if (error instanceof Error && error.name === 'AbortError') {
@@ -116,10 +113,17 @@ export function useAuth(
             router.push(redirectTo);
           }
         }
+      } finally {
+        clearTimeout(timeoutId);
       }
     }
 
     checkAuth();
+
+    return () => {
+      controller.abort();
+      clearTimeout(timeoutId);
+    };
   }, [redirectIfFound, redirectTo, router, setAuthState]);
 
   return { ...authState, logout };

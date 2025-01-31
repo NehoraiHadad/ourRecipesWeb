@@ -7,10 +7,11 @@ import { Button } from '@/components/ui/Button'
 import { MobileMenu } from './MobileMenu'
 import { useAuthContext } from '@/context/AuthContext'
 import Logo from '../Logo'
-import { useFont } from '@/context/FontContext'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
 import { FontSwitcher } from '@/components/FontSwitcher'
 import { useSearchContext } from '@/contexts/SearchContext'
+import { authService } from '@/services/authService'
+import { SyncService } from '@/services/syncService'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -26,19 +27,7 @@ export function Header() {
       console.log('Starting logout...');
       console.log('Current guest token:', localStorage.getItem('guest_token'));
       
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-        method: 'POST',
-        credentials: 'include'
-      });
-
-      if (!response.ok) {
-        throw new Error('Logout failed');
-      }
-
-      // Clear guest token from localStorage
-      console.log('Server logout successful, removing guest token...');
-      localStorage.removeItem('guest_token');
-      console.log('Guest token after removal:', localStorage.getItem('guest_token'));
+      await authService.logout();
 
       setAuthState({
         isAuthenticated: false,
@@ -60,15 +49,7 @@ export function Header() {
   const handleSync = async () => {
     setIsSyncing(true)
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync`, {
-        method: 'POST',
-        credentials: 'include'
-      })
-      
-      if (!response.ok) throw new Error('Sync failed')
-      
-      const data = await response.json()
-      console.log('Sync results:', data)
+      await SyncService.startSync();
       //TODO: Add a notification here for the user about the sync results
     } catch (error) {
       console.error('Sync error:', error)
