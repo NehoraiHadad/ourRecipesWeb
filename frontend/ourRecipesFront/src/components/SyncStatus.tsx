@@ -1,19 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/Button';
 import { Typography } from '@/components/ui/Typography';
-
-interface SyncStatusData {
-  recipes: {
-    total: number;
-    synced: number;
-    unsynced: number;
-  };
-  places: {
-    total: number;
-    synced: number;
-    unsynced: number;
-  };
-}
+import { SyncService, SyncStatus as SyncStatusType, SyncSessionStatus } from '@/services/syncService';
 
 interface SyncStatusProps {
   compact?: boolean;
@@ -27,7 +15,7 @@ interface SessionStatusFile {
   description: string;
 }
 
-interface SessionStatusResponse {
+interface SessionStatusResponse extends SyncSessionStatus {
   status: 'healthy' | 'error';
   files: Record<string, 'ok' | 'missing' | 'possibly_corrupt'>;
   details: Record<string, SessionStatusFile>;
@@ -40,14 +28,20 @@ interface SessionRefreshResponse {
   details?: SessionStatusResponse;
 }
 
+interface SyncData {
+  total: number;
+  synced: number;
+  unsynced: number;
+}
+
 // Helper function to safely access nested properties with proper type inference
 const safeGet = <T, K extends keyof T>(obj: T | null | undefined, key: K): NonNullable<T>[K] | undefined => {
   return obj ? obj[key] : undefined;
 };
 
 // Helper function to safely access sync status data
-const getSyncData = (status: SyncStatusData | null, type: 'recipes' | 'places') => {
-  const data = safeGet(status, type);
+const getSyncData = (status: SyncStatusType | null, type: 'recipes' | 'places'): SyncData => {
+  const data = safeGet(status, type as keyof SyncStatusType) as SyncData | undefined;
   return {
     total: data?.total ?? 0,
     synced: data?.synced ?? 0,
@@ -56,7 +50,7 @@ const getSyncData = (status: SyncStatusData | null, type: 'recipes' | 'places') 
 };
 
 export function SyncStatus({ compact = false }: SyncStatusProps) {
-  const [syncStatus, setSyncStatus] = useState<SyncStatusData | null>(null);
+  const [syncStatus, setSyncStatus] = useState<SyncStatusType | null>(null);
   const [sessionStatus, setSessionStatus] = useState<SessionStatusResponse | null>(null);
   const [isSyncing, setIsSyncing] = useState(false);
   const [isRefreshingSession, setIsRefreshingSession] = useState(false);
@@ -68,12 +62,15 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
   const fetchSyncStatus = async () => {
     setIsRefreshing(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync/status`, {
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error('Failed to fetch sync status');
-      const data = await response.json();
-      setSyncStatus(data);
+      console.log('Fetching sync status...');
+      const response = await SyncService.getStatus();
+      console.log('Sync status response:', response);
+      if (response) {
+        setSyncStatus(response as unknown as SyncStatusType);
+      } else {
+        console.error('Invalid sync status response:', response);
+        setError('Invalid sync status response');
+      }
     } catch (error) {
       console.error('Failed to fetch sync status:', error);
       setError('Failed to fetch sync status');
@@ -84,12 +81,15 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
 
   const fetchSessionStatus = async () => {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync/session/status`, {
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error('Failed to fetch session status');
-      const data = await response.json();
-      setSessionStatus(data);
+      console.log('Fetching session status...');
+      const response = await SyncService.getSessionStatus();
+      console.log('Session status response:', response);
+      if (response) {
+        setSessionStatus(response as unknown as SessionStatusResponse);
+      } else {
+        console.error('Invalid session status response:', response);
+        setError('Invalid session status response');
+      }
     } catch (error) {
       console.error('Failed to fetch session status:', error);
       setError('Failed to fetch session status');
@@ -101,28 +101,9 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
     setError(null);
     setRefreshMessage(null);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync/session/refresh`, {
-        method: 'POST',
-        credentials: 'include'
-      });
-      const data: SessionRefreshResponse = await response.json();
-      
-      if (!response.ok) throw new Error(data.message || 'Session refresh failed');
-      
-      if (data.status === 'ok') {
-        if (data.message.includes('no refresh needed')) {
-          setRefreshMessage({ type: 'info', text: 'הקבצים תקינים, לא נדרש רענון' });
-        } else {
-          setRefreshMessage({ type: 'success', text: 'הקבצים רועננו בהצלחה' });
-        }
-        if (data.details) {
-          setSessionStatus(data.details);
-        } else {
-          await fetchSessionStatus();
-        }
-      } else {
-        throw new Error(data.message);
-      }
+      await SyncService.refreshSession();
+      setRefreshMessage({ type: 'success', text: 'הקבצים רועננו בהצלחה' });
+      await fetchSessionStatus();
     } catch (error) {
       console.error('Session refresh failed:', error);
       setError('Session refresh failed');
@@ -133,19 +114,21 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
   };
 
   useEffect(() => {
+    console.log('SyncStatus mounted');
     fetchSyncStatus();
     fetchSessionStatus();
   }, []);
+
+  useEffect(() => {
+    console.log('syncStatus:', syncStatus);
+    console.log('sessionStatus:', sessionStatus);
+  }, [syncStatus, sessionStatus]);
 
   const handleSync = async () => {
     setIsSyncing(true);
     setError(null);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sync`, {
-        method: 'POST',
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error('Sync failed');
+      await SyncService.startSync();
       await fetchSyncStatus();
     } catch (error) {
       console.error('Sync failed:', error);
@@ -203,11 +186,16 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
     );
   };
 
-  if (!syncStatus && !sessionStatus) return null;
+  if (!syncStatus && !sessionStatus) {
+    console.log('SyncStatus returning null - no data available');
+    return null;
+  }
 
   const recipesData = getSyncData(syncStatus, 'recipes');
   const placesData = getSyncData(syncStatus, 'places');
   const totalUnsynced = recipesData.unsynced + placesData.unsynced;
+
+  console.log('SyncStatus data:', { recipesData, placesData, totalUnsynced, compact });
 
   if (compact) {
     return (

@@ -79,6 +79,7 @@ async def login():
                 "name": user_data.get("first_name", ""),
                 "type": "telegram"
             },
+            "token": access_token,  # Include token in response for iOS clients
             "message": "אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות." if not has_permission else None
         })
 
@@ -86,7 +87,7 @@ async def login():
         if origin:
             response.headers['Access-Control-Allow-Origin'] = origin
             response.headers['Access-Control-Allow-Credentials'] = 'true'
-            response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie'
+            response.headers['Access-Control-Expose-Headers'] = 'Set-Cookie, Authorization'
 
         # Set cookies with improved settings
         set_access_cookies(response, access_token)
@@ -241,30 +242,13 @@ def logout():
         }), 500
 
 @auth_bp.route('/validate', methods=['GET'])
-@jwt_required(optional=True)  # Make JWT optional
+@jwt_required()
 async def validate_session():
     """Validate current session"""
     try:
-        # Try to get token from Authorization header first
-        auth_header = request.headers.get('Authorization')
-        if auth_header and auth_header.startswith('Bearer '):
-            from flask_jwt_extended import decode_token
-            try:
-                token = auth_header.split(' ')[1]
-                decoded = decode_token(token)
-                current_user = decoded['sub']
-            except Exception as e:
-                logger.error(f"Bearer token validation error: {str(e)}")
-                current_user = None
-        else:
-            # Fallback to JWT from cookie
-            current_user = get_jwt_identity()
-
-        user_id = session.get("user_id")
+        # Get user identity from JWT
+        current_user = get_jwt_identity()
         
-        logger.info(f"current_user: {current_user}")
-        logger.info(f"session userId: {user_id}")
-
         # For guest users, accept either cookie or Authorization header
         if current_user and current_user.startswith('guest_'):
             return jsonify({
@@ -274,34 +258,22 @@ async def validate_session():
                 "message": "משתמשי אורח לא יכולים לערוך מתכונים"
             }), 200
 
-        if not user_id and not current_user:
+        if not current_user:
             return jsonify({"authenticated": False}), 401
 
-        # Guest users are always authenticated but never have edit permissions
-        if isinstance(user_id, str) and user_id.startswith('guest_'):
-            session["edit_permission"] = False
-            return jsonify({
-                "authenticated": True,
-                "canEdit": False,
-                "user_id": user_id,
-                "message": "משתמשי אורח לא יכולים לערוך מתכונים"
-            }), 200
-
-        if user_id == current_user:
-            permission = await AuthService.check_edit_permission(
-                user_id, 
-                current_app.config["OLD_CHANNEL_URL"]
-            )
-            session["edit_permission"] = permission
-            
-            return jsonify({
-                "authenticated": True,
-                "canEdit": permission,
-                "user_id": user_id,
-                "message": "אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות." if not permission else None
-            }), 200
-
-        return jsonify({"authenticated": False}), 401
+        # Check permissions for authenticated users
+        permission = await AuthService.check_edit_permission(
+            current_user, 
+            current_app.config["OLD_CHANNEL_URL"]
+        )
+        session["edit_permission"] = permission
+        
+        return jsonify({
+            "authenticated": True,
+            "canEdit": permission,
+            "user_id": current_user,
+            "message": "אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות." if not permission else None
+        }), 200
 
     except Exception as e:
         logger.error(f"Session validation error: {str(e)}")

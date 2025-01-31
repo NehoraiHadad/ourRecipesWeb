@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from '@/components/ui/Spinner';
 import { useNotification } from '@/context/NotificationContext'
 import { useFont } from '@/context/FontContext';
 import { recipe } from '@/types'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
+import { useRouter } from 'next/navigation';
+import { useDebounce } from '@/hooks/useDebounce';
+import { SearchService, SearchResult } from '@/services/searchService';
+import { CategoryService } from '@/services/categoryService';
 
 interface SearchProps {
   onSearch: (newRecipes: Record<string, recipe>) => void
@@ -11,11 +15,13 @@ interface SearchProps {
   className?: string
 }
 
-
-const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => {
-  const [query, setQuery] = useState("");
-  const [isSearching, setIsSearching] = useState(false);
-  const [startAnimation, setStartAnimation] = useState(false);
+export function Search({ onSearch, resultCount, className }: SearchProps) {
+  const router = useRouter();
+  const { addNotification } = useNotification();
+  const [query, setQuery] = useState('');
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [availableCategories, setAvailableCategories] = useState<string[]>([]);
   const [isLoadingCategories, setIsLoadingCategories] = useState(false);
@@ -27,8 +33,118 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
     excludeTerms: [] as string[]
   });
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
-  const { addNotification } = useNotification()
   const { currentFont } = useFont();
+
+  const debouncedQuery = useDebounce(query, 300);
+
+  const handleSearch = useCallback(async (searchQuery: string) => {
+    if (!searchQuery.trim()) {
+      setSuggestions([]);
+      return;
+    }
+
+    setIsLoading(true);
+    try {
+      const suggestionsResponse = await SearchService.getSearchSuggestions(searchQuery);
+
+      // Handle suggestions - support both direct array and wrapped responses
+      const suggestionsData = Array.isArray(suggestionsResponse) 
+        ? suggestionsResponse 
+        : (suggestionsResponse?.data || []);
+
+      if (!Array.isArray(suggestionsData)) {
+        console.error('Invalid suggestions format:', suggestionsResponse);
+        setSuggestions([]);
+      } else {
+        setSuggestions(suggestionsData);
+      }
+    } catch (error) {
+      console.error('Search suggestions failed:', error);
+      setSuggestions([]);
+      addNotification({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'חיפוש הצעות נכשל',
+        duration: 5000
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  }, [addNotification]);
+
+  useEffect(() => {
+    handleSearch(debouncedQuery);
+  }, [debouncedQuery, handleSearch]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setQuery(e.target.value);
+    setShowSuggestions(true);
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setQuery(suggestion);
+    setShowSuggestions(false);
+    // Trigger search automatically when suggestion is selected
+    const searchParams = new URLSearchParams();
+    searchParams.append('query', suggestion);
+    performSearch(searchParams);
+  };
+
+  const performSearch = async (searchParams: URLSearchParams) => {
+    setIsLoading(true);
+    setShowSuggestions(false);
+    setShowCategories(false);
+    setShowAdvancedFilters(false);
+
+    try {
+      const response = await SearchService.search({
+        query: searchParams.get('query') || '',
+        ...(selectedCategories.length > 0 && { categories: selectedCategories }),
+        ...(advancedFilters.preparationTime && { preparationTime: parseInt(advancedFilters.preparationTime) }),
+        ...(advancedFilters.difficulty && { difficulty: advancedFilters.difficulty }),
+        ...(advancedFilters.includeTerms.length > 0 && { includeTerms: advancedFilters.includeTerms }),
+        ...(advancedFilters.excludeTerms.length > 0 && { excludeTerms: advancedFilters.excludeTerms })
+      });
+
+      console.log('Search response:', response); // For debugging
+
+      if (!response) {
+        onSearch({});
+        addNotification({
+          type: 'error',
+          message: 'החיפוש נכשל - לא התקבלה תשובה',
+          duration: 5000
+        });
+        return;
+      }
+
+      onSearch(response.results || {});
+    } catch (error) {
+      console.error('Search failed:', error);
+      onSearch({});
+      addNotification({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'החיפוש נכשל',
+        duration: 5000
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleResultClick = (result: SearchResult) => {
+    switch (result.type) {
+      case 'recipe':
+        router.push(`/recipes/${result.id}`);
+        break;
+      case 'category':
+        router.push(`/categories/${result.id}`);
+        break;
+      case 'place':
+        router.push(`/places/${result.id}`);
+        break;
+    }
+    setShowSuggestions(false);
+  };
 
   useEffect(() => {
     fetchCategories();
@@ -47,18 +163,14 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
   const fetchCategories = async () => {
     setIsLoadingCategories(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/categories`, {
-        credentials: 'include'
-      });
-      if (!response.ok) throw new Error('Failed to fetch categories');
-      const categories = await response.json();
-      setAvailableCategories(categories);
+      const response = await CategoryService.getCategories();
+      setAvailableCategories(response.data.map(category => category));
     } catch (error) {
       addNotification({
         message: 'שגיאה בטעינת קטגוריות',
         type: 'error',
         duration: 5000
-      })
+      });
     } finally {
       setIsLoadingCategories(false);
     }
@@ -66,54 +178,26 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSearching(true);
-    setStartAnimation(true);
-    setShowCategories(false);
-    setShowAdvancedFilters(false);
-
-    try {
-      const searchParams = new URLSearchParams();
-      if (query) searchParams.append('query', query);
-      if (selectedCategories.length > 0) {
-        searchParams.append('categories', selectedCategories.join(','));
-      }
-      
-      if (advancedFilters.preparationTime) {
-        searchParams.append('prepTime', advancedFilters.preparationTime);
-      }
-      if (advancedFilters.difficulty) {
-        searchParams.append('difficulty', advancedFilters.difficulty);
-      }
-      if (advancedFilters.includeTerms.length > 0) {
-        searchParams.append('includeTerms', advancedFilters.includeTerms.join(','));
-      }
-      if (advancedFilters.excludeTerms.length > 0) {
-        searchParams.append('excludeTerms', advancedFilters.excludeTerms.join(','));
-      }
-
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/search?${searchParams.toString()}`,
-        {
-          credentials: 'include',
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error('Failed to search recipes');
-      }
-
-      const data = await response.json();
-      onSearch(data.results || {});
-      
-    } catch (error) {
-      addNotification({
-        message: 'שגיאה בחיפוש מתכונים',
-        type: 'error',
-        duration: 5000
-      })
-    } finally {
-      setIsSearching(false);
+    const searchParams = new URLSearchParams();
+    if (query) searchParams.append('query', query);
+    if (selectedCategories.length > 0) {
+      searchParams.append('categories', selectedCategories.join(','));
     }
+
+    if (advancedFilters.preparationTime) {
+      searchParams.append('prepTime', advancedFilters.preparationTime);
+    }
+    if (advancedFilters.difficulty) {
+      searchParams.append('difficulty', advancedFilters.difficulty);
+    }
+    if (advancedFilters.includeTerms.length > 0) {
+      searchParams.append('includeTerms', advancedFilters.includeTerms.join(','));
+    }
+    if (advancedFilters.excludeTerms.length > 0) {
+      searchParams.append('excludeTerms', advancedFilters.excludeTerms.join(','));
+    }
+
+    await performSearch(searchParams);
   };
 
   const handleCategoryClick = (category: string) => {
@@ -163,15 +247,55 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
         >
           {/* Main Search Bar Row */}
           <div className="flex items-center gap-2">
-            <div className="flex-1 flex items-center h-9 bg-white/90 backdrop-blur-sm rounded-lg border border-secondary-200 shadow-warm transition-all duration-200 focus-within:border-primary-300 focus-within:ring-1 focus-within:ring-primary-100/50">
+            <div className="relative flex-1 flex items-center h-9 bg-white/90 backdrop-blur-sm rounded-lg border border-secondary-200 shadow-warm transition-all duration-200 focus-within:border-primary-300 focus-within:ring-1 focus-within:ring-primary-100/50">
               <input
-                type="text"
+                type="search"
+                placeholder="חיפוש..."
                 value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onFocus={() => setShowCategories(true)}
+                onChange={handleInputChange}
+                onFocus={() => setShowSuggestions(true)}
+                onBlur={(e) => {
+                  if (!e.relatedTarget?.closest('.suggestions-dropdown')) {
+                    setTimeout(() => setShowSuggestions(false), 200);
+                  }
+                }}
                 className="flex-1 px-3 py-1.5 text-sm bg-transparent outline-none"
-                placeholder="חיפוש מתכונים..."
               />
+              
+              {/* Suggestions Dropdown */}
+              {showSuggestions && query.trim() && (
+                <div className="suggestions-dropdown absolute bottom-full left-0 right-0 mb-1 bg-white/95 backdrop-blur-sm rounded-lg shadow-lg border border-secondary-100/50 max-h-60 overflow-y-auto z-50">
+                  {isLoading ? (
+                    <div className="p-4 text-center">
+                      <Spinner size="sm" />
+                    </div>
+                  ) : (
+                    <>
+                      {suggestions.length > 0 && (
+                        <div className="p-2 border-b border-secondary-100/50">
+                          <div className="text-xs text-secondary-500 mb-1">הצעות חיפוש</div>
+                          {suggestions.map((suggestion, index) => (
+                            <button
+                              key={index}
+                              type="button"
+                              onClick={() => handleSuggestionClick(suggestion)}
+                              className="w-full text-right px-3 py-1.5 text-sm text-secondary-700 hover:bg-secondary-50/80 focus:bg-secondary-50/80 focus:outline-none transition-colors duration-150 ease-in-out first:rounded-t-lg last:rounded-b-lg"
+                            >
+                              {suggestion}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+
+                      {!suggestions.length && query.trim() && (
+                        <div className="p-4 text-center text-secondary-500 text-sm">
+                          לא נמצאו הצעות
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              )}
               
               {/* Advanced Search Button with Feature Indicator */}
               <FeatureIndicator
@@ -195,10 +319,10 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
               {/* Search Button */}
               <button
                 type="submit"
-                disabled={isSearching}
+                disabled={isLoading}
                 className="px-3 h-full flex items-center justify-center text-secondary-500 hover:text-primary-500 transition-colors"
               >
-                {isSearching ? (
+                {isLoading ? (
                   <Spinner size="sm" />
                 ) : (
                   <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -209,7 +333,7 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
             </div>
 
             {/* Results Count Badge */}
-            {(resultCount !== "" && !isSearching && resultCount !== undefined) && (
+            {(resultCount !== "" && !isLoading && resultCount !== undefined) && (
               <div 
                 className={`
                   min-w-[70px] h-7 px-2.5
@@ -398,6 +522,6 @@ const Search: React.FC<SearchProps> = ({ onSearch, resultCount, className }) => 
       </div>
     </div>
   );
-};
+}
 
 export default Search;

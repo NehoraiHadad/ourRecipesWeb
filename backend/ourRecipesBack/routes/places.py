@@ -1,8 +1,9 @@
 from flask import Blueprint, jsonify, request, session
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from ..models import Place
 from ..extensions import db
 from ..services.telegram_service import TelegramService
+from ..services.auth_service import AuthService
 import asyncio
 import logging
 
@@ -10,6 +11,7 @@ places = Blueprint('places', __name__)
 logger = logging.getLogger(__name__)
 
 @places.route('', methods=['GET'])
+@jwt_required()
 def get_places():
     """Get all recommended places ordered by creation date"""
     try:

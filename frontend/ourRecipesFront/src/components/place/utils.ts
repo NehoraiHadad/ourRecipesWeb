@@ -10,6 +10,8 @@ export const filterAndSortPlaces = (
     sortBy: string;
   }
 ) => {
+  if (!Array.isArray(places)) return [];
+  
   return places
     .filter(place => {
       const matchesSearch = !searchQuery || 

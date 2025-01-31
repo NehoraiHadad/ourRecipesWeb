@@ -44,7 +44,7 @@ def create_app(config_name='default'):
     
     # Initialize JWT first
     jwt = JWTManager(app)
-    
+        
     # Setup JWT handlers
     AuthService.setup_jwt_handlers(jwt)
     

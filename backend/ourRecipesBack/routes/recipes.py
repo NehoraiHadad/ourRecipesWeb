@@ -1,12 +1,12 @@
 from flask import jsonify, request
-from flask_jwt_extended import jwt_required, get_jwt_identity
+from flask_jwt_extended import get_jwt_identity, jwt_required
 from ..services.recipe_service import RecipeService, get_recipe_by_id
 from ..services.ai_service import AIService
+from ..services.auth_service import AuthService
 from flask import Blueprint
 import base64
 
 recipes_bp = Blueprint("recipes", __name__)
-
 
 @recipes_bp.route("/search", methods=["GET"])
 @jwt_required()
@@ -265,6 +265,22 @@ def optimize_recipe_steps():
     except Exception as e:
         print(f"Recipe step optimization error in route: {str(e)}", flush=True)
         return jsonify({"error": "Step optimization failed"}), 500
+
+
+@recipes_bp.route("/search/suggestions", methods=["GET"])
+@jwt_required()
+def get_search_suggestions():
+    """Get search suggestions based on query"""
+    try:
+        query = request.args.get("q", "").strip()
+        limit = request.args.get("limit", 5, type=int)
+        
+        suggestions = RecipeService.get_search_suggestions(query, limit)
+        return jsonify({"data": suggestions}), 200
+        
+    except Exception as e:
+        print(f"Search suggestions error: {str(e)}", flush=True)
+        return jsonify({"error": "Failed to get suggestions"}), 500
 
 
 # Helper functions

@@ -17,14 +17,14 @@ import { RecentlyViewedRecipes } from '@/components/RecentlyViewedRecipes';
 import { useFavorites } from '@/contexts/FavoritesContext';
 import { useSearchContext } from '@/contexts/SearchContext';
 import RecipeDetails from "@/components/recipe/RecipeDetails";
-
+import { RecipeService } from "@/services/recipeService";
 
 export default function Page() {
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState<recipe[]>([]);
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
-  const { favorites } = useFavorites();
+  const { favorites, setFavorites } = useFavorites();
   const { searchResults, resultCount, setSearchResults, setResultCount } = useSearchContext();
   
   // Recipe Modal State
@@ -44,16 +44,8 @@ export default function Page() {
         setSelectedRecipe(recipe);
       } else {
         // Fetch from server if not found locally
-        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipeId}`, {
-          credentials: 'include'
-        });
-        
-        if (!response.ok) {
-          throw new Error('לא ניתן למצוא את המתכון');
-        }
-        
-        const fetchedRecipe = await response.json();
-        setSelectedRecipe(fetchedRecipe);
+        const response = await RecipeService.getRecipeById(recipeId);
+        setSelectedRecipe(response.data);
       }
     } catch (error) {
       setError(error instanceof Error ? error.message : 'לא ניתן למצוא את המתכון');
@@ -72,13 +64,43 @@ export default function Page() {
       }
 
       try {
-        const promises = favorites.map(id =>
-          fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/${id}`, {
-            credentials: 'include'
-          }).then(res => res.json())
+        const promises = favorites.map(id => 
+          RecipeService.getRecipeById(id)
+            .then(res => {
+              const recipeData = res?.data || res;
+              
+              // Validate the response data
+              if (!recipeData || typeof recipeData !== 'object') {
+                console.error(`Invalid response for recipe ${id}:`, res);
+                return null;
+              }
+              
+              // Additional validation for required fields
+              if (!recipeData.id || !recipeData.title) {
+                console.error(`Recipe ${id} missing required fields:`, recipeData);
+                return null;
+              }
+              
+              return recipeData;
+            })
+            .catch(error => {
+              if (error?.response?.status === 404) {
+                console.warn(`Recipe ${id} not found - removing from favorites`);
+                // Remove the non-existent recipe from favorites
+                setFavorites(prev => prev.filter(favId => favId !== id));
+              } else {
+                console.error(`Error fetching recipe ${id}:`, error);
+              }
+              return null;
+            })
         );
-
-        const recipes = await Promise.all(promises);
+        
+        const recipes = (await Promise.all(promises)).filter((recipe): recipe is recipe => {
+          if (!recipe || typeof recipe !== 'object') return false;
+          if (!('id' in recipe) || typeof recipe.id !== 'number') return false;
+          return true;
+        });
+        
         setFavoriteRecipes(recipes);
       } catch (error) {
         console.error('Error fetching favorite recipes:', error);
@@ -88,7 +110,7 @@ export default function Page() {
     };
 
     fetchFavoriteRecipes();
-  }, [favorites]);
+  }, [favorites, setFavorites]);
 
   if (isLoading) {
     return (

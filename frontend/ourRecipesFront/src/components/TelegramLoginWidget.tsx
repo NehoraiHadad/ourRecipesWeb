@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useNotification } from "@/context/NotificationContext";
+import { authService } from "@/services/authService";
 
 const TelegramLoginWidget: React.FC = () => {
   const router = useRouter();
@@ -51,71 +52,7 @@ const TelegramLoginWidget: React.FC = () => {
     console.group('Telegram Login Process');
     
     try {
-      console.log('Initiating login request to:', `${process.env.NEXT_PUBLIC_API_URL}/auth/login`);
-      console.log('Request Headers:', {
-        'Content-Type': 'application/json',
-        'User-Agent': navigator.userAgent
-      });
-
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify(user),
-      });
-
-      console.log('Server Response:', {
-        status: response.status,
-        statusText: response.statusText,
-        headers: Object.fromEntries(response.headers.entries())
-      });
-
-      if (!response.ok) {
-        const error = await response.json().catch(() => ({ message: 'No error details provided' }));
-        
-        // Log specific HTTP errors
-        const errorDetails = {
-          status: response.status,
-          statusText: response.statusText,
-          message: error.message,
-          timestamp: new Date().toISOString(),
-          endpoint: `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-          method: 'POST'
-        };
-
-        switch (response.status) {
-          case 405:
-            console.error('Method Not Allowed Error:', {
-              ...errorDetails,
-              allowedMethods: response.headers.get('Allow'),
-              suggestion: 'Check if the endpoint supports POST method'
-            });
-            break;
-          case 401:
-            console.error('Unauthorized Error:', {
-              ...errorDetails,
-              suggestion: 'Telegram authentication might have expired'
-            });
-            break;
-          case 403:
-            console.error('Forbidden Error:', {
-              ...errorDetails,
-              suggestion: 'Check user permissions'
-            });
-            break;
-          case 429:
-            console.error('Rate Limit Error:', {
-              ...errorDetails,
-              retryAfter: response.headers.get('Retry-After'),
-              suggestion: 'Too many requests, implement backoff'
-            });
-            break;
-          default:
-            console.error('Login Error Response:', errorDetails);
-        }
-
-        throw new Error(error.message || "Login failed");
-      }
+      const response = await authService.login(user);
 
       console.log('Login Success');
       console.log('Cookies:', {

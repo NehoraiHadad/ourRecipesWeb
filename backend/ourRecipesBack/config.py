@@ -34,7 +34,9 @@ class Config:
 
     # JWT settings
     JWT_SECRET_KEY = os.getenv("SECRET_JWT", "dev-secret")
-    JWT_TOKEN_LOCATION = ["cookies"]
+    JWT_TOKEN_LOCATION = ["headers", "cookies"]
+    JWT_HEADER_NAME = "Authorization"
+    JWT_HEADER_TYPE = "Bearer"
     JWT_COOKIE_SECURE = True
     JWT_COOKIE_CSRF_PROTECT = False
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=7)
@@ -57,14 +59,16 @@ class Config:
         "Origin",
         "X-Requested-With",
         "Access-Control-Request-Method",
-        "Access-Control-Request-Headers"
+        "Access-Control-Request-Headers",
+        "Authorization"
     ]
     CORS_EXPOSE_HEADERS = [
         "Content-Type",
         "Authorization",
         "Set-Cookie",
         "Access-Control-Allow-Origin",
-        "Access-Control-Allow-Credentials"
+        "Access-Control-Allow-Credentials",
+        "Authorization"
     ]
     CORS_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
     CORS_MAX_AGE = 600  # Cache preflight requests for 10 minutes

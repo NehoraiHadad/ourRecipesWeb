@@ -332,6 +332,51 @@ class RecipeService:
             print(f"Bulk parse error: {str(e)}")
             raise
 
+    @classmethod
+    def get_search_suggestions(cls, query: str, limit: int = 5) -> list[str]:
+        """
+        Get search suggestions based on recipe titles and categories
+        
+        Args:
+            query (str): The search query
+            limit (int): Maximum number of suggestions to return
+            
+        Returns:
+            list[str]: List of suggested search terms
+        """
+        try:
+            if not query or len(query.strip()) < 2:
+                return []
+
+            search_pattern = f"%{query}%"
+            
+            # Search in titles and categories
+            recipes = Recipe.query.filter(
+                db.or_(
+                    Recipe.title.ilike(search_pattern),
+                    Recipe._categories.ilike(search_pattern)
+                )
+            ).limit(limit).all()
+            
+            suggestions = set()
+            
+            for recipe in recipes:
+                # Add matching title if it contains the query
+                if query.lower() in recipe.title.lower():
+                    suggestions.add(recipe.title)
+                
+                # Add matching categories
+                if recipe.categories:
+                    for category in recipe.categories:
+                        if query.lower() in category.lower():
+                            suggestions.add(category)
+            
+            return list(suggestions)[:limit]
+            
+        except Exception as e:
+            print(f"Error getting search suggestions: {str(e)}", flush=True)
+            return []
+
 def get_recipe_by_id(telegram_id: int) -> dict:
     """
     Get recipe details by Telegram ID
