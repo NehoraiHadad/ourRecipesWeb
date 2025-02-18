@@ -28,18 +28,9 @@ interface GeocodedPlace extends Place {
   coordinates?: [number, number];
 }
 
-// Load cache from localStorage
+// Cache for geocoding results
 const CACHE_KEY = 'geocoding_cache';
-const geocodeCache: Record<string, [number, number] | undefined> = (() => {
-  if (typeof window === 'undefined') return {};
-  try {
-    const saved = localStorage.getItem(CACHE_KEY);
-    return saved ? JSON.parse(saved) : {};
-  } catch (e) {
-    console.error('Failed to load geocoding cache:', e);
-    return {};
-  }
-})();
+let geocodeCache: Record<string, [number, number] | undefined> = {};
 
 // Save cache to localStorage
 const saveCache = () => {
@@ -100,10 +91,22 @@ async function geocodeLocation(location: string): Promise<[number, number] | und
   }
 }
 
-export function PlaceMap({ places, className = '' }: PlaceMapProps) {
+const PlaceMap = ({ places, className = '' }: PlaceMapProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [geocodedPlaces, setGeocodedPlaces] = useState<GeocodedPlace[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  // Load cache from localStorage
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem(CACHE_KEY);
+      if (saved) {
+        geocodeCache = JSON.parse(saved);
+      }
+    } catch (e) {
+      console.error('Failed to load geocoding cache:', e);
+    }
+  }, []);
 
   useEffect(() => {
     setIsMounted(true);
@@ -205,4 +208,6 @@ export function PlaceMap({ places, className = '' }: PlaceMapProps) {
       </MapContainer>
     </div>
   );
-} 
+};
+
+export default PlaceMap; 

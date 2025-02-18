@@ -13,8 +13,18 @@ import { filterAndSortPlaces } from '@/components/place/utils';
 import Spinner from '@/components/ui/Spinner';
 import { PlaceService } from '@/services/placeService';
 import type { ApiResponse } from '@/types/api';
-import { PlaceMap } from '@/components/place/PlaceMap';
+import dynamic from 'next/dynamic';
 import { ViewToggle } from '@/components/place/ViewToggle';
+
+// Dynamically import the map component with no SSR
+const PlaceMap = dynamic(() => import('@/components/place/PlaceMap'), {
+  loading: () => (
+    <div className="flex justify-center items-center py-12">
+      <Spinner size="lg" message="טוען מפה..." />
+    </div>
+  ),
+  ssr: false
+});
 
 const INITIAL_FORM_DATA: PlaceFormData = {
   name: '',
