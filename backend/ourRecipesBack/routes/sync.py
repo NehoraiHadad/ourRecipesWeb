@@ -101,6 +101,34 @@ async def refresh_session():
         }), 500
 
 
+@sync_bp.route("/full", methods=["POST"])
+@jwt_required()
+async def full_resync():
+    """Perform a full resync of all recipes and places, resetting sync state"""
+    # Initialize sync log
+    sync_log = _create_sync_log()
+    sync_log.sync_type = "full_resync"
+
+    try:
+        # Reset sync state for all recipes and places
+        Recipe.query.update({Recipe.last_sync: None})
+        Place.query.update({Place.is_synced: False})
+        db.session.commit()
+
+        # Perform sync
+        await _perform_sync(sync_log)
+
+        # Mark sync as completed
+        _complete_sync(sync_log)
+
+        return jsonify({"status": "success", "stats": _get_sync_stats(sync_log)}), 200
+
+    except Exception as sync_error:
+        _handle_sync_error(sync_log, sync_error)
+        print(f"Full resync error: {str(sync_error)}", flush=True)
+        return jsonify({"status": "error", "message": str(sync_error)}), 500
+
+
 # Helper functions
 def _create_sync_log():
     """Create and initialize sync log"""

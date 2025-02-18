@@ -37,6 +37,13 @@ export class SyncService {
   static async startSync(): Promise<ApiResponse<void>> {
     return apiService.post<ApiResponse<void>>(this.BASE_PATH);
   }
+
+  // Start full resync
+  static async startFullResync(): Promise<ApiResponse<void>> {
+    return apiService.post<ApiResponse<void>>(`${this.BASE_PATH}/full`, undefined, {
+      timeout: 5 * 60 * 1000 // 5 minutes timeout
+    });
+  }
 }
 
 export const syncService = new SyncService(); 

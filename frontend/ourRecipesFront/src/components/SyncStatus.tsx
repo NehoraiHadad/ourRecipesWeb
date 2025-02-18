@@ -138,6 +138,31 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
     }
   };
 
+  const handleFullResync = async () => {
+    if (!window.confirm('האם אתה בטוח שברצונך לבצע סנכרון מלא? פעולה זו תסנכרן מחדש את כל המתכונים והמקומות.\nהתהליך עשוי לקחת מספר דקות.')) {
+      return;
+    }
+    setIsSyncing(true);
+    setError(null);
+    setRefreshMessage({ type: 'info', text: 'מבצע סנכרון מלא... התהליך עשוי לקחת מספר דקות' });
+    try {
+      await SyncService.startFullResync();
+      await fetchSyncStatus();
+      setRefreshMessage({ type: 'success', text: 'סנכרון מלא הושלם בהצלחה' });
+    } catch (error) {
+      console.error('Full resync failed:', error);
+      setError('Full resync failed');
+      setRefreshMessage({ 
+        type: 'error', 
+        text: error instanceof Error && error.message === 'Request timeout' 
+          ? 'הסנכרון המלא נכשל - התהליך לקח יותר מדי זמן. נסה שוב או פנה למנהל המערכת.'
+          : `שגיאה בסנכרון מלא: ${error instanceof Error ? error.message : 'שגיאה לא ידועה'}`
+      });
+    } finally {
+      setIsSyncing(false);
+    }
+  };
+
   const renderStatusIcon = (status: 'ok' | 'missing' | 'possibly_corrupt') => {
     const baseClasses = "flex items-center justify-center w-6 h-6 rounded-full text-lg font-bold";
     switch (status) {
@@ -248,7 +273,6 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
                 onClick={fetchSyncStatus}
                 disabled={isRefreshing}
                 className="p-1.5 hover:bg-gray-100 rounded-full transition-colors disabled:opacity-50"
-                title="רענן נתונים"
               >
                 <svg
                   className={`w-4 h-4 ${isRefreshing ? 'animate-spin' : ''}`}
@@ -266,6 +290,19 @@ export function SyncStatus({ compact = false }: SyncStatusProps) {
                 </svg>
               </button>
             </div>
+
+            {/* Add Full Resync Button */}
+            <div className="mb-4">
+              <Button
+                onClick={handleFullResync}
+                disabled={isSyncing}
+                variant="secondary"
+                className="w-full text-amber-600 border-amber-600 hover:bg-amber-50"
+              >
+                סנכרון מלא מחדש
+              </Button>
+            </div>
+
             <div className="space-y-2">
               <div>
                 <Typography variant="body" className="text-secondary-600">
