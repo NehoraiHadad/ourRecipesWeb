@@ -13,6 +13,8 @@ import { filterAndSortPlaces } from '@/components/place/utils';
 import Spinner from '@/components/ui/Spinner';
 import { PlaceService } from '@/services/placeService';
 import type { ApiResponse } from '@/types/api';
+import { PlaceMap } from '@/components/place/PlaceMap';
+import { ViewToggle } from '@/components/place/ViewToggle';
 
 const INITIAL_FORM_DATA: PlaceFormData = {
   name: '',
@@ -32,6 +34,7 @@ export default function PlacesPage() {
   const [formData, setFormData] = useState<PlaceFormData>(INITIAL_FORM_DATA);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   // Filtering and sorting states
   const [searchQuery, setSearchQuery] = useState('');
@@ -152,9 +155,12 @@ export default function PlacesPage() {
           <div className="flex-none">
             <div className="flex justify-between items-center p-4">
               <Typography variant="h1" className="text-2xl">מקומות מומלצים לביקור</Typography>
-              <Button onClick={() => setIsModalOpen(true)} size="sm" className="md:!py-2 md:!px-4">
-                הוסף המלצה
-              </Button>
+              <div className="flex gap-2">
+                <ViewToggle view={viewMode} onChange={setViewMode} />
+                <Button onClick={() => setIsModalOpen(true)} size="sm" className="md:!py-2 md:!px-4">
+                  הוסף המלצה
+                </Button>
+              </div>
             </div>
 
             {/* Filters */}
@@ -174,7 +180,7 @@ export default function PlacesPage() {
             </div>
           </div>
 
-          {/* Scrollable Places Grid */}
+          {/* Scrollable Content */}
           <div className="flex-1 overflow-y-auto">
             <div className="px-4">
               {isLoading ? (
@@ -183,16 +189,20 @@ export default function PlacesPage() {
                 </div>
               ) : (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
-                    {filteredAndSortedPlaces.map((place) => (
-                      <PlaceCard
-                        key={place.id}
-                        place={place}
-                        onEdit={handleEdit}
-                        onDelete={handleDelete}
-                      />
-                    ))}
-                  </div>
+                  {viewMode === 'list' ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pb-4">
+                      {filteredAndSortedPlaces.map((place) => (
+                        <PlaceCard
+                          key={place.id}
+                          place={place}
+                          onEdit={handleEdit}
+                          onDelete={handleDelete}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <PlaceMap places={filteredAndSortedPlaces} className="mb-4" />
+                  )}
 
                   {filteredAndSortedPlaces.length === 0 && (
                     <div className="text-center py-12">
