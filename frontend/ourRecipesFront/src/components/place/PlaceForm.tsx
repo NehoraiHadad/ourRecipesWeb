@@ -65,6 +65,8 @@ export function PlaceForm({ formData, onSubmit, onChange, onCancel, isEditing, i
         <div>
           <Typography variant="body" className="font-medium mb-1">מיקום</Typography>
           <Input
+            id="location"
+            name="location"
             value={formData.location}
             onChange={(e) => onChange({ ...formData, location: e.target.value })}
             placeholder='לדוגמה: "תל אביב, מרכז" או "חיפה, צפון"'
