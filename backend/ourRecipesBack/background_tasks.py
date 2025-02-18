@@ -124,16 +124,6 @@ def run_recipe_check(app):
     asyncio.set_event_loop(loop)
     loop.run_until_complete(_run())
 
-def start_background_tasks(app):
-    """Start all background tasks"""
-    # Start monitor thread
-    monitor_thread = threading.Thread(target=run_monitor, args=(app,), daemon=True)
-    monitor_thread.start()
-    
-    # Start recipe check thread
-    recipe_check_thread = threading.Thread(target=run_recipe_check, args=(app,), daemon=True)
-    recipe_check_thread.start()
-
 async def check_and_sync_recipes(app):
     """Periodically check if recipes exist in DB and trigger sync if needed"""
     print("Starting periodic recipe check...", flush=True)
@@ -170,3 +160,45 @@ async def check_and_sync_recipes(app):
                 print(f"Error in recipe check: {str(e)}", flush=True)
                 # Wait for 1 minute before retry in case of error
                 await asyncio.sleep(60)
+
+async def refresh_google_drive_token(app):
+    """Periodically refresh Google Drive token to prevent expiration"""
+    print("Starting Google Drive token refresh task...", flush=True)
+    
+    with app.app_context():
+        while True:
+            try:
+                from .services.google_drive_service import validate_google_drive_access
+                print("Running scheduled Google Drive token refresh...", flush=True)
+                validate_google_drive_access(app)
+                
+                # Wait for 24 hours before next refresh
+                await asyncio.sleep(24 * 60 * 60)  # 24 hours in seconds
+                
+            except Exception as e:
+                print(f"Error in Google Drive token refresh: {str(e)}", flush=True)
+                # Wait for 1 hour before retry in case of error
+                await asyncio.sleep(60 * 60)
+
+def run_google_drive_refresh(app):
+    """Run the Google Drive token refresh in a separate thread"""
+    async def _run():
+        await refresh_google_drive_token(app)
+    
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+    loop.run_until_complete(_run())
+
+def start_background_tasks(app):
+    """Start all background tasks"""
+    # Start monitor thread
+    monitor_thread = threading.Thread(target=run_monitor, args=(app,), daemon=True)
+    monitor_thread.start()
+    
+    # Start recipe check thread
+    recipe_check_thread = threading.Thread(target=run_recipe_check, args=(app,), daemon=True)
+    recipe_check_thread.start()
+    
+    # Start Google Drive token refresh thread
+    google_drive_thread = threading.Thread(target=run_google_drive_refresh, args=(app,), daemon=True)
+    google_drive_thread.start()
