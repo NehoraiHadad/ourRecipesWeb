@@ -91,7 +91,7 @@ async function geocodeLocation(location: string): Promise<[number, number] | und
   }
 }
 
-export function PlaceMap({ places, className = '' }: PlaceMapProps) {
+const PlaceMap = ({ places, className = '' }: PlaceMapProps) => {
   const [isMounted, setIsMounted] = useState(false);
   const [geocodedPlaces, setGeocodedPlaces] = useState<GeocodedPlace[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -208,4 +208,6 @@ export function PlaceMap({ places, className = '' }: PlaceMapProps) {
       </MapContainer>
     </div>
   );
-} 
+};
+
+export default PlaceMap; 
