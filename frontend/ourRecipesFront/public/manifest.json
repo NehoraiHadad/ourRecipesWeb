@@ -1,0 +1,24 @@
+{
+  "name": "Our Recipes",
+  "short_name": "Our Recipes",
+  "description": "המתכונים המשפחתיים שלנו",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#22c7a0",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/home-image.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/home-image.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+} 
