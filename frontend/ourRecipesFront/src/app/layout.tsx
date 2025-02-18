@@ -59,15 +59,23 @@ const uriyah = localFont({
 export const viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1
+  maximumScale: 1,
+  themeColor: '#22c7a0'
 }
 
 export const metadata: Metadata = {
   title: 'Our Recipes',
   description: 'המתכונים המשפחתיים שלנו',
+  manifest: '/manifest.json',
+  metadataBase: new URL('http://localhost'),
   icons: {
     icon: '/home-image.png',
     apple: '/home-image.png'
+  },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Our Recipes'
   },
   openGraph: {
     title: 'Our Recipes',
