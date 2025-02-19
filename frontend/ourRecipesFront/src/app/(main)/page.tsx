@@ -67,7 +67,7 @@ export default function Page() {
         const promises = favorites.map(id => 
           RecipeService.getRecipeById(id)
             .then(res => {
-              const recipeData = res?.data || res;
+              const recipeData = res.data;
               
               // Validate the response data
               if (!recipeData || typeof recipeData !== 'object') {
