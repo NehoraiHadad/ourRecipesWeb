@@ -224,7 +224,7 @@ def get_recipe(recipe_id):
         if recipe is None:
             return jsonify({'error': 'Recipe not found'}), 404
             
-        return jsonify(recipe), 200
+        return jsonify({'data': recipe}), 200
         
     except Exception as e:
         return jsonify({'error': str(e)}), 500
