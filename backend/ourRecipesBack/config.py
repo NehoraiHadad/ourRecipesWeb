@@ -24,6 +24,10 @@ class Config:
     BOT_TOKEN = os.getenv("BOT_TOKEN")
     CHANNEL_URL = os.getenv("CHANNEL_URL")
     OLD_CHANNEL_URL = os.getenv("OLD_CHANNEL_URL")
+    
+    # Telegram Session String Settings (new)
+    SESSION_STRING = os.getenv("SESSION_STRING")
+    SESSION_STRING_MONITOR = os.getenv("SESSION_STRING_MONITOR")
 
     # Session settings
     SESSION_COOKIE_SECURE = True
@@ -95,6 +99,10 @@ class DevelopmentConfig(Config):
     
     # Development-specific session names
     SESSION_NAME = "connect_to_our_recipes_channel_dev"
+    
+    # Development-specific session strings (new)
+    SESSION_STRING = os.getenv("SESSION_STRING_DEV")
+    SESSION_STRING_MONITOR = os.getenv("SESSION_STRING_MONITOR_DEV")
     
     # Disable Google Drive session file download in development
     GOOGLE_DRIVE_TOKEN = None
