@@ -11,10 +11,22 @@ class TelegramService:
 
     @classmethod
     def get_session_string(cls, app=None):
-        """Get the session string from environment variables"""
+        """Get the session string from environment variables or config"""
+        session_string = None
+        
+        # Try to get from app config first if app is provided
         if app:
-            return app.config.get("SESSION_STRING")
-        return os.getenv("SESSION_STRING")
+            session_string = app.config.get("SESSION_STRING")
+        
+        # If not found in app config or app not provided, try environment variable
+        if not session_string:
+            session_string = os.getenv("SESSION_STRING")
+            
+        # If we're in development mode, try the dev version
+        if not session_string and app and (app.config.get('DEBUG') or app.config.get('TESTING')):
+            session_string = os.getenv("SESSION_STRING_DEV")
+            
+        return session_string
 
     @classmethod
     async def check_session_status(cls, app):
