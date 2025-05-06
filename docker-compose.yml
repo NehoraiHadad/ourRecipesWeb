@@ -6,11 +6,19 @@ services:
     volumes:
       - ./backend/ourRecipesBack:/app/ourRecipesBack
       - ./backend/.env.development:/app/.env
-      - ./backend/sessions_dev:/app/sessions
+      # Session files volume is no longer needed - using session strings now
     env_file: ./backend/.env.development
     environment:
       - FLASK_APP=ourRecipesBack
       - FLASK_DEBUG=1
+      # Telegram Session String Configuration:
+      # Add these to your .env.development file (more secure option):
+      #   SESSION_STRING=your_main_session_string
+      #   SESSION_STRING_MONITOR=your_monitor_session_string
+      # For development, you can use:
+      #   SESSION_STRING_DEV=your_dev_session_string
+      #   SESSION_STRING_MONITOR_DEV=your_dev_monitor_session_string
+      # Generate these using: python -m scripts.generate_session_string
 
   frontend:
     build: ./frontend
