@@ -2,6 +2,7 @@ import asyncio
 import os
 import threading
 from telethon import TelegramClient, events
+from telethon.sessions import StringSession
 from datetime import datetime, timezone
 
 from .services.telegram_service import TelegramService
@@ -11,8 +12,9 @@ from .models.recipe import Recipe
 from .extensions import db
 from .routes.sync import _perform_sync, _create_sync_log
 
+# This function is now deprecated but kept for backward compatibility
 def get_session_path(app, session_name):
-    """Get the full path for a session file"""
+    """Get the full path for a session file (deprecated)"""
     sessions_dir = '/app/sessions'
     if not os.path.exists(sessions_dir):
         sessions_dir = os.path.join(os.getcwd(), 'sessions')
@@ -59,16 +61,30 @@ async def monitor_old_channel(app):
             # Create sync log for monitoring session
             sync_log = _create_sync_log()
             
-            # Use development session name if in debug mode
-            monitor_session_name = "connect_to_our_recipes_channel_monitor_dev" if app.config['TESTING'] or app.config['DEBUG'] else "connect_to_our_recipes_channel_monitor"
-            session_path = get_session_path(app, monitor_session_name)
+            # Use appropriate session string for monitoring
+            monitor_session_env = "SESSION_STRING_MONITOR_DEV" if app.config['TESTING'] or app.config['DEBUG'] else "SESSION_STRING_MONITOR"
+            session_string = os.getenv(monitor_session_env) or app.config.get(monitor_session_env)
             
-            # Create clients for monitoring and sending
-            monitor_client = TelegramClient(
-                session=session_path,
-                api_id=int(app.config["BOT_ID"]),
-                api_hash=app.config["API_HASH"]
-            )
+            if not session_string:
+                # Fall back to session file for backward compatibility
+                print(f"Warning: No session string found in {monitor_session_env}, falling back to session file", flush=True)
+                monitor_session_name = "connect_to_our_recipes_channel_monitor_dev" if app.config['TESTING'] or app.config['DEBUG'] else "connect_to_our_recipes_channel_monitor"
+                session_path = get_session_path(app, monitor_session_name)
+                
+                # Create client with session file
+                monitor_client = TelegramClient(
+                    session=session_path,
+                    api_id=int(app.config["BOT_ID"]),
+                    api_hash=app.config["API_HASH"]
+                )
+            else:
+                # Create client with session string
+                print(f"Using session string from {monitor_session_env}", flush=True)
+                monitor_client = TelegramClient(
+                    session=StringSession(session_string),
+                    api_id=int(app.config["BOT_ID"]),
+                    api_hash=app.config["API_HASH"]
+                )
             
             await monitor_client.connect()
             if not await monitor_client.is_user_authorized():
@@ -161,34 +177,6 @@ async def check_and_sync_recipes(app):
                 # Wait for 1 minute before retry in case of error
                 await asyncio.sleep(60)
 
-async def refresh_google_drive_token(app):
-    """Periodically refresh Google Drive token to prevent expiration"""
-    print("Starting Google Drive token refresh task...", flush=True)
-    
-    with app.app_context():
-        while True:
-            try:
-                from .services.google_drive_service import validate_google_drive_access
-                print("Running scheduled Google Drive token refresh...", flush=True)
-                validate_google_drive_access(app)
-                
-                # Wait for 24 hours before next refresh
-                await asyncio.sleep(24 * 60 * 60)  # 24 hours in seconds
-                
-            except Exception as e:
-                print(f"Error in Google Drive token refresh: {str(e)}", flush=True)
-                # Wait for 1 hour before retry in case of error
-                await asyncio.sleep(60 * 60)
-
-def run_google_drive_refresh(app):
-    """Run the Google Drive token refresh in a separate thread"""
-    async def _run():
-        await refresh_google_drive_token(app)
-    
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
-    loop.run_until_complete(_run())
-
 def start_background_tasks(app):
     """Start all background tasks"""
     # Start monitor thread
@@ -198,7 +186,3 @@ def start_background_tasks(app):
     # Start recipe check thread
     recipe_check_thread = threading.Thread(target=run_recipe_check, args=(app,), daemon=True)
     recipe_check_thread.start()
-    
-    # Start Google Drive token refresh thread
-    google_drive_thread = threading.Thread(target=run_google_drive_refresh, args=(app,), daemon=True)
-    google_drive_thread.start()

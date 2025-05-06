@@ -8,7 +8,6 @@ from .services.auth_service import AuthService, init_cache
 from .services.monitoring_service import MonitoringService
 from .services.security_service import SecurityService
 from .services.logging_service import LoggingService
-from .services.google_drive_service import download_session_files
 from .background_tasks import start_background_tasks
 import logging
 import os
@@ -35,12 +34,7 @@ def create_app(config_name='default'):
     # Initialize extensions
     db.init_app(app)
     
-    # Download session files if needed (only in production)
-    if not (app.config['TESTING'] or app.config['DEBUG']):
-        logger.info("Production environment detected - checking session files")
-        download_session_files(app)
-    else:
-        logger.debug("Development/Testing environment detected - skipping session files download")
+    # No longer need to download session files, using session strings instead
     
     # Initialize JWT first
     jwt = JWTManager(app)
@@ -120,31 +114,15 @@ def create_app(config_name='default'):
         
     @app.route('/api/session-status')
     def session_status():
-        """Detailed check of session files"""
-        session_files = [
-            'connect_to_our_recipes_channel.session',
-            'connect_to_our_recipes_channel_monitor.session'
-        ]
+        """Check status of the Telegram session string"""
+        from .services.telegram_service import TelegramService
+        import asyncio
         
-        status = {'status': 'healthy', 'files': {}}
-        
-        for filename in session_files:
-            path = f'/app/sessions/{filename}'
-            if not os.path.exists(path):
-                status['files'][filename] = 'missing'
-                status['status'] = 'error'
-                logger.error(f"Session file missing: {filename}")
-            elif os.path.getsize(path) < 100:
-                status['files'][filename] = 'possibly corrupt'
-                status['status'] = 'error'
-                logger.error(f"Session file possibly corrupt: {filename}")
-            else:
-                status['files'][filename] = 'ok'
-                logger.debug(f"Session file OK: {filename}")
-                
-        if status['status'] != 'healthy':
-            logger.warning("Session status check failed", extra={'status': status})
-        
+        async def check():
+            return await TelegramService.check_session_status(app)
+            
+        # Run the check asynchronously
+        status = asyncio.run(check())
         return jsonify(status), 200 if status['status'] == 'healthy' else 500
     
     logger.info("Application initialization completed")

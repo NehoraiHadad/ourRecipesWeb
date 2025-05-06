@@ -1,4 +1,5 @@
 from telethon import TelegramClient
+from telethon.sessions import StringSession
 from flask import current_app
 from io import BytesIO
 import asyncio
@@ -9,133 +10,53 @@ class TelegramService:
     """Service for handling Telegram operations"""
 
     @classmethod
-    def get_session_path(cls, session_name, app=None):
-        """Get the full path for a session file"""
-        sessions_dir = '/app/sessions'
-        if not os.path.exists(sessions_dir):
-            sessions_dir = os.path.join(os.getcwd(), 'sessions')
-
-        # Add _dev suffix in development environment
-        return os.path.join(sessions_dir, f"{session_name}.session")
+    def get_session_string(cls, app=None):
+        """Get the session string from environment variables"""
+        if app:
+            return app.config.get("SESSION_STRING")
+        return os.getenv("SESSION_STRING")
 
     @classmethod
     async def check_session_status(cls, app):
-        """Check status of all session files and return detailed information"""
-        base_session_files = {
-            'connect_to_our_recipes_channel': {
-                'required': True,
-                'min_size': 100,  # Minimum expected size in bytes
-                'description': 'Main channel session'
-            },
-            'connect_to_our_recipes_channel_monitor': {
-                'required': True,
-                'min_size': 100,
-                'description': 'Monitor channel session'
-            }
-        }
+        """Check status of session string"""
+        session_string = cls.get_session_string(app)
         
         status = {
             'status': 'healthy',
-            'files': {},
             'details': {},
             'last_check': datetime.now(timezone.utc).isoformat()
         }
         
-        # In development, we only check if the dev session files exist
-        is_dev = app.config.get('DEBUG', False)
-        
-        for base_name, config in base_session_files.items():
-            # Get the appropriate session name (with or without _dev suffix)
-            path = cls.get_session_path(base_name, app)  # Pass app to ensure consistent behavior
-            filename = f"{base_name}_dev.session" if is_dev else f"{base_name}.session"
+        if not session_string:
+            status['status'] = 'error'
+            status['message'] = 'Session string is missing. Please set the SESSION_STRING environment variable.'
+            return status
             
-            file_status = {
-                'exists': os.path.exists(path),
-                'size': os.path.getsize(path) if os.path.exists(path) else 0,
-                'last_modified': datetime.fromtimestamp(os.path.getmtime(path)).isoformat() if os.path.exists(path) else None,
-                'description': config['description']
-            }
-            
-            # Different validation rules for dev and prod
-            if is_dev:
-                # In dev, we only care if the file exists (size doesn't matter)
-                if not file_status['exists']:
-                    file_status['status'] = 'missing'
-                    status['status'] = 'error'
-                    file_status['message'] = 'Development session file missing. Run create_dev_session.py to create it.'
-                else:
-                    file_status['status'] = 'ok'
-                    file_status['message'] = 'Development session file exists'
-            else:
-                # In production, we check both existence and size
-                if not file_status['exists']:
-                    file_status['status'] = 'missing'
-                    if config['required']:
-                        status['status'] = 'error'
-                elif file_status['size'] < config['min_size']:
-                    file_status['status'] = 'possibly_corrupt'
-                    if config['required']:
-                        status['status'] = 'error'
-                else:
-                    file_status['status'] = 'ok'
-            
-            status['files'][filename] = file_status['status']
-            status['details'][filename] = file_status
-        
-        # Add environment-specific message
-        if is_dev:
-            status['environment'] = 'development'
-            if status['status'] == 'error':
-                status['message'] = 'Some development session files are missing. Run create_dev_session.py to create them.'
-            else:
-                status['message'] = 'All development session files are present'
+        # The session string exists, so we consider it healthy
+        # A proper check would actually try to connect, but that's expensive
+        status['message'] = 'Session string is present'
         
         return status
 
     @classmethod
     async def refresh_session_files(cls, app):
-        """Download fresh session files from Google Drive"""
-        try:
-            # First check current status
-            current_status = await cls.check_session_status(app)
-            if current_status['status'] == 'healthy':
-                return {'status': 'ok', 'message': 'Session files are healthy, no refresh needed'}
-            
-            # Skip Google Drive download in development environment
-            if app.config.get('DEBUG'):
-                return {
-                    'status': 'ok',
-                    'message': 'Development environment - skipping session files refresh from Google Drive'
-                }
-            
-            # Download fresh files from Google Drive in production
-            from .google_drive_service import download_session_files
-            download_session_files(app)
-            
-            # Check status again
-            new_status = await cls.check_session_status(app)
-            
-            return {
-                'status': 'ok' if new_status['status'] == 'healthy' else 'error',
-                'message': 'Session files refreshed successfully' if new_status['status'] == 'healthy' else 'Session files refresh failed',
-                'details': new_status
-            }
-            
-        except Exception as e:
-            app.logger.error(f"Failed to refresh session files: {str(e)}")
-            return {
-                'status': 'error',
-                'message': f"Failed to refresh session files: {str(e)}",
-                'error': str(e)
-            }
+        """Legacy method for backward compatibility; not needed with session strings"""
+        return {
+            'status': 'ok',
+            'message': 'Using session string - no need to refresh session files'
+        }
 
     @classmethod
     async def create_client(cls):
-        """Create a new TelegramClient instance"""
-        session_path = cls.get_session_path(current_app.config["SESSION_NAME"], current_app)
-        print(f"Creating TelegramClient with session path: {session_path}", flush=True)
+        """Create a new TelegramClient instance using session string"""
+        session_string = cls.get_session_string(current_app)
+        
+        if not session_string:
+            raise ValueError("SESSION_STRING environment variable not set")
+            
+        print(f"Creating TelegramClient with session string", flush=True)
         client = TelegramClient(
-            session=session_path,
+            session=StringSession(session_string),
             api_id=int(current_app.config["BOT_ID"]),
             api_hash=current_app.config["API_HASH"]
         )
@@ -143,16 +64,39 @@ class TelegramService:
 
     @classmethod
     def create_client_with_session(cls, session_name, api_id, api_hash):
-        """Create a new TelegramClient instance with a custom session name"""
-        session_path = cls.get_session_path(session_name)
-        print(f"Creating TelegramClient with session path: {session_path}", flush=True)
-        client = TelegramClient(
-            session=session_path,
-            api_id=api_id,
-            api_hash=api_hash
-        )
-        print(f"TelegramClient created with session path: {session_path}", flush=True)
+        """Create a new TelegramClient instance with a custom session string"""
+        # For backward compatibility, check if SESSION_STRING_{session_name} exists
+        env_var_name = f"SESSION_STRING_{session_name.upper()}"
+        session_string = os.getenv(env_var_name)
+        
+        if not session_string:
+            # Fall back to the old session file approach for backward compatibility
+            session_path = cls.get_session_path(session_name)
+            print(f"WARNING: No session string found for {session_name}, falling back to session file: {session_path}", flush=True)
+            client = TelegramClient(
+                session=session_path,
+                api_id=api_id,
+                api_hash=api_hash
+            )
+        else:
+            # Use the session string
+            print(f"Creating TelegramClient with session string for {session_name}", flush=True)
+            client = TelegramClient(
+                session=StringSession(session_string),
+                api_id=api_id,
+                api_hash=api_hash
+            )
+            
         return client
+        
+    @classmethod
+    def get_session_path(cls, session_name, app=None):
+        """Legacy method for backward compatibility"""
+        sessions_dir = '/app/sessions'
+        if not os.path.exists(sessions_dir):
+            sessions_dir = os.path.join(os.getcwd(), 'sessions')
+
+        return os.path.join(sessions_dir, f"{session_name}.session")
 
     @classmethod
     async def check_permissions(cls, user_id, channel_url):
