@@ -7,6 +7,8 @@ import { useNotification } from '@/context/NotificationContext'
 import { Button } from '@/components/ui/Button'
 import { Input } from '@/components/ui/Input'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
+import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
+import { useProgress, AI_IMAGE_GENERATION_STEPS, AI_RECIPE_GENERATION_STEPS } from '@/hooks/useProgress';
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
@@ -40,10 +42,43 @@ const MealSuggestionForm: React.FC = () => {
   const [refinementCount, setRefinementCount] = useState<number>(0);
   const [refinementHistory, setRefinementHistory] = useState<string[]>([]);
 
+  // Progress tracking for image generation
+  const imageProgress = useProgress({
+    steps: AI_IMAGE_GENERATION_STEPS,
+    onComplete: () => {
+      setLoadingPhoto(false);
+    },
+    onError: (error) => {
+      setError(error.message);
+      setLoadingPhoto(false);
+    }
+  });
+
+  // Progress tracking for recipe generation
+  const recipeProgress = useProgress({
+    steps: AI_RECIPE_GENERATION_STEPS,
+    onComplete: () => {
+      setLoadingRecipe(false);
+    },
+    onError: (error) => {
+      setError(error.message);
+      setLoadingRecipe(false);
+    }
+  });
+
   const fetchRecipe = async () => {
     setLoadingRecipe(true);
     setError("");
+    recipeProgress.start();
+
     try {
+      // Step 1: Analyze ingredients
+      recipeProgress.startStep(0);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate analysis
+      recipeProgress.completeStep(0);
+
+      // Step 2: Generate recipe
+      recipeProgress.startStep(1);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/recipes/suggest`,
         {
@@ -67,6 +102,10 @@ const MealSuggestionForm: React.FC = () => {
       }
 
       const result = await response.json();
+      recipeProgress.completeStep(1);
+
+      // Step 3: Format recipe
+      recipeProgress.startStep(2);
       if (result.message) {
         setRecipeText(result.message);
         const parsedRecipe = parseRecipe(result.message);
@@ -78,6 +117,7 @@ const MealSuggestionForm: React.FC = () => {
           preparation_time: parsedRecipe.preparation_time,
           difficulty: parsedRecipe.difficulty,
         });
+        recipeProgress.completeStep(2);
 
         // Fetch photo if requested
         if (photoRequested) {
@@ -87,10 +127,9 @@ const MealSuggestionForm: React.FC = () => {
         throw new Error("No recipe received");
       }
     } catch (error: any) {
+      recipeProgress.errorStep(recipeProgress.currentStepIndex, error);
       setError(error.message);
       setRecipe(null);
-    } finally {
-      setLoadingRecipe(false);
     }
   };
 
@@ -163,7 +202,16 @@ const MealSuggestionForm: React.FC = () => {
 
   const fetchPhoto = async (recipeText: string) => {
     setLoadingPhoto(true);
+    imageProgress.start();
+
     try {
+      // Step 1: Analyze recipe content
+      imageProgress.startStep(0);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate analysis
+      imageProgress.completeStep(0);
+
+      // Step 2: Generate image
+      imageProgress.startStep(1);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-image`,
         {
@@ -181,11 +229,17 @@ const MealSuggestionForm: React.FC = () => {
       }
 
       const result = await response.json();
+      imageProgress.completeStep(1);
+
+      // Step 3: Optimize image
+      imageProgress.startStep(2);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
       setRecipe((prevRecipe) => ({ ...prevRecipe, image: result.image }));
+      imageProgress.completeStep(2);
+
     } catch (error: any) {
-      setError(error.message); // Optionally handle photo error separately
-    } finally {
-      setLoadingPhoto(false);
+      imageProgress.errorStep(imageProgress.currentStepIndex, error);
+      setError(error.message);
     }
   };
 
@@ -278,8 +332,13 @@ const MealSuggestionForm: React.FC = () => {
       {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
         <div className="space-y-4">
           {loadingPhoto && (
-            <div className="flex items-center justify-center">
-              <Spinner message="מייצר תמונה..." />
+            <div className="bg-white rounded-lg p-4 shadow-sm border border-secondary-200">
+              <ProgressIndicator
+                steps={imageProgress.steps}
+                currentStepIndex={imageProgress.currentStepIndex}
+                variant="bar"
+                showEstimatedTime={true}
+              />
             </div>
           )}
           <RecipeDisplay recipe={{
@@ -456,6 +515,18 @@ const MealSuggestionForm: React.FC = () => {
             />
             <span className="text-sm text-secondary-700">הוסף תמונה להצעה</span>
           </label>
+
+          {/* Progress Indicator for Recipe Generation */}
+          {loadingRecipe && (
+            <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-4 shadow-sm border border-primary-200">
+              <ProgressIndicator
+                steps={recipeProgress.steps}
+                currentStepIndex={recipeProgress.currentStepIndex}
+                variant="steps"
+                showEstimatedTime={true}
+              />
+            </div>
+          )}
 
           {/* Submit Button */}
           <FeatureIndicator

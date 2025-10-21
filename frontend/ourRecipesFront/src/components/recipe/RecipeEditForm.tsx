@@ -5,6 +5,8 @@ import CategoryTags from "../CategoryTags";
 import { recipe } from "@/types";
 import { difficultyOptions } from "@/utils/difficulty";
 import type { Difficulty } from "@/types";
+import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
+import { useProgress, AI_IMAGE_GENERATION_STEPS } from "@/hooks/useProgress";
 
 interface RecipeEditFormProps {
   recipeData: recipe | null;
@@ -24,6 +26,18 @@ export function RecipeEditForm({
   const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
   const [categoryInput, setCategoryInput] = useState("");
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Progress tracking for AI image generation
+  const imageProgress = useProgress({
+    steps: AI_IMAGE_GENERATION_STEPS,
+    onComplete: () => {
+      setIsLoading(false);
+    },
+    onError: (error) => {
+      alert(error.message);
+      setIsLoading(false);
+    }
+  });
 
   useEffect(() => {
     fetchExistingCategories();
@@ -96,12 +110,20 @@ export function RecipeEditForm({
 
     try {
       setIsLoading(true);
+      imageProgress.start();
 
       // וידוא שיש מספיק מידע ליצירת תמונה
       if (!formData.title || !formData.ingredients?.length) {
         throw new Error("נדרש למלא כותרת ומצרכים לפני יצירת תמונה");
       }
 
+      // Step 1: Analyze recipe content
+      imageProgress.startStep(0);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate analysis
+      imageProgress.completeStep(0);
+
+      // Step 2: Generate image
+      imageProgress.startStep(1);
       const response = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-image`,
         {
@@ -128,12 +150,18 @@ export function RecipeEditForm({
       }
 
       const result = await response.json();
+      imageProgress.completeStep(1);
+
+      // Step 3: Optimize image
+      imageProgress.startStep(2);
+      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
       setFormData((prev) => (prev ? { ...prev, image: result.image } : null));
+      imageProgress.completeStep(2);
+
     } catch (error) {
       console.error("Error generating image:", error);
+      imageProgress.errorStep(imageProgress.currentStepIndex, error as Error);
       alert(error instanceof Error ? error.message : "שגיאה ביצירת התמונה");
-    } finally {
-      setIsLoading(false);
     }
   };
 
@@ -177,7 +205,14 @@ export function RecipeEditForm({
       {/* Image Section */}
       <div className="space-y-4">
         {isLoading ? (
-          <Spinner message="מעבד תמונה..." />
+          <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-4 shadow-sm border border-primary-200">
+            <ProgressIndicator
+              steps={imageProgress.steps}
+              currentStepIndex={imageProgress.currentStepIndex}
+              variant="bar"
+              showEstimatedTime={true}
+            />
+          </div>
         ) : (
           formData?.image && (
             <img
