@@ -8,6 +8,9 @@ export interface RecipeListProps {
   selectedIds: number[];
   onSelect: (id: number) => void;
   onRecipeUpdate: (updatedRecipe: recipe) => Promise<void>;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+  observerTarget?: React.RefObject<HTMLDivElement>;
 }
 
 export interface RecipeGridProps extends RecipeListProps {}

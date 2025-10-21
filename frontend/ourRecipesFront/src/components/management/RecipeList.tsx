@@ -6,12 +6,17 @@ import ParseErrors from "../ParseErrors";
 import Modal from "../Modal";
 import { RecipeEditForm } from '../recipe/RecipeEditForm';
 import { difficultyDisplay } from "@/utils/difficulty";
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 
 interface RecipeListProps {
   recipes: recipe[];
   selectedIds: number[];
   onSelect: (id: number) => void;
   onRecipeUpdate: (updatedRecipe: recipe) => void;
+  hasMore?: boolean;
+  isLoadingMore?: boolean;
+  observerTarget?: React.RefObject<HTMLDivElement>;
 }
 
 const RecipeList: React.FC<RecipeListProps> = ({
@@ -19,6 +24,9 @@ const RecipeList: React.FC<RecipeListProps> = ({
   selectedIds,
   onSelect,
   onRecipeUpdate,
+  hasMore,
+  isLoadingMore,
+  observerTarget
 }) => {
   const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
   const [editModalRecipe, setEditModalRecipe] = useState<recipe | null>(null);
@@ -257,6 +265,32 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
         </div>
       ))}
 
+      {/* Loading Skeletons */}
+      {isLoadingMore && Array.from({ length: 3 }).map((_, idx) => (
+        <div key={`list-skeleton-${idx}`} className="p-4 border-b">
+          <RecipeCardSkeleton />
+        </div>
+      ))}
+
+      {/* Intersection Observer Target */}
+      {hasMore && (
+        <div
+          ref={observerTarget}
+          className="h-20 flex items-center justify-center border-t"
+        >
+          {isLoadingMore && (
+            <LoadingSpinner size="md" message="טוען מתכונים נוספים..." />
+          )}
+        </div>
+      )}
+
+      {/* End of List Message */}
+      {!hasMore && recipes.length > 0 && (
+        <div className="text-center py-8 text-secondary-500 border-t">
+          זהו! הצגת את כל המתכונים
+        </div>
+      )}
+
       {/* Recipe Modal */}
       {modalRecipe && (
         <RecipeModal
@@ -267,7 +301,7 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
       )}
 
       {/* Modal for Recipe Edit */}
-      <Modal 
+      <Modal
         isOpen={!!editModalRecipe}
         onClose={() => setEditModalRecipe(null)}
         title="עריכת מתכון"
@@ -277,7 +311,6 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
           <RecipeEditForm
             recipeData={editModalRecipe}
             onSave={async (updatedRecipe) => {
-             
               await handleSaveEdit(updatedRecipe);
             }}
             onCancel={() => setEditModalRecipe(null)}

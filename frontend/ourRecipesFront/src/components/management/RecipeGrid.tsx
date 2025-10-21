@@ -8,12 +8,17 @@ import Image from "next/image";
 import Modal from "../Modal";
 import { RecipeEditForm } from '../recipe/RecipeEditForm';
 import { difficultyDisplay } from "@/utils/difficulty";
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 
 const RecipeGrid: React.FC<RecipeGridProps> = ({
   recipes,
   selectedIds,
   onSelect,
   onRecipeUpdate,
+  hasMore,
+  isLoadingMore,
+  observerTarget
 }) => {
   const { authState } = useAuthContext();
   const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
@@ -240,6 +245,32 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
         </div>
       ))}
 
+      {/* Loading Skeletons */}
+      {isLoadingMore && Array.from({ length: 4 }).map((_, idx) => (
+        <div key={`skeleton-${idx}`}>
+          <RecipeCardSkeleton />
+        </div>
+      ))}
+
+      {/* Intersection Observer Target */}
+      {hasMore && (
+        <div
+          ref={observerTarget}
+          className="col-span-full h-20 flex items-center justify-center"
+        >
+          {isLoadingMore && (
+            <LoadingSpinner size="md" message="טוען מתכונים נוספים..." />
+          )}
+        </div>
+      )}
+
+      {/* End of List Message */}
+      {!hasMore && recipes.length > 0 && (
+        <div className="col-span-full text-center py-8 text-secondary-500">
+          זהו! הצגת את כל המתכונים
+        </div>
+      )}
+
       {/* Modal */}
       {modalRecipe && (
         <RecipeModal
@@ -250,7 +281,7 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
       )}
 
       {/* Modal for Recipe Edit */}
-      <Modal 
+      <Modal
         isOpen={!!editModalRecipe}
         onClose={() => setEditModalRecipe(null)}
         title="עריכת מתכון"
