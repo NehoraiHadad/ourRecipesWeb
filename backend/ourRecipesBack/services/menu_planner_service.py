@@ -379,6 +379,13 @@ SEARCH STRATEGY (OPTIMIZED FOR EFFICIENCY):
    - That course type probably doesn't exist in the database
    - SKIP it immediately and move to next course
    - DO NOT retry the same search!
+   - DO NOT search with exclude_ids if you already got 0 results!
+
+5. **If you keep getting 1-2 results for same course:**
+   - You've found all available options for that course
+   - STOP searching for more of that course type
+   - Use what you have or skip that course entirely
+   - DO NOT waste iterations searching again and again!
 
 EXAMPLE WORKFLOW (EFFICIENT):
 User wants: Shabbat dinner, 4 servings, meat meal
@@ -503,7 +510,7 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
             response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
-            max_iterations = 10  # Reduced from 25 - efficient search strategy needs fewer iterations
+            max_iterations = 12  # Balanced: enough for complex menus, forces efficiency
             iteration = 0
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
@@ -575,23 +582,92 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
                 )
 
                 if still_has_function_call:
-                    print(f"⚠️ AI still has pending function calls, forcing completion...")
+                    print(f"⚠️ AI still has pending function calls, executing them first...")
 
-                    # Send a message to force AI to finish with what it has
-                    completion_prompt = """You have reached the maximum number of searches.
-Please create the menu using ONLY the recipes you have found so far.
-If you couldn't find enough recipes for some courses, skip those courses.
-Return the JSON menu plan now with the recipes you successfully found."""
+                    # Execute the pending function calls one last time
+                    function_calls = [
+                        part.function_call
+                        for part in response.candidates[0].content.parts
+                        if hasattr(part, 'function_call')
+                    ]
 
-                    try:
-                        response = cls._send_message_with_retry(chat, completion_prompt)
-                        print(f"✓ Forced completion successful")
-                    except Exception as e:
-                        print(f"❌ Failed to force completion: {e}")
-                        raise ValueError(f"AI could not complete menu generation after {max_iterations} iterations. Try reducing the number of meals or courses.")
+                    print(f"📞 Final iteration: AI making {len(function_calls)} function call(s)")
+
+                    # Execute all function calls
+                    function_responses = []
+                    for function_call in function_calls:
+                        function_name = function_call.name
+                        function_args = dict(function_call.args)
+
+                        print(f"   → {function_name}({function_args})")
+
+                        # Execute the function
+                        if function_name == "search_recipes":
+                            result = cls._execute_search_recipes(**function_args)
+                        elif function_name == "get_recipe_details":
+                            result = cls._execute_get_recipe_details(**function_args)
+                        else:
+                            result = {"error": f"Unknown function: {function_name}"}
+
+                        result_count = len(result) if isinstance(result, list) else 1
+                        print(f"   ← Returned {result_count} result(s)")
+
+                        # Prepare response
+                        function_responses.append(
+                            genai.protos.Part(
+                                function_response=genai.protos.FunctionResponse(
+                                    name=function_name,
+                                    response={"result": result}
+                                )
+                            )
+                        )
+
+                    # Send function results back to AI with STRONG completion instruction
+                    completion_prompt = """You have reached the maximum number of searches allowed.
+You MUST create the menu NOW using ONLY the recipes you have found.
+DO NOT make any more function calls.
+Return ONLY the final JSON menu plan with the recipes you have."""
+
+                    # Send the function responses first
+                    response = cls._send_message_with_retry(
+                        chat,
+                        genai.protos.Content(parts=function_responses)
+                    )
+
+                    # If STILL has function calls, send one more VERY forceful message
+                    final_has_function_call = any(
+                        hasattr(part, 'function_call') and part.function_call
+                        for part in response.candidates[0].content.parts
+                    )
+
+                    if final_has_function_call:
+                        print(f"⚠️ AI still trying to call functions, sending final force completion...")
+                        try:
+                            response = cls._send_message_with_retry(chat, completion_prompt)
+                        except Exception as e:
+                            print(f"❌ Failed to force completion: {e}")
+                            raise ValueError(f"AI could not complete menu generation after {max_iterations} iterations. Try reducing the number of meals or courses.")
+
+                    # Final check - if STILL has function calls, we give up and return error
+                    ultimate_check = any(
+                        hasattr(part, 'function_call') and part.function_call
+                        for part in response.candidates[0].content.parts
+                    )
+
+                    if ultimate_check:
+                        print(f"❌ AI refuses to stop making function calls")
+                        raise ValueError(f"AI model is stuck in function calling loop. Please try again with simpler requirements or fewer courses.")
+
+                    print(f"✓ Forced completion successful")
 
             # Extract the final menu plan
-            response_text = response.text
+            try:
+                response_text = response.text
+            except ValueError as e:
+                # This happens if response still has function_call
+                print(f"❌ Error extracting text from response: {e}")
+                print(f"Response parts: {[type(part).__name__ for part in response.candidates[0].content.parts]}")
+                raise ValueError("AI model failed to generate text response. It may be stuck trying to make function calls. Please try again.")
 
             print(f"📄 AI response length: {len(response_text)} characters")
 
