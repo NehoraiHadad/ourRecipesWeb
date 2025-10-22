@@ -78,7 +78,11 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
       document.head.appendChild(style);
 
       // Mark as loaded
-      setLoadedFonts(prev => new Set([...prev, fontId]));
+      setLoadedFonts(prev => {
+        const newSet = new Set(prev);
+        newSet.add(fontId);
+        return newSet;
+      });
     } catch (error) {
       console.error(`Failed to load font: ${fontId}`, error);
     } finally {
