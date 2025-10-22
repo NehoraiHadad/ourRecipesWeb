@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { menuService } from '@/services/menuService';
 import { useNotification } from '@/context/NotificationContext';
@@ -7,6 +7,8 @@ import Spinner from '@/components/ui/Spinner';
 import Modal from '@/components/Modal';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
 import { RecipeService } from '@/services/recipeService';
+import { SearchService } from '@/services/searchService';
+import { useDebounce } from '@/hooks/useDebounce';
 import type { Menu, RecipeSummary, recipe } from '@/types';
 
 interface MenuDisplayProps {
@@ -38,8 +40,17 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   const [suggestions, setSuggestions] = useState<RecipeSummary[]>([]);
   const [loadingSuggestions, setLoadingSuggestions] = useState<boolean>(false);
 
+  // For search in replacement modal
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
+  const [searchResults, setSearchResults] = useState<recipe[]>([]);
+  const [showSearchSuggestions, setShowSearchSuggestions] = useState<boolean>(false);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
   const [showShareModal, setShowShareModal] = useState<boolean>(false);
   const [isPublic, setIsPublic] = useState<boolean>(menu.is_public);
+
+  const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   // Format date
   const formatDate = (dateString: string) => {
@@ -170,6 +181,60 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
       addNotification({ message: 'שגיאה בהעתקת הקישור', type: 'error' });
     }
   };
+
+  // Handle search suggestions
+  const handleSearchSuggestions = useCallback(async (query: string) => {
+    if (!query.trim()) {
+      setSearchSuggestions([]);
+      return;
+    }
+
+    try {
+      const suggestionsResponse = await SearchService.getSearchSuggestions(query);
+      const suggestionsData = Array.isArray(suggestionsResponse)
+        ? suggestionsResponse
+        : (suggestionsResponse?.data || []);
+
+      setSearchSuggestions(Array.isArray(suggestionsData) ? suggestionsData : []);
+    } catch (error) {
+      console.error('Search suggestions failed:', error);
+      setSearchSuggestions([]);
+    }
+  }, []);
+
+  // Perform recipe search
+  const performRecipeSearch = async (query: string) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    setShowSearchSuggestions(false);
+
+    try {
+      const response = await SearchService.search({ query });
+
+      if (response?.results) {
+        // Convert search results to recipe array
+        const recipes = Object.values(response.results);
+        setSearchResults(recipes);
+      } else {
+        setSearchResults([]);
+      }
+    } catch (error) {
+      console.error('Recipe search failed:', error);
+      setSearchResults([]);
+      addNotification({ message: 'שגיאה בחיפוש מתכונים', type: 'error' });
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  // Effect for debounced search suggestions
+  useEffect(() => {
+    handleSearchSuggestions(debouncedSearchQuery);
+  }, [debouncedSearchQuery, handleSearchSuggestions]);
 
   // Handle delete
   const handleDelete = async () => {
@@ -392,6 +457,9 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           onClick={() => {
             setSelectedRecipe(null);
             setSuggestions([]);
+            setSearchQuery('');
+            setSearchResults([]);
+            setSearchSuggestions([]);
           }}
         >
           <div
@@ -406,60 +474,172 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 onClick={() => {
                   setSelectedRecipe(null);
                   setSuggestions([]);
+                  setSearchQuery('');
+                  setSearchResults([]);
+                  setSearchSuggestions([]);
                 }}
-                className="text-secondary-500 hover:text-gray-700 dark:text-secondary-400 dark:hover:text-gray-200"
+                className="text-secondary-500 hover:text-secondary-700 dark:text-secondary-400 dark:hover:text-secondary-200"
               >
                 ✕
               </button>
             </div>
 
-            {loadingSuggestions ? (
-              <div className="flex justify-center py-8">
-                <Spinner />
+            {/* Search Input */}
+            <div className="mb-4">
+              <div className="relative">
+                <input
+                  type="search"
+                  placeholder="חפש מתכון..."
+                  value={searchQuery}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setShowSearchSuggestions(true);
+                  }}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      performRecipeSearch(searchQuery);
+                    }
+                  }}
+                  className="w-full px-4 py-2 border border-secondary-200 rounded-lg
+                           bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100
+                           outline-none transition-all duration-200"
+                />
+
+                {/* Search Button */}
+                <button
+                  type="button"
+                  onClick={() => performRecipeSearch(searchQuery)}
+                  disabled={isSearching || !searchQuery.trim()}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500 hover:text-primary-500 transition-colors disabled:opacity-50"
+                >
+                  {isSearching ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  )}
+                </button>
+
+                {/* Search Suggestions Dropdown */}
+                {showSearchSuggestions && searchSuggestions.length > 0 && searchQuery.trim() && (
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-secondary-700 rounded-lg shadow-lg border border-secondary-100 dark:border-secondary-600 max-h-60 overflow-y-auto z-50">
+                    {searchSuggestions.map((suggestion, index) => (
+                      <button
+                        key={index}
+                        type="button"
+                        onClick={() => {
+                          setSearchQuery(suggestion);
+                          performRecipeSearch(suggestion);
+                        }}
+                        className="w-full text-right px-4 py-2 text-sm text-secondary-700 dark:text-secondary-300 hover:bg-secondary-50 dark:hover:bg-secondary-600 transition-colors"
+                      >
+                        {suggestion}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
-            ) : suggestions.length > 0 ? (
-              <div className="space-y-3">
-                {suggestions.map((suggestion) => (
-                  <div
-                    key={suggestion.id}
-                    className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
-                             hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors
-                             cursor-pointer"
-                    onClick={() => handleReplaceRecipe(suggestion.id)}
-                  >
-                    {suggestion.image_url && (
-                      <img
-                        src={suggestion.image_url}
-                        alt={suggestion.title}
-                        className="w-16 h-16 object-cover rounded-md"
-                      />
-                    )}
-                    <div className="flex-1">
-                      <h4 className="font-semibold text-secondary-800 dark:text-white">
-                        {suggestion.title}
-                      </h4>
-                      {suggestion.categories && (
-                        <p className="text-sm text-secondary-500 dark:text-secondary-400">
-                          {suggestion.categories}
-                        </p>
+            </div>
+
+            {/* Search Results */}
+            {searchResults.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold text-secondary-700 dark:text-secondary-300 mb-2">
+                  תוצאות חיפוש ({searchResults.length}):
+                </h4>
+                <div className="space-y-3 max-h-60 overflow-y-auto">
+                  {searchResults.map((recipe) => (
+                    <div
+                      key={recipe.id}
+                      className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
+                               hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors cursor-pointer"
+                      onClick={() => handleReplaceRecipe(recipe.id)}
+                    >
+                      {recipe.image_url && (
+                        <img
+                          src={recipe.image_url}
+                          alt={recipe.title}
+                          className="w-16 h-16 object-cover rounded-md"
+                        />
                       )}
-                      <div className="flex gap-3 mt-1 text-xs text-secondary-500 dark:text-secondary-400">
-                        {suggestion.cooking_time && (
-                          <span>⏱️ {suggestion.cooking_time} דק׳</span>
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-secondary-800 dark:text-white">
+                          {recipe.title}
+                        </h4>
+                        {recipe._categories && (
+                          <p className="text-sm text-secondary-500 dark:text-secondary-400">
+                            {recipe._categories}
+                          </p>
                         )}
-                        {suggestion.difficulty && (
-                          <span>📊 {suggestion.difficulty}</span>
-                        )}
+                        <div className="flex gap-3 mt-1 text-xs text-secondary-500 dark:text-secondary-400">
+                          {recipe.cooking_time && (
+                            <span>⏱️ {recipe.cooking_time} דק׳</span>
+                          )}
+                          {recipe.difficulty && (
+                            <span>📊 {recipe.difficulty}</span>
+                          )}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            ) : (
-              <p className="text-secondary-500 dark:text-secondary-400 text-center py-8">
-                לא נמצאו הצעות חלופיות
-              </p>
             )}
+
+            {/* AI Suggestions */}
+            <div>
+              <h4 className="text-sm font-semibold text-secondary-700 dark:text-secondary-300 mb-2">
+                {searchResults.length > 0 ? 'הצעות נוספות מה-AI:' : 'הצעות מה-AI:'}
+              </h4>
+              {loadingSuggestions ? (
+                <div className="flex justify-center py-8">
+                  <Spinner />
+                </div>
+              ) : suggestions.length > 0 ? (
+                <div className="space-y-3">
+                  {suggestions.map((suggestion) => (
+                    <div
+                      key={suggestion.id}
+                      className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
+                               hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors
+                               cursor-pointer"
+                      onClick={() => handleReplaceRecipe(suggestion.id)}
+                    >
+                      {suggestion.image_url && (
+                        <img
+                          src={suggestion.image_url}
+                          alt={suggestion.title}
+                          className="w-16 h-16 object-cover rounded-md"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-secondary-800 dark:text-white">
+                          {suggestion.title}
+                        </h4>
+                        {suggestion.categories && (
+                          <p className="text-sm text-secondary-500 dark:text-secondary-400">
+                            {suggestion.categories}
+                          </p>
+                        )}
+                        <div className="flex gap-3 mt-1 text-xs text-secondary-500 dark:text-secondary-400">
+                          {suggestion.cooking_time && (
+                            <span>⏱️ {suggestion.cooking_time} דק׳</span>
+                          )}
+                          {suggestion.difficulty && (
+                            <span>📊 {suggestion.difficulty}</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-secondary-500 dark:text-secondary-400 text-center py-8">
+                  לא נמצאו הצעות חלופיות
+                </p>
+              )}
+            </div>
           </div>
         </div>
       )}
