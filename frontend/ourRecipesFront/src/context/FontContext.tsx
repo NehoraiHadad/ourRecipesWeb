@@ -26,7 +26,7 @@ const FontContext = createContext<FontContextType | undefined>(undefined)
 
 export function FontProvider({ children }: { children: React.ReactNode }) {
   const [currentFont, setCurrentFont] = useState<FontFamily>('heebo')
-  const [loadedFonts, setLoadedFonts] = useState<Set<FontFamily>>(new Set(['heebo'])) // heebo is already loaded
+  const [loadedFonts, setLoadedFonts] = useState<Set<FontFamily>>(new Set<FontFamily>(['heebo'])) // heebo is already loaded
   const [isLoading, setIsLoading] = useState(false)
 
   const fonts: Array<{ id: FontFamily; name: string; description: string }> = [
