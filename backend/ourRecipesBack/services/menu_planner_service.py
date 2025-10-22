@@ -309,8 +309,10 @@ When you're satisfied with your selections, return the final menu in JSON format
             response = chat.send_message(user_prompt)
 
             # Handle function calling loop
-            max_iterations = 10  # Prevent infinite loops
+            max_iterations = 15  # Increased from 10 for complex menus
             iteration = 0
+
+            print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
 
             while iteration < max_iterations:
                 # Check if AI made function calls
@@ -321,13 +323,15 @@ When you're satisfied with your selections, return the final menu in JSON format
                         if hasattr(part, 'function_call')
                     ]
 
+                    print(f"📞 Iteration {iteration + 1}: AI making {len(function_calls)} function call(s)")
+
                     # Execute all function calls
                     function_responses = []
                     for function_call in function_calls:
                         function_name = function_call.name
                         function_args = dict(function_call.args)
 
-                        print(f"AI called: {function_name} with {function_args}")
+                        print(f"   → {function_name}({function_args})")
 
                         # Execute the function
                         if function_name == "search_recipes":
@@ -337,7 +341,8 @@ When you're satisfied with your selections, return the final menu in JSON format
                         else:
                             result = {"error": f"Unknown function: {function_name}"}
 
-                        print(f"Function returned {len(result) if isinstance(result, list) else 1} results")
+                        result_count = len(result) if isinstance(result, list) else 1
+                        print(f"   ← Returned {result_count} result(s)")
 
                         # Prepare response
                         function_responses.append(
@@ -357,10 +362,16 @@ When you're satisfied with your selections, return the final menu in JSON format
                     iteration += 1
                 else:
                     # AI is done - extract final response
+                    print(f"✓ AI completed after {iteration} iterations")
                     break
+
+            if iteration >= max_iterations:
+                print(f"⚠️ WARNING: Reached max iterations ({max_iterations}), AI may not be finished")
 
             # Extract the final menu plan
             response_text = response.text
+
+            print(f"📄 AI response length: {len(response_text)} characters")
 
             # Try to parse JSON from response
             # AI might wrap it in markdown code blocks
@@ -373,7 +384,16 @@ When you're satisfied with your selections, return the final menu in JSON format
                 json_end = response_text.find("```", json_start)
                 response_text = response_text[json_start:json_end].strip()
 
+            print(f"📋 Parsing menu plan JSON...")
             menu_plan = json.loads(response_text)
+
+            # Log what AI returned
+            total_recipes = sum(len(meal.get('recipes', [])) for meal in menu_plan.get('meals', []))
+            print(f"📊 Menu plan summary:")
+            print(f"   - Meals: {len(menu_plan.get('meals', []))}")
+            print(f"   - Total recipes: {total_recipes}")
+            for meal in menu_plan.get('meals', []):
+                print(f"   - {meal.get('meal_type')}: {len(meal.get('recipes', []))} recipes")
 
             # Create menu in database
             menu = cls._create_menu_from_plan(
@@ -394,7 +414,7 @@ When you're satisfied with your selections, return the final menu in JSON format
     def _create_menu_from_plan(cls, user_id, preferences, menu_plan):
         """
         Create menu database records from AI plan
-        (Same as before - no changes needed)
+        Validates all recipe IDs before creating the menu
         """
         try:
             dietary_type_str = preferences.get('dietary_type')
@@ -426,11 +446,21 @@ When you're satisfied with your selections, return the final menu in JSON format
                 db.session.add(meal)
                 db.session.flush()
 
-                # Add recipes to meal
+                # Add recipes to meal - with validation
                 for recipe_data in meal_data.get('recipes', []):
+                    recipe_id = recipe_data.get('recipe_id')
+
+                    # CRITICAL: Validate recipe exists before adding
+                    recipe = Recipe.query.get(recipe_id)
+                    if not recipe:
+                        print(f"⚠️ WARNING: Recipe ID {recipe_id} not found in database, skipping")
+                        continue
+
+                    print(f"✓ Adding recipe {recipe_id}: {recipe.title}")
+
                     meal_recipe = MealRecipe(
                         menu_meal_id=meal.id,
-                        recipe_id=recipe_data.get('recipe_id'),
+                        recipe_id=recipe_id,
                         course_type=recipe_data.get('course_type'),
                         course_order=recipe_data.get('course_order', 0),
                         servings=preferences.get('servings'),
@@ -443,11 +473,19 @@ When you're satisfied with your selections, return the final menu in JSON format
 
             # Reload menu with all relationships
             menu = Menu.query.get(menu.id)
+
+            print(f"✓ Menu created successfully: {menu.id} - {menu.name}")
+            print(f"  Total meals: {len(menu.meals)}")
+            for meal in menu.meals:
+                print(f"    {meal.meal_type}: {len(meal.recipes)} recipes")
+
             return menu
 
         except Exception as e:
             db.session.rollback()
-            print(f"Error creating menu from plan: {str(e)}")
+            print(f"❌ Error creating menu from plan: {str(e)}")
+            import traceback
+            traceback.print_exc()
             raise
 
     @classmethod

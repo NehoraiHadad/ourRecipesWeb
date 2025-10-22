@@ -28,6 +28,9 @@ def generate_menu():
         user_id = get_jwt_identity()
         data = request.get_json()
 
+        print(f"🍽️ Menu generation request from user {user_id}")
+        print(f"   Request: {data.get('name')} - {data.get('meal_types')}")
+
         if not data:
             return jsonify({"error": "No data provided"}), 400
 
@@ -38,12 +41,32 @@ def generate_menu():
         if not data.get('meal_types') or len(data['meal_types']) == 0:
             return jsonify({"error": "At least one meal type is required"}), 400
 
-        # Generate menu
+        # Pre-check: Verify we have recipes in the database
+        from ..models import Recipe, RecipeStatus
+        available_recipes = Recipe.query.filter(
+            Recipe.status == RecipeStatus.ACTIVE.value,
+            Recipe.is_parsed == True
+        ).count()
+
+        print(f"📚 Available recipes in DB: {available_recipes}")
+
+        if available_recipes < 5:
+            return jsonify({
+                "error": "Not enough recipes",
+                "message": f"Only {available_recipes} recipes available in database. Need at least 5 recipes to generate a menu."
+            }), 400
+
+        # Generate menu (this may take 30-60 seconds)
+        print(f"🤖 Starting AI menu generation...")
         menu = MenuPlannerService.generate_menu(user_id, data)
+        print(f"✓ Menu generated: ID {menu.id}")
 
         # Generate shopping list
+        print(f"🛒 Generating shopping list...")
         shopping_list = ShoppingListService.generate_shopping_list(menu.id)
+        print(f"✓ Shopping list generated: {len(shopping_list)} categories")
 
+        print(f"✓ Complete! Returning menu to client")
         return jsonify({
             "success": True,
             "menu": menu.to_dict(),
@@ -51,7 +74,9 @@ def generate_menu():
         }), 201
 
     except Exception as e:
-        print(f"Error generating menu: {str(e)}")
+        print(f"❌ Error generating menu: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": "Failed to generate menu", "message": str(e)}), 500
 
 

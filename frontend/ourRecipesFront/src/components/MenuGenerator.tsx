@@ -103,8 +103,20 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
       }
     } catch (err: any) {
       console.error('Error generating menu:', err);
-      setError(err.message || 'שגיאה ביצירת התפריט');
-      addNotification({ message: 'שגיאה ביצירת התפריט', type: 'error' });
+
+      let errorMessage = 'שגיאה ביצירת התפריט';
+
+      // Handle specific error types
+      if (err.message?.includes('timeout') || err.message?.includes('took too long')) {
+        errorMessage = 'יצירת התפריט לוקחת זמן רב. ייתכן שהתפריט נוצר בהצלחה - נסה לרענן את הדף ולבדוק ברשימת התפריטים.';
+      } else if (err.message?.includes('Not enough recipes')) {
+        errorMessage = 'אין מספיק מתכונים במאגר כדי ליצור תפריט. נדרשים לפחות 5 מתכונים.';
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+
+      setError(errorMessage);
+      addNotification({ message: errorMessage, type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -293,11 +305,14 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
       {loading && (
         <div className="mt-4 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800">
-          <p className="text-sm text-primary-700 dark:text-primary-300">
+          <p className="text-sm text-primary-700 dark:text-primary-300 font-medium">
             🤖 ה-AI עובד על יצירת תפריט מאוזן והגיוני עבורך...
           </p>
+          <p className="text-xs text-primary-600 dark:text-primary-400 mt-2">
+            ⏱️ זה עשוי לקחת 30-60 שניות
+          </p>
           <p className="text-xs text-primary-600 dark:text-primary-400 mt-1">
-            זה עשוי לקחת מספר שניות
+            ה-AI מחפש מתכונים מתאימים ומוודא איזון נכון בין מנות
           </p>
         </div>
       )}
