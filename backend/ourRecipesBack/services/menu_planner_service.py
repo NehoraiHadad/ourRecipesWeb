@@ -87,13 +87,13 @@ class MenuPlannerService:
                     },
                     {
                         "name": "get_recipes_details_batch",
-                        "description": "Get FULL details for multiple recipes at once (up to 10 recipes per call). Returns complete information: full ingredients list with quantities, complete instructions, all metadata. Use this when you've identified potential recipes from get_all_recipes() and need full details to make final decisions. Maximum 10 recipes per call to avoid context overflow.",
+                        "description": "Get FULL details for multiple recipes at once (up to 10 recipes per call). Returns complete information: full ingredients list with quantities, complete instructions, all metadata. Use this when you've identified potential recipes from get_all_recipes() and need full details to make final decisions. IMPORTANT: recipe_ids must be INTEGERS (e.g., [11, 23, 45] not [11.0, 23.0, 45.0]). Use the exact 'id' numbers from get_all_recipes() response. Maximum 10 recipes per call.",
                         "parameters": {
                             "type": "object",
                             "properties": {
                                 "recipe_ids": {
                                     "type": "array",
-                                    "description": "Array of recipe IDs to fetch (maximum 10)",
+                                    "description": "Array of VALID recipe IDs as integers (e.g., [11, 23, 45]). These IDs must match the 'id' field from get_all_recipes(). Maximum 10 IDs.",
                                     "items": {
                                         "type": "integer"
                                     }
@@ -305,30 +305,40 @@ class MenuPlannerService:
         Get FULL details for multiple recipes at once.
 
         Args:
-            recipe_ids: List of recipe IDs (up to 10)
+            recipe_ids: List of recipe IDs (up to 10) - MUST be integers or will be converted
 
         Returns:
-            list: Full recipe details for each ID, or error dict
+            list: Full recipe details for each ID, or error dict if no recipes found
         """
         # Validate input
         if not recipe_ids:
+            print(f"   ❌ ERROR: recipe_ids is empty")
             return {"error": "recipe_ids is required and cannot be empty"}
 
         if not isinstance(recipe_ids, list):
+            print(f"   ❌ ERROR: recipe_ids is not a list: {type(recipe_ids)}")
             return {"error": "recipe_ids must be an array of integers"}
+
+        print(f"   📥 Received recipe_ids (raw): {recipe_ids}")
+        print(f"   📥 Types: {[type(rid).__name__ for rid in recipe_ids]}")
 
         # Convert floats to ints (Gemini sometimes sends 11.0 instead of 11)
         try:
+            original_ids = recipe_ids.copy()
             recipe_ids = [int(float(rid)) for rid in recipe_ids]
+            print(f"   🔄 Converted to integers: {recipe_ids}")
+            if original_ids != recipe_ids:
+                print(f"   ⚠️  Conversion changed values: {original_ids} → {recipe_ids}")
         except (ValueError, TypeError) as e:
-            return {"error": f"Invalid recipe_ids format: {e}"}
+            print(f"   ❌ ERROR: Failed to convert IDs: {e}")
+            return {"error": f"Invalid recipe_ids format: {e}. Expected integers or numeric values."}
 
         # Limit to 10 recipes to avoid context overflow
         if len(recipe_ids) > 10:
-            print(f"⚠️ Requested {len(recipe_ids)} recipes, limiting to first 10")
+            print(f"   ⚠️  Requested {len(recipe_ids)} recipes, limiting to first 10")
             recipe_ids = recipe_ids[:10]
 
-        print(f"   📖 Fetching FULL details for {len(recipe_ids)} recipes: {recipe_ids}")
+        print(f"   📖 Querying database for {len(recipe_ids)} recipe IDs: {recipe_ids}")
 
         # Fetch all requested recipes at once
         recipes = Recipe.query.filter(
@@ -337,10 +347,29 @@ class MenuPlannerService:
             Recipe.is_parsed == True
         ).all()
 
-        if not recipes:
-            return {"error": f"No recipes found for IDs: {recipe_ids}"}
+        found_count = len(recipes)
+        print(f"   {'✓' if found_count > 0 else '❌'} Found {found_count} recipes in database")
 
-        print(f"   ✓ Found {len(recipes)} recipes in database")
+        if not recipes:
+            # Check if ANY of the IDs exist (even if not active/parsed)
+            any_recipes = Recipe.query.filter(Recipe.id.in_(recipe_ids)).all()
+            if any_recipes:
+                print(f"   ⚠️  Found {len(any_recipes)} recipes but they are not ACTIVE or PARSED")
+            else:
+                print(f"   ⚠️  None of the requested IDs exist in database at all")
+
+            return {
+                "error": f"No active/parsed recipes found for IDs: {recipe_ids}. Requested {len(recipe_ids)}, found 0.",
+                "requested_ids": recipe_ids,
+                "found_count": 0
+            }
+
+        # Log which IDs were found and which are missing
+        found_ids = {r.id for r in recipes}
+        missing_ids = set(recipe_ids) - found_ids
+        if missing_ids:
+            print(f"   ⚠️  Recipe IDs not found: {sorted(missing_ids)}")
+        print(f"   ✓ Successfully found IDs: {sorted(found_ids)}")
 
         results = []
         for recipe in recipes:
@@ -443,6 +472,13 @@ OPTION B - COMPLEX (4-7 iterations) - For multiple meals (like Shabbat with 3 me
 - You can batch multiple meals into ONE get_recipes_details_batch() call (e.g., get_recipes_details_batch([1,5,12,23,45,67]) for all meals)
 - Maximum 10 recipes per batch call
 - ALWAYS return JSON menu before iteration 8
+
+🆔 RECIPE IDs - VERY IMPORTANT:
+- Use ONLY recipe IDs that appear in get_all_recipes() response
+- IDs must be INTEGERS (e.g., [11, 23, 45] NOT [11.0, 23.0, 45.0])
+- Copy the EXACT 'id' value from get_all_recipes() - don't modify or invent IDs
+- If you request non-existent IDs, you'll get an error and waste iterations
+- Example: If get_all_recipes() returns id:15, use 15 not 15.0
 
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
@@ -752,7 +788,26 @@ URGENCY: Limited iterations remaining!
 → Return JSON menu NOW (metadata should be sufficient)"""
 
                     elif last_function == "get_recipes_details_batch":
-                        guidance_message = f"""
+                        # Check if result was an error
+                        if isinstance(result, dict) and "error" in result:
+                            guidance_message = f"""
+❌ ERROR in get_recipes_details_batch()
+⚠️ ITERATION {iteration + 1}/{max_iterations} - {remaining} iterations remaining
+
+The function returned an error: {result.get('error', 'Unknown error')}
+
+COMMON CAUSES:
+1. Recipe IDs don't exist in database (check get_all_recipes() response)
+2. IDs are not active/parsed recipes
+3. Invalid ID format
+
+WHAT TO DO NOW:
+- Review the recipe IDs from get_all_recipes()
+- Choose DIFFERENT IDs that actually exist
+- Or use the metadata from get_all_recipes() to make your decision
+- Return JSON menu with recipes from get_all_recipes()"""
+                        else:
+                            guidance_message = f"""
 ✓ Received FULL details for {total_results} recipes.
 ⚠️ ITERATION {iteration + 1}/{max_iterations} - {remaining} iterations remaining
 
