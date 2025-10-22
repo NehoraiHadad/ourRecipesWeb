@@ -251,8 +251,8 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
                       className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors
                         ${
                           checkedItems.has(item.id)
-                            ? 'bg-green-50
-                            : 'bg-gray-50 hover:bg-gray-100
+                            ? 'bg-green-50'
+                            : 'bg-gray-50 hover:bg-gray-100'
                         }`}
                     >
                       <input
@@ -265,8 +265,8 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
                         <div
                           className={`font-medium ${
                             checkedItems.has(item.id)
-                              ? 'line-through text-gray-500
-                              : 'text-gray-800
+                              ? 'line-through text-gray-500'
+                              : 'text-gray-800'
                           }`}
                         >
                           {item.ingredient_name}

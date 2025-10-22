@@ -76,6 +76,16 @@ async def update_recipe(telegram_id):
         if error:
             return jsonify({"error": error}), 500
 
+        # Update menus that contain this recipe in Telegram
+        if recipe and recipe.id:
+            from ..services.menu_service import MenuService
+            try:
+                updated_menus = await MenuService.update_menus_with_recipe(recipe.id)
+                print(f"Updated {updated_menus} menus in Telegram after recipe update", flush=True)
+            except Exception as menu_error:
+                # Log error but don't fail the recipe update
+                print(f"Warning: Failed to update menus in Telegram: {menu_error}", flush=True)
+
         return (
             jsonify(
                 {
