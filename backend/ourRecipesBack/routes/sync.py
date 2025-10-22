@@ -5,8 +5,9 @@ from ..extensions import db
 from ..models.sync import SyncLog
 from ..services.telegram_service import telegram_service, TelegramService
 from ..services.recipe_service import RecipeService
+from ..services.menu_service import MenuService
 from ..models.place import Place
-from ..models import Recipe
+from ..models import Recipe, Menu
 import logging
 from flask import Blueprint
 import asyncio
@@ -18,7 +19,7 @@ logger = logging.getLogger(__name__)
 @sync_bp.route("/status", methods=["GET"])
 @jwt_required()
 def get_sync_status():
-    """Get sync status for recipes and places"""
+    """Get sync status for recipes, places, and menus"""
     try:
         # Get recipes sync status
         total_recipes = Recipe.query.count()
@@ -29,6 +30,11 @@ def get_sync_status():
         total_places = Place.query.count()
         synced_places = Place.query.filter_by(is_synced=True).count()
         unsynced_places = total_places - synced_places
+
+        # Get menus sync status
+        total_menus = Menu.query.count()
+        synced_menus = Menu.query.filter(Menu.last_sync.isnot(None)).count()
+        unsynced_menus = total_menus - synced_menus
 
         return jsonify(
             {
@@ -41,6 +47,11 @@ def get_sync_status():
                     "total": total_places,
                     "synced": synced_places,
                     "unsynced": unsynced_places,
+                },
+                "menus": {
+                    "total": total_menus,
+                    "synced": synced_menus,
+                    "unsynced": unsynced_menus,
                 },
             }
         )
@@ -104,15 +115,16 @@ async def refresh_session():
 @sync_bp.route("/full", methods=["POST"])
 @jwt_required()
 async def full_resync():
-    """Perform a full resync of all recipes and places, resetting sync state"""
+    """Perform a full resync of all recipes, places, and menus, resetting sync state"""
     # Initialize sync log
     sync_log = _create_sync_log()
     sync_log.sync_type = "full_resync"
 
     try:
-        # Reset sync state for all recipes and places
+        # Reset sync state for all recipes, places, and menus
         Recipe.query.update({Recipe.last_sync: None})
         Place.query.update({Place.is_synced: False})
+        Menu.query.update({Menu.last_sync: None})
         db.session.commit()
 
         # Perform sync
@@ -146,15 +158,18 @@ async def _perform_sync(sync_log):
         channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
         messages = await client.get_messages(channel_entity, limit=None)
 
-        # Separate messages into recipes and places
+        # Separate messages into recipes, places, and menus
         recipe_messages = []
         place_messages = []
+        menu_messages = []
 
         for message in messages:
             if not message.text:
                 continue
 
-            if "המלצה" in message.text:
+            if "🍽️ תפריט" in message.text:
+                menu_messages.append(message)
+            elif "המלצה" in message.text:
                 place_messages.append(message)
             else:
                 recipe_messages.append(message)
@@ -195,6 +210,17 @@ async def _perform_sync(sync_log):
                 logger.error(f"Error processing place message {message.id}: {str(e)}")
 
         # Final commit for places
+        db.session.commit()
+
+        # Process menus
+        for message in menu_messages:
+            try:
+                await MenuService.sync_message(client, message, sync_log)
+            except Exception as e:
+                sync_log.menus_failed += 1
+                logger.error(f"Error processing menu message {message.id}: {str(e)}")
+
+        # Final commit for menus
         db.session.commit()
 
 
@@ -268,5 +294,11 @@ def _get_sync_stats(sync_log):
         "places": {
             "processed": sync_log.places_processed,
             "failed": sync_log.places_failed,
+        },
+        "menus": {
+            "processed": sync_log.menus_processed,
+            "added": sync_log.menus_added,
+            "updated": sync_log.menus_updated,
+            "failed": sync_log.menus_failed,
         },
     }
