@@ -379,6 +379,13 @@ SEARCH STRATEGY (OPTIMIZED FOR EFFICIENCY):
    - That course type probably doesn't exist in the database
    - SKIP it immediately and move to next course
    - DO NOT retry the same search!
+   - DO NOT search with exclude_ids if you already got 0 results!
+
+5. **If you keep getting 1-2 results for same course:**
+   - You've found all available options for that course
+   - STOP searching for more of that course type
+   - Use what you have or skip that course entirely
+   - DO NOT waste iterations searching again and again!
 
 EXAMPLE WORKFLOW (EFFICIENT):
 User wants: Shabbat dinner, 4 servings, meat meal
@@ -503,7 +510,7 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
             response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
-            max_iterations = 10  # Reduced from 25 - efficient search strategy needs fewer iterations
+            max_iterations = 12  # Balanced: enough for complex menus, forces efficiency
             iteration = 0
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
