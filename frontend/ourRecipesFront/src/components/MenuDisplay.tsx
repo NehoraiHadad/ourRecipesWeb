@@ -4,7 +4,10 @@ import { menuService } from '@/services/menuService';
 import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import Spinner from '@/components/ui/Spinner';
-import type { Menu, RecipeSummary } from '@/types';
+import Modal from '@/components/Modal';
+import RecipeDetails from '@/components/recipe/RecipeDetails';
+import { RecipeService } from '@/services/recipeService';
+import type { Menu, RecipeSummary, recipe } from '@/types';
 
 interface MenuDisplayProps {
   menu: Menu;
@@ -22,6 +25,12 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
 
   const [menu, setMenu] = useState<Menu>(initialMenu);
   const [loading, setLoading] = useState<boolean>(false);
+
+  // For viewing a recipe
+  const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
+  const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
+
+  // For replacing a recipe
   const [selectedRecipe, setSelectedRecipe] = useState<{
     mealId: number;
     recipeId: number;
@@ -51,8 +60,23 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
-  // Handle recipe click to get suggestions
-  const handleRecipeClick = async (mealId: number, recipeId: number) => {
+  // Handle recipe click to VIEW the recipe
+  const handleRecipeClick = async (recipeId: number) => {
+    setLoadingRecipe(true);
+
+    try {
+      const response = await RecipeService.getRecipeById(recipeId);
+      setViewingRecipe(response.data);
+    } catch (error) {
+      console.error('Error loading recipe:', error);
+      addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
+    } finally {
+      setLoadingRecipe(false);
+    }
+  };
+
+  // Handle replace button click to get suggestions
+  const handleReplaceClick = async (mealId: number, recipeId: number) => {
     setSelectedRecipe({ mealId, recipeId });
     setLoadingSuggestions(true);
 
@@ -179,11 +203,11 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6 mb-6">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-secondary-800 dark:text-white mb-2">
               {menu.name}
             </h1>
             {menu.description && (
-              <p className="text-gray-600 dark:text-gray-400">
+              <p className="text-secondary-600 dark:text-secondary-400">
                 {menu.description}
               </p>
             )}
@@ -199,7 +223,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex flex-wrap gap-4 text-sm text-secondary-600 dark:text-secondary-400">
           {menu.event_type && (
             <div className="flex items-center gap-1">
               <span className="font-semibold">סוג אירוע:</span>
@@ -275,19 +299,19 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           {menu.meals.map((meal) => (
             <div
               key={meal.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+              className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6"
             >
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+              <h2 className="text-2xl font-bold text-secondary-800 dark:text-white mb-4">
                 {meal.meal_type}
                 {meal.meal_time && (
-                  <span className="text-sm text-gray-500 dark:text-gray-400 mr-2">
+                  <span className="text-sm text-secondary-500 dark:text-secondary-400 mr-2">
                     ({meal.meal_time})
                   </span>
                 )}
               </h2>
 
               {meal.notes && (
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-secondary-600 dark:text-secondary-400 mb-4">
                   {meal.notes}
                 </p>
               )}
@@ -297,10 +321,10 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                   meal.recipes.map((mealRecipe) => (
                     <div
                       key={mealRecipe.id}
-                      className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg
-                               hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors
+                      className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
+                               hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors
                                cursor-pointer"
-                      onClick={() => handleRecipeClick(meal.id, mealRecipe.recipe_id)}
+                      onClick={() => handleRecipeClick(mealRecipe.recipe_id)}
                     >
                       {mealRecipe.recipe?.image_url && (
                         <img
@@ -310,20 +334,20 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         />
                       )}
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                        <h3 className="text-lg font-semibold text-secondary-800 dark:text-white hover:text-primary-600 transition-colors">
                           {mealRecipe.recipe?.title || 'מתכון לא זמין'}
                         </h3>
                         {mealRecipe.course_type && (
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                          <p className="text-sm text-secondary-500 dark:text-secondary-400">
                             {mealRecipe.course_type}
                           </p>
                         )}
                         {mealRecipe.ai_reason && (
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
-                            {mealRecipe.ai_reason}
+                          <p className="text-sm text-secondary-600 dark:text-secondary-300 mt-1">
+                            💡 {mealRecipe.ai_reason}
                           </p>
                         )}
-                        <div className="flex gap-3 mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex gap-3 mt-2 text-xs text-secondary-500 dark:text-secondary-400">
                           {mealRecipe.recipe?.cooking_time && (
                             <span>⏱️ {mealRecipe.recipe.cooking_time} דק׳</span>
                           )}
@@ -332,19 +356,20 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           )}
                         </div>
                       </div>
-                      <button
-                        className="text-primary-500 hover:text-primary-700 text-sm font-medium"
+                      <Button
+                        variant="secondary"
+                        size="sm"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleRecipeClick(meal.id, mealRecipe.recipe_id);
+                          handleReplaceClick(meal.id, mealRecipe.recipe_id);
                         }}
                       >
-                        החלף →
-                      </button>
+                        🔄 החלף
+                      </Button>
                     </div>
                   ))
                 ) : (
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-secondary-500 dark:text-secondary-400">
                     אין מתכונים בארוחה זו
                   </p>
                 )}
@@ -353,8 +378,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <p className="text-gray-500 dark:text-gray-400 text-center">
+        <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6">
+          <p className="text-secondary-500 dark:text-secondary-400 text-center">
             אין ארוחות בתפריט זה
           </p>
         </div>
@@ -370,11 +395,11 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           }}
         >
           <div
-            className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            className="bg-white dark:bg-secondary-800 rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex justify-between items-center mb-4">
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white">
+              <h3 className="text-xl font-bold text-secondary-800 dark:text-white">
                 בחר מתכון חלופי
               </h3>
               <button
@@ -382,7 +407,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                   setSelectedRecipe(null);
                   setSuggestions([]);
                 }}
-                className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                className="text-secondary-500 hover:text-gray-700 dark:text-secondary-400 dark:hover:text-gray-200"
               >
                 ✕
               </button>
@@ -397,8 +422,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 {suggestions.map((suggestion) => (
                   <div
                     key={suggestion.id}
-                    className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg
-                             hover:bg-gray-100 dark:hover:bg-gray-600 transition-colors
+                    className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
+                             hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors
                              cursor-pointer"
                     onClick={() => handleReplaceRecipe(suggestion.id)}
                   >
@@ -410,15 +435,15 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                       />
                     )}
                     <div className="flex-1">
-                      <h4 className="font-semibold text-gray-800 dark:text-white">
+                      <h4 className="font-semibold text-secondary-800 dark:text-white">
                         {suggestion.title}
                       </h4>
                       {suggestion.categories && (
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-sm text-secondary-500 dark:text-secondary-400">
                           {suggestion.categories}
                         </p>
                       )}
-                      <div className="flex gap-3 mt-1 text-xs text-gray-500 dark:text-gray-400">
+                      <div className="flex gap-3 mt-1 text-xs text-secondary-500 dark:text-secondary-400">
                         {suggestion.cooking_time && (
                           <span>⏱️ {suggestion.cooking_time} דק׳</span>
                         )}
@@ -431,13 +456,37 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 ))}
               </div>
             ) : (
-              <p className="text-gray-500 dark:text-gray-400 text-center py-8">
+              <p className="text-secondary-500 dark:text-secondary-400 text-center py-8">
                 לא נמצאו הצעות חלופיות
               </p>
             )}
           </div>
         </div>
       )}
+
+      {/* Recipe View Modal */}
+      <Modal
+        isOpen={!!viewingRecipe || loadingRecipe}
+        onClose={() => {
+          setViewingRecipe(null);
+        }}
+        title={viewingRecipe?.title}
+      >
+        {loadingRecipe && (
+          <div className="flex justify-center items-center p-8">
+            <Spinner message="טוען מתכון..." />
+          </div>
+        )}
+
+        {viewingRecipe && !loadingRecipe && (
+          <RecipeDetails
+            recipe={viewingRecipe}
+            isEditing={false}
+            onEditStart={() => {}}
+            onEditEnd={() => {}}
+          />
+        )}
+      </Modal>
 
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
