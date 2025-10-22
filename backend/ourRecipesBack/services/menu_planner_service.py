@@ -75,7 +75,7 @@ class MenuPlannerService:
                 "function_declarations": [
                     {
                         "name": "get_all_recipes",
-                        "description": "Get ALL available recipes (~113 recipes). Returns: id, title, dietary_type, course_hints. You MUST call this function to get the recipe catalog, then pick recipes from the list.",
+                        "description": "Get ALL available recipes (~113 recipes). Returns ENHANCED data for each recipe: id, title, dietary_type, course_hints, cooking_time, difficulty, servings, ingredients_preview, has_image. This is the COMPLETE catalog - you only need to call this ONCE. Use the data to pick 3-6 recipes that fit the menu requirements.",
                         "parameters": {
                             "type": "object",
                             "properties": {},
@@ -284,21 +284,25 @@ class MenuPlannerService:
         """Get system prompt for menu planning with function calling"""
         return """You are an expert chef and menu planner specializing in kosher cuisine.
 
-⚠️ MANDATORY WORKFLOW - YOU HAVE ONLY ONE FUNCTION:
+⚠️ CRITICAL WORKFLOW - READ CAREFULLY:
 
-STEP 1: Call get_all_recipes() ONCE
-   - Returns: ALL ~113 recipes with id, title, dietary_type, course_hints
-   - This is the COMPLETE catalog - no other functions available
+YOU HAVE EXACTLY 2 ITERATIONS:
+Iteration 1: Call get_all_recipes() to get the COMPLETE catalog
+Iteration 2: Return the final JSON menu
 
-STEP 2: Review the list and pick 3-6 recipe IDs
-   - Filter by dietary_type (meat/dairy/pareve)
-   - Filter by course_hints (["salad"], ["main"], ["side"], etc.)
-   - course_hints are in ENGLISH even though titles are in Hebrew
+STEP 1 (Iteration 1): Call get_all_recipes() ONE TIME ONLY
+   - Returns: ALL ~113 recipes with full details
+   - Each recipe includes: id, title, dietary_type, course_hints, cooking_time, difficulty, servings, ingredients_preview
+   - This is the COMPLETE catalog - you will NOT get another chance to call this function
 
-STEP 3: Return ONLY the JSON menu
-   - Use ONLY recipe IDs from the list you received
-   - DO NOT call any other functions
-   - DO NOT make multiple calls to get_all_recipes
+STEP 2 (Iteration 2): IMMEDIATELY return the JSON menu
+   - Analyze the recipes you received in iteration 1
+   - Pick 3-6 recipe IDs that fit the user's requirements
+   - Return ONLY the JSON menu structure
+   - DO NOT call get_all_recipes() again - you already have all the data
+
+⚠️ IMPORTANT: After calling get_all_recipes() ONCE, you MUST return JSON in the next iteration.
+DO NOT call get_all_recipes() multiple times - the catalog doesn't change!
 
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
@@ -311,10 +315,10 @@ User requests: "Shabbat dinner, meat meal"
 
 Iteration 1:
 → Call get_all_recipes()
-← Receive list: [{id:41, title:"עוף בגריל", dietary_type:"meat", course_hints:["main"]}, {id:15, title:"ממרח זיתים", dietary_type:"pareve", course_hints:["salad"]}, ...]
+← Receive list: [{id:41, title:"עוף בגריל", dietary_type:"meat", course_hints:["main"], cooking_time:60, difficulty:"medium", servings:4, ingredients_preview:"עוף, שום, לימון"}, ...]
 
 Iteration 2:
-→ Return JSON:
+→ Return JSON (DO NOT CALL FUNCTIONS):
 {
   "meals": [{
     "meal_type": "ארוחת ערב שבת",
@@ -323,34 +327,34 @@ Iteration 2:
       {"recipe_id": 15, "course_type": "salad", "course_order": 1},
       {"recipe_id": 41, "course_type": "main", "course_order": 2}
     ]
-  }]
+  }],
+  "reasoning": "בחרתי סלט קל כמנה ראשונה ועוף בגריל כמנה עיקרית"
 }
 
 CRITICAL RULES:
-- ONLY 2 iterations total
-- ONLY call get_all_recipes() ONCE
-- NO other function calls allowed
-- Pick IDs from the list you received"""
+- TOTAL iterations: 2 (1 function call + 1 JSON response)
+- Call get_all_recipes() EXACTLY ONCE
+- After receiving recipes, RETURN JSON IMMEDIATELY
+- DO NOT repeat function calls"""
 
     @classmethod
     def _execute_get_all_recipes(cls):
         """
-        Execute get_all_recipes function - returns BASIC info for ALL recipes.
+        Execute get_all_recipes function - returns ENHANCED info for ALL recipes.
         This is STEP 1: Get the catalog to choose from.
 
-        Returns ONLY: id, title, dietary_type, course_hints
-        For full details, use get_recipe_details(id)
+        Returns: id, title, dietary_type, course_hints, cooking_time, difficulty, servings, ingredients_preview
 
         Returns:
-            list: All recipes with basic metadata (lightweight)
+            list: All recipes with enhanced metadata for better AI decision-making
         """
-        print(f"   📚 Loading recipe catalog (titles only)...")
+        print(f"   📚 Loading recipe catalog with enhanced metadata...")
         recipes = Recipe.query.filter(
             Recipe.status == RecipeStatus.ACTIVE.value,
             Recipe.is_parsed == True,
             Recipe.title.isnot(None)
         ).all()
-        print(f"   ✓ Loaded {len(recipes)} recipe titles")
+        print(f"   ✓ Loaded {len(recipes)} recipes")
 
         result = []
 
@@ -377,12 +381,36 @@ CRITICAL RULES:
             if any(cat in categories for cat in ['קינוח', 'עוגה', 'מתוק', 'עוגיות']):
                 course_hints.append('dessert')
 
-            # Return ONLY basic info - lightweight
+            # Get ingredients preview (first 3 ingredients)
+            ingredients_preview = ""
+            try:
+                # Use ingredients_list (JSON) if available, fallback to ingredients (text)
+                if recipe.ingredients_list and isinstance(recipe.ingredients_list, list):
+                    first_ingredients = recipe.ingredients_list[:3]
+                    names = [ing.get('name', ing.get('ingredient', '')) for ing in first_ingredients if isinstance(ing, dict)]
+                    ingredients_preview = ', '.join([name for name in names if name])
+                    if len(recipe.ingredients_list) > 3:
+                        ingredients_preview += f" (+{len(recipe.ingredients_list) - 3})"
+                elif recipe.ingredients:
+                    # Fallback: ingredients is list of strings
+                    first_ingredients = recipe.ingredients[:3]
+                    ingredients_preview = ', '.join([str(ing) for ing in first_ingredients if ing])
+                    if len(recipe.ingredients) > 3:
+                        ingredients_preview += f" (+{len(recipe.ingredients) - 3})"
+            except Exception as e:
+                pass  # Silently fail, return empty preview
+
+            # Return ENHANCED info for better AI decisions
             result.append({
                 'id': recipe.id,
                 'title': recipe.title,
                 'dietary_type': dietary,
-                'course_hints': course_hints
+                'course_hints': course_hints,
+                'cooking_time': recipe.cooking_time or 30,
+                'difficulty': recipe.difficulty.value if recipe.difficulty else 'medium',
+                'servings': recipe.servings or 4,
+                'ingredients_preview': ingredients_preview,
+                'has_image': bool(recipe.image_url or recipe.image_data)
             })
 
         return result
@@ -409,7 +437,7 @@ CRITICAL RULES:
             meal_types = preferences.get('meal_types', [])
             special_requests = preferences.get('special_requests', '')
 
-            # Build user prompt - SIMPLE AND DIRECT
+            # Build user prompt - CLEAR AND DIRECTIVE
             user_prompt = f"""Create menu for:
 Event: {event_type}
 Servings: {servings}
@@ -417,12 +445,11 @@ Dietary: {dietary_type.value if dietary_type else 'any'}
 Meals: {', '.join(meal_types)}
 {f'Notes: {special_requests}' if special_requests else ''}
 
-INSTRUCTIONS:
-1. Call get_all_recipes() NOW
-2. Pick 3-6 recipes that fit
-3. Return JSON menu
+⚠️ REMEMBER: You have EXACTLY 2 iterations total:
+- Iteration 1: Call get_all_recipes() to get the complete catalog
+- Iteration 2: Return the final JSON menu
 
-Start with get_all_recipes() - DO IT NOW."""
+Start NOW with get_all_recipes() - this is iteration 1."""
 
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
@@ -463,6 +490,8 @@ Start with get_all_recipes() - DO IT NOW."""
 
                     # Execute all function calls
                     function_responses = []
+                    total_results = 0
+
                     for function_call in function_calls:
                         function_name = function_call.name
                         function_args = dict(function_call.args)
@@ -481,9 +510,10 @@ Start with get_all_recipes() - DO IT NOW."""
                             result = {"error": f"Function execution failed: {str(func_error)}"}
 
                         result_count = len(result) if isinstance(result, list) else 1
+                        total_results = result_count  # Save for guidance message
                         print(f"   ← Returned {result_count} result(s)")
 
-                        # Prepare response
+                        # Prepare response with dynamic guidance
                         function_responses.append(
                             genai.protos.Part(
                                 function_response=genai.protos.FunctionResponse(
@@ -493,10 +523,28 @@ Start with get_all_recipes() - DO IT NOW."""
                             )
                         )
 
-                    # Send function results back to AI
+                    # Add dynamic guidance after function results
+                    guidance_message = f"""
+✓ You received the complete recipe catalog ({total_results} recipes).
+⚠️ ITERATION {iteration + 1}/{max_iterations} - Next action required:
+
+NOW you must IMMEDIATELY return the final JSON menu.
+DO NOT call get_all_recipes() again - you already have ALL the data you need.
+
+Analyze the recipes you received and return ONLY the JSON menu structure:
+{{
+  "meals": [...],
+  "reasoning": "..."
+}}
+
+DO NOT make any more function calls. Return JSON NOW.
+"""
+
+                    # Send function results back to AI with guidance
+                    all_parts = function_responses + [genai.protos.Part(text=guidance_message)]
                     response = cls._send_message_with_retry(
                         chat,
-                        genai.protos.Content(parts=function_responses)
+                        genai.protos.Content(parts=all_parts)
                     )
 
                     iteration += 1
@@ -528,6 +576,8 @@ Start with get_all_recipes() - DO IT NOW."""
 
                     # Execute all function calls
                     function_responses = []
+                    total_results = 0
+
                     for function_call in function_calls:
                         function_name = function_call.name
                         function_args = dict(function_call.args)
@@ -546,6 +596,7 @@ Start with get_all_recipes() - DO IT NOW."""
                             result = {"error": f"Function execution failed: {str(func_error)}"}
 
                         result_count = len(result) if isinstance(result, list) else 1
+                        total_results = result_count
                         print(f"   ← Returned {result_count} result(s)")
 
                         # Prepare response
@@ -558,16 +609,30 @@ Start with get_all_recipes() - DO IT NOW."""
                             )
                         )
 
-                    # Send function results back to AI with STRONG completion instruction
-                    completion_prompt = """You have reached the maximum number of searches allowed.
-You MUST create the menu NOW using ONLY the recipes you have found.
-DO NOT make any more function calls.
-Return ONLY the final JSON menu plan with the recipes you have."""
+                    # Send function results back to AI with VERY STRONG completion instruction
+                    completion_prompt = f"""
+🚨 MAXIMUM ITERATIONS REACHED ({max_iterations}/{max_iterations})
+✓ You received the complete recipe catalog ({total_results} recipes).
 
-                    # Send the function responses first
+⚠️ CRITICAL: You have reached the maximum number of iterations allowed.
+You MUST create the menu NOW using ONLY the recipes you have received.
+
+DO NOT make any more function calls.
+DO NOT call get_all_recipes() again.
+
+Return ONLY the final JSON menu plan NOW:
+{{
+  "meals": [...],
+  "reasoning": "..."
+}}
+
+This is your LAST chance to respond. Return JSON immediately."""
+
+                    # Send the function responses WITH the strong guidance
+                    all_parts = function_responses + [genai.protos.Part(text=completion_prompt)]
                     response = cls._send_message_with_retry(
                         chat,
-                        genai.protos.Content(parts=function_responses)
+                        genai.protos.Content(parts=all_parts)
                     )
 
                     # If STILL has function calls, send one more VERY forceful message
