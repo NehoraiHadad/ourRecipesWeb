@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import { createContext, useContext, useEffect, useState, useCallback, useRef } from 'react'
 
 type FontFamily = 'heebo' | 'alemnew' | 'amit' | 'aviya' | 'omer' | 'savyon' | 'shilo' | 'shir' | 'uriyah';
 
@@ -28,6 +28,7 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
   const [currentFont, setCurrentFont] = useState<FontFamily>('heebo')
   const [loadedFonts, setLoadedFonts] = useState<Set<FontFamily>>(new Set<FontFamily>(['heebo'])) // heebo is already loaded
   const [isLoading, setIsLoading] = useState(false)
+  const hasLoadedInitialFont = useRef(false)
 
   const fonts: Array<{ id: FontFamily; name: string; description: string }> = [
     { id: 'heebo', name: 'HEBBO', description: 'פונט ברירת מחדל' },
@@ -43,7 +44,16 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
 
   // Dynamically load a font
   const loadFont = useCallback(async (fontId: FontFamily) => {
-    if (fontId === 'heebo' || loadedFonts.has(fontId)) {
+    // Check if already loaded using functional state update
+    let shouldLoad = true;
+    setLoadedFonts(prev => {
+      if (fontId === 'heebo' || prev.has(fontId)) {
+        shouldLoad = false;
+      }
+      return prev;
+    });
+
+    if (!shouldLoad) {
       return; // Already loaded
     }
 
@@ -88,7 +98,7 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
     } finally {
       setIsLoading(false);
     }
-  }, [loadedFonts]);
+  }, []); // No dependencies needed - using functional updates
 
   useEffect(() => {
     // Update CSS variable when font changes
@@ -99,23 +109,24 @@ export function FontProvider({ children }: { children: React.ReactNode }) {
   }, [currentFont])
 
   const setFont = useCallback(async (font: FontFamily) => {
-    // Load font if not already loaded
-    if (!loadedFonts.has(font)) {
-      await loadFont(font);
-    }
+    // Load font (loadFont will check if already loaded)
+    await loadFont(font);
 
     setCurrentFont(font)
     localStorage.setItem('preferred-font', font)
-  }, [loadedFonts, loadFont])
+  }, [loadFont])
 
   // Load preferred font on mount
   useEffect(() => {
+    if (hasLoadedInitialFont.current) return;
+    hasLoadedInitialFont.current = true;
+
     const savedFont = localStorage.getItem('preferred-font') as FontFamily
     if (savedFont && fonts.some(f => f.id === savedFont)) {
       // Preload saved font for faster subsequent page loads
       setFont(savedFont)
     }
-  }, [])
+  }, [setFont, fonts])
 
   return (
     <FontContext.Provider value={{ currentFont, setFont, fonts, isLoading }}>
