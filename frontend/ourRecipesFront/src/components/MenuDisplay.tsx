@@ -260,8 +260,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
 
         {/* AI Reasoning */}
         {menu.ai_reasoning && (
-          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-md">
-            <p className="text-sm text-blue-700 dark:text-blue-300">
+          <div className="mt-4 p-3 bg-primary-50 dark:bg-primary-900/20 rounded-md">
+            <p className="text-sm text-primary-700 dark:text-primary-300">
               <span className="font-semibold">🤖 הסבר ה-AI:</span> {menu.ai_reasoning}
             </p>
           </div>
@@ -332,7 +332,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         </div>
                       </div>
                       <button
-                        className="text-blue-500 hover:text-blue-700 text-sm font-medium"
+                        className="text-primary-500 hover:text-primary-700 text-sm font-medium"
                         onClick={(e) => {
                           e.stopPropagation();
                           handleRecipeClick(meal.id, mealRecipe.recipe_id);
