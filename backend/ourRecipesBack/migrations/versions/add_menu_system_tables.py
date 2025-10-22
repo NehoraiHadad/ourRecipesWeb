@@ -20,6 +20,8 @@ def upgrade():
     op.create_table('menus',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('user_id', sa.String(length=50), nullable=False),
+        sa.Column('telegram_message_id', sa.Integer(), nullable=True),
+        sa.Column('last_sync', sa.DateTime(), nullable=True),
         sa.Column('name', sa.String(length=200), nullable=False),
         sa.Column('event_type', sa.String(length=100), nullable=True),
         sa.Column('description', sa.Text(), nullable=True),
@@ -35,6 +37,7 @@ def upgrade():
     )
     op.create_index(op.f('ix_menus_user_id'), 'menus', ['user_id'], unique=False)
     op.create_index(op.f('ix_menus_share_token'), 'menus', ['share_token'], unique=True)
+    op.create_index(op.f('ix_menus_telegram_message_id'), 'menus', ['telegram_message_id'], unique=True)
 
     # Create menu_meals table
     op.create_table('menu_meals',
@@ -95,6 +98,7 @@ def downgrade():
     op.drop_index('idx_menu_meal', table_name='menu_meals')
     op.drop_table('menu_meals')
 
+    op.drop_index(op.f('ix_menus_telegram_message_id'), table_name='menus')
     op.drop_index(op.f('ix_menus_share_token'), table_name='menus')
     op.drop_index(op.f('ix_menus_user_id'), table_name='menus')
     op.drop_table('menus')

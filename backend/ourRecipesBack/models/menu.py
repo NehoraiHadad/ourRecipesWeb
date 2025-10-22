@@ -15,6 +15,8 @@ class Menu(db.Model):
     # Basic identification
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.String(50), nullable=False, index=True)
+    telegram_message_id = db.Column(db.Integer, unique=True, index=True)  # Telegram message ID for sync
+    last_sync = db.Column(db.DateTime, nullable=True)  # Last sync time with Telegram
 
     # Menu details
     name = db.Column(db.String(200), nullable=False)

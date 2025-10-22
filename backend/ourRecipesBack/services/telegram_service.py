@@ -197,6 +197,20 @@ class TelegramService:
             return None
 
     @classmethod
+    async def delete_message(cls, message_id):
+        """Delete message from channel"""
+        try:
+            client = await cls.create_client()
+            async with client:
+                channel = await client.get_entity(current_app.config["CHANNEL_URL"])
+                await client.delete_messages(channel, [message_id])
+                return True
+
+        except Exception as e:
+            print(f"Error deleting message: {str(e)}", flush=True)
+            return False
+
+    @classmethod
     async def get_message_text(cls, message_id):
         """Get text content of a message"""
         try:

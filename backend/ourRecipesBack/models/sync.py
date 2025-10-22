@@ -25,6 +25,12 @@ class SyncLog(db.Model):
     places_processed = db.Column(db.Integer, default=0)
     places_failed = db.Column(db.Integer, default=0)
 
+    # Menu statistics
+    menus_processed = db.Column(db.Integer, default=0)
+    menus_failed = db.Column(db.Integer, default=0)
+    menus_added = db.Column(db.Integer, default=0)
+    menus_updated = db.Column(db.Integer, default=0)
+
     def __init__(self, sync_type='full'):
         self.started_at = datetime.now(timezone.utc)
         self.status = SyncStatus.IN_PROGRESS.value

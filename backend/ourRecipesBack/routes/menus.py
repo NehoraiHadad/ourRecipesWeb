@@ -2,8 +2,10 @@ from flask import jsonify, request, Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from ..services.menu_planner_service import MenuPlannerService
 from ..services.shopping_list_service import ShoppingListService
+from ..services.menu_service import MenuService
 from ..models import Menu, MenuMeal, MealRecipe
 from ..extensions import db
+import asyncio
 
 menus_bp = Blueprint("menus", __name__)
 
@@ -65,6 +67,18 @@ def generate_menu():
         print(f"🛒 Generating shopping list...")
         shopping_list = ShoppingListService.generate_shopping_list(menu.id)
         print(f"✓ Shopping list generated: {len(shopping_list)} categories")
+
+        # Save menu to Telegram
+        print(f"📤 Saving menu to Telegram...")
+        try:
+            telegram_message_id = asyncio.run(MenuService.save_to_telegram(menu))
+            if telegram_message_id:
+                print(f"✓ Menu saved to Telegram (message ID: {telegram_message_id})")
+            else:
+                print(f"⚠️ Failed to save menu to Telegram (but menu created in DB)")
+        except Exception as telegram_error:
+            print(f"⚠️ Error saving to Telegram: {telegram_error}")
+            # Continue anyway - menu is already in DB
 
         print(f"✓ Complete! Returning menu to client")
         return jsonify({
@@ -176,6 +190,19 @@ def update_menu(menu_id):
 
         db.session.commit()
 
+        # Update in Telegram if menu is synced
+        if menu.telegram_message_id:
+            print(f"📝 Updating menu in Telegram...")
+            try:
+                success = asyncio.run(MenuService.update_in_telegram(menu))
+                if success:
+                    print(f"✓ Menu updated in Telegram")
+                else:
+                    print(f"⚠️ Failed to update menu in Telegram (but updated in DB)")
+            except Exception as telegram_error:
+                print(f"⚠️ Error updating in Telegram: {telegram_error}")
+                # Continue anyway - menu is already updated in DB
+
         return jsonify({
             "success": True,
             "menu": menu.to_dict()
@@ -202,6 +229,20 @@ def delete_menu(menu_id):
         if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
+        # Delete from Telegram first
+        if menu.telegram_message_id:
+            print(f"🗑️ Deleting menu from Telegram...")
+            try:
+                success = asyncio.run(MenuService.delete_from_telegram(menu))
+                if success:
+                    print(f"✓ Menu deleted from Telegram")
+                else:
+                    print(f"⚠️ Failed to delete menu from Telegram (continuing with DB deletion)")
+            except Exception as telegram_error:
+                print(f"⚠️ Error deleting from Telegram: {telegram_error}")
+                # Continue anyway - will delete from DB
+
+        # Delete from DB
         db.session.delete(menu)
         db.session.commit()
 
