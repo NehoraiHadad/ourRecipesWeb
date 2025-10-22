@@ -73,7 +73,8 @@ class MenuService:
             for meal_recipe in sorted(meal.recipes, key=lambda r: r.course_order):
                 recipe_title = meal_recipe.recipe.title if meal_recipe.recipe else f"מתכון #{meal_recipe.recipe_id}"
                 course_info = f" ({meal_recipe.course_type})" if meal_recipe.course_type else ""
-                lines.append(f"   • {recipe_title}{course_info}")
+                # Include recipe_id for reconstruction
+                lines.append(f"   • [ID:{meal_recipe.recipe_id}] {recipe_title}{course_info}")
                 if meal_recipe.ai_reason:
                     lines.append(f"     💡 {meal_recipe.ai_reason}")
 
