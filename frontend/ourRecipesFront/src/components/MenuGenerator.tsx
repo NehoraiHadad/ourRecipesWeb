@@ -123,13 +123,13 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-secondary-800 rounded-lg shadow-warm">
-      <h2 className="text-2xl font-bold mb-6 text-secondary-800 dark:text-white">
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-warm">
+      <h2 className="text-2xl font-bold mb-6 text-secondary-800">
         יצירת תפריט חדש
       </h2>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded">
+        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">
           {error}
         </div>
       )}
@@ -137,7 +137,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
       <div className="space-y-6">
         {/* Menu name */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             שם התפריט *
           </label>
           <Input
@@ -152,15 +152,15 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
         {/* Event type */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             סוג אירוע
           </label>
           <select
             value={eventType}
             onChange={(e) => setEventType(e.target.value)}
             disabled={loading}
-            className="w-full p-2 border border-secondary-200 dark:border-secondary-600 rounded-lg
-                     bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white
+            className="w-full p-2 border border-secondary-200 rounded-lg
+                     bg-white text-secondary-900
                      focus:ring-2 focus:ring-primary-100 transition-all"
           >
             {eventTypes.map((type) => (
@@ -173,7 +173,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
         {/* Servings */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             מספר סועדים
           </label>
           <Input
@@ -189,7 +189,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
         {/* Dietary type */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             סוג כשרות
           </label>
           <div className="flex gap-3 flex-wrap">
@@ -200,7 +200,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
               className={`px-4 py-2 rounded-lg transition-all ${
                 dietaryType === ''
                   ? 'bg-primary-500 text-white shadow-warm hover:bg-primary-600'
-                  : 'bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-200 dark:hover:bg-secondary-600'
+                  : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200
               }`}
             >
               כללי
@@ -214,7 +214,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                 className={`px-4 py-2 rounded-lg transition-all ${
                   dietaryType === type.value
                     ? 'bg-primary-500 text-white shadow-warm hover:bg-primary-600'
-                    : 'bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-200 dark:hover:bg-secondary-600'
+                    : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200
                 }`}
               >
                 {type.label}
@@ -225,7 +225,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
         {/* Meal types */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             ארוחות לתכנן *
           </label>
           <div className="grid grid-cols-2 gap-2">
@@ -238,21 +238,21 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                 className={`px-4 py-2 rounded-lg text-sm transition-all ${
                   mealTypes.includes(meal)
                     ? 'bg-primary-500 text-white shadow-warm hover:bg-primary-600'
-                    : 'bg-secondary-100 dark:bg-secondary-700 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-200 dark:hover:bg-secondary-600'
+                    : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200
                 }`}
               >
                 {meal}
               </button>
             ))}
           </div>
-          <p className="text-xs text-secondary-500 dark:text-secondary-400 mt-1">
+          <p className="text-xs text-secondary-500 mt-1">
             נבחרו {mealTypes.length} ארוחות
           </p>
         </div>
 
         {/* Special requests */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             דרישות מיוחדות (אופציונלי)
           </label>
           <textarea
@@ -261,15 +261,15 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
             placeholder="למשל: ללא אורז, מתאים לילדים, ללא גלוטן..."
             disabled={loading}
             rows={2}
-            className="w-full p-2 border border-secondary-200 dark:border-secondary-600 rounded-lg
-                     bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white
+            className="w-full p-2 border border-secondary-200 rounded-lg
+                     bg-white text-secondary-900
                      focus:ring-2 focus:ring-primary-100 resize-none transition-all"
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block text-sm font-medium mb-2 text-secondary-700 dark:text-secondary-300">
+          <label className="block text-sm font-medium mb-2 text-secondary-700">
             תיאור (אופציונלי)
           </label>
           <textarea
@@ -278,8 +278,8 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
             placeholder="תיאור כללי של התפריט..."
             disabled={loading}
             rows={2}
-            className="w-full p-2 border border-secondary-200 dark:border-secondary-600 rounded-lg
-                     bg-white dark:bg-secondary-700 text-secondary-900 dark:text-white
+            className="w-full p-2 border border-secondary-200 rounded-lg
+                     bg-white text-secondary-900
                      focus:ring-2 focus:ring-primary-100 resize-none transition-all"
           />
         </div>
@@ -304,14 +304,14 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
       </div>
 
       {loading && (
-        <div className="mt-4 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800">
-          <p className="text-sm text-primary-700 dark:text-primary-300 font-medium">
+        <div className="mt-4 p-4 bg-primary-50 rounded-lg border border-primary-200">
+          <p className="text-sm text-primary-700 font-medium">
             🤖 ה-AI עובד על יצירת תפריט מאוזן והגיוני עבורך...
           </p>
-          <p className="text-xs text-primary-600 dark:text-primary-400 mt-2">
+          <p className="text-xs text-primary-600 mt-2">
             ⏱️ זה עשוי לקחת 30-60 שניות
           </p>
-          <p className="text-xs text-primary-600 dark:text-primary-400 mt-1">
+          <p className="text-xs text-primary-600 mt-1">
             ה-AI מחפש מתכונים מתאימים ומוודא איזון נכון בין מנות
           </p>
         </div>

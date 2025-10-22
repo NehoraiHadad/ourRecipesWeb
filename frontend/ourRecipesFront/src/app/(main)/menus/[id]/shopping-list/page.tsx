@@ -52,7 +52,7 @@ export default function ShoppingListPage() {
     return (
       <div className="h-[calc(100dvh-52px)] flex flex-col justify-center items-center">
         <div className="text-6xl mb-4">😕</div>
-        <h2 className="text-2xl font-bold text-secondary-800 dark:text-white">
+        <h2 className="text-2xl font-bold text-secondary-800">
           תפריט לא נמצא
         </h2>
       </div>
