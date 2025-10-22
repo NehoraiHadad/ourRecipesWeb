@@ -11,7 +11,7 @@ setup(
         'flask-jwt-extended',
         'openai',
         'requests',
-        'google-generativeai',
+        'google-genai',
         'flask-sqlalchemy',
     ],
 ) 
