@@ -308,7 +308,7 @@ class MenuPlannerService:
             recipe_ids: List of recipe IDs (up to 10)
 
         Returns:
-            list: Full recipe details for each ID, or error
+            list: Full recipe details for each ID, or error dict
         """
         # Validate input
         if not recipe_ids:
@@ -316,6 +316,12 @@ class MenuPlannerService:
 
         if not isinstance(recipe_ids, list):
             return {"error": "recipe_ids must be an array of integers"}
+
+        # Convert floats to ints (Gemini sometimes sends 11.0 instead of 11)
+        try:
+            recipe_ids = [int(float(rid)) for rid in recipe_ids]
+        except (ValueError, TypeError) as e:
+            return {"error": f"Invalid recipe_ids format: {e}"}
 
         # Limit to 10 recipes to avoid context overflow
         if len(recipe_ids) > 10:
@@ -607,8 +613,13 @@ Start NOW with get_all_recipes()."""
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
             model = genai.GenerativeModel(
-                # Using Flash-Lite: 1,000 RPD (vs 25 RPD), 15 RPM (vs 5 RPM)
-                model_name="gemini-2.5-flash-lite",
+                # Using 2.5 Flash: Best balance for function calling (2025)
+                # Rate limits (free tier): 10 RPM, 250-500 RPD
+                # Previous: 2.5 Flash-Lite (15 RPM but stuck in loops)
+                # Alternatives:
+                #   - 2.5 Pro: Smarter but only 5 RPM (too slow)
+                #   - 1.5 Pro: Old model (2024) with only 2 RPM
+                model_name="gemini-2.5-flash",
                 tools=cls._get_search_tools(),
                 system_instruction=cls._get_menu_planner_system_prompt(),
                 # Force the model to use tools
@@ -622,6 +633,7 @@ Start NOW with get_all_recipes()."""
             # Handle function calling loop
             max_iterations = 8  # Up to 8 iterations: get_all_recipes + optional batch calls + JSON response
             iteration = 0
+            last_function_call = None  # Track last call to detect duplicates
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
 
@@ -640,6 +652,39 @@ Start NOW with get_all_recipes()."""
                     ]
 
                     print(f"📞 Iteration {iteration + 1}/{max_iterations}: AI making {len(function_calls)} function call(s)")
+
+                    # DUPLICATE DETECTION: Check if AI is calling the same function with same args
+                    if function_calls:
+                        current_call = (function_calls[0].name, str(dict(function_calls[0].args)))
+
+                        if last_function_call == current_call:
+                            print(f"🚨 DUPLICATE DETECTED: AI called {current_call[0]} with same arguments twice!")
+                            print(f"   This indicates the model is stuck in a loop.")
+                            print(f"   Forcing completion with available data...")
+
+                            # Force completion with VERY strong message
+                            force_message = """
+🚨🚨🚨 CRITICAL ERROR DETECTED 🚨🚨🚨
+
+You are calling the SAME function with the SAME arguments repeatedly.
+This is a LOOP and must STOP IMMEDIATELY.
+
+You already have ALL the data you need from previous calls.
+DO NOT make any more function calls.
+
+RETURN THE FINAL JSON MENU NOW using the data you already have:
+{
+  "meals": [...],
+  "reasoning": "..."
+}
+
+This is MANDATORY. Return JSON in your next response."""
+
+                            response = cls._send_message_with_retry(chat, force_message)
+                            iteration += 1
+                            continue  # Skip to next iteration (should be text response)
+
+                        last_function_call = current_call
 
                     # Execute all function calls
                     function_responses = []
