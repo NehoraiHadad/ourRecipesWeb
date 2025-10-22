@@ -90,13 +90,20 @@ Located in `/backend/ourRecipesBack/models/`:
 
 #### Services
 
-1. **MenuPlannerService** (`services/menu_planner_service.py`)
-   - `generate_menu()`: Main AI menu generation
-   - `_get_relevant_recipes()`: Pre-filter recipes from DB
-   - `_categorize_recipes()`: Organize by course type
-   - `_build_planning_prompt()`: Create AI prompt with metadata
-   - `_create_menu_from_plan()`: Save menu to database
-   - `suggest_recipe_replacement()`: Find alternative recipes
+1. **MenuPlannerService** (`services/menu_planner_service.py`) - **🆕 UPGRADED TO FUNCTION CALLING**
+   - **`generate_menu()`**: AI-powered menu generation with dynamic function calling
+   - **`_get_search_tools()`**: Defines AI tools (search_recipes, get_recipe_details)
+   - **`_execute_search_recipes()`**: Executes AI's dynamic recipe searches
+   - **`_execute_get_recipe_details()`**: Fetches specific recipe details
+   - **`_create_menu_from_plan()`**: Saves AI's menu to database
+   - **`suggest_recipe_replacement()`**: Find alternative recipes
+
+   **Function Calling Features:**
+   - AI searches recipes dynamically (multiple searches per menu)
+   - Filters: dietary_type, course_type, max_cooking_time, difficulty, exclude_ids
+   - Multi-turn conversation (up to 10 iterations)
+   - Uses Gemini 2.0 Flash (latest model)
+   - See `FUNCTION_CALLING_UPGRADE.md` for details
 
 2. **ShoppingListService** (`services/shopping_list_service.py`)
    - `generate_shopping_list()`: Create list from menu recipes
@@ -221,38 +228,42 @@ Located in `/frontend/ourRecipesFront/src/app/(main)/menus/`:
 
 ## AI Integration
 
-### Gemini 1.5 Flash Model
+### 🆕 Gemini 2.0 Flash with Function Calling
 
-The system uses Google's Gemini 1.5 Flash for menu planning:
+The system uses Google's **Gemini 2.0 Flash (Experimental)** with **Function Calling** for intelligent, dynamic menu planning.
+
+**How It Works:**
+
+Instead of sending all recipes upfront, the AI **searches dynamically** using tools:
+
+```python
+# AI has access to these tools:
+1. search_recipes(dietary_type, course_type, max_cooking_time, difficulty, limit, exclude_ids)
+2. get_recipe_details(recipe_id)
+```
 
 **System Prompt**:
-- Acts as expert chef and meal planner
-- Specializes in kosher cuisine
-- Enforces rules: kosher laws, balance, timing, appropriateness
+- Expert chef and meal planner specializing in kosher cuisine
+- Enforces: kosher laws, balance, timing, appropriateness, practicality
+- **NEW:** Instructions on how to use search tools strategically
 
-**User Prompt Structure**:
+**Workflow**:
 ```
-Event Details:
-- Type: Shabbat
-- Servings: 8
-- Dietary: Meat
-- Meals: Friday dinner, Saturday breakfast, Third meal
-
-Available Recipes:
-Salads:
-  - ID: 123, Name: Israeli Salad, Time: 15min, Difficulty: easy
-  ...
-
-Your Task:
-1. Select recipes from the list (use exact IDs)
-2. Create balanced menu
-3. Ensure kosher compliance
-4. Variety in flavors and textures
-
-Return JSON format: { meals: [...], reasoning: "..." }
+1. User: "Create a Shabbat menu for 8 people, meat-based"
+2. AI: "I'll search for appropriate recipes"
+   → calls search_recipes(course="salad", limit=5)
+   → receives 5 salad options
+3. AI: "Now I need main courses"
+   → calls search_recipes(course="main", dietary="meat", limit=5)
+   → receives 5 meat dishes
+4. AI: "I need desserts, avoiding previous selections"
+   → calls search_recipes(course="dessert", exclude_ids=[123,456], limit=3)
+   → receives 3 desserts
+5. AI: "Menu is complete, here's the final plan"
+   → returns JSON with selected recipes
 ```
 
-**Response Format**:
+**Response Format** (unchanged):
 ```json
 {
   "meals": [
@@ -486,6 +497,26 @@ When extending this system:
    - All user-facing text in Hebrew
    - RTL support
    - Clear, concise labels
+
+---
+
+## 🆕 Recent Upgrade: Function Calling (January 2025)
+
+The menu planning system was upgraded from static pre-filtering to **dynamic Function Calling**.
+
+**What Changed:**
+- AI now searches recipes dynamically instead of receiving a fixed list
+- Multiple targeted searches per menu (more intelligent)
+- Better handling of constraints and duplicates
+- Upgraded to Gemini 2.0 Flash (latest model)
+
+**Benefits:**
+- ⚡ More efficient (fewer tokens)
+- 🎯 Smarter recipe selection
+- 📈 Scales to thousands of recipes
+- 🔄 Self-correcting (AI can search again if needed)
+
+**See:** `FUNCTION_CALLING_UPGRADE.md` for full technical details.
 
 ---
 
