@@ -56,7 +56,7 @@ export default function MenuDetailPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="h-[calc(100dvh-52px)] flex justify-center items-center">
         <Spinner />
       </div>
     );
@@ -64,14 +64,14 @@ export default function MenuDetailPage() {
 
   if (error || !menu) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="h-[calc(100dvh-52px)] flex flex-col justify-center items-center">
         <div className="text-6xl mb-4">😕</div>
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+        <h2 className="text-2xl font-bold text-secondary-800 dark:text-white mb-2">
           {error || 'תפריט לא נמצא'}
         </h2>
         <button
           onClick={() => router.push('/menus')}
-          className="text-blue-500 hover:text-blue-700 mt-4"
+          className="text-primary-500 hover:text-primary-700 mt-4"
         >
           חזרה לתפריטים
         </button>

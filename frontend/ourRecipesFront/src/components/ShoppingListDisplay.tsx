@@ -155,9 +155,10 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
+    <div className="h-[calc(100dvh-52px)] overflow-y-auto bg-secondary-50">
+      <div className="max-w-4xl mx-auto p-6">
+        {/* Header */}
+        <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6 mb-6">
         <div className="flex justify-between items-start mb-4">
           <div>
             <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
@@ -301,10 +302,11 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       )}
 
       {/* Footer note for future Google Keep integration */}
-      <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+      <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800">
         <p className="text-sm text-primary-700 dark:text-primary-300">
           💡 <strong>בקרוב:</strong> סנכרון אוטומטי עם Google Keep!
         </p>
+      </div>
       </div>
     </div>
   );

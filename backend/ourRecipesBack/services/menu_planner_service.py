@@ -46,8 +46,7 @@ class MenuPlannerService:
                                 },
                                 "limit": {
                                     "type": "integer",
-                                    "description": "Maximum number of recipes to return (default 10)",
-                                    "default": 10
+                                    "description": "Maximum number of recipes to return (use 10 if not specified)"
                                 },
                                 "exclude_ids": {
                                     "type": "array",

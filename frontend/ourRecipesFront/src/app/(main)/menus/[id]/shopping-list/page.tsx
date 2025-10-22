@@ -42,7 +42,7 @@ export default function ShoppingListPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="h-[calc(100dvh-52px)] flex justify-center items-center">
         <Spinner />
       </div>
     );
@@ -50,9 +50,9 @@ export default function ShoppingListPage() {
 
   if (!menu) {
     return (
-      <div className="flex flex-col justify-center items-center min-h-screen">
+      <div className="h-[calc(100dvh-52px)] flex flex-col justify-center items-center">
         <div className="text-6xl mb-4">😕</div>
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+        <h2 className="text-2xl font-bold text-secondary-800 dark:text-white">
           תפריט לא נמצא
         </h2>
       </div>
