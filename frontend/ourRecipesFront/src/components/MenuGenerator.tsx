@@ -200,7 +200,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
               className={`px-4 py-2 rounded-lg transition-all ${
                 dietaryType === ''
                   ? 'bg-primary-500 text-white shadow-warm hover:bg-primary-600'
-                  : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200
+                  : 'bg-secondary-100 text-secondary-700 hover:bg-secondary-200'
               }`}
             >
               כללי
