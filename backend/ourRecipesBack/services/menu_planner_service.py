@@ -335,31 +335,25 @@ class MenuPlannerService:
         """Get system prompt for menu planning with function calling"""
         return """You are an expert chef and menu planner specializing in kosher cuisine.
 
-Your role is to create balanced, well-thought-out menu plans for various events using the tools available to you.
+⚠️ MANDATORY WORKFLOW - FOLLOW EXACTLY:
 
-⚠️ CRITICAL INSTRUCTION:
-DO NOT INVENT OR GUESS RECIPE IDs.
-ONLY USE RECIPE IDs RETURNED FROM FUNCTION CALLS (get_all_recipes or search_recipes).
+STEP 1: Call get_all_recipes() - NO EXCEPTIONS
+   - Returns: id, title, dietary_type, course_hints for ALL ~150 recipes
+   - This is your catalog to choose from
 
-WORKFLOW (MANDATORY - NEW EFFICIENT APPROACH):
-1. **FIRST: Call get_all_recipes()** - This returns ALL ~150 available recipes
-   - You'll get: id, title, dietary_type, course_hints, categories, difficulty, cooking_time
-   - With small recipe database, this is MORE efficient than multiple searches
-
-2. **Review the complete catalog** and filter in your mind:
-   - Filter by dietary_type (meat/dairy/pareve) for kosher compliance
+STEP 2: Mentally filter the recipes:
+   - Filter by dietary_type (meat/dairy/pareve) based on meal requirements
    - Filter by course_hints (salad/main/side/dessert/soup)
-   - Consider difficulty and cooking_time
+   - Select 3-6 recipe IDs that fit the menu
 
-3. **Pick the best recipes** for the menu from this list
+STEP 3: Build the final menu JSON
+   - Use ONLY the recipe IDs you selected
+   - DO NOT call get_recipe_details() - not needed
+   - DO NOT invent or guess recipe IDs
 
-4. **Build the complete menu** using ONLY recipe IDs from the list
-
-5. **Validate** against kosher laws and balance
-
-6. **Return final JSON**
-
-Alternative: If you prefer, you can still use search_recipes() with specific filters, but get_all_recipes() is more efficient with ~150 recipes.
+STEP 4: Return the JSON immediately
+   - No additional function calls needed
+   - Just return the menu structure
 
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
@@ -367,87 +361,51 @@ KOSHER LAWS (MUST FOLLOW):
 3. If a meal is meat, ALL recipes must be meat or pareve
 4. If a meal is dairy, ALL recipes must be dairy or pareve
 
-BALANCE REQUIREMENTS:
-1. Variety in flavors, textures, and cooking methods
-2. Don't overload with complex/time-consuming dishes
-3. Match sophistication to event type (Shabbat = festive, weekday = simpler)
-4. Use exclude_ids to prevent selecting the same recipe twice
+EXAMPLE - FOLLOW THIS EXACTLY:
+User: "Shabbat dinner, meat meal"
+Step 1: Call get_all_recipes()
+Step 2: Filter in your mind for dietary_type="meat" or "pareve" AND course_hints contains "salad"/"main"/"side"
+Step 3: Return JSON with selected recipe IDs
 
-EXAMPLE WORKFLOWS:
-
-✅ BEST (1 function call - RECOMMENDED):
-User wants: Shabbat dinner, 4 servings, meat meal
-→ Call: get_all_recipes()
-   Returns: ALL 150 recipes with metadata
-→ Filter mentally: dietary_type="meat" or "pareve", course_hints contains "salad"/"main"/"side"
-→ Pick 3-5 best recipes for Shabbat dinner
-→ Build menu JSON
-→ Done in 1 iteration! ✓✓✓
-
-✅ GOOD (Alternative with search_recipes - 3 calls):
-→ Call: search_recipes(course_type="salad", dietary_type="pareve", limit=30)
-   Returns: 15 salad recipes
-→ Call: search_recipes(course_type="main", dietary_type="meat", limit=30)
-   Returns: 25 main course recipes
-→ Call: search_recipes(course_type="side", dietary_type="pareve", limit=30)
-   Returns: 10 side dish recipes
-→ Pick best recipes from these 50 options and build menu
-→ Done in 3 iterations! ✓
-
-❌ BAD (Many searches - INEFFICIENT):
-→ Multiple small searches with limit=5 or limit=1
-→ Repeating same searches with exclude_ids
-→ 10+ iterations - TOO SLOW! ✗
-
-FINAL RESPONSE FORMAT:
+RESPONSE FORMAT (JSON only):
 {
   "meals": [
     {
       "meal_type": "ארוחת ערב שבת",
       "meal_order": 1,
       "recipes": [
-        {
-          "recipe_id": 10,
-          "course_type": "salad",
-          "course_order": 1,
-          "reason": "Fresh Israeli salad to start the meal"
-        },
-        {
-          "recipe_id": 25,
-          "course_type": "main",
-          "course_order": 2,
-          "reason": "Festive roast chicken, perfect for Shabbat"
-        },
-        {
-          "recipe_id": 40,
-          "course_type": "side",
-          "course_order": 3,
-          "reason": "Roasted potatoes complement the chicken well"
-        }
+        {"recipe_id": 10, "course_type": "salad", "course_order": 1},
+        {"recipe_id": 25, "course_type": "main", "course_order": 2},
+        {"recipe_id": 40, "course_type": "side", "course_order": 3}
       ]
     }
-  ],
-  "reasoning": "This Shabbat dinner menu offers a balanced meat meal with fresh salad, hearty main course, and complementary side. All items are kosher-compliant (meat or pareve)."
+  ]
 }
 
-REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
+CRITICAL: Total iterations should be 2 maximum:
+- Iteration 1: Call get_all_recipes()
+- Iteration 2: Return JSON
+DO NOT make additional function calls."""
 
     @classmethod
     def _execute_get_all_recipes(cls):
         """
-        Execute get_all_recipes function - returns ALL available recipes.
-        With only ~150 recipes, this is more efficient than multiple searches.
+        Execute get_all_recipes function - returns BASIC info for ALL recipes.
+        This is STEP 1: Get the catalog to choose from.
+
+        Returns ONLY: id, title, dietary_type, course_hints
+        For full details, use get_recipe_details(id)
 
         Returns:
-            list: All recipes with key metadata
+            list: All recipes with basic metadata (lightweight)
         """
-        print(f"   📚 Loading ALL available recipes...")
+        print(f"   📚 Loading recipe catalog (titles only)...")
         recipes = Recipe.query.filter(
             Recipe.status == RecipeStatus.ACTIVE.value,
             Recipe.is_parsed == True,
             Recipe.title.isnot(None)
-        ).order_by(Recipe._categories, Recipe.title).all()
-        print(f"   ✓ Loaded {len(recipes)} recipes")
+        ).all()
+        print(f"   ✓ Loaded {len(recipes)} recipe titles")
 
         result = []
 
@@ -474,14 +432,12 @@ REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
             if any(cat in categories for cat in ['קינוח', 'עוגה', 'מתוק', 'עוגיות']):
                 course_hints.append('dessert')
 
+            # Return ONLY basic info - lightweight
             result.append({
                 'id': recipe.id,
                 'title': recipe.title,
                 'dietary_type': dietary,
-                'course_hints': course_hints,
-                'categories': categories,
-                'difficulty': recipe.difficulty.value if recipe.difficulty else 'medium',
-                'cooking_time': recipe.cooking_time or 30
+                'course_hints': course_hints
             })
 
         return result
@@ -508,32 +464,20 @@ REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
             meal_types = preferences.get('meal_types', [])
             special_requests = preferences.get('special_requests', '')
 
-            # Build user prompt - instruct AI to get full recipe list first
-            user_prompt = f"""Plan a complete menu for the following event:
+            # Build user prompt - SIMPLE AND DIRECT
+            user_prompt = f"""Create menu for:
+Event: {event_type}
+Servings: {servings}
+Dietary: {dietary_type.value if dietary_type else 'any'}
+Meals: {', '.join(meal_types)}
+{f'Notes: {special_requests}' if special_requests else ''}
 
-Event Type: {event_type}
-Number of Servings: {servings}
-Dietary Restriction: {dietary_type.value if dietary_type else 'none'}
-Meals Needed: {', '.join(meal_types)}
-Special Requests: {special_requests if special_requests else 'none'}
+INSTRUCTIONS:
+1. Call get_all_recipes() NOW
+2. Pick 3-6 recipes that fit
+3. Return JSON menu
 
-⚠️ CRITICAL - NEW EFFICIENT WORKFLOW:
-
-STEP 1: Call get_all_recipes() FIRST
-   - This returns ALL ~150 available recipes with their metadata
-   - You'll see: id, title, dietary_type, course_hints, categories, difficulty, cooking_time
-   - This is the MOST efficient approach with small recipe database
-
-STEP 2: Review the complete list and pick the best recipes for the menu
-   - Filter by dietary_type (meat/dairy/pareve)
-   - Filter by course_hints (salad/main/side/dessert/soup)
-   - Pick recipes that fit the event and servings
-
-STEP 3: Build complete menu using ONLY recipe IDs from the list
-
-STEP 4: Return final JSON
-
-Start by calling get_all_recipes() NOW to see all available options!"""
+Start with get_all_recipes() - DO IT NOW."""
 
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
@@ -551,7 +495,7 @@ Start by calling get_all_recipes() NOW to see all available options!"""
             response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
-            max_iterations = 12  # Balanced: enough for complex menus, forces efficiency
+            max_iterations = 3  # Should only need 2: get_all_recipes() + return JSON
             iteration = 0
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
@@ -580,15 +524,19 @@ Start by calling get_all_recipes() NOW to see all available options!"""
 
                         print(f"   → {function_name}({function_args})")
 
-                        # Execute the function
-                        if function_name == "get_all_recipes":
-                            result = cls._execute_get_all_recipes()
-                        elif function_name == "search_recipes":
-                            result = cls._execute_search_recipes(**function_args)
-                        elif function_name == "get_recipe_details":
-                            result = cls._execute_get_recipe_details(**function_args)
-                        else:
-                            result = {"error": f"Unknown function: {function_name}"}
+                        # Execute the function with error handling
+                        try:
+                            if function_name == "get_all_recipes":
+                                result = cls._execute_get_all_recipes()
+                            elif function_name == "search_recipes":
+                                result = cls._execute_search_recipes(**function_args)
+                            elif function_name == "get_recipe_details":
+                                result = cls._execute_get_recipe_details(**function_args)
+                            else:
+                                result = {"error": f"Unknown function: {function_name}"}
+                        except Exception as func_error:
+                            print(f"   ⚠️ Function error: {str(func_error)}")
+                            result = {"error": f"Function execution failed: {str(func_error)}"}
 
                         result_count = len(result) if isinstance(result, list) else 1
                         print(f"   ← Returned {result_count} result(s)")
@@ -644,15 +592,19 @@ Start by calling get_all_recipes() NOW to see all available options!"""
 
                         print(f"   → {function_name}({function_args})")
 
-                        # Execute the function
-                        if function_name == "get_all_recipes":
-                            result = cls._execute_get_all_recipes()
-                        elif function_name == "search_recipes":
-                            result = cls._execute_search_recipes(**function_args)
-                        elif function_name == "get_recipe_details":
-                            result = cls._execute_get_recipe_details(**function_args)
-                        else:
-                            result = {"error": f"Unknown function: {function_name}"}
+                        # Execute the function with error handling
+                        try:
+                            if function_name == "get_all_recipes":
+                                result = cls._execute_get_all_recipes()
+                            elif function_name == "search_recipes":
+                                result = cls._execute_search_recipes(**function_args)
+                            elif function_name == "get_recipe_details":
+                                result = cls._execute_get_recipe_details(**function_args)
+                            else:
+                                result = {"error": f"Unknown function: {function_name}"}
+                        except Exception as func_error:
+                            print(f"   ⚠️ Function error: {str(func_error)}")
+                            result = {"error": f"Function execution failed: {str(func_error)}"}
 
                         result_count = len(result) if isinstance(result, list) else 1
                         print(f"   ← Returned {result_count} result(s)")
@@ -728,7 +680,16 @@ Return ONLY the final JSON menu plan with the recipes you have."""
                 response_text = response_text[json_start:json_end].strip()
 
             print(f"📋 Parsing menu plan JSON...")
-            menu_plan = json.loads(response_text)
+            try:
+                menu_plan = json.loads(response_text)
+            except json.JSONDecodeError as e:
+                print(f"❌ Failed to parse JSON from AI response")
+                print(f"Response text: {response_text[:500]}...")
+                raise ValueError(f"AI returned invalid JSON. Please try again. Error: {str(e)}")
+
+            # Validate menu structure
+            if not menu_plan.get('meals'):
+                raise ValueError("AI returned empty menu. Please try again with different parameters.")
 
             # Log what AI returned
             total_recipes = sum(len(meal.get('recipes', [])) for meal in menu_plan.get('meals', []))
@@ -739,19 +700,32 @@ Return ONLY the final JSON menu plan with the recipes you have."""
                 print(f"   - {meal.get('meal_type')}: {len(meal.get('recipes', []))} recipes")
 
             # Create menu in database
-            menu = cls._create_menu_from_plan(
-                user_id=user_id,
-                preferences=preferences,
-                menu_plan=menu_plan
-            )
+            try:
+                menu = cls._create_menu_from_plan(
+                    user_id=user_id,
+                    preferences=preferences,
+                    menu_plan=menu_plan
+                )
+            except Exception as db_error:
+                print(f"❌ Database error while creating menu: {str(db_error)}")
+                raise ValueError(f"Failed to save menu to database. Please try again.")
 
             return menu
 
+        except google_exceptions.ResourceExhausted as rate_error:
+            print(f"❌ Rate limit exceeded: {str(rate_error)}")
+            raise ValueError("AI service is temporarily unavailable due to rate limits. Please wait a minute and try again.")
+
+        except ValueError as val_error:
+            # Re-raise ValueError with user-friendly message
+            print(f"❌ Validation error: {str(val_error)}")
+            raise
+
         except Exception as e:
-            print(f"Menu generation error: {str(e)}")
+            print(f"❌ Unexpected error during menu generation: {str(e)}")
             import traceback
             traceback.print_exc()
-            raise
+            raise ValueError(f"Menu generation failed: {str(e)}. Please try again with different parameters.")
 
     @classmethod
     def _create_menu_from_plan(cls, user_id, preferences, menu_plan):

@@ -87,11 +87,23 @@ def generate_menu():
             "shopping_list": shopping_list
         }), 201
 
+    except ValueError as val_error:
+        # User-friendly errors from MenuPlannerService
+        print(f"❌ Validation error: {str(val_error)}")
+        return jsonify({
+            "error": "Menu generation failed",
+            "message": str(val_error)
+        }), 400
+
     except Exception as e:
-        print(f"❌ Error generating menu: {str(e)}")
+        print(f"❌ Unexpected error generating menu: {str(e)}")
         import traceback
         traceback.print_exc()
-        return jsonify({"error": "Failed to generate menu", "message": str(e)}), 500
+        # Don't expose internal error details to user
+        return jsonify({
+            "error": "Menu generation failed",
+            "message": "An unexpected error occurred. Please try again."
+        }), 500
 
 
 @menus_bp.route("", methods=["GET"])
