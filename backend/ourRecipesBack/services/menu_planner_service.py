@@ -1,6 +1,8 @@
 import google.generativeai as genai
+from google.api_core import exceptions as google_exceptions
 from flask import current_app
 import json
+import time
 from sqlalchemy import and_, or_
 from ..extensions import db
 from ..models import Recipe, Menu, MenuMeal, MealRecipe
@@ -9,6 +11,58 @@ from ..models.enums import DietaryType, RecipeStatus
 
 class MenuPlannerService:
     """Service for AI-powered menu planning with Function Calling"""
+
+    @classmethod
+    def _send_message_with_retry(cls, chat, message, max_retries=3):
+        """
+        Send message to AI with automatic retry on rate limit.
+
+        Args:
+            chat: The chat session
+            message: Message to send (can be string or Content)
+            max_retries: Maximum number of retries (default: 3)
+
+        Returns:
+            Response from AI
+
+        Raises:
+            Exception: If all retries are exhausted
+        """
+        retry_count = 0
+
+        while retry_count <= max_retries:
+            try:
+                return chat.send_message(message)
+
+            except google_exceptions.ResourceExhausted as rate_limit_error:
+                retry_count += 1
+
+                # Extract retry delay from error if available
+                error_str = str(rate_limit_error)
+                wait_time = 60  # Default to 60 seconds as user requested
+
+                # Try to parse retry delay from error message
+                # Error format: "retry_delay: {seconds: 27}"
+                if "retry_delay" in error_str and "seconds:" in error_str:
+                    try:
+                        import re
+                        match = re.search(r'seconds:\s*(\d+)', error_str)
+                        if match:
+                            wait_time = int(match.group(1))
+                    except Exception:
+                        pass  # Keep default wait_time
+
+                if retry_count <= max_retries:
+                    print(f"⏳ Rate limit reached! Waiting {wait_time} seconds before retry ({retry_count}/{max_retries})...")
+                    time.sleep(wait_time)
+                    print(f"🔄 Retrying request (attempt {retry_count + 1}/{max_retries + 1})...")
+                else:
+                    print(f"❌ Rate limit exhausted after {max_retries} retries")
+                    raise
+
+            except Exception as e:
+                # Re-raise other exceptions immediately
+                raise
 
     @staticmethod
     def _get_search_tools():
@@ -77,7 +131,7 @@ class MenuPlannerService:
     @classmethod
     def _execute_search_recipes(cls, dietary_type=None, course_type=None,
                                 max_cooking_time=None, difficulty=None,
-                                limit=10, exclude_ids=None):
+                                limit=30, exclude_ids=None):
         """
         Execute a recipe search based on AI's request.
 
@@ -86,7 +140,7 @@ class MenuPlannerService:
             course_type: Type of course (appetizer/main/etc)
             max_cooking_time: Maximum cooking time in minutes
             difficulty: Recipe difficulty
-            limit: Maximum results to return
+            limit: Maximum results to return (default: 30 for efficiency)
             exclude_ids: Recipe IDs to exclude
 
         Returns:
@@ -167,6 +221,19 @@ class MenuPlannerService:
         ).limit(limit)
 
         recipes = query.all()
+
+        # FALLBACK: If no results and we had dietary_type, try again without it
+        # This prevents AI from searching endlessly for non-existent combinations
+        if len(recipes) == 0 and dietary_type and course_type:
+            print(f"⚠️ No recipes found for {course_type} + {dietary_type}, trying without dietary filter...")
+            return cls._execute_search_recipes(
+                dietary_type=None,  # Remove dietary filter
+                course_type=course_type,
+                max_cooking_time=max_cooking_time,
+                difficulty=difficulty,
+                limit=limit,
+                exclude_ids=exclude_ids
+            )
 
         # Return metadata with more details for AI
         return [
@@ -288,34 +355,51 @@ BALANCE REQUIREMENTS:
 3. Match sophistication to event type (Shabbat = festive, weekday = simpler)
 4. Use exclude_ids to prevent selecting the same recipe twice
 
-SEARCH STRATEGY:
-1. Search by course_type for each course needed
-2. Use dietary_type filter to match meal requirements
-3. Use max_cooking_time to balance complexity
-4. Use exclude_ids=[previous_recipe_ids] to avoid duplicates
-5. Search multiple times if needed to find better options
-6. ⚠️ IMPORTANT: If a search returns 0 results after 2-3 attempts, SKIP that course and move on
-7. ⚠️ DO NOT search endlessly - prioritize completing the menu with available recipes
+SEARCH STRATEGY (OPTIMIZED FOR EFFICIENCY):
+⚠️ CRITICAL: Use LARGE limits (20-30) to get many options in ONE search!
+⚠️ CRITICAL: Do 3-5 searches TOTAL, not 17+ searches!
 
-EXAMPLE WORKFLOW:
+1. **Initial Searches (3-5 searches ONLY):**
+   - Search for ALL course types you need with limit=20-30
+   - Example: search_recipes(course_type="salad", dietary_type="pareve", limit=30)
+   - Example: search_recipes(course_type="main", dietary_type="meat", limit=30)
+   - Example: search_recipes(course_type="side", dietary_type="pareve", limit=30)
+
+2. **Choose from results:**
+   - Review ALL the recipes you got from initial searches
+   - Pick the best ones for your menu
+   - DO NOT search again unless absolutely necessary!
+
+3. **If you need more variety:**
+   - Use exclude_ids with recipes you already chose
+   - Search ONCE MORE with higher limit
+   - DO NOT search multiple times for the same thing!
+
+4. **If a search returns 0 results:**
+   - That course type probably doesn't exist in the database
+   - SKIP it immediately and move to next course
+   - DO NOT retry the same search!
+
+EXAMPLE WORKFLOW (EFFICIENT):
 User wants: Shabbat dinner, 4 servings, meat meal
 
-Step 1: Search for salads
-→ Call: search_recipes(course_type="salad", dietary_type="pareve", limit=5)
-→ Get: [{id: 10, title: "Israeli Salad"}, {id: 15, title: "Coleslaw"}...]
-→ Select: 10
+✅ GOOD (3 searches total):
+→ Call: search_recipes(course_type="salad", dietary_type="pareve", limit=30)
+   Returns: 15 salad recipes
+→ Call: search_recipes(course_type="main", dietary_type="meat", limit=30)
+   Returns: 25 main course recipes
+→ Call: search_recipes(course_type="side", dietary_type="pareve", limit=30)
+   Returns: 10 side dish recipes
+→ Pick best recipes from these 50 options and build menu
+→ Done in 3 iterations! ✓
 
-Step 2: Search for main courses
-→ Call: search_recipes(course_type="main", dietary_type="meat", exclude_ids=[10], limit=5)
-→ Get: [{id: 25, title: "Roast Chicken"}, {id: 30, title: "Beef Stew"}...]
-→ Select: 25
-
-Step 3: Search for sides
-→ Call: search_recipes(course_type="side", dietary_type="pareve", exclude_ids=[10, 25], limit=5)
-→ Get: [{id: 40, title: "Roasted Potatoes"}...]
-→ Select: 40
-
-Step 4: Return JSON with IDs 10, 25, 40
+❌ BAD (17 searches - TOO MANY):
+→ search_recipes(course_type="side", limit=5) - gets 5
+→ search_recipes(course_type="side", limit=5, exclude_ids=[...]) - gets 5
+→ search_recipes(course_type="side", limit=1) - gets 1
+→ search_recipes(course_type="side", limit=1) - gets 0
+→ search_recipes(course_type="side", limit=1) - gets 0
+... continues for 17 iterations - WRONG! ✗
 
 FINAL RESPONSE FORMAT:
 {
@@ -372,8 +456,8 @@ REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
             meal_types = preferences.get('meal_types', [])
             special_requests = preferences.get('special_requests', '')
 
-            # Build user prompt - FORCE tool usage
-            user_prompt = f"""IMPORTANT: You MUST use the search_recipes() function to find recipes. Do NOT respond with a menu until you have searched for recipes first.
+            # Build user prompt - FORCE tool usage with EFFICIENCY
+            user_prompt = f"""IMPORTANT: You MUST use the search_recipes() function to find recipes.
 
 Plan a complete menu for the following event:
 
@@ -383,15 +467,25 @@ Dietary Restriction: {dietary_type.value if dietary_type else 'none'}
 Meals Needed: {', '.join(meal_types)}
 Special Requests: {special_requests if special_requests else 'none'}
 
-STEP 1: For each meal type, call search_recipes() with appropriate filters
-STEP 2: Review the recipes returned
-STEP 3: Build the menu using ONLY the recipe IDs you found
-STEP 4: Return the final JSON
+⚠️ EFFICIENCY REQUIREMENTS:
+1. Use limit=30 (or higher) in each search to get MANY options at once
+2. Do 3-5 searches TOTAL - one per course type you need
+3. After getting results, PICK from them - DO NOT search again!
+4. If a search returns 0 results, SKIP that course immediately
 
-⚠️ IMPORTANT: If a search returns 0 results after 2-3 attempts, skip that course and continue.
-Do NOT search endlessly - complete the menu with the recipes you successfully find.
+WORKFLOW:
+STEP 1: Search for each course type ONCE with limit=30
+   - search_recipes(course_type="salad", dietary_type=..., limit=30)
+   - search_recipes(course_type="main", dietary_type=..., limit=30)
+   - search_recipes(course_type="side", dietary_type=..., limit=30)
 
-Start by searching for recipes now. Do not skip this step."""
+STEP 2: Review ALL recipes from these searches (you now have 50+ options!)
+
+STEP 3: Build complete menu using ONLY recipe IDs you got
+
+STEP 4: Return final JSON
+
+Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small searches!"""
 
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
@@ -406,10 +500,10 @@ Start by searching for recipes now. Do not skip this step."""
 
             # Start conversation
             chat = model.start_chat()
-            response = chat.send_message(user_prompt)
+            response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
-            max_iterations = 25  # Increased to handle complex multi-meal menus
+            max_iterations = 10  # Reduced from 25 - efficient search strategy needs fewer iterations
             iteration = 0
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
@@ -460,7 +554,8 @@ Start by searching for recipes now. Do not skip this step."""
                         )
 
                     # Send function results back to AI
-                    response = chat.send_message(
+                    response = cls._send_message_with_retry(
+                        chat,
                         genai.protos.Content(parts=function_responses)
                     )
 
@@ -489,7 +584,7 @@ If you couldn't find enough recipes for some courses, skip those courses.
 Return the JSON menu plan now with the recipes you successfully found."""
 
                     try:
-                        response = chat.send_message(completion_prompt)
+                        response = cls._send_message_with_retry(chat, completion_prompt)
                         print(f"✓ Forced completion successful")
                     except Exception as e:
                         print(f"❌ Failed to force completion: {e}")
