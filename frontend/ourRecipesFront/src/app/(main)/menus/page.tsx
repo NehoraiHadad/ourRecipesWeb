@@ -30,7 +30,7 @@ export default function MenusPage() {
       }
     } catch (error) {
       console.error('Error loading menus:', error);
-      addNotification('שגיאה בטעינת התפריטים', 'error');
+      addNotification({ message: 'שגיאה בטעינת התפריטים', type: 'error' });
     } finally {
       setLoading(false);
     }

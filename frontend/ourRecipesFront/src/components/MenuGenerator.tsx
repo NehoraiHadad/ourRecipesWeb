@@ -90,7 +90,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
       const response = await menuService.generateMenu(request);
 
       if (response.menu) {
-        addNotification('התפריט נוצר בהצלחה!', 'success');
+        addNotification({ message: 'התפריט נוצר בהצלחה!', type: 'success' });
 
         if (onMenuCreated) {
           onMenuCreated(response.menu.id);
@@ -104,7 +104,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
     } catch (err: any) {
       console.error('Error generating menu:', err);
       setError(err.message || 'שגיאה ביצירת התפריט');
-      addNotification('שגיאה ביצירת התפריט', 'error');
+      addNotification({ message: 'שגיאה ביצירת התפריט', type: 'error' });
     } finally {
       setLoading(false);
     }

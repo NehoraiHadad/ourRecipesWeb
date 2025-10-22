@@ -40,7 +40,7 @@ export default function MenuDetailPage() {
     } catch (err: any) {
       console.error('Error loading menu:', err);
       setError(err.message || 'שגיאה בטעינת התפריט');
-      addNotification('שגיאה בטעינת התפריט', 'error');
+      addNotification({ message: 'שגיאה בטעינת התפריט', type: 'error' });
     } finally {
       setLoading(false);
     }

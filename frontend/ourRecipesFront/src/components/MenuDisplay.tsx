@@ -70,7 +70,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
       }
     } catch (error) {
       console.error('Error loading suggestions:', error);
-      addNotification('שגיאה בטעינת הצעות', 'error');
+      addNotification({ message: 'שגיאה בטעינת הצעות', type: 'error' });
       setSuggestions([]);
     } finally {
       setLoadingSuggestions(false);
@@ -100,12 +100,12 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         }
       }
 
-      addNotification('המתכון הוחלף בהצלחה!', 'success');
+      addNotification({ message: 'המתכון הוחלף בהצלחה!', type: 'success' });
       setSelectedRecipe(null);
       setSuggestions([]);
     } catch (error) {
       console.error('Error replacing recipe:', error);
-      addNotification('שגיאה בהחלפת המתכון', 'error');
+      addNotification({ message: 'שגיאה בהחלפת המתכון', type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -130,7 +130,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
       }
     } catch (error) {
       console.error('Error toggling share:', error);
-      addNotification('שגיאה בשיתוף התפריט', 'error');
+      addNotification({ message: 'שגיאה בשיתוף התפריט', type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -141,9 +141,9 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     const success = await menuService.copyShareLink(menu.share_token);
 
     if (success) {
-      addNotification('הקישור הועתק ללוח!', 'success');
+      addNotification({ message: 'הקישור הועתק ללוח!', type: 'success' });
     } else {
-      addNotification('שגיאה בהעתקת הקישור', 'error');
+      addNotification({ message: 'שגיאה בהעתקת הקישור', type: 'error' });
     }
   };
 
@@ -157,7 +157,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
 
     try {
       await menuService.deleteMenu(menu.id);
-      addNotification('התפריט נמחק בהצלחה', 'success');
+      addNotification({ message: 'התפריט נמחק בהצלחה', type: 'success' });
 
       if (onMenuDeleted) {
         onMenuDeleted();
@@ -166,7 +166,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
       }
     } catch (error) {
       console.error('Error deleting menu:', error);
-      addNotification('שגיאה במחיקת התפריט', 'error');
+      addNotification({ message: 'שגיאה במחיקת התפריט', type: 'error' });
     } finally {
       setLoading(false);
     }

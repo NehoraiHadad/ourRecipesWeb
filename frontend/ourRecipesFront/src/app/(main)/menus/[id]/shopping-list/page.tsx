@@ -34,7 +34,7 @@ export default function ShoppingListPage() {
       }
     } catch (error) {
       console.error('Error loading menu:', error);
-      addNotification('שגיאה בטעינת התפריט', 'error');
+      addNotification({ message: 'שגיאה בטעינת התפריט', type: 'error' });
     } finally {
       setLoading(false);
     }

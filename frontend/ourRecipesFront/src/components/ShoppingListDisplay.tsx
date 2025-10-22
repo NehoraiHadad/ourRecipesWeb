@@ -50,7 +50,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       }
     } catch (error) {
       console.error('Error loading shopping list:', error);
-      addNotification('שגיאה בטעינת רשימת הקניות', 'error');
+      addNotification({ message: 'שגיאה בטעינת רשימת הקניות', type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -75,7 +75,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       console.error('Error updating item status:', error);
       // Revert on error
       setCheckedItems(checkedItems);
-      addNotification('שגיאה בעדכון הפריט', 'error');
+      addNotification({ message: 'שגיאה בעדכון הפריט', type: 'error' });
     }
   };
 
@@ -93,11 +93,11 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       if (response.shopping_list) {
         setShoppingList(response.shopping_list);
         setCheckedItems(new Set());
-        addNotification('רשימת הקניות עודכנה בהצלחה', 'success');
+        addNotification({ message: 'רשימת הקניות עודכנה בהצלחה', type: 'success' });
       }
     } catch (error) {
       console.error('Error regenerating shopping list:', error);
-      addNotification('שגיאה ביצירת רשימת הקניות', 'error');
+      addNotification({ message: 'שגיאה ביצירת רשימת הקניות', type: 'error' });
     } finally {
       setRegenerating(false);
     }
@@ -121,10 +121,10 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
     navigator.clipboard
       .writeText(text)
       .then(() => {
-        addNotification('הרשימה הועתקה ללוח!', 'success');
+        addNotification({ message: 'הרשימה הועתקה ללוח!', type: 'success' });
       })
       .catch(() => {
-        addNotification('שגיאה בהעתקת הרשימה', 'error');
+        addNotification({ message: 'שגיאה בהעתקת הרשימה', type: 'error' });
       });
   };
 
