@@ -159,6 +159,19 @@ class MenuService:
                 elif line.startswith("•") and current_meal:
                     # Parse recipe
                     recipe_line = line[1:].strip()
+
+                    # Extract recipe_id from [ID:xxx] format
+                    recipe_id = None
+                    if recipe_line.startswith("[ID:") and "]" in recipe_line:
+                        id_end = recipe_line.find("]")
+                        recipe_id_str = recipe_line[4:id_end]
+                        try:
+                            recipe_id = int(recipe_id_str)
+                            # Remove the [ID:xxx] part from the line
+                            recipe_line = recipe_line[id_end + 1:].strip()
+                        except ValueError:
+                            logger.warning(f"Failed to parse recipe_id from: {recipe_line}")
+
                     # Extract title and course type
                     if "(" in recipe_line and recipe_line.endswith(")"):
                         title_part, course_part = recipe_line.rsplit("(", 1)
@@ -169,6 +182,7 @@ class MenuService:
                         course_type = None
 
                     current_meal['recipes'].append({
+                        'recipe_id': recipe_id,  # Use ID if found
                         'title': title,
                         'course_type': course_type
                     })
@@ -264,6 +278,42 @@ class MenuService:
             return False
 
     @classmethod
+    async def update_menus_with_recipe(cls, recipe_id):
+        """
+        Update all menus in Telegram that contain a specific recipe
+        Called when a recipe is edited to keep menus in sync
+        """
+        try:
+            # Find all menus that contain this recipe
+            from ..models import MealRecipe
+            meal_recipes = MealRecipe.query.filter_by(recipe_id=recipe_id).all()
+
+            if not meal_recipes:
+                logger.info(f"No menus contain recipe {recipe_id}")
+                return 0
+
+            # Get unique menu IDs
+            menu_ids = set(mr.meal.menu_id for mr in meal_recipes)
+            logger.info(f"Found {len(menu_ids)} menus containing recipe {recipe_id}")
+
+            updated_count = 0
+            for menu_id in menu_ids:
+                menu = Menu.query.get(menu_id)
+                if menu and menu.telegram_message_id:
+                    success = await cls.update_in_telegram(menu)
+                    if success:
+                        updated_count += 1
+                        logger.info(f"Updated menu {menu_id} in Telegram after recipe {recipe_id} change")
+                    else:
+                        logger.warning(f"Failed to update menu {menu_id} in Telegram")
+
+            return updated_count
+
+        except Exception as e:
+            logger.error(f"Error updating menus with recipe {recipe_id}: {str(e)}")
+            return 0
+
+    @classmethod
     async def sync_message(cls, client, message, sync_log):
         """
         Sync single Telegram menu message to database
@@ -343,8 +393,17 @@ class MenuService:
 
                     # Add recipes to meal
                     for idx, recipe_data in enumerate(meal_data.get('recipes', [])):
-                        # Try to find recipe by title
-                        recipe = Recipe.query.filter_by(title=recipe_data['title']).first()
+                        # First try to find recipe by ID if available
+                        recipe = None
+                        if recipe_data.get('recipe_id'):
+                            recipe = Recipe.query.get(recipe_data['recipe_id'])
+                            if not recipe:
+                                logger.warning(f"Recipe with ID {recipe_data['recipe_id']} not found, trying by title")
+
+                        # Fallback to finding by title if ID not available or recipe not found
+                        if not recipe and recipe_data.get('title'):
+                            recipe = Recipe.query.filter_by(title=recipe_data['title']).first()
+
                         if recipe:
                             meal_recipe = MealRecipe(
                                 menu_meal_id=meal.id,
@@ -353,6 +412,8 @@ class MenuService:
                                 course_order=idx
                             )
                             db.session.add(meal_recipe)
+                        else:
+                            logger.warning(f"Recipe not found: ID={recipe_data.get('recipe_id')}, title={recipe_data.get('title')}")
 
                 sync_log.menus_added += 1
                 logger.info(f"Menu {new_menu.id} created from Telegram message {message.id}")
