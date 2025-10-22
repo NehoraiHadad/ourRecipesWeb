@@ -70,7 +70,8 @@ def create_app(config_name='default'):
     from .routes.sync import sync_bp
     from .routes.basic import basic_bp
     from .routes.places import places
-    
+    from .routes.menus import menus_bp
+
     app.register_blueprint(auth_bp, url_prefix='/api/auth')
     app.register_blueprint(recipes_bp, url_prefix='/api/recipes')
     app.register_blueprint(categories_bp, url_prefix='/api/categories')
@@ -78,6 +79,7 @@ def create_app(config_name='default'):
     app.register_blueprint(sync_bp, url_prefix='/api/sync')
     app.register_blueprint(basic_bp, url_prefix='/api')
     app.register_blueprint(places, url_prefix='/api/places')
+    app.register_blueprint(menus_bp, url_prefix='/api/menus')
     
     # Create database tables
     with app.app_context():
