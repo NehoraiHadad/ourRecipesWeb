@@ -1,6 +1,5 @@
 import { useFont } from '@/context/FontContext';
 import { useState } from 'react';
-import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 
 interface FontSwitcherProps {
   variant?: 'dropdown' | 'menu';
@@ -8,13 +7,13 @@ interface FontSwitcherProps {
 }
 
 export function FontSwitcher({ variant = 'dropdown', onSelect }: FontSwitcherProps) {
-  const { currentFont, setFont, fonts, isLoading } = useFont();
+  const { currentFont, setFont, fonts } = useFont();
   const [isOpen, setIsOpen] = useState(false);
 
   const selectedFont = fonts.find(f => f.id === currentFont);
 
-  const handleFontSelect = async (fontId: typeof currentFont) => {
-    await setFont(fontId);
+  const handleFontSelect = (fontId: typeof currentFont) => {
+    setFont(fontId);
     setIsOpen(false);
     onSelect?.();
   };
@@ -24,14 +23,12 @@ export function FontSwitcher({ variant = 'dropdown', onSelect }: FontSwitcherPro
       <div className="px-4 py-2">
         <div className="flex items-center justify-between mb-2">
           <h3 className="text-sm font-medium text-secondary-700">סגנון כתב:</h3>
-          {isLoading && <LoadingSpinner size="sm" />}
         </div>
         <div className="space-y-1">
           {fonts.map((font) => (
             <button
               key={font.id}
               onClick={() => handleFontSelect(font.id)}
-              disabled={isLoading}
               className={`
                 w-full text-right px-3 py-2 rounded-md text-sm
                 transition-all duration-200
@@ -39,7 +36,6 @@ export function FontSwitcher({ variant = 'dropdown', onSelect }: FontSwitcherPro
                   ? 'bg-primary-50 text-primary-700'
                   : 'hover:bg-secondary-50 text-secondary-600'
                 }
-                ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
               `}
               style={{ fontFamily: `var(--font-${font.id})` }}
             >
@@ -75,14 +71,12 @@ export function FontSwitcher({ variant = 'dropdown', onSelect }: FontSwitcherPro
           <div className="px-4 py-2">
             <div className="flex items-center justify-between mb-2">
               <h3 className="text-sm font-medium text-secondary-700">סגנון כתב:</h3>
-              {isLoading && <LoadingSpinner size="sm" />}
             </div>
             <div className="space-y-1">
               {fonts.map((font) => (
                 <button
                   key={font.id}
                   onClick={() => handleFontSelect(font.id)}
-                  disabled={isLoading}
                   className={`
                     w-full text-right px-3 py-2 rounded-md text-sm
                     transition-all duration-200
@@ -90,7 +84,6 @@ export function FontSwitcher({ variant = 'dropdown', onSelect }: FontSwitcherPro
                       ? 'bg-primary-50 text-primary-700'
                       : 'hover:bg-secondary-50 text-secondary-600'
                     }
-                    ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}
                   `}
                   style={{ fontFamily: `var(--font-${font.id})` }}
                 >
