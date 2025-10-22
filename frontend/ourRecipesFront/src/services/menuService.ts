@@ -25,6 +25,7 @@ export class MenuService {
 
   /**
    * Generate a new menu using AI
+   * Note: This can take 30-90 seconds due to AI processing
    */
   static async generateMenu(request: MenuGenerationRequest): Promise<ApiResponse<{
     menu: Menu;
@@ -33,7 +34,9 @@ export class MenuService {
     return apiService.post<ApiResponse<{
       menu: Menu;
       shopping_list: ShoppingList;
-    }>>(`${this.BASE_PATH}/generate`, request);
+    }>>(`${this.BASE_PATH}/generate`, request, {
+      timeout: 120000 // 2 minutes timeout for AI menu generation
+    });
   }
 
   /**

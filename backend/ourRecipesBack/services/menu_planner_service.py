@@ -363,8 +363,10 @@ REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
             meal_types = preferences.get('meal_types', [])
             special_requests = preferences.get('special_requests', '')
 
-            # Build user prompt
-            user_prompt = f"""Plan a complete menu for the following event:
+            # Build user prompt - FORCE tool usage
+            user_prompt = f"""IMPORTANT: You MUST use the search_recipes() function to find recipes. Do NOT respond with a menu until you have searched for recipes first.
+
+Plan a complete menu for the following event:
 
 Event Type: {event_type}
 Number of Servings: {servings}
@@ -372,18 +374,21 @@ Dietary Restriction: {dietary_type.value if dietary_type else 'none'}
 Meals Needed: {', '.join(meal_types)}
 Special Requests: {special_requests if special_requests else 'none'}
 
-Use the search_recipes tool to find appropriate recipes for each meal.
-Search strategically - by course type, dietary restrictions, and complexity.
-Build a balanced, delicious menu that follows all kosher laws.
+STEP 1: For each meal type, call search_recipes() with appropriate filters
+STEP 2: Review the recipes returned
+STEP 3: Build the menu using ONLY the recipe IDs you found
+STEP 4: Return the final JSON
 
-When you're satisfied with your selections, return the final menu in JSON format."""
+Start by searching for recipes now. Do not skip this step."""
 
-            # Configure AI with tools
+            # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
             model = genai.GenerativeModel(
-                model_name="gemini-2.0-flash-exp",  # Latest model with best function calling
+                model_name="gemini-2.0-flash-exp",
                 tools=cls._get_search_tools(),
-                system_instruction=cls._get_menu_planner_system_prompt()
+                system_instruction=cls._get_menu_planner_system_prompt(),
+                # Force the model to use tools
+                tool_config={'function_calling_config': {'mode': 'ANY'}}
             )
 
             # Start conversation
