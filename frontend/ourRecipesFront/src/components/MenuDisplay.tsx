@@ -123,10 +123,10 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
       if (response.menu) {
         setIsPublic(response.menu.is_public);
         setMenu(response.menu);
-        addNotification(
-          response.menu.is_public ? 'התפריט שותף בהצלחה!' : 'השיתוף בוטל',
-          'success'
-        );
+        addNotification({
+          message: response.menu.is_public ? 'התפריט שותף בהצלחה!' : 'השיתוף בוטל',
+          type: 'success'
+        });
       }
     } catch (error) {
       console.error('Error toggling share:', error);
