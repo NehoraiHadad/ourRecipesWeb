@@ -168,7 +168,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
             )}
           </div>
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={() => router.push(`/menus/${menuId}`)}
           >
@@ -202,7 +202,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
         {/* Actions */}
         <div className="flex flex-wrap gap-2">
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={handleRegenerate}
             disabled={regenerating}
@@ -216,10 +216,10 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
               '🔄 ייצר מחדש'
             )}
           </Button>
-          <Button variant="outline" size="sm" onClick={handleExportText}>
+          <Button variant="secondary" size="sm" onClick={handleExportText}>
             📋 העתק כטקסט
           </Button>
-          <Button variant="outline" size="sm" onClick={handlePrint}>
+          <Button variant="secondary" size="sm" onClick={handlePrint}>
             🖨️ הדפס
           </Button>
         </div>

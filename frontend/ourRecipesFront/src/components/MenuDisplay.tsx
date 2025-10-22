@@ -189,7 +189,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           </div>
           <div className="flex gap-2">
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               onClick={() => router.push('/menus')}
             >
@@ -224,14 +224,14 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         {/* Actions */}
         <div className="flex gap-2 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={() => router.push(`/menus/${menu.id}/shopping-list`)}
           >
             📝 רשימת קניות
           </Button>
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={handleShareToggle}
             disabled={loading}
@@ -240,7 +240,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           </Button>
           {isPublic && (
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               onClick={handleCopyShareLink}
             >
@@ -248,7 +248,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
             </Button>
           )}
           <Button
-            variant="outline"
+            variant="secondary"
             size="sm"
             onClick={handleDelete}
             disabled={loading}
