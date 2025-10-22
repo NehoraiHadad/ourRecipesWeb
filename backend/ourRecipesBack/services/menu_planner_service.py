@@ -294,6 +294,8 @@ SEARCH STRATEGY:
 3. Use max_cooking_time to balance complexity
 4. Use exclude_ids=[previous_recipe_ids] to avoid duplicates
 5. Search multiple times if needed to find better options
+6. ⚠️ IMPORTANT: If a search returns 0 results after 2-3 attempts, SKIP that course and move on
+7. ⚠️ DO NOT search endlessly - prioritize completing the menu with available recipes
 
 EXAMPLE WORKFLOW:
 User wants: Shabbat dinner, 4 servings, meat meal
@@ -386,6 +388,9 @@ STEP 2: Review the recipes returned
 STEP 3: Build the menu using ONLY the recipe IDs you found
 STEP 4: Return the final JSON
 
+⚠️ IMPORTANT: If a search returns 0 results after 2-3 attempts, skip that course and continue.
+Do NOT search endlessly - complete the menu with the recipes you successfully find.
+
 Start by searching for recipes now. Do not skip this step."""
 
             # Configure AI with tools - FORCE function calling
@@ -404,14 +409,19 @@ Start by searching for recipes now. Do not skip this step."""
             response = chat.send_message(user_prompt)
 
             # Handle function calling loop
-            max_iterations = 15  # Increased from 10 for complex menus
+            max_iterations = 25  # Increased to handle complex multi-meal menus
             iteration = 0
 
             print(f"🤖 Starting AI menu generation (max {max_iterations} iterations)")
 
             while iteration < max_iterations:
-                # Check if AI made function calls
-                if response.candidates[0].content.parts[0].function_call:
+                # Check if AI made function calls (check all parts, not just first)
+                has_function_call = any(
+                    hasattr(part, 'function_call') and part.function_call
+                    for part in response.candidates[0].content.parts
+                )
+
+                if has_function_call:
                     function_calls = [
                         part.function_call
                         for part in response.candidates[0].content.parts
@@ -462,6 +472,28 @@ Start by searching for recipes now. Do not skip this step."""
 
             if iteration >= max_iterations:
                 print(f"⚠️ WARNING: Reached max iterations ({max_iterations}), AI may not be finished")
+
+                # Check if AI is still trying to make function calls
+                still_has_function_call = any(
+                    hasattr(part, 'function_call') and part.function_call
+                    for part in response.candidates[0].content.parts
+                )
+
+                if still_has_function_call:
+                    print(f"⚠️ AI still has pending function calls, forcing completion...")
+
+                    # Send a message to force AI to finish with what it has
+                    completion_prompt = """You have reached the maximum number of searches.
+Please create the menu using ONLY the recipes you have found so far.
+If you couldn't find enough recipes for some courses, skip those courses.
+Return the JSON menu plan now with the recipes you successfully found."""
+
+                    try:
+                        response = chat.send_message(completion_prompt)
+                        print(f"✓ Forced completion successful")
+                    except Exception as e:
+                        print(f"❌ Failed to force completion: {e}")
+                        raise ValueError(f"AI could not complete menu generation after {max_iterations} iterations. Try reducing the number of meals or courses.")
 
             # Extract the final menu plan
             response_text = response.text
