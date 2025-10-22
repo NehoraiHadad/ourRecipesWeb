@@ -168,7 +168,7 @@ class MenuPlannerService:
 
         recipes = query.all()
 
-        # Return metadata
+        # Return metadata with more details for AI
         return [
             {
                 'id': recipe.id,
@@ -178,10 +178,46 @@ class MenuPlannerService:
                 'cooking_time': recipe.cooking_time or 30,
                 'preparation_time': recipe.preparation_time or 15,
                 'servings': recipe.servings or 4,
-                'has_image': bool(recipe.image_url or recipe.image_data)
+                'has_image': bool(recipe.image_url or recipe.image_data),
+                # Add more context for AI decision-making
+                'ingredients_preview': cls._get_ingredients_preview(recipe),
+                'description_preview': cls._get_description_preview(recipe),
+                'tags': recipe._categories.split(',') if recipe._categories else []
             }
             for recipe in recipes
         ]
+
+    @classmethod
+    def _get_ingredients_preview(cls, recipe):
+        """Get first 5 ingredients as preview"""
+        if not recipe.ingredients:
+            return ""
+
+        try:
+            # Get first 5 ingredients
+            ingredients = recipe.ingredients[:5]
+            names = [ing.get('name', ing.get('ingredient', '')) for ing in ingredients if ing]
+            preview = ', '.join([name for name in names if name])
+
+            if len(recipe.ingredients) > 5:
+                preview += f" (ועוד {len(recipe.ingredients) - 5})"
+
+            return preview
+        except:
+            return ""
+
+    @classmethod
+    def _get_description_preview(cls, recipe):
+        """Get short description preview"""
+        if not recipe.description:
+            return ""
+
+        # Get first 100 characters
+        desc = recipe.description[:100]
+        if len(recipe.description) > 100:
+            desc += "..."
+
+        return desc
 
     @classmethod
     def _execute_get_recipe_details(cls, recipe_id):
@@ -218,29 +254,61 @@ class MenuPlannerService:
 
 Your role is to create balanced, well-thought-out menu plans for various events using the tools available to you.
 
-CRITICAL RULES:
-1. KOSHER LAWS: NEVER mix meat (בשרי) and dairy (חלבי) in the same meal. Pareve (פרווה) can be mixed with either.
-2. BALANCE: Create variety in flavors, textures, and cooking methods
-3. TIMING: Consider total preparation time - don't overload with complex dishes
-4. APPROPRIATENESS: Match sophistication to event type (Shabbat = festive, weekday = simpler)
-5. PRACTICALITY: Choose realistic combinations that work well together
+⚠️ CRITICAL INSTRUCTION:
+YOU MUST USE THE search_recipes() FUNCTION TO FIND RECIPES.
+DO NOT INVENT OR GUESS RECIPE IDs.
+ONLY USE RECIPE IDs RETURNED FROM search_recipes() FUNCTION CALLS.
 
-WORKFLOW:
+WORKFLOW (MANDATORY):
 1. Analyze the user's request (event type, servings, dietary restrictions, meals needed)
-2. Use search_recipes() to find appropriate recipes for each meal and course
-3. Build a complete, balanced menu
-4. Validate your choices against the rules above
-5. Return your final menu plan
+2. For EACH meal and course type:
+   a. Call search_recipes() with appropriate filters
+   b. Review the results
+   c. Select recipes from the returned list ONLY
+3. Build the complete menu using ONLY the recipe IDs you found
+4. Validate against kosher laws and balance
+5. Return the final JSON
+
+KOSHER LAWS (MUST FOLLOW):
+1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
+2. Pareve (פרווה) can be mixed with either meat or dairy
+3. If a meal is meat, ALL recipes must be meat or pareve
+4. If a meal is dairy, ALL recipes must be dairy or pareve
+
+BALANCE REQUIREMENTS:
+1. Variety in flavors, textures, and cooking methods
+2. Don't overload with complex/time-consuming dishes
+3. Match sophistication to event type (Shabbat = festive, weekday = simpler)
+4. Use exclude_ids to prevent selecting the same recipe twice
 
 SEARCH STRATEGY:
-- Search by course type first (appetizer, main, dessert, etc.)
-- Consider dietary restrictions in your searches
-- Use max_cooking_time to balance the menu
-- Use exclude_ids to avoid selecting the same recipe twice
-- You can search multiple times to find the best options
+1. Search by course_type for each course needed
+2. Use dietary_type filter to match meal requirements
+3. Use max_cooking_time to balance complexity
+4. Use exclude_ids=[previous_recipe_ids] to avoid duplicates
+5. Search multiple times if needed to find better options
 
-RESPONSE FORMAT:
-When you're done searching and ready to present the menu, respond with a JSON object:
+EXAMPLE WORKFLOW:
+User wants: Shabbat dinner, 4 servings, meat meal
+
+Step 1: Search for salads
+→ Call: search_recipes(course_type="salad", dietary_type="pareve", limit=5)
+→ Get: [{id: 10, title: "Israeli Salad"}, {id: 15, title: "Coleslaw"}...]
+→ Select: 10
+
+Step 2: Search for main courses
+→ Call: search_recipes(course_type="main", dietary_type="meat", exclude_ids=[10], limit=5)
+→ Get: [{id: 25, title: "Roast Chicken"}, {id: 30, title: "Beef Stew"}...]
+→ Select: 25
+
+Step 3: Search for sides
+→ Call: search_recipes(course_type="side", dietary_type="pareve", exclude_ids=[10, 25], limit=5)
+→ Get: [{id: 40, title: "Roasted Potatoes"}...]
+→ Select: 40
+
+Step 4: Return JSON with IDs 10, 25, 40
+
+FINAL RESPONSE FORMAT:
 {
   "meals": [
     {
@@ -248,16 +316,30 @@ When you're done searching and ready to present the menu, respond with a JSON ob
       "meal_order": 1,
       "recipes": [
         {
-          "recipe_id": 123,
+          "recipe_id": 10,
           "course_type": "salad",
           "course_order": 1,
-          "reason": "Fresh salad to start the meal"
+          "reason": "Fresh Israeli salad to start the meal"
+        },
+        {
+          "recipe_id": 25,
+          "course_type": "main",
+          "course_order": 2,
+          "reason": "Festive roast chicken, perfect for Shabbat"
+        },
+        {
+          "recipe_id": 40,
+          "course_type": "side",
+          "course_order": 3,
+          "reason": "Roasted potatoes complement the chicken well"
         }
       ]
     }
   ],
-  "reasoning": "Overall explanation of why this menu works well"
-}"""
+  "reasoning": "This Shabbat dinner menu offers a balanced meat meal with fresh salad, hearty main course, and complementary side. All items are kosher-compliant (meat or pareve)."
+}
+
+REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
 
     @classmethod
     def generate_menu(cls, user_id, preferences):
