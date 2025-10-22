@@ -315,9 +315,18 @@ class MenuPlannerService:
             print(f"   ❌ ERROR: recipe_ids is empty")
             return {"error": "recipe_ids is required and cannot be empty"}
 
+        # CRITICAL FIX: Google's proto.marshal.collections.repeated.RepeatedComposite
+        # The Gemini SDK sometimes returns RepeatedComposite instead of list
+        # This happens with older google-generativeai versions (pre-1.0)
         if not isinstance(recipe_ids, list):
-            print(f"   ❌ ERROR: recipe_ids is not a list: {type(recipe_ids)}")
-            return {"error": "recipe_ids must be an array of integers"}
+            original_type = type(recipe_ids).__name__
+            print(f"   🔄 Converting {original_type} to list...")
+            try:
+                recipe_ids = list(recipe_ids)
+                print(f"   ✓ Successfully converted {original_type} → list")
+            except (TypeError, ValueError) as e:
+                print(f"   ❌ ERROR: Failed to convert {original_type} to list: {e}")
+                return {"error": f"recipe_ids must be an array/list. Got {original_type} and failed to convert."}
 
         print(f"   📥 Received recipe_ids (raw): {recipe_ids}")
         print(f"   📥 Types: {[type(rid).__name__ for rid in recipe_ids]}")
