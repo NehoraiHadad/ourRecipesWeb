@@ -74,6 +74,15 @@ class MenuPlannerService:
             {
                 "function_declarations": [
                     {
+                        "name": "get_all_recipes",
+                        "description": "Get a complete list of ALL available recipes in the database (~150 recipes). Call this FIRST to see all options, then pick the best recipes for your menu. This is more efficient than multiple searches.",
+                        "parameters": {
+                            "type": "object",
+                            "properties": {},
+                            "required": []
+                        }
+                    },
+                    {
                         "name": "search_recipes",
                         "description": "Search for recipes in the database with various filters. Use this to find recipes that match specific criteria for menu planning.",
                         "parameters": {
@@ -329,19 +338,28 @@ class MenuPlannerService:
 Your role is to create balanced, well-thought-out menu plans for various events using the tools available to you.
 
 ⚠️ CRITICAL INSTRUCTION:
-YOU MUST USE THE search_recipes() FUNCTION TO FIND RECIPES.
 DO NOT INVENT OR GUESS RECIPE IDs.
-ONLY USE RECIPE IDs RETURNED FROM search_recipes() FUNCTION CALLS.
+ONLY USE RECIPE IDs RETURNED FROM FUNCTION CALLS (get_all_recipes or search_recipes).
 
-WORKFLOW (MANDATORY):
-1. Analyze the user's request (event type, servings, dietary restrictions, meals needed)
-2. For EACH meal and course type:
-   a. Call search_recipes() with appropriate filters
-   b. Review the results
-   c. Select recipes from the returned list ONLY
-3. Build the complete menu using ONLY the recipe IDs you found
-4. Validate against kosher laws and balance
-5. Return the final JSON
+WORKFLOW (MANDATORY - NEW EFFICIENT APPROACH):
+1. **FIRST: Call get_all_recipes()** - This returns ALL ~150 available recipes
+   - You'll get: id, title, dietary_type, course_hints, categories, difficulty, cooking_time
+   - With small recipe database, this is MORE efficient than multiple searches
+
+2. **Review the complete catalog** and filter in your mind:
+   - Filter by dietary_type (meat/dairy/pareve) for kosher compliance
+   - Filter by course_hints (salad/main/side/dessert/soup)
+   - Consider difficulty and cooking_time
+
+3. **Pick the best recipes** for the menu from this list
+
+4. **Build the complete menu** using ONLY recipe IDs from the list
+
+5. **Validate** against kosher laws and balance
+
+6. **Return final JSON**
+
+Alternative: If you prefer, you can still use search_recipes() with specific filters, but get_all_recipes() is more efficient with ~150 recipes.
 
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
@@ -355,42 +373,18 @@ BALANCE REQUIREMENTS:
 3. Match sophistication to event type (Shabbat = festive, weekday = simpler)
 4. Use exclude_ids to prevent selecting the same recipe twice
 
-SEARCH STRATEGY (OPTIMIZED FOR EFFICIENCY):
-⚠️ CRITICAL: Use LARGE limits (20-30) to get many options in ONE search!
-⚠️ CRITICAL: Do 3-5 searches TOTAL, not 17+ searches!
+EXAMPLE WORKFLOWS:
 
-1. **Initial Searches (3-5 searches ONLY):**
-   - Search for ALL course types you need with limit=20-30
-   - Example: search_recipes(course_type="salad", dietary_type="pareve", limit=30)
-   - Example: search_recipes(course_type="main", dietary_type="meat", limit=30)
-   - Example: search_recipes(course_type="side", dietary_type="pareve", limit=30)
-
-2. **Choose from results:**
-   - Review ALL the recipes you got from initial searches
-   - Pick the best ones for your menu
-   - DO NOT search again unless absolutely necessary!
-
-3. **If you need more variety:**
-   - Use exclude_ids with recipes you already chose
-   - Search ONCE MORE with higher limit
-   - DO NOT search multiple times for the same thing!
-
-4. **If a search returns 0 results:**
-   - That course type probably doesn't exist in the database
-   - SKIP it immediately and move to next course
-   - DO NOT retry the same search!
-   - DO NOT search with exclude_ids if you already got 0 results!
-
-5. **If you keep getting 1-2 results for same course:**
-   - You've found all available options for that course
-   - STOP searching for more of that course type
-   - Use what you have or skip that course entirely
-   - DO NOT waste iterations searching again and again!
-
-EXAMPLE WORKFLOW (EFFICIENT):
+✅ BEST (1 function call - RECOMMENDED):
 User wants: Shabbat dinner, 4 servings, meat meal
+→ Call: get_all_recipes()
+   Returns: ALL 150 recipes with metadata
+→ Filter mentally: dietary_type="meat" or "pareve", course_hints contains "salad"/"main"/"side"
+→ Pick 3-5 best recipes for Shabbat dinner
+→ Build menu JSON
+→ Done in 1 iteration! ✓✓✓
 
-✅ GOOD (3 searches total):
+✅ GOOD (Alternative with search_recipes - 3 calls):
 → Call: search_recipes(course_type="salad", dietary_type="pareve", limit=30)
    Returns: 15 salad recipes
 → Call: search_recipes(course_type="main", dietary_type="meat", limit=30)
@@ -400,13 +394,10 @@ User wants: Shabbat dinner, 4 servings, meat meal
 → Pick best recipes from these 50 options and build menu
 → Done in 3 iterations! ✓
 
-❌ BAD (17 searches - TOO MANY):
-→ search_recipes(course_type="side", limit=5) - gets 5
-→ search_recipes(course_type="side", limit=5, exclude_ids=[...]) - gets 5
-→ search_recipes(course_type="side", limit=1) - gets 1
-→ search_recipes(course_type="side", limit=1) - gets 0
-→ search_recipes(course_type="side", limit=1) - gets 0
-... continues for 17 iterations - WRONG! ✗
+❌ BAD (Many searches - INEFFICIENT):
+→ Multiple small searches with limit=5 or limit=1
+→ Repeating same searches with exclude_ids
+→ 10+ iterations - TOO SLOW! ✗
 
 FINAL RESPONSE FORMAT:
 {
@@ -442,6 +433,60 @@ FINAL RESPONSE FORMAT:
 REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
 
     @classmethod
+    def _execute_get_all_recipes(cls):
+        """
+        Execute get_all_recipes function - returns ALL available recipes.
+        With only ~150 recipes, this is more efficient than multiple searches.
+
+        Returns:
+            list: All recipes with key metadata
+        """
+        print(f"   📚 Loading ALL available recipes...")
+        recipes = Recipe.query.filter(
+            Recipe.status == RecipeStatus.ACTIVE.value,
+            Recipe.is_parsed == True,
+            Recipe.title.isnot(None)
+        ).order_by(Recipe._categories, Recipe.title).all()
+        print(f"   ✓ Loaded {len(recipes)} recipes")
+
+        result = []
+
+        for recipe in recipes:
+            categories = recipe._categories or ''
+
+            # Determine dietary type from categories
+            dietary = 'pareve'  # default
+            if any(cat in categories for cat in ['בשר', 'עוף', 'דגים']):
+                dietary = 'meat'
+            elif any(cat in categories for cat in ['חלבי', 'גבינה', 'חלב']):
+                dietary = 'dairy'
+
+            # Determine course type from categories
+            course_hints = []
+            if any(cat in categories for cat in ['סלט', 'ירקות']):
+                course_hints.append('salad')
+            if any(cat in categories for cat in ['מרק']):
+                course_hints.append('soup')
+            if any(cat in categories for cat in ['בשר', 'עוף', 'דג', 'עיקרי']):
+                course_hints.append('main')
+            if any(cat in categories for cat in ['תוספת', 'אורז', 'פסטה', 'תפוחי אדמה']):
+                course_hints.append('side')
+            if any(cat in categories for cat in ['קינוח', 'עוגה', 'מתוק', 'עוגיות']):
+                course_hints.append('dessert')
+
+            result.append({
+                'id': recipe.id,
+                'title': recipe.title,
+                'dietary_type': dietary,
+                'course_hints': course_hints,
+                'categories': categories,
+                'difficulty': recipe.difficulty.value if recipe.difficulty else 'medium',
+                'cooking_time': recipe.cooking_time or 30
+            })
+
+        return result
+
+    @classmethod
     def generate_menu(cls, user_id, preferences):
         """
         Generate menu using AI with Function Calling.
@@ -463,10 +508,8 @@ REMEMBER: ONLY use recipe IDs returned from search_recipes() function calls!"""
             meal_types = preferences.get('meal_types', [])
             special_requests = preferences.get('special_requests', '')
 
-            # Build user prompt - FORCE tool usage with EFFICIENCY
-            user_prompt = f"""IMPORTANT: You MUST use the search_recipes() function to find recipes.
-
-Plan a complete menu for the following event:
+            # Build user prompt - instruct AI to get full recipe list first
+            user_prompt = f"""Plan a complete menu for the following event:
 
 Event Type: {event_type}
 Number of Servings: {servings}
@@ -474,25 +517,23 @@ Dietary Restriction: {dietary_type.value if dietary_type else 'none'}
 Meals Needed: {', '.join(meal_types)}
 Special Requests: {special_requests if special_requests else 'none'}
 
-⚠️ EFFICIENCY REQUIREMENTS:
-1. Use limit=30 (or higher) in each search to get MANY options at once
-2. Do 3-5 searches TOTAL - one per course type you need
-3. After getting results, PICK from them - DO NOT search again!
-4. If a search returns 0 results, SKIP that course immediately
+⚠️ CRITICAL - NEW EFFICIENT WORKFLOW:
 
-WORKFLOW:
-STEP 1: Search for each course type ONCE with limit=30
-   - search_recipes(course_type="salad", dietary_type=..., limit=30)
-   - search_recipes(course_type="main", dietary_type=..., limit=30)
-   - search_recipes(course_type="side", dietary_type=..., limit=30)
+STEP 1: Call get_all_recipes() FIRST
+   - This returns ALL ~150 available recipes with their metadata
+   - You'll see: id, title, dietary_type, course_hints, categories, difficulty, cooking_time
+   - This is the MOST efficient approach with small recipe database
 
-STEP 2: Review ALL recipes from these searches (you now have 50+ options!)
+STEP 2: Review the complete list and pick the best recipes for the menu
+   - Filter by dietary_type (meat/dairy/pareve)
+   - Filter by course_hints (salad/main/side/dessert/soup)
+   - Pick recipes that fit the event and servings
 
-STEP 3: Build complete menu using ONLY recipe IDs you got
+STEP 3: Build complete menu using ONLY recipe IDs from the list
 
 STEP 4: Return final JSON
 
-Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small searches!"""
+Start by calling get_all_recipes() NOW to see all available options!"""
 
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
@@ -540,7 +581,9 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
                         print(f"   → {function_name}({function_args})")
 
                         # Execute the function
-                        if function_name == "search_recipes":
+                        if function_name == "get_all_recipes":
+                            result = cls._execute_get_all_recipes()
+                        elif function_name == "search_recipes":
                             result = cls._execute_search_recipes(**function_args)
                         elif function_name == "get_recipe_details":
                             result = cls._execute_get_recipe_details(**function_args)
@@ -602,7 +645,9 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
                         print(f"   → {function_name}({function_args})")
 
                         # Execute the function
-                        if function_name == "search_recipes":
+                        if function_name == "get_all_recipes":
+                            result = cls._execute_get_all_recipes()
+                        elif function_name == "search_recipes":
                             result = cls._execute_search_recipes(**function_args)
                         elif function_name == "get_recipe_details":
                             result = cls._execute_get_recipe_details(**function_args)
