@@ -65,7 +65,7 @@ export default function MenusPage() {
     <div className="h-[calc(100dvh-52px)] overflow-y-auto bg-secondary-50">
       <div className="max-w-6xl mx-auto p-6">
         <div className="flex justify-between items-center mb-8">
-          <h1 className="text-4xl font-bold text-secondary-800 dark:text-white">
+          <h1 className="text-4xl font-bold text-secondary-800">
             התפריטים שלי
           </h1>
           <Button variant="primary" onClick={() => router.push('/menus/new')}>
@@ -78,28 +78,28 @@ export default function MenusPage() {
             {menus.map((menu) => (
               <div
                 key={menu.id}
-                className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6
+                className="bg-white rounded-lg shadow-warm p-6
                          hover:shadow-warm-lg transition-all cursor-pointer"
                 onClick={() => router.push(`/menus/${menu.id}`)}
               >
                 <div className="flex justify-between items-start mb-4">
-                  <h2 className="text-xl font-bold text-secondary-800 dark:text-white">
+                  <h2 className="text-xl font-bold text-secondary-800">
                     {menu.name}
                   </h2>
                   {menu.is_public && (
-                    <span className="text-xs bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 px-2 py-1 rounded">
+                    <span className="text-xs bg-primary-100 text-primary-700 px-2 py-1 rounded">
                       שותף
                     </span>
                   )}
                 </div>
 
                 {menu.description && (
-                  <p className="text-secondary-600 dark:text-secondary-400 text-sm mb-4 line-clamp-2">
+                  <p className="text-secondary-600 text-sm mb-4 line-clamp-2">
                     {menu.description}
                   </p>
                 )}
 
-                <div className="space-y-2 text-sm text-secondary-600 dark:text-secondary-400">
+                <div className="space-y-2 text-sm text-secondary-600">
                   {menu.event_type && (
                     <div className="flex items-center gap-2">
                       <span className="font-semibold">סוג:</span>
@@ -123,8 +123,8 @@ export default function MenusPage() {
                 </div>
 
                 {menu.meals && menu.meals.length > 0 && (
-                  <div className="mt-4 pt-4 border-t border-secondary-200 dark:border-secondary-700">
-                    <div className="text-sm text-secondary-600 dark:text-secondary-400">
+                  <div className="mt-4 pt-4 border-t border-secondary-200">
+                    <div className="text-sm text-secondary-600">
                       📋 {menu.meals.length} ארוחות
                     </div>
                   </div>
@@ -133,12 +133,12 @@ export default function MenusPage() {
             ))}
           </div>
         ) : (
-          <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-12 text-center">
+          <div className="bg-white rounded-lg shadow-warm p-12 text-center">
             <div className="text-6xl mb-4">🍽️</div>
-            <h3 className="text-xl font-semibold text-secondary-800 dark:text-white mb-2">
+            <h3 className="text-xl font-semibold text-secondary-800 mb-2">
               אין תפריטים עדיין
             </h3>
-            <p className="text-secondary-600 dark:text-secondary-400 mb-6">
+            <p className="text-secondary-600 mb-6">
               צור תפריט ראשון והתחל לתכנן ארוחות מדהימות!
             </p>
             <Button variant="primary" onClick={() => router.push('/menus/new')}>

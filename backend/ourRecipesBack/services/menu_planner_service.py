@@ -391,7 +391,8 @@ Start by searching for recipes now. Do not skip this step."""
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
             model = genai.GenerativeModel(
-                model_name="gemini-2.0-flash-exp",
+                # Using Flash-Lite: 1,000 RPD (vs 25 RPD), 15 RPM (vs 5 RPM)
+                model_name="gemini-2.5-flash-lite",
                 tools=cls._get_search_tools(),
                 system_instruction=cls._get_menu_planner_system_prompt(),
                 # Force the model to use tools

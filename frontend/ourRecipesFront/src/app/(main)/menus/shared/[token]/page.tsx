@@ -72,10 +72,10 @@ export default function SharedMenuPage() {
     return (
       <div className="flex flex-col justify-center items-center min-h-screen p-6">
         <div className="text-6xl mb-4">🔒</div>
-        <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-2">
+        <h2 className="text-2xl font-bold text-gray-800 mb-2">
           {error || 'תפריט לא נמצא'}
         </h2>
-        <p className="text-gray-600 dark:text-gray-400">
+        <p className="text-gray-600">
           התפריט אינו זמין או שהקישור אינו תקף
         </p>
       </div>
@@ -85,24 +85,24 @@ export default function SharedMenuPage() {
   return (
     <div className="max-w-4xl mx-auto p-6">
       {/* Shared indicator */}
-      <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4 mb-6">
-        <p className="text-blue-700 dark:text-blue-300">
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+        <p className="text-blue-700">
           🔗 זהו תפריט משותף - אתה מוזמן לצפות ולהשתמש בו!
         </p>
       </div>
 
       {/* Header */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+      <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">
           {menu.name}
         </h1>
         {menu.description && (
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-gray-600 mb-4">
             {menu.description}
           </p>
         )}
 
-        <div className="flex flex-wrap gap-4 text-sm text-gray-600 dark:text-gray-400">
+        <div className="flex flex-wrap gap-4 text-sm text-gray-600">
           {menu.event_type && (
             <div>
               <span className="font-semibold">סוג אירוע:</span> {menu.event_type}
@@ -123,8 +123,8 @@ export default function SharedMenuPage() {
         </div>
 
         {menu.ai_reasoning && (
-          <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-900/20 rounded-md">
-            <p className="text-sm text-blue-700 dark:text-blue-300">
+          <div className="mt-4 p-3 bg-blue-50 rounded-md">
+            <p className="text-sm text-blue-700">
               <span className="font-semibold">🤖 הסבר ה-AI:</span>{' '}
               {menu.ai_reasoning}
             </p>
@@ -138,19 +138,19 @@ export default function SharedMenuPage() {
           {menu.meals.map((meal) => (
             <div
               key={meal.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+              className="bg-white rounded-lg shadow-md p-6"
             >
-              <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4">
                 {meal.meal_type}
                 {meal.meal_time && (
-                  <span className="text-sm text-gray-500 dark:text-gray-400 mr-2">
+                  <span className="text-sm text-gray-500 mr-2">
                     ({meal.meal_time})
                   </span>
                 )}
               </h2>
 
               {meal.notes && (
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
+                <p className="text-gray-600 mb-4">
                   {meal.notes}
                 </p>
               )}
@@ -160,7 +160,7 @@ export default function SharedMenuPage() {
                   meal.recipes.map((mealRecipe) => (
                     <div
                       key={mealRecipe.id}
-                      className="flex items-start gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg"
+                      className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"
                     >
                       {mealRecipe.recipe?.image_url && (
                         <img
@@ -170,20 +170,20 @@ export default function SharedMenuPage() {
                         />
                       )}
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-gray-800 dark:text-white">
+                        <h3 className="text-lg font-semibold text-gray-800">
                           {mealRecipe.recipe?.title || 'מתכון'}
                         </h3>
                         {mealRecipe.course_type && (
-                          <p className="text-sm text-gray-500 dark:text-gray-400">
+                          <p className="text-sm text-gray-500">
                             {mealRecipe.course_type}
                           </p>
                         )}
                         {mealRecipe.ai_reason && (
-                          <p className="text-sm text-gray-600 dark:text-gray-300 mt-1">
+                          <p className="text-sm text-gray-600 mt-1">
                             {mealRecipe.ai_reason}
                           </p>
                         )}
-                        <div className="flex gap-3 mt-2 text-xs text-gray-500 dark:text-gray-400">
+                        <div className="flex gap-3 mt-2 text-xs text-gray-500">
                           {mealRecipe.recipe?.cooking_time && (
                             <span>⏱️ {mealRecipe.recipe.cooking_time} דק׳</span>
                           )}
@@ -195,7 +195,7 @@ export default function SharedMenuPage() {
                     </div>
                   ))
                 ) : (
-                  <p className="text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500">
                     אין מתכונים בארוחה זו
                   </p>
                 )}
@@ -204,8 +204,8 @@ export default function SharedMenuPage() {
           ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <p className="text-gray-500 dark:text-gray-400 text-center">
+        <div className="bg-white rounded-lg shadow-md p-6">
+          <p className="text-gray-500 text-center">
             אין ארוחות בתפריט זה
           </p>
         </div>
