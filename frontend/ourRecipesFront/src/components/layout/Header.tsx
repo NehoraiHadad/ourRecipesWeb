@@ -85,6 +85,13 @@ export function Header() {
                 מקומות
               </Link>
             </FeatureIndicator>
+            <FeatureIndicator
+              featureId="menu-planner"
+            >
+              <Link href="/menus" className="text-secondary-600 hover:text-secondary-900">
+                תפריטים
+              </Link>
+            </FeatureIndicator>
             {authState.canEdit && (
               <Link href="/manage" className="text-secondary-600 hover:text-secondary-900 transition-colors">
                 ניהול מתכונים
