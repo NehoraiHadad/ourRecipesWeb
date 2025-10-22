@@ -1,6 +1,8 @@
 import google.generativeai as genai
+from google.api_core import exceptions as google_exceptions
 from flask import current_app
 import json
+import time
 from sqlalchemy import and_, or_
 from ..extensions import db
 from ..models import Recipe, Menu, MenuMeal, MealRecipe
@@ -9,6 +11,58 @@ from ..models.enums import DietaryType, RecipeStatus
 
 class MenuPlannerService:
     """Service for AI-powered menu planning with Function Calling"""
+
+    @classmethod
+    def _send_message_with_retry(cls, chat, message, max_retries=3):
+        """
+        Send message to AI with automatic retry on rate limit.
+
+        Args:
+            chat: The chat session
+            message: Message to send (can be string or Content)
+            max_retries: Maximum number of retries (default: 3)
+
+        Returns:
+            Response from AI
+
+        Raises:
+            Exception: If all retries are exhausted
+        """
+        retry_count = 0
+
+        while retry_count <= max_retries:
+            try:
+                return chat.send_message(message)
+
+            except google_exceptions.ResourceExhausted as rate_limit_error:
+                retry_count += 1
+
+                # Extract retry delay from error if available
+                error_str = str(rate_limit_error)
+                wait_time = 60  # Default to 60 seconds as user requested
+
+                # Try to parse retry delay from error message
+                # Error format: "retry_delay: {seconds: 27}"
+                if "retry_delay" in error_str and "seconds:" in error_str:
+                    try:
+                        import re
+                        match = re.search(r'seconds:\s*(\d+)', error_str)
+                        if match:
+                            wait_time = int(match.group(1))
+                    except Exception:
+                        pass  # Keep default wait_time
+
+                if retry_count <= max_retries:
+                    print(f"⏳ Rate limit reached! Waiting {wait_time} seconds before retry ({retry_count}/{max_retries})...")
+                    time.sleep(wait_time)
+                    print(f"🔄 Retrying request (attempt {retry_count + 1}/{max_retries + 1})...")
+                else:
+                    print(f"❌ Rate limit exhausted after {max_retries} retries")
+                    raise
+
+            except Exception as e:
+                # Re-raise other exceptions immediately
+                raise
 
     @staticmethod
     def _get_search_tools():
@@ -446,7 +500,7 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
 
             # Start conversation
             chat = model.start_chat()
-            response = chat.send_message(user_prompt)
+            response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
             max_iterations = 10  # Reduced from 25 - efficient search strategy needs fewer iterations
@@ -500,7 +554,8 @@ Start by doing 3-5 big searches now. Then build the menu. Do NOT do 15+ small se
                         )
 
                     # Send function results back to AI
-                    response = chat.send_message(
+                    response = cls._send_message_with_retry(
+                        chat,
                         genai.protos.Content(parts=function_responses)
                     )
 
@@ -529,7 +584,7 @@ If you couldn't find enough recipes for some courses, skip those courses.
 Return the JSON menu plan now with the recipes you successfully found."""
 
                     try:
-                        response = chat.send_message(completion_prompt)
+                        response = cls._send_message_with_retry(chat, completion_prompt)
                         print(f"✓ Forced completion successful")
                     except Exception as e:
                         print(f"❌ Failed to force completion: {e}")
