@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Heebo } from 'next/font/google'
-import localFont from 'next/font/local'
 import { AuthProvider } from '@/context/AuthContext'
 import { NotificationProvider } from '@/context/NotificationContext'
 import { FontProvider } from '@/context/FontContext'
@@ -11,49 +10,12 @@ import { SearchProvider } from '@/contexts/SearchContext'
 import { RecipeHistoryProvider } from '@/contexts/RecipeHistoryContext'
 import './globals.css'
 
-const heebo = Heebo({ 
+// Only load default font - others will be loaded dynamically
+const heebo = Heebo({
   subsets: ['hebrew'],
-  variable: '--font-heebo'
-})
-
-const alemnew = localFont({
-  src: '../fonts/Oh_AlemnewEmanuelFeleke-Regular.woff2',
-  variable: '--font-alemnew'
-})
-
-const amit = localFont({
-  src: '../fonts/OhAmitMan-Regular.woff2',
-  variable: '--font-amit'
-})
-
-const aviya = localFont({
-  src: '../fonts/OHAviyaGenut-Regular.woff2',
-  variable: '--font-aviya'
-})
-
-const omer = localFont({
-  src: '../fonts/OHOmerWolf-Regular.woff2',
-  variable: '--font-omer'
-})
-
-const savyon = localFont({
-  src: '../fonts/OHSavyonChenKipper-Regular.woff2',
-  variable: '--font-savyon'
-})
-
-const shilo = localFont({
-  src: '../fonts/OHShiloRauchberger-Regular.woff2',
-  variable: '--font-shilo'
-})
-
-const shir = localFont({
-  src: '../fonts/OhShirChanaGorgi-Regular.woff2',
-  variable: '--font-shir'
-})
-
-const uriyah = localFont({
-  src: '../fonts/OHUriyahMash-Regular.woff2',
-  variable: '--font-uriyah'
+  variable: '--font-heebo',
+  display: 'swap', // Show text immediately with fallback
+  preload: true
 })
 
 export const viewport = {
@@ -90,18 +52,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="he" dir="rtl" 
-      className={`
-        ${heebo.variable} 
-        ${savyon.variable}
-        ${alemnew.variable}
-        ${amit.variable}
-        ${aviya.variable}
-        ${omer.variable}
-        ${shilo.variable}
-        ${shir.variable}
-        ${uriyah.variable}
-      `}
+    <html lang="he" dir="rtl"
+      className={heebo.variable}
     >
       <body className="bg-secondary-50 bg-paper text-secondary-900 max-h-screen overflow-hidden">
         <AuthProvider>

@@ -7,6 +7,9 @@ import RecipeGrid from './management/RecipeGrid';
 import Spinner from '@/components/ui/Spinner';
 import { useAuthContext } from '../context/AuthContext';
 import TypingEffect from './TypingEffect';
+import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
+import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
+import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 
 export default function RecipeManagement() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
@@ -148,6 +151,21 @@ export default function RecipeManagement() {
     return result;
   }, [recipes, sortBy, filterBy]);
 
+  // Infinite scroll for better performance
+  const {
+    displayedItems,
+    hasMore,
+    isLoading: isLoadingMore,
+    observerTarget,
+    displayedCount,
+    totalItems
+  } = useInfiniteScroll({
+    items: filteredAndSortedRecipes,
+    itemsPerPage: 20,
+    initialPage: 1,
+    threshold: 0.1
+  });
+
   const handleSort = async (newSortBy: string) => {
     setSortBy(newSortBy);
   };
@@ -157,12 +175,15 @@ export default function RecipeManagement() {
   };
 
   const commonProps = {
-    recipes: filteredAndSortedRecipes,
+    recipes: displayedItems,
     selectedIds: selectedRecipes,
-    onSelect: (id: number) => setSelectedRecipes(prev => 
+    onSelect: (id: number) => setSelectedRecipes(prev =>
       prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
     ),
-    onRecipeUpdate: handleRecipeUpdate
+    onRecipeUpdate: handleRecipeUpdate,
+    hasMore,
+    isLoadingMore,
+    observerTarget
   };
 
   return (
@@ -176,7 +197,14 @@ export default function RecipeManagement() {
         onSort={handleSort}
         onFilter={handleFilter}
       />
-      
+
+      {/* Recipe Count Info */}
+      {!loading && !error && totalItems > 20 && (
+        <div className="px-6 py-2 text-sm text-secondary-600 bg-secondary-50 border-b">
+          מציג {displayedCount} מתוך {totalItems} מתכונים
+        </div>
+      )}
+
       {loading ? (
         <div className="flex-1 flex items-center justify-center">
           <Spinner message="טוען מתכונים..." />
@@ -184,6 +212,13 @@ export default function RecipeManagement() {
       ) : error ? (
         <div className="flex-1 flex items-center justify-center text-red-500">
           {error}
+        </div>
+      ) : displayedItems.length === 0 ? (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center">
+            <p className="text-lg text-secondary-500">לא נמצאו מתכונים</p>
+            <p className="text-sm text-secondary-400 mt-2">נסה לשנות את הסינון או החיפוש</p>
+          </div>
         </div>
       ) : (
         <div className="flex-1 overflow-auto">
