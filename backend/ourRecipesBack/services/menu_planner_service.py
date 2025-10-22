@@ -842,7 +842,7 @@ Analyze data and return JSON menu."""
                     all_parts = function_responses + [types.Part(text=guidance_message)]
                     response = cls._send_message_with_retry(
                         chat,
-                        types.Content(parts=all_parts)
+                        all_parts  # Send list of Parts directly, not wrapped in Content
                     )
 
                     iteration += 1
@@ -933,7 +933,7 @@ This is your LAST chance to respond. Return JSON immediately."""
                     all_parts = function_responses + [types.Part(text=completion_prompt)]
                     response = cls._send_message_with_retry(
                         chat,
-                        types.Content(parts=all_parts)
+                        all_parts  # Send list of Parts directly, not wrapped in Content
                     )
 
                     # If STILL has function calls, send one more VERY forceful message
