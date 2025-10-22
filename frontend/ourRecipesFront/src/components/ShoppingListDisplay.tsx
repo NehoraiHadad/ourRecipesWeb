@@ -186,7 +186,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
           </div>
           <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
             <div
-              className="bg-blue-500 h-3 rounded-full transition-all duration-300"
+              className="bg-primary-500 h-3 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
             />
           </div>
@@ -258,7 +258,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
                         type="checkbox"
                         checked={checkedItems.has(item.id)}
                         onChange={() => handleToggleItem(item.id)}
-                        className="mt-1 w-5 h-5 text-blue-500 rounded focus:ring-2 focus:ring-blue-500"
+                        className="mt-1 w-5 h-5 text-primary-500 rounded focus:ring-2 focus:ring-primary-100"
                       />
                       <div className="flex-1">
                         <div
@@ -301,8 +301,8 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       )}
 
       {/* Footer note for future Google Keep integration */}
-      <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg">
-        <p className="text-sm text-blue-700 dark:text-blue-300">
+      <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg">
+        <p className="text-sm text-primary-700 dark:text-primary-300">
           💡 <strong>בקרוב:</strong> סנכרון אוטומטי עם Google Keep!
         </p>
       </div>
