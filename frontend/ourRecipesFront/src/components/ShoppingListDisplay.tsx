@@ -158,14 +158,14 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
     <div className="h-[calc(100dvh-52px)] overflow-y-auto bg-secondary-50">
       <div className="max-w-4xl mx-auto p-6">
         {/* Header */}
-        <div className="bg-white dark:bg-secondary-800 rounded-lg shadow-warm p-6 mb-6">
+        <div className="bg-white rounded-lg shadow-warm p-6 mb-6">
         <div className="flex justify-between items-start mb-4">
           <div>
-            <h1 className="text-3xl font-bold text-gray-800 dark:text-white mb-2">
+            <h1 className="text-3xl font-bold text-gray-800 mb-2">
               📝 רשימת קניות
             </h1>
             {menuName && (
-              <p className="text-gray-600 dark:text-gray-400">{menuName}</p>
+              <p className="text-gray-600">{menuName}</p>
             )}
           </div>
           <Button
@@ -179,13 +179,13 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
 
         {/* Progress bar */}
         <div className="mb-4">
-          <div className="flex justify-between text-sm text-gray-600 dark:text-gray-400 mb-2">
+          <div className="flex justify-between text-sm text-gray-600 mb-2">
             <span>התקדמות</span>
             <span>
               {checkedItems.size} מתוך {totalItems} ({progress}%)
             </span>
           </div>
-          <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-3">
+          <div className="w-full bg-gray-200 rounded-full h-3">
             <div
               className="bg-primary-500 h-3 rounded-full transition-all duration-300"
               style={{ width: `${progress}%` }}
@@ -194,7 +194,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
         </div>
 
         {/* Stats */}
-        <div className="flex gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+        <div className="flex gap-4 text-sm text-gray-600 mb-4">
           <div>📦 {categoriesCount} קטגוריות</div>
           <div>🛒 {totalItems} פריטים</div>
           <div>✅ {checkedItems.size} בוצעו</div>
@@ -234,12 +234,12 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
             .map(([category, items]) => (
               <div
                 key={category}
-                className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6"
+                className="bg-white rounded-lg shadow-md p-6"
               >
-                <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
+                <h2 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2">
                   <span className="text-2xl">{getCategoryIcon(category)}</span>
                   {category}
-                  <span className="text-sm font-normal text-gray-500 dark:text-gray-400">
+                  <span className="text-sm font-normal text-gray-500">
                     ({items.length})
                   </span>
                 </h2>
@@ -251,8 +251,8 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
                       className={`flex items-start gap-3 p-3 rounded-lg cursor-pointer transition-colors
                         ${
                           checkedItems.has(item.id)
-                            ? 'bg-green-50 dark:bg-green-900/20'
-                            : 'bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600'
+                            ? 'bg-green-50
+                            : 'bg-gray-50 hover:bg-gray-100
                         }`}
                     >
                       <input
@@ -265,17 +265,17 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
                         <div
                           className={`font-medium ${
                             checkedItems.has(item.id)
-                              ? 'line-through text-gray-500 dark:text-gray-400'
-                              : 'text-gray-800 dark:text-white'
+                              ? 'line-through text-gray-500
+                              : 'text-gray-800
                           }`}
                         >
                           {item.ingredient_name}
                         </div>
-                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                        <div className="text-sm text-gray-600">
                           {item.quantity}
                         </div>
                         {item.notes && (
-                          <div className="text-xs text-gray-500 dark:text-gray-500 mt-1">
+                          <div className="text-xs text-gray-500 mt-1">
                             💡 {item.notes}
                           </div>
                         )}
@@ -287,12 +287,12 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
             ))}
         </div>
       ) : (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-12 text-center">
+        <div className="bg-white rounded-lg shadow-md p-12 text-center">
           <div className="text-6xl mb-4">🛒</div>
-          <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+          <h3 className="text-xl font-semibold text-gray-800 mb-2">
             רשימת הקניות ריקה
           </h3>
-          <p className="text-gray-600 dark:text-gray-400 mb-4">
+          <p className="text-gray-600 mb-4">
             לא נמצאו פריטים לקנייה
           </p>
           <Button onClick={handleRegenerate} disabled={regenerating}>
@@ -302,8 +302,8 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
       )}
 
       {/* Footer note for future Google Keep integration */}
-      <div className="mt-6 p-4 bg-primary-50 dark:bg-primary-900/20 rounded-lg border border-primary-200 dark:border-primary-800">
-        <p className="text-sm text-primary-700 dark:text-primary-300">
+      <div className="mt-6 p-4 bg-primary-50 rounded-lg border border-primary-200">
+        <p className="text-sm text-primary-700">
           💡 <strong>בקרוב:</strong> סנכרון אוטומטי עם Google Keep!
         </p>
       </div>

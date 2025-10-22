@@ -67,70 +67,19 @@ class MenuPlannerService:
     @staticmethod
     def _get_search_tools():
         """
-        Define tools that AI can use to search for recipes.
-        This enables dynamic, intelligent recipe discovery.
+        Define tools that AI can use - ONLY get_all_recipes.
+        No search_recipes to prevent AI from making multiple queries.
         """
         return [
             {
                 "function_declarations": [
                     {
                         "name": "get_all_recipes",
-                        "description": "Get a complete list of ALL available recipes in the database (~150 recipes). Call this FIRST to see all options, then pick the best recipes for your menu. This is more efficient than multiple searches.",
+                        "description": "Get ALL available recipes (~113 recipes). Returns: id, title, dietary_type, course_hints. You MUST call this function to get the recipe catalog, then pick recipes from the list.",
                         "parameters": {
                             "type": "object",
                             "properties": {},
                             "required": []
-                        }
-                    },
-                    {
-                        "name": "search_recipes",
-                        "description": "Search for recipes in the database with various filters. Use this to find recipes that match specific criteria for menu planning.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "dietary_type": {
-                                    "type": "string",
-                                    "enum": ["meat", "dairy", "pareve"],
-                                    "description": "Kosher dietary type: meat (בשרי), dairy (חלבי), or pareve (פרווה)"
-                                },
-                                "course_type": {
-                                    "type": "string",
-                                    "enum": ["appetizer", "salad", "soup", "main", "side", "dessert"],
-                                    "description": "Type of course in the meal"
-                                },
-                                "max_cooking_time": {
-                                    "type": "integer",
-                                    "description": "Maximum cooking time in minutes"
-                                },
-                                "difficulty": {
-                                    "type": "string",
-                                    "enum": ["easy", "medium", "hard"],
-                                    "description": "Recipe difficulty level"
-                                },
-                                "limit": {
-                                    "type": "integer",
-                                    "description": "Maximum number of recipes to return (use 10 if not specified)"
-                                },
-                                "exclude_ids": {
-                                    "type": "array",
-                                    "items": {"type": "integer"},
-                                    "description": "Recipe IDs to exclude from results (useful for avoiding duplicates)"
-                                }
-                            }
-                        }
-                    },
-                    {
-                        "name": "get_recipe_details",
-                        "description": "Get full details of a specific recipe by ID. Use this when you need more information about a recipe.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "recipe_id": {
-                                    "type": "integer",
-                                    "description": "The ID of the recipe to get details for"
-                                }
-                            },
-                            "required": ["recipe_id"]
                         }
                     }
                 ]
@@ -335,25 +284,21 @@ class MenuPlannerService:
         """Get system prompt for menu planning with function calling"""
         return """You are an expert chef and menu planner specializing in kosher cuisine.
 
-⚠️ MANDATORY WORKFLOW - FOLLOW EXACTLY:
+⚠️ MANDATORY WORKFLOW - YOU HAVE ONLY ONE FUNCTION:
 
-STEP 1: Call get_all_recipes() - NO EXCEPTIONS
-   - Returns: id, title, dietary_type, course_hints for ALL ~150 recipes
-   - This is your catalog to choose from
+STEP 1: Call get_all_recipes() ONCE
+   - Returns: ALL ~113 recipes with id, title, dietary_type, course_hints
+   - This is the COMPLETE catalog - no other functions available
 
-STEP 2: Mentally filter the recipes:
-   - Filter by dietary_type (meat/dairy/pareve) based on meal requirements
-   - Filter by course_hints (salad/main/side/dessert/soup)
-   - Select 3-6 recipe IDs that fit the menu
+STEP 2: Review the list and pick 3-6 recipe IDs
+   - Filter by dietary_type (meat/dairy/pareve)
+   - Filter by course_hints (["salad"], ["main"], ["side"], etc.)
+   - course_hints are in ENGLISH even though titles are in Hebrew
 
-STEP 3: Build the final menu JSON
-   - Use ONLY the recipe IDs you selected
-   - DO NOT call get_recipe_details() - not needed
-   - DO NOT invent or guess recipe IDs
-
-STEP 4: Return the JSON immediately
-   - No additional function calls needed
-   - Just return the menu structure
+STEP 3: Return ONLY the JSON menu
+   - Use ONLY recipe IDs from the list you received
+   - DO NOT call any other functions
+   - DO NOT make multiple calls to get_all_recipes
 
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
@@ -361,31 +306,31 @@ KOSHER LAWS (MUST FOLLOW):
 3. If a meal is meat, ALL recipes must be meat or pareve
 4. If a meal is dairy, ALL recipes must be dairy or pareve
 
-EXAMPLE - FOLLOW THIS EXACTLY:
-User: "Shabbat dinner, meat meal"
-Step 1: Call get_all_recipes()
-Step 2: Filter in your mind for dietary_type="meat" or "pareve" AND course_hints contains "salad"/"main"/"side"
-Step 3: Return JSON with selected recipe IDs
+EXAMPLE - EXACT WORKFLOW:
+User requests: "Shabbat dinner, meat meal"
 
-RESPONSE FORMAT (JSON only):
+Iteration 1:
+→ Call get_all_recipes()
+← Receive list: [{id:41, title:"עוף בגריל", dietary_type:"meat", course_hints:["main"]}, {id:15, title:"ממרח זיתים", dietary_type:"pareve", course_hints:["salad"]}, ...]
+
+Iteration 2:
+→ Return JSON:
 {
-  "meals": [
-    {
-      "meal_type": "ארוחת ערב שבת",
-      "meal_order": 1,
-      "recipes": [
-        {"recipe_id": 10, "course_type": "salad", "course_order": 1},
-        {"recipe_id": 25, "course_type": "main", "course_order": 2},
-        {"recipe_id": 40, "course_type": "side", "course_order": 3}
-      ]
-    }
-  ]
+  "meals": [{
+    "meal_type": "ארוחת ערב שבת",
+    "meal_order": 1,
+    "recipes": [
+      {"recipe_id": 15, "course_type": "salad", "course_order": 1},
+      {"recipe_id": 41, "course_type": "main", "course_order": 2}
+    ]
+  }]
 }
 
-CRITICAL: Total iterations should be 2 maximum:
-- Iteration 1: Call get_all_recipes()
-- Iteration 2: Return JSON
-DO NOT make additional function calls."""
+CRITICAL RULES:
+- ONLY 2 iterations total
+- ONLY call get_all_recipes() ONCE
+- NO other function calls allowed
+- Pick IDs from the list you received"""
 
     @classmethod
     def _execute_get_all_recipes(cls):
@@ -528,12 +473,9 @@ Start with get_all_recipes() - DO IT NOW."""
                         try:
                             if function_name == "get_all_recipes":
                                 result = cls._execute_get_all_recipes()
-                            elif function_name == "search_recipes":
-                                result = cls._execute_search_recipes(**function_args)
-                            elif function_name == "get_recipe_details":
-                                result = cls._execute_get_recipe_details(**function_args)
                             else:
-                                result = {"error": f"Unknown function: {function_name}"}
+                                print(f"   ⚠️ Invalid function: {function_name} - only get_all_recipes is allowed")
+                                result = {"error": f"Function '{function_name}' not available. Use get_all_recipes() only."}
                         except Exception as func_error:
                             print(f"   ⚠️ Function error: {str(func_error)}")
                             result = {"error": f"Function execution failed: {str(func_error)}"}
@@ -596,12 +538,9 @@ Start with get_all_recipes() - DO IT NOW."""
                         try:
                             if function_name == "get_all_recipes":
                                 result = cls._execute_get_all_recipes()
-                            elif function_name == "search_recipes":
-                                result = cls._execute_search_recipes(**function_args)
-                            elif function_name == "get_recipe_details":
-                                result = cls._execute_get_recipe_details(**function_args)
                             else:
-                                result = {"error": f"Unknown function: {function_name}"}
+                                print(f"   ⚠️ Invalid function: {function_name} - only get_all_recipes is allowed")
+                                result = {"error": f"Function '{function_name}' not available. Use get_all_recipes() only."}
                         except Exception as func_error:
                             print(f"   ⚠️ Function error: {str(func_error)}")
                             result = {"error": f"Function execution failed: {str(func_error)}"}
