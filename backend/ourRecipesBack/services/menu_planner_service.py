@@ -613,10 +613,13 @@ Start NOW with get_all_recipes()."""
             # Configure AI with tools - FORCE function calling
             genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
             model = genai.GenerativeModel(
-                # Using 1.5 Pro: Better at function calling and following instructions
-                # Rate limits (free tier): 2 RPM, 50 RPD
-                # Previous: gemini-2.5-flash-lite (15 RPM but stuck in loops)
-                model_name="gemini-1.5-pro",
+                # Using 2.5 Flash: Best balance for function calling (2025)
+                # Rate limits (free tier): 10 RPM, 250-500 RPD
+                # Previous: 2.5 Flash-Lite (15 RPM but stuck in loops)
+                # Alternatives:
+                #   - 2.5 Pro: Smarter but only 5 RPM (too slow)
+                #   - 1.5 Pro: Old model (2024) with only 2 RPM
+                model_name="gemini-2.5-flash",
                 tools=cls._get_search_tools(),
                 system_instruction=cls._get_menu_planner_system_prompt(),
                 # Force the model to use tools
