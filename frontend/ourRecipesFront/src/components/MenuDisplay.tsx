@@ -556,9 +556,9 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                                hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors cursor-pointer"
                       onClick={() => handleReplaceRecipe(recipe.id)}
                     >
-                      {recipe.image_url && (
+                      {recipe.image && (
                         <img
-                          src={recipe.image_url}
+                          src={recipe.image}
                           alt={recipe.title}
                           className="w-16 h-16 object-cover rounded-md"
                         />
@@ -567,14 +567,14 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         <h4 className="font-semibold text-secondary-800 dark:text-white">
                           {recipe.title}
                         </h4>
-                        {recipe._categories && (
+                        {recipe.categories && recipe.categories.length > 0 && (
                           <p className="text-sm text-secondary-500 dark:text-secondary-400">
-                            {recipe._categories}
+                            {recipe.categories.join(', ')}
                           </p>
                         )}
                         <div className="flex gap-3 mt-1 text-xs text-secondary-500 dark:text-secondary-400">
-                          {recipe.cooking_time && (
-                            <span>⏱️ {recipe.cooking_time} דק׳</span>
+                          {recipe.preparation_time && (
+                            <span>⏱️ {recipe.preparation_time} דק׳</span>
                           )}
                           {recipe.difficulty && (
                             <span>📊 {recipe.difficulty}</span>
