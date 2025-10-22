@@ -4,7 +4,10 @@ import { menuService } from '@/services/menuService';
 import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import Spinner from '@/components/ui/Spinner';
-import type { Menu, RecipeSummary } from '@/types';
+import Modal from '@/components/Modal';
+import RecipeDetails from '@/components/recipe/RecipeDetails';
+import { RecipeService } from '@/services/recipeService';
+import type { Menu, RecipeSummary, recipe } from '@/types';
 
 interface MenuDisplayProps {
   menu: Menu;
@@ -22,6 +25,12 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
 
   const [menu, setMenu] = useState<Menu>(initialMenu);
   const [loading, setLoading] = useState<boolean>(false);
+
+  // For viewing a recipe
+  const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
+  const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
+
+  // For replacing a recipe
   const [selectedRecipe, setSelectedRecipe] = useState<{
     mealId: number;
     recipeId: number;
@@ -51,8 +60,23 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
-  // Handle recipe click to get suggestions
-  const handleRecipeClick = async (mealId: number, recipeId: number) => {
+  // Handle recipe click to VIEW the recipe
+  const handleRecipeClick = async (recipeId: number) => {
+    setLoadingRecipe(true);
+
+    try {
+      const response = await RecipeService.getRecipeById(recipeId);
+      setViewingRecipe(response.data);
+    } catch (error) {
+      console.error('Error loading recipe:', error);
+      addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
+    } finally {
+      setLoadingRecipe(false);
+    }
+  };
+
+  // Handle replace button click to get suggestions
+  const handleReplaceClick = async (mealId: number, recipeId: number) => {
     setSelectedRecipe({ mealId, recipeId });
     setLoadingSuggestions(true);
 
@@ -300,7 +324,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                       className="flex items-start gap-4 p-4 bg-secondary-50 dark:bg-secondary-700 rounded-lg
                                hover:bg-secondary-100 dark:hover:bg-secondary-600 transition-colors
                                cursor-pointer"
-                      onClick={() => handleRecipeClick(meal.id, mealRecipe.recipe_id)}
+                      onClick={() => handleRecipeClick(mealRecipe.recipe_id)}
                     >
                       {mealRecipe.recipe?.image_url && (
                         <img
@@ -310,7 +334,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         />
                       )}
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-secondary-800 dark:text-white">
+                        <h3 className="text-lg font-semibold text-secondary-800 dark:text-white hover:text-primary-600 transition-colors">
                           {mealRecipe.recipe?.title || 'מתכון לא זמין'}
                         </h3>
                         {mealRecipe.course_type && (
@@ -319,8 +343,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           </p>
                         )}
                         {mealRecipe.ai_reason && (
-                          <p className="text-sm text-secondary-600 dark:text-gray-300 mt-1">
-                            {mealRecipe.ai_reason}
+                          <p className="text-sm text-secondary-600 dark:text-secondary-300 mt-1">
+                            💡 {mealRecipe.ai_reason}
                           </p>
                         )}
                         <div className="flex gap-3 mt-2 text-xs text-secondary-500 dark:text-secondary-400">
@@ -332,15 +356,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           )}
                         </div>
                       </div>
-                      <button
-                        className="text-primary-500 hover:text-primary-700 text-sm font-medium"
+                      <Button
+                        variant="secondary"
+                        size="sm"
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleRecipeClick(meal.id, mealRecipe.recipe_id);
+                          handleReplaceClick(meal.id, mealRecipe.recipe_id);
                         }}
                       >
-                        החלף →
-                      </button>
+                        🔄 החלף
+                      </Button>
                     </div>
                   ))
                 ) : (
@@ -438,6 +463,30 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           </div>
         </div>
       )}
+
+      {/* Recipe View Modal */}
+      <Modal
+        isOpen={!!viewingRecipe || loadingRecipe}
+        onClose={() => {
+          setViewingRecipe(null);
+        }}
+        title={viewingRecipe?.title}
+      >
+        {loadingRecipe && (
+          <div className="flex justify-center items-center p-8">
+            <Spinner message="טוען מתכון..." />
+          </div>
+        )}
+
+        {viewingRecipe && !loadingRecipe && (
+          <RecipeDetails
+            recipe={viewingRecipe}
+            isEditing={false}
+            onEditStart={() => {}}
+            onEditEnd={() => {}}
+          />
+        )}
+      </Modal>
 
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
