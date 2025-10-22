@@ -1,5 +1,5 @@
-import google.generativeai as genai
-from google.api_core import exceptions as google_exceptions
+from google import genai
+from google.genai import types, errors
 from flask import current_app
 import json
 import time
@@ -34,7 +34,10 @@ class MenuPlannerService:
             try:
                 return chat.send_message(message)
 
-            except google_exceptions.ResourceExhausted as rate_limit_error:
+            except errors.ClientError as rate_limit_error:
+                # Check if it's a rate limit error (429)
+                if hasattr(rate_limit_error, 'code') and rate_limit_error.code != 429:
+                    raise  # Re-raise if not a rate limit error
                 retry_count += 1
 
                 # Extract retry delay from error if available
@@ -74,36 +77,34 @@ class MenuPlannerService:
         2. get_recipes_details_batch(recipe_ids) - Get FULL details for specific recipes
         """
         return [
-            {
-                "function_declarations": [
-                    {
-                        "name": "get_all_recipes",
-                        "description": "Get ALL available recipes (~113 recipes). Returns ENHANCED metadata for each recipe: id, title, dietary_type, course_hints, cooking_time, difficulty, servings, ingredients_preview, has_image. This is the COMPLETE catalog - call this ONCE to see all options. If you need FULL details (complete ingredients list, instructions), use get_recipes_details_batch() with specific recipe IDs.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {},
-                            "required": []
-                        }
-                    },
-                    {
-                        "name": "get_recipes_details_batch",
-                        "description": "Get FULL details for multiple recipes at once (up to 10 recipes per call). Returns complete information: full ingredients list with quantities, complete instructions, all metadata. Use this when you've identified potential recipes from get_all_recipes() and need full details to make final decisions. IMPORTANT: recipe_ids must be INTEGERS (e.g., [11, 23, 45] not [11.0, 23.0, 45.0]). Use the exact 'id' numbers from get_all_recipes() response. Maximum 10 recipes per call.",
-                        "parameters": {
-                            "type": "object",
-                            "properties": {
-                                "recipe_ids": {
-                                    "type": "array",
-                                    "description": "Array of VALID recipe IDs as integers (e.g., [11, 23, 45]). These IDs must match the 'id' field from get_all_recipes(). Maximum 10 IDs.",
-                                    "items": {
-                                        "type": "integer"
-                                    }
-                                }
+            types.Tool(
+                function_declarations=[
+                    types.FunctionDeclaration(
+                        name="get_all_recipes",
+                        description="Get ALL available recipes (~113 recipes). Returns ENHANCED metadata for each recipe: id, title, dietary_type, course_hints, cooking_time, difficulty, servings, ingredients_preview, has_image. This is the COMPLETE catalog - call this ONCE to see all options. If you need FULL details (complete ingredients list, instructions), use get_recipes_details_batch() with specific recipe IDs.",
+                        parameters=types.Schema(
+                            type=types.Type.OBJECT,
+                            properties={},
+                            required=[]
+                        )
+                    ),
+                    types.FunctionDeclaration(
+                        name="get_recipes_details_batch",
+                        description="Get FULL details for multiple recipes at once (up to 10 recipes per call). Returns complete information: full ingredients list with quantities, complete instructions, all metadata. Use this when you've identified potential recipes from get_all_recipes() and need full details to make final decisions. IMPORTANT: recipe_ids must be INTEGERS (e.g., [11, 23, 45] not [11.0, 23.0, 45.0]). Use the exact 'id' numbers from get_all_recipes() response. Maximum 10 recipes per call.",
+                        parameters=types.Schema(
+                            type=types.Type.OBJECT,
+                            properties={
+                                "recipe_ids": types.Schema(
+                                    type=types.Type.ARRAY,
+                                    description="Array of VALID recipe IDs as integers (e.g., [11, 23, 45]). These IDs must match the 'id' field from get_all_recipes(). Maximum 10 IDs.",
+                                    items=types.Schema(type=types.Type.INTEGER)
+                                )
                             },
-                            "required": ["recipe_ids"]
-                        }
-                    }
+                            required=["recipe_ids"]
+                        )
+                    )
                 ]
-            }
+            )
         ]
 
     @classmethod
@@ -655,24 +656,29 @@ STRATEGY:
 
 Start NOW with get_all_recipes()."""
 
-            # Configure AI with tools - FORCE function calling
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            model = genai.GenerativeModel(
+            # Create client and chat with tools - FORCE function calling
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
+
+            # Create chat session with configuration
+            chat = client.chats.create(
                 # Using 2.5 Flash: Best balance for function calling (2025)
                 # Rate limits (free tier): 10 RPM, 250-500 RPD
                 # Previous: 2.5 Flash-Lite (15 RPM but stuck in loops)
                 # Alternatives:
                 #   - 2.5 Pro: Smarter but only 5 RPM (too slow)
                 #   - 1.5 Pro: Old model (2024) with only 2 RPM
-                model_name="gemini-2.5-flash",
-                tools=cls._get_search_tools(),
-                system_instruction=cls._get_menu_planner_system_prompt(),
-                # Force the model to use tools
-                tool_config={'function_calling_config': {'mode': 'ANY'}}
+                model="gemini-2.5-flash",
+                config=types.GenerateContentConfig(
+                    tools=cls._get_search_tools(),
+                    system_instruction=cls._get_menu_planner_system_prompt(),
+                    # Force the model to use tools
+                    tool_config=types.ToolConfig(
+                        function_calling_config=types.FunctionCallingConfig(mode='ANY')
+                    )
+                )
             )
 
-            # Start conversation
-            chat = model.start_chat()
+            # Send initial message
             response = cls._send_message_with_retry(chat, user_prompt)
 
             # Handle function calling loop
@@ -761,8 +767,8 @@ This is MANDATORY. Return JSON in your next response."""
 
                         # Prepare response with dynamic guidance
                         function_responses.append(
-                            genai.protos.Part(
-                                function_response=genai.protos.FunctionResponse(
+                            types.Part(
+                                function_response=types.FunctionResponse(
                                     name=function_name,
                                     response={"result": result}
                                 )
@@ -833,10 +839,10 @@ You now have complete information. Return JSON menu NOW:
 Analyze data and return JSON menu."""
 
                     # Send function results back to AI with guidance
-                    all_parts = function_responses + [genai.protos.Part(text=guidance_message)]
+                    all_parts = function_responses + [types.Part(text=guidance_message)]
                     response = cls._send_message_with_retry(
                         chat,
-                        genai.protos.Content(parts=all_parts)
+                        types.Content(parts=all_parts)
                     )
 
                     iteration += 1
@@ -896,8 +902,8 @@ Analyze data and return JSON menu."""
 
                         # Prepare response
                         function_responses.append(
-                            genai.protos.Part(
-                                function_response=genai.protos.FunctionResponse(
+                            types.Part(
+                                function_response=types.FunctionResponse(
                                     name=function_name,
                                     response={"result": result}
                                 )
@@ -924,10 +930,10 @@ Return ONLY the final JSON menu plan NOW:
 This is your LAST chance to respond. Return JSON immediately."""
 
                     # Send the function responses WITH the strong guidance
-                    all_parts = function_responses + [genai.protos.Part(text=completion_prompt)]
+                    all_parts = function_responses + [types.Part(text=completion_prompt)]
                     response = cls._send_message_with_retry(
                         chat,
-                        genai.protos.Content(parts=all_parts)
+                        types.Content(parts=all_parts)
                     )
 
                     # If STILL has function calls, send one more VERY forceful message
@@ -1011,9 +1017,14 @@ This is your LAST chance to respond. Return JSON immediately."""
 
             return menu
 
-        except google_exceptions.ResourceExhausted as rate_error:
-            print(f"❌ Rate limit exceeded: {str(rate_error)}")
-            raise ValueError("AI service is temporarily unavailable due to rate limits. Please wait a minute and try again.")
+        except errors.ClientError as rate_error:
+            # Check if it's a rate limit error (429)
+            if hasattr(rate_error, 'code') and rate_error.code == 429:
+                print(f"❌ Rate limit exceeded: {str(rate_error)}")
+                raise ValueError("AI service is temporarily unavailable due to rate limits. Please wait a minute and try again.")
+            else:
+                # Re-raise other client errors
+                raise
 
         except ValueError as val_error:
             # Re-raise ValueError with user-friendly message

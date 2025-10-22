@@ -1,4 +1,5 @@
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from flask import current_app
 import requests
 import base64
@@ -53,12 +54,8 @@ class AIService:
             str: Generated recipe text
         """
         try:
-            # Configure AI model
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",
-                system_instruction=cls._get_recipe_prompt(),
-            )
+            # Create AI client
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Build user prompt parts
             prompt_parts = []
@@ -78,8 +75,14 @@ class AIService:
             # Join all parts with periods
             user_prompt = ". ".join(prompt_parts)
 
-            # Generate response
-            response = model.generate_content(user_prompt)
+            # Generate response using new API
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=user_prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=cls._get_recipe_prompt()
+                )
+            )
             return response.text
 
         except Exception as e:
