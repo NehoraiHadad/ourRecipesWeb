@@ -482,6 +482,19 @@ class ApiService {
     });
   }
 
+  // PATCH request
+  async patch<T>(endpoint: string, data?: any, options: CustomRequestOptions = {}): Promise<T> {
+    return this.fetch<T>(endpoint, {
+      ...options,
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers,
+      },
+      body: JSON.stringify(data),
+    });
+  }
+
   // Clear all caches
   async clearCache(): Promise<void> {
     this.cache.clear();
