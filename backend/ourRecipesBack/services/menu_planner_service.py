@@ -208,16 +208,23 @@ class MenuPlannerService:
 
     @classmethod
     def _get_description_preview(cls, recipe):
-        """Get short description preview"""
-        if not recipe.description:
+        """Get short description preview from instructions or raw content"""
+        try:
+            # Try instructions first (more structured)
+            if hasattr(recipe, '_instructions') and recipe._instructions:
+                desc = recipe._instructions[:100]
+                if len(recipe._instructions) > 100:
+                    desc += "..."
+                return desc
+            # Fallback to raw_content
+            elif hasattr(recipe, 'raw_content') and recipe.raw_content:
+                desc = recipe.raw_content[:100]
+                if len(recipe.raw_content) > 100:
+                    desc += "..."
+                return desc
             return ""
-
-        # Get first 100 characters
-        desc = recipe.description[:100]
-        if len(recipe.description) > 100:
-            desc += "..."
-
-        return desc
+        except:
+            return ""
 
     @classmethod
     def _execute_get_recipe_details(cls, recipe_id):
