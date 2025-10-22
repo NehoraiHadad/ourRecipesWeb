@@ -1,0 +1,306 @@
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { menuService } from '@/services/menuService';
+import { useNotification } from '@/context/NotificationContext';
+import { Button } from '@/components/ui/Button';
+import { Input } from '@/components/ui/Input';
+import Spinner from '@/components/ui/Spinner';
+import type { DietaryType, MenuGenerationRequest } from '@/types';
+
+interface MenuGeneratorProps {
+  onMenuCreated?: (menuId: number) => void;
+}
+
+const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
+  const router = useRouter();
+  const { addNotification } = useNotification();
+
+  // Form state
+  const [name, setName] = useState<string>('');
+  const [eventType, setEventType] = useState<string>('שבת');
+  const [servings, setServings] = useState<number>(4);
+  const [dietaryType, setDietaryType] = useState<DietaryType | ''>('');
+  const [mealTypes, setMealTypes] = useState<string[]>(['ארוחת ערב שבת']);
+  const [specialRequests, setSpecialRequests] = useState<string>('');
+  const [description, setDescription] = useState<string>('');
+
+  // Loading state
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string>('');
+
+  // Predefined options
+  const eventTypes = [
+    'שבת',
+    'חג',
+    'ארוחה משפחתית',
+    'אירוע מיוחד',
+    'יום הולדת',
+    'אחר'
+  ];
+
+  const mealTypeOptions = [
+    'ארוחת ערב שבת',
+    'ארוחת בוקר',
+    'ארוחת צהריים',
+    'סעודה שלישית',
+    'ארוחת ערב',
+    'קידוש',
+  ];
+
+  const dietaryTypes: { value: DietaryType; label: string }[] = [
+    { value: 'meat', label: 'בשרי' },
+    { value: 'dairy', label: 'חלבי' },
+    { value: 'pareve', label: 'פרווה' },
+  ];
+
+  const handleMealTypeToggle = (meal: string) => {
+    setMealTypes((prev) =>
+      prev.includes(meal)
+        ? prev.filter((m) => m !== meal)
+        : [...prev, meal]
+    );
+  };
+
+  const handleGenerate = async () => {
+    // Validation
+    if (!name.trim()) {
+      setError('נא להזין שם לתפריט');
+      return;
+    }
+
+    if (mealTypes.length === 0) {
+      setError('נא לבחור לפחות ארוחה אחת');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const request: MenuGenerationRequest = {
+        name: name.trim(),
+        event_type: eventType,
+        servings,
+        dietary_type: dietaryType || undefined,
+        meal_types: mealTypes,
+        special_requests: specialRequests.trim() || undefined,
+        description: description.trim() || undefined,
+      };
+
+      const response = await menuService.generateMenu(request);
+
+      if (response.menu) {
+        addNotification('התפריט נוצר בהצלחה!', 'success');
+
+        if (onMenuCreated) {
+          onMenuCreated(response.menu.id);
+        } else {
+          // Navigate to the menu display page
+          router.push(`/menus/${response.menu.id}`);
+        }
+      } else {
+        throw new Error('No menu returned from server');
+      }
+    } catch (err: any) {
+      console.error('Error generating menu:', err);
+      setError(err.message || 'שגיאה ביצירת התפריט');
+      addNotification('שגיאה ביצירת התפריט', 'error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="max-w-2xl mx-auto p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
+        יצירת תפריט חדש
+      </h2>
+
+      {error && (
+        <div className="mb-4 p-3 bg-red-100 dark:bg-red-900 text-red-700 dark:text-red-200 rounded">
+          {error}
+        </div>
+      )}
+
+      <div className="space-y-6">
+        {/* Menu name */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            שם התפריט *
+          </label>
+          <Input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="לדוגמה: תפריט שבת משפחתי"
+            disabled={loading}
+            className="w-full"
+          />
+        </div>
+
+        {/* Event type */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            סוג אירוע
+          </label>
+          <select
+            value={eventType}
+            onChange={(e) => setEventType(e.target.value)}
+            disabled={loading}
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500"
+          >
+            {eventTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Servings */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            מספר סועדים
+          </label>
+          <Input
+            type="number"
+            min="1"
+            max="50"
+            value={servings}
+            onChange={(e) => setServings(parseInt(e.target.value) || 4)}
+            disabled={loading}
+            className="w-full"
+          />
+        </div>
+
+        {/* Dietary type */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            סוג כשרות
+          </label>
+          <div className="flex gap-3">
+            <button
+              type="button"
+              onClick={() => setDietaryType('')}
+              disabled={loading}
+              className={`px-4 py-2 rounded-md transition-colors ${
+                dietaryType === ''
+                  ? 'bg-blue-500 text-white'
+                  : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+              }`}
+            >
+              כללי
+            </button>
+            {dietaryTypes.map((type) => (
+              <button
+                key={type.value}
+                type="button"
+                onClick={() => setDietaryType(type.value)}
+                disabled={loading}
+                className={`px-4 py-2 rounded-md transition-colors ${
+                  dietaryType === type.value
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
+                }`}
+              >
+                {type.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Meal types */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            ארוחות לתכנן *
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            {mealTypeOptions.map((meal) => (
+              <button
+                key={meal}
+                type="button"
+                onClick={() => handleMealTypeToggle(meal)}
+                disabled={loading}
+                className={`px-4 py-2 rounded-md text-sm transition-colors ${
+                  mealTypes.includes(meal)
+                    ? 'bg-blue-500 text-white'
+                    : 'bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600'
+                }`}
+              >
+                {meal}
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+            נבחרו {mealTypes.length} ארוחות
+          </p>
+        </div>
+
+        {/* Special requests */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            דרישות מיוחדות (אופציונלי)
+          </label>
+          <textarea
+            value={specialRequests}
+            onChange={(e) => setSpecialRequests(e.target.value)}
+            placeholder="למשל: ללא אורז, מתאים לילדים, ללא גלוטן..."
+            disabled={loading}
+            rows={2}
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 resize-none"
+          />
+        </div>
+
+        {/* Description */}
+        <div>
+          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            תיאור (אופציונלי)
+          </label>
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="תיאור כללי של התפריט..."
+            disabled={loading}
+            rows={2}
+            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md
+                     bg-white dark:bg-gray-700 text-gray-900 dark:text-white
+                     focus:ring-2 focus:ring-blue-500 resize-none"
+          />
+        </div>
+
+        {/* Generate button */}
+        <Button
+          onClick={handleGenerate}
+          disabled={loading || !name.trim() || mealTypes.length === 0}
+          className="w-full"
+        >
+          {loading ? (
+            <div className="flex items-center justify-center gap-2">
+              <Spinner size="sm" />
+              <span>מייצר תפריט...</span>
+            </div>
+          ) : (
+            'צור תפריט'
+          )}
+        </Button>
+      </div>
+
+      {loading && (
+        <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-md">
+          <p className="text-sm text-blue-700 dark:text-blue-300">
+            🤖 ה-AI עובד על יצירת תפריט מאוזן והגיוני עבורך...
+          </p>
+          <p className="text-xs text-blue-600 dark:text-blue-400 mt-1">
+            זה עשוי לקחת מספר שניות
+          </p>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default MenuGenerator;
