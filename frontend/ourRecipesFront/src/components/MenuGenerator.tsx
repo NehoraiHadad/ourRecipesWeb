@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { menuService } from '@/services/menuService';
+import { SearchService } from '@/services/searchService';
 import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import Spinner from '@/components/ui/Spinner';
-import type { DietaryType, MenuGenerationRequest } from '@/types';
+import type { DietaryType, MenuGenerationRequest, RecipeSummary } from '@/types';
 
 interface MenuGeneratorProps {
   onMenuCreated?: (menuId: number) => void;
@@ -32,6 +33,18 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   // Preview state
   const [menuPreview, setMenuPreview] = useState<any>(null);
   const [previewPreferences, setPreviewPreferences] = useState<MenuGenerationRequest | null>(null);
+
+  // Recipe replacement in preview
+  const [replacingRecipe, setReplacingRecipe] = useState<{
+    mealIndex: number;
+    recipeIndex: number;
+    recipeId: number;
+  } | null>(null);
+  const [suggestions, setSuggestions] = useState<RecipeSummary[]>([]);
+  const [loadingSuggestions, setLoadingSuggestions] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
 
   // Predefined options
   const eventTypes = [
@@ -159,6 +172,84 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   const handleCancelPreview = () => {
     setMenuPreview(null);
     setPreviewPreferences(null);
+    setReplacingRecipe(null);
+    setSuggestions([]);
+    setSearchQuery('');
+    setSearchResults([]);
+  };
+
+  // Handle opening recipe replacement modal in preview
+  const handleReplaceInPreview = async (mealIndex: number, recipeIndex: number, recipeId: number, courseType: string) => {
+    setReplacingRecipe({ mealIndex, recipeIndex, recipeId });
+    setLoadingSuggestions(true);
+    setSuggestions([]);
+    setSearchQuery('');
+    setSearchResults([]);
+
+    try {
+      // For preview, we don't have a menu_id yet, so we'll use a simpler approach
+      // We can use the search service or generate suggestions based on course type
+      // For now, let's keep it simple - user can search
+      setSuggestions([]);
+    } catch (error) {
+      console.error('Error loading suggestions:', error);
+      addNotification({ message: 'שגיאה בטעינת הצעות', type: 'error' });
+    } finally {
+      setLoadingSuggestions(false);
+    }
+  };
+
+  // Handle replacing a recipe in preview
+  const handleConfirmReplacement = (newRecipeId: number, newRecipeData: any) => {
+    if (!replacingRecipe || !menuPreview) return;
+
+    const { mealIndex, recipeIndex } = replacingRecipe;
+
+    // Create a deep copy of the menu preview
+    const updatedPreview = JSON.parse(JSON.stringify(menuPreview));
+
+    // Update the recipe at the specified position
+    updatedPreview.meals[mealIndex].recipes[recipeIndex] = {
+      ...updatedPreview.meals[mealIndex].recipes[recipeIndex],
+      recipe_id: newRecipeId,
+      recipe: newRecipeData
+    };
+
+    // Update state
+    setMenuPreview(updatedPreview);
+    setReplacingRecipe(null);
+    setSuggestions([]);
+    setSearchQuery('');
+    setSearchResults([]);
+
+    addNotification({ message: 'המתכון הוחלף בהצלחה!', type: 'success' });
+  };
+
+  // Search recipes for replacement
+  const performRecipeSearch = async (query: string) => {
+    if (!query.trim()) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+
+    try {
+      const response = await SearchService.search({ query });
+
+      if (response?.results) {
+        const recipes = Object.values(response.results);
+        setSearchResults(recipes);
+      } else {
+        setSearchResults([]);
+      }
+    } catch (error) {
+      console.error('Recipe search failed:', error);
+      setSearchResults([]);
+      addNotification({ message: 'שגיאה בחיפוש מתכונים', type: 'error' });
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   return (
@@ -414,6 +505,13 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                           )}
                         </div>
                       </div>
+                      <Button
+                        variant="secondary"
+                        size="sm"
+                        onClick={() => handleReplaceInPreview(index, rIndex, mealRecipe.recipe_id, mealRecipe.course_type)}
+                      >
+                        🔄 החלף
+                      </Button>
                     </div>
                   ))}
                 </div>
@@ -459,8 +557,141 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
           </div>
 
           <p className="text-xs text-secondary-500 mt-4 text-center">
-            💡 טיפ: לאחר השמירה תוכל להחליף מתכונים בעמוד התפריט
+            💡 לחץ על "🔄 החלף" כדי להחליף מתכון לפני השמירה
           </p>
+        </div>
+      )}
+
+      {/* Recipe Replacement Modal for Preview */}
+      {replacingRecipe && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => {
+            setReplacingRecipe(null);
+            setSuggestions([]);
+            setSearchQuery('');
+            setSearchResults([]);
+          }}
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-secondary-800">
+                בחר מתכון חלופי
+              </h3>
+              <button
+                onClick={() => {
+                  setReplacingRecipe(null);
+                  setSuggestions([]);
+                  setSearchQuery('');
+                  setSearchResults([]);
+                }}
+                className="text-secondary-500 hover:text-secondary-700"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="mb-4">
+              <div className="relative">
+                <input
+                  type="search"
+                  placeholder="חפש מתכון..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      performRecipeSearch(searchQuery);
+                    }
+                  }}
+                  className="w-full px-4 py-2 border border-secondary-200 rounded-lg
+                           bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100
+                           outline-none transition-all duration-200"
+                />
+
+                {/* Search Button */}
+                <button
+                  type="button"
+                  onClick={() => performRecipeSearch(searchQuery)}
+                  disabled={isSearching || !searchQuery.trim()}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500 hover:text-primary-500 transition-colors disabled:opacity-50"
+                >
+                  {isSearching ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Search Results */}
+            {searchResults.length > 0 && (
+              <div className="mb-6">
+                <h4 className="text-sm font-semibold text-secondary-700 mb-2">
+                  תוצאות חיפוש ({searchResults.length}):
+                </h4>
+                <div className="space-y-3 max-h-60 overflow-y-auto">
+                  {searchResults.map((recipe: any) => (
+                    <div
+                      key={recipe.id}
+                      className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
+                               hover:bg-secondary-100 transition-colors cursor-pointer"
+                      onClick={() => {
+                        handleConfirmReplacement(recipe.id, {
+                          id: recipe.id,
+                          title: recipe.title,
+                          image_url: recipe.image,
+                          cooking_time: recipe.preparation_time,
+                          preparation_time: recipe.preparation_time,
+                          difficulty: recipe.difficulty,
+                          servings: recipe.servings || 4,
+                          categories: recipe.categories?.join(', ') || ''
+                        });
+                      }}
+                    >
+                      {recipe.image && (
+                        <img
+                          src={recipe.image}
+                          alt={recipe.title}
+                          className="w-16 h-16 object-cover rounded-md"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-secondary-800">
+                          {recipe.title}
+                        </h4>
+                        {recipe.categories && recipe.categories.length > 0 && (
+                          <p className="text-sm text-secondary-500">
+                            {recipe.categories.join(', ')}
+                          </p>
+                        )}
+                        <div className="flex gap-3 mt-1 text-xs text-secondary-500">
+                          {recipe.preparation_time && (
+                            <span>⏱️ {recipe.preparation_time} דק׳</span>
+                          )}
+                          {recipe.difficulty && (
+                            <span>📊 {recipe.difficulty}</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {!searchResults.length && !isSearching && (
+              <div className="text-center py-8 text-secondary-500">
+                <p>חפש מתכון כדי להחליף</p>
+              </div>
+            )}
+          </div>
         </div>
       )}
     </div>
