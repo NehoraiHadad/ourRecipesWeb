@@ -26,7 +26,12 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
   // Loading state
   const [loading, setLoading] = useState<boolean>(false);
+  const [saving, setSaving] = useState<boolean>(false);
   const [error, setError] = useState<string>('');
+
+  // Preview state
+  const [menuPreview, setMenuPreview] = useState<any>(null);
+  const [previewPreferences, setPreviewPreferences] = useState<MenuGenerationRequest | null>(null);
 
   // Predefined options
   const eventTypes = [
@@ -75,6 +80,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
     setLoading(true);
     setError('');
+    setMenuPreview(null);
 
     try {
       const request: MenuGenerationRequest = {
@@ -87,28 +93,24 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
         description: description.trim() || undefined,
       };
 
-      const response = await menuService.generateMenu(request);
+      // Generate PREVIEW first (not saved yet)
+      const response = await menuService.generateMenuPreview(request);
 
-      if (response.menu) {
-        addNotification({ message: 'התפריט נוצר בהצלחה!', type: 'success' });
-
-        if (onMenuCreated) {
-          onMenuCreated(response.menu.id);
-        } else {
-          // Navigate to the menu display page
-          router.push(`/menus/${response.menu.id}`);
-        }
+      if (response.preview) {
+        setMenuPreview(response.preview);
+        setPreviewPreferences(request);
+        addNotification({ message: 'התפריט נוצר! בדוק ולחץ על "אשר ושמור"', type: 'success' });
       } else {
-        throw new Error('No menu returned from server');
+        throw new Error('No preview returned from server');
       }
     } catch (err: any) {
-      console.error('Error generating menu:', err);
+      console.error('Error generating menu preview:', err);
 
       let errorMessage = 'שגיאה ביצירת התפריט';
 
       // Handle specific error types
       if (err.message?.includes('timeout') || err.message?.includes('took too long')) {
-        errorMessage = 'יצירת התפריט לוקחת זמן רב. ייתכן שהתפריט נוצר בהצלחה - נסה לרענן את הדף ולבדוק ברשימת התפריטים.';
+        errorMessage = 'יצירת התפריט לוקחת זמן רב. נסה שוב.';
       } else if (err.message?.includes('Not enough recipes')) {
         errorMessage = 'אין מספיק מתכונים במאגר כדי ליצור תפריט. נדרשים לפחות 5 מתכונים.';
       } else if (err.message) {
@@ -120,6 +122,43 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleConfirmAndSave = async () => {
+    if (!menuPreview || !previewPreferences) {
+      return;
+    }
+
+    setSaving(true);
+    setError('');
+
+    try {
+      const response = await menuService.saveMenu(menuPreview, previewPreferences);
+
+      if (response.menu) {
+        addNotification({ message: 'התפריט נשמר בהצלחה!', type: 'success' });
+
+        if (onMenuCreated) {
+          onMenuCreated(response.menu.id);
+        } else {
+          // Navigate to the menu display page
+          router.push(`/menus/${response.menu.id}`);
+        }
+      } else {
+        throw new Error('No menu returned from server');
+      }
+    } catch (err: any) {
+      console.error('Error saving menu:', err);
+      setError(err.message || 'שגיאה בשמירת התפריט');
+      addNotification({ message: 'שגיאה בשמירת התפריט', type: 'error' });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleCancelPreview = () => {
+    setMenuPreview(null);
+    setPreviewPreferences(null);
   };
 
   return (
@@ -287,7 +326,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
         {/* Generate button */}
         <Button
           onClick={handleGenerate}
-          disabled={loading || !name.trim() || mealTypes.length === 0}
+          disabled={loading || saving || !!menuPreview || !name.trim() || mealTypes.length === 0}
           variant="primary"
           size="lg"
           className="w-full"
@@ -298,7 +337,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
               <span>מייצר תפריט...</span>
             </div>
           ) : (
-            'צור תפריט'
+            'צור תפריט (תצוגה מקדימה)'
           )}
         </Button>
       </div>
@@ -314,6 +353,70 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
           <p className="text-xs text-primary-600 mt-1">
             ה-AI מחפש מתכונים מתאימים ומוודא איזון נכון בין מנות
           </p>
+        </div>
+      )}
+
+      {/* Preview Section */}
+      {menuPreview && !loading && (
+        <div className="mt-6 border-t pt-6">
+          <h3 className="text-xl font-bold mb-4 text-secondary-800">
+            תצוגה מקדימה - בדוק את התפריט
+          </h3>
+
+          <div className="space-y-4 mb-6">
+            {menuPreview.meals?.map((meal: any, index: number) => (
+              <div key={index} className="bg-secondary-50 rounded-lg p-4">
+                <h4 className="font-bold text-lg text-secondary-800 mb-2">
+                  {meal.meal_type}
+                </h4>
+                <ul className="space-y-2">
+                  {meal.recipes?.map((recipe: any, rIndex: number) => (
+                    <li key={rIndex} className="text-secondary-700">
+                      <span className="font-semibold">{recipe.course_type || 'מנה'}:</span>{' '}
+                      ID {recipe.recipe_id}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          {menuPreview.reasoning && (
+            <div className="bg-primary-50 rounded-lg p-4 mb-6">
+              <p className="text-sm text-primary-700">
+                <span className="font-semibold">🤖 הסבר ה-AI:</span> {menuPreview.reasoning}
+              </p>
+            </div>
+          )}
+
+          {/* Confirm/Cancel buttons */}
+          <div className="flex gap-4">
+            <Button
+              onClick={handleConfirmAndSave}
+              disabled={saving}
+              variant="primary"
+              size="lg"
+              className="flex-1"
+            >
+              {saving ? (
+                <div className="flex items-center justify-center gap-2">
+                  <Spinner size="sm" />
+                  <span>שומר...</span>
+                </div>
+              ) : (
+                '✓ אשר ושמור את התפריט'
+              )}
+            </Button>
+            <Button
+              onClick={handleCancelPreview}
+              disabled={saving}
+              variant="secondary"
+              size="lg"
+              className="flex-1"
+            >
+              ✕ בטל
+            </Button>
+          </div>
         </div>
       )}
     </div>

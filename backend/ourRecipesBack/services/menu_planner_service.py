@@ -490,6 +490,25 @@ OPTION B - COMPLEX (4-7 iterations) - For multiple meals (like Shabbat with 3 me
 - If you request non-existent IDs, you'll get an error and waste iterations
 - Example: If get_all_recipes() returns id:15, use 15 not 15.0
 
+🍽️ RECIPES PER MEAL - CRITICAL LIMITS:
+1. Each meal should have 2-3 recipes MAXIMUM (not more!)
+2. Focus on MAIN COURSES - these are essential
+3. Optional: Add 1 salad OR 1 side dish if needed
+4. Do NOT add multiple salads, multiple sides, or multiple desserts to the same meal
+5. Quality over quantity - better to have 2 great dishes than 5 mediocre ones
+
+STRUCTURE PER MEAL:
+- REQUIRED: 1 main course (meat, fish, or vegetarian main)
+- OPTIONAL: 1 salad OR 1 side dish (rice, pasta, potatoes, vegetables)
+- OPTIONAL: 1 dessert (only if user specifically requested or for special occasions)
+
+EXAMPLES:
+✓ GOOD: Main + Salad (2 recipes)
+✓ GOOD: Main + Side (2 recipes)
+✓ GOOD: Main + Salad + Side (3 recipes)
+✗ BAD: Main + Salad + Side + Dessert + Soup (5 recipes - TOO MANY!)
+✗ BAD: 2 Mains + Salad + 2 Sides (5 recipes - TOO MANY!)
+
 KOSHER LAWS (MUST FOLLOW):
 1. NEVER mix meat (בשרי) and dairy (חלבי) in the same meal
 2. Pareve (פרווה) can be mixed with either meat or dairy
@@ -510,11 +529,11 @@ Iteration 2:
     "meal_type": "ארוחת ערב שבת",
     "meal_order": 1,
     "recipes": [
-      {"recipe_id": 15, "course_type": "salad", "course_order": 1},
-      {"recipe_id": 41, "course_type": "main", "course_order": 2}
+      {"recipe_id": 41, "course_type": "main", "course_order": 1},
+      {"recipe_id": 15, "course_type": "salad", "course_order": 2}
     ]
   }],
-  "reasoning": "בחרתי סלט כמנה ראשונה ועוף בגריל כמנה עיקרית"
+  "reasoning": "בחרתי עוף בגריל כמנה עיקרית וסלט טרי כתוספת - 2 מתכונים מאוזנים"
 }
 
 EXAMPLE 2 - COMPLEX MENU (4 iterations):
@@ -618,17 +637,16 @@ CRITICAL RULES:
         return result
 
     @classmethod
-    def generate_menu(cls, user_id, preferences):
+    def generate_menu_preview(cls, preferences):
         """
-        Generate menu using AI with Function Calling.
-        AI will dynamically search for recipes as needed.
+        Generate menu PREVIEW using AI with Function Calling (WITHOUT saving to database).
+        This allows user to review the menu before confirming.
 
         Args:
-            user_id: ID of user creating menu
             preferences: Dictionary with menu preferences
 
         Returns:
-            Menu: Created menu object
+            dict: Menu plan JSON from AI (not saved to database yet)
         """
         try:
             # Extract preferences
@@ -1007,18 +1025,10 @@ This is your LAST chance to respond. Return JSON immediately."""
             for meal in menu_plan.get('meals', []):
                 print(f"   - {meal.get('meal_type')}: {len(meal.get('recipes', []))} recipes")
 
-            # Create menu in database
-            try:
-                menu = cls._create_menu_from_plan(
-                    user_id=user_id,
-                    preferences=preferences,
-                    menu_plan=menu_plan
-                )
-            except Exception as db_error:
-                print(f"❌ Database error while creating menu: {str(db_error)}")
-                raise ValueError(f"Failed to save menu to database. Please try again.")
-
-            return menu
+            # CRITICAL: Return preview ONLY - do NOT save to database
+            # User will review and confirm before saving
+            print(f"✓ Menu preview generated successfully - NOT saved to database yet")
+            return menu_plan
 
         except errors.ClientError as rate_error:
             # Check if it's a rate limit error (429)
@@ -1039,6 +1049,26 @@ This is your LAST chance to respond. Return JSON immediately."""
             import traceback
             traceback.print_exc()
             raise ValueError(f"Menu generation failed: {str(e)}. Please try again with different parameters.")
+
+    @classmethod
+    def save_menu_from_preview(cls, user_id, preferences, menu_plan):
+        """
+        Save menu to database after user confirmation.
+        This is called AFTER user reviews and approves the menu preview.
+
+        Args:
+            user_id: ID of user creating menu
+            preferences: Dictionary with menu preferences
+            menu_plan: Menu plan JSON from AI (from generate_menu_preview)
+
+        Returns:
+            Menu: Created and saved menu object
+        """
+        try:
+            return cls._create_menu_from_plan(user_id, preferences, menu_plan)
+        except Exception as e:
+            print(f"❌ Error saving menu: {str(e)}")
+            raise ValueError(f"Failed to save menu to database: {str(e)}")
 
     @classmethod
     def _create_menu_from_plan(cls, user_id, preferences, menu_plan):

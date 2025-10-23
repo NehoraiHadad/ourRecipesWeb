@@ -10,11 +10,12 @@ import asyncio
 menus_bp = Blueprint("menus", __name__)
 
 
-@menus_bp.route("/generate", methods=["POST"])
+@menus_bp.route("/generate-preview", methods=["POST"])
 @jwt_required()
-def generate_menu():
+def generate_menu_preview():
     """
-    Generate a new menu using AI
+    Generate menu PREVIEW using AI (WITHOUT saving to database).
+    Returns JSON plan for user to review before confirming.
 
     Request body:
     {
@@ -25,12 +26,22 @@ def generate_menu():
         "meal_types": ["ארוחת ערב שבת", "בוקר", "סעודה שלישית"],
         "special_requests": "ללא אורז"
     }
+
+    Response:
+    {
+        "success": true,
+        "preview": {
+            "meals": [...],
+            "reasoning": "..."
+        },
+        "preferences": {...}  # Echo back for save endpoint
+    }
     """
     try:
         user_id = get_jwt_identity()
         data = request.get_json()
 
-        print(f"🍽️ Menu generation request from user {user_id}")
+        print(f"🍽️ Menu preview request from user {user_id}")
         print(f"   Request: {data.get('name')} - {data.get('meal_types')}")
 
         if not data:
@@ -58,10 +69,70 @@ def generate_menu():
                 "message": f"Only {available_recipes} recipes available in database. Need at least 5 recipes to generate a menu."
             }), 400
 
-        # Generate menu (this may take 30-60 seconds)
-        print(f"🤖 Starting AI menu generation...")
-        menu = MenuPlannerService.generate_menu(user_id, data)
-        print(f"✓ Menu generated: ID {menu.id}")
+        # Generate menu PREVIEW (this may take 30-60 seconds)
+        print(f"🤖 Starting AI menu preview generation...")
+        menu_plan = MenuPlannerService.generate_menu_preview(data)
+        print(f"✓ Menu preview generated (NOT saved to database)")
+
+        return jsonify({
+            "success": True,
+            "preview": menu_plan,
+            "preferences": data  # Echo back for save endpoint
+        }), 200
+
+    except ValueError as val_error:
+        # User-friendly errors from MenuPlannerService
+        print(f"❌ Validation error: {str(val_error)}")
+        return jsonify({
+            "error": "Menu preview failed",
+            "message": str(val_error)
+        }), 400
+
+    except Exception as e:
+        print(f"❌ Unexpected error generating preview: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            "error": "Menu preview failed",
+            "message": "An unexpected error occurred. Please try again."
+        }), 500
+
+
+@menus_bp.route("/save", methods=["POST"])
+@jwt_required()
+def save_menu():
+    """
+    Save menu to database after user confirms the preview.
+
+    Request body:
+    {
+        "preview": {
+            "meals": [...],
+            "reasoning": "..."
+        },
+        "preferences": {
+            "name": "תפריט שבת",
+            "event_type": "שבת",
+            ...
+        }
+    }
+    """
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+
+        print(f"💾 Saving menu for user {user_id}")
+
+        if not data or not data.get('preview') or not data.get('preferences'):
+            return jsonify({"error": "Missing preview or preferences"}), 400
+
+        menu_plan = data['preview']
+        preferences = data['preferences']
+
+        # Save menu to database
+        print(f"💾 Saving menu to database...")
+        menu = MenuPlannerService.save_menu_from_preview(user_id, preferences, menu_plan)
+        print(f"✓ Menu saved: ID {menu.id}")
 
         # Generate shopping list
         print(f"🛒 Generating shopping list...")
@@ -88,20 +159,18 @@ def generate_menu():
         }), 201
 
     except ValueError as val_error:
-        # User-friendly errors from MenuPlannerService
         print(f"❌ Validation error: {str(val_error)}")
         return jsonify({
-            "error": "Menu generation failed",
+            "error": "Menu save failed",
             "message": str(val_error)
         }), 400
 
     except Exception as e:
-        print(f"❌ Unexpected error generating menu: {str(e)}")
+        print(f"❌ Unexpected error saving menu: {str(e)}")
         import traceback
         traceback.print_exc()
-        # Don't expose internal error details to user
         return jsonify({
-            "error": "Menu generation failed",
+            "error": "Menu save failed",
             "message": "An unexpected error occurred. Please try again."
         }), 500
 

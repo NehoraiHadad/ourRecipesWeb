@@ -24,18 +24,35 @@ export class MenuService {
   private static readonly BASE_PATH = '/menus';
 
   /**
-   * Generate a new menu using AI
+   * Generate menu PREVIEW using AI (without saving to database)
+   * User can review before confirming
    * Note: This can take 30-90 seconds due to AI processing
    */
-  static async generateMenu(request: MenuGenerationRequest): Promise<ApiResponse<{
+  static async generateMenuPreview(request: MenuGenerationRequest): Promise<ApiResponse<{
+    preview: any;
+    preferences: MenuGenerationRequest;
+  }>> {
+    return apiService.post<ApiResponse<{
+      preview: any;
+      preferences: MenuGenerationRequest;
+    }>>(`${this.BASE_PATH}/generate-preview`, request, {
+      timeout: 120000 // 2 minutes timeout for AI menu generation
+    });
+  }
+
+  /**
+   * Save menu to database after user confirms the preview
+   */
+  static async saveMenu(preview: any, preferences: MenuGenerationRequest): Promise<ApiResponse<{
     menu: Menu;
     shopping_list: ShoppingList;
   }>> {
     return apiService.post<ApiResponse<{
       menu: Menu;
       shopping_list: ShoppingList;
-    }>>(`${this.BASE_PATH}/generate`, request, {
-      timeout: 120000 // 2 minutes timeout for AI menu generation
+    }>>(`${this.BASE_PATH}/save`, {
+      preview,
+      preferences
     });
   }
 
