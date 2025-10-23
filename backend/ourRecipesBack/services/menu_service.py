@@ -362,10 +362,12 @@ class MenuService:
                 logger.info(f"Menu {existing_menu.id} updated from Telegram message {message.id}")
             else:
                 # Create new menu
+                # Menus synced from Telegram are public by default (they're in a public channel)
                 new_menu = Menu(
                     user_id=menu_data.get('user_id', 'telegram_sync'),
                     name=menu_data['name'],
                     telegram_message_id=message.id,
+                    is_public=True,  # Telegram menus are public by default
                     last_sync=func.now()
                 )
 

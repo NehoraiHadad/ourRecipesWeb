@@ -1147,10 +1147,18 @@ This is your LAST chance to respond. Return JSON immediately."""
         """
         Create menu database records from AI plan
         Validates all recipe IDs before creating the menu
+
+        Guest users' menus are automatically public, authenticated users' menus are private by default
         """
         try:
             dietary_type_str = preferences.get('dietary_type')
             dietary_type = DietaryType[dietary_type_str.upper()] if dietary_type_str else None
+
+            # Determine if menu should be public
+            # Guest users (user_id starts with 'guest_') -> public by default
+            # Authenticated users -> private by default
+            is_guest = isinstance(user_id, str) and user_id.startswith('guest_')
+            is_public = is_guest  # True for guests, False for authenticated users
 
             menu = Menu(
                 user_id=user_id,
@@ -1159,6 +1167,7 @@ This is your LAST chance to respond. Return JSON immediately."""
                 description=preferences.get('description'),
                 total_servings=preferences.get('servings', 4),
                 dietary_type=dietary_type,
+                is_public=is_public,  # Set based on user type
                 ai_reasoning=menu_plan.get('reasoning'),
                 generation_prompt=json.dumps(preferences, ensure_ascii=False)
             )
