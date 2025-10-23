@@ -524,7 +524,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
           {menuPreview.reasoning && (
             <div className="bg-primary-50 rounded-lg p-4 mb-6 border border-primary-200">
               <p className="text-sm text-primary-700">
-                <span className="font-semibold">🤖 הסבר ה-AI:</span> {menuPreview.reasoning}
+                <span className="font-semibold">💡 למה בחרנו ככה?</span> {menuPreview.reasoning}
               </p>
             </div>
           )}

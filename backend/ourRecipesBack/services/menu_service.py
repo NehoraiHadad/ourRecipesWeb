@@ -82,7 +82,7 @@ class MenuService:
 
         # AI reasoning
         if menu.ai_reasoning:
-            lines.append(f"\n🤖 הסבר ה-AI:\n{menu.ai_reasoning}")
+            lines.append(f"\n💡 למה בחרנו ככה?\n{menu.ai_reasoning}")
 
         # Metadata
         lines.append(f"\n👤 נוצר על ידי: {menu.user_id}")
@@ -131,13 +131,19 @@ class MenuService:
                     data['description'] = line.split(":", 1)[1].strip()
                 elif line.startswith("👤 נוצר על ידי:"):
                     data['user_id'] = line.split(":", 1)[1].strip()
-                elif line.startswith("🤖 הסבר ה-AI:"):
+                elif line.startswith("💡 למה בחרנו ככה?") or line.startswith("🤖 הסבר ה-AI:"):
                     # AI reasoning can be multi-line, so we need to collect it
-                    ai_reasoning_start = text.find("🤖 הסבר ה-AI:")
+                    # Support both old and new format for backward compatibility
+                    if "💡 למה בחרנו ככה?" in text:
+                        ai_reasoning_start = text.find("💡 למה בחרנו ככה?")
+                        offset = len("💡 למה בחרנו ככה?")
+                    else:
+                        ai_reasoning_start = text.find("🤖 הסבר ה-AI:")
+                        offset = len("🤖 הסבר ה-AI:")
                     ai_reasoning_end = text.find("👤 נוצר על ידי:", ai_reasoning_start)
                     if ai_reasoning_end == -1:
                         ai_reasoning_end = len(text)
-                    data['ai_reasoning'] = text[ai_reasoning_start + 14:ai_reasoning_end].strip()
+                    data['ai_reasoning'] = text[ai_reasoning_start + offset:ai_reasoning_end].strip()
 
                 # Parse meals (starts with number)
                 elif line[0].isdigit() and "." in line[:3]:
