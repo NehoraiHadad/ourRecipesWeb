@@ -363,26 +363,66 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
             תצוגה מקדימה - בדוק את התפריט
           </h3>
 
-          <div className="space-y-4 mb-6">
+          <div className="space-y-6 mb-6">
             {menuPreview.meals?.map((meal: any, index: number) => (
-              <div key={index} className="bg-secondary-50 rounded-lg p-4">
-                <h4 className="font-bold text-lg text-secondary-800 mb-2">
+              <div key={index} className="bg-white rounded-lg shadow-warm p-6 border border-secondary-100">
+                <h4 className="text-xl font-bold text-secondary-800 mb-4">
                   {meal.meal_type}
+                  {meal.meal_time && (
+                    <span className="text-sm text-secondary-500 mr-2">
+                      ({meal.meal_time})
+                    </span>
+                  )}
                 </h4>
-                <ul className="space-y-2">
-                  {meal.recipes?.map((recipe: any, rIndex: number) => (
-                    <li key={rIndex} className="text-secondary-700">
-                      <span className="font-semibold">{recipe.course_type || 'מנה'}:</span>{' '}
-                      ID {recipe.recipe_id}
-                    </li>
+
+                <div className="space-y-4">
+                  {meal.recipes?.map((mealRecipe: any, rIndex: number) => (
+                    <div
+                      key={rIndex}
+                      className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-colors"
+                    >
+                      {mealRecipe.recipe?.image_url && (
+                        <img
+                          src={mealRecipe.recipe.image_url}
+                          alt={mealRecipe.recipe?.title}
+                          className="w-20 h-20 object-cover rounded-md"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <h5 className="text-lg font-semibold text-secondary-800">
+                          {mealRecipe.recipe?.title || 'מתכון לא זמין'}
+                        </h5>
+                        {mealRecipe.course_type && (
+                          <p className="text-sm text-secondary-500 mt-1">
+                            סוג: {mealRecipe.course_type}
+                          </p>
+                        )}
+                        {mealRecipe.ai_reason && (
+                          <p className="text-sm text-secondary-600 mt-1">
+                            💡 {mealRecipe.ai_reason}
+                          </p>
+                        )}
+                        <div className="flex gap-3 mt-2 text-xs text-secondary-500">
+                          {mealRecipe.recipe?.cooking_time && (
+                            <span>⏱️ {mealRecipe.recipe.cooking_time} דק׳</span>
+                          )}
+                          {mealRecipe.recipe?.difficulty && (
+                            <span>📊 {mealRecipe.recipe.difficulty}</span>
+                          )}
+                          {mealRecipe.recipe?.servings && (
+                            <span>👥 {mealRecipe.recipe.servings} מנות</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             ))}
           </div>
 
           {menuPreview.reasoning && (
-            <div className="bg-primary-50 rounded-lg p-4 mb-6">
+            <div className="bg-primary-50 rounded-lg p-4 mb-6 border border-primary-200">
               <p className="text-sm text-primary-700">
                 <span className="font-semibold">🤖 הסבר ה-AI:</span> {menuPreview.reasoning}
               </p>
@@ -414,9 +454,13 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
               size="lg"
               className="flex-1"
             >
-              ✕ בטל
+              ✕ בטל וצור מחדש
             </Button>
           </div>
+
+          <p className="text-xs text-secondary-500 mt-4 text-center">
+            💡 טיפ: לאחר השמירה תוכל להחליף מתכונים בעמוד התפריט
+          </p>
         </div>
       )}
     </div>

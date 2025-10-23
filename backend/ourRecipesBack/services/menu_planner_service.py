@@ -1025,10 +1025,13 @@ This is your LAST chance to respond. Return JSON immediately."""
             for meal in menu_plan.get('meals', []):
                 print(f"   - {meal.get('meal_type')}: {len(meal.get('recipes', []))} recipes")
 
-            # CRITICAL: Return preview ONLY - do NOT save to database
-            # User will review and confirm before saving
-            print(f"✓ Menu preview generated successfully - NOT saved to database yet")
-            return menu_plan
+            # CRITICAL: Enrich menu plan with FULL recipe details for preview
+            # This allows frontend to display recipe names, images, etc. instead of just IDs
+            print(f"📝 Enriching preview with full recipe details...")
+            enriched_plan = cls._enrich_menu_plan_with_recipes(menu_plan)
+
+            print(f"✓ Menu preview generated with full recipe details - NOT saved to database yet")
+            return enriched_plan
 
         except errors.ClientError as rate_error:
             # Check if it's a rate limit error (429)
@@ -1049,6 +1052,75 @@ This is your LAST chance to respond. Return JSON immediately."""
             import traceback
             traceback.print_exc()
             raise ValueError(f"Menu generation failed: {str(e)}. Please try again with different parameters.")
+
+    @classmethod
+    def _enrich_menu_plan_with_recipes(cls, menu_plan):
+        """
+        Enrich menu plan with full recipe details for preview display.
+        Converts recipe IDs to full recipe objects with all details.
+
+        Args:
+            menu_plan: Menu plan JSON with recipe_ids
+
+        Returns:
+            Enriched menu plan with full recipe details
+        """
+        enriched_plan = {
+            'meals': [],
+            'reasoning': menu_plan.get('reasoning', '')
+        }
+
+        for meal in menu_plan.get('meals', []):
+            enriched_meal = {
+                'meal_type': meal.get('meal_type'),
+                'meal_order': meal.get('meal_order'),
+                'meal_time': meal.get('meal_time'),
+                'recipes': []
+            }
+
+            for recipe_ref in meal.get('recipes', []):
+                recipe_id = recipe_ref.get('recipe_id')
+
+                # Fetch full recipe details
+                recipe = Recipe.query.get(recipe_id)
+
+                if recipe:
+                    # Build full recipe details for preview
+                    recipe_details = {
+                        'recipe_id': recipe.id,
+                        'course_type': recipe_ref.get('course_type'),
+                        'course_order': recipe_ref.get('course_order', 0),
+                        'ai_reason': recipe_ref.get('reason'),
+                        # Full recipe info for display
+                        'recipe': {
+                            'id': recipe.id,
+                            'title': recipe.title,
+                            'image_url': recipe.image_url if hasattr(recipe, 'image_url') else None,
+                            'cooking_time': recipe.cooking_time,
+                            'preparation_time': recipe.preparation_time,
+                            'difficulty': recipe.difficulty.value if recipe.difficulty else None,
+                            'servings': recipe.servings,
+                            'dietary_type': cls._get_dietary_type_from_recipe(recipe),
+                            'categories': recipe._categories
+                        }
+                    }
+                    enriched_meal['recipes'].append(recipe_details)
+                else:
+                    print(f"⚠️ Recipe ID {recipe_id} not found in database")
+
+            enriched_plan['meals'].append(enriched_meal)
+
+        return enriched_plan
+
+    @staticmethod
+    def _get_dietary_type_from_recipe(recipe):
+        """Helper to determine dietary type from recipe categories"""
+        categories = recipe._categories or ''
+        if any(cat in categories for cat in ['בשר', 'עוף', 'דגים']):
+            return 'meat'
+        elif any(cat in categories for cat in ['חלבי', 'גבינה', 'חלב']):
+            return 'dairy'
+        return 'pareve'
 
     @classmethod
     def save_menu_from_preview(cls, user_id, preferences, menu_plan):
