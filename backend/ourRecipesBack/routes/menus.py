@@ -502,3 +502,213 @@ def update_shopping_item(item_id):
     except Exception as e:
         print(f"Error updating shopping item: {str(e)}")
         return jsonify({"error": "Failed to update item", "message": str(e)}), 500
+
+
+@menus_bp.route("/<int:menu_id>/meals/<int:meal_id>/recipes/<int:recipe_id>", methods=["DELETE"])
+@jwt_required()
+def delete_recipe_from_meal(menu_id, meal_id, recipe_id):
+    """Delete a recipe from a meal"""
+    try:
+        user_id = get_jwt_identity()
+
+        # Verify ownership
+        menu = Menu.query.get(menu_id)
+        if not menu or menu.user_id != user_id:
+            return jsonify({"error": "Access denied"}), 403
+
+        # Find the meal recipe
+        meal_recipe = MealRecipe.query.filter_by(
+            menu_meal_id=meal_id,
+            recipe_id=recipe_id
+        ).first()
+
+        if not meal_recipe:
+            return jsonify({"error": "Recipe not found in meal"}), 404
+
+        # Delete the recipe
+        db.session.delete(meal_recipe)
+        db.session.commit()
+
+        # Regenerate shopping list
+        shopping_list = ShoppingListService.generate_shopping_list(menu_id)
+
+        return jsonify({
+            "success": True,
+            "message": "Recipe deleted successfully",
+            "shopping_list": shopping_list
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error deleting recipe from meal: {str(e)}")
+        return jsonify({"error": "Failed to delete recipe", "message": str(e)}), 500
+
+
+@menus_bp.route("/<int:menu_id>/meals/<int:meal_id>/recipes", methods=["POST"])
+@jwt_required()
+def add_recipe_to_meal(menu_id, meal_id):
+    """
+    Add a recipe to a meal
+
+    Request body:
+    {
+        "recipe_id": 123,
+        "course_type": "main",
+        "course_order": 1
+    }
+    """
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+
+        # Verify ownership
+        menu = Menu.query.get(menu_id)
+        if not menu or menu.user_id != user_id:
+            return jsonify({"error": "Access denied"}), 403
+
+        # Verify meal exists
+        meal = MenuMeal.query.get(meal_id)
+        if not meal or meal.menu_id != menu_id:
+            return jsonify({"error": "Meal not found"}), 404
+
+        # Validate recipe ID
+        recipe_id = data.get('recipe_id')
+        if not recipe_id:
+            return jsonify({"error": "recipe_id is required"}), 400
+
+        # Verify recipe exists
+        from ..models import Recipe
+        recipe = Recipe.query.get(recipe_id)
+        if not recipe:
+            return jsonify({"error": "Recipe not found"}), 404
+
+        # Get course order (auto-increment if not provided)
+        course_order = data.get('course_order')
+        if course_order is None:
+            # Get max course order and add 1
+            max_order = db.session.query(db.func.max(MealRecipe.course_order)).filter_by(
+                menu_meal_id=meal_id
+            ).scalar()
+            course_order = (max_order or 0) + 1
+
+        # Create new meal recipe
+        meal_recipe = MealRecipe(
+            menu_meal_id=meal_id,
+            recipe_id=recipe_id,
+            course_type=data.get('course_type'),
+            course_order=course_order,
+            servings=menu.total_servings,
+            notes=data.get('notes')
+        )
+
+        db.session.add(meal_recipe)
+        db.session.commit()
+
+        # Regenerate shopping list
+        shopping_list = ShoppingListService.generate_shopping_list(menu_id)
+
+        return jsonify({
+            "success": True,
+            "meal_recipe": meal_recipe.to_dict(),
+            "shopping_list": shopping_list
+        }), 201
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding recipe to meal: {str(e)}")
+        return jsonify({"error": "Failed to add recipe", "message": str(e)}), 500
+
+
+@menus_bp.route("/<int:menu_id>/meals/<int:meal_id>", methods=["DELETE"])
+@jwt_required()
+def delete_meal(menu_id, meal_id):
+    """Delete a meal from a menu"""
+    try:
+        user_id = get_jwt_identity()
+
+        # Verify ownership
+        menu = Menu.query.get(menu_id)
+        if not menu or menu.user_id != user_id:
+            return jsonify({"error": "Access denied"}), 403
+
+        # Find the meal
+        meal = MenuMeal.query.get(meal_id)
+        if not meal or meal.menu_id != menu_id:
+            return jsonify({"error": "Meal not found"}), 404
+
+        # Delete the meal (will cascade delete recipes)
+        db.session.delete(meal)
+        db.session.commit()
+
+        # Regenerate shopping list
+        shopping_list = ShoppingListService.generate_shopping_list(menu_id)
+
+        return jsonify({
+            "success": True,
+            "message": "Meal deleted successfully",
+            "shopping_list": shopping_list
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error deleting meal: {str(e)}")
+        return jsonify({"error": "Failed to delete meal", "message": str(e)}), 500
+
+
+@menus_bp.route("/<int:menu_id>/meals", methods=["POST"])
+@jwt_required()
+def add_meal_to_menu(menu_id):
+    """
+    Add a new meal to a menu
+
+    Request body:
+    {
+        "meal_type": "ארוחת ערב",
+        "meal_time": "18:00",
+        "meal_order": 1
+    }
+    """
+    try:
+        user_id = get_jwt_identity()
+        data = request.get_json()
+
+        # Verify ownership
+        menu = Menu.query.get(menu_id)
+        if not menu or menu.user_id != user_id:
+            return jsonify({"error": "Access denied"}), 403
+
+        # Validate meal type
+        meal_type = data.get('meal_type')
+        if not meal_type:
+            return jsonify({"error": "meal_type is required"}), 400
+
+        # Get meal order (auto-increment if not provided)
+        meal_order = data.get('meal_order')
+        if meal_order is None:
+            # Get max meal order and add 1
+            max_order = db.session.query(db.func.max(MenuMeal.meal_order)).filter_by(
+                menu_id=menu_id
+            ).scalar()
+            meal_order = (max_order or 0) + 1
+
+        # Create new meal
+        meal = MenuMeal(
+            menu_id=menu_id,
+            meal_type=meal_type,
+            meal_order=meal_order,
+            meal_time=data.get('meal_time'),
+            notes=data.get('notes')
+        )
+
+        db.session.add(meal)
+        db.session.commit()
+
+        return jsonify({
+            "success": True,
+            "meal": meal.to_dict()
+        }), 201
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding meal to menu: {str(e)}")
+        return jsonify({"error": "Failed to add meal", "message": str(e)}), 500

@@ -179,6 +179,78 @@ export class MenuService {
       return false;
     }
   }
+
+  /**
+   * Delete a recipe from a meal
+   */
+  static async deleteRecipeFromMeal(
+    menuId: number,
+    mealId: number,
+    recipeId: number
+  ): Promise<ApiResponse<{
+    message: string;
+    shopping_list: ShoppingList;
+  }>> {
+    return apiService.delete<ApiResponse<{
+      message: string;
+      shopping_list: ShoppingList;
+    }>>(`${this.BASE_PATH}/${menuId}/meals/${mealId}/recipes/${recipeId}`);
+  }
+
+  /**
+   * Add a recipe to a meal
+   */
+  static async addRecipeToMeal(
+    menuId: number,
+    mealId: number,
+    recipeId: number,
+    courseType?: string,
+    courseOrder?: number
+  ): Promise<ApiResponse<{
+    meal_recipe: MealRecipe;
+    shopping_list: ShoppingList;
+  }>> {
+    return apiService.post<ApiResponse<{
+      meal_recipe: MealRecipe;
+      shopping_list: ShoppingList;
+    }>>(`${this.BASE_PATH}/${menuId}/meals/${mealId}/recipes`, {
+      recipe_id: recipeId,
+      course_type: courseType,
+      course_order: courseOrder
+    });
+  }
+
+  /**
+   * Delete a meal from a menu
+   */
+  static async deleteMeal(
+    menuId: number,
+    mealId: number
+  ): Promise<ApiResponse<{
+    message: string;
+    shopping_list: ShoppingList;
+  }>> {
+    return apiService.delete<ApiResponse<{
+      message: string;
+      shopping_list: ShoppingList;
+    }>>(`${this.BASE_PATH}/${menuId}/meals/${mealId}`);
+  }
+
+  /**
+   * Add a new meal to a menu
+   */
+  static async addMealToMenu(
+    menuId: number,
+    mealType: string,
+    mealTime?: string,
+    mealOrder?: number
+  ): Promise<ApiResponse<any>> {
+    return apiService.post<ApiResponse<any>>(`${this.BASE_PATH}/${menuId}/meals`, {
+      meal_type: mealType,
+      meal_time: mealTime,
+      meal_order: mealOrder
+    });
+  }
 }
 
 // Export singleton instance
