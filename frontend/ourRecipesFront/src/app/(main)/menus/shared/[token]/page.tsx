@@ -5,7 +5,9 @@ import { useParams } from 'next/navigation';
 import { menuService } from '@/services/menuService';
 import { useNotification } from '@/context/NotificationContext';
 import Spinner from '@/components/ui/Spinner';
+import RecipeModal from '@/components/RecipeModal';
 import type { Menu } from '@/types';
+import type { recipe } from '@/types';
 
 export default function SharedMenuPage() {
   const params = useParams();
@@ -16,6 +18,7 @@ export default function SharedMenuPage() {
   const [menu, setMenu] = useState<Menu | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
+  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
 
   useEffect(() => {
     if (shareToken) {
@@ -60,6 +63,27 @@ export default function SharedMenuPage() {
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
+  const handleRecipeClick = (recipe: any) => {
+    // Convert menu recipe to full recipe format for modal
+    if (recipe?.recipe) {
+      setSelectedRecipe(recipe.recipe as recipe);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setSelectedRecipe(null);
+  };
+
+  const handleUpdateRecipe = async (updatedRecipe: recipe) => {
+    // For shared menus, we typically don't allow editing
+    // But we keep this for future enhancement
+    addNotification({
+      message: 'לא ניתן לערוך מתכונים בתפריט משותף',
+      type: 'info',
+      duration: 3000
+    });
+  };
+
   if (loading) {
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -83,8 +107,9 @@ export default function SharedMenuPage() {
   }
 
   return (
-    <div className="min-h-screen overflow-y-auto bg-gray-50">
-      <div className="max-w-4xl mx-auto p-6">
+    <>
+      <div className="w-full bg-gray-50 pb-6">
+        <div className="max-w-4xl mx-auto p-6">
         {/* Shared indicator */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <p className="text-blue-700">
@@ -161,7 +186,8 @@ export default function SharedMenuPage() {
                   meal.recipes.map((mealRecipe) => (
                     <div
                       key={mealRecipe.id}
-                      className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg"
+                      onClick={() => handleRecipeClick(mealRecipe)}
+                      className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                     >
                       {mealRecipe.recipe?.image_url && (
                         <img
@@ -211,7 +237,17 @@ export default function SharedMenuPage() {
           </p>
         </div>
       )}
+        </div>
       </div>
-    </div>
+
+      {/* Recipe Modal */}
+      {selectedRecipe && (
+        <RecipeModal
+          recipe={selectedRecipe}
+          onClose={handleCloseModal}
+          onUpdate={handleUpdateRecipe}
+        />
+      )}
+    </>
   );
 }
