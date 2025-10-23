@@ -377,22 +377,24 @@ class RecipeService:
             print(f"Error getting search suggestions: {str(e)}", flush=True)
             return []
 
-def get_recipe_by_id(telegram_id: int) -> dict:
+def get_recipe_by_id(recipe_id: int) -> dict:
     """
-    Get recipe details by Telegram ID
-    
+    Get recipe details by database ID
+
     Args:
-        telegram_id (int): The Telegram ID of the recipe to fetch
-        
+        recipe_id (int): The database ID of the recipe to fetch
+
     Returns:
         dict: Recipe details or None if not found
     """
-    recipe = Recipe.query.filter_by(telegram_id=telegram_id).first()
+    # CRITICAL FIX: Query by database ID, not telegram_id
+    # The frontend sends recipe.id (database ID) from MenuDisplay
+    recipe = Recipe.query.filter_by(id=recipe_id).first()
     if recipe is None:
         return None
-        
+
     return {
-        'id': recipe.telegram_id,  # Use telegram_id as the main identifier
+        'id': recipe.telegram_id,  # Frontend expects telegram_id in 'id' field for compatibility
         'title': recipe.title,
         'details': recipe.raw_content,  # Use raw_content instead of details
         'image': recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
