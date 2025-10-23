@@ -16,6 +16,8 @@ interface ApiResponse<T> {
   suggestions?: RecipeSummary[];
   meal_recipe?: MealRecipe;
   item?: any;
+  preview?: any;  // For menu preview
+  preferences?: any;  // For menu preview preferences echo
   error?: string;
   message?: string;
 }
