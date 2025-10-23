@@ -536,7 +536,8 @@ CRITICAL RULES:
 - Call get_all_recipes() EXACTLY ONCE at the start
 - Use get_recipes_details_batch() wisely - batch multiple meals together
 - Return JSON as soon as you have enough information
-- DO NOT call the same function multiple times unnecessarily"""
+- DO NOT call the same function multiple times unnecessarily
+- You are NOT required to call a function in every turn - you can return JSON directly when ready"""
 
     @classmethod
     def _execute_get_all_recipes(cls):
@@ -656,7 +657,7 @@ STRATEGY:
 
 Start NOW with get_all_recipes()."""
 
-            # Create client and chat with tools - FORCE function calling
+            # Create client and chat with tools
             client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Create chat session with configuration
@@ -671,9 +672,11 @@ Start NOW with get_all_recipes()."""
                 config=types.GenerateContentConfig(
                     tools=cls._get_search_tools(),
                     system_instruction=cls._get_menu_planner_system_prompt(),
-                    # Force the model to use tools
+                    # CRITICAL FIX: Use AUTO mode instead of ANY
+                    # AUTO allows the model to choose when to call functions vs return text
+                    # ANY forced function calls in every turn, causing infinite loops
                     tool_config=types.ToolConfig(
-                        function_calling_config=types.FunctionCallingConfig(mode='ANY')
+                        function_calling_config=types.FunctionCallingConfig(mode='AUTO')
                     )
                 )
             )
