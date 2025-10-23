@@ -83,8 +83,9 @@ export default function SharedMenuPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      {/* Shared indicator */}
+    <div className="min-h-screen overflow-y-auto bg-gray-50">
+      <div className="max-w-4xl mx-auto p-6">
+        {/* Shared indicator */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <p className="text-blue-700">
           🔗 זהו תפריט משותף - אתה מוזמן לצפות ולהשתמש בו!
@@ -125,7 +126,7 @@ export default function SharedMenuPage() {
         {menu.ai_reasoning && (
           <div className="mt-4 p-3 bg-blue-50 rounded-md">
             <p className="text-sm text-blue-700">
-              <span className="font-semibold">🤖 הסבר ה-AI:</span>{' '}
+              <span className="font-semibold">💡 למה בחרנו ככה?</span>{' '}
               {menu.ai_reasoning}
             </p>
           </div>
@@ -210,6 +211,7 @@ export default function SharedMenuPage() {
           </p>
         </div>
       )}
+      </div>
     </div>
   );
 }

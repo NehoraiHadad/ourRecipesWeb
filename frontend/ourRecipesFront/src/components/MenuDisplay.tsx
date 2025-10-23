@@ -517,7 +517,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         {menu.ai_reasoning && (
           <div className="mt-4 p-3 bg-primary-50 rounded-md">
             <p className="text-sm text-primary-700">
-              <span className="font-semibold">🤖 הסבר ה-AI:</span> {menu.ai_reasoning}
+              <span className="font-semibold">💡 למה בחרנו ככה?</span> {menu.ai_reasoning}
             </p>
           </div>
         )}
