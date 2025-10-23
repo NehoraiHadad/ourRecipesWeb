@@ -50,6 +50,17 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   const [showShareModal, setShowShareModal] = useState<boolean>(false);
   const [isPublic, setIsPublic] = useState<boolean>(menu.is_public);
 
+  // For adding recipe to meal
+  const [addingToMeal, setAddingToMeal] = useState<number | null>(null);
+  const [addRecipeSearchQuery, setAddRecipeSearchQuery] = useState<string>('');
+  const [addRecipeSearchResults, setAddRecipeSearchResults] = useState<recipe[]>([]);
+  const [isAddRecipeSearching, setIsAddRecipeSearching] = useState<boolean>(false);
+
+  // For adding new meal
+  const [showAddMealModal, setShowAddMealModal] = useState<boolean>(false);
+  const [newMealType, setNewMealType] = useState<string>('ארוחת ערב');
+  const [newMealTime, setNewMealTime] = useState<string>('');
+
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   // Format date
@@ -261,6 +272,152 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     }
   };
 
+  // Handle delete recipe from meal
+  const handleDeleteRecipe = async (mealId: number, recipeId: number) => {
+    if (!confirm('האם אתה בטוח שברצונך להסיר מתכון זה מהארוחה?')) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await menuService.deleteRecipeFromMeal(menu.id, mealId, recipeId);
+
+      // Refresh menu
+      const menuResponse = await menuService.getMenu(menu.id);
+      if (menuResponse.menu) {
+        setMenu(menuResponse.menu);
+        if (onMenuUpdated) {
+          onMenuUpdated(menuResponse.menu);
+        }
+      }
+
+      addNotification({ message: 'המתכון הוסר בהצלחה!', type: 'success' });
+    } catch (error) {
+      console.error('Error deleting recipe:', error);
+      addNotification({ message: 'שגיאה בהסרת המתכון', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle delete meal
+  const handleDeleteMeal = async (mealId: number) => {
+    if (!confirm('האם אתה בטוח שברצונך למחוק ארוחה זו?')) {
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await menuService.deleteMeal(menu.id, mealId);
+
+      // Refresh menu
+      const menuResponse = await menuService.getMenu(menu.id);
+      if (menuResponse.menu) {
+        setMenu(menuResponse.menu);
+        if (onMenuUpdated) {
+          onMenuUpdated(menuResponse.menu);
+        }
+      }
+
+      addNotification({ message: 'הארוחה נמחקה בהצלחה!', type: 'success' });
+    } catch (error) {
+      console.error('Error deleting meal:', error);
+      addNotification({ message: 'שגיאה במחיקת הארוחה', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle add recipe to meal - search
+  const performAddRecipeSearch = async (query: string) => {
+    if (!query.trim()) {
+      setAddRecipeSearchResults([]);
+      return;
+    }
+
+    setIsAddRecipeSearching(true);
+
+    try {
+      const response = await SearchService.search({ query });
+
+      if (response?.results) {
+        const recipes = Object.values(response.results);
+        setAddRecipeSearchResults(recipes);
+      } else {
+        setAddRecipeSearchResults([]);
+      }
+    } catch (error) {
+      console.error('Recipe search failed:', error);
+      setAddRecipeSearchResults([]);
+      addNotification({ message: 'שגיאה בחיפוש מתכונים', type: 'error' });
+    } finally {
+      setIsAddRecipeSearching(false);
+    }
+  };
+
+  // Handle add recipe to meal
+  const handleAddRecipeToMeal = async (mealId: number, recipeId: number) => {
+    setLoading(true);
+
+    try {
+      await menuService.addRecipeToMeal(menu.id, mealId, recipeId);
+
+      // Refresh menu
+      const menuResponse = await menuService.getMenu(menu.id);
+      if (menuResponse.menu) {
+        setMenu(menuResponse.menu);
+        if (onMenuUpdated) {
+          onMenuUpdated(menuResponse.menu);
+        }
+      }
+
+      addNotification({ message: 'המתכון נוסף בהצלחה!', type: 'success' });
+      setAddingToMeal(null);
+      setAddRecipeSearchQuery('');
+      setAddRecipeSearchResults([]);
+    } catch (error) {
+      console.error('Error adding recipe:', error);
+      addNotification({ message: 'שגיאה בהוספת המתכון', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Handle add new meal
+  const handleAddMeal = async () => {
+    if (!newMealType.trim()) {
+      addNotification({ message: 'נא לבחור סוג ארוחה', type: 'error' });
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      await menuService.addMealToMenu(menu.id, newMealType, newMealTime || undefined);
+
+      // Refresh menu
+      const menuResponse = await menuService.getMenu(menu.id);
+      if (menuResponse.menu) {
+        setMenu(menuResponse.menu);
+        if (onMenuUpdated) {
+          onMenuUpdated(menuResponse.menu);
+        }
+      }
+
+      addNotification({ message: 'הארוחה נוספה בהצלחה!', type: 'success' });
+      setShowAddMealModal(false);
+      setNewMealType('ארוחת ערב');
+      setNewMealTime('');
+    } catch (error) {
+      console.error('Error adding meal:', error);
+      addNotification({ message: 'שגיאה בהוספת הארוחה', type: 'error' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="h-[calc(100dvh-52px)] overflow-y-auto bg-secondary-50">
       <div className="max-w-4xl mx-auto p-6">
@@ -312,13 +469,21 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         </div>
 
         {/* Actions */}
-        <div className="flex gap-2 mt-4 pt-4 border-t border-gray-200">
+        <div className="flex gap-2 mt-4 pt-4 border-t border-gray-200 flex-wrap">
           <Button
             variant="secondary"
             size="sm"
             onClick={() => router.push(`/menus/${menu.id}/shopping-list`)}
           >
             📝 רשימת קניות
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            onClick={() => setShowAddMealModal(true)}
+            disabled={loading}
+          >
+            ➕ הוסף ארוחה
           </Button>
           <Button
             variant="secondary"
@@ -366,14 +531,35 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
               key={meal.id}
               className="bg-white rounded-lg shadow-warm p-6"
             >
-              <h2 className="text-2xl font-bold text-secondary-800 mb-4">
-                {meal.meal_type}
-                {meal.meal_time && (
-                  <span className="text-sm text-secondary-500 mr-2">
-                    ({meal.meal_time})
-                  </span>
-                )}
-              </h2>
+              <div className="flex justify-between items-start mb-4">
+                <h2 className="text-2xl font-bold text-secondary-800">
+                  {meal.meal_type}
+                  {meal.meal_time && (
+                    <span className="text-sm text-secondary-500 mr-2">
+                      ({meal.meal_time})
+                    </span>
+                  )}
+                </h2>
+                <div className="flex gap-2">
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => setAddingToMeal(meal.id)}
+                    disabled={loading}
+                  >
+                    ➕ הוסף מתכון
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    size="sm"
+                    onClick={() => handleDeleteMeal(meal.id)}
+                    disabled={loading}
+                    className="text-red-600 hover:bg-red-50"
+                  >
+                    🗑️ מחק ארוחה
+                  </Button>
+                </div>
+              </div>
 
               {meal.notes && (
                 <p className="text-secondary-600 mb-4">
@@ -421,16 +607,29 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           )}
                         </div>
                       </div>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleReplaceClick(meal.id, mealRecipe.recipe_id);
-                        }}
-                      >
-                        🔄 החלף
-                      </Button>
+                      <div className="flex gap-2">
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleReplaceClick(meal.id, mealRecipe.recipe_id);
+                          }}
+                        >
+                          🔄 החלף
+                        </Button>
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleDeleteRecipe(meal.id, mealRecipe.recipe_id);
+                          }}
+                          className="text-red-600 hover:bg-red-50"
+                        >
+                          ✕ הסר
+                        </Button>
+                      </div>
                     </div>
                   ))
                 ) : (
@@ -667,6 +866,204 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           />
         )}
       </Modal>
+
+      {/* Add Recipe to Meal Modal */}
+      {addingToMeal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => {
+            setAddingToMeal(null);
+            setAddRecipeSearchQuery('');
+            setAddRecipeSearchResults([]);
+          }}
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-secondary-800">
+                הוסף מתכון לארוחה
+              </h3>
+              <button
+                onClick={() => {
+                  setAddingToMeal(null);
+                  setAddRecipeSearchQuery('');
+                  setAddRecipeSearchResults([]);
+                }}
+                className="text-secondary-500 hover:text-secondary-700"
+              >
+                ✕
+              </button>
+            </div>
+
+            {/* Search Input */}
+            <div className="mb-4">
+              <div className="relative">
+                <input
+                  type="search"
+                  placeholder="חפש מתכון להוסיף..."
+                  value={addRecipeSearchQuery}
+                  onChange={(e) => setAddRecipeSearchQuery(e.target.value)}
+                  onKeyPress={(e) => {
+                    if (e.key === 'Enter') {
+                      performAddRecipeSearch(addRecipeSearchQuery);
+                    }
+                  }}
+                  className="w-full px-4 py-2 border border-secondary-200 rounded-lg
+                           bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100
+                           outline-none transition-all duration-200"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => performAddRecipeSearch(addRecipeSearchQuery)}
+                  disabled={isAddRecipeSearching || !addRecipeSearchQuery.trim()}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 text-secondary-500 hover:text-primary-500 transition-colors disabled:opacity-50"
+                >
+                  {isAddRecipeSearching ? (
+                    <Spinner size="sm" />
+                  ) : (
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Search Results */}
+            {addRecipeSearchResults.length > 0 ? (
+              <div>
+                <h4 className="text-sm font-semibold text-secondary-700 mb-2">
+                  תוצאות חיפוש ({addRecipeSearchResults.length}):
+                </h4>
+                <div className="space-y-3">
+                  {addRecipeSearchResults.map((recipe: any) => (
+                    <div
+                      key={recipe.id}
+                      className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
+                               hover:bg-secondary-100 transition-colors cursor-pointer"
+                      onClick={() => handleAddRecipeToMeal(addingToMeal, recipe.id)}
+                    >
+                      {recipe.image && (
+                        <img
+                          src={recipe.image}
+                          alt={recipe.title}
+                          className="w-16 h-16 object-cover rounded-md"
+                        />
+                      )}
+                      <div className="flex-1">
+                        <h4 className="font-semibold text-secondary-800">
+                          {recipe.title}
+                        </h4>
+                        {recipe.categories && recipe.categories.length > 0 && (
+                          <p className="text-sm text-secondary-500">
+                            {recipe.categories.join(', ')}
+                          </p>
+                        )}
+                        <div className="flex gap-3 mt-1 text-xs text-secondary-500">
+                          {recipe.preparation_time && (
+                            <span>⏱️ {recipe.preparation_time} דק׳</span>
+                          )}
+                          {recipe.difficulty && (
+                            <span>📊 {recipe.difficulty}</span>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="text-center py-8 text-secondary-500">
+                <p>חפש מתכון כדי להוסיף</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Add Meal Modal */}
+      {showAddMealModal && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
+          onClick={() => setShowAddMealModal(false)}
+        >
+          <div
+            className="bg-white rounded-lg p-6 max-w-md w-full"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-secondary-800">
+                הוסף ארוחה חדשה
+              </h3>
+              <button
+                onClick={() => setShowAddMealModal(false)}
+                className="text-secondary-500 hover:text-secondary-700"
+              >
+                ✕
+              </button>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium mb-2 text-secondary-700">
+                  סוג ארוחה *
+                </label>
+                <select
+                  value={newMealType}
+                  onChange={(e) => setNewMealType(e.target.value)}
+                  className="w-full p-2 border border-secondary-200 rounded-lg
+                           bg-white text-secondary-900
+                           focus:ring-2 focus:ring-primary-100 transition-all"
+                >
+                  <option value="ארוחת ערב שבת">ארוחת ערב שבת</option>
+                  <option value="ארוחת בוקר שבת">ארוחת בוקר שבת</option>
+                  <option value="ארוחת צהריים שבת">ארוחת צהריים שבת</option>
+                  <option value="סעודה שלישית">סעודה שלישית</option>
+                  <option value="ארוחת בוקר">ארוחת בוקר</option>
+                  <option value="ארוחת צהריים">ארוחת צהריים</option>
+                  <option value="ארוחת ערב">ארוחת ערב</option>
+                  <option value="קידוש">קידוש</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2 text-secondary-700">
+                  שעת הארוחה (אופציונלי)
+                </label>
+                <input
+                  type="time"
+                  value={newMealTime}
+                  onChange={(e) => setNewMealTime(e.target.value)}
+                  className="w-full p-2 border border-secondary-200 rounded-lg
+                           bg-white text-secondary-900
+                           focus:ring-2 focus:ring-primary-100 transition-all"
+                />
+              </div>
+
+              <div className="flex gap-2 pt-4">
+                <Button
+                  onClick={handleAddMeal}
+                  disabled={loading || !newMealType.trim()}
+                  variant="primary"
+                  className="flex-1"
+                >
+                  הוסף
+                </Button>
+                <Button
+                  onClick={() => setShowAddMealModal(false)}
+                  variant="secondary"
+                  className="flex-1"
+                >
+                  ביטול
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {loading && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">

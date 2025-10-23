@@ -58,9 +58,11 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
   const mealTypeOptions = [
     'ארוחת ערב שבת',
+    'ארוחת בוקר שבת',
+    'ארוחת צהריים שבת',
+    'סעודה שלישית',
     'ארוחת בוקר',
     'ארוחת צהריים',
-    'סעודה שלישית',
     'ארוחת ערב',
     'קידוש',
   ];
