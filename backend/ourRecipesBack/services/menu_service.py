@@ -26,7 +26,8 @@ class MenuService:
         📅 אירוע: [סוג אירוע]
         👥 סועדים: [מספר]
         🔖 כשרות: [בשרי/חלבי/פרווה]
-        🔗 קישור שיתוף: [share_token]
+        🔗 קוד שיתוף: [share_token]
+        🌐 משותף: [כן/לא]
 
         📋 ארוחות:
 
@@ -58,6 +59,9 @@ class MenuService:
 
         # IMPORTANT: Include share_token so it can be recovered after DB reset
         lines.append(f"🔗 קוד שיתוף: {menu.share_token}")
+
+        # IMPORTANT: Include is_public status for sync recovery
+        lines.append(f"🌐 משותף: {'כן' if menu.is_public else 'לא'}")
 
         if menu.description:
             lines.append(f"תיאור: {menu.description}")
@@ -127,6 +131,9 @@ class MenuService:
                     data['dietary_type'] = dietary_map.get(dietary)
                 elif line.startswith("🔗 קוד שיתוף:"):
                     data['share_token'] = line.split(":", 1)[1].strip()
+                elif line.startswith("🌐 משותף:"):
+                    shared_value = line.split(":", 1)[1].strip()
+                    data['is_public'] = (shared_value == 'כן')
                 elif line.startswith("תיאור:"):
                     data['description'] = line.split(":", 1)[1].strip()
                 elif line.startswith("👤 נוצר על ידי:"):
@@ -357,15 +364,22 @@ class MenuService:
                 if 'share_token' in menu_data:
                     existing_menu.share_token = menu_data['share_token']
 
+                # Update is_public if found in message, otherwise keep existing value
+                if 'is_public' in menu_data:
+                    existing_menu.is_public = menu_data['is_public']
+
                 existing_menu.last_sync = func.now()
                 sync_log.menus_updated += 1
                 logger.info(f"Menu {existing_menu.id} updated from Telegram message {message.id}")
             else:
                 # Create new menu
+                # Menus synced from Telegram are public by default (they're in a public channel)
+                # But use the value from message if available (for backward compatibility)
                 new_menu = Menu(
                     user_id=menu_data.get('user_id', 'telegram_sync'),
                     name=menu_data['name'],
                     telegram_message_id=message.id,
+                    is_public=menu_data.get('is_public', True),  # Use message value or default to True
                     last_sync=func.now()
                 )
 

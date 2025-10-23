@@ -1,5 +1,6 @@
 from flask import jsonify, request, Blueprint
 from flask_jwt_extended import jwt_required, get_jwt_identity
+from sqlalchemy import or_
 from ..services.menu_planner_service import MenuPlannerService
 from ..services.shopping_list_service import ShoppingListService
 from ..services.menu_service import MenuService
@@ -178,11 +179,24 @@ def save_menu():
 @menus_bp.route("", methods=["GET"])
 @jwt_required()
 def get_user_menus():
-    """Get all menus for the current user"""
+    """
+    Get all menus for the current user.
+    Returns:
+    - User's own menus (both public and private)
+    - All public menus created by other users (including guests)
+    """
     try:
         user_id = get_jwt_identity()
 
-        menus = Menu.query.filter_by(user_id=user_id).order_by(Menu.created_at.desc()).all()
+        # Get menus that are either:
+        # 1. Created by this user (regardless of public/private)
+        # 2. Public menus created by anyone else
+        menus = Menu.query.filter(
+            or_(
+                Menu.user_id == user_id,  # User's own menus
+                Menu.is_public == True     # Public menus from anyone
+            )
+        ).order_by(Menu.created_at.desc()).all()
 
         return jsonify({
             "menus": [menu.to_dict(include_meals=False) for menu in menus]
