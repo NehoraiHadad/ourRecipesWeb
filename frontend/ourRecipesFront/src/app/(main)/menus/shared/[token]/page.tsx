@@ -3,9 +3,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { menuService } from '@/services/menuService';
+import { RecipeService } from '@/services/recipeService';
 import { useNotification } from '@/context/NotificationContext';
 import Spinner from '@/components/ui/Spinner';
-import RecipeModal from '@/components/RecipeModal';
+import Modal from '@/components/Modal';
+import RecipeDetails from '@/components/recipe/RecipeDetails';
 import type { Menu } from '@/types';
 import type { recipe } from '@/types';
 
@@ -18,7 +20,8 @@ export default function SharedMenuPage() {
   const [menu, setMenu] = useState<Menu | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
+  const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
+  const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
 
   useEffect(() => {
     if (shareToken) {
@@ -63,25 +66,18 @@ export default function SharedMenuPage() {
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
-  const handleRecipeClick = (recipe: any) => {
-    // Convert menu recipe to full recipe format for modal
-    if (recipe?.recipe) {
-      setSelectedRecipe(recipe.recipe as recipe);
+  const handleRecipeClick = async (recipeId: number) => {
+    setLoadingRecipe(true);
+
+    try {
+      const response = await RecipeService.getRecipeById(recipeId);
+      setViewingRecipe(response.data);
+    } catch (error) {
+      console.error('Error loading recipe:', error);
+      addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
+    } finally {
+      setLoadingRecipe(false);
     }
-  };
-
-  const handleCloseModal = () => {
-    setSelectedRecipe(null);
-  };
-
-  const handleUpdateRecipe = async (updatedRecipe: recipe) => {
-    // For shared menus, we typically don't allow editing
-    // But we keep this for future enhancement
-    addNotification({
-      message: 'לא ניתן לערוך מתכונים בתפריט משותף',
-      type: 'info',
-      duration: 3000
-    });
   };
 
   if (loading) {
@@ -107,9 +103,8 @@ export default function SharedMenuPage() {
   }
 
   return (
-    <>
-      <div className="w-full bg-gray-50 pb-6">
-        <div className="max-w-4xl mx-auto p-6">
+    <div className="h-[calc(100dvh-52px)] overflow-y-auto bg-gray-50">
+      <div className="max-w-4xl mx-auto p-6">
         {/* Shared indicator */}
       <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
         <p className="text-blue-700">
@@ -186,7 +181,7 @@ export default function SharedMenuPage() {
                   meal.recipes.map((mealRecipe) => (
                     <div
                       key={mealRecipe.id}
-                      onClick={() => handleRecipeClick(mealRecipe)}
+                      onClick={() => handleRecipeClick(mealRecipe.recipe_id)}
                       className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                     >
                       {mealRecipe.recipe?.image_url && (
@@ -237,17 +232,31 @@ export default function SharedMenuPage() {
           </p>
         </div>
       )}
-        </div>
       </div>
 
-      {/* Recipe Modal */}
-      {selectedRecipe && (
-        <RecipeModal
-          recipe={selectedRecipe}
-          onClose={handleCloseModal}
-          onUpdate={handleUpdateRecipe}
-        />
-      )}
-    </>
+      {/* Recipe View Modal */}
+      <Modal
+        isOpen={!!viewingRecipe || loadingRecipe}
+        onClose={() => {
+          setViewingRecipe(null);
+        }}
+        title={viewingRecipe?.title}
+      >
+        {loadingRecipe && (
+          <div className="flex justify-center items-center p-8">
+            <Spinner message="טוען מתכון..." />
+          </div>
+        )}
+
+        {viewingRecipe && !loadingRecipe && (
+          <RecipeDetails
+            recipe={viewingRecipe}
+            isEditing={false}
+            onEditStart={() => {}}
+            onEditEnd={() => {}}
+          />
+        )}
+      </Modal>
+    </div>
   );
 }
