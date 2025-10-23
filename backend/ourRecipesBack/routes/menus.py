@@ -275,7 +275,7 @@ def update_menu(menu_id):
         if menu.telegram_message_id:
             print(f"📝 Updating menu in Telegram...")
             try:
-                success = asyncio.run(MenuService.update_in_telegram(menu))
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
                 if success:
                     print(f"✓ Menu updated in Telegram")
                 else:
@@ -378,6 +378,21 @@ def replace_recipe(menu_id, meal_id, recipe_id):
 
         # Regenerate shopping list
         shopping_list = ShoppingListService.generate_shopping_list(menu_id)
+
+        # Update in Telegram if menu is synced
+        if menu.telegram_message_id:
+            print(f"📝 Updating menu in Telegram after recipe replacement...")
+            try:
+                # Reload menu with fresh data
+                menu = Menu.query.get(menu_id)
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
+                if success:
+                    print(f"✓ Menu updated in Telegram")
+                else:
+                    print(f"⚠️ Failed to update menu in Telegram (but updated in DB)")
+            except Exception as telegram_error:
+                print(f"⚠️ Error updating in Telegram: {telegram_error}")
+                # Continue anyway - menu is already updated in DB
 
         return jsonify({
             "success": True,
@@ -538,7 +553,7 @@ def delete_recipe_from_meal(menu_id, meal_id, recipe_id):
             try:
                 # Reload menu with fresh data
                 menu = Menu.query.get(menu_id)
-                success = asyncio.run(MenuService.update_in_telegram(menu))
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
                 if success:
                     print(f"✓ Menu updated in Telegram")
                 else:
@@ -628,7 +643,7 @@ def add_recipe_to_meal(menu_id, meal_id):
             try:
                 # Reload menu with fresh data
                 menu = Menu.query.get(menu_id)
-                success = asyncio.run(MenuService.update_in_telegram(menu))
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
                 if success:
                     print(f"✓ Menu updated in Telegram")
                 else:
@@ -679,7 +694,7 @@ def delete_meal(menu_id, meal_id):
             try:
                 # Reload menu with fresh data
                 menu = Menu.query.get(menu_id)
-                success = asyncio.run(MenuService.update_in_telegram(menu))
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
                 if success:
                     print(f"✓ Menu updated in Telegram")
                 else:
@@ -754,7 +769,7 @@ def add_meal_to_menu(menu_id):
             try:
                 # Reload menu with fresh data
                 menu = Menu.query.get(menu_id)
-                success = asyncio.run(MenuService.update_in_telegram(menu))
+                success = asyncio.run(MenuService.update_in_telegram(menu, commit=True))
                 if success:
                     print(f"✓ Menu updated in Telegram")
                 else:

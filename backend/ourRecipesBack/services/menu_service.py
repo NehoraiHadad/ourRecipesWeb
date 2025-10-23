@@ -227,10 +227,15 @@ class MenuService:
             return None
 
     @classmethod
-    async def update_in_telegram(cls, menu):
+    async def update_in_telegram(cls, menu, commit=True):
         """
         Update existing menu message in Telegram
         Returns True if successful, False otherwise
+
+        Args:
+            menu: Menu object to update
+            commit: Whether to commit the transaction (default True)
+                    Set to False when called within another transaction
         """
         try:
             if not menu.telegram_message_id:
@@ -242,7 +247,8 @@ class MenuService:
 
             if success:
                 menu.last_sync = func.now()
-                db.session.commit()
+                if commit:
+                    db.session.commit()
                 logger.info(f"Menu {menu.id} updated in Telegram (message {menu.telegram_message_id})")
             else:
                 logger.error(f"Failed to update menu {menu.id} in Telegram")
