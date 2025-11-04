@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { RecipeService } from '@/services/recipeService';
 import { useNotification } from '@/context/NotificationContext';
-import RecipeDetails from '@/components/recipe/RecipeDetails';
+import RecipeDisplay from '@/components/RecipeDisplay';
 import Spinner from '@/components/ui/Spinner';
 import type { recipe } from '@/types';
 
@@ -115,10 +115,7 @@ export default function RecipeDetailPage() {
 
         {/* תוכן המתכון */}
         <div className="overflow-y-auto flex-1">
-          <RecipeDetails
-            recipe={recipe}
-            onRecipeUpdated={(updatedRecipe) => setRecipe(updatedRecipe)}
-          />
+          <RecipeDisplay recipe={recipe} />
         </div>
       </div>
     </div>
