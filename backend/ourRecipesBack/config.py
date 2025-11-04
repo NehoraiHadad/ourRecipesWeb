@@ -77,6 +77,9 @@ class Config:
     CORS_METHODS = ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"]
     CORS_MAX_AGE = 600  # Cache preflight requests for 10 minutes
 
+    # Frontend URL for sharing
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "https://ourrecipes.com")
+
     # AI Service settings
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
     HF_TOKEN = os.getenv("HF_TOKEN")
@@ -96,7 +99,10 @@ class DevelopmentConfig(Config):
     JWT_COOKIE_SECURE = False
     SESSION_COOKIE_SECURE = False
     SQLALCHEMY_DATABASE_URI = "sqlite:///dev.db"
-    
+
+    # Frontend URL for development
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:3000")
+
     # Development-specific session names
     SESSION_NAME = "connect_to_our_recipes_channel_dev"
     

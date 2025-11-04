@@ -104,6 +104,30 @@ const copyToClipboard = async (text: string) => {
 };
 
 export const shareRecipe = (recipe: recipe) => {
+  // יצירת קישור למתכון
+  const recipeUrl = `${window.location.origin}/r/${recipe.id}`;
+  const shareText = `🍳 ${recipe.title}\n\n${recipeUrl}`;
+
+  if (navigator.share) {
+    return navigator.share({
+      title: recipe.title,
+      text: `🍳 ${recipe.title}`,
+      url: recipeUrl
+    }).catch(error => {
+      if ((error as Error).name !== 'AbortError') {
+        console.error('Error sharing:', error);
+        // Fallback to clipboard
+        return copyToClipboard(shareText);
+      }
+    });
+  } else {
+    // Fallback to clipboard
+    return copyToClipboard(shareText);
+  }
+};
+
+// שמירת הפונקציה המקורית למקרה הצורך
+export const shareRecipeText = (recipe: recipe) => {
   const content = formatRecipeForSharing(recipe);
   return shareContent(content);
 };
