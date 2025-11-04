@@ -95,9 +95,14 @@ export default function Page() {
               return recipeData;
             })
             .catch(error => {
-              if (error?.response?.status === 404) {
-                console.warn(`⚠️ Recipe ${id} not found - removing from favorites`);
+              // Check for 404 status - ApiError has status directly on the object
+              if (error?.status === 404) {
+                console.warn(`⚠️ Recipe ${id} not found (404) - removing from favorites`);
                 // Remove the non-existent recipe from favorites
+                setFavorites(prev => prev.filter(favId => favId !== id));
+              } else if (error?.status === 400 || error?.status === 500) {
+                console.warn(`⚠️ Recipe ${id} returned error ${error.status} - removing from favorites`);
+                // Remove recipes that return errors
                 setFavorites(prev => prev.filter(favId => favId !== id));
               } else {
                 console.error(`❌ Error fetching recipe ${id}:`, error);
