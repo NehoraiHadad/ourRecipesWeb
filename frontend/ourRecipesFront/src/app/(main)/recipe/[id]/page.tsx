@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import { recipeService } from '@/services/recipeService';
+import { RecipeService } from '@/services/recipeService';
 import { useNotification } from '@/context/NotificationContext';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
 import Spinner from '@/components/ui/Spinner';
@@ -31,7 +31,7 @@ export default function RecipeDetailPage() {
     setError('');
 
     try {
-      const response = await recipeService.getRecipeById(recipeId);
+      const response = await RecipeService.getRecipeById(recipeId);
 
       if (response && response.data) {
         setRecipe(response.data);
