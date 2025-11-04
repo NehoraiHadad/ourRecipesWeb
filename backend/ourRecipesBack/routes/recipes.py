@@ -226,16 +226,15 @@ async def bulk_action():
 
 
 @recipes_bp.route('/<int:recipe_id>', methods=['GET'])
-@jwt_required()
 def get_recipe(recipe_id):
-    """Get recipe details by ID"""
+    """Get recipe details by ID - public endpoint for sharing"""
     try:
         recipe = get_recipe_by_id(recipe_id)
         if recipe is None:
             return jsonify({'error': 'Recipe not found'}), 404
-            
+
         return jsonify({'data': recipe}), 200
-        
+
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 
