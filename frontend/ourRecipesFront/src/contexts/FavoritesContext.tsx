@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, ReactNode } from 'react';
 
 interface FavoritesContextType {
   favorites: number[];
@@ -13,15 +13,22 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 const STORAGE_KEY = 'favorite-recipes';
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
-  const [favorites, setFavorites] = useState<number[]>([]);
-
-  // Load favorites from localStorage on mount
-  useEffect(() => {
-    const savedFavorites = localStorage.getItem(STORAGE_KEY);
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
+  // Initialize state with localStorage value
+  const [favorites, setFavorites] = useState<number[]>(() => {
+    // Check if we're on the client side
+    if (typeof window !== 'undefined') {
+      const savedFavorites = localStorage.getItem(STORAGE_KEY);
+      if (savedFavorites) {
+        try {
+          return JSON.parse(savedFavorites);
+        } catch (error) {
+          console.error('Error parsing favorites from localStorage:', error);
+          return [];
+        }
+      }
     }
-  }, []);
+    return [];
+  });
 
   const toggleFavorite = (recipeId: number) => {
     setFavorites(prev => {
