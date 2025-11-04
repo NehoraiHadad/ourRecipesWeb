@@ -23,6 +23,7 @@ export default function Page() {
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
   const [favoriteRecipes, setFavoriteRecipes] = useState<recipe[]>([]);
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
+  const [favoritesError, setFavoritesError] = useState<string | null>(null);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
   const { favorites, setFavorites } = useFavorites();
   const { searchResults, resultCount, setSearchResults, setResultCount } = useSearchContext();
@@ -57,53 +58,70 @@ export default function Page() {
   // Update useEffect to fetch favorite recipes
   useEffect(() => {
     const fetchFavoriteRecipes = async () => {
+      console.log('🔄 Fetching favorite recipes, favorites:', favorites);
+
+      // Reset error state
+      setFavoritesError(null);
+
       if (favorites.length === 0) {
+        console.log('✅ No favorites found in localStorage');
         setFavoriteRecipes([]);
         setIsLoadingFavorites(false);
         return;
       }
 
+      console.log(`📥 Loading ${favorites.length} favorite recipes:`, favorites);
+      setIsLoadingFavorites(true);
+
       try {
-        const promises = favorites.map(id => 
+        const promises = favorites.map(id =>
           RecipeService.getRecipeById(id)
             .then(res => {
+              console.log(`✅ Loaded recipe ${id}:`, res.data?.title);
               const recipeData = res.data;
-              
+
               // Validate the response data
               if (!recipeData || typeof recipeData !== 'object') {
-                console.error(`Invalid response for recipe ${id}:`, res);
+                console.error(`❌ Invalid response for recipe ${id}:`, res);
                 return null;
               }
-              
+
               // Additional validation for required fields
               if (!recipeData.id || !recipeData.title) {
-                console.error(`Recipe ${id} missing required fields:`, recipeData);
+                console.error(`❌ Recipe ${id} missing required fields:`, recipeData);
                 return null;
               }
-              
+
               return recipeData;
             })
             .catch(error => {
               if (error?.response?.status === 404) {
-                console.warn(`Recipe ${id} not found - removing from favorites`);
+                console.warn(`⚠️ Recipe ${id} not found - removing from favorites`);
                 // Remove the non-existent recipe from favorites
                 setFavorites(prev => prev.filter(favId => favId !== id));
               } else {
-                console.error(`Error fetching recipe ${id}:`, error);
+                console.error(`❌ Error fetching recipe ${id}:`, error);
               }
               return null;
             })
         );
-        
+
         const recipes = (await Promise.all(promises)).filter((recipe): recipe is recipe => {
           if (!recipe || typeof recipe !== 'object') return false;
           if (!('id' in recipe) || typeof recipe.id !== 'number') return false;
           return true;
         });
-        
+
+        console.log(`✅ Successfully loaded ${recipes.length} favorite recipes`);
         setFavoriteRecipes(recipes);
+
+        // If no recipes were loaded but we have favorites, show error
+        if (recipes.length === 0 && favorites.length > 0) {
+          setFavoritesError('לא ניתן לטעון את המתכונים המועדפים. אנא נסה שוב מאוחר יותר.');
+        }
       } catch (error) {
-        console.error('Error fetching favorite recipes:', error);
+        console.error('❌ Error fetching favorite recipes:', error);
+        setFavoritesError('שגיאה בטעינת מתכונים מועדפים');
       } finally {
         setIsLoadingFavorites(false);
       }
@@ -198,6 +216,26 @@ export default function Page() {
                       {[1, 2, 3, 4].map((n) => (
                         <RecipeCardSkeleton key={n} />
                       ))}
+                    </div>
+                  ) : favoritesError ? (
+                    <div className="text-center py-12 px-4">
+                      <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-red-100 mb-4">
+                        <svg className="w-8 h-8 text-red-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                      </div>
+                      <Typography variant="body" className="text-red-600 mb-2 font-medium">
+                        {favoritesError}
+                      </Typography>
+                      <Typography variant="body" className="text-sm text-secondary-500 mb-4">
+                        יש {favorites.length} מתכונים מסומנים אבל לא ניתן לטעון אותם
+                      </Typography>
+                      <button
+                        onClick={() => window.location.reload()}
+                        className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                      >
+                        רענן את הדף
+                      </button>
                     </div>
                   ) : favoriteRecipes.length > 0 ? (
                     <Recipes recipes={favoriteRecipes} onRecipeClick={handleRecipeClick} />
