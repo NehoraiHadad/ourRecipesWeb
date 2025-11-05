@@ -11,6 +11,8 @@ from ..models import Recipe, Menu
 import logging
 from flask import Blueprint
 import asyncio
+import os
+import re
 
 sync_bp = Blueprint("sync", __name__)
 logger = logging.getLogger(__name__)
@@ -222,6 +224,102 @@ async def _perform_sync(sync_log):
 
         # Final commit for menus
         db.session.commit()
+
+        # ONE-TIME CLEANUP: Remove auto-added URLs from recipes (runs only once)
+        await _cleanup_recipe_urls_once(client, sync_log)
+
+
+async def _cleanup_recipe_urls_once(client, sync_log):
+    """
+    ONE-TIME CLEANUP: Remove auto-added URLs from recipe messages in Telegram
+
+    This function runs only once after sync, controlled by RUN_URL_CLEANUP env var.
+    It removes the '🔗 קישור למתכון: ...' line that was accidentally added to recipes.
+
+    To enable: Set environment variable RUN_URL_CLEANUP=true
+    After running once successfully, manually unset the variable or set to false.
+    """
+    # Check if cleanup is enabled
+    run_cleanup = os.getenv('RUN_URL_CLEANUP', 'false').lower() == 'true'
+
+    if not run_cleanup:
+        logger.info("URL cleanup skipped (RUN_URL_CLEANUP not set to true)")
+        return
+
+    logger.info("=" * 80)
+    logger.info("Starting ONE-TIME recipe URL cleanup...")
+    logger.info("=" * 80)
+
+    url_pattern = re.compile(r'\n\n🔗 קישור למתכון:.*$', re.MULTILINE)
+
+    cleanup_stats = {
+        'total_checked': 0,
+        'with_url': 0,
+        'cleaned': 0,
+        'failed': 0
+    }
+
+    try:
+        # Get all recipes that might have the URL
+        recipes = Recipe.query.all()
+        cleanup_stats['total_checked'] = len(recipes)
+
+        channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
+
+        for recipe in recipes:
+            # Check if recipe has the auto-added URL
+            if '🔗 קישור למתכון:' not in recipe.raw_content:
+                continue
+
+            cleanup_stats['with_url'] += 1
+
+            try:
+                # Clean the URL from text
+                cleaned_text = url_pattern.sub('', recipe.raw_content).strip()
+
+                logger.info(f"Cleaning recipe {recipe.id} (Telegram ID: {recipe.telegram_id})")
+                logger.info(f"  Title: {recipe.title}")
+
+                # Update Telegram message
+                await client.edit_message(
+                    channel_entity,
+                    recipe.telegram_id,
+                    cleaned_text
+                )
+
+                # Update DB
+                recipe.raw_content = cleaned_text
+                recipe.title = recipe.raw_content.split("\n", 1)[0].strip("*:")
+
+                cleanup_stats['cleaned'] += 1
+
+                # Small delay to avoid rate limiting
+                await asyncio.sleep(1.5)
+
+            except Exception as e:
+                cleanup_stats['failed'] += 1
+                logger.error(f"Failed to clean recipe {recipe.id}: {str(e)}")
+                # Continue with next recipe
+                continue
+
+        # Commit all DB changes
+        db.session.commit()
+
+        # Log summary
+        logger.info("=" * 80)
+        logger.info("URL Cleanup Summary:")
+        logger.info(f"  Total recipes checked: {cleanup_stats['total_checked']}")
+        logger.info(f"  With URL marker: {cleanup_stats['with_url']}")
+        logger.info(f"  Successfully cleaned: {cleanup_stats['cleaned']}")
+        logger.info(f"  Failed: {cleanup_stats['failed']}")
+        logger.info("=" * 80)
+        logger.info("⚠️  IMPORTANT: Unset RUN_URL_CLEANUP env var to prevent re-running")
+        logger.info("=" * 80)
+
+    except Exception as e:
+        logger.error(f"Error during URL cleanup: {str(e)}")
+        db.session.rollback()
+        raise
 
 
 def _parse_place_from_message(text):
