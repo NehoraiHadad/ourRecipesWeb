@@ -1,5 +1,5 @@
 'use client';
-import { createContext, useContext, useState, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface FavoritesContextType {
   favorites: number[];
@@ -14,7 +14,7 @@ const STORAGE_KEY = 'favorite-recipes';
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
   // Initialize state with localStorage value
-  const [favorites, setFavorites] = useState<number[]>(() => {
+  const [favorites, setFavoritesState] = useState<number[]>(() => {
     // Check if we're on the client side
     if (typeof window !== 'undefined') {
       const savedFavorites = localStorage.getItem(STORAGE_KEY);
@@ -34,6 +34,19 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     return [];
   });
 
+  // Sync favorites to localStorage whenever they change
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log('💾 Syncing favorites to localStorage:', favorites);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+    }
+  }, [favorites]);
+
+  // Wrapper for setFavorites that works with both direct values and updater functions
+  const setFavorites = (value: number[] | ((prev: number[]) => number[])) => {
+    setFavoritesState(value);
+  };
+
   const toggleFavorite = (recipeId: number) => {
     setFavorites(prev => {
       const updated = prev.includes(recipeId)
@@ -43,8 +56,7 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
       console.log(prev.includes(recipeId) ? `💔 Removing recipe ${recipeId} from favorites` : `❤️ Adding recipe ${recipeId} to favorites`);
       console.log('Updated favorites:', updated);
 
-      // Save to localStorage
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
+      // localStorage sync happens automatically via useEffect
       return updated;
     });
   };
