@@ -10,6 +10,20 @@ import { RecipeService } from '@/services/recipeService';
 import { SearchService } from '@/services/searchService';
 import { useDebounce } from '@/hooks/useDebounce';
 import type { Menu, RecipeSummary, recipe } from '@/types';
+import {
+  ShoppingListIcon,
+  PlusIcon,
+  LockIcon,
+  UnlockIcon,
+  ClipboardIcon,
+  TrashIcon,
+  LightbulbIcon,
+  RefreshIcon,
+  XIcon,
+  SearchIcon,
+  ChartBarIcon,
+} from '@/components/ui/icons';
+import { ClockIcon } from '@/components/ui/ClockIcon';
 
 interface MenuDisplayProps {
   menu: Menu;
@@ -475,7 +489,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
             size="sm"
             onClick={() => router.push(`/menus/${menu.id}/shopping-list`)}
           >
-            📝 רשימת קניות
+            <ShoppingListIcon size="sm" className="ml-1" />
+            רשימת קניות
           </Button>
           <Button
             variant="secondary"
@@ -483,7 +498,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
             onClick={() => setShowAddMealModal(true)}
             disabled={loading}
           >
-            ➕ הוסף ארוחה
+            <PlusIcon size="sm" className="ml-1" />
+            הוסף ארוחה
           </Button>
           <Button
             variant="secondary"
@@ -491,7 +507,17 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
             onClick={handleShareToggle}
             disabled={loading}
           >
-            {isPublic ? '🔓 שותף' : '🔒 פרטי'}
+            {isPublic ? (
+              <>
+                <UnlockIcon size="sm" className="ml-1" />
+                שותף
+              </>
+            ) : (
+              <>
+                <LockIcon size="sm" className="ml-1" />
+                פרטי
+              </>
+            )}
           </Button>
           {isPublic && (
             <Button
@@ -499,7 +525,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
               size="sm"
               onClick={handleCopyShareLink}
             >
-              📋 העתק קישור
+              <ClipboardIcon size="sm" className="ml-1" />
+              העתק קישור
             </Button>
           )}
           <Button
@@ -509,15 +536,19 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
             disabled={loading}
             className="text-red-600 hover:bg-red-50"
           >
-            🗑️ מחק
+            <TrashIcon size="sm" className="ml-1" />
+            מחק
           </Button>
         </div>
 
         {/* AI Reasoning */}
         {menu.ai_reasoning && (
           <div className="mt-4 p-3 bg-primary-50 rounded-md">
-            <p className="text-sm text-primary-700">
-              <span className="font-semibold">💡 למה בחרנו ככה?</span> {menu.ai_reasoning}
+            <p className="text-sm text-primary-700 flex items-start gap-2">
+              <LightbulbIcon size="sm" className="flex-shrink-0 mt-0.5" />
+              <span>
+                <span className="font-semibold">למה בחרנו ככה?</span> {menu.ai_reasoning}
+              </span>
             </p>
           </div>
         )}
@@ -547,7 +578,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                     onClick={() => setAddingToMeal(meal.id)}
                     disabled={loading}
                   >
-                    ➕ הוסף מתכון
+                    <PlusIcon size="sm" className="ml-1" />
+                    הוסף מתכון
                   </Button>
                   <Button
                     variant="secondary"
@@ -556,7 +588,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                     disabled={loading}
                     className="text-red-600 hover:bg-red-50"
                   >
-                    🗑️ מחק ארוחה
+                    <TrashIcon size="sm" className="ml-1" />
+                    מחק ארוחה
                   </Button>
                 </div>
               </div>
@@ -594,16 +627,23 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           </p>
                         )}
                         {mealRecipe.ai_reason && (
-                          <p className="text-sm text-secondary-600 mt-1">
-                            💡 {mealRecipe.ai_reason}
+                          <p className="text-sm text-secondary-600 mt-1 flex items-start gap-1">
+                            <LightbulbIcon size="xs" className="flex-shrink-0 mt-0.5" />
+                            <span>{mealRecipe.ai_reason}</span>
                           </p>
                         )}
                         <div className="flex gap-3 mt-2 text-xs text-secondary-500">
                           {mealRecipe.recipe?.cooking_time && (
-                            <span>⏱️ {mealRecipe.recipe.cooking_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {mealRecipe.recipe.cooking_time} דק׳
+                            </span>
                           )}
                           {mealRecipe.recipe?.difficulty && (
-                            <span>📊 {mealRecipe.recipe.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {mealRecipe.recipe.difficulty}
+                            </span>
                           )}
                         </div>
                       </div>
@@ -616,7 +656,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                             handleReplaceClick(meal.id, mealRecipe.recipe_id);
                           }}
                         >
-                          🔄 החלף
+                          <RefreshIcon size="sm" className="ml-1" />
+                          החלף
                         </Button>
                         <Button
                           variant="secondary"
@@ -627,7 +668,8 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                           }}
                           className="text-red-600 hover:bg-red-50"
                         >
-                          ✕ הסר
+                          <XIcon size="sm" className="ml-1" />
+                          הסר
                         </Button>
                       </div>
                     </div>
@@ -679,7 +721,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 }}
                 className="text-secondary-500 hover:text-secondary-700"
               >
-                ✕
+                <XIcon size="md" />
               </button>
             </div>
 
@@ -714,9 +756,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                   {isSearching ? (
                     <Spinner size="sm" />
                   ) : (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <SearchIcon size="md" />
                   )}
                 </button>
 
@@ -773,10 +813,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         )}
                         <div className="flex gap-3 mt-1 text-xs text-secondary-500">
                           {recipe.preparation_time && (
-                            <span>⏱️ {recipe.preparation_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {recipe.preparation_time} דק׳
+                            </span>
                           )}
                           {recipe.difficulty && (
-                            <span>📊 {recipe.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {recipe.difficulty}
+                            </span>
                           )}
                         </div>
                       </div>
@@ -823,10 +869,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         )}
                         <div className="flex gap-3 mt-1 text-xs text-secondary-500">
                           {suggestion.cooking_time && (
-                            <span>⏱️ {suggestion.cooking_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {suggestion.cooking_time} דק׳
+                            </span>
                           )}
                           {suggestion.difficulty && (
-                            <span>📊 {suggestion.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {suggestion.difficulty}
+                            </span>
                           )}
                         </div>
                       </div>
@@ -893,7 +945,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 }}
                 className="text-secondary-500 hover:text-secondary-700"
               >
-                ✕
+                <XIcon size="md" />
               </button>
             </div>
 
@@ -924,9 +976,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                   {isAddRecipeSearching ? (
                     <Spinner size="sm" />
                   ) : (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <SearchIcon size="md" />
                   )}
                 </button>
               </div>
@@ -964,10 +1014,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                         )}
                         <div className="flex gap-3 mt-1 text-xs text-secondary-500">
                           {recipe.preparation_time && (
-                            <span>⏱️ {recipe.preparation_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {recipe.preparation_time} דק׳
+                            </span>
                           )}
                           {recipe.difficulty && (
-                            <span>📊 {recipe.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {recipe.difficulty}
+                            </span>
                           )}
                         </div>
                       </div>
@@ -1002,7 +1058,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                 onClick={() => setShowAddMealModal(false)}
                 className="text-secondary-500 hover:text-secondary-700"
               >
-                ✕
+                <XIcon size="md" />
               </button>
             </div>
 

@@ -7,6 +7,16 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import Spinner from '@/components/ui/Spinner';
 import type { DietaryType, MenuGenerationRequest, RecipeSummary } from '@/types';
+import {
+  SparklesIcon,
+  LightbulbIcon,
+  RefreshIcon,
+  CheckIcon,
+  XIcon,
+  SearchIcon,
+  ChartBarIcon,
+} from '@/components/ui/icons';
+import { ClockIcon } from '@/components/ui/ClockIcon';
 
 interface MenuGeneratorProps {
   onMenuCreated?: (menuId: number) => void;
@@ -437,11 +447,13 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
       {loading && (
         <div className="mt-4 p-4 bg-primary-50 rounded-lg border border-primary-200">
-          <p className="text-sm text-primary-700 font-medium">
-            🤖 ה-AI עובד על יצירת תפריט מאוזן והגיוני עבורך...
+          <p className="text-sm text-primary-700 font-medium flex items-center gap-2">
+            <SparklesIcon size="sm" />
+            ה-AI עובד על יצירת תפריט מאוזן והגיוני עבורך...
           </p>
-          <p className="text-xs text-primary-600 mt-2">
-            ⏱️ זה עשוי לקחת 30-60 שניות
+          <p className="text-xs text-primary-600 mt-2 flex items-center gap-2">
+            <ClockIcon className="w-3 h-3" />
+            זה עשוי לקחת 30-60 שניות
           </p>
           <p className="text-xs text-primary-600 mt-1">
             ה-AI מחפש מתכונים מתאימים ומוודא איזון נכון בין מנות
@@ -491,16 +503,23 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                           </p>
                         )}
                         {mealRecipe.ai_reason && (
-                          <p className="text-sm text-secondary-600 mt-1">
-                            💡 {mealRecipe.ai_reason}
+                          <p className="text-sm text-secondary-600 mt-1 flex items-start gap-1">
+                            <LightbulbIcon size="xs" className="flex-shrink-0 mt-0.5" />
+                            <span>{mealRecipe.ai_reason}</span>
                           </p>
                         )}
                         <div className="flex gap-3 mt-2 text-xs text-secondary-500">
                           {mealRecipe.recipe?.cooking_time && (
-                            <span>⏱️ {mealRecipe.recipe.cooking_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {mealRecipe.recipe.cooking_time} דק׳
+                            </span>
                           )}
                           {mealRecipe.recipe?.difficulty && (
-                            <span>📊 {mealRecipe.recipe.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {mealRecipe.recipe.difficulty}
+                            </span>
                           )}
                           {mealRecipe.recipe?.servings && (
                             <span>👥 {mealRecipe.recipe.servings} מנות</span>
@@ -512,7 +531,8 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                         size="sm"
                         onClick={() => handleReplaceInPreview(index, rIndex, mealRecipe.recipe_id, mealRecipe.course_type)}
                       >
-                        🔄 החלף
+                        <RefreshIcon size="sm" className="ml-1" />
+                        החלף
                       </Button>
                     </div>
                   ))}
@@ -523,8 +543,11 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
 
           {menuPreview.reasoning && (
             <div className="bg-primary-50 rounded-lg p-4 mb-6 border border-primary-200">
-              <p className="text-sm text-primary-700">
-                <span className="font-semibold">💡 למה בחרנו ככה?</span> {menuPreview.reasoning}
+              <p className="text-sm text-primary-700 flex items-start gap-2">
+                <LightbulbIcon size="sm" className="flex-shrink-0 mt-0.5" />
+                <span>
+                  <span className="font-semibold">למה בחרנו ככה?</span> {menuPreview.reasoning}
+                </span>
               </p>
             </div>
           )}
@@ -544,7 +567,10 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                   <span>שומר...</span>
                 </div>
               ) : (
-                '✓ אשר ושמור את התפריט'
+                <>
+                  <CheckIcon size="sm" className="ml-1" />
+                  אשר ושמור את התפריט
+                </>
               )}
             </Button>
             <Button
@@ -554,12 +580,14 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
               size="lg"
               className="flex-1"
             >
-              ✕ בטל וצור מחדש
+              <XIcon size="sm" className="ml-1" />
+              בטל וצור מחדש
             </Button>
           </div>
 
-          <p className="text-xs text-secondary-500 mt-4 text-center">
-            💡 לחץ על "🔄 החלף" כדי להחליף מתכון לפני השמירה
+          <p className="text-xs text-secondary-500 mt-4 text-center flex items-center justify-center gap-1">
+            <LightbulbIcon size="xs" />
+            לחץ על "החלף" כדי להחליף מתכון לפני השמירה
           </p>
         </div>
       )}
@@ -592,7 +620,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                 }}
                 className="text-secondary-500 hover:text-secondary-700"
               >
-                ✕
+                <XIcon size="md" />
               </button>
             </div>
 
@@ -624,9 +652,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                   {isSearching ? (
                     <Spinner size="sm" />
                   ) : (
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                    </svg>
+                    <SearchIcon size="md" />
                   )}
                 </button>
               </div>
@@ -675,10 +701,16 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                         )}
                         <div className="flex gap-3 mt-1 text-xs text-secondary-500">
                           {recipe.preparation_time && (
-                            <span>⏱️ {recipe.preparation_time} דק׳</span>
+                            <span className="flex items-center gap-1">
+                              <ClockIcon className="w-3 h-3" />
+                              {recipe.preparation_time} דק׳
+                            </span>
                           )}
                           {recipe.difficulty && (
-                            <span>📊 {recipe.difficulty}</span>
+                            <span className="flex items-center gap-1">
+                              <ChartBarIcon size="xs" />
+                              {recipe.difficulty}
+                            </span>
                           )}
                         </div>
                       </div>
