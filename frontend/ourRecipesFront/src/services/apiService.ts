@@ -391,14 +391,32 @@ class ApiService {
     const timeoutId = setTimeout(() => controller.abort(), timeout);
 
     try {
-      const response = await fetch(`${API_URL}${endpoint}`, {
+      const fullUrl = `${API_URL}${endpoint}`;
+      const requestHeaders = {
+        ...authService.getHeaders(),
+        ...fetchOptions.headers,
+      };
+
+      console.log('🌐 API Request:', {
+        url: fullUrl,
+        method: fetchOptions.method || 'GET',
+        headers: requestHeaders,
+        hasBody: !!fetchOptions.body
+      });
+
+      const response = await fetch(fullUrl, {
         ...fetchOptions,
         credentials: 'include',
-        headers: {
-          ...authService.getHeaders(),
-          ...fetchOptions.headers,
-        },
+        headers: requestHeaders,
         signal: controller.signal,
+      });
+
+      console.log('📥 API Response:', {
+        url: fullUrl,
+        status: response.status,
+        statusText: response.statusText,
+        ok: response.ok,
+        headers: Object.fromEntries(response.headers.entries())
       });
 
       const success = response.ok;
@@ -409,6 +427,12 @@ class ApiService {
 
       if (!interceptedResponse.ok) {
         const errorData = await interceptedResponse.json().catch(() => ({}));
+        console.error('❌ API Error Response:', {
+          url: fullUrl,
+          status: interceptedResponse.status,
+          statusText: interceptedResponse.statusText,
+          errorData
+        });
         throw new ApiError(
           interceptedResponse.status,
           errorData.message || 'Network response was not ok',
@@ -425,6 +449,16 @@ class ApiService {
 
       return data;
     } catch (error) {
+      console.error('❌ API Request Failed:', {
+        url: `${API_URL}${endpoint}`,
+        error,
+        errorName: error instanceof Error ? error.name : 'Unknown',
+        errorMessage: error instanceof Error ? error.message : String(error),
+        isApiError: error instanceof ApiError,
+        isAbortError: error instanceof Error && error.name === 'AbortError',
+        isNetworkError: error instanceof TypeError
+      });
+
       this.updateMetrics(startTime, false);
 
       // Try cache if network request fails and strategy is network-first

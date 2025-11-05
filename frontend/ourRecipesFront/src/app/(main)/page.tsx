@@ -95,12 +95,19 @@ export default function Page() {
               return recipeData;
             })
             .catch(error => {
-              if (error?.response?.status === 404) {
-                console.warn(`⚠️ Recipe ${id} not found - removing from favorites`);
-                // Remove the non-existent recipe from favorites
+              console.error(`❌ Error fetching recipe ${id}:`, {
+                error,
+                errorName: error?.name,
+                errorMessage: error?.message,
+                errorStatus: error?.status,
+                errorData: error?.data,
+                fullError: JSON.stringify(error, Object.getOwnPropertyNames(error))
+              });
+
+              // Only remove from favorites if confirmed 404
+              if (error?.status === 404) {
+                console.warn(`⚠️ Recipe ${id} not found (404) - removing from favorites`);
                 setFavorites(prev => prev.filter(favId => favId !== id));
-              } else {
-                console.error(`❌ Error fetching recipe ${id}:`, error);
               }
               return null;
             })
