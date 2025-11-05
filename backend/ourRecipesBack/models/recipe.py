@@ -357,7 +357,8 @@ class Recipe(db.Model):
     def to_dict(self):
         """Convert recipe to dictionary format"""
         return {
-            'id': self.telegram_id,
+            'id': self.id,  # Use database ID (primary key) for consistency
+            'telegram_id': self.telegram_id,  # Keep telegram_id separate for reference
             'title': self.title,
             'details': self.raw_content,
             'ingredients': self.ingredients,
