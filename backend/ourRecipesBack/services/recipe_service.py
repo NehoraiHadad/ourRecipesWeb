@@ -273,8 +273,10 @@ class RecipeService:
         """Format recipes for search results"""
         results = {}
         for recipe in recipes:
-            results[str(recipe.telegram_id)] = {
-                "id": recipe.telegram_id,
+            # Use database ID as key for consistency
+            results[str(recipe.id)] = {
+                "id": recipe.id,  # Return database ID (primary key)
+                "telegram_id": recipe.telegram_id,
                 "title": recipe.title,
                 "details": recipe.raw_content,
                 "image": recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
@@ -435,7 +437,7 @@ def get_recipe_by_id(recipe_id: int) -> dict:
         return None
 
     return {
-        'id': recipe.telegram_id,  # Frontend expects telegram_id in 'id' field for compatibility
+        'id': recipe.id,  # Return database ID (primary key)
         'title': recipe.title,
         'details': recipe.raw_content,  # Use raw_content instead of details
         'image': recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
