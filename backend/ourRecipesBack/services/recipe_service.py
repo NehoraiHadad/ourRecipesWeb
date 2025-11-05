@@ -66,27 +66,6 @@ class RecipeService:
                 db.session.add(recipe)
                 db.session.commit()
 
-                # Add recipe URL to Telegram message
-                frontend_url = current_app.config.get("FRONTEND_URL", "https://ourrecipes.com")
-                recipe_url = f"{frontend_url}/r/{recipe.id}"
-                updated_text = f"{text}\n\n🔗 קישור למתכון: {recipe_url}"
-
-                try:
-                    # Edit the message to include the URL
-                    if image_data:
-                        file = BytesIO(image_data)
-                        file.name = "image.jpg"
-                        await client.edit_message(channel_entity, message.id, updated_text, file=file)
-                    else:
-                        await client.edit_message(channel_entity, message.id, updated_text)
-
-                    # Update the recipe content in DB to include the URL
-                    recipe.raw_content = updated_text
-                    db.session.commit()
-                except Exception as e:
-                    # Log the error but don't fail the recipe creation
-                    print(f"Warning: Failed to add URL to Telegram message: {str(e)}")
-
                 return recipe, message.id
 
         except Exception as e:
@@ -102,15 +81,6 @@ class RecipeService:
             return None, "Recipe not found"
 
         try:
-            # Add recipe URL if not already present
-            frontend_url = current_app.config.get("FRONTEND_URL", "https://ourrecipes.com")
-            recipe_url = f"{frontend_url}/r/{recipe.id}"
-            url_marker = "🔗 קישור למתכון:"
-
-            # Check if URL is already in the text
-            if url_marker not in new_text:
-                new_text = f"{new_text}\n\n{url_marker} {recipe_url}"
-
             # Check if content is actually different
             if recipe.raw_content == new_text and not image_data:
                 # Content hasn't changed, return success without making Telegram API call
