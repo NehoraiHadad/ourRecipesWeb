@@ -151,7 +151,13 @@ class RecipeService:
 
     @classmethod
     async def sync_message(cls, client, message, sync_log):
-        """Sync single Telegram message to database"""
+        """
+        Sync single Telegram message to database (READ-ONLY from Telegram)
+
+        This function only reads from Telegram and updates the local DB.
+        It does NOT modify Telegram messages during sync.
+        URLs are added to Telegram messages only when creating/updating recipes through the app.
+        """
         try:
             if not message or not message.text:
                 sync_log.recipes_failed += 1
@@ -167,18 +173,11 @@ class RecipeService:
                 media_bytes.seek(0)
                 media_data = media_bytes.read()
 
+            # Simply use the message text as-is (read-only)
             message_text = message.text
-            url_marker = "🔗 קישור למתכון:"
-            needs_url_update = False
 
             if existing_recipe:
-                # Check if URL is missing from the message
-                if url_marker not in message_text:
-                    frontend_url = current_app.config.get("FRONTEND_URL", "https://ourrecipes.com")
-                    recipe_url = f"{frontend_url}/r/{existing_recipe.id}"
-                    message_text = f"{message_text}\n\n{url_marker} {recipe_url}"
-                    needs_url_update = True
-
+                # Update existing recipe with whatever is in Telegram
                 existing_recipe.title = cls.get_first_line(message_text)
                 existing_recipe.raw_content = message_text
                 existing_recipe._parse_content(message_text)
@@ -186,21 +185,8 @@ class RecipeService:
                     existing_recipe.set_image(image_data=media_data)
                 existing_recipe.last_sync = func.now()  # Mark as synced
                 sync_log.recipes_updated += 1
-
-                # Update Telegram message if URL was added
-                if needs_url_update:
-                    try:
-                        channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
-                        if media_data:
-                            file = BytesIO(media_data)
-                            file.name = "image.jpg"
-                            await client.edit_message(channel_entity, message.id, message_text, file=file)
-                        else:
-                            await client.edit_message(channel_entity, message.id, message_text)
-                    except Exception as e:
-                        logger.warning(f"Failed to add URL to Telegram message {message.id}: {str(e)}")
             else:
-                # For new recipes, we need to create them first, then add the URL
+                # Create new recipe from Telegram message (as-is)
                 new_recipe = Recipe(
                     telegram_id=message.id,
                     title=cls.get_first_line(message_text),
@@ -211,32 +197,7 @@ class RecipeService:
                 if media_data:
                     new_recipe.set_image(image_data=media_data)
                 db.session.add(new_recipe)
-                db.session.flush()  # Get the ID without committing
-
-                # Add URL to the recipe if it doesn't have one
-                if url_marker not in message_text:
-                    frontend_url = current_app.config.get("FRONTEND_URL", "https://ourrecipes.com")
-                    recipe_url = f"{frontend_url}/r/{new_recipe.id}"
-                    message_text = f"{message_text}\n\n{url_marker} {recipe_url}"
-                    new_recipe.raw_content = message_text
-                    new_recipe.title = cls.get_first_line(message_text)
-                    new_recipe._parse_content(message_text)
-                    needs_url_update = True
-
                 sync_log.recipes_added += 1
-
-                # Update Telegram message if URL was added
-                if needs_url_update:
-                    try:
-                        channel_entity = await client.get_entity(current_app.config["CHANNEL_URL"])
-                        if media_data:
-                            file = BytesIO(media_data)
-                            file.name = "image.jpg"
-                            await client.edit_message(channel_entity, message.id, message_text, file=file)
-                        else:
-                            await client.edit_message(channel_entity, message.id, message_text)
-                    except Exception as e:
-                        logger.warning(f"Failed to add URL to new Telegram message {message.id}: {str(e)}")
 
             sync_log.recipes_processed += 1
             logger.info(f"Recipe message {message.id} synced successfully")
