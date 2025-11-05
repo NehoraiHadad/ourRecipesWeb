@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { Container } from '@/components/ui/Container'
@@ -20,6 +20,7 @@ export function Header() {
   const { setAuthState, authState } = useAuthContext()
   const [showUserMenu, setShowUserMenu] = useState(false)
   const { clearSearch } = useSearchContext()
+  const userMenuRef = useRef<HTMLDivElement>(null)
 
   const handleLogout = async () => {
     try {
@@ -64,6 +65,23 @@ export function Header() {
     router.push('/')
   }
 
+  // Close user menu when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false)
+      }
+    }
+
+    if (showUserMenu) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [showUserMenu])
+
   return (
     <header className="bg-white border-b border-secondary-200 sticky top-0 z-30 w-full">
       <Container>
@@ -101,26 +119,67 @@ export function Header() {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            {/* User Menu */}
-            <div className="relative hidden md:block">
+            {/* Font Switcher */}
+            <div className="hidden md:block">
               <FeatureIndicator featureId="font-selection">
                 <FontSwitcher />
               </FeatureIndicator>
+            </div>
 
-              {/* Dropdown Menu */}
-              {showUserMenu && (
-                <div className="absolute left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-secondary-200 py-2 z-50">
-                  <div className="border-t border-secondary-200 mt-2 pt-2">
+            {/* User Menu for Desktop */}
+            {authState.isAuthenticated ? (
+              <div ref={userMenuRef} className="relative hidden md:block">
+                <button
+                  onClick={() => setShowUserMenu(!showUserMenu)}
+                  className="p-2 text-secondary-600 hover:text-secondary-900 transition-colors rounded-full hover:bg-secondary-50"
+                  aria-label="תפריט משתמש"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
+                    />
+                  </svg>
+                </button>
+
+                {/* Dropdown Menu */}
+                {showUserMenu && (
+                  <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-secondary-200 py-2 z-50">
+                    {authState.user && (
+                      <div className="px-4 py-2 border-b border-secondary-200">
+                        <p className="text-sm font-medium text-secondary-900">{authState.user.name}</p>
+                      </div>
+                    )}
                     <button
-                      onClick={handleLogout}
+                      onClick={() => {
+                        handleLogout()
+                        setShowUserMenu(false)
+                      }}
                       className="w-full text-right px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                     >
                       התנתק
                     </button>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                href="/login"
+                className="hidden md:block"
+              >
+                <Button variant="primary" size="sm">
+                  התחבר
+                </Button>
+              </Link>
+            )}
 
             {authState.canEdit && (
               <Button 
