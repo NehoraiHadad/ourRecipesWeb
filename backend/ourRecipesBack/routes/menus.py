@@ -315,13 +315,17 @@ def delete_menu(menu_id):
     """Delete a menu"""
     try:
         user_id = get_jwt_identity()
+        print(f"🗑️ Delete menu request - User: {user_id}, Menu: {menu_id}")
 
         menu = Menu.query.get(menu_id)
 
         if not menu:
+            print(f"❌ Menu {menu_id} not found")
             return jsonify({"error": "Menu not found"}), 404
 
+        # Only owner can delete (not public access)
         if menu.user_id != user_id:
+            print(f"❌ Access denied - Menu owner: {menu.user_id}, Requesting user: {user_id}")
             return jsonify({"error": "Access denied"}), 403
 
         # Delete from Telegram first
@@ -367,9 +371,13 @@ def replace_recipe(menu_id, meal_id, recipe_id):
         user_id = get_jwt_identity()
         data = request.get_json()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can replace recipes
+        if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
         # Find the meal recipe
@@ -427,9 +435,13 @@ def get_recipe_suggestions(menu_id, meal_id, recipe_id):
     try:
         user_id = get_jwt_identity()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Check ownership or public access
+        if menu.user_id != user_id and not menu.is_public:
             return jsonify({"error": "Access denied"}), 403
 
         # Find the meal recipe
@@ -463,20 +475,30 @@ def get_shopping_list(menu_id):
     """Get shopping list for a menu"""
     try:
         user_id = get_jwt_identity()
+        print(f"🛒 Shopping list request - User: {user_id}, Menu: {menu_id}")
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            print(f"❌ Menu {menu_id} not found")
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Check ownership or public access
+        if menu.user_id != user_id and not menu.is_public:
+            print(f"❌ Access denied - Menu owner: {menu.user_id}, Requesting user: {user_id}, Public: {menu.is_public}")
             return jsonify({"error": "Access denied"}), 403
 
         shopping_list = ShoppingListService.get_shopping_list(menu_id)
+        print(f"✓ Shopping list retrieved successfully")
 
         return jsonify({
             "shopping_list": shopping_list
         }), 200
 
     except Exception as e:
-        print(f"Error getting shopping list: {str(e)}")
+        print(f"❌ Error getting shopping list: {str(e)}")
+        import traceback
+        traceback.print_exc()
         return jsonify({"error": "Failed to get shopping list", "message": str(e)}), 500
 
 
@@ -486,10 +508,17 @@ def regenerate_shopping_list(menu_id):
     """Regenerate shopping list for a menu"""
     try:
         user_id = get_jwt_identity()
+        print(f"🔄 Regenerate shopping list request - User: {user_id}, Menu: {menu_id}")
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            print(f"❌ Menu {menu_id} not found")
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can regenerate (not public access)
+        if menu.user_id != user_id:
+            print(f"❌ Access denied - Menu owner: {menu.user_id}, Requesting user: {user_id}")
             return jsonify({"error": "Access denied"}), 403
 
         shopping_list = ShoppingListService.generate_shopping_list(menu_id)
@@ -540,9 +569,13 @@ def delete_recipe_from_meal(menu_id, meal_id, recipe_id):
     try:
         user_id = get_jwt_identity()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can delete recipes
+        if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
         # Find the meal recipe
@@ -605,9 +638,13 @@ def add_recipe_to_meal(menu_id, meal_id):
         user_id = get_jwt_identity()
         data = request.get_json()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can add recipes
+        if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
         # Verify meal exists
@@ -685,9 +722,13 @@ def delete_meal(menu_id, meal_id):
     try:
         user_id = get_jwt_identity()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can delete meals
+        if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
         # Find the meal
@@ -746,9 +787,13 @@ def add_meal_to_menu(menu_id):
         user_id = get_jwt_identity()
         data = request.get_json()
 
-        # Verify ownership
+        # Verify menu exists
         menu = Menu.query.get(menu_id)
-        if not menu or menu.user_id != user_id:
+        if not menu:
+            return jsonify({"error": "Menu not found"}), 404
+
+        # Only owner can add meals
+        if menu.user_id != user_id:
             return jsonify({"error": "Access denied"}), 403
 
         # Validate meal type
