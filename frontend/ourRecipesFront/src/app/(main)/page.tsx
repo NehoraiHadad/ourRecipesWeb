@@ -74,6 +74,7 @@ export default function Page() {
       setIsLoadingFavorites(true);
 
       try {
+        const invalidIds: number[] = [];
         const promises = favorites.map(id =>
           RecipeService.getRecipeById(id)
             .then(res => {
@@ -103,6 +104,13 @@ export default function Page() {
                 errorData: error?.data,
                 fullError: JSON.stringify(error, Object.getOwnPropertyNames(error))
               });
+
+              // Track 404 errors to clean up invalid IDs from localStorage
+              if (error?.status === 404) {
+                console.log(`🗑️ Recipe ${id} not found (404), marking for removal from favorites`);
+                invalidIds.push(id);
+              }
+
               return null;
             })
         );
@@ -116,8 +124,18 @@ export default function Page() {
         console.log(`✅ Successfully loaded ${recipes.length} favorite recipes`);
         setFavoriteRecipes(recipes);
 
-        // If no recipes were loaded but we have favorites, show error
-        if (recipes.length === 0 && favorites.length > 0) {
+        // Clean up invalid IDs from favorites
+        if (invalidIds.length > 0) {
+          console.log(`🧹 Cleaning up ${invalidIds.length} invalid recipe IDs from favorites:`, invalidIds);
+          setFavorites(prev => {
+            const cleaned = prev.filter(id => !invalidIds.includes(id));
+            console.log(`✅ Cleaned favorites: ${prev.length} -> ${cleaned.length}`);
+            return cleaned;
+          });
+        }
+
+        // If no recipes were loaded but we have favorites (after cleanup), show error
+        if (recipes.length === 0 && favorites.length > invalidIds.length) {
           setFavoritesError('לא ניתן לטעון את המתכונים המועדפים. אנא נסה שוב מאוחר יותר.');
         }
       } catch (error) {
