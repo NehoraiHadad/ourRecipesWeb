@@ -103,12 +103,6 @@ export default function Page() {
                 errorData: error?.data,
                 fullError: JSON.stringify(error, Object.getOwnPropertyNames(error))
               });
-
-              // Only remove from favorites if confirmed 404
-              if (error?.status === 404) {
-                console.warn(`⚠️ Recipe ${id} not found (404) - removing from favorites`);
-                setFavorites(prev => prev.filter(favId => favId !== id));
-              }
               return null;
             })
         );
@@ -135,7 +129,7 @@ export default function Page() {
     };
 
     fetchFavoriteRecipes();
-  }, [favorites, setFavorites]);
+  }, [favorites]); // setFavorites removed - it's stable and doesn't need to be in dependencies
 
   if (isLoading) {
     return (

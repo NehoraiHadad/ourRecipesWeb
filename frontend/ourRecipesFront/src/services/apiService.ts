@@ -2,6 +2,11 @@ import { authService } from './authService';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
+// Log API URL on initialization (only in browser, not during SSR)
+if (typeof window !== 'undefined') {
+  console.log('🔧 API Service initialized with URL:', API_URL || '[NOT SET]');
+}
+
 // Custom error class for API errors
 export class ApiError extends Error {
   constructor(
