@@ -64,7 +64,7 @@ export default function Page() {
       setFavoritesError(null);
 
       if (favorites.length === 0) {
-        console.log('✅ No favorites found in localStorage');
+        console.log('✅ No favorites found');
         setFavoriteRecipes([]);
         setIsLoadingFavorites(false);
         return;
@@ -147,7 +147,7 @@ export default function Page() {
     };
 
     fetchFavoriteRecipes();
-  }, [favorites]); // setFavorites removed - it's stable and doesn't need to be in dependencies
+  }, [favorites, setFavorites]); // setFavorites is stable from context
 
   if (isLoading) {
     return (
