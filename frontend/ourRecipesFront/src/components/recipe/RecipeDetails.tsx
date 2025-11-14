@@ -153,33 +153,51 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
     setShowMessage({ status: false, message: "" });
   };
 
-  const handleSaveManualEdit = (updatedData: recipe) => {
-    setRecipeData({
-      id: updatedData.id,
-      title: updatedData.title,
-      ingredients: updatedData.ingredients || [],
-      instructions: Array.isArray(updatedData.instructions) 
-        ? updatedData.instructions.join('\n') 
-        : (updatedData.instructions || updatedData.details || ""),
-      image: updatedData.image || null,
-      categories: updatedData.categories || [],
-      preparation_time: updatedData.preparation_time,
-      difficulty: updatedData.difficulty
-    });
+  const buildRecipeText = (recipeData: recipe): string => {
+    return `כותרת: ${recipeData.title || ""}
+${recipeData.categories?.length ? `\nקטגוריות: ${recipeData.categories.join(", ")}` : ""}
+${recipeData.preparation_time ? `\nזמן הכנה: ${recipeData.preparation_time} דקות` : ""}
+${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.difficulty as keyof typeof difficultyDisplay]}` : ""}
+\nרשימת מצרכים:\n-${Array.isArray(recipeData.ingredients)
+  ? recipeData.ingredients.join("\n-")
+  : recipeData.ingredients}
+\nהוראות הכנה:\n${Array.isArray(recipeData.instructions)
+  ? recipeData.instructions.join('\n')
+  : (recipeData.instructions || recipeData.details || "")}`;
+  };
 
-    setReformat_recipe(
-      `כותרת: ${updatedData.title || ""}
-${updatedData.categories?.length ? `\nקטגוריות: ${updatedData.categories.join(", ")}` : ""}
-${updatedData.preparation_time ? `\nזמן הכנה: ${updatedData.preparation_time} דקות` : ""}
-${updatedData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedData.difficulty as keyof typeof difficultyDisplay]}` : ""}
-\nרשימת מצרכים:\n-${Array.isArray(updatedData.ingredients) 
-  ? updatedData.ingredients.join("\n-") 
-  : updatedData.ingredients}
-\nהוראות הכנה:\n${updatedData.instructions || updatedData.details || ""}`
-    );
-    
-    setNewFormat(true);
-    onEditEnd();
+  const handleSaveManualEdit = async (updatedData: recipe) => {
+    try {
+      // Build the formatted text
+      const formattedText = buildRecipeText(updatedData);
+
+      // Update the recipe in Telegram and DB
+      setIsLoading(true);
+      await updateRecipeInTelegram({
+        messageId: recipe.id,
+        newText: formattedText,
+      });
+
+      // Update local state
+      setRecipeData({
+        id: updatedData.id,
+        title: updatedData.title,
+        ingredients: updatedData.ingredients || [],
+        instructions: Array.isArray(updatedData.instructions)
+          ? updatedData.instructions.join('\n')
+          : (updatedData.instructions || updatedData.details || ""),
+        image: updatedData.image || null,
+        categories: updatedData.categories || [],
+        preparation_time: updatedData.preparation_time,
+        difficulty: updatedData.difficulty
+      });
+
+      setNewFormat(true);
+      onEditEnd();
+    } catch (error) {
+      console.error("Error saving manual edit:", error);
+      // Don't close the edit form if save failed
+    }
   };
 
   const updateRecipeInTelegram = async (data: UpdateRecipeData) => {

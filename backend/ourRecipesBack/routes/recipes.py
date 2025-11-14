@@ -60,12 +60,16 @@ def search_recipes():
 @jwt_required()
 async def update_recipe(telegram_id):
     """Update existing recipe"""
+    print(f"[UPDATE_RECIPE] Started update for telegram_id: {telegram_id}", flush=True)
     try:
         data = request.get_json()
+        print(f"[UPDATE_RECIPE] Received data: newText length={len(data.get('newText', ''))}, has_image={bool(data.get('image'))}", flush=True)
 
         if not data or not data.get("newText"):
+            print(f"[UPDATE_RECIPE] Missing required fields", flush=True)
             return jsonify({"error": "Missing required fields"}), 400
 
+        print(f"[UPDATE_RECIPE] Calling RecipeService.update_recipe...", flush=True)
         recipe, error = await RecipeService.update_recipe(
             telegram_id=telegram_id,
             new_text=data["newText"],
@@ -74,18 +78,23 @@ async def update_recipe(telegram_id):
         )
 
         if error:
+            print(f"[UPDATE_RECIPE] RecipeService returned error: {error}", flush=True)
             return jsonify({"error": error}), 500
+
+        print(f"[UPDATE_RECIPE] Recipe updated successfully. Recipe ID: {recipe.id if recipe else 'None'}", flush=True)
 
         # Update menus that contain this recipe in Telegram
         if recipe and recipe.id:
             from ..services.menu_service import MenuService
             try:
+                print(f"[UPDATE_RECIPE] Updating menus that contain recipe {recipe.id}...", flush=True)
                 updated_menus = await MenuService.update_menus_with_recipe(recipe.id)
-                print(f"Updated {updated_menus} menus in Telegram after recipe update", flush=True)
+                print(f"[UPDATE_RECIPE] Updated {updated_menus} menus in Telegram after recipe update", flush=True)
             except Exception as menu_error:
                 # Log error but don't fail the recipe update
-                print(f"Warning: Failed to update menus in Telegram: {menu_error}", flush=True)
+                print(f"[UPDATE_RECIPE] Warning: Failed to update menus in Telegram: {menu_error}", flush=True)
 
+        print(f"[UPDATE_RECIPE] Returning success response", flush=True)
         return (
             jsonify(
                 {
@@ -97,7 +106,9 @@ async def update_recipe(telegram_id):
         )
 
     except Exception as e:
-        print(f"Update error: {str(e)}", flush=True)
+        print(f"[UPDATE_RECIPE] Exception occurred: {str(e)}", flush=True)
+        import traceback
+        print(f"[UPDATE_RECIPE] Traceback: {traceback.format_exc()}", flush=True)
         return jsonify({"error": "Update failed"}), 500
 
 
