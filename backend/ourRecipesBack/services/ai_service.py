@@ -77,7 +77,7 @@ class AIService:
 
             # Generate response using new API
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 contents=user_prompt,
                 config=types.GenerateContentConfig(
                     system_instruction=cls._get_recipe_prompt()
@@ -112,7 +112,7 @@ class AIService:
             """
 
             prompt_response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 contents=prompt_request
             )
 
@@ -182,7 +182,7 @@ class AIService:
 
             # Generate response
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 contents=recipe_text,
                 config=types.GenerateContentConfig(
                     system_instruction=system_prompt
@@ -240,7 +240,7 @@ class AIService:
 
             # Generate response
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction
@@ -318,7 +318,7 @@ class AIService:
 
             # Generate response
             response = client.models.generate_content(
-                model="gemini-1.5-flash",
+                model="gemini-2.5-flash",
                 contents=recipe_text,
                 config=types.GenerateContentConfig(
                     system_instruction=system_instruction
