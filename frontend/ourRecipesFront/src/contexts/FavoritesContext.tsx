@@ -13,9 +13,13 @@ const FavoritesContext = createContext<FavoritesContextType | undefined>(undefin
 const STORAGE_KEY = 'favorite-recipes';
 
 export function FavoritesProvider({ children }: { children: ReactNode }) {
-  // Initialize state with localStorage value
-  const [favorites, setFavoritesState] = useState<number[]>(() => {
-    // Check if we're on the client side
+  // Initialize state as empty array - will be populated from localStorage in useEffect
+  const [favorites, setFavoritesState] = useState<number[]>([]);
+  // Track if we've loaded from localStorage to prevent overwriting it before load
+  const [isInitialized, setIsInitialized] = useState(false);
+
+  // Load favorites from localStorage on mount (client-side only)
+  useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedFavorites = localStorage.getItem(STORAGE_KEY);
       console.log('🔑 Loading favorites from localStorage:', savedFavorites);
@@ -23,24 +27,26 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
         try {
           const parsed = JSON.parse(savedFavorites);
           console.log('✅ Parsed favorites:', parsed);
-          return parsed;
+          setFavoritesState(parsed);
         } catch (error) {
           console.error('❌ Error parsing favorites from localStorage:', error);
-          return [];
         }
+      } else {
+        console.log('ℹ️ No favorites in localStorage');
       }
-      console.log('ℹ️ No favorites in localStorage');
+      // Mark as initialized after loading from localStorage
+      setIsInitialized(true);
     }
-    return [];
-  });
+  }, []); // Run only once on mount
 
-  // Sync favorites to localStorage whenever they change
+  // Sync favorites to localStorage whenever they change (but only after initialization)
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    // Only sync to localStorage after we've loaded from it
+    if (typeof window !== 'undefined' && isInitialized) {
       console.log('💾 Syncing favorites to localStorage:', favorites);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
     }
-  }, [favorites]);
+  }, [favorites, isInitialized]);
 
   // Wrapper for setFavorites that works with both direct values and updater functions
   const setFavorites = (value: number[] | ((prev: number[]) => number[])) => {
