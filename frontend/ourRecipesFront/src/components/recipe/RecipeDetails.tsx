@@ -174,7 +174,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
       // Update the recipe in Telegram and DB
       setIsLoading(true);
       await updateRecipeInTelegram({
-        messageId: recipe.id,
+        messageId: recipe.telegram_id,
         newText: formattedText,
       });
 
@@ -382,7 +382,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
                 <Button
                   variant="primary"
                   onClick={() => updateRecipeInTelegram({
-                    messageId: recipe.id,
+                    messageId: recipe.telegram_id,
                     newText: reformat_recipe,
                   })}
                   className="shadow-warm hover:shadow-lg transition-all"
