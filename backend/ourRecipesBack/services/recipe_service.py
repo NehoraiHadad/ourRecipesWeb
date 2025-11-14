@@ -76,16 +76,20 @@ class RecipeService:
     @classmethod
     async def update_recipe(cls, telegram_id, new_text, image_data=None, created_by=None):
         """Update existing recipe"""
+        print(f"[RecipeService.update_recipe] Starting update for telegram_id: {telegram_id}", flush=True)
         recipe = cls.get_recipe(telegram_id)
         if not recipe:
+            print(f"[RecipeService.update_recipe] Recipe not found for telegram_id: {telegram_id}", flush=True)
             return None, "Recipe not found"
 
         try:
             # Check if content is actually different
             if recipe.raw_content == new_text and not image_data:
                 # Content hasn't changed, return success without making Telegram API call
+                print(f"[RecipeService.update_recipe] Content unchanged, skipping update", flush=True)
                 return recipe, None
 
+            print(f"[RecipeService.update_recipe] Updating DB content...", flush=True)
             # DB update
             recipe.update_content(
                 title=cls.get_first_line(new_text),
@@ -96,6 +100,7 @@ class RecipeService:
             )
 
             # Telegram update
+            print(f"[RecipeService.update_recipe] Updating Telegram message {telegram_id}...", flush=True)
             success = await telegram_service.edit_message(
                 telegram_id,
                 new_text,
@@ -103,20 +108,25 @@ class RecipeService:
             )
 
             if success:
+                print(f"[RecipeService.update_recipe] Telegram update successful, committing to DB", flush=True)
                 db.session.commit()
                 return recipe, None
             else:
+                print(f"[RecipeService.update_recipe] Telegram update failed, rolling back DB", flush=True)
                 db.session.rollback()
                 return None, "Failed to update Telegram message"
 
         except Exception as e:
+            print(f"[RecipeService.update_recipe] Exception: {str(e)}", flush=True)
             db.session.rollback()
             error_msg = str(e)
             # Handle Telegram's "message not modified" error gracefully
             if "message was not modified" in error_msg.lower():
                 # If the message wasn't modified but everything else is fine,
                 # we can consider this a success
+                print(f"[RecipeService.update_recipe] Telegram says 'not modified', treating as success", flush=True)
                 return recipe, "not modified"
+            print(f"[RecipeService.update_recipe] Returning error: {error_msg}", flush=True)
             return None, error_msg
 
     @classmethod
