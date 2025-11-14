@@ -101,18 +101,20 @@ class AIService:
             str: Base64 encoded image
         """
         try:
-            # First get image prompt from language model
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            prompt_model = genai.GenerativeModel("gemini-1.5-flash")
+            # First get image prompt from language model using new SDK
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             prompt_request = f"""
-            Create a detailed English prompt for generating an image of this recipe: {recipe_content}. 
+            Create a detailed English prompt for generating an image of this recipe: {recipe_content}.
             The prompt should describe the perfect photo for this dish.
             Focus on the final dish appearance, plating, and food photography aspects.
             Keep the prompt under 100 words.
             """
 
-            prompt_response = prompt_model.generate_content(prompt_request)
+            prompt_response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt_request
+            )
 
             # Use prompt to generate image
             API_URL = "https://api-inference.huggingface.co/models/black-forest-labs/FLUX.1-dev"
@@ -145,7 +147,7 @@ class AIService:
             str: Formatted recipe text
         """
         try:
-            prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו רכיבים או כמויות או פעולות לביצוע - המטרה לארגן. אם יש רכיב או פעולה שאינך מבין החזר אותו כמו שהוא.
+            system_prompt = """המטרה: לארגן את המתכון הבא לפורמט ברור ומסודר שיכלול שלושה חלקים עיקריים: כותרת, רשימת מצרכים והוראות הכנה. הפורמט צריך להיות קבוע וחזרתי כדי שיהיה נוח לקרוא בטלגרם ולהציג באפליקציה. השתמש בפיסוק ברור ובעברית תקנית. אל תשנה או תוסיף תוכן כמו רכיבים או כמויות או פעולות לביצוע - המטרה לארגן. אם יש רכיב או פעולה שאינך מבין החזר אותו כמו שהוא.
 
             הנה כמה הנחיות נוספות:
             1. זמן הכנה: הערך את זמן ההכנה בדקות (למשל: "זמן הכנה: 30 דקות")
@@ -175,14 +177,17 @@ class AIService:
             - בחר רמת קושי מתאימה: קל/בינוני/מורכב
             """
 
-            # Configure AI model
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash", system_instruction=prompt
-            )
+            # Use new SDK
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Generate response
-            response = model.generate_content(recipe_text)
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=recipe_text,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_prompt
+                )
+            )
             return response.text
 
         except Exception as e:
@@ -202,16 +207,12 @@ class AIService:
             str: Refined recipe text
         """
         try:
-            # Configure AI model
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",
-                system_instruction="""
+            system_instruction = """
                 התנהג כמו שף מקצועי שיודע לשפר מתכונים קיימים לפי בקשות המשתמש.
                 אתה מקבל מתכון קיים ובקשה לשיפור. עליך לשמור על מבנה המתכון המקורי אבל לשנות אותו לפי הבקשה.
-                
+
                 המתכון צריך להישאר בדיוק באותו פורמט:
-                
+
                 כותרת: [שם המתכון]
                 קטגוריות: [קטגוריות מופרדות בפסיקים]
                 זמן הכנה: [זמן בדקות]
@@ -222,21 +223,29 @@ class AIService:
                 הוראות הכנה:
                 [הוראות ההכנה]
                 """
-            )
 
             # Build prompt
             prompt = f"""
             זהו המתכון המקורי:
             {recipe_text}
-            
+
             בקשת השיפור של המשתמש:
             {refinement_request}
-            
+
             אנא שפר את המתכון לפי הבקשה תוך שמירה על אותו פורמט בדיוק.
             """
 
+            # Use new SDK
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
+
             # Generate response
-            response = model.generate_content(prompt)
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction
+                )
+            )
             return response.text
 
         except Exception as e:
@@ -247,18 +256,15 @@ class AIService:
     def optimize_recipe_steps(cls, recipe_text):
         """
         Analyze recipe steps and return optimized sequence using AI
-        
+
         Args:
             recipe_text (str): Raw recipe text to analyze
-            
+
         Returns:
             dict: Optimized recipe information with parallel steps
         """
         try:
-            # Configure AI model
-            genai.configure(api_key=current_app.config["GOOGLE_API_KEY"])
-            
-            prompt = """
+            system_instruction = """
             נתח את שלבי המתכון וייעל אותם על ידי:
             1. זיהוי שלבים שלוקחים זמן ויכולים להתבצע במקביל לשלבים אחרים
             2. הצעת סדר פעולות אופטימלי
@@ -306,14 +312,18 @@ class AIService:
             6. אל תשנה את שמות השדות או את המבנה של ה-JSON
             7. אל תוסיף הערות או הסברים - רק JSON
             """
-            
-            model = genai.GenerativeModel(
-                model_name="gemini-1.5-flash",
-                system_instruction=prompt
-            )
+
+            # Use new SDK
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Generate response
-            response = model.generate_content(recipe_text)
+            response = client.models.generate_content(
+                model="gemini-1.5-flash",
+                contents=recipe_text,
+                config=types.GenerateContentConfig(
+                    system_instruction=system_instruction
+                )
+            )
             response_text = response.text.strip()
             
             # Clean the response text from markdown code blocks
