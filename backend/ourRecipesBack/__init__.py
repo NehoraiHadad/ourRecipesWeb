@@ -102,17 +102,41 @@ def create_app(config_name='default'):
             # Not a JWT request
             return response
 
-    # Start background tasks if not in testing mode
-    if not app.config['TESTING']:
+    # Start background tasks if not in testing mode and if enabled
+    # Background tasks can cause high egress traffic on free hosting tiers
+    # Set ENABLE_BACKGROUND_TASKS=true in environment to enable them
+    enable_bg_tasks = os.getenv('ENABLE_BACKGROUND_TASKS', 'false').lower() == 'true'
+
+    if not app.config['TESTING'] and enable_bg_tasks:
         start_background_tasks(app)
         logger.info("Background tasks started")
+    elif not app.config['TESTING']:
+        logger.info("Background tasks disabled (set ENABLE_BACKGROUND_TASKS=true to enable)")
     
     # Add health check route that bypasses CORS
     @app.route('/health')
     def health_check():
-        """Basic health check for Render"""
-        logger.debug("Health check requested")
-        return {"status": "healthy"}, 200
+        """Enhanced health check for monitoring services"""
+        from .models.recipe import Recipe
+        try:
+            # Check database connectivity
+            recipe_count = Recipe.query.count()
+            bg_tasks_enabled = os.getenv('ENABLE_BACKGROUND_TASKS', 'false').lower() == 'true'
+
+            return {
+                "status": "healthy",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "database": "connected",
+                "recipes_count": recipe_count,
+                "background_tasks": "enabled" if bg_tasks_enabled else "disabled"
+            }, 200
+        except Exception as e:
+            logger.error(f"Health check failed: {str(e)}")
+            return {
+                "status": "unhealthy",
+                "timestamp": datetime.now(timezone.utc).isoformat(),
+                "error": str(e)
+            }, 500
         
     @app.route('/api/session-status')
     def session_status():
