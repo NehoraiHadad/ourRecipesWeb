@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/Button";
 import { useNotification } from "@/context/NotificationContext";
 import { useAuthContext } from "@/context/AuthContext";
 import { authService } from "@/services/authService";
+import { ApiError } from "@/services/apiService";
 
 const GuestLogin = () => {
   const router = useRouter();
@@ -59,15 +60,29 @@ const GuestLogin = () => {
         timestamp: new Date().toISOString()
       });
 
+      // Check if it's a timeout error
+      const isTimeoutError =
+        (error instanceof ApiError && error.status === 408) ||
+        (error instanceof Error && error.message.includes('timeout'));
+
       if (retryCount < maxRetries) {
         console.log(`Retrying... Attempt ${retryCount + 1} of ${maxRetries}`);
         setTimeout(() => handleGuestLogin(retryCount + 1), 1000);
       } else {
-        addNotification({
-          type: 'error',
-          message: 'שגיאה בהתחברות כאורח. אנא נסה שוב מאוחר יותר.',
-          duration: 5000
-        });
+        // Show specific message for timeout errors
+        if (isTimeoutError) {
+          addNotification({
+            type: 'error',
+            message: 'השרת מתעורר מהשינה... זה לוקח כדקה. אנא נסה שוב בעוד דקה.',
+            duration: 8000
+          });
+        } else {
+          addNotification({
+            type: 'error',
+            message: 'שגיאה בהתחברות כאורח. אנא נסה שוב מאוחר יותר.',
+            duration: 5000
+          });
+        }
       }
     } finally {
       setIsLoading(false);

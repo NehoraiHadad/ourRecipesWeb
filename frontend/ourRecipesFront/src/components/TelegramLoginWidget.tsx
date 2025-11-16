@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useNotification } from "@/context/NotificationContext";
 import { authService } from "@/services/authService";
+import { ApiError } from "@/services/apiService";
 
 const TelegramLoginWidget: React.FC = () => {
   const router = useRouter();
   const { addNotification } = useNotification();
   const [isLoading, setIsLoading] = useState(false);
+  const maxRetries = 3;
 
   useEffect(() => {
     const script = document.createElement("script");
@@ -47,10 +49,15 @@ const TelegramLoginWidget: React.FC = () => {
     };
   }, []);
 
-  const handleContinue = async (user: any) => {
+  const handleContinue = async (user: any, retryCount = 0) => {
     setIsLoading(true);
     console.group('Telegram Login Process');
-    
+    console.log('Attempt Details:', {
+      retryCount,
+      maxRetries,
+      timestamp: new Date().toISOString()
+    });
+
     try {
       const response = await authService.login(user);
 
@@ -68,20 +75,40 @@ const TelegramLoginWidget: React.FC = () => {
         message: 'התחברת בהצלחה!',
         duration: 3000
       });
-      
+
       router.push("/");
     } catch (error) {
       console.error('Login Error:', {
         message: error instanceof Error ? error.message : 'Unknown error',
         stack: error instanceof Error ? error.stack : undefined,
+        retryCount,
         timestamp: new Date().toISOString()
       });
 
-      addNotification({
-        type: 'error',
-        message: error instanceof Error ? error.message : 'שגיאה בהתחברות',
-        duration: 5000
-      });
+      // Check if it's a timeout error
+      const isTimeoutError =
+        (error instanceof ApiError && error.status === 408) ||
+        (error instanceof Error && error.message.includes('timeout'));
+
+      if (retryCount < maxRetries) {
+        console.log(`Retrying... Attempt ${retryCount + 1} of ${maxRetries}`);
+        setTimeout(() => handleContinue(user, retryCount + 1), 1000);
+      } else {
+        // Show specific message for timeout errors
+        if (isTimeoutError) {
+          addNotification({
+            type: 'error',
+            message: 'השרת מתעורר מהשינה... זה לוקח כדקה. אנא נסה שוב בעוד דקה.',
+            duration: 8000
+          });
+        } else {
+          addNotification({
+            type: 'error',
+            message: error instanceof Error ? error.message : 'שגיאה בהתחברות',
+            duration: 5000
+          });
+        }
+      }
     } finally {
       setIsLoading(false);
       console.groupEnd();
