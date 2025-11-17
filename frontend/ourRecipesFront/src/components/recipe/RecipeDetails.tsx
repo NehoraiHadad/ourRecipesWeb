@@ -98,20 +98,20 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
       // Only track if haven't viewed in the last minute
       if (!lastViewTime || currentTime - parseInt(lastViewTime) > 60000) {
         console.log('Adding to recently viewed:', {
-          id: recipeData.id,
+          id: recipeData.telegram_id,
           title: recipeData.title
         });
-        
-        localStorage.setItem(`last_view_${recipeData.id}`, currentTime.toString());
+
+        localStorage.setItem(`last_view_${recipeData.telegram_id}`, currentTime.toString());
         addToRecentlyViewed({
-          id: recipeData.id,
+          id: recipeData.telegram_id,
           title: recipeData.title
         });
       } else {
         console.log('Skipping view tracking - viewed too recently');
       }
     }
-  }, [recipeData?.id, recipeData?.title, addToRecentlyViewed]);
+  }, [recipeData?.telegram_id, recipeData?.title, addToRecentlyViewed]);
 
   const fetchReformattedRecipe = async () => {
     setIsLoading(true);

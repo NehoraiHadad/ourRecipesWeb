@@ -236,23 +236,9 @@ async def bulk_action():
         return jsonify({"error": "Bulk action failed", "message": str(e)}), 500
 
 
-@recipes_bp.route('/<int:recipe_id>', methods=['GET'])
-def get_recipe(recipe_id):
-    """Get recipe details by database ID - for internal use (favorites, recently viewed)"""
-    try:
-        recipe = get_recipe_by_id(recipe_id)
-        if recipe is None:
-            return jsonify({'error': 'Recipe not found'}), 404
-
-        return jsonify({'data': recipe}), 200
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
-
-
-@recipes_bp.route('/share/<int:telegram_id>', methods=['GET'])
-def get_recipe_for_sharing(telegram_id):
-    """Get recipe details by telegram_id - public endpoint for sharing"""
+@recipes_bp.route('/<int:telegram_id>', methods=['GET'])
+def get_recipe(telegram_id):
+    """Get recipe details by telegram_id - unified endpoint for all uses"""
     try:
         recipe = RecipeService.get_recipe(telegram_id)
         if recipe is None:

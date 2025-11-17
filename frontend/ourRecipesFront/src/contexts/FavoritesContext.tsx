@@ -2,9 +2,9 @@
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
 
 interface FavoritesContextType {
-  favorites: number[];
-  toggleFavorite: (recipeId: number) => void;
-  isFavorite: (recipeId: number) => boolean;
+  favorites: number[]; // telegram_ids
+  toggleFavorite: (telegramId: number) => void;
+  isFavorite: (telegramId: number) => boolean;
   setFavorites: (favorites: number[] | ((prev: number[]) => number[])) => void;
 }
 
@@ -53,13 +53,13 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     setFavoritesState(value);
   };
 
-  const toggleFavorite = (recipeId: number) => {
+  const toggleFavorite = (telegramId: number) => {
     setFavorites(prev => {
-      const updated = prev.includes(recipeId)
-        ? prev.filter(id => id !== recipeId)
-        : [...prev, recipeId];
+      const updated = prev.includes(telegramId)
+        ? prev.filter(id => id !== telegramId)
+        : [...prev, telegramId];
 
-      console.log(prev.includes(recipeId) ? `💔 Removing recipe ${recipeId} from favorites` : `❤️ Adding recipe ${recipeId} to favorites`);
+      console.log(prev.includes(telegramId) ? `💔 Removing recipe ${telegramId} from favorites` : `❤️ Adding recipe ${telegramId} to favorites`);
       console.log('Updated favorites:', updated);
 
       // localStorage sync happens automatically via useEffect
@@ -67,8 +67,8 @@ export function FavoritesProvider({ children }: { children: ReactNode }) {
     });
   };
 
-  const isFavorite = (recipeId: number): boolean => {
-    return favorites.includes(recipeId);
+  const isFavorite = (telegramId: number): boolean => {
+    return favorites.includes(telegramId);
   };
 
   return (

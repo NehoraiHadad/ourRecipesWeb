@@ -38,22 +38,22 @@ export function RecipeGridItem({ recipe, onClick, font }: RecipeGridItemProps) {
         <button
           onClick={(e) => {
             e.stopPropagation();
-            toggleFavorite(recipe.id);
+            toggleFavorite(recipe.telegram_id);
           }}
           className={`absolute top-2 right-2 p-1.5 rounded-full z-10
                      transition-all duration-200
-                     ${isFavorite(recipe.id)
+                     ${isFavorite(recipe.telegram_id)
                        ? 'bg-red-50 text-red-500 opacity-100'
                        : 'opacity-0 group-hover:opacity-100 hover:bg-red-50 text-secondary-400 hover:text-red-500'
                      }
                      scale-90 group-hover:scale-100
                      hover:shadow-sm`}
-          title={isFavorite(recipe.id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
+          title={isFavorite(recipe.telegram_id) ? 'הסר ממועדפים' : 'הוסף למועדפים'}
         >
           <svg
             className="w-4 h-4"
             viewBox="0 0 24 24"
-            fill={isFavorite(recipe.id) ? 'currentColor' : 'none'}
+            fill={isFavorite(recipe.telegram_id) ? 'currentColor' : 'none'}
             stroke="currentColor"
             strokeWidth="2"
           >

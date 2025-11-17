@@ -2,15 +2,15 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
 interface ViewedRecipe {
-  id: number;
+  id: number; // telegram_id
   title: string;
   lastViewedAt: string;
 }
 
 interface RecipeHistoryContextType {
   recentlyViewed: ViewedRecipe[];
-  addToRecentlyViewed: (recipe: { id: number; title: string }) => void;
-  removeFromHistory: (recipeId: number) => void;
+  addToRecentlyViewed: (recipe: { id: number; title: string }) => void; // id = telegram_id
+  removeFromHistory: (telegramId: number) => void;
   clearHistory: () => void;
 }
 
@@ -59,9 +59,9 @@ export function RecipeHistoryProvider({ children }: { children: React.ReactNode 
   }, []);
 
   // Remove a recipe from history
-  const removeFromHistory = useCallback((recipeId: number) => {
+  const removeFromHistory = useCallback((telegramId: number) => {
     setRecentlyViewed(prev => {
-      const updated = prev.filter(r => r.id !== recipeId);
+      const updated = prev.filter(r => r.id !== telegramId);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(updated));
       return updated;
     });
