@@ -238,7 +238,7 @@ async def bulk_action():
 
 @recipes_bp.route('/<int:telegram_id>', methods=['GET'])
 def get_recipe(telegram_id):
-    """Get recipe details by telegram_id - public endpoint for sharing"""
+    """Get recipe details by telegram_id - unified endpoint for all uses"""
     try:
         recipe = RecipeService.get_recipe(telegram_id)
         if recipe is None:
