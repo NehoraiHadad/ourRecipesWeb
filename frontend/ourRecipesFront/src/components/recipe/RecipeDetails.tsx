@@ -45,6 +45,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
   const [showVersionHistory, setShowVersionHistory] = useState(false);
   const [recipeData, setRecipeData] = useState<{
     id: number;
+    telegram_id: number;
     title: string;
     ingredients: string[] | string;
     instructions: string;
@@ -61,6 +62,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
       const formattedRecipe = parseRecipe(recipe.title + "\n" + recipe.details);
       setRecipeData({
         id: recipe.id,
+        telegram_id: recipe.telegram_id,
         ...formattedRecipe,
         image: recipe.image || null,
         categories: formattedRecipe.categories || [],
@@ -70,6 +72,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
     } else {
       setRecipeData({
         id: recipe.id,
+        telegram_id: recipe.telegram_id,
         title: recipe.title,
         ingredients: [],
         instructions: recipe.details,
@@ -131,6 +134,7 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
         const formattedRecipe = parseRecipe(data.reformatted_text);
         setRecipeData({
           id: recipe.id,
+          telegram_id: recipe.telegram_id,
           ...formattedRecipe,
           image: recipe.image || null,
         });
@@ -181,6 +185,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
       // Update local state
       setRecipeData({
         id: updatedData.id,
+        telegram_id: updatedData.telegram_id || recipe.telegram_id,
         title: updatedData.title,
         ingredients: updatedData.ingredients || [],
         instructions: Array.isArray(updatedData.instructions)
@@ -263,6 +268,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
         const formattedRecipe = parseRecipe(restoredRecipe.title + "\n" + restoredRecipe.details);
         setRecipeData({
           id: recipe.id,
+          telegram_id: recipe.telegram_id,
           ...formattedRecipe,
           image: restoredRecipe.image || null,
           categories: formattedRecipe.categories || [],
@@ -272,6 +278,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
       } else {
         setRecipeData({
           id: recipe.id,
+          telegram_id: recipe.telegram_id,
           title: restoredRecipe.title,
           ingredients: [],
           instructions: restoredRecipe.details,
