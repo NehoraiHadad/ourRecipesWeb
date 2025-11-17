@@ -104,8 +104,8 @@ const copyToClipboard = async (text: string) => {
 };
 
 export const shareRecipe = (recipe: recipe) => {
-  // יצירת קישור למתכון
-  const recipeUrl = `${window.location.origin}/r/${recipe.id}`;
+  // יצירת קישור למתכון - שימוש ב-telegram_id כדי שהלינק יהיה יציב
+  const recipeUrl = `${window.location.origin}/r/${recipe.telegram_id}`;
   const shareText = `🍳 ${recipe.title}\n\n${recipeUrl}`;
 
   if (navigator.share) {

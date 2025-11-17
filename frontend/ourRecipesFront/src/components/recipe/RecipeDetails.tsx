@@ -246,7 +246,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
     setIsLoading(true);
     try {
       const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipe.id}/restore/${versionId}`,
+        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipe.telegram_id}/restore/${versionId}`,
         {
           method: "POST",
           credentials: "include",
@@ -368,7 +368,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
               <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
                 <div className="bg-white rounded-lg w-full max-w-4xl max-h-[90vh] overflow-y-auto">
                   <VersionHistory
-                    recipeId={recipe.id}
+                    recipeId={recipe.telegram_id}
                     onRestore={handleVersionRestore}
                     onClose={() => setShowVersionHistory(false)}
                   />
