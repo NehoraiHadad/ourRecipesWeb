@@ -236,15 +236,33 @@ async def bulk_action():
         return jsonify({"error": "Bulk action failed", "message": str(e)}), 500
 
 
-@recipes_bp.route('/<int:recipe_id>', methods=['GET'])
-def get_recipe(recipe_id):
-    """Get recipe details by ID - public endpoint for sharing"""
+@recipes_bp.route('/<int:telegram_id>', methods=['GET'])
+def get_recipe(telegram_id):
+    """Get recipe details by telegram_id - public endpoint for sharing"""
     try:
-        recipe = get_recipe_by_id(recipe_id)
+        recipe = RecipeService.get_recipe(telegram_id)
         if recipe is None:
             return jsonify({'error': 'Recipe not found'}), 404
 
-        return jsonify({'data': recipe}), 200
+        # המרת המתכון לפורמט JSON
+        recipe_data = {
+            'id': recipe.id,
+            'telegram_id': recipe.telegram_id,
+            'title': recipe.title,
+            'details': recipe.raw_content,
+            'image': recipe.get_image_url() if hasattr(recipe, 'get_image_url') else None,
+            'created_at': recipe.created_at.isoformat() if recipe.created_at else None,
+            'updated_at': recipe.updated_at.isoformat() if recipe.updated_at else None,
+            'is_parsed': recipe.is_parsed,
+            'parse_errors': recipe.parse_errors,
+            'ingredients': recipe.ingredients,
+            'instructions': recipe.instructions,
+            'categories': recipe.categories,
+            'preparation_time': recipe.preparation_time,
+            'difficulty': recipe.difficulty.value if recipe.difficulty else None
+        }
+
+        return jsonify({'data': recipe_data}), 200
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500
