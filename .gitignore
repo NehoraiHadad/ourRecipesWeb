@@ -1,5 +1,6 @@
 # dependencies
 /backend/.venv/
+/backend/venv/
 /frontend/ourRecipesFront/node_modules/
 /.pnp
 .pnp.js
@@ -35,6 +36,8 @@ test_session.session
 
 # Logs and databases
 *.log
+logs/
+/backend/logs/
 *.sql
 *.db
 
