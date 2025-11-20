@@ -411,10 +411,10 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
                     onClick={generateInfographic}
                     isLoading={isGeneratingInfographic}
                     disabled={isGeneratingInfographic}
-                    className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all bg-gradient-to-r from-purple-500 to-pink-500"
+                    className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all"
                   >
                     <Typography variant="body" className="font-handwriting-amit">
-                      {isGeneratingInfographic ? "יוצר אינפוגרפיקה..." : "צור אינפוגרפיקה למתכון"}
+                      {isGeneratingInfographic ? "יוצר אינפוגרפיקה..." : "צור אינפוגרפיקה"}
                     </Typography>
                     <Typography variant="h3" className="text-lg">🎨</Typography>
                   </Button>
