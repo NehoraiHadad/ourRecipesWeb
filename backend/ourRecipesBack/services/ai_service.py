@@ -269,8 +269,9 @@ class AIService:
             str: Base64 encoded image
         """
         try:
-            # Create AI client
-            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
+            # Create AI client with Nano Banana Pro API key (paid account)
+            api_key = current_app.config.get("GOOGLE_API_KEY_NANO_BANANA") or current_app.config["GOOGLE_API_KEY"]
+            client = genai.Client(api_key=api_key)
 
             # Create a detailed Hebrew prompt for infographic generation
             prompt_text = f"""
