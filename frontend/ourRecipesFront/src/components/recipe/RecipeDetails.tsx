@@ -152,20 +152,28 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
   };
 
   const generateInfographic = async () => {
+    console.log("[INFOGRAPHIC] Starting infographic generation...");
     setIsGeneratingInfographic(true);
     setShowMessage({ status: false, message: "" });
     try {
       const recipeContent = recipe.title + "\n" + recipe.details;
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-infographic`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ recipeContent }),
-        }
-      );
+      const url = `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-infographic`;
+      console.log("[INFOGRAPHIC] API URL:", url);
+      console.log("[INFOGRAPHIC] Recipe content length:", recipeContent.length);
+
+      const response = await fetch(url, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ recipeContent }),
+      });
+
+      console.log("[INFOGRAPHIC] Response status:", response.status);
+      console.log("[INFOGRAPHIC] Response headers:", response.headers);
+
       const data = await response.json();
+      console.log("[INFOGRAPHIC] Response data:", data);
+
       if (response.ok) {
         setGeneratedInfographic(data.image);
         setShowMessage({ status: true, message: "האינפוגרפיקה נוצרה בהצלחה!" });
@@ -173,12 +181,14 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
         throw new Error(data.error || data.message);
       }
     } catch (error: any) {
-      console.error("Error generating infographic:", error);
+      console.error("[INFOGRAPHIC] Error generating infographic:", error);
+      console.error("[INFOGRAPHIC] Error stack:", error.stack);
       setShowMessage({
         status: true,
         message: `שגיאה ביצירת אינפוגרפיקה: ${error.message || "נסה שוב מאוחר יותר"}`
       });
     } finally {
+      console.log("[INFOGRAPHIC] Finished infographic generation process");
       setIsGeneratingInfographic(false);
     }
   };
