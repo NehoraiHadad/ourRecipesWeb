@@ -273,7 +273,7 @@ class AIService:
             client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Create a detailed Hebrew prompt for infographic generation
-            prompt = f"""
+            prompt_text = f"""
 צור אינפוגרפיקה מקצועית ומעוצבת למתכון הבא בעברית:
 
 {recipe_content}
@@ -292,29 +292,36 @@ class AIService:
 חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
             """
 
-            # Generate infographic using Gemini 3 Pro Image
+            # Generate infographic using Gemini 3 Pro Image (official API format)
             response = client.models.generate_content(
                 model="gemini-3-pro-image-preview",
-                contents=prompt,
+                contents=prompt_text,
                 config=types.GenerateContentConfig(
-                    response_modalities=["image"],
-                    # Request high resolution for better quality
-                    generation_config=types.GenerationConfig(
-                        temperature=0.4,  # Lower temperature for more consistent results
-                    )
-                )
+                    response_modalities=['IMAGE'],  # Uppercase as per documentation
+                    image_config=types.ImageConfig(
+                        image_size="1K",  # 1K for faster generation
+                    ),
+                ),
             )
 
-            # Extract the image from the response
-            if response.candidates and len(response.candidates) > 0:
-                candidate = response.candidates[0]
-                if candidate.content and candidate.content.parts:
-                    for part in candidate.content.parts:
-                        if hasattr(part, 'inline_data') and part.inline_data:
-                            # Get the image bytes
-                            image_bytes = part.inline_data.data
-                            # Convert to base64
+            # Extract the image from the response using the official method
+            if response.parts:
+                for part in response.parts:
+                    # Try the official as_image() method first
+                    if hasattr(part, 'as_image'):
+                        image = part.as_image()
+                        if image:
+                            # Convert PIL Image to bytes
+                            import io
+                            img_byte_arr = io.BytesIO()
+                            image.save(img_byte_arr, format='PNG')
+                            image_bytes = img_byte_arr.getvalue()
                             return base64.b64encode(image_bytes).decode("utf-8")
+
+                    # Fallback to inline_data if as_image not available
+                    elif hasattr(part, 'inline_data') and part.inline_data:
+                        image_bytes = part.inline_data.data
+                        return base64.b64encode(image_bytes).decode("utf-8")
 
             raise Exception("No image generated in response")
 
