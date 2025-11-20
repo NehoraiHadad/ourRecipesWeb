@@ -298,9 +298,6 @@ class AIService:
                 contents=prompt_text,
                 config=types.GenerateContentConfig(
                     response_modalities=['IMAGE'],  # Uppercase as per documentation
-                    image_config=types.ImageConfig(
-                        image_size="1K",  # 1K for faster generation
-                    ),
                 ),
             )
 
