@@ -43,6 +43,8 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
   const [reformat_recipe, setReformat_recipe] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showVersionHistory, setShowVersionHistory] = useState(false);
+  const [generatedInfographic, setGeneratedInfographic] = useState<string | null>(null);
+  const [isGeneratingInfographic, setIsGeneratingInfographic] = useState(false);
   const [recipeData, setRecipeData] = useState<{
     id: number;
     telegram_id: number;
@@ -146,6 +148,38 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
       setShowMessage({ status: true, message: "שגיאה בעיבוד המתכון" });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const generateInfographic = async () => {
+    setIsGeneratingInfographic(true);
+    setShowMessage({ status: false, message: "" });
+    try {
+      const recipeContent = recipe.title + "\n" + recipe.details;
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-infographic`,
+        {
+          method: "POST",
+          credentials: "include",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ recipeContent }),
+        }
+      );
+      const data = await response.json();
+      if (response.ok) {
+        setGeneratedInfographic(data.image);
+        setShowMessage({ status: true, message: "האינפוגרפיקה נוצרה בהצלחה!" });
+      } else {
+        throw new Error(data.error || data.message);
+      }
+    } catch (error: any) {
+      console.error("Error generating infographic:", error);
+      setShowMessage({
+        status: true,
+        message: `שגיאה ביצירת אינפוגרפיקה: ${error.message || "נסה שוב מאוחר יותר"}`
+      });
+    } finally {
+      setIsGeneratingInfographic(false);
     }
   };
 
@@ -343,30 +377,48 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
           <div className="p-6">
             {/* Edit Controls - AI and Manual Edit */}
             {authState.canEdit && reformat_recipe === "" && (
-              <div className="flex justify-center gap-4">
-                <Button
-                  variant="primary"
-                  onClick={fetchReformattedRecipe}
-                  isLoading={isLoading}
-                  className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all"
-                >
-                  <Typography variant="body" className="font-handwriting-amit">AI</Typography>
-                  <Typography variant="h3" className="text-lg">✨</Typography>
-                </Button>
-                <Button 
-                  variant="secondary" 
-                  onClick={handleEditClick}
-                  className="shadow-warm hover:shadow-lg transition-all"
-                >
-                  <Typography variant="body" className="font-handwriting-amit">עריכה ידנית</Typography>
-                </Button>
-                <Button
-                  variant="secondary"
-                  onClick={() => setShowVersionHistory(true)}
-                  className="shadow-warm hover:shadow-lg transition-all"
-                >
-                  <Typography variant="body" className="font-handwriting-amit">היסטוריית גרסאות</Typography>
-                </Button>
+              <div className="flex flex-col gap-4">
+                <div className="flex justify-center gap-4">
+                  <Button
+                    variant="primary"
+                    onClick={fetchReformattedRecipe}
+                    isLoading={isLoading}
+                    className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all"
+                  >
+                    <Typography variant="body" className="font-handwriting-amit">AI</Typography>
+                    <Typography variant="h3" className="text-lg">✨</Typography>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={handleEditClick}
+                    className="shadow-warm hover:shadow-lg transition-all"
+                  >
+                    <Typography variant="body" className="font-handwriting-amit">עריכה ידנית</Typography>
+                  </Button>
+                  <Button
+                    variant="secondary"
+                    onClick={() => setShowVersionHistory(true)}
+                    className="shadow-warm hover:shadow-lg transition-all"
+                  >
+                    <Typography variant="body" className="font-handwriting-amit">היסטוריית גרסאות</Typography>
+                  </Button>
+                </div>
+
+                {/* Infographic Generation Button */}
+                <div className="flex justify-center">
+                  <Button
+                    variant="primary"
+                    onClick={generateInfographic}
+                    isLoading={isGeneratingInfographic}
+                    disabled={isGeneratingInfographic}
+                    className="flex items-center gap-2 shadow-warm hover:shadow-lg transition-all bg-gradient-to-r from-purple-500 to-pink-500"
+                  >
+                    <Typography variant="body" className="font-handwriting-amit">
+                      {isGeneratingInfographic ? "יוצר אינפוגרפיקה..." : "צור אינפוגרפיקה למתכון"}
+                    </Typography>
+                    <Typography variant="h3" className="text-lg">🎨</Typography>
+                  </Button>
+                </div>
               </div>
             )}
 
@@ -427,6 +479,44 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
                     onComplete={handleComplete}
                   />
                 </Typography>
+              </div>
+            )}
+
+            {/* Generated Infographic Display */}
+            {generatedInfographic && (
+              <div className="mt-6">
+                <div className="bg-gray-50 rounded-lg p-4">
+                  <div className="flex justify-between items-center mb-4">
+                    <Typography variant="h3" className="font-handwriting-amit">
+                      אינפוגרפיקה שנוצרה
+                    </Typography>
+                    <button
+                      onClick={() => setGeneratedInfographic(null)}
+                      className="text-gray-500 hover:text-gray-700 transition-colors"
+                      aria-label="סגור"
+                    >
+                      ✕
+                    </button>
+                  </div>
+                  <div className="relative w-full rounded-lg overflow-hidden shadow-lg">
+                    <img
+                      src={generatedInfographic}
+                      alt="אינפוגרפיקה למתכון"
+                      className="w-full h-auto"
+                    />
+                  </div>
+                  <div className="mt-4 flex justify-center gap-4">
+                    <a
+                      href={generatedInfographic}
+                      download={`${recipeData?.title || 'recipe'}-infographic.png`}
+                      className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors"
+                    >
+                      <Typography variant="body" className="font-handwriting-amit">
+                        הורד תמונה
+                      </Typography>
+                    </a>
+                  </div>
+                </div>
               </div>
             )}
           </div>
