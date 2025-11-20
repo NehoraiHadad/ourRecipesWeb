@@ -253,6 +253,76 @@ class AIService:
             raise
 
     @classmethod
+    async def generate_recipe_infographic(cls, recipe_content):
+        """
+        Generate infographic image for recipe using Gemini 3 Pro Image (Nano Banana Pro)
+
+        This function uses Google's latest Nano Banana Pro model which excels at:
+        - Creating text in multiple languages (including Hebrew) within images
+        - Generating infographics with structured information
+        - High-resolution outputs (1K, 2K, 4K)
+
+        Args:
+            recipe_content (str): Recipe text in Hebrew to generate infographic for
+
+        Returns:
+            str: Base64 encoded image
+        """
+        try:
+            # Create AI client
+            client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
+
+            # Create a detailed Hebrew prompt for infographic generation
+            prompt = f"""
+צור אינפוגרפיקה מקצועית ומעוצבת למתכון הבא בעברית:
+
+{recipe_content}
+
+דרישות לאינפוגרפיקה:
+1. כותרת גדולה ובולטת בחלק העליון עם שם המתכון
+2. חלוקה ברורה לשני חלקים:
+   - רשימת מצרכים בעיצוב רשימה עם bullets או אייקונים
+   - הוראות הכנה ממוספרות בצורה ברורה
+3. שימוש בצבעים חמים ומזמינים שמתאימים לאוכל
+4. עיצוב נקי ומסודר עם רווחים מתאימים
+5. כל הטקסט בעברית בפונט קריא וגדול
+6. אם יש זמן הכנה או רמת קושי - הצג אותם באייקונים בולטים
+7. סגנון עיצוב מודרני ואסתטי
+
+חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
+            """
+
+            # Generate infographic using Gemini 3 Pro Image
+            response = client.models.generate_content(
+                model="gemini-3-pro-image-preview",
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_modalities=["image"],
+                    # Request high resolution for better quality
+                    generation_config=types.GenerationConfig(
+                        temperature=0.4,  # Lower temperature for more consistent results
+                    )
+                )
+            )
+
+            # Extract the image from the response
+            if response.candidates and len(response.candidates) > 0:
+                candidate = response.candidates[0]
+                if candidate.content and candidate.content.parts:
+                    for part in candidate.content.parts:
+                        if hasattr(part, 'inline_data') and part.inline_data:
+                            # Get the image bytes
+                            image_bytes = part.inline_data.data
+                            # Convert to base64
+                            return base64.b64encode(image_bytes).decode("utf-8")
+
+            raise Exception("No image generated in response")
+
+        except Exception as e:
+            print(f"Infographic generation error: {str(e)}")
+            raise
+
+    @classmethod
     def optimize_recipe_steps(cls, recipe_text):
         """
         Analyze recipe steps and return optimized sequence using AI

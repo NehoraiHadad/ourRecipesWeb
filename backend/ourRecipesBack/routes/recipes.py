@@ -177,6 +177,30 @@ async def generate_recipe_image():
         return jsonify({"error": "Image generation failed"}), 500
 
 
+@recipes_bp.route("/generate-infographic", methods=["POST"])
+@jwt_required()
+async def generate_recipe_infographic():
+    """Generate infographic for recipe using Gemini 3 Pro Image (Nano Banana Pro)"""
+    try:
+        data = request.get_json()
+        if not data or not data.get("recipeContent"):
+            return jsonify({"error": "No recipe content provided"}), 400
+
+        print(f"[INFOGRAPHIC] Generating infographic for recipe content length: {len(data['recipeContent'])}", flush=True)
+
+        # Generate infographic using the new Gemini 3 Pro Image API
+        image_base64 = await AIService.generate_recipe_infographic(data["recipeContent"])
+
+        print(f"[INFOGRAPHIC] Successfully generated infographic, base64 length: {len(image_base64)}", flush=True)
+        return jsonify({"image": f"data:image/png;base64,{image_base64}"}), 200
+
+    except Exception as e:
+        print(f"[INFOGRAPHIC] Error in route: {str(e)}", flush=True)
+        import traceback
+        print(f"[INFOGRAPHIC] Traceback: {traceback.format_exc()}", flush=True)
+        return jsonify({"error": "Infographic generation failed", "message": str(e)}), 500
+
+
 @recipes_bp.route("/reformat_recipe", methods=["POST"])
 @jwt_required()
 def reformat_recipe():
