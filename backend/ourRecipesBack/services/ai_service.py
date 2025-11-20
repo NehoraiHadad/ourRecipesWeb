@@ -292,9 +292,10 @@ class AIService:
 חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
             """
 
-            # Generate infographic using Gemini 3 Pro Image (official API format)
+            # Generate infographic using Gemini 2.5 Flash Image (free tier alternative)
+            # Note: gemini-3-pro-image-preview requires paid plan
             response = client.models.generate_content(
-                model="gemini-3-pro-image-preview",
+                model="gemini-2.5-flash-image",  # Free tier alternative
                 contents=prompt_text,
                 config=types.GenerateContentConfig(
                     response_modalities=['IMAGE'],  # Uppercase as per documentation
