@@ -292,13 +292,17 @@ class AIService:
 חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
             """
 
-            # Generate infographic using Gemini 2.5 Flash Image (free tier alternative)
-            # Note: gemini-3-pro-image-preview requires paid plan
+            # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
+            # NOTE: This model requires a paid API plan (not available in free tier)
+            # To use this model, you need to:
+            # 1. Go to https://aistudio.google.com/
+            # 2. Enable billing for your project
+            # 3. The API key needs to be from a project with billing enabled
             response = client.models.generate_content(
-                model="gemini-2.5-flash-image",  # Free tier alternative
+                model="gemini-3-pro-image-preview",
                 contents=prompt_text,
                 config=types.GenerateContentConfig(
-                    response_modalities=['IMAGE'],  # Uppercase as per documentation
+                    response_modalities=['IMAGE'],
                 ),
             )
 
