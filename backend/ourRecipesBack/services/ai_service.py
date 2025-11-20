@@ -307,22 +307,11 @@ class AIService:
                 ),
             )
 
-            # Extract the image from the response using the official method
+            # Extract the image from the response
             if response.parts:
                 for part in response.parts:
-                    # Try the official as_image() method first
-                    if hasattr(part, 'as_image'):
-                        image = part.as_image()
-                        if image:
-                            # Convert PIL Image to bytes
-                            import io
-                            img_byte_arr = io.BytesIO()
-                            image.save(img_byte_arr, format='PNG')
-                            image_bytes = img_byte_arr.getvalue()
-                            return base64.b64encode(image_bytes).decode("utf-8")
-
-                    # Fallback to inline_data if as_image not available
-                    elif hasattr(part, 'inline_data') and part.inline_data:
+                    # Use inline_data directly (most reliable method)
+                    if hasattr(part, 'inline_data') and part.inline_data:
                         image_bytes = part.inline_data.data
                         return base64.b64encode(image_bytes).decode("utf-8")
 
