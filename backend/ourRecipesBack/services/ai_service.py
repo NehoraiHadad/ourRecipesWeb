@@ -273,7 +273,7 @@ class AIService:
             client = genai.Client(api_key=current_app.config["GOOGLE_API_KEY"])
 
             # Create a detailed Hebrew prompt for infographic generation
-            prompt = f"""
+            prompt_text = f"""
 צור אינפוגרפיקה מקצועית ומעוצבת למתכון הבא בעברית:
 
 {recipe_content}
@@ -292,14 +292,28 @@ class AIService:
 חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
             """
 
-            # Generate infographic using Gemini 3 Pro Image
+            # Create contents in the correct format
+            contents = [
+                types.Content(
+                    role="user",
+                    parts=[
+                        types.Part.from_text(text=prompt_text),
+                    ],
+                ),
+            ]
+
+            # Generate infographic using Gemini 3 Pro Image with correct config
+            generate_content_config = types.GenerateContentConfig(
+                response_modalities=["IMAGE"],
+                image_config=types.ImageConfig(
+                    image_size="2K",  # High quality: 1K, 2K, or 4K
+                ),
+            )
+
             response = client.models.generate_content(
                 model="gemini-3-pro-image-preview",
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    response_modalities=["image"],
-                    temperature=0.4,  # Lower temperature for more consistent results
-                )
+                contents=contents,
+                config=generate_content_config,
             )
 
             # Extract the image from the response
