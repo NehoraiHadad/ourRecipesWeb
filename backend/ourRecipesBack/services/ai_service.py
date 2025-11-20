@@ -298,10 +298,7 @@ class AIService:
                 contents=prompt,
                 config=types.GenerateContentConfig(
                     response_modalities=["image"],
-                    # Request high resolution for better quality
-                    generation_config=types.GenerationConfig(
-                        temperature=0.4,  # Lower temperature for more consistent results
-                    )
+                    temperature=0.4,  # Lower temperature for more consistent results
                 )
             )
 
