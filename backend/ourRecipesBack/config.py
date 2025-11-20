@@ -79,6 +79,7 @@ class Config:
 
     # AI Service settings
     GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
+    GOOGLE_API_KEY_NANO_BANANA = os.getenv("GOOGLE_API_KEY_NANO_BANANA")  # Paid API key for Nano Banana Pro
     HF_TOKEN = os.getenv("HF_TOKEN")
 
     # google drive settings
