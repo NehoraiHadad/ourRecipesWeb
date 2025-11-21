@@ -58,9 +58,18 @@ export default function SharedMenuPage() {
       let errorMessage = 'שגיאה בטעינת התפריט';
       if (err.name === 'TimeoutError' || err.status === 408) {
         errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+      } else if (err.status === 502 || err.status === 504) {
+        errorMessage = 'השרת עדיין מתעורר. אנא נסה שוב בעוד כמה שניות.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה בטעינת תפריט משותף:', {
+        errorName: err?.name,
+        errorStatus: err?.status,
+        errorMessage: err?.message,
+        chosenMessage: errorMessage
+      });
 
       setError(errorMessage);
     } finally {
@@ -115,9 +124,18 @@ export default function SharedMenuPage() {
         errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
       } else if (error.status === 404) {
         errorMessage = 'מתכון לא נמצא';
+      } else if (error.status === 502 || error.status === 504) {
+        errorMessage = 'השרת עדיין מתעורר. אנא נסה שוב בעוד כמה שניות.';
       } else if (error.name === 'NetworkError' || error.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה בטעינת מתכון מתפריט משותף:', {
+        errorName: error?.name,
+        errorStatus: error?.status,
+        errorMessage: error?.message,
+        chosenMessage: errorMessage
+      });
 
       addNotification({ message: errorMessage, type: 'error' });
     } finally {

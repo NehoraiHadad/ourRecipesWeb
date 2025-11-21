@@ -68,9 +68,18 @@ export default function RecipeDetailPage() {
         errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
       } else if (err.status === 404) {
         errorMessage = 'מתכון לא נמצא';
+      } else if (err.status === 502 || err.status === 504) {
+        errorMessage = 'השרת עדיין מתעורר. אנא נסה שוב בעוד כמה שניות.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה סופית בטעינת מתכון:', {
+        errorName: err?.name,
+        errorStatus: err?.status,
+        errorMessage: err?.message,
+        chosenMessage: errorMessage
+      });
 
       setError(errorMessage);
       addNotification({ message: errorMessage, type: 'error' });
