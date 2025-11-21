@@ -20,6 +20,50 @@ export class RecipeService {
     return apiService.get<ApiResponse<Recipe>>(`${this.BASE_PATH}/${id}`);
   }
 
+  // Get a single recipe by ID with retry logic for sleeping servers
+  // Uses longer timeout (90s) and retries up to 2 times with exponential backoff
+  static async getRecipeByIdWithRetry(
+    id: number,
+    onRetry?: (attempt: number, maxAttempts: number) => void
+  ): Promise<ApiResponse<Recipe>> {
+    const maxAttempts = 3;
+    const timeout = 90000; // 90 seconds - enough time for server to wake up
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      try {
+        return await apiService.get<ApiResponse<Recipe>>(
+          `${this.BASE_PATH}/${id}`,
+          { timeout }
+        );
+      } catch (error: any) {
+        const isLastAttempt = attempt === maxAttempts;
+        const isTimeoutOrNetwork =
+          error.name === 'TimeoutError' ||
+          error.name === 'NetworkError' ||
+          error.status === 408 ||
+          error.status === 503 ||
+          error.status === 504;
+
+        // Only retry on timeout/network errors, not on 404s
+        if (!isLastAttempt && isTimeoutOrNetwork) {
+          if (onRetry) {
+            onRetry(attempt, maxAttempts);
+          }
+          // Exponential backoff: 2s, 4s
+          const delay = Math.pow(2, attempt) * 1000;
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+
+        // Last attempt or non-retryable error - throw it
+        throw error;
+      }
+    }
+
+    // This should never be reached, but TypeScript needs it
+    throw new Error('Unexpected error in retry logic');
+  }
+
   // Search recipes
   static async searchRecipes(params: SearchParams): Promise<ApiResponse<Recipe[]>> {
     const queryParams = new URLSearchParams();
