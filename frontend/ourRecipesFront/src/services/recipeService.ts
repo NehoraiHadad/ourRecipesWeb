@@ -33,6 +33,7 @@ export class RecipeService {
       // First attempt: 60s to wake up the server
       // Subsequent attempts: 20s (server should already be awake)
       const timeout = attempt === 1 ? 60000 : 20000;
+      const isLastAttempt = attempt === maxAttempts;
 
       try {
         console.log(`🔄 ניסיון ${attempt}/${maxAttempts} לטעינת מתכון ${id} (timeout: ${timeout/1000}s)`);
@@ -70,8 +71,6 @@ export class RecipeService {
         console.error(`🛑 תשובה ריקה גם בניסיון האחרון`);
         throw new Error('Recipe not found or empty response from server');
       } catch (error: any) {
-        const isLastAttempt = attempt === maxAttempts;
-
         // Log detailed error information
         console.error(`❌ ניסיון ${attempt}/${maxAttempts} נכשל עבור מתכון ${id}:`, {
           errorName: error?.name,
