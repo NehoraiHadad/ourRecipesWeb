@@ -38,7 +38,7 @@ export default function SharedMenuPage() {
 
     // Show server wake-up message after 3 seconds
     const wakeUpTimer = setTimeout(() => {
-      setLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+      setLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
     }, 3000);
 
     try {
@@ -57,9 +57,9 @@ export default function SharedMenuPage() {
 
       let errorMessage = 'שגיאה בטעינת התפריט';
       if (err.name === 'TimeoutError' || err.status === 408) {
-        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
       } else if (err.status === 502 || err.status === 504) {
-        errorMessage = 'השרת עדיין מתעורר. אנא נסה שוב בעוד כמה שניות.';
+        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
@@ -100,7 +100,7 @@ export default function SharedMenuPage() {
 
     // Show server wake-up message after 3 seconds
     const wakeUpTimer = setTimeout(() => {
-      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
     }, 3000);
 
     try {
@@ -121,11 +121,11 @@ export default function SharedMenuPage() {
 
       let errorMessage = 'שגיאה בטעינת המתכון';
       if (error.name === 'TimeoutError' || error.status === 408) {
-        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או נסה שוב בעוד 30 שניות.';
       } else if (error.status === 404) {
         errorMessage = 'מתכון לא נמצא';
       } else if (error.status === 502 || error.status === 504) {
-        errorMessage = 'השרת עדיין מתעורר. אנא נסה שוב בעוד כמה שניות.';
+        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (error.name === 'NetworkError' || error.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }

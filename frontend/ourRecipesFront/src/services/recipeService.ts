@@ -21,17 +21,21 @@ export class RecipeService {
   }
 
   // Get a single recipe by ID with retry logic for sleeping servers
-  // Uses longer timeout (120s) and retries up to 3 times with exponential backoff
+  // First attempt: 60s (wake up server), then 3x20s attempts (server should be awake)
+  // Total max time: 60 + 20 + 20 + 20 = 120 seconds (2 minutes)
   static async getRecipeByIdWithRetry(
     id: number,
     onRetry?: (attempt: number, maxAttempts: number) => void
   ): Promise<ApiResponse<Recipe>> {
-    const maxAttempts = 4; // Increased to 4 attempts for better reliability
-    const timeout = 120000; // 120 seconds (2 minutes) - enough time for slow servers
+    const maxAttempts = 4;
 
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+      // First attempt: 60s to wake up the server
+      // Subsequent attempts: 20s (server should already be awake)
+      const timeout = attempt === 1 ? 60000 : 20000;
+
       try {
-        console.log(`🔄 ניסיון ${attempt}/${maxAttempts} לטעינת מתכון ${id}`);
+        console.log(`🔄 ניסיון ${attempt}/${maxAttempts} לטעינת מתכון ${id} (timeout: ${timeout/1000}s)`);
         const result = await apiService.get<ApiResponse<Recipe>>(
           `${this.BASE_PATH}/${id}`,
           { timeout }
