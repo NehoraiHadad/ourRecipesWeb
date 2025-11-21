@@ -22,6 +22,8 @@ export default function SharedMenuPage() {
   const [error, setError] = useState<string>('');
   const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
+  const [loadingMessage, setLoadingMessage] = useState<string>('טוען תפריט...');
+  const [recipeLoadingMessage, setRecipeLoadingMessage] = useState<string>('טוען מתכון...');
 
   useEffect(() => {
     if (shareToken) {
@@ -32,9 +34,17 @@ export default function SharedMenuPage() {
   const loadSharedMenu = async () => {
     setLoading(true);
     setError('');
+    setLoadingMessage('טוען תפריט...');
+
+    // Show server wake-up message after 3 seconds
+    const wakeUpTimer = setTimeout(() => {
+      setLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+    }, 3000);
 
     try {
       const response = await menuService.getSharedMenu(shareToken);
+
+      clearTimeout(wakeUpTimer);
 
       if (response.menu) {
         setMenu(response.menu);
@@ -42,8 +52,17 @@ export default function SharedMenuPage() {
         setError('תפריט לא נמצא או לא שותף');
       }
     } catch (err: any) {
+      clearTimeout(wakeUpTimer);
       console.error('Error loading shared menu:', err);
-      setError(err.message || 'שגיאה בטעינת התפריט');
+
+      let errorMessage = 'שגיאה בטעינת התפריט';
+      if (err.name === 'TimeoutError' || err.status === 408) {
+        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+      } else if (err.name === 'NetworkError' || err.status === 503) {
+        errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
+      }
+
+      setError(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -68,13 +87,39 @@ export default function SharedMenuPage() {
 
   const handleRecipeClick = async (recipeId: number) => {
     setLoadingRecipe(true);
+    setRecipeLoadingMessage('טוען מתכון...');
+
+    // Show server wake-up message after 3 seconds
+    const wakeUpTimer = setTimeout(() => {
+      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+    }, 3000);
 
     try {
-      const response = await RecipeService.getRecipeById(recipeId);
+      const response = await RecipeService.getRecipeByIdWithRetry(
+        recipeId,
+        (attempt, maxAttempts) => {
+          setRecipeLoadingMessage(
+            `השרת עדיין מתעורר... מנסה שוב (ניסיון ${attempt} מתוך ${maxAttempts}) ⏳`
+          );
+        }
+      );
+
+      clearTimeout(wakeUpTimer);
       setViewingRecipe(response.data);
-    } catch (error) {
+    } catch (error: any) {
+      clearTimeout(wakeUpTimer);
       console.error('Error loading recipe:', error);
-      addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
+
+      let errorMessage = 'שגיאה בטעינת המתכון';
+      if (error.name === 'TimeoutError' || error.status === 408) {
+        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+      } else if (error.status === 404) {
+        errorMessage = 'מתכון לא נמצא';
+      } else if (error.name === 'NetworkError' || error.status === 503) {
+        errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
+      }
+
+      addNotification({ message: errorMessage, type: 'error' });
     } finally {
       setLoadingRecipe(false);
     }
@@ -82,8 +127,11 @@ export default function SharedMenuPage() {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex flex-col justify-center items-center min-h-screen gap-4">
         <Spinner />
+        <p className="text-center text-secondary-700 text-sm">
+          {loadingMessage}
+        </p>
       </div>
     );
   }
@@ -243,8 +291,11 @@ export default function SharedMenuPage() {
         title={viewingRecipe?.title}
       >
         {loadingRecipe && (
-          <div className="flex justify-center items-center p-8">
-            <Spinner message="טוען מתכון..." />
+          <div className="flex flex-col justify-center items-center p-8 gap-4">
+            <Spinner />
+            <p className="text-center text-secondary-700 text-sm">
+              {recipeLoadingMessage}
+            </p>
           </div>
         )}
 

@@ -20,6 +20,8 @@ export default function RecipeDetailPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(true);
+  const [loadingMessage, setLoadingMessage] = useState<string>('טוען מתכון...');
+  const [retryAttempt, setRetryAttempt] = useState<number>(0);
 
   useEffect(() => {
     if (recipeId) {
@@ -30,9 +32,26 @@ export default function RecipeDetailPage() {
   const loadRecipe = async () => {
     setLoading(true);
     setError('');
+    setLoadingMessage('טוען מתכון...');
+    setRetryAttempt(0);
+
+    // Show server wake-up message after 3 seconds
+    const wakeUpTimer = setTimeout(() => {
+      setLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+    }, 3000);
 
     try {
-      const response = await RecipeService.getRecipeById(recipeId);
+      const response = await RecipeService.getRecipeByIdWithRetry(
+        recipeId,
+        (attempt, maxAttempts) => {
+          setRetryAttempt(attempt);
+          setLoadingMessage(
+            `השרת עדיין מתעורר... מנסה שוב (ניסיון ${attempt} מתוך ${maxAttempts}) ⏳`
+          );
+        }
+      );
+
+      clearTimeout(wakeUpTimer);
 
       if (response && response.data) {
         setRecipe(response.data);
@@ -40,9 +59,21 @@ export default function RecipeDetailPage() {
         setError('מתכון לא נמצא');
       }
     } catch (err: any) {
+      clearTimeout(wakeUpTimer);
       console.error('Error loading recipe:', err);
-      setError(err.message || 'שגיאה בטעינת המתכון');
-      addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
+
+      // Provide helpful error messages based on error type
+      let errorMessage = 'שגיאה בטעינת המתכון';
+      if (err.name === 'TimeoutError' || err.status === 408) {
+        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+      } else if (err.status === 404) {
+        errorMessage = 'מתכון לא נמצא';
+      } else if (err.name === 'NetworkError' || err.status === 503) {
+        errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
+      }
+
+      setError(errorMessage);
+      addNotification({ message: errorMessage, type: 'error' });
     } finally {
       setLoading(false);
     }
@@ -58,8 +89,16 @@ export default function RecipeDetailPage() {
   if (loading) {
     return (
       <Modal isOpen={true} onClose={handleClose} size="md" showCloseButton={false}>
-        <div className="flex justify-center py-8">
+        <div className="flex flex-col items-center justify-center py-8 px-4">
           <Spinner />
+          <p className="mt-4 text-center text-secondary-700 text-sm">
+            {loadingMessage}
+          </p>
+          {retryAttempt > 0 && (
+            <p className="mt-2 text-center text-secondary-500 text-xs">
+              השרת עובד על שרת חינמי ולכן נרדם לעיתים. נא להמתין...
+            </p>
+          )}
         </div>
       </Modal>
     );
