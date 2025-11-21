@@ -122,6 +122,8 @@ export default function SharedMenuPage() {
       let errorMessage = 'שגיאה בטעינת המתכון';
       if (error.name === 'TimeoutError' || error.status === 408) {
         errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או נסה שוב בעוד 30 שניות.';
+      } else if (error.message === 'Recipe not found or empty response from server') {
+        errorMessage = 'השרת לא החזיר את המתכון. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (error.status === 404) {
         errorMessage = 'מתכון לא נמצא';
       } else if (error.status === 502 || error.status === 504) {

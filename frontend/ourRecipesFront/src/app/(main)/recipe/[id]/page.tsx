@@ -56,6 +56,8 @@ export default function RecipeDetailPage() {
       if (response && response.data) {
         setRecipe(response.data);
       } else {
+        // This shouldn't happen with retry logic, but just in case
+        console.error('❌ תשובה ריקה למרות ניסיונות חוזרים:', response);
         setError('מתכון לא נמצא');
       }
     } catch (err: any) {
@@ -66,6 +68,8 @@ export default function RecipeDetailPage() {
       let errorMessage = 'שגיאה בטעינת המתכון';
       if (err.name === 'TimeoutError' || err.status === 408) {
         errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
+      } else if (err.message === 'Recipe not found or empty response from server') {
+        errorMessage = 'השרת לא החזיר את המתכון. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (err.status === 404) {
         errorMessage = 'מתכון לא נמצא';
       } else if (err.status === 502 || err.status === 504) {

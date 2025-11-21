@@ -40,8 +40,35 @@ export class RecipeService {
           `${this.BASE_PATH}/${id}`,
           { timeout }
         );
-        console.log(`✅ מתכון ${id} נטען בהצלחה בניסיון ${attempt}`, result);
-        return result;
+
+        // Log the actual response
+        console.log(`📦 תשובה מהשרת עבור מתכון ${id}:`, {
+          hasResult: !!result,
+          hasData: !!result?.data,
+          dataKeys: result?.data ? Object.keys(result.data) : [],
+          attempt
+        });
+
+        // Check if we got valid data
+        if (result && result.data) {
+          console.log(`✅ מתכון ${id} נטען בהצלחה בניסיון ${attempt}`);
+          return result;
+        }
+
+        // Empty response - server might still be waking up
+        if (!isLastAttempt) {
+          console.warn(`⚠️ תשובה ריקה מהשרת בניסיון ${attempt}, מנסה שוב...`);
+          if (onRetry) {
+            onRetry(attempt, maxAttempts);
+          }
+          const delay = Math.pow(2, attempt) * 1000;
+          await new Promise(resolve => setTimeout(resolve, delay));
+          continue;
+        }
+
+        // Last attempt with empty response
+        console.error(`🛑 תשובה ריקה גם בניסיון האחרון`);
+        throw new Error('Recipe not found or empty response from server');
       } catch (error: any) {
         const isLastAttempt = attempt === maxAttempts;
 
@@ -57,14 +84,16 @@ export class RecipeService {
         const isTimeoutOrNetwork =
           error.name === 'TimeoutError' ||
           error.name === 'NetworkError' ||
+          error.message === 'Recipe not found or empty response from server' ||
           error.name === 'ApiError' && (
             error.status === 408 ||  // Request Timeout
             error.status === 502 ||  // Bad Gateway (server waking up)
             error.status === 503 ||  // Service Unavailable
-            error.status === 504     // Gateway Timeout
+            error.status === 504 ||  // Gateway Timeout
+            (error.status === 404 && attempt <= 2)  // 404 in first 2 attempts (server waking up)
           );
 
-        // Only retry on timeout/network errors, not on 404s or other client errors
+        // Only retry on timeout/network errors, or 404 in first attempts
         if (!isLastAttempt && isTimeoutOrNetwork) {
           console.log(`🔁 ניסיון שוב בעוד ${Math.pow(2, attempt)} שניות...`);
           if (onRetry) {
