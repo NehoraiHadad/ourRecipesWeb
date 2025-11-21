@@ -37,7 +37,7 @@ export default function RecipeDetailPage() {
 
     // Show server wake-up message after 3 seconds
     const wakeUpTimer = setTimeout(() => {
-      setLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+      setLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
     }, 3000);
 
     try {
@@ -65,12 +65,21 @@ export default function RecipeDetailPage() {
       // Provide helpful error messages based on error type
       let errorMessage = 'שגיאה בטעינת המתכון';
       if (err.name === 'TimeoutError' || err.status === 408) {
-        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
       } else if (err.status === 404) {
         errorMessage = 'מתכון לא נמצא';
+      } else if (err.status === 502 || err.status === 504) {
+        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה סופית בטעינת מתכון:', {
+        errorName: err?.name,
+        errorStatus: err?.status,
+        errorMessage: err?.message,
+        chosenMessage: errorMessage
+      });
 
       setError(errorMessage);
       addNotification({ message: errorMessage, type: 'error' });

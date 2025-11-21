@@ -38,7 +38,7 @@ export default function SharedMenuPage() {
 
     // Show server wake-up message after 3 seconds
     const wakeUpTimer = setTimeout(() => {
-      setLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+      setLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
     }, 3000);
 
     try {
@@ -57,10 +57,19 @@ export default function SharedMenuPage() {
 
       let errorMessage = 'שגיאה בטעינת התפריט';
       if (err.name === 'TimeoutError' || err.status === 408) {
-        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
+      } else if (err.status === 502 || err.status === 504) {
+        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה בטעינת תפריט משותף:', {
+        errorName: err?.name,
+        errorStatus: err?.status,
+        errorMessage: err?.message,
+        chosenMessage: errorMessage
+      });
 
       setError(errorMessage);
     } finally {
@@ -91,7 +100,7 @@ export default function SharedMenuPage() {
 
     // Show server wake-up message after 3 seconds
     const wakeUpTimer = setTimeout(() => {
-      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת כדקה ⏳');
+      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
     }, 3000);
 
     try {
@@ -112,12 +121,21 @@ export default function SharedMenuPage() {
 
       let errorMessage = 'שגיאה בטעינת המתכון';
       if (error.name === 'TimeoutError' || error.status === 408) {
-        errorMessage = 'הזמן הקצוב להעירת השרת חלף. אנא נסה שוב בעוד דקה.';
+        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או נסה שוב בעוד 30 שניות.';
       } else if (error.status === 404) {
         errorMessage = 'מתכון לא נמצא';
+      } else if (error.status === 502 || error.status === 504) {
+        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
       } else if (error.name === 'NetworkError' || error.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
+
+      console.error('💥 שגיאה בטעינת מתכון מתפריט משותף:', {
+        errorName: error?.name,
+        errorStatus: error?.status,
+        errorMessage: error?.message,
+        chosenMessage: errorMessage
+      });
 
       addNotification({ message: errorMessage, type: 'error' });
     } finally {
