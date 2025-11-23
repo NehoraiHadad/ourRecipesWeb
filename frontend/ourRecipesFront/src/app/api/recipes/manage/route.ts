@@ -10,8 +10,10 @@ import { prisma } from '@/lib/prisma';
 import { paginatedResponse } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { parsePaginationParams } from '@/lib/utils/api-validation';
-import { RecipeStatus } from '@prisma/client';
 import { logger } from '@/lib/logger';
+
+const VALID_STATUSES = ['ACTIVE', 'ARCHIVED', 'DELETED'] as const;
+type RecipeStatus = typeof VALID_STATUSES[number];
 
 export async function GET(request: NextRequest) {
   try {
@@ -22,9 +24,9 @@ export async function GET(request: NextRequest) {
 
     // Optional filters
     const statusParam = searchParams.get('status');
-    const status = (statusParam && Object.values(RecipeStatus).includes(statusParam as RecipeStatus))
+    const status = (statusParam && VALID_STATUSES.includes(statusParam as RecipeStatus))
       ? statusParam as RecipeStatus
-      : RecipeStatus.ACTIVE;
+      : 'ACTIVE' as const;
 
     logger.debug({ status, skip, take }, 'Listing recipes for management');
 

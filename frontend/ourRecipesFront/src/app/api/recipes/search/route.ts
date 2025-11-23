@@ -12,8 +12,11 @@ import {
 } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { parsePaginationParams } from '@/lib/utils/api-validation';
-import { Prisma, RecipeDifficulty } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { logger } from '@/lib/logger';
+
+const VALID_DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD'] as const;
+type RecipeDifficulty = typeof VALID_DIFFICULTIES[number];
 
 export async function GET(request: NextRequest) {
   try {
@@ -69,7 +72,7 @@ export async function GET(request: NextRequest) {
     }
 
     // Difficulty filter (enum)
-    if (difficulty && Object.values(RecipeDifficulty).includes(difficulty)) {
+    if (difficulty && VALID_DIFFICULTIES.includes(difficulty)) {
       where.difficulty = difficulty;
     }
 
