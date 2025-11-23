@@ -1,7 +1,7 @@
 /**
  * Menu Planner Service using Gemini Function Calling
  */
-import { GoogleGenerativeAI, FunctionDeclarationSchemaType } from '@google/generative-ai';
+import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 
@@ -15,7 +15,7 @@ const functions = [
     name: 'get_all_recipes',
     description: 'Get catalog of all available recipes with basic info',
     parameters: {
-      type: FunctionDeclarationSchemaType.OBJECT,
+      type: SchemaType.OBJECT,
       properties: {},
       required: []
     }
@@ -24,11 +24,11 @@ const functions = [
     name: 'get_recipes_details_batch',
     description: 'Get full details for specific recipes',
     parameters: {
-      type: FunctionDeclarationSchemaType.OBJECT,
+      type: SchemaType.OBJECT,
       properties: {
         recipe_ids: {
-          type: FunctionDeclarationSchemaType.ARRAY,
-          items: { type: FunctionDeclarationSchemaType.NUMBER },
+          type: SchemaType.ARRAY,
+          items: { type: SchemaType.NUMBER },
           description: 'List of recipe IDs to fetch'
         }
       },
