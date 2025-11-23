@@ -12,7 +12,6 @@ import {
 } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { parsePaginationParams } from '@/lib/utils/api-validation';
-import { Prisma } from '@prisma/client';
 import { logger } from '@/lib/logger';
 
 const VALID_DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD'] as const;
@@ -35,7 +34,7 @@ export async function GET(request: NextRequest) {
     logger.debug({ query, category, difficulty, page, pageSize }, 'Searching recipes');
 
     // Build where clause
-    const where: Prisma.RecipeWhereInput = {
+    const where: any = {
       status: 'ACTIVE', // Only active recipes
     };
 
