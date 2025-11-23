@@ -28,7 +28,8 @@ export function createMockRequest(
     requestInit.body = JSON.stringify(body);
   }
 
-  return new NextRequest(new URL(url, 'http://localhost:3000'), requestInit);
+  // Cast to any to avoid RequestInit type incompatibility between standard and Next.js types
+  return new NextRequest(new URL(url, 'http://localhost:3000'), requestInit as any);
 }
 
 /**
