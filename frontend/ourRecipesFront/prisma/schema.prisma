@@ -1,0 +1,311 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ========================================
+// Enums
+// ========================================
+
+enum RecipeStatus {
+  ACTIVE
+  ARCHIVED
+  DELETED
+}
+
+enum RecipeDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum DietaryType {
+  MEAT
+  DAIRY
+  PAREVE
+}
+
+enum SyncStatus {
+  SUCCESS
+  FAILED
+  PENDING
+  IN_PROGRESS
+}
+
+enum QueueStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum QueueActionType {
+  CREATE
+  UPDATE
+  DELETE
+}
+
+enum CourseType {
+  APPETIZER
+  MAIN
+  SIDE
+  DESSERT
+  SALAD
+  SOUP
+}
+
+// ========================================
+// Models
+// ========================================
+
+model Recipe {
+  id           Int      @id @default(autoincrement())
+  telegram_id  Int      @unique
+
+  // Core content
+  title        String?  @db.VarChar(500)
+  raw_content  String   @db.Text
+  ingredients  String?  @db.Text  // Stored as || separated
+  instructions String?  @db.Text
+  categories   String?  @db.Text  // Stored as comma-separated
+  recipe_metadata Json?
+
+  // Media
+  image_data   Bytes?
+  image_url    String?  @db.VarChar(500)
+  media_type   String?  @db.VarChar(50)
+
+  // Timestamps
+  created_at   DateTime @default(now())
+  updated_at   DateTime? @updatedAt
+  last_sync    DateTime?
+
+  // Status flags
+  is_parsed    Boolean  @default(false)
+  parse_errors String?
+  status       String   @default("active") @db.VarChar(20)
+
+  // Recipe details
+  ingredients_list   Json?
+  cooking_time       Int?
+  difficulty         RecipeDifficulty?
+  servings           Int?
+  preparation_time   Int?
+
+  // Sync status
+  formatted_content  Json?
+  is_verified        Boolean @default(false)
+  sync_status        String  @default("synced") @db.VarChar(20)
+  sync_error         String? @db.Text
+
+  // Relationships
+  user_recipes  UserRecipe[]
+  versions      RecipeVersion[]
+  meal_recipes  MealRecipe[]
+
+  @@index([telegram_id])
+  @@map("recipes")
+}
+
+model RecipeVersion {
+  id                  Int      @id @default(autoincrement())
+  recipe_id           Int
+  version_num         Int?
+  content             Json
+  created_at          DateTime @default(now())
+  created_by          String?  @db.VarChar(100)
+  change_description  String?  @db.Text
+  is_current          Boolean  @default(false)
+  image_data          Bytes?
+
+  // Relationships
+  recipe  Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@map("recipe_versions")
+}
+
+model UserRecipe {
+  id          Int      @id @default(autoincrement())
+  user_id     String   @db.VarChar(50)
+  recipe_id   Int
+  created_at  DateTime @default(now())
+  is_favorite Boolean  @default(false)
+
+  // Relationships
+  recipe  Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@index([user_id, recipe_id], name: "idx_user_recipe")
+  @@map("user_recipes")
+}
+
+model Menu {
+  id                  Int       @id @default(autoincrement())
+  user_id             String    @db.VarChar(50)
+  telegram_message_id Int?      @unique
+  last_sync           DateTime?
+
+  // Menu details
+  name         String  @db.VarChar(200)
+  event_type   String? @db.VarChar(100)
+  description  String? @db.Text
+
+  // Preferences
+  total_servings  Int           @default(4)
+  dietary_type    DietaryType?
+
+  // Sharing
+  share_token  String   @unique @db.VarChar(32)
+  is_public    Boolean  @default(false)
+
+  // AI generation metadata
+  ai_reasoning       String? @db.Text
+  generation_prompt  String? @db.Text
+
+  // Timestamps
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+
+  // Relationships
+  meals                MenuMeal[]
+  shopping_list_items  ShoppingListItem[]
+
+  @@index([user_id])
+  @@index([telegram_message_id])
+  @@map("menus")
+}
+
+model MenuMeal {
+  id         Int      @id @default(autoincrement())
+  menu_id    Int
+
+  // Meal details
+  meal_type   String  @db.VarChar(100)
+  meal_order  Int
+  meal_time   String? @db.VarChar(50)
+  notes       String? @db.Text
+
+  // Timestamps
+  created_at  DateTime @default(now())
+
+  // Relationships
+  menu     Menu          @relation(fields: [menu_id], references: [id], onDelete: Cascade)
+  recipes  MealRecipe[]
+
+  @@index([menu_id, meal_order], name: "idx_menu_meal")
+  @@map("menu_meals")
+}
+
+model MealRecipe {
+  id            Int      @id @default(autoincrement())
+  menu_meal_id  Int
+  recipe_id     Int
+
+  // Recipe context within meal
+  course_type   String?  @db.VarChar(100)
+  course_order  Int      @default(0)
+  servings      Int?
+  notes         String?  @db.Text
+  ai_reason     String?  @db.Text
+
+  // Timestamps
+  created_at  DateTime @default(now())
+
+  // Relationships
+  meal    MenuMeal @relation(fields: [menu_meal_id], references: [id], onDelete: Cascade)
+  recipe  Recipe   @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@index([menu_meal_id, recipe_id], name: "idx_meal_recipe")
+  @@map("meal_recipes")
+}
+
+model ShoppingListItem {
+  id               Int      @id @default(autoincrement())
+  menu_id          Int
+
+  // Item details
+  ingredient_name  String   @db.VarChar(200)
+  quantity         String?  @db.VarChar(100)
+  category         String?  @db.VarChar(100)
+
+  // User interaction
+  is_checked  Boolean  @default(false)
+  notes       String?  @db.Text
+
+  // Timestamps
+  created_at  DateTime  @default(now())
+  updated_at  DateTime? @updatedAt
+
+  // Relationships
+  menu  Menu @relation(fields: [menu_id], references: [id], onDelete: Cascade)
+
+  @@index([menu_id, category], name: "idx_menu_shopping")
+  @@map("shopping_list_items")
+}
+
+model Place {
+  id                   Int       @id @default(autoincrement())
+  name                 String    @db.VarChar(255)
+  website              String?   @db.VarChar(255)
+  description          String?   @db.Text
+  location             String?   @db.VarChar(255)
+  waze_link            String?   @db.VarChar(255)
+  type                 String?   @db.VarChar(50)
+  created_by           String    @db.VarChar(255)
+  created_at           DateTime  @default(now())
+  telegram_message_id  Int?
+  is_synced            Boolean   @default(false)
+  last_sync            DateTime?
+  is_deleted           Boolean   @default(false)
+
+  @@map("places")
+}
+
+model SyncLog {
+  id          Int       @id @default(autoincrement())
+  started_at  DateTime  @default(now())
+  completed_at DateTime?
+  status      String    @db.VarChar(20)
+
+  // Detailed logging
+  details       String? @db.Text
+  error_message String? @db.Text
+  sync_type     String? @db.VarChar(50)
+
+  // Recipe statistics
+  recipes_processed  Int @default(0)
+  recipes_failed     Int @default(0)
+  recipes_added      Int @default(0)
+  recipes_updated    Int @default(0)
+
+  // Place statistics
+  places_processed  Int @default(0)
+  places_failed     Int @default(0)
+
+  // Menu statistics
+  menus_processed  Int @default(0)
+  menus_failed     Int @default(0)
+  menus_added      Int @default(0)
+  menus_updated    Int @default(0)
+
+  @@map("sync_logs")
+}
+
+model SyncQueue {
+  id          Int      @id @default(autoincrement())
+  user_id     String
+  action_type String
+  recipe_id   Int?
+  data        Json?
+  created_at  DateTime @default(now())
+  status      String
+
+  @@index([status], name: "idx_sync_queue_status")
+  @@index([user_id], name: "idx_sync_queue_user")
+  @@index([recipe_id], name: "idx_sync_queue_recipe")
+  @@map("sync_queue")
+}
