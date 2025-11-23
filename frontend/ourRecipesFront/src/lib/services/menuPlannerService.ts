@@ -16,8 +16,7 @@ const functions = [
     description: 'Get catalog of all available recipes with basic info',
     parameters: {
       type: SchemaType.OBJECT,
-      properties: {},
-      required: []
+      properties: {}
     }
   },
   {
@@ -28,7 +27,9 @@ const functions = [
       properties: {
         recipe_ids: {
           type: SchemaType.ARRAY,
-          items: { type: SchemaType.NUMBER },
+          items: {
+            type: SchemaType.NUMBER
+          },
           description: 'List of recipe IDs to fetch'
         }
       },
