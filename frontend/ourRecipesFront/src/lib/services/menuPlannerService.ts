@@ -189,7 +189,7 @@ ${preferences.special_requests ? `- בקשות מיוחדות: ${preferences.spe
         {
           functionResponse: {
             name: functionCall.name,
-            response: functionResult as Record<string, unknown>
+            response: functionResult as unknown as Record<string, unknown>
           }
         }
       ]
