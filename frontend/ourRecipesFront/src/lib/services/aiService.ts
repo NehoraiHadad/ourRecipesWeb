@@ -1,10 +1,10 @@
 /**
  * AI Service using Google Gemini and HuggingFace
  */
-import { GoogleGenerativeAI } from '@google/generative-ai';
+import { GoogleGenAI } from '@google/genai';
 import { logger } from '@/lib/logger';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
+const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || '' });
 
 /**
  * Generate recipe suggestion based on preferences

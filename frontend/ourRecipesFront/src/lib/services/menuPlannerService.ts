@@ -1,11 +1,11 @@
 /**
  * Menu Planner Service using Gemini Function Calling
  */
-import { GoogleGenerativeAI, SchemaType } from '@google/generative-ai';
+import { GoogleGenAI, Type } from '@google/genai';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || '');
+const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || '' });
 
 /**
  * Available functions for Gemini to call
@@ -15,7 +15,7 @@ const functions = [
     name: 'get_all_recipes',
     description: 'Get catalog of all available recipes with basic info',
     parameters: {
-      type: SchemaType.OBJECT,
+      type: Type.OBJECT,
       properties: {}
     }
   },
@@ -23,12 +23,12 @@ const functions = [
     name: 'get_recipes_details_batch',
     description: 'Get full details for specific recipes',
     parameters: {
-      type: SchemaType.OBJECT,
+      type: Type.OBJECT,
       properties: {
         recipe_ids: {
-          type: SchemaType.ARRAY,
+          type: Type.ARRAY,
           items: {
-            type: SchemaType.NUMBER
+            type: Type.NUMBER
           },
           description: 'List of recipe IDs to fetch'
         }
