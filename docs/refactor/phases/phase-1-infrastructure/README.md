@@ -30,13 +30,13 @@
 | **1.1** | Prisma Setup | Setup | 2-3 | ✅ Start |
 | **1.2** | PostgreSQL Setup | Setup | 1-2 | ✅ Parallel with 1.1 |
 | **1.3** | Prisma Schema Creation | Code | 3-4 | ⚠️ After 1.1 |
-| **1.4** | Migration Script | Code | 3-4 | ⚠️ After 1.3 |
+| ~~**1.4**~~ | ~~Migration Script~~ | ~~Code~~ | ~~3-4~~ | ⚠️ **SKIPPED** - sync from Telegram instead |
 | **1.5** | API Routes Structure | Code | 2-3 | ✅ Parallel with 1.3 |
 | **1.6** | Types Setup | Code | 2-3 | ⚠️ After 1.3 |
 | **1.7** | Testing Infrastructure | Setup | 3-4 | ✅ Parallel with 1.5 |
 | **1.8** | Logging Setup | Setup | 1-2 | ✅ Parallel with 1.5 |
 
-**Total**: 17-25 hours
+**Total**: 14-21 hours (Task 1.4 skipped - data populated via Telegram sync)
 
 ---
 
@@ -178,14 +178,14 @@ Risk: Low-Medium
 
 ## 📝 Task Files
 
-1. [**Task 1.1**: Prisma Setup](./tasks/task-1.1-prisma-setup.md) - הגדרה ראשונית
-2. [**Task 1.2**: PostgreSQL Setup](./tasks/task-1.2-postgres-setup.md) - בחירה והקמת DB
-3. [**Task 1.3**: Prisma Schema Creation](./tasks/task-1.3-schema-creation.md) - המרה מ-SQLAlchemy
-4. [**Task 1.4**: Migration Script](./tasks/task-1.4-migration-script.md) - העברת data
-5. [**Task 1.5**: API Routes Structure](./tasks/task-1.5-api-structure.md) - מבנה בסיסי
-6. [**Task 1.6**: Types Setup](./tasks/task-1.6-types-setup.md) - TypeScript types
-7. [**Task 1.7**: Testing Infrastructure](./tasks/task-1.7-testing-setup.md) - Vitest
-8. [**Task 1.8**: Logging Setup](./tasks/task-1.8-logging-setup.md) - Pino logger
+1. [**Task 1.1**: Prisma Setup](./tasks/task-1.1-prisma-setup.md) - הגדרה ראשונית ✅
+2. [**Task 1.2**: PostgreSQL Setup](./tasks/task-1.2-postgres-setup.md) - בחירה והקמת DB ✅
+3. [**Task 1.3**: Prisma Schema Creation](./tasks/task-1.3-schema-creation.md) - המרה מ-SQLAlchemy ✅
+4. ~~[**Task 1.4**: Migration Script](./tasks/task-1.4-migration-script.md)~~ - **SKIPPED** (data from Telegram sync)
+5. [**Task 1.5**: API Routes Structure](./tasks/task-1.5-api-structure.md) - מבנה בסיסי ✅
+6. [**Task 1.6**: Types Setup](./tasks/task-1.6-types-setup.md) - TypeScript types ✅
+7. [**Task 1.7**: Testing Infrastructure](./tasks/task-1.7-testing-setup.md) - Vitest ✅
+8. [**Task 1.8**: Logging Setup](./tasks/task-1.8-logging-setup.md) - Pino logger ✅
 
 ---
 
@@ -194,26 +194,26 @@ Risk: Low-Medium
 **לפני מעבר ל-Phase 2, וודא:**
 
 ### Database:
-- [ ] PostgreSQL database created and accessible
-- [ ] Prisma schema matches SQLAlchemy models
-- [ ] All data migrated successfully (0 data loss)
-- [ ] Can query data via Prisma Studio
+- [x] PostgreSQL database created and accessible
+- [x] Prisma schema matches SQLAlchemy models
+- [x] Data will be populated via Telegram sync (Phase 4)
+- [x] Can query data via Prisma Studio
 
 ### API:
-- [ ] Basic API route structure exists
-- [ ] Error handling works
-- [ ] Can create a simple GET endpoint
-- [ ] Logging captures requests
+- [x] Basic API route structure exists
+- [x] Error handling works
+- [x] Can create a simple GET endpoint
+- [x] Logging captures requests
 
 ### Testing:
-- [ ] Vitest runs successfully
-- [ ] Can write and run a simple test
-- [ ] Test coverage setup works
+- [x] Vitest runs successfully
+- [x] Can write and run a simple test
+- [x] Test coverage setup works
 
 ### Types:
-- [ ] Prisma types generated
-- [ ] Shared types defined
-- [ ] No TypeScript errors
+- [x] Prisma types generated
+- [x] Shared types defined
+- [x] No TypeScript errors (after installing @types/node)
 
 ### Verification:
 ```bash
