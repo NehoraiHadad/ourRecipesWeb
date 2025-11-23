@@ -24,13 +24,15 @@ from models import (
     TelegramMessage
 )
 from utils.crypto import verify_request_signature
+from background import start_monitoring
+import asyncio
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """
     FastAPI lifespan manager.
-    Handles startup and shutdown of the Telegram client.
+    Handles startup and shutdown of the Telegram client and background tasks.
     """
     logger.info(
         "service_starting",
@@ -46,7 +48,24 @@ async def lifespan(app: FastAPI):
         logger.error("telegram_client_startup_failed", error=str(e))
         raise
 
+    # Start background monitoring (if configured)
+    monitoring_task = None
+    if settings.OLD_CHANNEL_URL:
+        monitoring_task = asyncio.create_task(start_monitoring())
+        logger.info(
+            "background_monitoring_task_created",
+            old_channel=settings.OLD_CHANNEL_URL
+        )
+
     yield
+
+    # Shutdown: Stop background monitoring
+    if monitoring_task:
+        monitoring_task.cancel()
+        try:
+            await monitoring_task
+        except asyncio.CancelledError:
+            logger.info("background_monitoring_task_cancelled")
 
     # Shutdown: Close Telegram client
     await TelegramClientManager.close()
