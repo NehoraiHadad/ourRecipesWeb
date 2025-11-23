@@ -11,7 +11,6 @@ export default defineConfig({
   migrations: {
     path: "prisma/migrations",
   },
-  engine: "classic",  // Required for Prisma 7.0 to use traditional binary engine
   datasource: {
     url: databaseUrl,
   },
