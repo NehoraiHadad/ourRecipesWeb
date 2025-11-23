@@ -1,7 +1,7 @@
 /**
  * Menu Planner Service using Gemini Function Calling
  */
-import { GoogleGenAI, Type } from '@google/genai';
+import { GoogleGenAI } from '@google/genai';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 
@@ -14,21 +14,21 @@ const functions = [
   {
     name: 'get_all_recipes',
     description: 'Get catalog of all available recipes with basic info',
-    parameters: {
-      type: Type.OBJECT,
+    parametersJsonSchema: {
+      type: 'object',
       properties: {}
     }
   },
   {
     name: 'get_recipes_details_batch',
     description: 'Get full details for specific recipes',
-    parameters: {
-      type: Type.OBJECT,
+    parametersJsonSchema: {
+      type: 'object',
       properties: {
         recipe_ids: {
-          type: Type.ARRAY,
+          type: 'array',
           items: {
-            type: Type.NUMBER
+            type: 'number'
           },
           description: 'List of recipe IDs to fetch'
         }
@@ -118,12 +118,12 @@ export async function generateMenuPreview(preferences: {
 }) {
   logger.info({ preferences }, 'Starting menu generation');
 
-  const model = genAI.getGenerativeModel({
+  const chat = genAI.chats.create({
     model: 'gemini-2.0-flash-exp',
-    tools: [{ functionDeclarations: functions }]
+    config: {
+      tools: [{ functionDeclarations: functions }]
+    }
   });
-
-  const chat = model.startChat();
 
   const systemPrompt = `
 אתה מתכנן תפריטים מומחה. תפקידך ליצור תפריט מפורט ומאוזן.
@@ -162,13 +162,13 @@ ${preferences.special_requests ? `- בקשות מיוחדות: ${preferences.spe
 }
 `;
 
-  let response = await chat.sendMessage(systemPrompt);
+  let response = await chat.sendMessage({ message: systemPrompt });
   let iterationCount = 0;
   const MAX_ITERATIONS = 8;
 
   // Function calling loop
   while (iterationCount < MAX_ITERATIONS) {
-    const functionCall = response.response.functionCalls()?.[0];
+    const functionCall = response.functionCalls?.[0];
 
     if (!functionCall) {
       // No function call - got final answer
@@ -184,14 +184,16 @@ ${preferences.special_requests ? `- בקשות מיוחדות: ${preferences.spe
     const functionResult = await executeFunction(functionCall);
 
     // Send result back to model
-    response = await chat.sendMessage([
-      {
-        functionResponse: {
-          name: functionCall.name,
-          response: functionResult
+    response = await chat.sendMessage({
+      message: [
+        {
+          functionResponse: {
+            name: functionCall.name,
+            response: functionResult as Record<string, unknown>
+          }
         }
-      }
-    ]);
+      ]
+    });
 
     iterationCount++;
   }
@@ -201,7 +203,7 @@ ${preferences.special_requests ? `- בקשות מיוחדות: ${preferences.spe
   }
 
   // Parse final response
-  const text = response.response.text();
+  const text = response.text || '';
   let menuPlan;
 
   try {

@@ -18,8 +18,6 @@ export async function generateRecipeSuggestion(params: {
 }): Promise<string> {
   logger.debug(params, 'Generating recipe suggestion');
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-
   const prompt = `
 אתה עוזר מטבח מומחה. צור מתכון מפורט על בסיס המידע הבא:
 
@@ -50,11 +48,13 @@ ${params.additionalRequests ? `בקשות נוספות: ${params.additionalReque
 - [טיפ 1]
 `;
 
-  const result = await model.generateContent(prompt);
-  const response = result.response.text();
+  const response = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash-exp',
+    contents: prompt
+  });
 
   logger.info('Recipe suggestion generated');
-  return response;
+  return response.text || '';
 }
 
 /**
@@ -107,8 +107,6 @@ export async function generateRecipeImage(recipeContent: string): Promise<string
 export async function reformatRecipe(text: string): Promise<string> {
   logger.debug({ textLength: text.length }, 'Reformatting recipe');
 
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
-
   const prompt = `
 עצב מחדש את המתכון הבא בפורמט מסודר וברור:
 
@@ -131,11 +129,13 @@ ${text}
 אל תוסיף מידע שלא מופיע במתכון המקורי.
 `;
 
-  const result = await model.generateContent(prompt);
-  const response = result.response.text();
+  const response = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash-exp',
+    contents: prompt
+  });
 
   logger.info('Recipe reformatted');
-  return response;
+  return response.text || '';
 }
 
 /**
@@ -143,8 +143,6 @@ ${text}
  */
 export async function refineRecipe(recipeText: string, refinementRequest: string): Promise<string> {
   logger.debug({ refinementRequest }, 'Refining recipe');
-
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
 
   const prompt = `
 המתכון הנוכחי:
@@ -156,11 +154,13 @@ ${refinementRequest}
 שפר את המתכון על פי הבקשה, אך שמור על המבנה והפורמט המקורי.
 `;
 
-  const result = await model.generateContent(prompt);
-  const response = result.response.text();
+  const response = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash-exp',
+    contents: prompt
+  });
 
   logger.info('Recipe refined');
-  return response;
+  return response.text || '';
 }
 
 /**
@@ -168,8 +168,6 @@ ${refinementRequest}
  */
 export async function optimizeRecipeSteps(recipeText: string): Promise<string> {
   logger.debug('Optimizing recipe steps');
-
-  const model = genAI.getGenerativeModel({ model: 'gemini-2.0-flash-exp' });
 
   const prompt = `
 נתח את המתכון הבא והציע אופטימיזציה של השלבים:
@@ -185,9 +183,11 @@ ${recipeText}
 החזר רק את הצעדים המשופרים עם הסברים קצרים.
 `;
 
-  const result = await model.generateContent(prompt);
-  const response = result.response.text();
+  const response = await genAI.models.generateContent({
+    model: 'gemini-2.0-flash-exp',
+    contents: prompt
+  });
 
   logger.info('Recipe steps optimized');
-  return response;
+  return response.text || '';
 }
