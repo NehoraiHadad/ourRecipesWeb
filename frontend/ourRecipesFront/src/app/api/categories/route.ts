@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
     // Get all active recipes with categories
     const recipes = await prisma.recipe.findMany({
       where: {
-        status: 'active',
+        status: 'ACTIVE',
         categories: {
           not: null
         }
@@ -30,7 +30,7 @@ export async function GET(request: NextRequest) {
     // Extract unique categories
     const categoriesSet = new Set<string>();
 
-    recipes.forEach(recipe => {
+    recipes.forEach((recipe: { categories: string | null }) => {
       if (recipe.categories) {
         // Categories are comma-separated string
         const cats = recipe.categories.split(',').map(c => c.trim()).filter(Boolean);
