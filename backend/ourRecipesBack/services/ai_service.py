@@ -368,21 +368,24 @@ class AIService:
             # - Specify visual style, colors, composition explicitly
             # - Use photographic/design terminology
 
-            # For unformatted recipes, use a simpler design focusing on the title
+            # For unformatted recipes, send full content and let the model handle it
             if not metadata['is_formatted']:
                 prompt_text = f"""Generate an image:
 
-A beautiful Hebrew recipe title card with modern food photography aesthetic. Warm, appetizing colors with soft cream and terracotta tones.
+Create a beautiful Hebrew recipe card for this recipe:
 
-The design features:
-- A prominent Hebrew title "{metadata['title']}" in elegant bold typography, centered
-- Soft blurred food photography background suggesting the dish
-- Clean minimalist layout with warm lighting
-- Professional cookbook cover style
+{recipe_content}
 
-Visual style: Modern food magazine aesthetic, soft studio lighting, Instagram-worthy presentation. 4K resolution.
+Design requirements:
+- Modern flat design style with warm, appetizing colors (cream, terracotta, sage green)
+- Display the recipe title prominently at the top in elegant Hebrew typography
+- Show key info as small badges (prep time, difficulty, ingredients count if identifiable)
+- Clean minimalist layout with generous white space
+- Soft watercolor food illustrations as background elements
 
-Important: Hebrew text must be perfectly crisp and readable.
+Visual style: Modern Scandinavian cookbook aesthetic, professional editorial quality. 4K resolution.
+
+Important: All Hebrew text must be crisp, clear, and perfectly readable.
                 """
             else:
                 prompt_text = f"""Generate an image:
