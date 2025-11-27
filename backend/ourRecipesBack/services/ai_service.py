@@ -253,6 +253,45 @@ class AIService:
             raise
 
     @classmethod
+    def _extract_recipe_metadata(cls, recipe_content):
+        """
+        Extract key metadata from recipe content for infographic generation.
+
+        Args:
+            recipe_content (str): Full recipe text
+
+        Returns:
+            dict: Extracted metadata (title, prep_time, difficulty, ingredients_count)
+        """
+        import re
+
+        # Extract title
+        title_match = re.search(r'כותרת:\s*(.+)', recipe_content)
+        title = title_match.group(1).strip() if title_match else "מתכון טעים"
+
+        # Extract prep time
+        time_match = re.search(r'זמן הכנה:\s*(.+)', recipe_content)
+        prep_time = time_match.group(1).strip() if time_match else None
+
+        # Extract difficulty
+        difficulty_match = re.search(r'רמת קושי:\s*(.+)', recipe_content)
+        difficulty = difficulty_match.group(1).strip() if difficulty_match else None
+
+        # Count ingredients
+        ingredients_section = re.search(r'רשימת מצרכים:\s*([\s\S]*?)(?:הוראות הכנה:|$)', recipe_content)
+        ingredients_count = 0
+        if ingredients_section:
+            ingredients_text = ingredients_section.group(1)
+            ingredients_count = len(re.findall(r'^[\s]*-\s*.+', ingredients_text, re.MULTILINE))
+
+        return {
+            'title': title,
+            'prep_time': prep_time,
+            'difficulty': difficulty,
+            'ingredients_count': ingredients_count
+        }
+
+    @classmethod
     async def generate_recipe_infographic(cls, recipe_content):
         """
         Generate infographic image for recipe using Gemini 3 Pro Image (Nano Banana Pro)
@@ -273,24 +312,42 @@ class AIService:
             api_key = current_app.config.get("GOOGLE_API_KEY_NANO_BANANA") or current_app.config["GOOGLE_API_KEY"]
             client = genai.Client(api_key=api_key)
 
-            # Create a detailed Hebrew prompt for infographic generation
-            prompt_text = f"""
-צור אינפוגרפיקה מקצועית ומעוצבת למתכון הבא בעברית:
+            # Extract key metadata from recipe
+            metadata = cls._extract_recipe_metadata(recipe_content)
 
-{recipe_content}
+            # Build metadata badges for the infographic
+            badges = []
+            if metadata['prep_time']:
+                badges.append(f"⏱ {metadata['prep_time']}")
+            if metadata['difficulty']:
+                badges.append(f"📊 {metadata['difficulty']}")
+            if metadata['ingredients_count'] > 0:
+                badges.append(f"🥗 {metadata['ingredients_count']} מצרכים")
 
-דרישות לאינפוגרפיקה:
-1. כותרת גדולה ובולטת בחלק העליון עם שם המתכון
-2. חלוקה ברורה לשני חלקים:
-   - רשימת מצרכים בעיצוב רשימה עם bullets או אייקונים
-   - הוראות הכנה ממוספרות בצורה ברורה
-3. שימוש בצבעים חמים ומזמינים שמתאימים לאוכל
-4. עיצוב נקי ומסודר עם רווחים מתאימים
-5. כל הטקסט בעברית בפונט קריא וגדול
-6. אם יש זמן הכנה או רמת קושי - הצג אותם באייקונים בולטים
-7. סגנון עיצוב מודרני ואסתטי
+            badges_text = " | ".join(badges) if badges else ""
 
-חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
+            # Create an optimized prompt following Google's best practices:
+            # - Start with action phrase "Generate an image:"
+            # - Describe the scene narratively, don't list keywords
+            # - Keep text minimal (under 25 chars per phrase, max 3 phrases)
+            # - Specify visual style, colors, composition explicitly
+            # - Use photographic/design terminology
+            prompt_text = f"""Generate an image:
+
+A beautiful Hebrew recipe card in modern flat design style. The card features a warm, appetizing color palette with soft cream background, terracotta orange accents, and sage green highlights.
+
+The design shows:
+- A prominent Hebrew title "{metadata['title']}" displayed in elegant, bold sans-serif typography at the center-top
+- Below the title, small badge icons showing: {badges_text}
+- Soft watercolor-style food illustrations as decorative background elements
+- Clean minimalist layout with generous white space
+- Subtle kitchen-themed decorative icons (herbs, wooden spoon, olive branch) as accent elements
+
+Visual style: Modern Scandinavian cookbook aesthetic meets Instagram food blog. Soft diffused lighting feel, professional editorial food magazine quality. The overall mood is warm, inviting, and appetizing.
+
+Composition: Vertical portrait orientation, text clearly legible against the background, 4K resolution.
+
+Important: All Hebrew text must be crisp, clear, and perfectly readable. Prioritize text legibility over decorative complexity.
             """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
