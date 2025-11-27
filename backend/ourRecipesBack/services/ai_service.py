@@ -256,39 +256,72 @@ class AIService:
     def _extract_recipe_metadata(cls, recipe_content):
         """
         Extract key metadata from recipe content for infographic generation.
+        Handles both formatted recipes (with כותרת:, רשימת מצרכים:, etc.)
+        and unformatted raw recipes.
 
         Args:
             recipe_content (str): Full recipe text
 
         Returns:
-            dict: Extracted metadata (title, prep_time, difficulty, ingredients_count)
+            dict: Extracted metadata (title, prep_time, difficulty, ingredients_count, steps_count, is_formatted)
         """
         import re
 
-        # Extract title
-        title_match = re.search(r'כותרת:\s*(.+)', recipe_content)
-        title = title_match.group(1).strip() if title_match else "מתכון טעים"
+        # Check if recipe is in standard format
+        is_formatted = bool(re.search(r'כותרת:', recipe_content))
 
-        # Extract prep time
-        time_match = re.search(r'זמן הכנה:\s*(.+)', recipe_content)
-        prep_time = time_match.group(1).strip() if time_match else None
+        if is_formatted:
+            # Extract from formatted recipe
+            title_match = re.search(r'כותרת:\s*(.+)', recipe_content)
+            title = title_match.group(1).strip() if title_match else "מתכון טעים"
 
-        # Extract difficulty
-        difficulty_match = re.search(r'רמת קושי:\s*(.+)', recipe_content)
-        difficulty = difficulty_match.group(1).strip() if difficulty_match else None
+            time_match = re.search(r'זמן הכנה:\s*(.+)', recipe_content)
+            prep_time = time_match.group(1).strip() if time_match else None
 
-        # Count ingredients
-        ingredients_section = re.search(r'רשימת מצרכים:\s*([\s\S]*?)(?:הוראות הכנה:|$)', recipe_content)
-        ingredients_count = 0
-        if ingredients_section:
-            ingredients_text = ingredients_section.group(1)
-            ingredients_count = len(re.findall(r'^[\s]*-\s*.+', ingredients_text, re.MULTILINE))
+            difficulty_match = re.search(r'רמת קושי:\s*(.+)', recipe_content)
+            difficulty = difficulty_match.group(1).strip() if difficulty_match else None
+
+            # Count ingredients
+            ingredients_section = re.search(r'רשימת מצרכים:\s*([\s\S]*?)(?:הוראות הכנה:|$)', recipe_content)
+            ingredients_count = 0
+            if ingredients_section:
+                ingredients_text = ingredients_section.group(1)
+                ingredients_count = len(re.findall(r'^[\s]*-\s*.+', ingredients_text, re.MULTILINE))
+
+            # Count preparation steps
+            steps_section = re.search(r'הוראות הכנה:\s*([\s\S]*?)$', recipe_content)
+            steps_count = 0
+            if steps_section:
+                steps_text = steps_section.group(1)
+                # Count numbered steps (1. 2. 3. etc.) or bullet points
+                steps_count = len(re.findall(r'^\s*(?:\d+[\.\)]\s*|[-•]\s*).+', steps_text, re.MULTILINE))
+                # If no numbered/bullet steps found, count non-empty lines
+                if steps_count == 0:
+                    steps_count = len([line for line in steps_text.strip().split('\n') if line.strip()])
+        else:
+            # Fallback for unformatted recipes
+            # Use first non-empty line as title
+            lines = [line.strip() for line in recipe_content.split('\n') if line.strip()]
+            title = lines[0][:50] if lines else "מתכון טעים"  # Limit title length
+
+            prep_time = None
+            difficulty = None
+            ingredients_count = 0
+            steps_count = 0
+
+            # Try to estimate from content
+            # Count lines that look like ingredients (contain quantities/units)
+            ingredient_patterns = len(re.findall(r'(?:כוס|כפ|ג|מ"ל|גרם|יחידות?|חתיכות?|\d+)', recipe_content))
+            if ingredient_patterns > 0:
+                ingredients_count = min(ingredient_patterns, 15)  # Cap at reasonable number
 
         return {
             'title': title,
             'prep_time': prep_time,
             'difficulty': difficulty,
-            'ingredients_count': ingredients_count
+            'ingredients_count': ingredients_count,
+            'steps_count': steps_count,
+            'is_formatted': is_formatted
         }
 
     @classmethod
@@ -323,6 +356,8 @@ class AIService:
                 badges.append(f"📊 {metadata['difficulty']}")
             if metadata['ingredients_count'] > 0:
                 badges.append(f"🥗 {metadata['ingredients_count']} מצרכים")
+            if metadata['steps_count'] > 0:
+                badges.append(f"👨‍🍳 {metadata['steps_count']} שלבים")
 
             badges_text = " | ".join(badges) if badges else ""
 
@@ -332,7 +367,25 @@ class AIService:
             # - Keep text minimal (under 25 chars per phrase, max 3 phrases)
             # - Specify visual style, colors, composition explicitly
             # - Use photographic/design terminology
-            prompt_text = f"""Generate an image:
+
+            # For unformatted recipes, use a simpler design focusing on the title
+            if not metadata['is_formatted']:
+                prompt_text = f"""Generate an image:
+
+A beautiful Hebrew recipe title card with modern food photography aesthetic. Warm, appetizing colors with soft cream and terracotta tones.
+
+The design features:
+- A prominent Hebrew title "{metadata['title']}" in elegant bold typography, centered
+- Soft blurred food photography background suggesting the dish
+- Clean minimalist layout with warm lighting
+- Professional cookbook cover style
+
+Visual style: Modern food magazine aesthetic, soft studio lighting, Instagram-worthy presentation. 4K resolution.
+
+Important: Hebrew text must be perfectly crisp and readable.
+                """
+            else:
+                prompt_text = f"""Generate an image:
 
 A beautiful Hebrew recipe card in modern flat design style. The card features a warm, appetizing color palette with soft cream background, terracotta orange accents, and sage green highlights.
 
@@ -348,7 +401,7 @@ Visual style: Modern Scandinavian cookbook aesthetic meets Instagram food blog. 
 Composition: Vertical portrait orientation, text clearly legible against the background, 4K resolution.
 
 Important: All Hebrew text must be crisp, clear, and perfectly readable. Prioritize text legibility over decorative complexity.
-            """
+                """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
             # NOTE: This model requires a paid API plan (not available in free tier)
