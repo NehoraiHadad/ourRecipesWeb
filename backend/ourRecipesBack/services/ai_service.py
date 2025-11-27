@@ -361,49 +361,28 @@ class AIService:
 
             badges_text = " | ".join(badges) if badges else ""
 
-            # Create an optimized prompt following Google's best practices:
-            # - Start with action phrase "Generate an image:"
-            # - Describe the scene narratively, don't list keywords
-            # - Keep text minimal (under 25 chars per phrase, max 3 phrases)
-            # - Specify visual style, colors, composition explicitly
-            # - Use photographic/design terminology
-
-            # For unformatted recipes, send full content and let the model handle it
+            # Simplified prompt - let the model have creative freedom
+            # Only provide essential info and minimal style guidance
             if not metadata['is_formatted']:
                 prompt_text = f"""Generate an image:
 
-Create a beautiful Hebrew recipe card for this recipe:
+Create a beautiful, appetizing Hebrew recipe card for this recipe:
 
 {recipe_content}
 
-Design requirements:
-- Modern flat design style with warm, appetizing colors (cream, terracotta, sage green)
-- Display the recipe title prominently at the top in elegant Hebrew typography
-- Show key info as small badges (prep time, difficulty, ingredients count if identifiable)
-- Clean minimalist layout with generous white space
-- Soft watercolor food illustrations as background elements
-
-Visual style: Modern Scandinavian cookbook aesthetic, professional editorial quality. 4K resolution.
-
-Important: All Hebrew text must be crisp, clear, and perfectly readable.
+Style: Modern cookbook design, warm colors, clean layout.
+The Hebrew text must be perfectly readable.
                 """
             else:
                 prompt_text = f"""Generate an image:
 
-A beautiful Hebrew recipe card in modern flat design style. The card features a warm, appetizing color palette with soft cream background, terracotta orange accents, and sage green highlights.
+Create a beautiful, appetizing Hebrew recipe card.
 
-The design shows:
-- A prominent Hebrew title "{metadata['title']}" displayed in elegant, bold sans-serif typography at the center-top
-- Below the title, small badge icons showing: {badges_text}
-- Soft watercolor-style food illustrations as decorative background elements
-- Clean minimalist layout with generous white space
-- Subtle kitchen-themed decorative icons (herbs, wooden spoon, olive branch) as accent elements
+Title: {metadata['title']}
+{badges_text}
 
-Visual style: Modern Scandinavian cookbook aesthetic meets Instagram food blog. Soft diffused lighting feel, professional editorial food magazine quality. The overall mood is warm, inviting, and appetizing.
-
-Composition: Vertical portrait orientation, text clearly legible against the background, 4K resolution.
-
-Important: All Hebrew text must be crisp, clear, and perfectly readable. Prioritize text legibility over decorative complexity.
+Style: Modern cookbook design, warm colors, clean layout.
+The Hebrew text must be perfectly readable.
                 """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
