@@ -366,22 +366,22 @@ class AIService:
             if not metadata['is_formatted']:
                 prompt_text = f"""Generate an image:
 
-Create a beautiful, appetizing Hebrew recipe card for this recipe:
+Create a beautiful Hebrew recipe infographic for this recipe:
 
 {recipe_content}
 
-Style: Modern cookbook design, warm colors, clean layout.
+Style: Modern infographic design, warm appetizing colors, clean layout.
 The Hebrew text must be perfectly readable.
                 """
             else:
                 prompt_text = f"""Generate an image:
 
-Create a beautiful, appetizing Hebrew recipe card.
+Create a beautiful Hebrew recipe infographic.
 
 Title: {metadata['title']}
 {badges_text}
 
-Style: Modern cookbook design, warm colors, clean layout.
+Style: Modern infographic design, warm appetizing colors, clean layout.
 The Hebrew text must be perfectly readable.
                 """
 
