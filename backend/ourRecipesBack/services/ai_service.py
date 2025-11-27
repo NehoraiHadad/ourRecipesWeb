@@ -253,6 +253,78 @@ class AIService:
             raise
 
     @classmethod
+    def _extract_recipe_metadata(cls, recipe_content):
+        """
+        Extract key metadata from recipe content for infographic generation.
+        Handles both formatted recipes (with כותרת:, רשימת מצרכים:, etc.)
+        and unformatted raw recipes.
+
+        Args:
+            recipe_content (str): Full recipe text
+
+        Returns:
+            dict: Extracted metadata (title, prep_time, difficulty, ingredients_count, steps_count, is_formatted)
+        """
+        import re
+
+        # Check if recipe is in standard format
+        is_formatted = bool(re.search(r'כותרת:', recipe_content))
+
+        if is_formatted:
+            # Extract from formatted recipe
+            title_match = re.search(r'כותרת:\s*(.+)', recipe_content)
+            title = title_match.group(1).strip() if title_match else "מתכון טעים"
+
+            time_match = re.search(r'זמן הכנה:\s*(.+)', recipe_content)
+            prep_time = time_match.group(1).strip() if time_match else None
+
+            difficulty_match = re.search(r'רמת קושי:\s*(.+)', recipe_content)
+            difficulty = difficulty_match.group(1).strip() if difficulty_match else None
+
+            # Count ingredients
+            ingredients_section = re.search(r'רשימת מצרכים:\s*([\s\S]*?)(?:הוראות הכנה:|$)', recipe_content)
+            ingredients_count = 0
+            if ingredients_section:
+                ingredients_text = ingredients_section.group(1)
+                ingredients_count = len(re.findall(r'^[\s]*-\s*.+', ingredients_text, re.MULTILINE))
+
+            # Count preparation steps
+            steps_section = re.search(r'הוראות הכנה:\s*([\s\S]*?)$', recipe_content)
+            steps_count = 0
+            if steps_section:
+                steps_text = steps_section.group(1)
+                # Count numbered steps (1. 2. 3. etc.) or bullet points
+                steps_count = len(re.findall(r'^\s*(?:\d+[\.\)]\s*|[-•]\s*).+', steps_text, re.MULTILINE))
+                # If no numbered/bullet steps found, count non-empty lines
+                if steps_count == 0:
+                    steps_count = len([line for line in steps_text.strip().split('\n') if line.strip()])
+        else:
+            # Fallback for unformatted recipes
+            # Use first non-empty line as title
+            lines = [line.strip() for line in recipe_content.split('\n') if line.strip()]
+            title = lines[0][:50] if lines else "מתכון טעים"  # Limit title length
+
+            prep_time = None
+            difficulty = None
+            ingredients_count = 0
+            steps_count = 0
+
+            # Try to estimate from content
+            # Count lines that look like ingredients (contain quantities/units)
+            ingredient_patterns = len(re.findall(r'(?:כוס|כפ|ג|מ"ל|גרם|יחידות?|חתיכות?|\d+)', recipe_content))
+            if ingredient_patterns > 0:
+                ingredients_count = min(ingredient_patterns, 15)  # Cap at reasonable number
+
+        return {
+            'title': title,
+            'prep_time': prep_time,
+            'difficulty': difficulty,
+            'ingredients_count': ingredients_count,
+            'steps_count': steps_count,
+            'is_formatted': is_formatted
+        }
+
+    @classmethod
     async def generate_recipe_infographic(cls, recipe_content):
         """
         Generate infographic image for recipe using Gemini 3 Pro Image (Nano Banana Pro)
@@ -273,25 +345,66 @@ class AIService:
             api_key = current_app.config.get("GOOGLE_API_KEY_NANO_BANANA") or current_app.config["GOOGLE_API_KEY"]
             client = genai.Client(api_key=api_key)
 
-            # Create a detailed Hebrew prompt for infographic generation
-            prompt_text = f"""
-צור אינפוגרפיקה מקצועית ומעוצבת למתכון הבא בעברית:
+            # Extract key metadata from recipe
+            metadata = cls._extract_recipe_metadata(recipe_content)
+
+            # Build metadata badges for the infographic
+            badges = []
+            if metadata['prep_time']:
+                badges.append(f"⏱ {metadata['prep_time']}")
+            if metadata['difficulty']:
+                badges.append(f"📊 {metadata['difficulty']}")
+            if metadata['ingredients_count'] > 0:
+                badges.append(f"🥗 {metadata['ingredients_count']} מצרכים")
+            if metadata['steps_count'] > 0:
+                badges.append(f"👨‍🍳 {metadata['steps_count']} שלבים")
+
+            badges_text = " | ".join(badges) if badges else ""
+
+            # Create an optimized prompt following Google's best practices:
+            # - Start with action phrase "Generate an image:"
+            # - Describe the scene narratively, don't list keywords
+            # - Keep text minimal (under 25 chars per phrase, max 3 phrases)
+            # - Specify visual style, colors, composition explicitly
+            # - Use photographic/design terminology
+
+            # For unformatted recipes, send full content and let the model handle it
+            if not metadata['is_formatted']:
+                prompt_text = f"""Generate an image:
+
+Create a beautiful Hebrew recipe card for this recipe:
 
 {recipe_content}
 
-דרישות לאינפוגרפיקה:
-1. כותרת גדולה ובולטת בחלק העליון עם שם המתכון
-2. חלוקה ברורה לשני חלקים:
-   - רשימת מצרכים בעיצוב רשימה עם bullets או אייקונים
-   - הוראות הכנה ממוספרות בצורה ברורה
-3. שימוש בצבעים חמים ומזמינים שמתאימים לאוכל
-4. עיצוב נקי ומסודר עם רווחים מתאימים
-5. כל הטקסט בעברית בפונט קריא וגדול
-6. אם יש זמן הכנה או רמת קושי - הצג אותם באייקונים בולטים
-7. סגנון עיצוב מודרני ואסתטי
+Design requirements:
+- Modern flat design style with warm, appetizing colors (cream, terracotta, sage green)
+- Display the recipe title prominently at the top in elegant Hebrew typography
+- Show key info as small badges (prep time, difficulty, ingredients count if identifiable)
+- Clean minimalist layout with generous white space
+- Soft watercolor food illustrations as background elements
 
-חשוב: כל הטקסט חייב להיות קריא ובעברית תקנית.
-            """
+Visual style: Modern Scandinavian cookbook aesthetic, professional editorial quality. 4K resolution.
+
+Important: All Hebrew text must be crisp, clear, and perfectly readable.
+                """
+            else:
+                prompt_text = f"""Generate an image:
+
+A beautiful Hebrew recipe card in modern flat design style. The card features a warm, appetizing color palette with soft cream background, terracotta orange accents, and sage green highlights.
+
+The design shows:
+- A prominent Hebrew title "{metadata['title']}" displayed in elegant, bold sans-serif typography at the center-top
+- Below the title, small badge icons showing: {badges_text}
+- Soft watercolor-style food illustrations as decorative background elements
+- Clean minimalist layout with generous white space
+- Subtle kitchen-themed decorative icons (herbs, wooden spoon, olive branch) as accent elements
+
+Visual style: Modern Scandinavian cookbook aesthetic meets Instagram food blog. Soft diffused lighting feel, professional editorial food magazine quality. The overall mood is warm, inviting, and appetizing.
+
+Composition: Vertical portrait orientation, text clearly legible against the background, 4K resolution.
+
+Important: All Hebrew text must be crisp, clear, and perfectly readable. Prioritize text legibility over decorative complexity.
+                """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
             # NOTE: This model requires a paid API plan (not available in free tier)
