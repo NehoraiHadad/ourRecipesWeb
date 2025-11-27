@@ -353,7 +353,6 @@ Create a beautiful Hebrew recipe infographic for this recipe:
 {recipe_content}
 
 Style: Modern infographic design, warm appetizing colors, clean layout.
-The Hebrew text must be perfectly readable.
             """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
