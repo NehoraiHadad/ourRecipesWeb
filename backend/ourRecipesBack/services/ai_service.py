@@ -345,26 +345,8 @@ class AIService:
             api_key = current_app.config.get("GOOGLE_API_KEY_NANO_BANANA") or current_app.config["GOOGLE_API_KEY"]
             client = genai.Client(api_key=api_key)
 
-            # Extract key metadata from recipe
-            metadata = cls._extract_recipe_metadata(recipe_content)
-
-            # Build metadata badges for the infographic
-            badges = []
-            if metadata['prep_time']:
-                badges.append(f"⏱ {metadata['prep_time']}")
-            if metadata['difficulty']:
-                badges.append(f"📊 {metadata['difficulty']}")
-            if metadata['ingredients_count'] > 0:
-                badges.append(f"🥗 {metadata['ingredients_count']} מצרכים")
-            if metadata['steps_count'] > 0:
-                badges.append(f"👨‍🍳 {metadata['steps_count']} שלבים")
-
-            badges_text = " | ".join(badges) if badges else ""
-
-            # Simplified prompt - let the model have creative freedom
-            # Only provide essential info and minimal style guidance
-            if not metadata['is_formatted']:
-                prompt_text = f"""Generate an image:
+            # Simplified prompt - send full recipe content and let the model have creative freedom
+            prompt_text = f"""Generate an image:
 
 Create a beautiful Hebrew recipe infographic for this recipe:
 
@@ -372,18 +354,7 @@ Create a beautiful Hebrew recipe infographic for this recipe:
 
 Style: Modern infographic design, warm appetizing colors, clean layout.
 The Hebrew text must be perfectly readable.
-                """
-            else:
-                prompt_text = f"""Generate an image:
-
-Create a beautiful Hebrew recipe infographic.
-
-Title: {metadata['title']}
-{badges_text}
-
-Style: Modern infographic design, warm appetizing colors, clean layout.
-The Hebrew text must be perfectly readable.
-                """
+            """
 
             # Generate infographic using Gemini 3 Pro Image (Nano Banana Pro)
             # NOTE: This model requires a paid API plan (not available in free tier)
