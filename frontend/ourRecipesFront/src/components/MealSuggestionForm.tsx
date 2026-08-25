@@ -1,8 +1,8 @@
 import React, { useState, ChangeEvent } from "react";
 import Spinner from "@/components/ui/Spinner";
 import RecipeDisplay from "./RecipeDisplay";
-import { parseRecipe } from "../utils/formatChecker";
-import { parseIngredientLine } from "@/lib/recipes/ingredientParser";
+import RawRecipeView from "@/components/recipe/RawRecipeView";
+import { hasStructuredContent } from "@/lib/recipes/recipeView";
 import { useAuthContext } from "../context/AuthContext";
 import { useNotification } from '@/context/NotificationContext'
 import { Button } from '@/components/ui/Button'
@@ -12,6 +12,7 @@ import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { useProgress, AI_IMAGE_GENERATION_STEPS, AI_RECIPE_GENERATION_STEPS } from '@/hooks/useProgress';
 import { apiService } from '@/services/apiService';
 import { RecipeService } from '@/services/recipeService';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 
 /** The AI routes take far longer than apiService's default timeout. */
 const AI_TIMEOUT = 180000;
@@ -26,16 +27,7 @@ const MealSuggestionForm: React.FC = () => {
   const [childFriendly, setChildFriendly] = useState<boolean>(false);
   const [additionalRequests, setAdditionalRequests] = useState<string>("");
   const [photoRequested, setPhotoRequested] = useState<boolean>(false);
-  const [recipe, setRecipe] = useState<{
-    id?: number;
-    title?: string;
-    ingredients?: string[];
-    instructions?: string;
-    image?: string;
-    categories?: string[];
-    preparation_time?: number;
-    difficulty?: 'easy' | 'medium' | 'hard';
-  } | null>(null);
+  const [recipe, setRecipe] = useState<SerializedRecipe | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
   const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
   const [recipeText, setRecipeText] = useState<string>("");
@@ -85,8 +77,9 @@ const MealSuggestionForm: React.FC = () => {
 
       // Step 2: Generate recipe
       recipeProgress.startStep(1);
-      // `POST /api/recipes/suggest` answers `{ data: { message } }`.
-      const response = await apiService.post<{ data: { message: string } }>(
+      // `POST /api/recipes/suggest` answers `{ data: { message, recipe } }` —
+      // `recipe` is already parsed server-side (STRUCTURE_REFACTOR_TASKS.md §D2).
+      const response = await apiService.post<{ data: { message: string; recipe: SerializedRecipe } }>(
         "/api/recipes/suggest",
         {
           ingredients,
@@ -103,17 +96,9 @@ const MealSuggestionForm: React.FC = () => {
 
       // Step 3: Format recipe
       recipeProgress.startStep(2);
-      if (result?.message) {
+      if (result?.message && result.recipe) {
         setRecipeText(result.message);
-        const parsedRecipe = parseRecipe(result.message);
-        setRecipe({
-          title: parsedRecipe.title,
-          ingredients: parsedRecipe.ingredients,
-          instructions: parsedRecipe.instructions,
-          categories: parsedRecipe.categories,
-          preparation_time: parsedRecipe.preparation_time,
-          difficulty: parsedRecipe.difficulty,
-        });
+        setRecipe(result.recipe);
         recipeProgress.completeStep(2);
 
         // Fetch photo if requested
@@ -145,8 +130,9 @@ const MealSuggestionForm: React.FC = () => {
     setError("");
     try {
       // `POST /api/recipes/refine` takes `{ recipeText, refinementRequest }`
-      // and answers `{ data: { message } }`.
-      const response = await apiService.post<{ data: { message: string } }>(
+      // and answers `{ data: { message, recipe } }` — `recipe` is already
+      // parsed server-side (STRUCTURE_REFACTOR_TASKS.md §D2).
+      const response = await apiService.post<{ data: { message: string; recipe: SerializedRecipe } }>(
         "/api/recipes/refine",
         {
           recipeText,
@@ -156,17 +142,9 @@ const MealSuggestionForm: React.FC = () => {
       );
 
       const result = response?.data;
-      if (result?.message) {
+      if (result?.message && result.recipe) {
         setRecipeText(result.message);
-        const parsedRecipe = parseRecipe(result.message);
-        setRecipe({
-          title: parsedRecipe.title,
-          ingredients: parsedRecipe.ingredients,
-          instructions: parsedRecipe.instructions,
-          categories: parsedRecipe.categories,
-          preparation_time: parsedRecipe.preparation_time,
-          difficulty: parsedRecipe.difficulty,
-        });
+        setRecipe(result.recipe);
 
         // Update refinement history and count
         setRefinementHistory(prev => [...prev, refinementRequest]);
@@ -213,7 +191,10 @@ const MealSuggestionForm: React.FC = () => {
       // Step 3: Optimize image
       imageProgress.startStep(2);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
-      setRecipe((prevRecipe) => ({ ...prevRecipe, image: response?.data?.image }));
+      const image = response?.data?.image;
+      if (image) {
+        setRecipe((prev) => (prev ? { ...prev, image_url: image } : prev));
+      }
       imageProgress.completeStep(2);
 
     } catch (error: any) {
@@ -279,7 +260,7 @@ const MealSuggestionForm: React.FC = () => {
     setSavingToTelegram(true);
     try {
       // Flask's `POST /send_recipe` was merged into `POST /api/recipes`.
-      const result = await RecipeService.createRecipe(data);
+      const result = await RecipeService.addRecipe(data);
       console.log("Update successful:", result);
       // setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
     } catch (error) {
@@ -293,7 +274,7 @@ const MealSuggestionForm: React.FC = () => {
 
   return (
     <div className="w-full">
-      {recipe && recipe.title && recipe.ingredients && recipe.instructions ? (
+      {recipe ? (
         <div className="space-y-4">
           {loadingPhoto && (
             <div className="bg-white rounded-lg p-4 shadow-sm border border-secondary-200">
@@ -305,33 +286,11 @@ const MealSuggestionForm: React.FC = () => {
               />
             </div>
           )}
-          {/*
-            TODO(stage-D2): the suggestion is still parsed in the browser
-            (`parseRecipe`); once it goes through the server parser this maps
-            straight from the response. The shape below is the wire contract
-            `RecipeDisplay` renders.
-          */}
-          <RecipeDisplay recipe={{
-            id: 0,
-            telegram_id: 0,
-            title: recipe.title || 'מתכון חדש',
-            raw_content: recipeText,
-            categories: recipe.categories || [],
-            ingredients: (recipe.ingredients || []).map(parseIngredientLine),
-            instructions: recipe.instructions || '',
-            difficulty: recipe.difficulty || null,
-            preparation_time: recipe.preparation_time ?? null,
-            cooking_time: null,
-            servings: null,
-            image_url: recipe.image ?? null,
-            is_parsed: true,
-            parse_errors: [],
-            status: 'ACTIVE',
-            sync_status: 'synced',
-            is_verified: false,
-            created_at: new Date().toISOString(),
-            updated_at: null,
-          }} />
+          {hasStructuredContent(recipe) ? (
+            <RecipeDisplay recipe={recipe} />
+          ) : (
+            <RawRecipeView title={recipe.title} text={recipe.raw_content} image={recipe.image_url} />
+          )}
 
           {/* Recipe Refinement Form */}
           <div className="mt-4 space-y-4">
@@ -388,7 +347,7 @@ const MealSuggestionForm: React.FC = () => {
                   variant="primary"
                   onClick={() => sendToTelegram({
                     newText: recipeText,
-                    image: recipe.image,
+                    image: recipe.image_url,
                   })}
                   isLoading={savingToTelegram}
                   className="flex-1"

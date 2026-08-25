@@ -5,7 +5,6 @@ import homeImage from "../../../public/homeImage.png";
 import Spinner from "@/components/ui/Spinner";
 import Recipes from "@/components/Recipes";
 import Search from "@/components/Search";
-import { recipe } from "@/types";
 import { useAuth } from "@/hooks/useAuth";
 import Modal from "@/components/Modal";
 import DraggableBubble from "@/components/DraggableButton";
@@ -18,11 +17,11 @@ import { useFavorites } from '@/contexts/FavoritesContext';
 import { useSearchContext } from '@/contexts/SearchContext';
 import RecipeDetails from "@/components/recipe/RecipeDetails";
 import { RecipeService } from "@/services/recipeService";
-import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
+import type { SerializedRecipe, SerializedRecipeWithRelations } from "@/lib/serializers/recipeTypes";
 
 export default function Page() {
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
-  const [favoriteRecipes, setFavoriteRecipes] = useState<recipe[]>([]);
+  const [favoriteRecipes, setFavoriteRecipes] = useState<SerializedRecipeWithRelations[]>([]);
   const [isLoadingFavorites, setIsLoadingFavorites] = useState(true);
   const [favoritesError, setFavoritesError] = useState<string | null>(null);
   const { isAuthenticated, canEdit, isLoading } = useAuth("/login", false);
@@ -71,19 +70,18 @@ export default function Page() {
       try {
         const invalidIds: number[] = [];
         const promises = favorites.map(id =>
-          RecipeService.getRecipeById(id)
-            .then(res => {
-              console.log(`✅ Loaded recipe ${id}:`, res.data?.title);
-              const recipeData = res.data;
+          RecipeService.fetchRecipe(id)
+            .then(recipeData => {
+              console.log(`✅ Loaded recipe ${id}:`, recipeData?.title);
 
               // Validate the response data
               if (!recipeData || typeof recipeData !== 'object') {
-                console.error(`❌ Invalid response for recipe ${id}:`, res);
+                console.error(`❌ Invalid response for recipe ${id}:`, recipeData);
                 return null;
               }
 
               // Additional validation for required fields
-              if (!recipeData.id || !recipeData.title) {
+              if (!recipeData.id) {
                 console.error(`❌ Recipe ${id} missing required fields:`, recipeData);
                 return null;
               }
@@ -110,11 +108,9 @@ export default function Page() {
             })
         );
 
-        const recipes = (await Promise.all(promises)).filter((recipe): recipe is recipe => {
-          if (!recipe || typeof recipe !== 'object') return false;
-          if (!('id' in recipe) || typeof recipe.id !== 'number') return false;
-          return true;
-        });
+        const recipes = (await Promise.all(promises)).filter(
+          (recipe): recipe is SerializedRecipeWithRelations => Boolean(recipe)
+        );
 
         console.log(`✅ Successfully loaded ${recipes.length} favorite recipes`);
         setFavoriteRecipes(recipes);
@@ -160,7 +156,7 @@ export default function Page() {
     );
   }
 
-  const handleSearch = (newRecipes: Record<string, recipe>) => {
+  const handleSearch = (newRecipes: Record<string, SerializedRecipe>) => {
     setSearchResults(newRecipes);   
     setResultCount(Object.keys(newRecipes).length);
   };

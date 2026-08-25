@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { recipe } from "../types";
+import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
+import { formatIngredient } from "@/lib/recipes/ingredientParser";
 import Modal from "./Modal";
 import { useAuthContext } from "../context/AuthContext";
 import Spinner from "@/components/ui/Spinner";
@@ -8,9 +9,9 @@ import { useNotification } from '@/context/NotificationContext'
 import { RecipeService } from '@/services/recipeService';
 
 interface RecipeModalProps {
-  recipe: recipe;
+  recipe: SerializedRecipe;
   onClose: () => void;
-  onUpdate: (updatedRecipe: recipe) => Promise<void>;
+  onUpdate: (updatedRecipe: SerializedRecipe) => Promise<void>;
 }
 
 const RecipeModal: React.FC<RecipeModalProps> = ({
@@ -32,12 +33,12 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 
     try {
       // Single update route: `PUT /api/recipes/:telegram_id`, body `{ newText, image }`.
-      const response = await RecipeService.updateRecipe(recipe.telegram_id, {
+      const updated = await RecipeService.saveRecipe(recipe.telegram_id, {
         newText: editedRecipe.raw_content,
-        image: editedRecipe.image ?? null,
+        image: editedRecipe.image_url,
       });
 
-      onUpdate(response.data);
+      onUpdate(updated);
       addNotification({
         message: 'המתכון עודכן בהצלחה',
         type: 'success',
@@ -106,20 +107,20 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 
           <Collapsible
             title="מצרכים והוראות"
-            badge={recipe.ingredients?.length || 0}
+            badge={recipe.ingredients.length}
             showEmpty
           >
             <div className="space-y-3 p-3">
               <div>
                 <div className="text-xs text-gray-500 mb-1">מצרכים:</div>
-                {recipe.ingredients && recipe.ingredients.length > 0 ? (
+                {recipe.ingredients.length > 0 ? (
                   <div className="flex gap-1 flex-wrap">
                     {recipe.ingredients.map((ing, idx) => (
                       <span
                         key={idx}
                         className="px-2 py-0.5 bg-blue-50 rounded text-xs"
                       >
-                        {ing}
+                        {formatIngredient(ing)}
                       </span>
                     ))}
                   </div>
@@ -163,27 +164,27 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
 
           <Collapsible
             title="שגיאות"
-            badge={recipe.parse_errors ? recipe.parse_errors.split('||').filter(Boolean).length : 0}
-            className={recipe.parse_errors ? "bg-red-50" : undefined}
+            badge={recipe.parse_errors.length}
+            className={recipe.parse_errors.length > 0 ? "bg-red-50" : undefined}
             showEmpty
           >
             <ParseErrors
-              errors={recipe.parse_errors ? recipe.parse_errors.split('||').filter(Boolean) : []}
+              errors={recipe.parse_errors}
               className="p-3 text-xs text-red-600 space-y-1"
               showEmptyMessage={true}
             />
           </Collapsible>
 
-          <Collapsible 
-            title="תמונה" 
-            badge={recipe.image ? "✓" : undefined}
-            showEmpty={!recipe.image}
+          <Collapsible
+            title="תמונה"
+            badge={recipe.image_url ? "✓" : undefined}
+            showEmpty={!recipe.image_url}
           >
             <div className="p-3">
-              {recipe.image ? (
+              {recipe.image_url ? (
                 <img
-                  src={recipe.image}
-                  alt={recipe.title}
+                  src={recipe.image_url}
+                  alt={recipe.title ?? ''}
                   className="w-full h-auto rounded"
                 />
               ) : (

@@ -7,7 +7,7 @@ import userEvent from '@testing-library/user-event';
  * The Search screen after the Wave 2.A cutover: it talks to the local
  * `/api/...` routes through `apiService` (no external base URL, no direct
  * `fetch`), so these tests assert on the endpoint each service hits and on the
- * `{ [telegram_id]: recipe }` map the component hands back to its parent.
+ * `{ [telegram_id]: SerializedRecipe }` map the component hands back to its parent.
  */
 vi.mock('next/navigation', () => ({
   useRouter: () => ({ push: vi.fn(), replace: vi.fn(), back: vi.fn() })
@@ -229,16 +229,16 @@ describe('Search Component', () => {
 
     const results = mockOnSearch.mock.calls.at(-1)?.[0];
     expect(Object.keys(results)).toEqual(['4242']);
+    // The search service now hands back the wire contract (`SerializedRecipe`)
+    // directly — no legacy view-model mapping, structured ingredients as-is.
     expect(results['4242']).toMatchObject({
       id: 7,
       telegram_id: 4242,
       title: 'עוגת שוקולד',
       categories: ['קינוחים', 'עוגות'],
       difficulty: 'easy',
-      // Structured ingredients rendered back as lines for the legacy view model.
-      ingredients: ['קמח'],
-      // `details` is always the raw channel text — no second meaning.
-      details: 'כותרת: עוגת שוקולד\nרשימת מצרכים:\n-קמח'
+      ingredients: [{ name: 'קמח' }],
+      raw_content: 'כותרת: עוגת שוקולד\nרשימת מצרכים:\n-קמח'
     });
   });
 });

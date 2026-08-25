@@ -1,4 +1,4 @@
-import { recipe } from "@/types";
+import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
 import Image from "next/image";
 import { Typography } from "@/components/ui/Typography";
 import { Tag } from "@/components/ui/Tag";
@@ -7,7 +7,7 @@ import { ClockIcon } from "@/components/ui/ClockIcon";
 import { useFavorites } from '@/contexts/FavoritesContext';
 
 interface RecipeListItemProps {
-  recipe: recipe;
+  recipe: SerializedRecipe;
   onClick: () => void;
   font: string;
 }
@@ -67,11 +67,11 @@ export function RecipeListItem({ recipe, onClick, font }: RecipeListItemProps) {
 
         {/* Image Section - Fixed width */}
         <div className="w-32 sm:w-48 relative overflow-hidden flex-shrink-0 rounded-lg">
-          {recipe.image ? (
+          {recipe.image_url ? (
             <>
               <Image
-                src={recipe.image}
-                alt={recipe.title}
+                src={recipe.image_url}
+                alt={recipe.title ?? ''}
                 fill
                 className="object-cover transform transition-transform duration-500 group-hover:scale-110"
                 sizes="(max-width: 768px) 128px, 192px"

@@ -10,7 +10,7 @@ import RecipeDetails from '@/components/recipe/RecipeDetails';
 import { RecipeService } from '@/services/recipeService';
 import { SearchService } from '@/services/searchService';
 import { useDebounce } from '@/hooks/useDebounce';
-import type { Menu, RecipeSummary, recipe } from '@/types';
+import type { Menu, RecipeSummary } from '@/types';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import {
   ShoppingListIcon,
@@ -59,7 +59,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   // For search in replacement modal
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
-  const [searchResults, setSearchResults] = useState<recipe[]>([]);
+  const [searchResults, setSearchResults] = useState<SerializedRecipe[]>([]);
   const [showSearchSuggestions, setShowSearchSuggestions] = useState<boolean>(false);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
@@ -69,7 +69,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   // For adding recipe to meal
   const [addingToMeal, setAddingToMeal] = useState<number | null>(null);
   const [addRecipeSearchQuery, setAddRecipeSearchQuery] = useState<string>('');
-  const [addRecipeSearchResults, setAddRecipeSearchResults] = useState<recipe[]>([]);
+  const [addRecipeSearchResults, setAddRecipeSearchResults] = useState<SerializedRecipe[]>([]);
   const [isAddRecipeSearching, setIsAddRecipeSearching] = useState<boolean>(false);
 
   // For adding new meal
@@ -796,10 +796,10 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                                hover:bg-secondary-100 transition-colors cursor-pointer"
                       onClick={() => handleReplaceRecipe(recipe.id)}
                     >
-                      {recipe.image && (
+                      {recipe.image_url && (
                         <img
-                          src={recipe.image}
-                          alt={recipe.title}
+                          src={recipe.image_url}
+                          alt={recipe.title ?? ''}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                       )}
@@ -990,17 +990,17 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                   תוצאות חיפוש ({addRecipeSearchResults.length}):
                 </h4>
                 <div className="space-y-3">
-                  {addRecipeSearchResults.map((recipe: any) => (
+                  {addRecipeSearchResults.map((recipe) => (
                     <div
                       key={recipe.id}
                       className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
                                hover:bg-secondary-100 transition-colors cursor-pointer"
                       onClick={() => handleAddRecipeToMeal(addingToMeal, recipe.id)}
                     >
-                      {recipe.image && (
+                      {recipe.image_url && (
                         <img
-                          src={recipe.image}
-                          alt={recipe.title}
+                          src={recipe.image_url}
+                          alt={recipe.title ?? ''}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                       )}

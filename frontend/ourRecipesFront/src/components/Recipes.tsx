@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { recipe } from "@/types";
+import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
 import { RecipeGridItem } from "./recipe/RecipeGridItem";
 import { RecipeListItem } from "./recipe/RecipeListItem";
 import { useFont } from '@/context/FontContext';
@@ -11,7 +11,7 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 type ViewMode = 'grid' | 'list';
 
 interface RecipesProps {
-  recipes: recipe[];
+  recipes: SerializedRecipe[];
   defaultView?: ViewMode;
   /** Called with the recipe's `telegram_id` — the key every recipe endpoint uses. */
   onRecipeClick?: (telegramId: number) => void;

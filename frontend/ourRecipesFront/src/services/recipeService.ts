@@ -1,8 +1,6 @@
 import { apiService } from './apiService';
-import { toUiRecipe } from './recipeMapper';
 import type { SerializedRecipeWithRelations } from '@/lib/serializers/recipeTypes';
 import type { ApiResponse } from '../types/api';
-import type { recipe as Recipe } from '../types/index';
 
 export interface RecipeWriteData {
   /** The channel message, canonical format (built by `formatRecipeText`). */
@@ -13,12 +11,7 @@ export interface RecipeWriteData {
 /** Writes mirror to Telegram and may upload an image — slower than a plain read. */
 const WRITE_TIMEOUT = 60000;
 
-/**
- * Every method speaks the shared contract (`SerializedRecipe`); the
- * `*ById` / `updateRecipe` / `createRecipe` wrappers below only exist for the
- * components still on the legacy `recipe` view model and disappear with it
- * (TODO(stage-D)).
- */
+/** Every method speaks the shared wire contract (`SerializedRecipe`). */
 export class RecipeService {
   private static readonly BASE_PATH = '/api/recipes';
 
@@ -63,20 +56,6 @@ export class RecipeService {
   /** `DELETE /api/recipes/:telegram_id` archives the recipe and answers `204 No Content`. */
   static async deleteRecipe(telegramId: number): Promise<void> {
     await apiService.delete<null>(`${this.BASE_PATH}/${telegramId}`);
-  }
-
-  // --- TODO(stage-D): legacy view-model wrappers -------------------------
-
-  static async getRecipeById(id: number): Promise<ApiResponse<Recipe>> {
-    return { data: toUiRecipe(await this.fetchRecipe(id)) };
-  }
-
-  static async createRecipe(data: RecipeWriteData): Promise<ApiResponse<Recipe>> {
-    return { data: toUiRecipe(await this.addRecipe(data)) };
-  }
-
-  static async updateRecipe(telegramId: number, data: RecipeWriteData): Promise<ApiResponse<Recipe>> {
-    return { data: toUiRecipe(await this.saveRecipe(telegramId, data)) };
   }
 }
 

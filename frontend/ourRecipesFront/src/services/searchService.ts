@@ -1,8 +1,6 @@
 import { apiService } from './apiService';
-import { toUiRecipe } from './recipeMapper';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import type { ApiResponse, SearchParams } from '../types/api';
-import type { recipe as Recipe } from '../types/index';
 
 export interface SearchResult {
   id: number;
@@ -13,7 +11,7 @@ export interface SearchResult {
 }
 
 export interface SearchResponse {
-  results: Record<string, Recipe>;
+  results: Record<string, SerializedRecipe>;
   total: number;
   hasMore: boolean;
 }
@@ -82,7 +80,7 @@ export class SearchService {
       const effectivePageSize = pageSize ?? 100;
       const MAX_PAGES = 20;
 
-      const results: Record<string, Recipe> = {};
+      const results: Record<string, SerializedRecipe> = {};
       let total = 0;
       let hasMore = false;
       let currentPage = page ?? 1;
@@ -100,8 +98,7 @@ export class SearchService {
 
         // The UI works with a `{ [telegram_id]: recipe }` map.
         rows.forEach((row) => {
-          const uiRecipe = toUiRecipe(row);
-          results[String(uiRecipe.telegram_id || uiRecipe.id)] = uiRecipe;
+          results[String(row.telegram_id || row.id)] = row;
         });
 
         total = pagination?.totalItems ?? rows.length;

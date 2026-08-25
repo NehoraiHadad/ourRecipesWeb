@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import Spinner from '@/components/ui/Spinner';
 import { useNotification } from '@/context/NotificationContext'
 import { useFont } from '@/context/FontContext';
-import { recipe } from '@/types'
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 import { useRouter } from 'next/navigation';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -10,7 +10,7 @@ import { SearchService, SearchResult } from '@/services/searchService';
 import { CategoryService } from '@/services/categoryService';
 
 interface SearchProps {
-  onSearch: (newRecipes: Record<string, recipe>) => void
+  onSearch: (newRecipes: Record<string, SerializedRecipe>) => void
   resultCount?: number | ""
   className?: string
 }

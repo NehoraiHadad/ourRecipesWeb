@@ -6,6 +6,8 @@
  */
 import { NextRequest } from 'next/server';
 import { refineRecipe } from '@/lib/services/aiService';
+import { parseRecipeMessage } from '@/lib/recipes/parser';
+import { serializePreviewFromParsed } from '@/lib/serializers/recipePreview';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
@@ -28,7 +30,8 @@ export async function POST(request: NextRequest) {
 
     logger.info('Recipe refined successfully');
 
-    return successResponse({ message: refinedRecipe });
+    const recipe = serializePreviewFromParsed(parseRecipeMessage(refinedRecipe));
+    return successResponse({ message: refinedRecipe, recipe });
   } catch (error) {
     logger.error({ error }, 'Failed to refine recipe');
     return handleApiError(error);

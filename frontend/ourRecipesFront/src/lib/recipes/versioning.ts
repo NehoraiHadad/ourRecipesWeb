@@ -22,6 +22,7 @@
 import type { Prisma, RecipeDifficulty } from '@prisma/client';
 import { formatIngredient } from '@/lib/recipes/ingredientParser';
 import { structuredIngredientsOf } from '@/lib/serializers/recipe';
+import type { RecipeVersionEntry } from '@/lib/serializers/recipeTypes';
 
 type VersioningDb = Pick<Prisma.TransactionClient, 'recipeVersion'>;
 
@@ -176,7 +177,7 @@ export interface RecipeVersionRow {
  * `RecipeVersion.to_dict()` (see module docstring for the `parsed_data`
  * quirk and the `image_url` source).
  */
-export function versionToDict(version: RecipeVersionRow) {
+export function versionToDict(version: RecipeVersionRow): RecipeVersionEntry {
   const content = (version.content ?? {}) as Record<string, unknown>;
   const parsedData = (content.parsed_data ?? {}) as Record<string, unknown>;
   const preparationTime = (parsedData.preparation_time as number | undefined) ?? null;

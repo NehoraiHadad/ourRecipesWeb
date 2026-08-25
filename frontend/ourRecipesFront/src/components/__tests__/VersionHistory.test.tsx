@@ -88,9 +88,9 @@ describe('VersionHistory Component', () => {
     const expandButton = within(firstVersion).getByRole('button', { name: /הצג תוכן/ });
     await userEvent.click(expandButton);
 
-    // בודקים שהתוכן מוצג
+    // בודקים שהתוכן מוצג — לגרסה הזו אין מצרכים/הוראות מובנים, אז היא
+    // מוצגת דרך RawRecipeView (כותרת כ-heading, בלי תווית "כותרת:")
     await waitFor(() => {
-      expect(screen.getByText(/כותרת:/)).toBeInTheDocument();
       expect(screen.getByText('מתכון מקורי')).toBeInTheDocument();
     });
   });

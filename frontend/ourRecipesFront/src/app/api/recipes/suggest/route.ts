@@ -6,6 +6,8 @@
  */
 import { NextRequest } from 'next/server';
 import { generateRecipeSuggestion } from '@/lib/services/aiService';
+import { parseRecipeMessage } from '@/lib/recipes/parser';
+import { serializePreviewFromParsed } from '@/lib/serializers/recipePreview';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
@@ -26,7 +28,10 @@ export async function POST(request: NextRequest) {
 
     logger.info('Recipe suggestion generated successfully');
 
-    return successResponse({ message: suggestion });
+    // Parsed here, server-side, so the client never re-parses channel text
+    // (STRUCTURE_REFACTOR_TASKS.md §D2) — it renders `recipe` directly.
+    const recipe = serializePreviewFromParsed(parseRecipeMessage(suggestion));
+    return successResponse({ message: suggestion, recipe });
   } catch (error) {
     logger.error({ error }, 'Failed to generate recipe suggestion');
     return handleApiError(error);

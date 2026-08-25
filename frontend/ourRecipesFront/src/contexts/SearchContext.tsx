@@ -1,12 +1,12 @@
 'use client';
 
 import { createContext, useContext, useState, ReactNode } from 'react';
-import { recipe } from '@/types';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 
 interface SearchContextType {
-  searchResults: Record<string, recipe>;
+  searchResults: Record<string, SerializedRecipe>;
   resultCount: number | "";
-  setSearchResults: (results: Record<string, recipe>) => void;
+  setSearchResults: (results: Record<string, SerializedRecipe>) => void;
   setResultCount: (count: number | "") => void;
   clearSearch: () => void;
 }
@@ -14,7 +14,7 @@ interface SearchContextType {
 const SearchContext = createContext<SearchContextType | undefined>(undefined);
 
 export function SearchProvider({ children }: { children: ReactNode }) {
-  const [searchResults, setSearchResults] = useState<Record<string, recipe>>({});
+  const [searchResults, setSearchResults] = useState<Record<string, SerializedRecipe>>({});
   const [resultCount, setResultCount] = useState<number | "">("");
 
   const clearSearch = () => {

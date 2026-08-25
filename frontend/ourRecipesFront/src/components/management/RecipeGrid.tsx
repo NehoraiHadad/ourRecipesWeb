@@ -2,17 +2,15 @@ import React, { useState } from "react";
 import { RecipeGridProps } from "../../types/management";
 import ParseErrors from "../ParseErrors";
 import RecipeModal from "../RecipeModal";
-import { recipe } from "../../types/index";
 import { useAuthContext } from "../../context/AuthContext";
 import Image from "next/image";
 import Modal from "../Modal";
 import { RecipeEditForm, type RecipeEditPayload } from '../recipe/RecipeEditForm';
-import { difficultyDisplay } from "@/utils/difficulty";
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { RecipeService } from '@/services/recipeService';
-import { toUiRecipe } from '@/services/recipeMapper';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
+import { hasStructuredContent, previewIngredientLines } from '@/lib/recipes/recipeView';
 import { TrashIcon } from '@/components/ui/icons';
 
 const RecipeGrid: React.FC<RecipeGridProps> = ({
@@ -26,7 +24,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
   observerTarget
 }) => {
   const { authState } = useAuthContext();
-  const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
+  const [modalRecipe, setModalRecipe] = useState<SerializedRecipe | null>(null);
   const [editModalRecipe, setEditModalRecipe] = useState<SerializedRecipe | null>(null);
 
   /**
@@ -34,17 +32,16 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
    * may be stale, and editing an out-of-date row would save over newer
    * content.
    */
-  const loadFullRecipe = async (listRow: recipe): Promise<recipe> => {
+  const loadFullRecipe = async (listRow: SerializedRecipe): Promise<SerializedRecipe> => {
     try {
-      const response = await RecipeService.getRecipeById(listRow.telegram_id);
-      return response?.data ? { ...listRow, ...response.data } : listRow;
+      return await RecipeService.fetchRecipe(listRow.telegram_id);
     } catch (error) {
       console.error('Failed to load full recipe:', error);
       return listRow;
     }
   };
 
-  const handleRecipeClick = async (recipe: recipe) => {
+  const handleRecipeClick = async (recipe: SerializedRecipe) => {
     setModalRecipe(await loadFullRecipe(recipe));
   };
 
@@ -58,7 +55,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
    * never from the list projection — the list may be stale and saving over
    * newer content would lose it.
    */
-  const handleEditClick = async (e: React.MouseEvent, listRow: recipe) => {
+  const handleEditClick = async (e: React.MouseEvent, listRow: SerializedRecipe) => {
     e.stopPropagation();
     try {
       setEditModalRecipe(await RecipeService.fetchRecipe(listRow.telegram_id));
@@ -76,7 +73,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
 
     try {
       const updated = await RecipeService.saveRecipe(editModalRecipe.telegram_id, payload);
-      await onRecipeUpdate(toUiRecipe(updated));
+      await onRecipeUpdate(updated);
       setEditModalRecipe(null);
     } catch (error) {
       console.error("Error updating recipe:", error);
@@ -134,11 +131,11 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
           </div>
 
           <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
-            {recipe.image ? (
+            {recipe.image_url ? (
               <div className="relative w-full h-48">
                 <Image
-                  src={recipe.image}
-                  alt={recipe.title}
+                  src={recipe.image_url}
+                  alt={recipe.title ?? ''}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover transition-transform duration-300 hover:scale-105"
@@ -170,12 +167,12 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
             )}
 
             <div className="text-sm text-gray-700">
-              {recipe.is_parsed ? (
+              {hasStructuredContent(recipe) ? (
                 <div className="space-y-3">
-                  {recipe.ingredients && recipe.ingredients.length > 0 && (
+                  {recipe.ingredients.length > 0 && (
                     <p className="line-clamp-2 bg-gray-50 p-2 rounded-lg">
                       <span className="font-medium">מצרכים: </span>
-                      {recipe.ingredients.slice(0, 3).join(", ")}
+                      {previewIngredientLines(recipe).join(", ")}
                       {recipe.ingredients.length > 3 && "..."}
                     </p>
                   )}
@@ -194,11 +191,7 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
             </div>
 
             <ParseErrors
-              errors={
-                recipe.parse_errors
-                  ? recipe.parse_errors.split("||").filter(Boolean)
-                  : []
-              }
+              errors={recipe.parse_errors}
               className="mt-3 text-sm text-red-500"
               showEmptyMessage={false}
             />

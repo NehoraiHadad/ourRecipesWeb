@@ -60,3 +60,28 @@ export interface SerializedRecipeWithRelations extends SerializedRecipe {
   user_recipes: SerializedUserRecipe[];
   versions: SerializedRecipeVersionSummary[];
 }
+
+/** The structured fields snapshotted into `RecipeVersion.content` (`versionToDict`). */
+export interface RecipeVersionContent {
+  title: string | null;
+  raw_content: string | null;
+  categories: string[];
+  ingredients: string[];
+  instructions: string;
+  preparation_time: number | null;
+  difficulty: string | null;
+}
+
+/** One entry of `GET /api/versions/recipe/:telegram_id` (`versionToDict`'s return shape). */
+export interface RecipeVersionEntry {
+  id: number;
+  version_num: number | null;
+  content: RecipeVersionContent;
+  created_at: string | null;
+  created_by: string | null;
+  change_description: string | null;
+  is_current: boolean;
+  image: string | null;
+  preparation_time: number | null;
+  difficulty: string | null;
+}

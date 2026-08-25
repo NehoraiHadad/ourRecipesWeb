@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { recipe } from '../types';
 import { ViewMode, BulkAction } from '../types/management';
 import RecipeToolbar from './RecipeToolbar';
 import RecipeList from './management/RecipeList';
@@ -12,7 +11,6 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { apiService } from '@/services/apiService';
 import { RecipeService } from '@/services/recipeService';
-import { toUiRecipe } from '@/services/recipeMapper';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import ConfirmDialog from '@/components/ui/ConfirmDialog';
 
@@ -23,7 +21,7 @@ const MANAGE_PAGE_SIZE = 100;
 const BULK_TIMEOUT = 600000;
 
 export default function RecipeManagement() {
-  const [recipes, setRecipes] = useState<recipe[]>([]);
+  const [recipes, setRecipes] = useState<SerializedRecipe[]>([]);
   const [selectedRecipes, setSelectedRecipes] = useState<number[]>([]);
   const [viewMode, setViewMode] = useState<ViewMode>('list');
   const [loading, setLoading] = useState(true);
@@ -32,7 +30,7 @@ export default function RecipeManagement() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [sortBy, setSortBy] = useState('date_desc');
   const [filterBy, setFilterBy] = useState('all');
-  const [recipeToDelete, setRecipeToDelete] = useState<recipe | null>(null);
+  const [recipeToDelete, setRecipeToDelete] = useState<SerializedRecipe | null>(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
   const { authState } = useAuthContext();
@@ -57,7 +55,7 @@ export default function RecipeManagement() {
         page += 1;
       } while (page <= totalPages);
 
-      setRecipes(collected.map(toUiRecipe));
+      setRecipes(collected);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -103,7 +101,7 @@ export default function RecipeManagement() {
     }
   };
 
-  const handleRecipeUpdate = async (updatedRecipe: recipe) => {
+  const handleRecipeUpdate = async (updatedRecipe: SerializedRecipe) => {
     const recipeIndex = recipes.findIndex(r => r.id === updatedRecipe.id);
     if (recipeIndex === -1) return;
 
@@ -172,10 +170,10 @@ export default function RecipeManagement() {
         result.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime());
         break;
       case 'title_asc':
-        result.sort((a, b) => a.title.localeCompare(b.title, 'he'));
+        result.sort((a, b) => (a.title ?? '').localeCompare(b.title ?? '', 'he'));
         break;
       case 'title_desc':
-        result.sort((a, b) => b.title.localeCompare(a.title, 'he'));
+        result.sort((a, b) => (b.title ?? '').localeCompare(a.title ?? '', 'he'));
         break;
       case 'status':
         result.sort((a, b) => {
@@ -280,7 +278,7 @@ export default function RecipeManagement() {
       <ConfirmDialog
         isOpen={!!recipeToDelete}
         title="מחיקת מתכון"
-        message={`האם אתה בטוח שברצונך למחוק את "${recipeToDelete?.title}"?`}
+        message={`האם אתה בטוח שברצונך למחוק את "${recipeToDelete?.title ?? ''}"?`}
         isLoading={isDeleting}
         onConfirm={handleConfirmDelete}
         onClose={() => setRecipeToDelete(null)}

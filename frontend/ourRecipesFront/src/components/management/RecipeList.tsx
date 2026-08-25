@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { recipe } from "../../types";
 import RecipeModal from "../RecipeModal";
 import { useAuthContext } from "../../context/AuthContext";
 import ParseErrors from "../ParseErrors";
@@ -9,20 +8,10 @@ import { difficultyDisplay } from "@/utils/difficulty";
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { RecipeService } from '@/services/recipeService';
-import { toUiRecipe } from '@/services/recipeMapper';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
+import { hasStructuredContent, previewIngredientLines } from '@/lib/recipes/recipeView';
 import { TrashIcon } from '@/components/ui/icons';
-
-interface RecipeListProps {
-  recipes: recipe[];
-  selectedIds: number[];
-  onSelect: (id: number) => void;
-  onRecipeUpdate: (updatedRecipe: recipe) => void;
-  onDelete: (recipe: recipe) => void;
-  hasMore?: boolean;
-  isLoadingMore?: boolean;
-  observerTarget?: React.RefObject<HTMLDivElement>;
-}
+import type { RecipeListProps } from '../../types/management';
 
 const RecipeList: React.FC<RecipeListProps> = ({
   recipes,
@@ -34,9 +23,9 @@ const RecipeList: React.FC<RecipeListProps> = ({
   isLoadingMore,
   observerTarget
 }) => {
-  const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
+  const [modalRecipe, setModalRecipe] = useState<SerializedRecipe | null>(null);
   const [editModalRecipe, setEditModalRecipe] = useState<SerializedRecipe | null>(null);
-  
+
   const { authState } = useAuthContext();
 
   /**
@@ -44,17 +33,16 @@ const RecipeList: React.FC<RecipeListProps> = ({
    * may be stale, and editing an out-of-date row would save over newer
    * content.
    */
-  const loadFullRecipe = async (listRow: recipe): Promise<recipe> => {
+  const loadFullRecipe = async (listRow: SerializedRecipe): Promise<SerializedRecipe> => {
     try {
-      const response = await RecipeService.getRecipeById(listRow.telegram_id);
-      return response?.data ? { ...listRow, ...response.data } : listRow;
+      return await RecipeService.fetchRecipe(listRow.telegram_id);
     } catch (error) {
       console.error('Failed to load full recipe:', error);
       return listRow;
     }
   };
 
-  const handleRecipeClick = async (recipe: recipe) => {
+  const handleRecipeClick = async (recipe: SerializedRecipe) => {
     setModalRecipe(await loadFullRecipe(recipe));
   };
 
@@ -63,7 +51,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
    * never from the list projection — the list may be stale and saving over
    * newer content would lose it.
    */
-  const handleEditClick = async (e: React.MouseEvent, listRow: recipe) => {
+  const handleEditClick = async (e: React.MouseEvent, listRow: SerializedRecipe) => {
     e.stopPropagation();
     try {
       setEditModalRecipe(await RecipeService.fetchRecipe(listRow.telegram_id));
@@ -81,14 +69,14 @@ const RecipeList: React.FC<RecipeListProps> = ({
 
     try {
       const updated = await RecipeService.saveRecipe(editModalRecipe.telegram_id, payload);
-      await onRecipeUpdate(toUiRecipe(updated));
+      await onRecipeUpdate(updated);
       setEditModalRecipe(null);
     } catch (error) {
       console.error("Error updating recipe:", error);
     }
   };
 
-  const renderRecipePreview = (recipe: recipe) => {
+  const renderRecipePreview = (recipe: SerializedRecipe) => {
     return (
       <div className="flex flex-col gap-2 cursor-pointer">
         {/* כותרת וסטטוס */}
@@ -142,25 +130,21 @@ const RecipeList: React.FC<RecipeListProps> = ({
         )}
 
         <div className="text-sm text-gray-600">
-          {recipe.is_parsed ? (
+          {hasStructuredContent(recipe) ? (
             <div className="space-y-1">
-              {recipe.ingredients && recipe.ingredients.length > 0 && (
+              {recipe.ingredients.length > 0 && (
                 <p className="line-clamp-2">
-                  מצרכים: {recipe.ingredients.slice(0, 3).join(", ")}
+                  מצרכים: {previewIngredientLines(recipe).join(", ")}
                   {recipe.ingredients.length > 3 && "..."}
                 </p>
               )}
-              {recipe.instructions && recipe.instructions.length > 0 && (
-                <p className="line-clamp-2">
-                  הוראות: {recipe.instructions[0]}
-                  {recipe.instructions.length > 1 && "..."}
-                </p>
+              {recipe.instructions && (
+                <p className="line-clamp-2">הוראות: {recipe.instructions}</p>
               )}
             </div>
           ) : (
             <p className="line-clamp-2">
-              {recipe.details?.slice(0, 150) ||
-                recipe.raw_content?.slice(0, 150)}
+              {recipe.raw_content?.slice(0, 150)}
               ...
             </p>
           )}
@@ -168,7 +152,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
 
         {/* שגיאות פרסור */}
         <ParseErrors
-          errors={recipe.parse_errors?.split("||").filter(Boolean) || null}
+          errors={recipe.parse_errors}
           className="text-sm text-red-600"
           showEmptyMessage={false}
         />
@@ -183,7 +167,6 @@ const RecipeList: React.FC<RecipeListProps> = ({
               עודכן: {new Date(recipe.updated_at).toLocaleDateString("he-IL")}
             </span>
           )}
-          {recipe.created_by && <span>נוצר ע"י: {recipe.created_by}</span>}
         </div>
       </div>
     );

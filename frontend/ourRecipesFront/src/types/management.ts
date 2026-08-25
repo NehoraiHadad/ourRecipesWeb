@@ -1,14 +1,14 @@
-import { recipe } from './index';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 
 export type ViewMode = 'grid' | 'list';
 export type BulkAction = 'parse';
 
 export interface RecipeListProps {
-  recipes: recipe[];
+  recipes: SerializedRecipe[];
   selectedIds: number[];
   onSelect: (id: number) => void;
-  onRecipeUpdate: (updatedRecipe: recipe) => Promise<void>;
-  onDelete: (recipe: recipe) => void;
+  onRecipeUpdate: (updatedRecipe: SerializedRecipe) => Promise<void>;
+  onDelete: (recipe: SerializedRecipe) => void;
   hasMore?: boolean;
   isLoadingMore?: boolean;
   observerTarget?: React.RefObject<HTMLDivElement>;

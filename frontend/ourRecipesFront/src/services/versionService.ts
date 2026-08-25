@@ -1,5 +1,5 @@
 import { apiService } from './apiService';
-import type { RecipeVersion } from '../types/index';
+import type { RecipeVersionEntry } from '@/lib/serializers/recipeTypes';
 
 /** Flat body of `POST /api/versions/recipe/:telegram_id/restore/:versionId`. */
 export interface RestoredVersion {
@@ -16,8 +16,8 @@ export class VersionService {
    * Version history for a recipe, keyed by its `telegram_id`.
    * `GET /api/versions/recipe/:telegram_id` answers with a bare array.
    */
-  static async getVersions(telegramId: number): Promise<RecipeVersion[]> {
-    return apiService.get<RecipeVersion[]>(`${this.BASE_PATH}/recipe/${telegramId}`);
+  static async getVersions(telegramId: number): Promise<RecipeVersionEntry[]> {
+    return apiService.get<RecipeVersionEntry[]>(`${this.BASE_PATH}/recipe/${telegramId}`);
   }
 
   /**

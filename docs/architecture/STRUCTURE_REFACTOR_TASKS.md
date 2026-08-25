@@ -80,18 +80,14 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 
 ### שלב D — UI מרנדר מובנה בלבד
 
-> נשאר משלב C: הטיפוס הישן `recipe` (`src/types/index.ts`) ו-`toUiRecipe`
-> (`src/services/recipeMapper.ts`). אחרי D1/D3/E1/E2 (גל 4) עברו ל-`SerializedRecipe`:
-> `RecipeDetails`, `RecipeDisplay`, `RecipeEditForm`, `utils/share.ts`,
-> `app/(main)/page.tsx`, `app/(main)/recipe/[id]/page.tsx`,
-> `menus/shared/[token]/page.tsx`, מודל הצפייה/עריכה ב-`MenuDisplay`
-> ובעריכה של `management/RecipeList`+`RecipeGrid`; `RecentlyViewedRecipes`
-> ויתר על מודל מת ו-`IngredientList` הישן נמחק.
-> עדיין על הטיפוס הישן (D2/D4): `RecipeModal`, `MealSuggestionForm`,
-> `VersionHistory`, `Recipes`/`RecipeGridItem`/`RecipeListItem`, תצוגות
-> הרשימה ב-`management/*`, `RecipeManagement`, `Search`, `SearchContext`,
-> `searchService`. כשכולן יעברו — למחוק את הטיפוס, את המאפר ואת שלושת
-> העוטפים המסומנים `TODO(stage-D)` ב-`recipeService`.
+> D2+D4 (גל 4, D-aux) סגרו את הפער: הטיפוס הישן `recipe` (`src/types/index.ts`),
+> `src/services/recipeMapper.ts` (`toUiRecipe`), שלושת העוטפים
+> `TODO(stage-D)` ב-`recipeService` (`getRecipeById`/`createRecipe`/`updateRecipe`)
+> ו-`src/utils/formatChecker.tsx` — כולם נמחקו. כל הקומפוננטות (כולל
+> `RecipeModal`, `MealSuggestionForm`, `VersionHistory`,
+> `Recipes`/`RecipeGridItem`/`RecipeListItem`, `management/RecipeList`+`RecipeGrid`,
+> `RecipeManagement`, `Search`/`SearchContext`/`searchService`, `MenuDisplay`,
+> `MenuGenerator`, `app/(main)/page.tsx`) צורכות `SerializedRecipe` ישירות.
 
 - [x] D1 `RecipeDetails` / `RecipeDisplay` / `RecipeEditForm` צורכים `SerializedRecipe`
       ומרנדרים מהשדות המובנים בלבד — אפס `parseRecipe`/`isRecipeUpdated` בהם.
@@ -101,13 +97,31 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
       `RecipeTimersPanel` + `ActiveTimerRow` / `RecipeInfographic` /
       `RecipeImageField` / `CategoryPicker` / `useRecipeActions`
       (RecipeDetails 521→211, RecipeDisplay 646→148, RecipeEditForm 482→157).
-- [ ] D2 מחיקת `src/utils/formatChecker.tsx` + כל השימושים
-      (`MealSuggestionForm`, `VersionHistory` — גרסאות ירונדרו דרך פרסור שרת או שדה שמור).
+- [x] D2 נמחק `src/utils/formatChecker.tsx` (+ `src/tests/formatChecker.test.tsx`,
+      `src/tests/categories.test.ts` — כפולים ל-`tests/unit/lib/recipes/parser.test.ts`).
+      `VersionHistory` מרנדר מ-`content` השמור ב-`versionToDict` (טיפוס חדש
+      `RecipeVersionEntry`/`RecipeVersionContent` ב-`recipeTypes.ts`) — ללא
+      `parseRecipe` בצד לקוח, fallback ל-`RawRecipeView` כשאין תוכן מובנה.
+      `/api/recipes/suggest`+`/refine` מריצים `parseRecipeMessage` בשרת ומחזירים
+      `{ message, recipe }` (`serializePreviewFromParsed`,
+      `src/lib/serializers/recipePreview.ts`); `MealSuggestionForm` מרנדר את
+      התצוגה המקדימה מ-`SerializedRecipe` שחוזר, בלי פרסור בצד לקוח.
 - [x] D3 `src/components/recipe/RawRecipeView.tsx` (68 שורות): כותרת + טקסט עם
       שמירת שורות. משמש כשאין תוכן מובנה (`hasStructuredContent` ב-
       `lib/recipes/recipeView.ts` — `is_parsed`, או מצרכים+הוראות קיימים) וגם
       כתצוגה מקדימה לטקסט AI שטרם נשמר.
-- [ ] D4 תצוגות מקדימות (ניהול, חיפוש, תפריטים) — מאותם שדות מובנים.
+- [x] D4 כל הקומפוננטות שנותרו עברו ל-`SerializedRecipe`: `RecipeModal`,
+      `Recipes`/`RecipeGridItem`/`RecipeListItem`, `management/RecipeList`+`RecipeGrid`,
+      `RecipeManagement`, `Search`/`SearchContext`/`searchService`, `MenuDisplay`,
+      `MenuGenerator`, `app/(main)/page.tsx`. תצוגות מקדימות (ניהול) נגזרות משדות
+      מובנים דרך `previewIngredientLines`/`hasStructuredContent`
+      (`lib/recipes/recipeView.ts`) — לא פרסור טקסט. `favorite-recipes` /
+      `recently-viewed-recipes` ב-localStorage כבר החזיקו רק מזהים/שדות מינימליים
+      ולא דרשו מיגרציה. נמחקו: `src/services/recipeMapper.ts`, הטיפוס הישן `recipe`
+      וגם `RecipeVersion` המיושן ב-`types/index.ts`, ושלושת העוטפים
+      `TODO(stage-D)` ב-`recipeService`. יוצא דופן מתועד: נתיב ה-restore
+      (`api/versions/recipe/[telegram_id]/restore/[versionId]`) עדיין מחזיר שדה
+      `details` — זו תאימות-Flask מכוונת בחוזה ה-API, לא שריד של טיפוס ה-UI הישן.
 
 ### שלב E — עריכה דרך הפורמטר
 - [x] E1 `RecipeEditForm` בונה `FormatRecipeInput` (`components/recipe/recipeDraft.ts`,
@@ -120,7 +134,8 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
       `SerializedRecipeWithRelations` (נשמר ישירות ב-state), ושחזור גרסה מלווה
       ב-`GET` מחדש (`useRecipeActions`) — נתיב ה-restore לא שונה. טקסט AI
       (reformat) מוצג כתצוגה מקדימה גולמית עד שמירה, ואז מוחלף במתכון המפורסר.
-      הצעות ארוחה (`MealSuggestionForm`) — נשאר ל-D2.
+      הצעות ארוחה (`MealSuggestionForm`) עברו ל-D2 (מרנדרות `SerializedRecipe`
+      שחוזר מהשרת, ללא פרסור בצד לקוח).
 
 ### שלב F — מחיקה בעמודי הניהול (UX)
 - [x] F1 מתכונים: `DELETE /api/recipes/[telegram_id]` — ארכוב (`status=ARCHIVED`) +
@@ -133,6 +148,13 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
       `ShoppingListDisplay` הוחלפו ב-`ConfirmDialog` (state יחיד `pendingConfirm`).
 - [x] F4 עקביות: `src/components/ui/ConfirmDialog.tsx` (68 שורות) עוטף את `Modal`
       ומשמש את שלוש הישויות.
+
+### שלב H — DB-first (הרחבת תכולה, הוחלט תוך כדי הסשן)
+> הדגש עובר ל-DB כמקור התפעולי; טלגרם = ערוץ קלט/הפצה בלבד.
+- [ ] H1 יצירה/עריכת מתכון: כתיבה ל-DB קודם, שיקוף לטלגרם best-effort אחרי
+      (יישור לדפוס של מקומות/תפריטים; מנגנון pending_telegram הקיים נשאר כ-recovery).
+- [ ] H2 רשימת תפריטים (`GET /api/menus`) עוברת ל-`serializeMenu` במקום select ידני
+      (סגירת הפער האחרון של "חוזה אחד").
 
 ### שלב G — אימות וסגירה
 - [ ] G1 `npm test` + `tsc` + build מקומי ירוקים; בדיקות round-trip עוברות.
@@ -154,7 +176,7 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 | 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ✅ |
 | 3 | C-contract (Opus) | C1–C2 | ✅ |
 | 4 | D-main (Opus) | D1, D3, E1, E2 | ✅ |
-| 4 | D-aux (Sonnet) | D2, D4 | ⬜ |
+| 4 | D-aux (Sonnet) | D2, D4 | ✅ |
 | 5 | ראשי | G1–G3 + backfill + drop עמודות | ⬜ |
 
 ## 6. מחוץ לתחולה (שלבים עתידיים, לא לגעת עכשיו)

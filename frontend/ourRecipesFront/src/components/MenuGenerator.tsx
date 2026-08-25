@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import Spinner from '@/components/ui/Spinner';
 import type { DietaryType, MenuGenerationRequest, RecipeSummary } from '@/types';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import {
   SparklesIcon,
   LightbulbIcon,
@@ -53,7 +54,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   const [suggestions, setSuggestions] = useState<RecipeSummary[]>([]);
   const [loadingSuggestions, setLoadingSuggestions] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<SerializedRecipe[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
 
   // Predefined options
@@ -665,7 +666,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                   תוצאות חיפוש ({searchResults.length}):
                 </h4>
                 <div className="space-y-3 max-h-60 overflow-y-auto">
-                  {searchResults.map((recipe: any) => (
+                  {searchResults.map((recipe) => (
                     <div
                       key={recipe.id}
                       className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
@@ -673,20 +674,20 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                       onClick={() => {
                         handleConfirmReplacement(recipe.id, {
                           id: recipe.id,
-                          title: recipe.title,
-                          image_url: recipe.image,
-                          cooking_time: recipe.preparation_time,
-                          preparation_time: recipe.preparation_time,
-                          difficulty: recipe.difficulty,
+                          title: recipe.title ?? '',
+                          image_url: recipe.image_url ?? undefined,
+                          cooking_time: recipe.preparation_time ?? undefined,
+                          preparation_time: recipe.preparation_time ?? undefined,
+                          difficulty: recipe.difficulty ?? undefined,
                           servings: recipe.servings || 4,
                           categories: recipe.categories?.join(', ') || ''
                         });
                       }}
                     >
-                      {recipe.image && (
+                      {recipe.image_url && (
                         <img
-                          src={recipe.image}
-                          alt={recipe.title}
+                          src={recipe.image_url}
+                          alt={recipe.title ?? ''}
                           className="w-16 h-16 object-cover rounded-md"
                         />
                       )}

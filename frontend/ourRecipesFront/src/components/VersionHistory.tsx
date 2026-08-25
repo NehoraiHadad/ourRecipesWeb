@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { parseRecipe, isRecipeUpdated } from "../utils/formatChecker";
+import RawRecipeView from '@/components/recipe/RawRecipeView';
 import useEscapeKey from '../hooks/useEscapeKey';
 import { Button } from "@/components/ui/Button";
 import { Typography } from '@/components/ui/Typography';
@@ -9,27 +9,9 @@ import TypingEffect from "@/components/TypingEffect";
 import { cn } from '@/utils/cn';
 import { difficultyDisplay } from '@/utils/difficulty';
 import { VersionService } from '@/services/versionService';
+import type { RecipeVersionEntry } from '@/lib/serializers/recipeTypes';
 
-interface Version {
-  id: number;
-  version_num: number;
-  content: {
-    title: string;
-    raw_content: string;
-    categories: string[];
-    ingredients: string[];
-    instructions: string;
-    preparation_time?: number;
-    difficulty?: 'easy' | 'medium' | 'hard';
-  };
-  created_at: string;
-  created_by: string;
-  change_description: string;
-  is_current: boolean;
-  image: string | null;
-  preparation_time?: number;
-  difficulty?: 'easy' | 'medium' | 'hard';
-}
+type Version = RecipeVersionEntry;
 
 interface VersionHistoryProps {
   recipeId: number;
@@ -68,7 +50,7 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
         setError('אין היסטוריית גרסאות למתכון זה');
         return;
       }
-      setVersions(data as unknown as Version[]);
+      setVersions(data);
     } catch (error) {
       console.error('Error fetching versions:', error);
       setError('שגיאה בטעינת היסטוריית גרסאות');
@@ -90,25 +72,23 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
   };
 
   const renderVersionContent = (version: Version) => {
-    const rawContent = version.content.raw_content;
-    const isFormatted = isRecipeUpdated(rawContent);
-    let formattedContent = version.content;
-    
-    if (isFormatted) {
-      formattedContent = { ...parseRecipe(rawContent), raw_content: rawContent };
-    }
+    const { content } = version;
+    // Same rule as `hasStructuredContent` (STRUCTURE_REFACTOR_TASKS.md §D3):
+    // a version snapshot with real ingredients + instructions renders
+    // structured; anything else (a free-form channel message) is shown as
+    // the text it is, via `RawRecipeView` — never re-parsed here.
+    const hasStructured = content.ingredients.length > 0 && Boolean(content.instructions?.trim());
 
-    // Map difficulty to Hebrew display value
     const normalizedDifficulty = version.difficulty?.toUpperCase() as keyof typeof difficultyDisplay;
     const difficultyText = normalizedDifficulty ? difficultyDisplay[normalizedDifficulty] : null;
 
     return (
       <div className="space-y-4">
-        {isFormatted ? (
+        {hasStructured ? (
           <>
             <div>
               <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">כותרת:</Typography>
-              <Typography variant="body" className="text-sm sm:text-base">{formattedContent.title}</Typography>
+              <Typography variant="body" className="text-sm sm:text-base">{content.title}</Typography>
             </div>
 
             {version.preparation_time && (
@@ -125,55 +105,34 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
               </div>
             )}
 
-            {formattedContent.categories?.length > 0 && (
+            {content.categories.length > 0 && (
               <div>
                 <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">קטגוריות:</Typography>
-                <Typography variant="body" className="text-sm sm:text-base">{formattedContent.categories.join(', ')}</Typography>
+                <Typography variant="body" className="text-sm sm:text-base">{content.categories.join(', ')}</Typography>
               </div>
             )}
 
-            {formattedContent.ingredients?.length > 0 && (
-              <div>
-                <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-2">מצרכים:</Typography>
-                <div className="space-y-1 pr-4">
-                  {formattedContent.ingredients.map((ingredient, idx) => (
-                    <div key={idx} className="flex items-start gap-2">
-                      <div className="min-w-[6px] h-[6px] rounded-full bg-secondary-500 mt-2"></div>
-                      <Typography variant="body" className="text-sm sm:text-base leading-relaxed">
-                        {ingredient}
-                      </Typography>
-                    </div>
-                  ))}
-                </div>
+            <div>
+              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-2">מצרכים:</Typography>
+              <div className="space-y-1 pr-4">
+                {content.ingredients.map((ingredient, idx) => (
+                  <div key={idx} className="flex items-start gap-2">
+                    <div className="min-w-[6px] h-[6px] rounded-full bg-secondary-500 mt-2"></div>
+                    <Typography variant="body" className="text-sm sm:text-base leading-relaxed">
+                      {ingredient}
+                    </Typography>
+                  </div>
+                ))}
               </div>
-            )}
+            </div>
 
             <div>
               <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">הוראות הכנה:</Typography>
-              <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">{formattedContent.instructions}</Typography>
+              <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">{content.instructions}</Typography>
             </div>
           </>
         ) : (
-          <>
-            <div>
-              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">כותרת:</Typography>
-              <Typography variant="body" className="text-sm sm:text-base">{version.content.title}</Typography>
-            </div>
-
-            {version.content.categories?.length > 0 && (
-              <div>
-                <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">קטגוריות:</Typography>
-                <Typography variant="body" className="text-sm sm:text-base">{version.content.categories.join(', ')}</Typography>
-              </div>
-            )}
-
-            <div>
-              <Typography variant="h4" className="text-gray-700 text-sm sm:text-base mb-1">תוכן המתכון:</Typography>
-              <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">
-                {rawContent.split('\n').filter(line => line.trim()).join('\n')}
-              </Typography>
-            </div>
-          </>
+          <RawRecipeView title={content.title} text={content.raw_content ?? ''} />
         )}
 
         {version.image && (
@@ -298,7 +257,9 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
                             )}
                           </Typography>
                           <Typography variant="body" className="text-gray-500 mt-1 text-xs sm:text-sm">
-                            {new Date(version.created_at).toLocaleString('he-IL')}
+                            {version.created_at
+                              ? new Date(version.created_at).toLocaleString('he-IL')
+                              : 'תאריך לא ידוע'}
                           </Typography>
                         </div>
                         <div className="flex gap-2 w-full sm:w-auto">
