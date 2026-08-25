@@ -21,7 +21,16 @@
 
 Resolved 2026-08-25 (user decisions):
 - Images: GPT Image 2 for both photos and infographics — verified live: Hebrew infographic rendered near-perfectly (~85s generation, inside maxDuration=120).
-- LLMs: per-task model registry (`getModelFor(task)` in `src/lib/ai/gemini/models.ts`), every task overridable via `AI_MODEL_<TASK>` env.
+- LLMs — hybrid, decided after a two-round A/B on 4 real recipes (reports in session scratchpad):
+  round 1 (Gemini-style prompt): Luna polluted output with Markdown; round 2 (GPT-adapted prompt with
+  a no-Markdown instructions block + delimiters + low reasoning effort): Luna matched Gemini's format
+  discipline, was more faithful to source wording, and ~3x cheaper on KIE credits. Approved hybrid:
+  reformat/suggest/refine on `kie:gpt-5-6-luna` (KIE codex chat endpoint, Codex system prompt overridden
+  via `instructions`, auto-fallback to `gemini-3.7-flash` on any KIE failure); optimize_steps stays
+  `gemini:gemini-3.7-flash` (needs enforced responseSchema); menu_agent stays `gemini:gemini-3.1-pro-preview`
+  (function calling + finalize responseSchema). Registry moved to `src/lib/ai/models.ts`, returns
+  `{provider, model}`, env overrides use `provider:model` format. Future experiment noted by user:
+  moving the menu agent to a cheaper model via KIE once its endpoints prove out.
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan

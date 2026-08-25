@@ -21,7 +21,7 @@ import type {
 } from '@google/genai';
 import { logger } from '@/lib/logger';
 import { getGemini } from '@/lib/ai/gemini/client';
-import { getModelFor } from '@/lib/ai/gemini/models';
+import { getModelFor } from '@/lib/ai/models';
 import { withRetry } from '@/lib/ai/gemini/retry';
 import { MENU_TOOL_DECLARATIONS } from './declarations';
 import { AGENT_KICKOFF, buildSystemPrompt } from './prompt';
@@ -75,7 +75,7 @@ async function runCall(call: FunctionCall): Promise<Part> {
 
 export async function runMenuAgent(preferences: MenuPreferences): Promise<MenuAgentResult> {
   const config = buildConfig(preferences);
-  const chat = getGemini().chats.create({ model: getModelFor('menu_agent'), config });
+  const chat = getGemini().chats.create({ model: getModelFor('menu_agent').model, config });
 
   let response = await send(chat, AGENT_KICKOFF, config);
 

@@ -4,4 +4,6 @@ export { pollTaskResult, KieTaskFailedError, KieTaskTimeoutError } from './poll'
 export type { PollTaskOptions } from './poll';
 export { getKieImageModel, getKieInfographicModel, kieImageInput } from './models';
 export type { KieImageOptions } from './models';
+export { kieChatText } from './chat';
+export type { KieChatTextOptions } from './chat';
 export type * from './types';

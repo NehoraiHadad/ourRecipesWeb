@@ -11,7 +11,7 @@
  */
 import { logger } from '@/lib/logger';
 import { generateJson } from '@/lib/ai/gemini/generate';
-import { getModelFor } from '@/lib/ai/gemini/models';
+import { getModelFor } from '@/lib/ai/models';
 import { buildFinalizePrompt } from './prompt';
 import { MENU_PLAN_SCHEMA, parseMenuPlan } from './schema';
 import type { MenuPlan, MenuPreferences } from './types';
@@ -32,7 +32,7 @@ export async function finalizeMenuPlan(
   }
 
   const raw = await generateJson({
-    model: getModelFor('menu_agent'),
+    model: getModelFor('menu_agent').model,
     prompt: buildFinalizePrompt(preferences, conclusion),
     schema: MENU_PLAN_SCHEMA
   });
