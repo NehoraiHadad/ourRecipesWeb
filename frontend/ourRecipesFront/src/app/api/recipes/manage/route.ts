@@ -7,6 +7,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { recipeSelect, serializeRecipe } from '@/lib/serializers/recipe';
 import { paginatedResponse } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { parsePaginationParams } from '@/lib/utils/api-validation';
@@ -38,33 +39,13 @@ export async function GET(request: NextRequest) {
 
     const recipes = await prisma.recipe.findMany({
       where,
-      // Flask's `get_recipes_for_management` returned full rows; the card
-      // previews (`RecipeList`/`RecipeGrid`) render ingredients/instructions/
-      // raw_content snippets and difficulty/prep-time badges. (`created_by`
-      // does not exist in the new schema — that badge stays hidden.)
-      select: {
-        id: true,
-        telegram_id: true,
-        title: true,
-        raw_content: true,
-        ingredients: true,
-        instructions: true,
-        categories: true,
-        difficulty: true,
-        preparation_time: true,
-        cooking_time: true,
-        servings: true,
-        is_parsed: true,
-        // The management screen's "with errors"/"no errors" filters and the
-        // per-row error badge read this column (`RecipeManagement`, `RecipeList`).
-        parse_errors: true,
-        is_verified: true,
-        sync_status: true,
-        created_at: true,
-        updated_at: true,
-        image_url: true,
-        status: true
-      },
+      // The shared recipe contract (`recipeSelect`) — it already carries
+      // everything the card previews (`RecipeList`/`RecipeGrid`) render:
+      // ingredient/instruction/raw_content snippets, the difficulty and
+      // prep-time badges, and the `parse_errors` the "with errors" /
+      // "no errors" filters key on. (`created_by` does not exist in the new
+      // schema — that badge stays hidden.)
+      select: recipeSelect,
       orderBy: {
         updated_at: 'desc'
       },
@@ -74,7 +55,7 @@ export async function GET(request: NextRequest) {
 
     logger.info({ count: recipes.length, total: totalItems, status }, 'Management list fetched');
 
-    return paginatedResponse(recipes, page, pageSize, totalItems);
+    return paginatedResponse(recipes.map(serializeRecipe), page, pageSize, totalItems);
   } catch (error) {
     logger.error({ error }, 'Management list failed');
     return handleApiError(error);

@@ -15,6 +15,7 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
+import { recipeRow } from '@tests/helpers/recipeFixtures';
 import { signSession } from '@/lib/auth/session';
 
 const OWNER = '111';
@@ -78,20 +79,11 @@ describe('GET /api/recipes/manage', () => {
 
     prismaMock.recipe.count.mockResolvedValue(1);
     prismaMock.recipe.findMany.mockResolvedValue([
-      {
-        id: 1,
+      recipeRow({
         telegram_id: 5005,
-        title: 'עוגת שוקולד',
         categories: 'קינוחים',
-        is_parsed: false,
-        parse_errors: 'לא נמצאו מצרכים||לא נמצאו הוראות הכנה',
-        is_verified: false,
-        sync_status: 'synced',
-        created_at: new Date('2024-01-01T10:00:00Z'),
-        updated_at: new Date('2024-01-01T10:00:00Z'),
-        image_url: null,
-        status: 'ACTIVE'
-      } as any
+        parse_errors: 'לא נמצאו מצרכים||לא נמצאו הוראות הכנה'
+      }) as any
     ]);
 
     const request = createMockRequest('http://localhost:3000/api/recipes/manage');
@@ -99,8 +91,44 @@ describe('GET /api/recipes/manage', () => {
 
     expect(response.status).toBe(200);
     const json = await parseJsonResponse<any>(response);
-    expect(json.data[0].parse_errors).toBe('לא נמצאו מצרכים||לא נמצאו הוראות הכנה');
+    // The contract splits the `||` column into a real array (Stage C).
+    expect(json.data[0].parse_errors).toEqual([
+      'לא נמצאו מצרכים',
+      'לא נמצאו הוראות הכנה'
+    ]);
     expect((prismaMock.recipe.findMany.mock.calls[0][0] as any).select.parse_errors).toBe(true);
+  });
+
+  it('serializes through the one shared recipe contract — structured, no legacy columns', async () => {
+    const { GET } = await import('@/app/api/recipes/manage/route');
+
+    prismaMock.recipe.count.mockResolvedValue(1);
+    prismaMock.recipe.findMany.mockResolvedValue([
+      recipeRow({
+        categories: 'קינוחים, עוגות',
+        difficulty: 'EASY',
+        is_parsed: true,
+        ingredients_list: [{ quantity: 2, unit: 'כפות', name: 'סוכר' }]
+      }) as any
+    ]);
+
+    const response = await GET(createMockRequest('http://localhost:3000/api/recipes/manage'));
+    const recipe = (await parseJsonResponse<any>(response)).data[0];
+
+    expect(recipe.categories).toEqual(['קינוחים', 'עוגות']);
+    expect(recipe.ingredients).toEqual([{ quantity: 2, unit: 'כפות', name: 'סוכר' }]);
+    expect(recipe.difficulty).toBe('easy');
+    expect(recipe.created_at).toBe('2024-01-01T10:00:00.000Z');
+    // The dying columns never reach the wire.
+    expect(recipe).not.toHaveProperty('details');
+    expect(recipe).not.toHaveProperty('ingredients_list');
+    expect(recipe).not.toHaveProperty('formatted_content');
+    expect(recipe).not.toHaveProperty('recipe_metadata');
+
+    const select = (prismaMock.recipe.findMany.mock.calls[0][0] as any).select;
+    expect(select.ingredients).toBeUndefined();
+    expect(select.formatted_content).toBeUndefined();
+    expect(select.recipe_metadata).toBeUndefined();
   });
 
   it('defaults to the upper-case ACTIVE status', async () => {

@@ -44,16 +44,27 @@ import { apiService } from '@/services/apiService';
 
 const getMock = vi.mocked(apiService.get);
 
+/** `GET /api/recipes/search` answers the shared `SerializedRecipe` (Stage C). */
 const SEARCH_ROW = {
   id: 7,
   telegram_id: 4242,
   title: 'עוגת שוקולד',
   raw_content: 'כותרת: עוגת שוקולד\nרשימת מצרכים:\n-קמח',
-  categories: 'קינוחים,עוגות',
-  difficulty: 'EASY',
+  categories: ['קינוחים', 'עוגות'],
+  ingredients: [{ name: 'קמח' }],
+  instructions: null,
+  difficulty: 'easy',
   preparation_time: 30,
+  cooking_time: null,
+  servings: null,
   image_url: null,
-  created_at: '2024-01-01T00:00:00.000Z'
+  is_parsed: true,
+  parse_errors: [],
+  status: 'ACTIVE',
+  sync_status: 'synced',
+  is_verified: false,
+  created_at: '2024-01-01T00:00:00.000Z',
+  updated_at: null
 };
 
 function mockEndpoints() {
@@ -222,9 +233,12 @@ describe('Search Component', () => {
       id: 7,
       telegram_id: 4242,
       title: 'עוגת שוקולד',
-      // Prisma column names translated for the UI.
       categories: ['קינוחים', 'עוגות'],
-      difficulty: 'easy'
+      difficulty: 'easy',
+      // Structured ingredients rendered back as lines for the legacy view model.
+      ingredients: ['קמח'],
+      // `details` is always the raw channel text — no second meaning.
+      details: 'כותרת: עוגת שוקולד\nרשימת מצרכים:\n-קמח'
     });
   });
 });

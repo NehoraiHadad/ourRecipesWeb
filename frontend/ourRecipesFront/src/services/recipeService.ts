@@ -1,5 +1,6 @@
 import { apiService } from './apiService';
-import { toUiRecipe, type RawRecipeRow } from './recipeMapper';
+import { toUiRecipe } from './recipeMapper';
+import type { SerializedRecipeWithRelations } from '@/lib/serializers/recipeTypes';
 import type { ApiResponse } from '../types/api';
 import type { recipe as Recipe } from '../types/index';
 
@@ -21,7 +22,7 @@ export class RecipeService {
 
   // Get a single recipe by its telegram_id
   static async getRecipeById(id: number): Promise<ApiResponse<Recipe>> {
-    const response = await apiService.get<ApiResponse<RawRecipeRow>>(`${this.BASE_PATH}/${id}`);
+    const response = await apiService.get<ApiResponse<SerializedRecipeWithRelations>>(`${this.BASE_PATH}/${id}`);
     return { ...response, data: toUiRecipe(response?.data) };
   }
 
@@ -30,7 +31,7 @@ export class RecipeService {
    * `POST /send_recipe` (the "save the AI suggestion" flow) into one route.
    */
   static async createRecipe(data: CreateRecipeData): Promise<ApiResponse<Recipe>> {
-    const response = await apiService.post<ApiResponse<RawRecipeRow>>(this.BASE_PATH, data, {
+    const response = await apiService.post<ApiResponse<SerializedRecipeWithRelations>>(this.BASE_PATH, data, {
       timeout: WRITE_TIMEOUT
     });
     return { ...response, data: toUiRecipe(response?.data) };
@@ -39,11 +40,11 @@ export class RecipeService {
   /**
    * Update a recipe. The single `PUT /api/recipes/[telegram_id]` route replaces
    * Flask's two client-side forms (`/recipes/update/{id}` and `/recipes/{id}`)
-   * and answers with the same serialization as `GET` — the raw recipe, not
-   * Flask's `{ status, new_message_id }`.
+   * and answers with the same serialization as `GET` — the shared
+   * `SerializedRecipe`, not Flask's `{ status, new_message_id }`.
    */
   static async updateRecipe(telegramId: number, data: UpdateRecipeData): Promise<ApiResponse<Recipe>> {
-    const response = await apiService.put<ApiResponse<RawRecipeRow>>(
+    const response = await apiService.put<ApiResponse<SerializedRecipeWithRelations>>(
       `${this.BASE_PATH}/${telegramId}`,
       data,
       { timeout: WRITE_TIMEOUT }

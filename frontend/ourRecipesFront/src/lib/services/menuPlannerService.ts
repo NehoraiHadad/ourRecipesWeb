@@ -90,7 +90,6 @@ async function getRecipesDetailsBatch(recipeIds: number[]) {
       id: true,
       telegram_id: true,
       title: true,
-      ingredients: true,
       instructions: true,
       categories: true,
       difficulty: true,

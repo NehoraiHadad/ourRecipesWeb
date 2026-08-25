@@ -1,14 +1,24 @@
 export type Difficulty = "easy" | "medium" | "hard";
 
+/**
+ * TODO(stage-D): legacy view model, produced by `services/recipeMapper`.
+ *
+ * The API's own contract is `SerializedRecipe`
+ * (`src/lib/serializers/recipeTypes.ts`) — structured ingredients, no
+ * `details`. This interface only survives because the recipe components still
+ * render text lines; stage D repoints them and deletes it.
+ */
 export interface recipe {
   id: number;
   telegram_id: number;
   title: string;
   raw_content: string;
+  /** ALWAYS the raw channel text (`raw_content`) — never "the instructions". */
   details: string;
   categories: string[];
   difficulty?: Difficulty;
   preparation_time?: number;
+  /** Ingredient *lines* (`formatIngredient` of the structured list). */
   ingredients?: string[];
   instructions?: string[] | string;
   is_parsed: boolean;

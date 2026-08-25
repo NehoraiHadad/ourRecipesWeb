@@ -12,7 +12,8 @@ import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { apiService } from '@/services/apiService';
 import { RecipeService } from '@/services/recipeService';
-import { toUiRecipe, type RawRecipeRow } from '@/services/recipeMapper';
+import { toUiRecipe } from '@/services/recipeMapper';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import ConfirmDialog from '@/components/ui/ConfirmDialog';
 
 /** `GET /api/recipes/manage` is paginated; the management screen wants them all. */
@@ -41,13 +42,13 @@ export default function RecipeManagement() {
       setLoading(true);
 
       // `GET /api/recipes/manage` answers `{ data, pagination }` — walk the pages.
-      const collected: RawRecipeRow[] = [];
+      const collected: SerializedRecipe[] = [];
       let page = 1;
       let totalPages = 1;
 
       do {
         const response = await apiService.get<{
-          data: RawRecipeRow[];
+          data: SerializedRecipe[];
           pagination: { page: number; totalPages: number };
         }>(`/api/recipes/manage?page=${page}&pageSize=${MANAGE_PAGE_SIZE}`, { timeout: 30000 });
 

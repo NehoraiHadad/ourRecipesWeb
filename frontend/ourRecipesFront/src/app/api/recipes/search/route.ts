@@ -34,6 +34,7 @@
 import { NextRequest } from 'next/server';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
+import { recipeSelect, serializeRecipe } from '@/lib/serializers/recipe';
 import {
   paginatedResponse
 } from '@/lib/utils/api-response';
@@ -148,31 +149,12 @@ export async function GET(request: NextRequest) {
     // Get total count
     const totalItems = await prisma.recipe.count({ where });
 
-    // Full rows: the UI renders the recipe body straight from the search
-    // results (RecipeDetails derives `details` from `raw_content`), matching
-    // the old Flask contract — a summary-only projection leaves the recipe
-    // modal empty.
+    // The shared recipe contract (`recipeSelect`): the UI renders the recipe
+    // body straight from the search results, so a summary-only projection
+    // would leave the recipe modal empty.
     const recipes = await prisma.recipe.findMany({
       where,
-      select: {
-        id: true,
-        telegram_id: true,
-        title: true,
-        raw_content: true,
-        ingredients: true,
-        instructions: true,
-        categories: true,
-        difficulty: true,
-        cooking_time: true,
-        preparation_time: true,
-        servings: true,
-        image_url: true,
-        is_parsed: true,
-        parse_errors: true,
-        created_at: true,
-        updated_at: true,
-        is_verified: true
-      },
+      select: recipeSelect,
       orderBy: {
         created_at: 'desc'
       },
@@ -182,7 +164,7 @@ export async function GET(request: NextRequest) {
 
     logger.info({ count: recipes.length, total: totalItems, query }, 'Search completed');
 
-    return paginatedResponse(recipes, page, pageSize, totalItems);
+    return paginatedResponse(recipes.map(serializeRecipe), page, pageSize, totalItems);
   } catch (error) {
     logger.error({ error }, 'Recipe search failed');
     return handleApiError(error);

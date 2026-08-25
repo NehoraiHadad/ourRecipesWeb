@@ -32,6 +32,7 @@ import { requireEditPermission } from '@/lib/auth';
 import { sendMessage, sendPhoto } from '@/lib/telegram/botApi';
 import { put } from '@vercel/blob';
 import { POST } from '@/app/api/recipes/route';
+import { recipeRowWithRelations } from '@tests/helpers/recipeFixtures';
 
 const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
 const requireEditPermissionMock = vi.mocked(requireEditPermission);
@@ -52,19 +53,7 @@ function postRequest(body: unknown): NextRequest {
   } as any);
 }
 
-function fakeRecipeRow(overrides: Record<string, unknown> = {}) {
-  return {
-    id: 1,
-    telegram_id: 555,
-    title: 'עוגת שוקולד',
-    raw_content: 'כותרת: עוגת שוקולד',
-    sync_status: 'synced',
-    sync_error: null,
-    versions: [],
-    user_recipes: [],
-    ...overrides
-  };
-}
+const fakeRecipeRow = recipeRowWithRelations;
 
 beforeEach(() => {
   mockReset(prismaMock);

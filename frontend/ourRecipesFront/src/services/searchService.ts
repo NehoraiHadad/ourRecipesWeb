@@ -1,5 +1,6 @@
 import { apiService } from './apiService';
-import { toUiRecipe, type RawRecipeRow } from './recipeMapper';
+import { toUiRecipe } from './recipeMapper';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import type { ApiResponse, SearchParams } from '../types/api';
 import type { recipe as Recipe } from '../types/index';
 
@@ -19,7 +20,7 @@ export interface SearchResponse {
 
 /** Raw body of `GET /api/recipes/search` (see `paginatedResponse`). */
 interface PaginatedSearchResponse {
-  data: RawRecipeRow[];
+  data: SerializedRecipe[];
   pagination: {
     page: number;
     pageSize: number;

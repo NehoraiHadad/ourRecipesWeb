@@ -66,12 +66,29 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
       הרצה בפועל מול הפרודקשן — ממתינה לשלב G.
 
 ### שלב C — חוזה API אחיד
-- [ ] C1 serializer יחיד `serializeRecipe` (כמו `serializeMenu`) + טיפוס תשובה משותף;
-      כל ה-routes (search/manage/[telegram_id]) עוברים אליו. בלי פרויקציות ידניות שונות.
-- [ ] C2 `recipeMapper` בצד הלקוח מצטמצם/נעלם — ה-UI מקבל את הטיפוס המשותף ישירות.
-      לוודא שאין יותר משמעות כפולה ל-`details`.
+- [x] C1 `src/lib/serializers/recipe.ts` (`recipeSelect` / `recipeWithRelationsSelect` /
+      `serializeRecipe`) + טיפוס החוזה `SerializedRecipe` ב-`recipeTypes.ts` (בלי
+      תלויות ריצה — ה-UI מייבא ממנו `import type`). כל 4 נתיבי הקריאה
+      (search, manage, `[telegram_id]` GET+PUT, POST create) עברו אליו; אפס פרויקציות
+      ידניות. מצרכים מ-`ingredients_list` בלבד, `parse_errors` מערך, בלי `details`.
+- [x] C2 `recipeMapper` ירד ל-35 שורות — אדפטר דק בלבד לטיפוס ה-UI הישן
+      (`TODO(stage-D)`); `details` תמיד `raw_content`. `versioning.ts` מצלם
+      מ-`ingredients_list` (שורות דרך `formatIngredient`, כדי ש-VersionHistory
+      ימשיך לעבוד עד שלב D); ה-fallback הישן ב-`mirrorPending.ts` נמחק
+      (`raw_content` הוא NOT NULL), וכך גם קריאות העמודה הישנה ב-
+      `shoppingListService` / `menuPlannerService` והתיקייה המתה `src/lib/types/`.
 
 ### שלב D — UI מרנדר מובנה בלבד
+
+> נשאר משלב C: הטיפוס הישן `recipe` (`src/types/index.ts`) ו-`toUiRecipe`
+> (`src/services/recipeMapper.ts`) קיימים רק בשביל הקומפוננטות שעדיין מרנדרות
+> טקסט: `RecipeDetails`, `RecipeDisplay`, `RecipeEditForm`, `RecipeModal`,
+> `MealSuggestionForm`, `Recipes`/`RecipeGridItem`/`RecipeListItem`,
+> `management/RecipeList`+`RecipeGrid`, `RecentlyViewedRecipes`, `Search`,
+> `SearchContext`, `MenuDisplay`, `utils/share.ts`, `app/(main)/page.tsx`,
+> `app/(main)/recipe/[id]/page.tsx`, `menus/shared/[token]/page.tsx`.
+> כשכולן יעברו ל-`SerializedRecipe` — למחוק את שניהם.
+
 - [ ] D1 `RecipeDetails` מרנדר מהשדות המובנים (מצרכים, שלבים, קטגוריות, זמן, קושי) —
       בלי `parseRecipe` בצד לקוח. מכפיל המנות (1X/2X) עובד על `quantity` המספרי.
 - [ ] D2 מחיקת `src/utils/formatChecker.tsx` + כל השימושים
@@ -114,7 +131,7 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 | 1 | A-parser (Opus) | A1–A3 | ✅ |
 | 1 | F-delete (Sonnet) | F1–F4 | ✅ |
 | 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ✅ |
-| 3 | C-contract (Opus) | C1–C2 | ⬜ |
+| 3 | C-contract (Opus) | C1–C2 | ✅ |
 | 4 | D-main (Opus) | D1, D3, E1, E2 | ⬜ |
 | 4 | D-aux (Sonnet) | D2, D4 | ⬜ |
 | 5 | ראשי | G1–G3 + backfill + drop עמודות | ⬜ |

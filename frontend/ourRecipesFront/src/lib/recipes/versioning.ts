@@ -20,6 +20,8 @@
  * reads the image straight from `content.image_url`.
  */
 import type { Prisma, RecipeDifficulty } from '@prisma/client';
+import { formatIngredient } from '@/lib/recipes/ingredientParser';
+import { structuredIngredientsOf } from '@/lib/serializers/recipe';
 
 type VersioningDb = Pick<Prisma.TransactionClient, 'recipeVersion'>;
 
@@ -29,7 +31,8 @@ export interface RecipeSnapshotSource {
   title: string | null;
   raw_content: string;
   categories: string | null;
-  ingredients: string | null;
+  /** Structured source of truth (Stage C) — the `||` text column is gone. */
+  ingredients_list: Prisma.JsonValue;
   instructions: string | null;
   preparation_time: number | null;
   difficulty: RecipeDifficulty | null;
@@ -53,10 +56,15 @@ function splitCategories(value: string | null): string[] {
   return value.split(',').map((c) => c.trim()).filter(Boolean);
 }
 
-/** `Recipe.ingredients` string ("a||b") -> `string[]`. Mirrors the Python `ingredients` property getter. */
-function splitIngredients(value: string | null): string[] {
-  if (!value) return [];
-  return value.split('||').filter(Boolean);
+/**
+ * `Recipe.ingredients_list` (structured) -> the ingredient **lines** a version
+ * stores. Snapshots stay a `string[]` on purpose: `RecipeVersion.content` is
+ * an append-only audit trail with rows already written in that shape, and
+ * `VersionHistory` renders them as text. `formatIngredient` is the exact
+ * inverse of the parser, so the line is what the cook originally wrote.
+ */
+function ingredientLines(value: Prisma.JsonValue): string[] {
+  return structuredIngredientsOf(value).map(formatIngredient).filter(Boolean);
 }
 
 /** Builds the `RecipeVersion.content` JSON blob. Port of the `version_content` dict in `Recipe.update_content`. */
@@ -85,7 +93,7 @@ function recipeToVersionContentInput(recipe: RecipeSnapshotSource): VersionConte
     title: recipe.title,
     raw_content: recipe.raw_content,
     categories: splitCategories(recipe.categories),
-    ingredients: splitIngredients(recipe.ingredients),
+    ingredients: ingredientLines(recipe.ingredients_list),
     instructions: recipe.instructions,
     preparation_time: recipe.preparation_time,
     difficulty: recipe.difficulty,

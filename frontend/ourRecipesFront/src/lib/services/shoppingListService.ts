@@ -4,6 +4,7 @@
  */
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
+import { structuredIngredientsOf } from '@/lib/serializers/recipe';
 
 interface IngredientGroup {
   [category: string]: {
@@ -32,8 +33,7 @@ export async function generateShoppingList(menuId: number): Promise<IngredientGr
               recipe: {
                 select: {
                   id: true,
-                  ingredients_list: true,
-                  ingredients: true
+                  ingredients_list: true
                 }
               }
             }
@@ -54,41 +54,25 @@ export async function generateShoppingList(menuId: number): Promise<IngredientGr
     meal.recipes.forEach(mealRecipe => {
       const recipe = mealRecipe.recipe;
 
-      // Use parsed ingredients_list if available
-      if (recipe.ingredients_list && Array.isArray(recipe.ingredients_list)) {
-        (recipe.ingredients_list as any[]).forEach((ing: any) => {
-          const name = ing.name || ing.ingredient;
-          if (!name) return;
+      // `ingredients_list` is the only ingredients storage (Stage B/C).
+      structuredIngredientsOf(recipe.ingredients_list).forEach((ing) => {
+        const name = ing.name;
+        if (!name) return;
 
-          const quantity = ing.quantity || ing.amount || null;
-          const category = ing.category || categorizeIngredient(name);
+        const quantity = ing.quantity === undefined ? null : String(ing.quantity);
+        const category = categorizeIngredient(name);
 
-          if (ingredientsMap.has(name)) {
-            // Combine quantities (simplified - in reality would need smart combining)
-            const existing = ingredientsMap.get(name)!;
-            ingredientsMap.set(name, {
-              quantity: combineQuantities(existing.quantity, quantity),
-              category: existing.category
-            });
-          } else {
-            ingredientsMap.set(name, { quantity, category });
-          }
-        });
-      } else if (recipe.ingredients) {
-        // Fallback: parse raw ingredients string
-        const lines = recipe.ingredients.split('||').filter(Boolean);
-        lines.forEach(line => {
-          const name = line.trim();
-          if (name) {
-            if (!ingredientsMap.has(name)) {
-              ingredientsMap.set(name, {
-                quantity: null,
-                category: categorizeIngredient(name)
-              });
-            }
-          }
-        });
-      }
+        if (ingredientsMap.has(name)) {
+          // Combine quantities (simplified - in reality would need smart combining)
+          const existing = ingredientsMap.get(name)!;
+          ingredientsMap.set(name, {
+            quantity: combineQuantities(existing.quantity, quantity),
+            category: existing.category
+          });
+        } else {
+          ingredientsMap.set(name, { quantity, category });
+        }
+      });
     });
   });
 

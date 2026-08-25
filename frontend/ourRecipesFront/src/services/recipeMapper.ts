@@ -1,78 +1,35 @@
-import type { Difficulty, recipe as Recipe } from '../types';
+import { formatIngredient } from '@/lib/recipes/ingredientParser';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
+import type { recipe as Recipe } from '../types';
 
 /**
- * Maps a raw `Recipe` row as the Next API returns it (Prisma column names —
- * `raw_content`, `image_url`, `categories` as a comma-joined string,
- * `ingredients` as a `||`-joined string, `difficulty` as the `EASY|MEDIUM|HARD`
- * enum) onto the shape the UI components consume (`details`, `image`,
- * `categories: string[]`, lowercase difficulty).
+ * TODO(stage-D): temporary adapter from the shared wire type
+ * ({@link SerializedRecipe}, what every `/api/recipes/*` route now returns) to
+ * the legacy UI view model `recipe`.
  *
- * The API routes are a fixed contract and deliberately serve the raw row
- * (`GET`/`PUT /api/recipes/[telegram_id]`, `GET /api/recipes/search`,
- * `GET /api/recipes/manage`), so the translation lives here, on the client
- * side, in one place rather than in every component.
+ * Stage C stopped the API from speaking the old `||`/CSV dialect: there is no
+ * translation left to do, only two shapes the not-yet-rewritten components
+ * still insist on — ingredients as text lines and `parse_errors` as one
+ * `||`-joined string. Stage D repoints `RecipeDetails` / `RecipeDisplay` /
+ * `RecipeEditForm` / `VersionHistory` / `MealSuggestionForm` at
+ * `SerializedRecipe` and deletes this file.
+ *
+ * The `details` double meaning is gone: it is **always** `raw_content` (the
+ * channel message), never "the instructions".
  */
-
-export interface RawRecipeRow {
-  id?: number;
-  telegram_id?: number;
-  title?: string | null;
-  raw_content?: string | null;
-  details?: string | null;
-  categories?: string | string[] | null;
-  ingredients?: string | string[] | null;
-  instructions?: string | string[] | null;
-  difficulty?: string | null;
-  preparation_time?: number | null;
-  is_parsed?: boolean | null;
-  parse_errors?: string | null;
-  created_at?: string | Date | null;
-  updated_at?: string | Date | null;
-  created_by?: string | null;
-  image?: string | null;
-  image_url?: string | null;
-  [key: string]: unknown;
-}
-
-function toArray(value: string | string[] | null | undefined, separator: string): string[] {
-  if (Array.isArray(value)) return value.filter(Boolean);
-  if (!value) return [];
-  return value
-    .split(separator)
-    .map((part) => part.trim())
-    .filter(Boolean);
-}
-
-function toIsoString(value: string | Date | null | undefined): string {
-  if (!value) return new Date().toISOString();
-  return value instanceof Date ? value.toISOString() : value;
-}
-
-export function toUiRecipe(row: RawRecipeRow | null | undefined): Recipe {
-  const raw = row ?? {};
-  const rawContent = raw.raw_content ?? '';
-
+export function toUiRecipe(row: SerializedRecipe): Recipe {
   return {
-    ...raw,
-    id: raw.id ?? 0,
-    telegram_id: raw.telegram_id ?? 0,
-    title: raw.title ?? '',
-    raw_content: rawContent,
-    // Flask sent `details: raw_content` verbatim (`Recipe.to_dict`), and the
-    // format detection depends on it: `isRecipeUpdated` looks for the
-    // "כותרת:" line, so stripping the first line here would push every
-    // recipe onto the raw-text fallback instead of the structured display.
-    details: raw.details ?? rawContent,
-    categories: toArray(raw.categories, ','),
-    ingredients: toArray(raw.ingredients, '||'),
-    instructions: raw.instructions ?? undefined,
-    difficulty: (raw.difficulty ? raw.difficulty.toLowerCase() : undefined) as Difficulty | undefined,
-    preparation_time: raw.preparation_time ?? undefined,
-    is_parsed: raw.is_parsed ?? false,
-    parse_errors: raw.parse_errors ?? null,
-    created_at: toIsoString(raw.created_at),
-    updated_at: raw.updated_at ? toIsoString(raw.updated_at) : undefined,
-    created_by: raw.created_by ?? undefined,
-    image: raw.image ?? raw.image_url ?? undefined
-  } as Recipe;
+    // Scalars pass through unchanged — the wire type is already the UI's
+    // dialect (lowercase difficulty, `string[]` categories, ISO dates).
+    ...row,
+    title: row.title ?? '',
+    details: row.raw_content,
+    ingredients: row.ingredients.map(formatIngredient).filter(Boolean),
+    instructions: row.instructions ?? undefined,
+    difficulty: row.difficulty ?? undefined,
+    preparation_time: row.preparation_time ?? undefined,
+    parse_errors: row.parse_errors.length > 0 ? row.parse_errors.join('||') : null,
+    updated_at: row.updated_at ?? undefined,
+    image: row.image_url ?? undefined
+  };
 }

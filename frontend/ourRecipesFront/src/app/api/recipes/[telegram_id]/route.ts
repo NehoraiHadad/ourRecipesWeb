@@ -8,6 +8,10 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
+import {
+  recipeWithRelationsSelect,
+  serializeRecipeWithRelations
+} from '@/lib/serializers/recipe';
 import { successResponse, noContentResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
@@ -32,26 +36,7 @@ export async function GET(
       where: {
         telegram_id: telegramId
       },
-      include: {
-        user_recipes: {
-          select: {
-            user_id: true,
-            is_favorite: true
-          }
-        },
-        versions: {
-          select: {
-            id: true,
-            version_num: true,
-            created_at: true,
-            change_description: true
-          },
-          orderBy: {
-            version_num: 'desc'
-          },
-          take: 5 // Latest 5 versions
-        }
-      }
+      select: recipeWithRelationsSelect
     });
 
     if (!recipe) {
@@ -61,7 +46,7 @@ export async function GET(
 
     logger.info({ recipeId: recipe.id, telegramId }, 'Recipe fetched');
 
-    return successResponse(recipe);
+    return successResponse(serializeRecipeWithRelations(recipe));
   } catch (error) {
     return handleApiError(error);
   }
@@ -84,10 +69,8 @@ interface UpdateRecipeBody {
  * snapshot of the *previous* content is created, the recipe row is updated,
  * and the channel message is mirrored (`editMessageText`/`Caption`/`Media`)
  * — a mirror failure downgrades `sync_status` to `'pending_telegram'` rather
- * than failing the request. Response shape matches `GET` above (raw Prisma
- * row + latest versions), not Flask's `{status, new_message_id}` — the UI's
- * direct-fetch call sites get re-pointed at this route during the Wave 2.A
- * cutover.
+ * than failing the request. Response shape matches `GET` above (the shared
+ * `SerializedRecipeWithRelations`), not Flask's `{status, new_message_id}`.
  */
 export async function PUT(
   request: NextRequest,
@@ -105,7 +88,10 @@ export async function PUT(
     }
     const newText = body.newText;
 
-    const recipe = await prisma.recipe.findUnique({ where: { telegram_id: telegramId } });
+    const recipe = await prisma.recipe.findUnique({
+      where: { telegram_id: telegramId },
+      select: recipeWithRelationsSelect
+    });
     if (!recipe) {
       throw NotFoundError('Recipe not found');
     }
@@ -115,7 +101,7 @@ export async function PUT(
     // Matches RecipeService.update_recipe: unchanged content + no new image -> no-op.
     if (recipe.raw_content === newText && !imageBuffer) {
       logger.debug({ telegramId }, 'Recipe update skipped — content unchanged');
-      return successResponse(recipe);
+      return successResponse(serializeRecipeWithRelations(recipe));
     }
 
     let imageUrl = recipe.image_url;
@@ -149,14 +135,7 @@ export async function PUT(
           sync_status: mirror.syncStatus,
           sync_error: mirror.syncError
         },
-        include: {
-          user_recipes: { select: { user_id: true, is_favorite: true } },
-          versions: {
-            select: { id: true, version_num: true, created_at: true, change_description: true },
-            orderBy: { version_num: 'desc' },
-            take: 5
-          }
-        }
+        select: recipeWithRelationsSelect
       });
     });
 
@@ -165,7 +144,7 @@ export async function PUT(
       'Recipe updated'
     );
 
-    return successResponse(updated);
+    return successResponse(serializeRecipeWithRelations(updated));
   } catch (error) {
     return handleApiError(error);
   }

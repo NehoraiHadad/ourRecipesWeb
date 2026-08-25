@@ -12,20 +12,18 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
+import { recipeRow } from '@tests/helpers/recipeFixtures';
 
-const ROW = {
+const ROW = recipeRow({
   id: 7,
   telegram_id: 4242,
-  title: 'עוגת שוקולד',
   categories: 'קינוחים,עוגות',
   difficulty: 'EASY',
   cooking_time: 45,
   preparation_time: 20,
   servings: 8,
-  image_url: null,
-  created_at: new Date('2024-01-01T00:00:00Z'),
   is_verified: true
-};
+});
 
 beforeEach(() => {
   resetPrismaMock();

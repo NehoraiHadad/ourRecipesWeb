@@ -22,6 +22,10 @@ import { NextRequest } from 'next/server';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
+import {
+  recipeWithRelationsSelect,
+  serializeRecipeWithRelations
+} from '@/lib/serializers/recipe';
 import { createdResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
@@ -99,7 +103,7 @@ export async function POST(request: NextRequest) {
       'Recipe created'
     );
 
-    return createdResponse(recipe);
+    return createdResponse(serializeRecipeWithRelations(recipe));
   } catch (error) {
     log.error({ error }, 'Recipe creation failed');
     return handleApiError(error);
@@ -154,14 +158,7 @@ async function createRecipeRetryingId(input: CreateRecipeInput) {
             }
           }
         },
-        include: {
-          user_recipes: { select: { user_id: true, is_favorite: true } },
-          versions: {
-            select: { id: true, version_num: true, created_at: true, change_description: true },
-            orderBy: { version_num: 'desc' },
-            take: 5
-          }
-        }
+        select: recipeWithRelationsSelect
       });
     } catch (error) {
       const isPlaceholderCollision =

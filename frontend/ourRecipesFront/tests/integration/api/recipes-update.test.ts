@@ -32,6 +32,7 @@ import { requireEditPermission } from '@/lib/auth';
 import { editMessageText, editMessageCaption, editMessageMedia } from '@/lib/telegram/botApi';
 import { put } from '@vercel/blob';
 import { PUT } from '@/app/api/recipes/[telegram_id]/route';
+import { recipeRowWithRelations } from '@tests/helpers/recipeFixtures';
 
 const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
 const requireEditPermissionMock = vi.mocked(requireEditPermission);
@@ -54,21 +55,7 @@ function putRequest(body: unknown): NextRequest {
 }
 
 function existingRecipe(overrides: Record<string, unknown> = {}) {
-  return {
-    id: 1,
-    telegram_id: 555,
-    title: 'ישן',
-    raw_content: 'כותרת: ישן',
-    categories: null,
-    ingredients: null,
-    instructions: null,
-    preparation_time: null,
-    difficulty: null,
-    image_url: null,
-    sync_status: 'synced',
-    sync_error: null,
-    ...overrides
-  };
+  return recipeRowWithRelations({ title: 'ישן', raw_content: 'כותרת: ישן', ...overrides });
 }
 
 const NEW_TEXT =

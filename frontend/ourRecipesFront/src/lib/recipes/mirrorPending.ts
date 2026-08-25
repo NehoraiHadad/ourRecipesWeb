@@ -17,7 +17,6 @@ import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { sendMessage } from '@/lib/telegram/botApi';
 import { getMainChannelId } from '@/lib/telegram/channels';
-import { formatRecipeText, type RecipeDifficultyValue } from '@/lib/recipes/parser';
 import { SYNC_STATUS_PENDING_TELEGRAM, SYNC_STATUS_SYNCED } from '@/lib/recipes/ingest';
 
 const log = logger.child({ context: 'recipes/mirrorPending' });
@@ -43,34 +42,15 @@ export interface MirrorPendingResult {
   skippedReason?: string;
 }
 
+/**
+ * What the sweeper needs. `raw_content` is the message body verbatim — it is
+ * a NOT NULL column that every write path fills with the channel text, so
+ * there is nothing to rebuild from the structured fields here.
+ */
 interface PendingRecipe {
   id: number;
   telegram_id: number;
-  title: string | null;
   raw_content: string;
-  ingredients: string | null;
-  instructions: string | null;
-  categories: string | null;
-  preparation_time: number | null;
-  difficulty: RecipeDifficultyValue | null;
-}
-
-/**
- * The text to publish. `raw_content` is what the channel is supposed to show,
- * so it wins; the structured fields are only a fallback for rows created
- * through an API path that never composed a message body.
- */
-function messageTextFor(recipe: PendingRecipe): string {
-  if (recipe.raw_content && recipe.raw_content.trim()) return recipe.raw_content;
-
-  return formatRecipeText({
-    title: recipe.title ?? '',
-    categories: recipe.categories ? recipe.categories.split(',').filter(Boolean) : [],
-    ingredients: recipe.ingredients ? recipe.ingredients.split('||').filter(Boolean) : [],
-    instructions: recipe.instructions ?? '',
-    preparationTime: recipe.preparation_time ?? undefined,
-    difficulty: recipe.difficulty ?? undefined
-  });
 }
 
 /**
@@ -102,17 +82,7 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
 
   const pending = (await prisma.recipe.findMany({
     where: { sync_status: SYNC_STATUS_PENDING_TELEGRAM },
-    select: {
-      id: true,
-      telegram_id: true,
-      title: true,
-      raw_content: true,
-      ingredients: true,
-      instructions: true,
-      categories: true,
-      preparation_time: true,
-      difficulty: true
-    },
+    select: { id: true, telegram_id: true, raw_content: true },
     orderBy: { updated_at: 'asc' },
     take
   })) as PendingRecipe[];
@@ -130,7 +100,7 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
     try {
       const sent = await sendMessage({
         chat_id: mainChannelId,
-        text: messageTextFor(recipe),
+        text: recipe.raw_content,
         disable_web_page_preview: true
       });
 
