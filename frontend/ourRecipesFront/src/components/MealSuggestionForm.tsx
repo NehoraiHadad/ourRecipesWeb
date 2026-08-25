@@ -32,7 +32,7 @@ const MealSuggestionForm: React.FC = () => {
   const [loadingPhoto, setLoadingPhoto] = useState<boolean>(false);
   const [recipeText, setRecipeText] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
-  const [savingToTelegram, setSavingToTelegram] = useState<boolean>(false);
+  const [savingRecipe, setSavingRecipe] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const { addNotification } = useNotification()
   const [refinementRequest, setRefinementRequest] = useState<string>("");
@@ -257,10 +257,11 @@ const MealSuggestionForm: React.FC = () => {
     setRefinementHistory([]);
   };
 
-  const sendToTelegram = async (data: { newText: string; image?: string | null }) => {
-    setSavingToTelegram(true);
+  // DB-first save via `POST /api/recipes`; the Telegram channel mirror is
+  // best-effort on the server side (Flask's `POST /send_recipe` was merged in).
+  const saveRecipe = async (data: { newText: string; image?: string | null }) => {
+    setSavingRecipe(true);
     try {
-      // Flask's `POST /send_recipe` was merged into `POST /api/recipes`.
       const result = await RecipeService.addRecipe(data);
       console.log("Update successful:", result);
       // setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
@@ -269,7 +270,7 @@ const MealSuggestionForm: React.FC = () => {
       // setShowMessage({ status: true, message: "שגיאה בשמירת המתכון" });
       throw error;
     } finally {
-      setSavingToTelegram(false);
+      setSavingRecipe(false);
     }
   };
 
@@ -346,14 +347,14 @@ const MealSuggestionForm: React.FC = () => {
               {authState.canEdit && (
                 <Button
                   variant="primary"
-                  onClick={() => sendToTelegram({
+                  onClick={() => saveRecipe({
                     newText: recipeText,
                     image: recipe.image_url,
                   })}
-                  isLoading={savingToTelegram}
+                  isLoading={savingRecipe}
                   className="flex-1"
                 >
-                  שמור בטלגרם
+                  שמור מתכון
                 </Button>
               )}
             </div>

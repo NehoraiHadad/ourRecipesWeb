@@ -5,7 +5,7 @@
  * Unified create endpoint (IMPLEMENTATION_PLAN Wave 1.B / Appendix A):
  * absorbs both Flask's `POST /recipes/create` (manual "new recipe" flow,
  * body `{ newText, image }`) and the dead `POST /send_recipe` the UI's
- * saved-AI-suggestion flow (`MealSuggestionForm.sendToTelegram`) still
+ * saved-AI-suggestion flow (`MealSuggestionForm.saveRecipe`) still
  * calls — that flow already sends fully-formatted `{ newText, image }` too,
  * so one handler covers both. A caller with only structured fields
  * (`title`/`categories`/`ingredients`/`instructions`/...) can also skip
