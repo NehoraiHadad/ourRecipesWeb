@@ -47,7 +47,9 @@ export async function GET(request: NextRequest) {
           authenticated: true,
           canEdit: false,
           user_id: session.sub,
-          name: `אורח_${session.sub.slice(-4)}`,
+          // Prefer the claim; fall back to the derived name for tokens minted
+          // before `name` existed.
+          name: session.name ?? `אורח_${session.sub.slice(-4)}`,
           type: 'guest',
           message: GUEST_MESSAGE
         },
@@ -64,6 +66,10 @@ export async function GET(request: NextRequest) {
         authenticated: true,
         canEdit,
         user_id: session.sub,
+        // Telegram display name from the token. Omitted (undefined drops out of
+        // the JSON) for pre-`name` tokens, which is what the client already
+        // tolerated before this claim existed.
+        name: session.name,
         type: 'telegram',
         message: canEdit ? null : NO_EDIT_PERMISSION_MESSAGE
       },

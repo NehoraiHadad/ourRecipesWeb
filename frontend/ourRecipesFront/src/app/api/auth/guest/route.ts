@@ -30,7 +30,10 @@ export async function POST(_request: NextRequest) {
     const accessToken = await signSession({
       sub: guestId,
       type: 'guest',
-      permissions: { can_edit: false }
+      permissions: { can_edit: false },
+      // Carried in the token so the same name comes back from
+      // `GET /api/auth/validate` after a reload instead of being re-derived.
+      name: guestName
     });
 
     log.info({ guestId }, 'Guest session created');

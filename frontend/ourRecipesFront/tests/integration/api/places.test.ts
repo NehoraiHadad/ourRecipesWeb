@@ -24,8 +24,8 @@ const editMessageTextMock = vi.mocked(editMessageText);
 
 const USER_ID = '111';
 
-async function authHeaders(sub = USER_ID) {
-  const token = await signSession({ sub, type: 'telegram', permissions: { can_edit: false } });
+async function authHeaders(sub = USER_ID, name?: string) {
+  const token = await signSession({ sub, type: 'telegram', permissions: { can_edit: false }, name });
   return { authorization: `Bearer ${token}` };
 }
 
@@ -106,6 +106,48 @@ describe('POST /api/places', () => {
     expect(sendMessageMock).toHaveBeenCalledTimes(1);
     expect(sendMessageMock.mock.calls[0][0].text).toContain('המלצה חדשה');
     expect(prismaMock.place.update).toHaveBeenCalledWith({ where: { id: 1 }, data: { telegram_message_id: 42 } });
+  });
+
+  it('attributes the place to the session display name, not the raw user id', async () => {
+    const { POST } = await import('@/app/api/places/route');
+
+    prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
+    sendMessageMock.mockResolvedValue({ message_id: 42 } as any);
+    prismaMock.place.update.mockResolvedValue(basePlaceRow({ telegram_message_id: 42 }) as any);
+
+    const request = createMockRequest('http://localhost:3000/api/places', {
+      method: 'POST',
+      headers: await authHeaders(USER_ID, 'דנה כהן'),
+      body: { name: 'פיצה רומא' }
+    });
+
+    await POST(request);
+
+    // Flask's `session.get("user_name", user_id)` — now the `name` claim.
+    expect((prismaMock.place.create.mock.calls[0][0] as any).data.created_by).toBe(
+      `דנה כהן (${USER_ID})`
+    );
+    expect(sendMessageMock.mock.calls[0][0].text).toContain('נוסף על ידי: דנה כהן');
+  });
+
+  it('falls back to the user id when the token carries no name claim', async () => {
+    const { POST } = await import('@/app/api/places/route');
+
+    prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
+    sendMessageMock.mockResolvedValue({ message_id: 42 } as any);
+    prismaMock.place.update.mockResolvedValue(basePlaceRow({ telegram_message_id: 42 }) as any);
+
+    const request = createMockRequest('http://localhost:3000/api/places', {
+      method: 'POST',
+      headers: await authHeaders(USER_ID),
+      body: { name: 'פיצה רומא' }
+    });
+
+    await POST(request);
+
+    expect((prismaMock.place.create.mock.calls[0][0] as any).data.created_by).toBe(
+      `${USER_ID} (${USER_ID})`
+    );
   });
 
   it('still creates the place when Telegram is down', async () => {

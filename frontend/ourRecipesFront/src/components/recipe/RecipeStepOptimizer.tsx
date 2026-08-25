@@ -4,33 +4,10 @@ import { Typography } from "@/components/ui/Typography";
 import Spinner from "@/components/ui/Spinner";
 import { FeatureIndicator } from "@/components/ui/FeatureIndicator";
 import { apiService } from "@/services/apiService";
+import type { OptimizedSteps } from "@/lib/recipes/optimizedSteps";
 
 /** Step optimization is an AI call — far slower than the default timeout. */
 const AI_TIMEOUT = 180000;
-
-/**
- * `POST /api/recipes/optimize-steps` answers `{ data: { message } }` where
- * `message` is the model's free-form answer. When the model happens to return
- * JSON (optionally fenced) we render the rich, structured view; otherwise we
- * fall back to showing the text as-is instead of failing.
- */
-function parseOptimizedSteps(message: string): OptimizedSteps | null {
-  const fenced = message.match(/```(?:json)?\s*([\s\S]*?)```/);
-  const candidate = (fenced ? fenced[1] : message).trim();
-
-  if (!candidate.startsWith("{")) return null;
-
-  try {
-    const parsed = JSON.parse(candidate);
-    if (parsed && typeof parsed === "object" && Array.isArray(parsed.optimized_steps)) {
-      return parsed as OptimizedSteps;
-    }
-  } catch {
-    // Not JSON — fall through to the plain-text rendering.
-  }
-
-  return null;
-}
 
 const OptimizeIcon = () => (
   <svg
@@ -56,30 +33,6 @@ const OptimizeIcon = () => (
   </svg>
 );
 
-interface OptimizedStep {
-  description: string;
-  estimated_time: string;
-  dependencies: string[];
-}
-
-interface StepGroup {
-  step_group: string;
-  parallel_steps: OptimizedStep[];
-}
-
-interface PrepAheadStep {
-  description: string;
-  max_prep_time: string;
-}
-
-interface OptimizedSteps {
-  optimized_steps: StepGroup[];
-  prep_ahead_steps: PrepAheadStep[];
-  total_optimized_time: string;
-  total_sequential_time: string;
-  time_saved: string;
-}
-
 interface RecipeStepOptimizerProps {
   recipeText: string;
 }
@@ -91,7 +44,6 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
   const [optimizedSteps, setOptimizedSteps] = useState<OptimizedSteps | null>(
     null
   );
-  const [optimizedText, setOptimizedText] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const optimizeSteps = async () => {
@@ -104,28 +56,26 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
     setError(null);
 
     try {
-      const response = await apiService.post<{ data: { message: string } }>(
+      // The route validates the model's answer against `OptimizedSteps` and
+      // fails with 502 when it does not conform, so anything that arrives
+      // here is already the structured plan.
+      const response = await apiService.post<{ data: OptimizedSteps }>(
         "/api/recipes/optimize-steps",
         { recipeText },
         { timeout: AI_TIMEOUT }
       );
 
-      const message = response?.data?.message;
-      if (!message) {
+      const plan = response?.data;
+      if (!plan?.optimized_steps) {
         throw new Error("Invalid response format from server");
       }
 
-      const structured = parseOptimizedSteps(message);
-      if (structured) {
-        setOptimizedSteps(structured);
-        setOptimizedText(null);
-      } else {
-        setOptimizedSteps(null);
-        setOptimizedText(message);
-      }
+      setOptimizedSteps(plan);
     } catch (err) {
       console.error("Optimization error:", err);
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(
+        err instanceof Error ? err.message : "אירעה שגיאה בייעול זמני ההכנה"
+      );
     } finally {
       setLoading(false);
     }
@@ -147,7 +97,7 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
         </Typography>
       )}
 
-      {!optimizedSteps && !optimizedText && (
+      {!optimizedSteps && (
         <div className="relative inline-block mr-4">
           <FeatureIndicator
             featureId="recipe-optimizer"
@@ -164,20 +114,7 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
         </div>
       )}
 
-      {optimizedText && (
-        <div className="space-y-4">
-          <Typography variant="h3">ייעול זמני הכנה</Typography>
-          <div className="border rounded-lg p-4">
-            <Typography variant="body" className="whitespace-pre-wrap text-sm sm:text-base">
-              {optimizedText}
-            </Typography>
-          </div>
-        </div>
-      )}
-
-      {optimizedSteps &&
-        optimizedSteps.prep_ahead_steps &&
-        optimizedSteps.optimized_steps && (
+      {optimizedSteps && optimizedSteps.optimized_steps && (
           <div className="space-y-4">
             <Typography variant="h3">ייעול זמני הכנה</Typography>
             <div className="flex gap-4 flex-wrap">

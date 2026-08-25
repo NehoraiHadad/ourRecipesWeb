@@ -2,8 +2,11 @@
  * GET /api/menus/:id
  * Get single menu with full structure (meals + recipes + shopping list)
  *
- * Access control: Owner OR public menu
- * @note Authentication will be added in Phase 3
+ * Access control: authenticated, and the menu must be the caller's own or
+ * `is_public`. Flask answered 403 "Access denied" for a private menu belonging
+ * to someone else, which confirms the menu exists; this route answers with the
+ * same 404 "Menu not found" it uses for a missing id, so a stranger cannot
+ * probe which menu ids are real.
  *
  * PUT /api/menus/:id
  * Update menu name/description/is_public. Owner only.
@@ -33,8 +36,9 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    // TODO: Get user from session in Phase 3
-    const userId = 'system'; // Placeholder
+    const auth = await requireAuth(request);
+    if (!auth.ok) return authErrorResponse(auth);
+    const userId = auth.session.sub;
     const menuId = validateId(params.id);
 
     logger.debug({ userId, menuId }, 'Fetching menu');
@@ -82,14 +86,10 @@ export async function GET(
       }
     });
 
-    if (!menu) {
+    // Someone else's private menu is indistinguishable from a missing one.
+    if (!menu || (menu.user_id !== userId && !menu.is_public)) {
       throw NotFoundError('Menu not found');
     }
-
-    // TODO: Check access when auth is added:
-    // if (menu.user_id !== userId && !menu.is_public) {
-    //   throw ForbiddenError('Access denied');
-    // }
 
     logger.info({ menuId, userId }, 'Menu fetched successfully');
 

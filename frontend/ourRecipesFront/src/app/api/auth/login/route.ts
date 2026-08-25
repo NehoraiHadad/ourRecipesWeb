@@ -27,6 +27,18 @@ const log = logger.child({ context: 'api/auth/login' });
 const NO_EDIT_PERMISSION_MESSAGE =
   'אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות.';
 
+/**
+ * Display name from the Login-Widget payload: `first_name [last_name]`.
+ * Flask kept this in the server-side session (`session["user_name"]`); it now
+ * rides in the JWT so it survives a page reload (Header, Places attribution).
+ */
+function displayName(userData: TelegramAuthData): string {
+  return [userData.first_name, userData.last_name]
+    .filter((part): part is string => typeof part === 'string' && part.trim() !== '')
+    .map((part) => part.trim())
+    .join(' ');
+}
+
 export async function POST(request: NextRequest) {
   try {
     let userData: TelegramAuthData | null = null;
@@ -48,11 +60,13 @@ export async function POST(request: NextRequest) {
     }
 
     const hasPermission = await checkEditPermission(userId);
+    const userName = displayName(userData);
 
     const accessToken = await signSession({
       sub: userId,
       type: 'telegram',
-      permissions: { can_edit: hasPermission }
+      permissions: { can_edit: hasPermission },
+      name: userName
     });
 
     log.info({ userId, canEdit: hasPermission }, 'Telegram login succeeded');
@@ -63,7 +77,7 @@ export async function POST(request: NextRequest) {
         canEdit: hasPermission,
         user: {
           id: userId,
-          name: userData.first_name ?? '',
+          name: userName,
           type: 'telegram'
         },
         token: accessToken,

@@ -3,6 +3,7 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 import { NextRequest } from 'next/server';
+import { SignJWT } from 'jose';
 import {
   ACCESS_TOKEN_COOKIE,
   SESSION_MAX_AGE_SECONDS,
@@ -53,6 +54,62 @@ describe('signSession / verifySession', () => {
     expect(session!.sub).toBe('guest_abc');
     expect(session!.type).toBe('guest');
     expect(session!.permissions.can_edit).toBe(false);
+  });
+
+  it('round-trips the display name claim', async () => {
+    const token = await signSession({
+      sub: '12345678',
+      type: 'telegram',
+      name: 'דנה כהן'
+    });
+
+    expect((await verifySession(token))!.name).toBe('דנה כהן');
+  });
+
+  it('round-trips a guest display name', async () => {
+    const token = await signSession({ sub: 'guest_abcd1234', type: 'guest', name: 'אורח_1234' });
+
+    expect((await verifySession(token))!.name).toBe('אורח_1234');
+  });
+
+  it('leaves the name claim out entirely when it is absent or blank', async () => {
+    const withoutName = await signSession({ sub: '1', type: 'telegram' });
+    const withBlankName = await signSession({ sub: '1', type: 'telegram', name: '   ' });
+
+    expect((await verifySession(withoutName))!.name).toBeUndefined();
+    expect((await verifySession(withBlankName))!.name).toBeUndefined();
+
+    // Not merely undefined on read — the claim is never written.
+    const claims = JSON.parse(Buffer.from(withBlankName.split('.')[1], 'base64url').toString());
+    expect('name' in claims).toBe(false);
+  });
+
+  it('trims the name on the way in', async () => {
+    const trimmed = await signSession({ sub: '1', type: 'telegram', name: '  דנה  ' });
+    expect((await verifySession(trimmed))!.name).toBe('דנה');
+  });
+
+  it('drops a non-string name claim rather than leaking it through the typed payload', async () => {
+    const token = await new SignJWT({ type: 'telegram', permissions: { can_edit: false }, name: 42 })
+      .setProtectedHeader({ alg: 'HS256' })
+      .setSubject('1')
+      .setIssuedAt()
+      .setExpirationTime('1h')
+      .sign(new TextEncoder().encode(SECRET));
+
+    const session = await verifySession(token);
+    expect(session!.sub).toBe('1');
+    expect(session!.name).toBeUndefined();
+  });
+
+  it('still verifies tokens minted before the name claim existed', async () => {
+    // A pre-`name` token is byte-identical to one signed without a name today.
+    const legacy = await signSession({ sub: '9', type: 'telegram', permissions: { can_edit: true } });
+    const session = await verifySession(legacy);
+
+    expect(session!.sub).toBe('9');
+    expect(session!.permissions.can_edit).toBe(true);
+    expect(session!.name).toBeUndefined();
   });
 
   it('defaults expiry to 7 days for telegram and 4 hours for guest', async () => {

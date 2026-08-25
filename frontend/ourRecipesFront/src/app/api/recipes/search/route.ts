@@ -1,11 +1,38 @@
 /**
  * GET /api/recipes/search
- * Search recipes with filters (query, category, difficulty)
+ * Search recipes with the full set of advanced filters the UI offers.
  *
- * Supports pagination and case-insensitive search
+ * ## Query contract
+ *
+ * | param          | type                  | semantics                                                              |
+ * | -------------- | --------------------- | ---------------------------------------------------------------------- |
+ * | `query`        | string                | free text; matches title OR ingredients OR raw_content (insensitive)     |
+ * | `categories`   | comma-separated list  | recipe must carry **every** listed category (AND)                        |
+ * | `category`     | string                | legacy single-category alias, folded into `categories`                   |
+ * | `maxPrepTime`  | integer (minutes)     | `preparation_time <= maxPrepTime`                                        |
+ * | `prepTime`     | integer (minutes)     | legacy alias of `maxPrepTime` (the Flask param name)                     |
+ * | `difficulty`   | EASY \| MEDIUM \| HARD | case-insensitive; an unknown value is ignored                           |
+ * | `includeTerms` | comma-separated list  | **every** term must appear in title OR raw_content (insensitive)         |
+ * | `excludeTerms` | comma-separated list  | **no** term may appear in title OR raw_content (insensitive)             |
+ * | `page`         | integer               | 1-based page number (default 1)                                          |
+ * | `pageSize`     | integer               | page size, 1..100 (default 20)                                           |
+ *
+ * ### Why categories are ANDed
+ * `Recipe.categories` is a single comma-separated text column, so a category
+ * filter is a `contains` probe. The original Flask implementation
+ * (`RecipeService.search_recipes`, see git history) chained one `ilike` filter
+ * per selected category, i.e. a recipe had to carry **all** of them; the UI
+ * mirrors that by rendering the selected chips as a single cumulative filter
+ * count ("נקה הכל" clears the whole set) rather than as alternatives. We keep
+ * those semantics: narrowing chips narrow the result set.
+ *
+ * The `where` clause is a flat `AND` of small `OR` groups so Postgres can plan
+ * it in one pass — no post-filtering in JS.
+ *
  * @note Authentication will be added in Phase 3
  */
 import { NextRequest } from 'next/server';
+import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import {
   paginatedResponse
@@ -17,63 +44,110 @@ import { logger } from '@/lib/logger';
 const VALID_DIFFICULTIES = ['EASY', 'MEDIUM', 'HARD'] as const;
 type RecipeDifficulty = typeof VALID_DIFFICULTIES[number];
 
+/** Split a `a,b,c` query param into trimmed, non-empty terms. */
+function parseList(value: string | null): string[] {
+  if (!value) return [];
+  return value
+    .split(',')
+    .map(item => item.trim())
+    .filter(item => item.length > 0);
+}
+
+/** Parse a positive integer query param, ignoring junk. */
+function parsePositiveInt(value: string | null): number | null {
+  if (!value) return null;
+  const parsed = Number.parseInt(value, 10);
+  return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+}
+
+/** `term` appears in the title or anywhere in the raw recipe text. */
+function textMatch(term: string): Prisma.RecipeWhereInput {
+  return {
+    OR: [
+      { title: { contains: term, mode: 'insensitive' } },
+      { raw_content: { contains: term, mode: 'insensitive' } }
+    ]
+  };
+}
+
 export async function GET(request: NextRequest) {
   try {
-    const { searchParams } = new URL(request.url);
+    const url = new URL(request.url);
+    const { searchParams } = url;
 
     // Extract search parameters
-    const query = searchParams.get('query') || '';
-    const category = searchParams.get('category');
-    const difficulty = searchParams.get('difficulty') as RecipeDifficulty | null;
+    const query = searchParams.get('query')?.trim() || '';
+    // `category` (singular) is the legacy single-value param; both feed the
+    // same AND-ed list so old links keep working.
+    const categories = [
+      ...parseList(searchParams.get('categories')),
+      ...parseList(searchParams.get('category'))
+    ];
+    const rawDifficulty = searchParams.get('difficulty')?.trim().toUpperCase();
+    const difficulty = rawDifficulty as RecipeDifficulty | undefined;
+    const maxPrepTime =
+      parsePositiveInt(searchParams.get('maxPrepTime')) ??
+      parsePositiveInt(searchParams.get('prepTime'));
+    const includeTerms = parseList(searchParams.get('includeTerms'));
+    const excludeTerms = parseList(searchParams.get('excludeTerms'));
 
     // Pagination
-    const { page, pageSize, skip, take } = parsePaginationParams(
-      new URL(request.url)
+    const { page, pageSize, skip, take } = parsePaginationParams(url);
+
+    logger.debug(
+      {
+        query,
+        categories,
+        difficulty,
+        maxPrepTime,
+        includeTerms,
+        excludeTerms,
+        page,
+        pageSize
+      },
+      'Searching recipes'
     );
 
-    logger.debug({ query, category, difficulty, page, pageSize }, 'Searching recipes');
-
-    // Build where clause
-    const where: any = {
-      status: 'ACTIVE', // Only active recipes
-    };
+    // Build where clause: AND of narrow OR-groups.
+    const and: Prisma.RecipeWhereInput[] = [];
 
     // Text search (in title, ingredients, or raw_content)
     if (query) {
-      where.OR = [
-        {
-          title: {
-            contains: query,
-            mode: 'insensitive' // Case-insensitive
-          }
-        },
-        {
-          ingredients: {
-            contains: query,
-            mode: 'insensitive'
-          }
-        },
-        {
-          raw_content: {
-            contains: query,
-            mode: 'insensitive'
-          }
-        }
-      ];
+      and.push({
+        OR: [
+          { title: { contains: query, mode: 'insensitive' } },
+          { ingredients: { contains: query, mode: 'insensitive' } },
+          { raw_content: { contains: query, mode: 'insensitive' } }
+        ]
+      });
     }
 
-    // Category filter (comma-separated string contains)
-    if (category) {
-      where.categories = {
-        contains: category,
-        mode: 'insensitive'
-      };
+    // Category filters — one `contains` probe per selected category (AND).
+    for (const category of categories) {
+      and.push({ categories: { contains: category, mode: 'insensitive' } });
     }
 
-    // Difficulty filter (enum)
-    if (difficulty && VALID_DIFFICULTIES.includes(difficulty)) {
-      where.difficulty = difficulty;
+    // Preparation time upper bound (the UI offers 15/30/60/120 minutes).
+    if (maxPrepTime !== null) {
+      and.push({ preparation_time: { lte: maxPrepTime } });
     }
+
+    // Terms that must appear, and terms that must not.
+    for (const term of includeTerms) {
+      and.push(textMatch(term));
+    }
+    for (const term of excludeTerms) {
+      and.push({ NOT: textMatch(term) });
+    }
+
+    const where: Prisma.RecipeWhereInput = {
+      status: 'ACTIVE', // Only active recipes
+      // Difficulty filter (enum) — unknown values are ignored, as in Flask.
+      ...(difficulty && VALID_DIFFICULTIES.includes(difficulty)
+        ? { difficulty }
+        : {}),
+      ...(and.length > 0 ? { AND: and } : {})
+    };
 
     // Get total count
     const totalItems = await prisma.recipe.count({ where });

@@ -15,9 +15,18 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
+import { signSession } from '@/lib/auth/session';
+
+const OWNER = '111';
+
+async function authHeaders(sub = OWNER) {
+  const token = await signSession({ sub, type: 'telegram', permissions: { can_edit: false } });
+  return { authorization: `Bearer ${token}` };
+}
 
 beforeEach(() => {
   resetPrismaMock();
+  process.env.JWT_SECRET = 'test-jwt-secret-value-not-a-real-one';
 });
 
 describe('GET /api/menus', () => {
@@ -46,7 +55,9 @@ describe('GET /api/menus', () => {
       } as any
     ]);
 
-    const request = createMockRequest('http://localhost:3000/api/menus');
+    const request = createMockRequest('http://localhost:3000/api/menus', {
+      headers: await authHeaders()
+    });
     const response = await GET(request);
 
     expect(response.status).toBe(200);

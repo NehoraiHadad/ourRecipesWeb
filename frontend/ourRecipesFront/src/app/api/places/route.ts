@@ -7,10 +7,10 @@
  * Create a place recommendation, mirrored to Telegram best-effort.
  * Port of `create_place` (`routes/places.py`).
  *
- * @note Flask reads a `user_name` set on login into the Flask session, which
- * our JWT session (`src/lib/auth/types.ts`) does not carry, so the
- * `session.get("user_name", user_id)` fallback always applies here — see the
- * deviations note in the Wave 1.C report.
+ * @note Flask read a `user_name` set on login into the Flask session. Our JWT
+ * now carries the same display name as an optional `name` claim, so
+ * `session.get("user_name", user_id)` maps to `session.name ?? session.sub` —
+ * the `sub` fallback only applies to tokens minted before the claim existed.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
     if (!body.name) throw BadRequestError('Place name is required');
 
     const userId = auth.session.sub;
-    const userName = userId; // No display name in the session (see file header note).
+    const userName = auth.session.name ?? userId; // Flask's `session.get("user_name", user_id)`.
 
     const place = await prisma.place.create({
       data: {

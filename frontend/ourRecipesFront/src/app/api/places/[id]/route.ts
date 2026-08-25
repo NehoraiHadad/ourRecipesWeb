@@ -72,7 +72,8 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     if (!auth.ok) return authErrorResponse(auth);
 
     const placeId = validateId(params.id);
-    const userName = auth.session.sub; // No display name in the session (see places/route.ts note).
+    // Flask's `session.get("user_name", user_id)` — see the note in places/route.ts.
+    const userName = auth.session.name ?? auth.session.sub;
 
     const existing = await prisma.place.findUnique({ where: { id: placeId } });
     if (!existing) throw NotFoundError('Place not found');

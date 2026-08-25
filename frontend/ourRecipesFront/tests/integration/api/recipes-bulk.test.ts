@@ -62,7 +62,6 @@ function recipeRow(overrides: Record<string, unknown> = {}) {
     preparation_time: null,
     difficulty: null,
     image_url: null,
-    image_data: null,
     ...overrides
   };
 }

@@ -1,11 +1,15 @@
 /**
  * Recipe message parsing / formatting.
  *
- * This is a 1:1 port of the Python parsing logic used by the Flask backend,
- * so that the webhook handler and recipes API routes can extract structured
- * fields from a raw Telegram channel message the exact same way the old
- * backend did. Hebrew is the base case (the labels below are the literal
- * section markers the bot/AI service writes into channel messages).
+ * This is a port of the Python parsing logic used by the Flask backend, so
+ * that the webhook handler and recipes API routes can extract structured
+ * fields from a raw Telegram channel message the same way the old backend
+ * did. Hebrew is the base case (the labels below are the literal section
+ * markers the bot/AI service writes into channel messages). A handful of
+ * spots deliberately deviate from the literal Python source where that
+ * source lost real-world data rather than encoding an intentional rule: see
+ * the `INGREDIENTS_LABELS`, `DIFFICULTY_HE_TO_ENUM`, and category-truncation
+ * comments below for each case and why.
  *
  * Ported from:
  *  - backend/ourRecipesBack/services/recipe_service.py
@@ -53,18 +57,25 @@ const LABEL_TITLE = 'כותרת:';
 const LABEL_PREP_TIME = 'זמן הכנה:';
 const LABEL_DIFFICULTY = 'רמת קושי:';
 const LABEL_CATEGORIES = 'קטגוריות:';
+// Canonical label, still the only one `formatRecipeText` emits. Real channel
+// messages (including the old backend's own test fixtures,
+// backend/tests/test_categories.py) also use the shorter "מצרכים:" or
+// "רכיבים:" — accepted as synonyms so those messages don't lose their
+// ingredients section.
 const LABEL_INGREDIENTS = 'רשימת מצרכים:';
+const INGREDIENTS_LABELS = [LABEL_INGREDIENTS, 'מצרכים:', 'רכיבים:'];
 const LABEL_INSTRUCTIONS = 'הוראות הכנה:';
 
-// `Recipe._parse_content`'s `difficulty_map` (Python dict), ported verbatim.
-// Note: this expects the Hebrew word "קשה" for HARD. The AI service's own
-// prompts (ai_service.py) instead ask the model for "מורכב" — a pre-existing
-// mismatch in the Python codebase, reproduced here rather than silently
-// "fixed", since this is a faithful port of `_parse_content`.
+// `Recipe._parse_content`'s `difficulty_map` (Python dict), extended beyond
+// the literal Python source: the AI service's own prompts (ai_service.py)
+// and the client-side formatter ask the model for "מורכב" for HARD, not
+// "קשה" — a real mismatch (not a deliberate quirk) that silently dropped
+// every AI-authored "hard" recipe's difficulty. Both spellings map to HARD.
 const DIFFICULTY_HE_TO_ENUM: Record<string, RecipeDifficultyValue> = {
   'קל': 'EASY',
   'בינוני': 'MEDIUM',
-  'קשה': 'HARD'
+  'קשה': 'HARD',
+  'מורכב': 'HARD'
 };
 
 const DIFFICULTY_ENUM_TO_HE: Record<RecipeDifficultyValue, string> = {
@@ -190,12 +201,14 @@ export function parseRecipeMessage(text: string): ParsedRecipe {
       const newCategories = rawCategories.map((c) => c.trim()).filter((c) => c);
       if (newCategories.length === 0) {
         parseErrors.push('לא נמצאו קטגוריות תקינות');
-      } else if (newCategories.length > 5) {
-        parseErrors.push('יותר מדי קטגוריות (מקסימום 5)');
       } else {
-        categories = newCategories;
+        // More than 5 supplied: keep the first 5 rather than dropping all of
+        // them (the Python behavior this was ported from silently discarded
+        // every category once the limit was exceeded — a real bug, not a
+        // deliberate cap).
+        categories = newCategories.slice(0, 5);
       }
-    } else if (part.startsWith(LABEL_INGREDIENTS)) {
+    } else if (INGREDIENTS_LABELS.some((label) => part.startsWith(label))) {
       currentSection = 'ingredients';
     } else if (currentSection === 'ingredients' && part.startsWith('-')) {
       const ingredient = pyLStrip(part, '- ').trim();

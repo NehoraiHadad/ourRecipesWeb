@@ -67,7 +67,6 @@ function recipeRow(overrides: Record<string, unknown> = {}) {
     preparation_time: null,
     difficulty: null,
     image_url: null,
-    image_data: null,
     sync_status: 'synced',
     sync_error: null,
     ...overrides
@@ -113,8 +112,7 @@ describe('GET /api/versions/recipe/:telegram_id', () => {
         created_at: new Date('2026-01-01T00:00:00Z'),
         created_by: '111',
         change_description: 'Recipe update',
-        is_current: true,
-        image_data: null
+        is_current: true
       }
     ] as any);
 
@@ -199,8 +197,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
       id: 10,
       recipe_id: 1,
       version_num: 3,
-      content: { raw_content: 'כותרת: נוכחי', image_url: null },
-      image_data: null
+      content: { raw_content: 'כותרת: נוכחי', image_url: null }
     } as any);
 
     const response = await restoreRequest('555', '10');
@@ -228,8 +225,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
         raw_content:
           'כותרת: ישן יותר\nקטגוריות: עיקריות\nזמן הכנה: 10 דקות\nרמת קושי: קל\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל',
         image_url: null
-      },
-      image_data: null
+      }
     } as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 3 } } as any);
@@ -266,8 +262,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
       id: 10,
       recipe_id: 1,
       version_num: 3,
-      content: { raw_content: 'כותרת: ישן יותר', image_url: null },
-      image_data: null
+      content: { raw_content: 'כותרת: ישן יותר', image_url: null }
     } as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 3 } } as any);

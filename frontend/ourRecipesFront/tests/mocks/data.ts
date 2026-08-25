@@ -20,7 +20,6 @@ export const mockRecipe: Recipe = {
   instructions: 'Mix and bake',
   categories: 'dessert,baking',
   recipe_metadata: null,
-  image_data: null,
   image_url: 'https://example.com/image.jpg',
   media_type: 'photo',
   created_at: new Date('2024-01-01'),

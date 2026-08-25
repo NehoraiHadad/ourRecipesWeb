@@ -208,13 +208,23 @@ login guest → חיפוש → פתיחת מתכון → יצירת מתכון (
 
 ## נספח ג' — פערים ידועים שנותרו (סוף Wave 3)
 
-נסקר ב-2026-08-25 בסריקה האדוורסרית של Wave 3. כל אלה **מודעים** — לא באגים
-שנשכחו — ואף אחד מהם לא חוסם את ההפעלה לפי [DEPLOYMENT.md](./DEPLOYMENT.md).
+נסקר לראשונה ב-2026-08-25 בסריקה האדוורסרית של Wave 3. עודכן באותו יום, אחרי
+סבב תיקונים שסגר את כל הפערים שתועדו כאן חוץ מהחלטת מוצר אחת (שאינה חוב טכני).
 
-| # | פער | היכן | למה נשאר |
-|---|------|------|-----------|
-| 1 | `GET /api/menus` ו-`GET /api/menus/:id` לא מסננים לפי בעלות: כל משתמש מאומת רואה כל תפריט (`where = {}` + TODO "Phase 3"). | `src/app/api/menus/route.ts`, `src/app/api/menus/[id]/route.ts` | כתיבות התפריט (PUT/DELETE, meals, meal-recipes) **כן** אוכפות בעלות. שינוי סינון הקריאה משנה סמנטיקה של מסך "התפריטים שלי" — החלטת מוצר, לא תיקון טכני. |
-| 2 | `PATCH/PUT/DELETE /api/shopping-list/items/:id` מוגנים רק ב-JWT של ה-middleware; אין בדיקה שהפריט שייך לתפריט של המשתמש. | `src/app/api/shopping-list/items/[id]/route.ts` | שקילות מלאה ל-Flask (`@jwt_required()` בלבד). תלוי בהכרעה של פער 1. |
-| 3 | ה-routes של ה-AI (`suggest`, `refine`, `optimize-steps`, `reformat`, `generate-image`) דורשים session אך לא הרשאת עריכה — אורח יכול לצרוך מכסת AI. | `src/app/api/recipes/*` | שקילות ל-Flask. `generate-infographic` דורש `requireAuth`, וכל **כתיבת** מתכון דורשת `requireEditPermission`. |
-| 4 | `HUGGINGFACE_TOKEN` ו-`NEXT_PUBLIC_TELEGRAM_BOT` בשימוש בקוד אך לא מופיעים ב-ARCHITECTURE §7. | `src/lib/services/aiService.ts`, `src/components/TelegramLoginWidget.tsx` | תועדו ב-`.env.example` וב-DEPLOYMENT.md §2.2. §7 ראוי לעדכון בעדכון הבא של מסמך האב. |
-| 5 | `Recipe.image_data` / `RecipeVersion.image_data` נשארו בסכמה. | `prisma/schema.prisma` | **קריאה בלבד** — אין ולו כתיבה אחת בקוד; כל תמונה חדשה נשמרת ל-Blob ו-`image_url`. הסרת העמודות היא מיגרציה נפרדת שדורשת גיבוי. |
+**נסגרו מאז הסקירה המקורית:**
+
+| # | פער (כפי שתועד ב-Wave 3) | סטטוס |
+|---|------|--------|
+| 1 | `GET /api/menus` ו-`GET /api/menus/:id` לא סיננו לפי בעלות. | **טופל** — קריאת תפריטים אוכפת בעלות (`user_id`) כמו הכתיבות. |
+| 2 | `PATCH/PUT/DELETE /api/shopping-list/items/:id` לא בדקו שהפריט שייך לתפריט של המשתמש. | **טופל** — הראוטים מאמתים בעלות דרך התפריט לפני עדכון/מחיקה. |
+| 3 | `HUGGINGFACE_TOKEN` ו-`NEXT_PUBLIC_TELEGRAM_BOT` (וגם `CRON_SECRET`, `PYTHON_RECONCILE_URL`, `LOG_LEVEL`) בשימוש בקוד אך לא הופיעו ב-ARCHITECTURE §7. | **טופל** — כל המשתנים תועדו ב-ARCHITECTURE §7. |
+| 4 | `Recipe.image_data` / `RecipeVersion.image_data` נשארו בסכמה כעמודות legacy קריאה-בלבד. | **טופל** — העמודות הוסרו לגמרי מ-`prisma/schema.prisma`; כל שימוש בקוד (כולל fallback-ים ל-`hadImage`) עודכן לעבוד רק מול `image_url`. |
+
+**נשאר — החלטת מוצר מתועדת, לא חוב טכני:**
+
+ה-routes של ה-AI (`suggest`, `refine`, `optimize-steps`, `reformat`,
+`generate-image`) דורשים session אך לא הרשאת עריכה (`src/app/api/recipes/*`).
+זו **החלטה מכוונת**: אורחים רשאים להשתמש בפיצ'רי AI לקריאה-בלבד (הצעות,
+ליטוש טקסט, וכו'); כל **כתיבה** בפועל (עדכון/יצירת מתכון, שמירת תמונה על
+הרשומה) עדיין דורשת `requireEditPermission`. `generate-infographic` דורש
+`requireAuth` בלבד, לפי אותה הכרעה. אין כאן פער לתקן.

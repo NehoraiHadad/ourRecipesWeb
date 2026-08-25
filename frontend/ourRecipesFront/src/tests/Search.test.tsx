@@ -129,7 +129,7 @@ describe('Search Component', () => {
     });
   });
 
-  it('passes a selected category through as the `category` query param', async () => {
+  it('passes a selected category through as the `categories` query param', async () => {
     render(<Search onSearch={mockOnSearch} />);
 
     await waitFor(() => expect(screen.getByText('קינוחים')).toBeInTheDocument());
@@ -141,10 +141,66 @@ describe('Search Component', () => {
     await waitFor(() => {
       expect(
         calledEndpoints().some(
-          (endpoint) => endpoint === `/api/recipes/search?category=${encodeURIComponent('קינוחים')}`
+          (endpoint) =>
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים')}`
         )
       ).toBe(true);
     });
+  });
+
+  it('keeps every selected category, not just the first one', async () => {
+    render(<Search onSearch={mockOnSearch} />);
+
+    await waitFor(() => expect(screen.getByText('קינוחים')).toBeInTheDocument());
+    await userEvent.click(screen.getByText('קינוחים'));
+    await userEvent.click(screen.getByText('עוגות'));
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
+
+    await waitFor(() => {
+      expect(
+        calledEndpoints().some(
+          (endpoint) =>
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים,עוגות')}`
+        )
+      ).toBe(true);
+    });
+  });
+
+  it('sends the advanced filters (prep time, difficulty, include/exclude terms)', async () => {
+    render(<Search onSearch={mockOnSearch} />);
+
+    // The advanced panel is behind the icon-only sliders button.
+    await userEvent.click(screen.getByLabelText('חיפוש מתקדם'));
+
+    await userEvent.selectOptions(screen.getByLabelText('זמן הכנה:'), '30');
+    await userEvent.selectOptions(screen.getByLabelText('רמת קושי:'), 'easy');
+    await userEvent.type(screen.getByLabelText('חייב להכיל:'), 'שוקולד, אגוזים');
+    await userEvent.type(screen.getByLabelText('לא להכיל:'), 'חמאה');
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
+
+    await waitFor(() => {
+      expect(
+        calledEndpoints().some((endpoint) => endpoint.startsWith('/api/recipes/search?'))
+      ).toBe(true);
+    });
+
+    const searchCall = calledEndpoints()
+      .filter(
+        (endpoint) =>
+          endpoint.startsWith('/api/recipes/search?') &&
+          !endpoint.startsWith('/api/recipes/search/suggestions')
+      )
+      .at(-1) as string;
+    const sent = new URLSearchParams(searchCall.split('?')[1]);
+
+    expect(sent.get('maxPrepTime')).toBe('30');
+    expect(sent.get('difficulty')).toBe('EASY');
+    expect(sent.get('includeTerms')).toBe('שוקולד,אגוזים');
+    expect(sent.get('excludeTerms')).toBe('חמאה');
   });
 
   it('maps the paginated response onto a telegram_id-keyed recipe map', async () => {

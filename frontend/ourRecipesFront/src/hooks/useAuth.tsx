@@ -83,7 +83,9 @@ export function useAuth(
           error: null,
           user: authData.user_id ? {
             id: authData.user_id,
-            name: authData.name!,
+            // `name` is optional on the wire (tokens minted before the claim
+            // existed carry none) — never assert it into `undefined`.
+            name: authData.name ?? '',
             type: authData.type ?? null
           } : null
         });

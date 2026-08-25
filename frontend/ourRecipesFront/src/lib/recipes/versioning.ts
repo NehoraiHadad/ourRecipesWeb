@@ -14,11 +14,10 @@
  * sends, unprocessed) rely on exactly this behavior.
  *
  * One extension beyond the literal Python source: `content.image_url`. The
- * Python model snapshots `self.image_data` (raw bytes) into every version;
- * this project stores images as Blob URLs instead (ARCHITECTURE §5), so a
- * snapshot taken after that migration carries the URL in `content` instead.
- * `versionToDict` falls back to `content.image_url` whenever the row has no
- * legacy `image_data` blob.
+ * Python model snapshotted `self.image_data` (raw bytes) into every version;
+ * this project stores images as Blob URLs instead (ARCHITECTURE §5), and the
+ * legacy `image_data` column has been dropped entirely, so `versionToDict`
+ * reads the image straight from `content.image_url`.
  */
 import type { Prisma, RecipeDifficulty } from '@prisma/client';
 
@@ -162,13 +161,12 @@ export interface RecipeVersionRow {
   created_by: string | null;
   change_description: string | null;
   is_current: boolean;
-  image_data: Buffer | Uint8Array | null;
 }
 
 /**
  * Serializes one `RecipeVersion` row for the API — field-for-field port of
  * `RecipeVersion.to_dict()` (see module docstring for the `parsed_data`
- * quirk and the `image_url` fallback).
+ * quirk and the `image_url` source).
  */
 export function versionToDict(version: RecipeVersionRow) {
   const content = (version.content ?? {}) as Record<string, unknown>;
@@ -176,13 +174,8 @@ export function versionToDict(version: RecipeVersionRow) {
   const preparationTime = (parsedData.preparation_time as number | undefined) ?? null;
   const difficulty = (parsedData.difficulty as string | undefined) ?? null;
 
-  let image: string | null = null;
-  if (version.image_data) {
-    const buf = Buffer.isBuffer(version.image_data) ? version.image_data : Buffer.from(version.image_data);
-    image = `data:image/jpeg;base64,${buf.toString('base64')}`;
-  } else if (typeof content.image_url === 'string' && content.image_url) {
-    image = content.image_url;
-  }
+  const image: string | null =
+    typeof content.image_url === 'string' && content.image_url ? content.image_url : null;
 
   return {
     id: version.id,

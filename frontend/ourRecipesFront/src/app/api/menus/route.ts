@@ -1,9 +1,13 @@
 /**
  * GET /api/menus
- * List user's menus + public menus from others
+ * List the signed-in user's own menus (public and private), newest first.
  *
- * Access control: User's own menus (public/private) + all public menus
- * @note Authentication will be added in Phase 3
+ * Access control: owner only. Flask's `get_user_menus` also folded in every
+ * public menu from every other user, which — because guest menus are created
+ * `is_public` — turned the personal list into a global feed and leaked other
+ * people's menus into it. The scoped-to-owner filter is the stricter reading
+ * and the one kept here; other people's public menus stay reachable through
+ * their share link (`GET /api/menus/shared/:token`) and by id.
  *
  * POST /api/menus
  * Save a menu after the user confirms an AI-generated preview.
@@ -31,9 +35,9 @@ import { mirrorMenuCreate } from '@/lib/telegram/menuMirror';
 
 export async function GET(request: NextRequest) {
   try {
-    // TODO: Get user from session in Phase 3
-    // For now, return all menus for testing
-    const userId = 'system'; // Placeholder
+    const auth = await requireAuth(request);
+    if (!auth.ok) return authErrorResponse(auth);
+    const userId = auth.session.sub;
 
     // Pagination
     const { page, pageSize, skip, take } = parsePaginationParams(
@@ -42,10 +46,9 @@ export async function GET(request: NextRequest) {
 
     logger.debug({ userId, skip, take }, 'Fetching menus');
 
-    // Get menus: user's own + public from others
-    // TODO: When auth is added, use:
-    // where: { OR: [{ user_id: userId }, { is_public: true }] }
-    const where = {}; // Return all menus for now
+    // Owner-scoped: both the count and the page use the same filter, so the
+    // pagination totals describe the user's own menus and nothing else.
+    const where = { user_id: userId };
 
     const totalItems = await prisma.menu.count({ where });
 

@@ -68,7 +68,7 @@ export async function POST(request: NextRequest) {
         const mirror = await mirrorEditRecipe({
           telegramId: recipe.telegram_id,
           text: reformattedText,
-          hadImage: Boolean(recipe.image_url || recipe.image_data),
+          hadImage: Boolean(recipe.image_url),
           newImageUrl: null
         });
 

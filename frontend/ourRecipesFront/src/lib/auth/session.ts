@@ -57,9 +57,14 @@ export async function signSession(
   const expiresInSeconds = options.expiresInSeconds ?? SESSION_MAX_AGE_SECONDS[payload.type];
   const issuedAt = Math.floor(Date.now() / 1000);
 
+  // A blank name is not a name — leave the claim out entirely rather than
+  // baking `""` into the token, so `session.name ?? session.sub` fallbacks work.
+  const name = payload.name?.trim();
+
   return new SignJWT({
     type: payload.type,
     permissions: payload.permissions ?? { can_edit: false },
+    ...(name ? { name } : {}),
     created_at: new Date(issuedAt * 1000).toISOString()
   })
     .setProtectedHeader({ alg: ALGORITHM })
@@ -88,11 +93,13 @@ export async function verifySession(token: string | null | undefined): Promise<S
 
     const type = payload.type === 'guest' ? 'guest' : 'telegram';
     const permissions = (payload.permissions ?? {}) as Partial<SessionPayload['permissions']>;
+    const name = typeof payload.name === 'string' ? payload.name.trim() : '';
 
     return {
       sub: payload.sub,
       type,
       permissions: { can_edit: permissions.can_edit === true },
+      name: name || undefined,
       created_at: typeof payload.created_at === 'string' ? payload.created_at : undefined,
       iat: payload.iat,
       exp: payload.exp

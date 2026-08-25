@@ -65,7 +65,6 @@ function existingRecipe(overrides: Record<string, unknown> = {}) {
     preparation_time: null,
     difficulty: null,
     image_url: null,
-    image_data: null,
     sync_status: 'synced',
     sync_error: null,
     ...overrides

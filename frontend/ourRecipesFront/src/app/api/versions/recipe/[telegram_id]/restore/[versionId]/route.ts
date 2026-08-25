@@ -49,13 +49,9 @@ export async function POST(
     const versionRawContent = typeof content.raw_content === 'string' ? content.raw_content : '';
     const versionImageUrl = typeof content.image_url === 'string' ? content.image_url : null;
 
-    // Port of `_is_content_identical` (raw_content + image). A version that
-    // still carries a legacy `image_data` blob can't be cheaply compared to
-    // today's `image_url`-based recipe, so it's treated as "not identical"
-    // (i.e. always safe to restore) rather than risking a false skip.
+    // Port of `_is_content_identical` (raw_content + image).
     const contentIdentical =
       versionRawContent === recipe.raw_content &&
-      !version.image_data &&
       versionImageUrl === (recipe.image_url ?? null);
 
     if (contentIdentical) {
@@ -76,7 +72,7 @@ export async function POST(
     const mirror = await mirrorEditRecipe({
       telegramId: recipe.telegram_id,
       text: versionRawContent,
-      hadImage: Boolean(recipe.image_url || recipe.image_data),
+      hadImage: Boolean(recipe.image_url),
       newImageUrl: versionImageUrl
     });
 

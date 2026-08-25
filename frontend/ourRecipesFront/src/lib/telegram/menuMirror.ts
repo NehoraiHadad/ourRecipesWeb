@@ -53,13 +53,14 @@ function formatCreatedAt(d: Date): string {
 }
 
 /**
- * Verbatim port of `format_menu_for_telegram`.
+ * Port of `format_menu_for_telegram`.
  *
- * NOTE: preserves a Flask bug as-is — `dietary_labels` is keyed by the
- * uppercase enum member (`'MEAT'`) but looked up with `dietary_type.value`
- * (lowercase `'meat'`), so the Hebrew label never matches and the raw
- * lowercase value is always printed instead. Not fixed here; the goal is a
- * 1:1 port, and this is cosmetic (the message is best-effort output only).
+ * Fixes a Flask bug rather than reproducing it: the Python `dietary_labels`
+ * dict was keyed by the uppercase enum member (`'MEAT'`) but looked up with
+ * `dietary_type.value` (lowercase `'meat'`), so the Hebrew label never
+ * matched and the raw lowercase value was always printed instead. Here the
+ * map is keyed by the (already-uppercase) Prisma `DietaryType` enum value
+ * directly, so the Hebrew label actually renders.
  */
 export function formatMenuForTelegram(menu: MenuForTelegram): string {
   const lines: string[] = ['🍽️ תפריט חדש\n'];
@@ -69,9 +70,8 @@ export function formatMenuForTelegram(menu: MenuForTelegram): string {
   lines.push(`סועדים: ${menu.total_servings}`);
 
   if (menu.dietary_type) {
-    const dietaryValue = menu.dietary_type.toLowerCase();
     const dietaryLabels: Record<string, string> = { MEAT: 'בשרי', DAIRY: 'חלבי', PAREVE: 'פרווה' };
-    lines.push(`כשרות: ${dietaryLabels[dietaryValue] ?? dietaryValue}`);
+    lines.push(`כשרות: ${dietaryLabels[menu.dietary_type] ?? menu.dietary_type}`);
   }
 
   // IMPORTANT: share_token + is_public included so they can be recovered after a DB reset.

@@ -126,7 +126,7 @@ export async function PUT(
     const mirror = await mirrorEditRecipe({
       telegramId: recipe.telegram_id,
       text: newText,
-      hadImage: Boolean(recipe.image_url || recipe.image_data),
+      hadImage: Boolean(recipe.image_url),
       newImageUrl: imageBuffer ? imageUrl : null
     });
 

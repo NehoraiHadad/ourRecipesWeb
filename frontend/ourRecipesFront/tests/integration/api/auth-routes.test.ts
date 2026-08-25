@@ -13,7 +13,7 @@ vi.mock('@/lib/telegram/botApi', () => ({
 }));
 
 import { getChatMember } from '@/lib/telegram/botApi';
-import { clearPermissionCache, verifySession } from '@/lib/auth';
+import { clearPermissionCache, signSession, verifySession } from '@/lib/auth';
 import { POST as loginPOST } from '@/app/api/auth/login/route';
 import { POST as guestPOST } from '@/app/api/auth/guest/route';
 import { POST as logoutPOST } from '@/app/api/auth/logout/route';
@@ -102,6 +102,8 @@ describe('POST /api/auth/login', () => {
     expect(session!.sub).toBe('987654321');
     expect(session!.type).toBe('telegram');
     expect(session!.permissions.can_edit).toBe(true);
+    // The display name rides in the token so it survives a reload.
+    expect(session!.name).toBe('דנה');
 
     const cookies = setCookieValues(response);
     expect(cookies).toHaveLength(1);
@@ -124,6 +126,32 @@ describe('POST /api/auth/login', () => {
       'אין לך הרשאות עריכה. יש להצטרף לערוץ הטלגרם כדי לקבל הרשאות.'
     );
     expect((await verifySession(json.token))!.permissions.can_edit).toBe(false);
+  });
+
+  it('joins first_name and last_name into the name claim and the response', async () => {
+    getChatMemberMock.mockResolvedValue({ status: 'member' } as any);
+
+    const response = await loginPOST(
+      postRequest('/api/auth/login', freshAuthData({ last_name: 'כהן' }))
+    );
+    const json = await response.json();
+
+    expect(json.user.name).toBe('דנה כהן');
+    expect((await verifySession(json.token))!.name).toBe('דנה כהן');
+  });
+
+  it('omits the name claim when Telegram sent no first_name', async () => {
+    getChatMemberMock.mockResolvedValue({ status: 'member' } as any);
+
+    const authData = signAuthData({
+      id: 987654321,
+      username: 'dana',
+      auth_date: Math.floor(Date.now() / 1000)
+    });
+    const json = await (await loginPOST(postRequest('/api/auth/login', authData))).json();
+
+    expect(json.user.name).toBe('');
+    expect((await verifySession(json.token))!.name).toBeUndefined();
   });
 
   it('rejects a tampered hash with 401 and sets no cookie', async () => {
@@ -177,6 +205,8 @@ describe('POST /api/auth/guest', () => {
     expect(session!.sub).toBe(json.user.id);
     expect(session!.type).toBe('guest');
     expect(session!.permissions.can_edit).toBe(false);
+    // The generated guest name is a claim, so a reload gets the same name back.
+    expect(session!.name).toBe(json.user.name);
     expect(session!.exp! - session!.iat!).toBe(4 * 60 * 60);
 
     const cookies = setCookieValues(response);
@@ -227,10 +257,58 @@ describe('GET /api/auth/validate', () => {
       authenticated: true,
       canEdit: true,
       user_id: '987654321',
+      name: 'דנה',
       type: 'telegram',
       message: null
     });
     expect(getChatMemberMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('returns the telegram display name so the Header survives a reload', async () => {
+    getChatMemberMock.mockResolvedValue({ status: 'creator' } as any);
+
+    const login = await (
+      await loginPOST(postRequest('/api/auth/login', freshAuthData({ last_name: 'כהן' })))
+    ).json();
+    clearPermissionCache();
+
+    // Second call with only the cookie — the reload path, no login payload in hand.
+    const json = await (
+      await validateGET(
+        getRequest('/api/auth/validate', { cookie: `access_token_cookie=${login.token}` })
+      )
+    ).json();
+
+    expect(json.name).toBe('דנה כהן');
+    expect(json.name).toBe(login.user.name);
+  });
+
+  it('omits name for a token minted before the claim existed', async () => {
+    getChatMemberMock.mockResolvedValue({ status: 'creator' } as any);
+
+    const legacyToken = await signSession({
+      sub: '987654321',
+      type: 'telegram',
+      permissions: { can_edit: true }
+    });
+
+    const json = await (
+      await validateGET(getRequest('/api/auth/validate', { authorization: `Bearer ${legacyToken}` }))
+    ).json();
+
+    expect(json.authenticated).toBe(true);
+    expect(json.user_id).toBe('987654321');
+    expect('name' in json).toBe(false);
+  });
+
+  it('falls back to the derived guest name for a token minted before the claim existed', async () => {
+    const legacyToken = await signSession({ sub: 'guest_abcd1234', type: 'guest' });
+
+    const json = await (
+      await validateGET(getRequest('/api/auth/validate', { authorization: `Bearer ${legacyToken}` }))
+    ).json();
+
+    expect(json.name).toBe('אורח_1234');
   });
 
   it('reports canEdit false when the user is no longer an admin', async () => {

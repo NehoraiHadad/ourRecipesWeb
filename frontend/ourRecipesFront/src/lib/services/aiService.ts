@@ -3,6 +3,7 @@
  */
 import { GoogleGenAI } from '@google/genai';
 import { logger } from '@/lib/logger';
+import { OPTIMIZED_STEPS_SCHEMA } from '@/lib/recipes/optimizedSteps';
 
 const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || '' });
 
@@ -204,9 +205,15 @@ ${refinementRequest}
 }
 
 /**
- * Optimize recipe steps
+ * Optimize recipe steps.
+ *
+ * Asks Gemini for structured JSON (`OPTIMIZED_STEPS_SCHEMA`) rather than prose,
+ * so `RecipeStepOptimizer` can render the rich view without sniffing text.
+ * Returns the decoded JSON as `unknown`: the caller validates it with
+ * `parseOptimizedSteps` and decides what a non-conforming answer means.
+ * Resolves to `null` when the model returns nothing parseable at all.
  */
-export async function optimizeRecipeSteps(recipeText: string): Promise<string> {
+export async function optimizeRecipeSteps(recipeText: string): Promise<unknown> {
   logger.debug('Optimizing recipe steps');
 
   const prompt = `
@@ -220,14 +227,36 @@ ${recipeText}
 3. ניצול מיטבי של כלים וזמן
 4. צמצום המתנות מיותרות
 
-החזר רק את הצעדים המשופרים עם הסברים קצרים.
+כללים:
+- כל הטקסט בעברית.
+- כל שדות הזמן הם מספר דקות כמחרוזת (למשל "25"), ללא יחידות, פרט ל-max_prep_time שהוא מספר שעות מראש כמחרוזת.
+- time_saved הוא ההפרש בין total_sequential_time ל-total_optimized_time.
+- dependencies מפנה לשמות שלבים קודמים, ורשימה ריקה אם אין תלות.
 `;
 
   const response = await genAI.models.generateContent({
     model: 'gemini-2.0-flash-exp',
-    contents: prompt
+    contents: prompt,
+    config: {
+      responseMimeType: 'application/json',
+      responseSchema: OPTIMIZED_STEPS_SCHEMA
+    }
   });
 
-  logger.info('Recipe steps optimized');
-  return response.text || '';
+  const text = response.text?.trim();
+  if (!text) {
+    logger.warn('Step optimization returned an empty response');
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(text) as unknown;
+    logger.info('Recipe steps optimized');
+    return parsed;
+  } catch (error) {
+    // Structured output makes this unlikely, but a truncated answer is still
+    // possible — surface it as non-conformance rather than as a crash.
+    logger.warn({ error, textLength: text.length }, 'Step optimization returned non-JSON');
+    return null;
+  }
 }

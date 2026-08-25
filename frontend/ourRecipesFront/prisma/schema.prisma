@@ -76,7 +76,6 @@ model Recipe {
   recipe_metadata Json?
 
   // Media
-  image_data   Bytes?
   image_url    String?  @db.VarChar(500)
   media_type   String?  @db.VarChar(50)
 
@@ -123,7 +122,6 @@ model RecipeVersion {
   created_by          String?  @db.VarChar(100)
   change_description  String?  @db.Text
   is_current          Boolean  @default(false)
-  image_data          Bytes?
 
   // Relationships
   recipe  Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)

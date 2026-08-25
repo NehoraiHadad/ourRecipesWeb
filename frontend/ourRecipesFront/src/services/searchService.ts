@@ -31,26 +31,49 @@ interface PaginatedSearchResponse {
 export class SearchService {
   private static readonly BASE_PATH = '/api/recipes/search';
 
+  /** Drop blank entries and join a list into a `a,b,c` query param value. */
+  private static toList(values: string[] | string | undefined): string {
+    const items = Array.isArray(values) ? values : values ? [values] : [];
+    return items
+      .map((item) => String(item).trim())
+      .filter(Boolean)
+      .join(',');
+  }
+
   // Recipe search
   static async search(params: SearchParams): Promise<SearchResponse> {
     try {
-      // `GET /api/recipes/search` understands `query`, a single `category`,
-      // an upper-case `difficulty` and pagination. Anything else the UI can
-      // ask for (extra categories, prep time, include/exclude terms) has no
-      // server-side equivalent and is filtered out here rather than sent as
-      // dead query string.
+      // Every advanced filter the UI collects has a server-side equivalent on
+      // `GET /api/recipes/search`; see that route for the semantics of each.
       const queryParams = new URLSearchParams();
-      const { query, categories, difficulty } = params as SearchParams & {
-        categories?: string[];
-        difficulty?: string;
-      };
+      const {
+        query,
+        categories,
+        difficulty,
+        preparationTime,
+        includeTerms,
+        excludeTerms,
+        page,
+        pageSize
+      } = params;
 
       if (query) queryParams.set('query', String(query));
 
-      const category = Array.isArray(categories) ? categories[0] : categories;
-      if (category) queryParams.set('category', String(category));
+      const categoryList = this.toList(categories);
+      if (categoryList) queryParams.set('categories', categoryList);
 
       if (difficulty) queryParams.set('difficulty', String(difficulty).toUpperCase());
+
+      if (preparationTime) queryParams.set('maxPrepTime', String(preparationTime));
+
+      const include = this.toList(includeTerms);
+      if (include) queryParams.set('includeTerms', include);
+
+      const exclude = this.toList(excludeTerms);
+      if (exclude) queryParams.set('excludeTerms', exclude);
+
+      if (page) queryParams.set('page', String(page));
+      if (pageSize) queryParams.set('pageSize', String(pageSize));
 
       const response = await apiService.get<PaginatedSearchResponse>(
         `${this.BASE_PATH}?${queryParams.toString()}`

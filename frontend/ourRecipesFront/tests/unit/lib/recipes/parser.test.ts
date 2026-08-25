@@ -29,11 +29,9 @@ const FULL_RECIPE = `כותרת: עוגת שוקולד פשוטה ומהירה
 
 // Fixture 2: same shape as backend/tests/test_categories.py's raw_content
 // fixtures (copied verbatim: "כותרת: ...\nקטגוריות: ...\nמצרכים:\n- ...").
-// Note it uses "מצרכים:" rather than the exact "רשימת מצרכים:" label the
-// parser (and the Python model's `_parse_content`) requires, so ingredients
-// are legitimately NOT extracted here — this is a real, pre-existing fixture
-// shape in the backend test suite, and it doubles as the "empty ingredients"
-// edge case.
+// It uses the shorter "מצרכים:" label rather than "רשימת מצרכים:" — a real
+// channel-message shape the parser now recognizes as an ingredients-section
+// synonym (see `INGREDIENTS_LABELS` in parser.ts).
 const CATEGORIES_FIXTURE = 'כותרת: מתכון 1\nקטגוריות: קינוחים, עוגות\nמצרכים:\n- סוכר';
 
 describe('getFirstLine', () => {
@@ -85,7 +83,6 @@ describe('parseRecipeMessage', () => {
         '3. לשפוך את התערובת לתבנית ונאפה עד שהעוגה מוכנה.'
     );
     expect(result.preparationTime).toBe(45);
-    // Note: `_parse_content`'s difficulty_map only recognizes 'קל'/'בינוני'/'קשה'.
     expect(result.difficulty).toBe('EASY');
     expect(result.raw).toBe(FULL_RECIPE);
     expect(result.isParsed).toBe(true);
@@ -145,12 +142,55 @@ describe('parseRecipeMessage', () => {
     expect(result.parseErrors).toContain('לא נמצאו מצרכים');
   });
 
-  it('reproduces backend/tests/test_categories.py fixture behavior: "מצרכים:" (not "רשימת מצרכים:") yields no ingredients', () => {
+  it('accepts "מצרכים:" (backend/tests/test_categories.py fixture shape) as an ingredients-section label', () => {
     const result = parseRecipeMessage(CATEGORIES_FIXTURE);
 
     expect(result.title).toBe('מתכון 1');
     expect(result.categories).toEqual(['קינוחים', 'עוגות']);
-    expect(result.ingredients).toEqual([]);
+    expect(result.ingredients).toEqual(['סוכר']);
+  });
+
+  it('accepts "רכיבים:" as an ingredients-section label', () => {
+    const text = `כותרת: סלט ירקות
+קטגוריות: סלטים
+רכיבים:
+- מלפפון
+- עגבנייה
+הוראות הכנה:
+1. לחתוך ולערבב.`;
+
+    const result = parseRecipeMessage(text);
+
+    expect(result.ingredients).toEqual(['מלפפון', 'עגבנייה']);
+  });
+
+  it('accepts "מורכב" as a difficulty label, mapping to HARD (matches the AI prompts and client formatter)', () => {
+    const text = `כותרת: תבשיל מורכב
+קטגוריות: עיקריות
+רמת קושי: מורכב
+רשימת מצרכים:
+- דבר
+הוראות הכנה:
+1. עשה.`;
+
+    const result = parseRecipeMessage(text);
+
+    expect(result.difficulty).toBe('HARD');
+    expect(result.parseErrors.some((e) => e.startsWith('רמת קושי לא תקינה'))).toBe(false);
+  });
+
+  it('still accepts "קשה" as a difficulty label, mapping to HARD', () => {
+    const text = `כותרת: תבשיל קשה
+קטגוריות: עיקריות
+רמת קושי: קשה
+רשימת מצרכים:
+- דבר
+הוראות הכנה:
+1. עשה.`;
+
+    const result = parseRecipeMessage(text);
+
+    expect(result.difficulty).toBe('HARD');
   });
 
   it('flags a message missing the כותרת: prefix but still uses the first line as a fallback title', () => {
@@ -160,7 +200,7 @@ describe('parseRecipeMessage', () => {
     expect(result.parseErrors).toContain('חסרה כותרת מתכון');
   });
 
-  it('drops categories entirely when more than 5 are given (matches _parse_content)', () => {
+  it('keeps the first 5 categories when more than 5 are given, rather than dropping all of them', () => {
     const text = `כותרת: מתכון
 קטגוריות: א, ב, ג, ד, ה, ו
 רשימת מצרכים:
@@ -170,8 +210,9 @@ describe('parseRecipeMessage', () => {
 
     const result = parseRecipeMessage(text);
 
-    expect(result.categories).toEqual([]);
-    expect(result.parseErrors).toContain('יותר מדי קטגוריות (מקסימום 5)');
+    expect(result.categories).toEqual(['א', 'ב', 'ג', 'ד', 'ה']);
+    expect(result.parseErrors).not.toContain('יותר מדי קטגוריות (מקסימום 5)');
+    expect(result.parseErrors).not.toContain('לא נמצאו קטגוריות');
   });
 
   it('treats an out-of-range preparation time as invalid (1-1440 minutes)', () => {

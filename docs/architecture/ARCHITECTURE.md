@@ -166,10 +166,15 @@ TELEGRAM_BOT_TOKEN=...              # Bot API: webhook, שיקוף, getChatMembe
 TELEGRAM_WEBHOOK_SECRET=...         # secret_token של setWebhook
 TELEGRAM_CHANNEL_ID=-100xxxxxxxxxx  # הערוץ הראשי
 TELEGRAM_OLD_CHANNEL_ID=-100xxxxxxx # הערוץ הישן (קלט גולמי)
+NEXT_PUBLIC_TELEGRAM_BOT=...        # שם הבוט (ללא @) — data-telegram-login של TelegramLoginWidget, נחשף לצד לקוח
 GOOGLE_API_KEY=...                  # Gemini
 GOOGLE_API_KEY_NANO_BANANA=...      # תמונות
+HUGGINGFACE_TOKEN=...               # generateRecipeImage (Stable Diffusion XL, /api/recipes/generate-image)
 BLOB_READ_WRITE_TOKEN=...           # Vercel Blob
 INTERNAL_API_SECRET=...             # קריאות פנימיות (cron→python, python→next)
+CRON_SECRET=...                     # Bearer שה-Vercel Cron שולח ל-/api/cron/*; INTERNAL_API_SECRET מתקבל גם הוא כחלופה
+PYTHON_RECONCILE_URL=...            # אופציונלי: כתובת ה-Python Function; ללא זה מדלגים על מעבר ה-reconcile ההיסטורי (§4.6)
+LOG_LEVEL=...                       # אופציונלי: רמת ה-pino logger (ברירת מחדל: debug בפיתוח, info בפרודקשן)
 
 # Python Function (reconcile/import בלבד)
 TELEGRAM_API_ID=... / TELEGRAM_API_HASH=... / SESSION_STRING=...
@@ -183,8 +188,9 @@ INTERNAL_API_SECRET=...
 ## 8. מה נשאר בכוונה
 
 - **מבנה ה-DB** — סכמת ה-Prisma הקיימת (10 מודלים) נשארת, בשינויים קטנים:
-  `image_data` יוצא משימוש לטובת `image_url`, שדות sync מצטמצמים ל-`sync_status`
-  של שיקוף יוצא בלבד.
+  עמודת ה-`image_data` (Bytes legacy) הוסרה לגמרי מ-`Recipe` ומ-`RecipeVersion`
+  לטובת `image_url` בלבד, ושדות sync מצטמצמים ל-`sync_status` של שיקוף יוצא
+  בלבד.
 - **ה-UI** — לא משתנה פונקציונלית; רק יעד ה-API מתחלף (Flask → relative `/api`)
   ורכיבי sync ידני מוסרים.
 - **ה-AI routes** שכבר נכתבו בנקסט (suggest, reformat, refine, generate-image,
