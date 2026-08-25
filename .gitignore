@@ -1,5 +1,4 @@
 # dependencies
-/backend/.venv/
 /frontend/ourRecipesFront/node_modules/
 /.pnp
 .pnp.js
@@ -11,17 +10,13 @@
 *.pyo
 *.pyd
 *.pytest_cache
-
-# Flask instance-specific data
-/backend/instance/
+/api-python/.venv/
 
 # Database files
 *.sqlite
 
-# Session file
-connect_to_our_recipes_channel.session
-connect_to_our_recipes_channel_monitor.session
-test_session.session
+# Telegram session files
+*.session
 
 # Testing
 /coverage
@@ -43,7 +38,6 @@ test_session.session
 *.env.development
 .env*.local
 google_credentials.json
-/backend/config.py
 
 # IDEs and text editors
 .vscode/
@@ -64,10 +58,6 @@ google_credentials.json
 # Misc
 *.bak
 *.tmp
-
-# Development Telegram sessions
-backend/sessions_dev/
-backend/sessions_dev/*.session
 
 # stray root installs
 /node_modules/

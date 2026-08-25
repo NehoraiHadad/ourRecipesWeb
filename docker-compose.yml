@@ -1,36 +1,19 @@
+# Local development infrastructure only.
+# The app itself runs with `npm run dev` inside frontend/ourRecipesFront.
+#
+# Matching DATABASE_URL for .env / .env.local:
+#   DATABASE_URL=postgresql://ourrecipes:ourrecipes@localhost:5432/ourrecipes
 services:
-  backend:
-    build: ./backend
+  postgres:
+    image: postgres:16-alpine
     ports:
-      - "5000:5000"
-    volumes:
-      - ./backend/ourRecipesBack:/app/ourRecipesBack
-      - ./backend/.env.development:/app/.env
-      # Session files volume is no longer needed - using session strings now
-    env_file: ./backend/.env.development
+      - "5432:5432"
     environment:
-      - FLASK_APP=ourRecipesBack
-      - FLASK_DEBUG=1
-      # Telegram Session String Configuration:
-      # Add these to your .env.development file (more secure option):
-      #   SESSION_STRING=your_main_session_string
-      #   SESSION_STRING_MONITOR=your_monitor_session_string
-      # For development, you can use:
-      #   SESSION_STRING_DEV=your_dev_session_string
-      #   SESSION_STRING_MONITOR_DEV=your_dev_monitor_session_string
-      # Generate these using: python -m scripts.generate_session_string
-
-  frontend:
-    build: ./frontend
-    ports:
-      - "80:80"
-    environment:
-      - WATCHPACK_POLLING=true
-    env_file: ./frontend/ourRecipesFront/.env.local
-
+      POSTGRES_USER: ourrecipes
+      POSTGRES_PASSWORD: ourrecipes
+      POSTGRES_DB: ourrecipes
     volumes:
-      - ./frontend/ourRecipesFront/src:/app/src
-      - ./frontend/ourRecipesFront/public:/app/public
-      - ./frontend/ourRecipesFront/types:/app/types
-      - ./frontend/ourRecipesFront/utils:/app/utils
-      - ./frontend/ourRecipesFront/tailwind.config.ts:/app/tailwind.config.ts
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
