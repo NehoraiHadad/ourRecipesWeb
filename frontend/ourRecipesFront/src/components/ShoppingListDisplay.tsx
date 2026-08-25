@@ -4,6 +4,7 @@ import { menuService } from '@/services/menuService';
 import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import Spinner from '@/components/ui/Spinner';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import type { ShoppingList, ShoppingListItem } from '@/types';
 
 interface ShoppingListDisplayProps {
@@ -22,6 +23,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
   const [loading, setLoading] = useState<boolean>(true);
   const [regenerating, setRegenerating] = useState<boolean>(false);
   const [checkedItems, setCheckedItems] = useState<Set<number>>(new Set());
+  const [showRegenerateConfirm, setShowRegenerateConfirm] = useState<boolean>(false);
 
   // Load shopping list
   useEffect(() => {
@@ -79,12 +81,11 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
     }
   };
 
-  // Regenerate shopping list
-  const handleRegenerate = async () => {
-    if (!confirm('האם לייצר מחדש את רשימת הקניות? הסימונים הקיימים יאבדו.')) {
-      return;
-    }
+  // Regenerate shopping list — opens the confirmation dialog; the actual
+  // work happens in `confirmRegenerate`.
+  const handleRegenerate = () => setShowRegenerateConfirm(true);
 
+  const confirmRegenerate = async () => {
     setRegenerating(true);
 
     try {
@@ -95,6 +96,7 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
         setCheckedItems(new Set());
         addNotification({ message: 'רשימת הקניות עודכנה בהצלחה', type: 'success' });
       }
+      setShowRegenerateConfirm(false);
     } catch (error) {
       console.error('Error regenerating shopping list:', error);
       addNotification({ message: 'שגיאה ביצירת רשימת הקניות', type: 'error' });
@@ -307,6 +309,16 @@ const ShoppingListDisplay: React.FC<ShoppingListDisplayProps> = ({
           💡 <strong>בקרוב:</strong> סנכרון אוטומטי עם Google Keep!
         </p>
       </div>
+
+      <ConfirmDialog
+        isOpen={showRegenerateConfirm}
+        title="יצירת רשימה מחדש"
+        message="האם לייצר מחדש את רשימת הקניות? הסימונים הקיימים יאבדו."
+        confirmLabel="ייצר מחדש"
+        isLoading={regenerating}
+        onConfirm={confirmRegenerate}
+        onClose={() => setShowRegenerateConfirm(false)}
+      />
       </div>
     </div>
   );

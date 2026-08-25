@@ -5,6 +5,7 @@ import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import Spinner from '@/components/ui/Spinner';
 import Modal from '@/components/Modal';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
 import { RecipeService } from '@/services/recipeService';
 import { SearchService } from '@/services/searchService';
@@ -74,6 +75,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   const [showAddMealModal, setShowAddMealModal] = useState<boolean>(false);
   const [newMealType, setNewMealType] = useState<string>('ארוחת ערב');
   const [newMealTime, setNewMealTime] = useState<string>('');
+
+  // Single shared confirmation dialog (Stage F3) driving all three delete
+  // actions below, instead of `window.confirm` per action.
+  const [pendingConfirm, setPendingConfirm] = useState<
+    | { kind: 'deleteMenu' }
+    | { kind: 'deleteRecipe'; mealId: number; recipeId: number }
+    | { kind: 'deleteMeal'; mealId: number }
+    | null
+  >(null);
+  const [isConfirming, setIsConfirming] = useState<boolean>(false);
 
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
@@ -268,87 +279,70 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     handleSearchSuggestions(debouncedSearchQuery);
   }, [debouncedSearchQuery, handleSearchSuggestions]);
 
-  // Handle delete
-  const handleDelete = async () => {
-    if (!confirm('האם אתה בטוח שברצונך למחוק את התפריט?')) {
-      return;
-    }
+  // Delete triggers — open the shared confirmation dialog instead of
+  // `window.confirm`. The actual work happens in `executeConfirmedAction`.
+  const handleDelete = () => setPendingConfirm({ kind: 'deleteMenu' });
 
-    setLoading(true);
+  const handleDeleteRecipe = (mealId: number, recipeId: number) =>
+    setPendingConfirm({ kind: 'deleteRecipe', mealId, recipeId });
 
-    try {
-      await menuService.deleteMenu(menu.id);
-      addNotification({ message: 'התפריט נמחק בהצלחה', type: 'success' });
+  const handleDeleteMeal = (mealId: number) => setPendingConfirm({ kind: 'deleteMeal', mealId });
 
-      if (onMenuDeleted) {
-        onMenuDeleted();
-      } else {
-        router.push('/menus');
+  const refreshMenu = async () => {
+    const menuResponse = await menuService.getMenu(menu.id);
+    if (menuResponse.menu) {
+      setMenu(menuResponse.menu);
+      if (onMenuUpdated) {
+        onMenuUpdated(menuResponse.menu);
       }
-    } catch (error) {
-      console.error('Error deleting menu:', error);
-      addNotification({ message: 'שגיאה במחיקת התפריט', type: 'error' });
-    } finally {
-      setLoading(false);
     }
   };
 
-  // Handle delete recipe from meal
-  const handleDeleteRecipe = async (mealId: number, recipeId: number) => {
-    if (!confirm('האם אתה בטוח שברצונך להסיר מתכון זה מהארוחה?')) {
-      return;
-    }
+  const executeConfirmedAction = async () => {
+    if (!pendingConfirm) return;
 
-    setLoading(true);
-
+    setIsConfirming(true);
     try {
-      await menuService.deleteRecipeFromMeal(menu.id, mealId, recipeId);
+      switch (pendingConfirm.kind) {
+        case 'deleteMenu':
+          await menuService.deleteMenu(menu.id);
+          addNotification({ message: 'התפריט נמחק בהצלחה', type: 'success' });
+          setPendingConfirm(null);
+          if (onMenuDeleted) {
+            onMenuDeleted();
+          } else {
+            router.push('/menus');
+          }
+          return;
 
-      // Refresh menu
-      const menuResponse = await menuService.getMenu(menu.id);
-      if (menuResponse.menu) {
-        setMenu(menuResponse.menu);
-        if (onMenuUpdated) {
-          onMenuUpdated(menuResponse.menu);
-        }
+        case 'deleteRecipe':
+          await menuService.deleteRecipeFromMeal(menu.id, pendingConfirm.mealId, pendingConfirm.recipeId);
+          await refreshMenu();
+          addNotification({ message: 'המתכון הוסר בהצלחה!', type: 'success' });
+          break;
+
+        case 'deleteMeal':
+          await menuService.deleteMeal(menu.id, pendingConfirm.mealId);
+          await refreshMenu();
+          addNotification({ message: 'הארוחה נמחקה בהצלחה!', type: 'success' });
+          break;
       }
-
-      addNotification({ message: 'המתכון הוסר בהצלחה!', type: 'success' });
+      setPendingConfirm(null);
     } catch (error) {
-      console.error('Error deleting recipe:', error);
-      addNotification({ message: 'שגיאה בהסרת המתכון', type: 'error' });
+      console.error('Error executing confirmed action:', error);
+      addNotification({ message: 'שגיאה בביצוע הפעולה', type: 'error' });
     } finally {
-      setLoading(false);
+      setIsConfirming(false);
     }
   };
 
-  // Handle delete meal
-  const handleDeleteMeal = async (mealId: number) => {
-    if (!confirm('האם אתה בטוח שברצונך למחוק ארוחה זו?')) {
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      await menuService.deleteMeal(menu.id, mealId);
-
-      // Refresh menu
-      const menuResponse = await menuService.getMenu(menu.id);
-      if (menuResponse.menu) {
-        setMenu(menuResponse.menu);
-        if (onMenuUpdated) {
-          onMenuUpdated(menuResponse.menu);
-        }
-      }
-
-      addNotification({ message: 'הארוחה נמחקה בהצלחה!', type: 'success' });
-    } catch (error) {
-      console.error('Error deleting meal:', error);
-      addNotification({ message: 'שגיאה במחיקת הארוחה', type: 'error' });
-    } finally {
-      setLoading(false);
-    }
+  const confirmDialogText: Record<
+    'deleteMenu' | 'deleteRecipe' | 'deleteMeal',
+    { title: string; message: string }
+  > = {
+    deleteMenu: { title: 'מחיקת תפריט', message: 'האם אתה בטוח שברצונך למחוק את התפריט?' },
+    deleteRecipe: { title: 'הסרת מתכון', message: 'האם אתה בטוח שברצונך להסיר מתכון זה מהארוחה?' },
+    deleteMeal: { title: 'מחיקת ארוחה', message: 'האם אתה בטוח שברצונך למחוק ארוחה זו?' }
   };
 
   // Handle add recipe to meal - search
@@ -1135,6 +1129,16 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
           </div>
         </div>
       )}
+
+      {/* Shared delete confirmation (menu / meal / recipe-from-meal) */}
+      <ConfirmDialog
+        isOpen={!!pendingConfirm}
+        title={pendingConfirm ? confirmDialogText[pendingConfirm.kind].title : undefined}
+        message={pendingConfirm ? confirmDialogText[pendingConfirm.kind].message : ''}
+        isLoading={isConfirming}
+        onConfirm={executeConfirmedAction}
+        onClose={() => setPendingConfirm(null)}
+      />
       </div>
     </div>
   );

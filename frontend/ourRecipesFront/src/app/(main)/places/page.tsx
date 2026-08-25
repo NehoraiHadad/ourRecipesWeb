@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { Container } from '@/components/ui/Container';
 import { Typography } from '@/components/ui/Typography';
 import Modal from '@/components/Modal';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import { PlaceCard } from '@/components/place/PlaceCard';
 import { PlaceForm } from '@/components/place/PlaceForm';
 import { PlaceFilters } from '@/components/place/PlaceFilters';
@@ -43,6 +44,7 @@ export default function PlacesPage() {
   const [formData, setFormData] = useState<PlaceFormData>(INITIAL_FORM_DATA);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [viewMode, setViewMode] = useState<'list' | 'map'>('list');
 
   // Filtering and sorting states
@@ -118,6 +120,7 @@ export default function PlacesPage() {
   const confirmDelete = async () => {
     if (!placeToDelete) return;
 
+    setIsDeleting(true);
     try {
       await PlaceService.deletePlace(placeToDelete.id);
       await fetchPlaces();
@@ -125,6 +128,8 @@ export default function PlacesPage() {
       setPlaceToDelete(null);
     } catch (error) {
       console.error('Failed to delete place:', error);
+    } finally {
+      setIsDeleting(false);
     }
   };
 
@@ -246,33 +251,15 @@ export default function PlacesPage() {
         />
       </Modal>
 
-      {/* Delete Confirmation Modal */}
-      <Modal
+      {/* Delete Confirmation */}
+      <ConfirmDialog
         isOpen={isDeleteModalOpen}
-        onClose={closeDeleteModal}
         title="מחיקת המלצה"
-      >
-        <div className="space-y-4">
-          <Typography variant="body">
-            האם אתה בטוח שברצונך למחוק את ההמלצה ל{placeToDelete?.name}?
-          </Typography>
-          <div className="flex justify-end gap-2">
-            <Button
-              variant="secondary"
-              onClick={closeDeleteModal}
-            >
-              ביטול
-            </Button>
-            <Button
-              variant="primary"
-              onClick={confirmDelete}
-              className="bg-red-600 hover:bg-red-700 text-white"
-            >
-              מחק
-            </Button>
-          </div>
-        </div>
-      </Modal>
+        message={`האם אתה בטוח שברצונך למחוק את ההמלצה ל${placeToDelete?.name}?`}
+        isLoading={isDeleting}
+        onConfirm={confirmDelete}
+        onClose={closeDeleteModal}
+      />
     </div>
   );
-} 
+}

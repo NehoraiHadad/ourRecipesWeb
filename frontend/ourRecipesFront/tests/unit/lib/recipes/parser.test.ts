@@ -3,7 +3,10 @@ import {
   getFirstLine,
   getDetails,
   parseRecipeMessage,
-  formatRecipeText
+  formatRecipeText,
+  formatIngredient,
+  parseIngredientLine,
+  quantityAsNumber
 } from '@/lib/recipes/parser';
 
 // Fixture 1: the canonical "reformatted recipe" example embedded verbatim in
@@ -33,6 +36,44 @@ const FULL_RECIPE = `כותרת: עוגת שוקולד פשוטה ומהירה
 // channel-message shape the parser now recognizes as an ingredients-section
 // synonym (see `INGREDIENTS_LABELS` in parser.ts).
 const CATEGORIES_FIXTURE = 'כותרת: מתכון 1\nקטגוריות: קינוחים, עוגות\nמצרכים:\n- סוכר';
+
+// Fixture 3: a realistic savoury recipe exercising the ingredient forms the
+// channel actually contains — a range, a parenthesised note, the unit-first
+// "כוס וחצי" form, a slash fraction and a dash-introduced note.
+const PASTA_RECIPE = `כותרת: פסטה ברוטב עגבניות
+קטגוריות: פסטה, עיקריות, איטלקי
+זמן הכנה: 30 דקות
+רמת קושי: בינוני
+רשימת מצרכים:
+- 500 גרם פסטה
+- 2-3 שיני שום (קצוצות)
+- כוס וחצי רוטב עגבניות
+- 2 כפות שמן זית
+- 1/2 כפית מלח
+- פלפל שחור - לפי הטעם
+הוראות הכנה:
+1. לבשל את הפסטה במים מלוחים.
+2. לטגן את השום בשמן זית.
+3. להוסיף את הרוטב ולערבב עם הפסטה.`;
+
+// Fixture 4: a baking recipe with the mixed "2 וחצי" form, a decimal, a
+// parenthesised note and a cocoa percentage that must stay in the name.
+const COOKIES_RECIPE = `כותרת: עוגיות שוקולד צ'יפס
+קטגוריות: עוגיות, קינוחים
+זמן הכנה: 25 דקות
+רמת קושי: קל
+רשימת מצרכים:
+- 2 וחצי כוסות קמח
+- 1.5 כוס סוכר חום
+- 200 גרם חמאה רכה (בטמפרטורת החדר)
+- 2 ביצים
+- 1/2 כפית מלח
+- 100 גרם שוקולד מריר 70-80% קקאו
+הוראות הכנה:
+1. לערבב את החמאה עם הסוכר.
+2. להוסיף את הביצים ולערבב.
+3. לקפל פנימה את הקמח, המלח והשוקולד.
+4. לאפות 12 דקות ב-180 מעלות.`;
 
 describe('getFirstLine', () => {
   it('extracts and strips the first line like RecipeService.get_first_line', () => {
@@ -87,6 +128,72 @@ describe('parseRecipeMessage', () => {
     expect(result.raw).toBe(FULL_RECIPE);
     expect(result.isParsed).toBe(true);
     expect(result.parseErrors).toEqual([]);
+  });
+
+  it('splits every ingredient line into structured parts', () => {
+    const result = parseRecipeMessage(FULL_RECIPE);
+
+    expect(result.structuredIngredients).toEqual([
+      { quantity: 2, name: 'ביצים' },
+      { quantity: 1, unit: 'כוס', name: 'סוכר' },
+      { quantity: 1, unit: 'כוס', name: 'קמח' },
+      { quantity: 'חצי', unit: 'כוס', name: 'שמן' },
+      { quantity: 'חצי', unit: 'חבילה', name: 'של שוקולד' },
+      { quantity: 'חצי', unit: 'שקית', name: 'אבקת אפייה' }
+    ]);
+  });
+
+  it('keeps structuredIngredients aligned with the raw ingredient lines', () => {
+    for (const fixture of [FULL_RECIPE, PASTA_RECIPE, COOKIES_RECIPE]) {
+      const result = parseRecipeMessage(fixture);
+
+      expect(result.structuredIngredients).toHaveLength(result.ingredients.length);
+      expect(result.structuredIngredients.map(formatIngredient)).toEqual(
+        result.ingredients.map((line) => formatIngredient(parseIngredientLine(line)))
+      );
+    }
+  });
+
+  it('parses the mixed ingredient forms of a realistic savoury recipe', () => {
+    const result = parseRecipeMessage(PASTA_RECIPE);
+
+    expect(result.isParsed).toBe(true);
+    expect(result.preparationTime).toBe(30);
+    expect(result.difficulty).toBe('MEDIUM');
+    expect(result.structuredIngredients).toEqual([
+      { quantity: 500, unit: 'גרם', name: 'פסטה' },
+      { quantity: '2-3', unit: 'שיני', name: 'שום', note: 'קצוצות' },
+      { quantity: '1 וחצי', unit: 'כוס', name: 'רוטב עגבניות' },
+      { quantity: 2, unit: 'כפות', name: 'שמן זית' },
+      { quantity: '1/2', unit: 'כפית', name: 'מלח' },
+      { name: 'פלפל שחור', note: 'לפי הטעם' }
+    ]);
+  });
+
+  it('parses the mixed ingredient forms of a realistic baking recipe', () => {
+    const result = parseRecipeMessage(COOKIES_RECIPE);
+
+    expect(result.isParsed).toBe(true);
+    expect(result.structuredIngredients).toEqual([
+      { quantity: '2 וחצי', unit: 'כוסות', name: 'קמח' },
+      { quantity: 1.5, unit: 'כוס', name: 'סוכר חום' },
+      { quantity: 200, unit: 'גרם', name: 'חמאה רכה', note: 'בטמפרטורת החדר' },
+      { quantity: 2, name: 'ביצים' },
+      { quantity: '1/2', unit: 'כפית', name: 'מלח' },
+      { quantity: 100, unit: 'גרם', name: 'שוקולד מריר 70-80% קקאו' }
+    ]);
+    expect(result.structuredIngredients.map(quantityAsNumber)).toEqual([
+      2.5,
+      1.5,
+      200,
+      2,
+      0.5,
+      100
+    ]);
+  });
+
+  it('returns no structured ingredients for blank input', () => {
+    expect(parseRecipeMessage('   ').structuredIngredients).toEqual([]);
   });
 
   it('handles a message without a categories line', () => {
@@ -266,16 +373,28 @@ describe('formatRecipeText', () => {
     );
   });
 
-  it('round-trips through parseRecipeMessage', () => {
-    const parsed = parseRecipeMessage(FULL_RECIPE);
+  it.each([
+    ['FULL_RECIPE', FULL_RECIPE],
+    ['PASTA_RECIPE', PASTA_RECIPE],
+    ['COOKIES_RECIPE', COOKIES_RECIPE]
+  ])('round-trips %s through parseRecipeMessage', (_name, fixture) => {
+    const parsed = parseRecipeMessage(fixture);
     const reformatted = formatRecipeText(parsed);
     const reparsed = parseRecipeMessage(reformatted);
 
     expect(reparsed.title).toBe(parsed.title);
     expect(reparsed.categories).toEqual(parsed.categories);
     expect(reparsed.ingredients).toEqual(parsed.ingredients);
+    expect(reparsed.structuredIngredients).toEqual(parsed.structuredIngredients);
     expect(reparsed.instructions).toBe(parsed.instructions);
     expect(reparsed.preparationTime).toBe(parsed.preparationTime);
     expect(reparsed.difficulty).toBe(parsed.difficulty);
+    expect(reparsed.isParsed).toBe(parsed.isParsed);
+  });
+
+  it('reproduces the two realistic fixtures verbatim', () => {
+    for (const fixture of [PASTA_RECIPE, COOKIES_RECIPE]) {
+      expect(formatRecipeText(parseRecipeMessage(fixture))).toBe(fixture);
+    }
   });
 });

@@ -9,12 +9,14 @@ import { difficultyDisplay } from "@/utils/difficulty";
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { RecipeService } from '@/services/recipeService';
+import { TrashIcon } from '@/components/ui/icons';
 
 interface RecipeListProps {
   recipes: recipe[];
   selectedIds: number[];
   onSelect: (id: number) => void;
   onRecipeUpdate: (updatedRecipe: recipe) => void;
+  onDelete: (recipe: recipe) => void;
   hasMore?: boolean;
   isLoadingMore?: boolean;
   observerTarget?: React.RefObject<HTMLDivElement>;
@@ -25,6 +27,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
   selectedIds,
   onSelect,
   onRecipeUpdate,
+  onDelete,
   hasMore,
   isLoadingMore,
   observerTarget
@@ -262,15 +265,28 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
               {renderRecipePreview(recipe)}
             </div>
 
-            {/* Edit Button */}
+            {/* Edit / Delete Buttons */}
             {authState.canEdit && (
-              <button
-                onClick={(e) => handleEditClick(e, recipe)}
-                className="px-3 py-1.5 text-sm bg-blue-100 text-blue-700 rounded-md 
-                         hover:bg-blue-200 transition-all duration-200"
-              >
-                ערוך
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={(e) => handleEditClick(e, recipe)}
+                  className="px-3 py-1.5 text-sm bg-blue-100 text-blue-700 rounded-md
+                           hover:bg-blue-200 transition-all duration-200"
+                >
+                  ערוך
+                </button>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    onDelete(recipe);
+                  }}
+                  className="p-1.5 text-red-600 bg-red-50 rounded-md
+                           hover:bg-red-100 transition-all duration-200"
+                  aria-label="מחק מתכון"
+                >
+                  <TrashIcon size="sm" />
+                </button>
+              </div>
             )}
           </div>
         </div>

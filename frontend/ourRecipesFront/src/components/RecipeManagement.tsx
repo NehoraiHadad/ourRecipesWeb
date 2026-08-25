@@ -11,7 +11,9 @@ import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { apiService } from '@/services/apiService';
+import { RecipeService } from '@/services/recipeService';
 import { toUiRecipe, type RawRecipeRow } from '@/services/recipeMapper';
+import ConfirmDialog from '@/components/ui/ConfirmDialog';
 
 /** `GET /api/recipes/manage` is paginated; the management screen wants them all. */
 const MANAGE_PAGE_SIZE = 100;
@@ -29,7 +31,9 @@ export default function RecipeManagement() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [sortBy, setSortBy] = useState('date_desc');
   const [filterBy, setFilterBy] = useState('all');
-  
+  const [recipeToDelete, setRecipeToDelete] = useState<recipe | null>(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+
   const { authState } = useAuthContext();
   
   const fetchRecipes = useCallback(async () => {
@@ -111,6 +115,26 @@ export default function RecipeManagement() {
 
   const handleViewModeChange = (mode: ViewMode) => {
       setViewMode(mode);
+  };
+
+  const handleConfirmDelete = async () => {
+    if (!recipeToDelete) return;
+
+    setIsDeleting(true);
+    try {
+      await RecipeService.deleteRecipe(recipeToDelete.telegram_id);
+      setRecipes(prev => prev.filter(r => r.id !== recipeToDelete.id));
+      setSelectedRecipes(prev => prev.filter(id => id !== recipeToDelete.id));
+      setShowMessage({ status: true, message: 'המתכון נמחק בהצלחה' });
+      setRecipeToDelete(null);
+    } catch (err) {
+      setShowMessage({
+        status: true,
+        message: `שגיאה במחיקת המתכון: ${err instanceof Error ? err.message : 'אירעה שגיאה'}`
+      });
+    } finally {
+      setIsDeleting(false);
+    }
   };
 
   const handleMessageComplete = () => {
@@ -195,6 +219,7 @@ export default function RecipeManagement() {
       prev.includes(id) ? prev.filter(p => p !== id) : [...prev, id]
     ),
     onRecipeUpdate: handleRecipeUpdate,
+    onDelete: setRecipeToDelete,
     hasMore,
     isLoadingMore,
     observerTarget
@@ -250,6 +275,15 @@ export default function RecipeManagement() {
           onComplete={handleMessageComplete}
         />
       )}
+
+      <ConfirmDialog
+        isOpen={!!recipeToDelete}
+        title="מחיקת מתכון"
+        message={`האם אתה בטוח שברצונך למחוק את "${recipeToDelete?.title}"?`}
+        isLoading={isDeleting}
+        onConfirm={handleConfirmDelete}
+        onClose={() => setRecipeToDelete(null)}
+      />
     </div>
   );
-} 
+}

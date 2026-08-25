@@ -50,6 +50,11 @@ export class RecipeService {
     );
     return { ...response, data: toUiRecipe(response?.data) };
   }
+
+  /** `DELETE /api/recipes/:telegram_id` archives the recipe and answers `204 No Content`. */
+  static async deleteRecipe(telegramId: number): Promise<void> {
+    await apiService.delete<null>(`${this.BASE_PATH}/${telegramId}`);
+  }
 }
 
 export const recipeService = new RecipeService();

@@ -39,12 +39,17 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 ## 4. שלבי ביצוע
 
 ### שלב A — מודל דומיין + פרסור מצרכים מובנה
-- [ ] A1 טיפוס `StructuredIngredient = { quantity?: number|string, unit?: string, name: string, note?: string }`
+- [x] A1 טיפוס `StructuredIngredient = { quantity?: number|string, unit?: string, name: string, note?: string }`
       ופירוק שורת מצרך עברית (`"2 כפות סוכר"` → כמות/יחידה/שם) במודול נפרד
       `src/lib/recipes/ingredientParser.ts`. כישלון פירוק = graceful: הכל ב-`name`.
-- [ ] A2 `ParsedRecipe` מקבל `structuredIngredients: StructuredIngredient[]`.
-- [ ] A3 בדיקות יחידה: פירוק שורות מצרך (שברים "וחצי", טווחים "70-80%", בלי כמות),
-      ו-round-trip מלא parse⇄format על פיקסטורות אמיתיות מהערוץ.
+      + `ingredientLexicon.ts` (יחידות/שברים/דקדוק כמויות) ו-`quantityAsNumber`
+      למכפיל המנות. צורה קנונית: `quantity` מספרי רק למספר רגיל ("2", "1.5");
+      שבר/מילה/טווח נשמרים כמחרוזת מילולית → round-trip מדויק.
+- [x] A2 `ParsedRecipe` מקבל `structuredIngredients: StructuredIngredient[]`.
+      `parser.ts` פוצל (`parserLabels` / `parserFields` / `messageText` /
+      `recipeFormatter`) וירד ל-149 שורות בלי שינוי התנהגות.
+- [x] A3 בדיקות יחידה: פירוק שורות מצרך (שברים "וחצי", טווחים "70-80%", בלי כמות),
+      ו-round-trip מלא parse⇄format על פיקסטורות אמיתיות מהערוץ. 65 בדיקות ירוקות.
 
 ### שלב B — כתיבה ל-DB + backfill
 - [ ] B1 ingest שומר את `structuredIngredients` ב-`ingredients_list` (העמודה כבר קיימת).
@@ -74,13 +79,16 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 - [ ] E2 גם מסלולי AI (reformat, הצעות ארוחה) עוברים דרך אותו parse/format.
 
 ### שלב F — מחיקה בעמודי הניהול (UX)
-- [ ] F1 מתכונים: `DELETE /api/recipes/[telegram_id]` חדש — `deleteMessage` בערוץ +
-      שורה ל-`ARCHIVED` (או מחיקה קשיחה? ברירת מחדל: ארכוב, עם אופציית מחיקה לצמיתות
-      נפרדת). כפתור מחיקה + דיאלוג אישור ב-`components/management/RecipeList/Grid`.
+- [x] F1 מתכונים: `DELETE /api/recipes/[telegram_id]` — ארכוב (`status=ARCHIVED`) +
+      `deleteMessage` בערוץ best-effort (מדולג ל-`telegram_id<=0`). לוגיקה ב-
+      `src/lib/recipes/deleteRecipe.ts`; כפתור מחיקה + `ConfirmDialog` ב-RecipeList/Grid
+      דרך `RecipeManagement`; `recipeService.deleteRecipe`. 6 בדיקות אינטגרציה.
       מוסכמת 🗑️ בערוץ ממשיכה לעבוד במקביל (webhook).
-- [ ] F2 מקומות: ה-route קיים — לוודא כפתור מחיקה + אישור בעמוד המקומות.
-- [ ] F3 תפריטים: route + מחיקת שיקוף קיימים — לוודא כפתור + אישור בעמוד התפריטים.
-- [ ] F4 עקביות: אותו דפוס דיאלוג אישור לשלוש הישויות (קומפוננטה משותפת אחת).
+- [x] F2 מקומות: המודל הידני בעמוד המקומות הוחלף ב-`ConfirmDialog` (התנהגות זהה).
+- [x] F3 תפריטים: כל שלושת ה-`window.confirm` ב-`MenuDisplay` + ה-confirm ב-
+      `ShoppingListDisplay` הוחלפו ב-`ConfirmDialog` (state יחיד `pendingConfirm`).
+- [x] F4 עקביות: `src/components/ui/ConfirmDialog.tsx` (68 שורות) עוטף את `Modal`
+      ומשמש את שלוש הישויות.
 
 ### שלב G — אימות וסגירה
 - [ ] G1 `npm test` + `tsc` + build מקומי ירוקים; בדיקות round-trip עוברות.
@@ -97,8 +105,8 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 
 | גל | סוכן | שלבים | סטטוס |
 |---|---|---|---|
-| 1 | A-parser (Opus) | A1–A3 | ⬜ |
-| 1 | F-delete (Sonnet) | F1–F4 | ⬜ |
+| 1 | A-parser (Opus) | A1–A3 | ✅ |
+| 1 | F-delete (Sonnet) | F1–F4 | ✅ |
 | 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ⬜ |
 | 3 | C-contract (Opus) | C1–C2 | ⬜ |
 | 4 | D-main (Opus) | D1, D3, E1, E2 | ⬜ |

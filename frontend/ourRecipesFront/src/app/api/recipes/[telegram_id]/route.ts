@@ -8,13 +8,14 @@
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
-import { successResponse } from '@/lib/utils/api-response';
+import { successResponse, noContentResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
 import { snapshotVersion } from '@/lib/recipes/versioning';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
+import { archiveRecipe } from '@/lib/recipes/deleteRecipe';
 import { logger } from '@/lib/logger';
 
 export async function GET(
@@ -171,6 +172,39 @@ export async function PUT(
     );
 
     return successResponse(updated);
+  } catch (error) {
+    return handleApiError(error);
+  }
+}
+
+/**
+ * DELETE /api/recipes/:telegram_id
+ * Archives a recipe (Stage F1): best-effort channel-message delete +
+ * `status -> ARCHIVED`. Never a hard delete — matches the 🗑️ channel-edit
+ * convention already handled by ingest (`isArchiveMarked`), just reachable
+ * from the management UI instead of Telegram.
+ */
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { telegram_id: string } }
+) {
+  try {
+    const auth = await requireEditPermission(request);
+    if (!auth.ok) return authErrorResponse(auth);
+
+    const telegramId = validateTelegramId(params.telegram_id);
+
+    const recipe = await prisma.recipe.findUnique({
+      where: { telegram_id: telegramId },
+      select: { id: true, telegram_id: true }
+    });
+    if (!recipe) {
+      throw NotFoundError('Recipe not found');
+    }
+
+    await archiveRecipe(recipe);
+
+    return noContentResponse();
   } catch (error) {
     return handleApiError(error);
   }
