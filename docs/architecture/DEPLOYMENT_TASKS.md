@@ -18,8 +18,8 @@
 
 ## שלב 0 — שער איכות ומיזוג ל-main
 
-- [ ] 🤖 0.1 על הענף: `npm install` → `npm run build` ירוק → `npx vitest run` ירוק (`frontend/ourRecipesFront/`)
-- [ ] 🤖 0.2 פתיחת PR מ-`claude/app-status-architecture-18dyu7` ל-`main` עם סיכום השינויים
+- [x] 🤖 0.1 על הענף: build ירוק + 351/351 בדיקות עוברות (2026-08-25)
+- [x] 🤖 0.2 PR נפתח: [#127](https://github.com/NehoraiHadad/ourRecipesWeb/pull/127)
 - [ ] 👤 0.3 סקירה ומיזוג ה-PR (המיזוג **עדיין לא** פורס כלום מסוכן — האפליקציה החדשה תעלה אבל בלי env vars היא לא פעילה; לחלופין: להשהות Auto-Deploy בפרויקט עד סוף שלב 2)
 
 **החלטה נדרשת לפני מיזוג**: האם להשאיר Auto-Deploy מ-main פעיל (ואז הפריסה הראשונה תקרה במיזוג, לפני שה-env מוכן) או להגדיר env קודם (שלב 2) ורק אז למזג. **מומלץ: להשלים שלב 1–2 קודם, למזג אחר כך** — כך הפריסה הראשונה כבר תקינה.
@@ -28,37 +28,34 @@
 
 ## שלב 1 — DB מנוהל (DEPLOYMENT §1)
 
-- [ ] 👤 1.1 בחירת ספק: **מומלץ Neon דרך Vercel Marketplace** (אינטגרציה מזריקה `DATABASE_URL` אוטומטית; חלופות: Supabase / Vercel Postgres)
-- [ ] 👤 1.2 יצירת ה-DB והעתקת מחרוזת ההתחברות ה-**pooled** (`?sslmode=require`)
-- [ ] 🤖 1.3 דחיפת הסכמה מקומית: `npx prisma db push` (יוצר את כל 10 הטבלאות; אין migrations — הקמה ראשונה)
-- [ ] 🤖 1.4 אימות: `npx prisma validate` + בדיקה שהטבלאות קיימות
+- [x] 👤 1.1 נבחר: Neon דרך Vercel Marketplace
+- [x] 🤖 1.2 `vercel integration add neon` — DB בשם `neondb` (us-east-1), `DATABASE_URL` pooled הוזרק אוטומטית
+- [x] 🤖 1.3 `npx prisma db push` — הסכמה נדחפה בהצלחה
+- [x] 🤖 1.4 `npx prisma validate` ✓
 - [ ] 👤 1.5 לוודא שגיבוי/PITR מופעל אצל הספק (ה-DB הוא ה-source of truth — טלגרם לא משחזר אותו)
 
 ---
 
 ## שלב 2 — קונפיגורציית פרויקט Vercel (DEPLOYMENT §2)
 
-- [ ] 🤖 2.1 אימות הגדרות הפרויקט הקיים `our-recipes`: Root Directory = `frontend/ourRecipesFront`, Framework = Next.js, Node 20+
-- [ ] 👤 2.2 יצירת **Blob Store** בלשונית Storage וחיבורו לפרויקט (מזריק `BLOB_READ_WRITE_TOKEN` אוטומטית)
-- [ ] 🤖 2.3 ייצור הסודות האקראיים: `JWT_SECRET` (base64 48), `TELEGRAM_WEBHOOK_SECRET`, `INTERNAL_API_SECRET`, `CRON_SECRET` (hex 32 כ״א)
-- [ ] 👤 2.4 הזנת כל משתני הסביבה ל-Production (הטבלה המלאה ב-DEPLOYMENT §2.2 / `.env.example`):
-  - `DATABASE_URL` (משלב 1)
-  - `JWT_SECRET`, `TELEGRAM_WEBHOOK_SECRET`, `INTERNAL_API_SECRET`, `CRON_SECRET` (מ-2.3)
-  - `TELEGRAM_BOT_TOKEN`, `NEXT_PUBLIC_TELEGRAM_BOT`, `TELEGRAM_CHANNEL_ID`, `TELEGRAM_OLD_CHANNEL_ID` (משלב 3)
-  - `GOOGLE_API_KEY`, `GOOGLE_API_KEY_NANO_BANANA`, `HUGGINGFACE_TOKEN` (קיימים — להעתיק מהקונפיגורציה הישנה)
-  - `PYTHON_RECONCILE_URL` — להשאיר ריק בשלב זה (יוגדר בשלב 5 אם נפרוס את api-python)
-- [ ] 👤 2.5 **מחיקת** משתני עבר מהפרויקט: `NEXT_PUBLIC_API_URL`, `SECRET_JWT`, `ORIGIN_CORS`, `SESSION_STRING_MONITOR` וכל שאריות Flask/Render
-- [ ] 🤖 2.6 וידוא ש-`vercel.json` בענף כולל את ה-cron (`/api/cron/reconcile`, `17 3 * * *`) — כבר קיים ✓
+- [x] 🤖 2.1 אומת: Root Directory = `frontend/ourRecipesFront`, Next.js, Node 20.x
+- [x] 🤖 2.2 Blob Store `our-recipes-images` (public, iad1) נוצר וחובר — `BLOB_READ_WRITE_TOKEN` הוזרק
+- [x] 🤖 2.3 ארבעת הסודות יוצרו ונשמרו גם ב-`.env.local` המקומי
+- [x] 🤖 2.4 הוזנו ל-Production: `JWT_SECRET`, `TELEGRAM_WEBHOOK_SECRET`, `INTERNAL_API_SECRET`, `CRON_SECRET`, `TELEGRAM_BOT_TOKEN` (הבוט הקיים `ourRecipes_bot`), `GOOGLE_API_KEY`, `HUGGINGFACE_TOKEN`, `NEXT_PUBLIC_TELEGRAM_BOT=ourRecipes_bot`
+  - [ ] 👤 חסר: `TELEGRAM_CHANNEL_ID`, `TELEGRAM_OLD_CHANNEL_ID` (ראה שלב 3.5)
+  - [ ] 👤 אופציונלי: `GOOGLE_API_KEY_NANO_BANANA` (בלעדיו — fallback ל-`GOOGLE_API_KEY`; האינפוגרפיקה דורשת מפתח עם חיוב)
+- [x] 🤖 2.5 הוסר `NEXT_PUBLIC_API_URL`; שאר משתני העבר לא היו קיימים בפרויקט
+- [x] 🤖 2.6 cron ב-`vercel.json` ✓
 
 ---
 
 ## שלב 3 — בוט טלגרם ושני הערוצים (DEPLOYMENT §3)
 
-- [ ] 👤 3.1 @BotFather: `/newbot` (או שימוש בבוט הקיים) → `TELEGRAM_BOT_TOKEN` + `NEXT_PUBLIC_TELEGRAM_BOT`
+- [x] 👤 3.1 נבחר הבוט הקיים: `ourRecipes_bot` ("המתכונים שלנו") — הטוקן אומת מול `getMe`, אין webhook ישן רשום עליו
 - [ ] 👤 3.2 @BotFather: `/setdomain` → `the-our-recipes.vercel.app` (בלעדיו Login Widget לא נטען)
 - [ ] 👤 3.3 הוספת הבוט כאדמין ב**ערוץ הראשי** עם: Post + Edit + Delete Messages
 - [ ] 👤 3.4 הוספת הבוט כאדמין ב**ערוץ הישן** (קריאה בלבד — בלי פרסום/עריכה/מחיקה)
-- [ ] 👤 3.5 חילוץ מזהי `-100…` של שני הערוצים → `TELEGRAM_CHANNEL_ID`, `TELEGRAM_OLD_CHANNEL_ID`
+- [ ] 👤 3.5 חילוץ מזהי `-100…`: אחרי ש-3.3+3.4 בוצעו — לפרסם הודעה קצרה בכל ערוץ, ואז 🤖 `getUpdates` יחלץ את המזהים (החלופה: העברת הודעה ל-@userinfobot)
 - [ ] 👤 3.6 השלמת הזנת הערכים החסרים מ-2.4
 
 ---
@@ -79,9 +76,10 @@
 **החלטה**: הרצת `api-python` **מקומית** ליבוא החד-פעמי (מומלץ — פשוט יותר), ופריסה
 ל-Vercel כפונקציה רק אם רוצים reconcile יומי מלא דרך `PYTHON_RECONCILE_URL`.
 
-- [ ] 👤 5.1 my.telegram.org → `TELEGRAM_API_ID` + `TELEGRAM_API_HASH`
-- [ ] 👤 5.2 ייצור `SESSION_STRING` לחשבון משתמש שחבר בערוץ (הסקריפט ב-DEPLOYMENT §5.1; סוד מלא!)
-- [ ] 🤖 5.3 הקמת `api-python` מקומית: venv → `pip install -r requirements.txt` → `.env` → `uvicorn main:app --port 8000` → `GET /health` = healthy
+- [x] 👤 5.1 קיימים מקומית: `TELEGRAM_API_ID=25198922` + `TELEGRAM_API_HASH` (מ-`backend/.env` הישן)
+- [ ] 👤 5.2 **ה-SESSION_STRING הישן פג תוקף** (נבדק — not authorized). לייצר חדש:
+  `cd api-python && .venv/Scripts/python generate_session.py` (התחברות אינטראקטיבית עם קוד לטלגרם) → להדביק ב-`api-python/.env`
+- [x] 🤖 5.3 (חלקי) venv הוקם, התלויות הותקנו, `.env` נכתב (חסרים רק `SESSION_STRING` + `TELEGRAM_CHANNEL_ID`); `uvicorn` + `/health` יורצו אחרי 5.2
 - [ ] 🤖 5.4 יבוא עמוד-אחרי-עמוד: לולאת `POST /import-history` עם `offset_id` עד `has_more=false` (הסקריפט ב-§5.4; אידמפוטנטי — בטוח להריץ שוב)
 - [ ] 🤖 5.5 `POST /reconcile` להשלמת פערים ושיקופים תלויים
 - [ ] 🤖 5.6 אימות ספירות: `GET /api/internal/recipes/summary` מול מספר ההודעות בערוץ (בדיקת השפיות המרכזית)
