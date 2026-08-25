@@ -1,65 +1,24 @@
 /**
- * AI Service using Google Gemini and HuggingFace
+ * AI Service facade.
+ *
+ * Text tasks (suggestion / reformat / refine / optimize-steps) now live in
+ * `src/lib/ai/gemini/textTasks.ts`, re-exported here unchanged so routes and
+ * existing test mocks (`vi.mock('@/lib/services/aiService', ...)`) keep
+ * working. Image tasks stay in this file — Wave 2 replaces them with the KIE
+ * pipeline (`AI_UPGRADE_TASKS.md`).
  */
 import { GoogleGenAI } from '@google/genai';
 import { logger } from '@/lib/logger';
-import { OPTIMIZED_STEPS_SCHEMA } from '@/lib/recipes/optimizedSteps';
 
-const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || '' });
-
-/**
- * Generate recipe suggestion based on preferences
- */
-export async function generateRecipeSuggestion(params: {
-  ingredients?: string;
-  mealType?: string[];
-  quickPrep?: boolean;
-  childFriendly?: boolean;
-  additionalRequests?: string;
-}): Promise<string> {
-  logger.debug(params, 'Generating recipe suggestion');
-
-  const prompt = `
-אתה עוזר מטבח מומחה. צור מתכון מפורט על בסיס המידע הבא:
-
-${params.ingredients ? `רכיבים זמינים: ${params.ingredients}` : ''}
-${params.mealType?.length ? `סוג ארוחה: ${params.mealType.join(', ')}` : ''}
-${params.quickPrep ? 'דרישה: הכנה מהירה (עד 30 דקות)' : ''}
-${params.childFriendly ? 'דרישה: ידידותי לילדים' : ''}
-${params.additionalRequests ? `בקשות נוספות: ${params.additionalRequests}` : ''}
-
-פורמט התגובה:
-🍳 [שם המתכון]
-
-⏱️ זמן הכנה: [X דקות]
-👥 מנות: [X]
-🔥 רמת קושי: [קל/בינוני/מאתגר]
-
-📝 רכיבים:
-- [רכיב 1]
-- [רכיב 2]
-...
-
-👨‍🍳 אופן ההכנה:
-1. [שלב 1]
-2. [שלב 2]
-...
-
-💡 טיפים:
-- [טיפ 1]
-`;
-
-  const response = await genAI.models.generateContent({
-    model: 'gemini-2.0-flash-exp',
-    contents: prompt
-  });
-
-  logger.info('Recipe suggestion generated');
-  return response.text || '';
-}
+export {
+  generateRecipeSuggestion,
+  reformatRecipe,
+  refineRecipe,
+  optimizeRecipeSteps
+} from '@/lib/ai/gemini/textTasks';
 
 /**
- * Generate recipe image using HuggingFace
+ * Generate recipe image using HuggingFace.
  */
 export async function generateRecipeImage(recipeContent: string): Promise<string> {
   logger.debug({ contentLength: recipeContent.length }, 'Generating recipe image');
@@ -140,123 +99,4 @@ Style: Modern infographic design, warm appetizing colors, clean layout.
 
   logger.info('Recipe infographic generated');
   return base64;
-}
-
-/**
- * Reformat recipe text
- */
-export async function reformatRecipe(text: string): Promise<string> {
-  logger.debug({ textLength: text.length }, 'Reformatting recipe');
-
-  const prompt = `
-עצב מחדש את המתכון הבא בפורמט מסודר וברור:
-
-${text}
-
-פורמט נדרש:
-🍳 [שם המתכון]
-
-⏱️ זמן הכנה: [X דקות]
-👥 מנות: [X]
-
-📝 רכיבים:
-- [רכיב + כמות]
-...
-
-👨‍🍳 הוראות הכנה:
-1. [שלב מפורט]
-...
-
-אל תוסיף מידע שלא מופיע במתכון המקורי.
-`;
-
-  const response = await genAI.models.generateContent({
-    model: 'gemini-2.0-flash-exp',
-    contents: prompt
-  });
-
-  logger.info('Recipe reformatted');
-  return response.text || '';
-}
-
-/**
- * Refine recipe based on feedback
- */
-export async function refineRecipe(recipeText: string, refinementRequest: string): Promise<string> {
-  logger.debug({ refinementRequest }, 'Refining recipe');
-
-  const prompt = `
-המתכון הנוכחי:
-${recipeText}
-
-בקשת השיפור:
-${refinementRequest}
-
-שפר את המתכון על פי הבקשה, אך שמור על המבנה והפורמט המקורי.
-`;
-
-  const response = await genAI.models.generateContent({
-    model: 'gemini-2.0-flash-exp',
-    contents: prompt
-  });
-
-  logger.info('Recipe refined');
-  return response.text || '';
-}
-
-/**
- * Optimize recipe steps.
- *
- * Asks Gemini for structured JSON (`OPTIMIZED_STEPS_SCHEMA`) rather than prose,
- * so `RecipeStepOptimizer` can render the rich view without sniffing text.
- * Returns the decoded JSON as `unknown`: the caller validates it with
- * `parseOptimizedSteps` and decides what a non-conforming answer means.
- * Resolves to `null` when the model returns nothing parseable at all.
- */
-export async function optimizeRecipeSteps(recipeText: string): Promise<unknown> {
-  logger.debug('Optimizing recipe steps');
-
-  const prompt = `
-נתח את המתכון הבא והציע אופטימיזציה של השלבים:
-
-${recipeText}
-
-התמקד ב:
-1. סדר יעיל של השלבים
-2. הכנות מקבילות (מה אפשר לעשות בו-זמנית)
-3. ניצול מיטבי של כלים וזמן
-4. צמצום המתנות מיותרות
-
-כללים:
-- כל הטקסט בעברית.
-- כל שדות הזמן הם מספר דקות כמחרוזת (למשל "25"), ללא יחידות, פרט ל-max_prep_time שהוא מספר שעות מראש כמחרוזת.
-- time_saved הוא ההפרש בין total_sequential_time ל-total_optimized_time.
-- dependencies מפנה לשמות שלבים קודמים, ורשימה ריקה אם אין תלות.
-`;
-
-  const response = await genAI.models.generateContent({
-    model: 'gemini-2.0-flash-exp',
-    contents: prompt,
-    config: {
-      responseMimeType: 'application/json',
-      responseSchema: OPTIMIZED_STEPS_SCHEMA
-    }
-  });
-
-  const text = response.text?.trim();
-  if (!text) {
-    logger.warn('Step optimization returned an empty response');
-    return null;
-  }
-
-  try {
-    const parsed = JSON.parse(text) as unknown;
-    logger.info('Recipe steps optimized');
-    return parsed;
-  } catch (error) {
-    // Structured output makes this unlikely, but a truncated answer is still
-    // possible — surface it as non-conformance rather than as a crash.
-    logger.warn({ error, textLength: text.length }, 'Step optimization returned non-JSON');
-    return null;
-  }
 }

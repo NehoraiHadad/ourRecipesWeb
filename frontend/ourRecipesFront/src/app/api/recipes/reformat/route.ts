@@ -30,3 +30,6 @@ export async function POST(request: NextRequest) {
     return handleApiError(error);
   }
 }
+
+// AI generation is slower than the platform default.
+export const maxDuration = 60; // 60 seconds (Vercel)

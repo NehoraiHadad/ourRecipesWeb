@@ -13,7 +13,7 @@
 | Text tasks (reformat / suggest / refine / optimize-steps) | `gemini-3.7-flash`, direct `@google/genai` |
 | Menu planning | Real agent loop on `gemini-3.1-pro-preview`: SQL-filtered search tools, all function calls handled, final answer via `responseSchema` |
 | Recipe images | KIE `nano-banana-2` (2K) replaces HuggingFace SDXL |
-| Infographics | KIE `nano-banana-pro` primary; direct Gemini (`GOOGLE_API_KEY_NANO_BANANA`) fallback |
+| Infographics | KIE `nano-banana-pro` primary; direct Gemini (`GOOGLE_API_KEY_NANO_BANANA`) fallback. Model ids overridable via env — pending a Hebrew side-by-side vs `gpt-image-2` (user leans GPT Image 2) |
 | Generated media | Uploaded to Vercel Blob server-side immediately (KIE retains media 14 days only); routes return Blob URLs, not data URIs |
 | LLM via KIE | No — LLM calls stay direct to Google (structured-output/function-calling fidelity) |
 | Env | `KIE_API_KEY` (already in Vercel), keep `GOOGLE_API_KEY` + `GOOGLE_API_KEY_NANO_BANANA`, delete `HUGGINGFACE_TOKEN` |
@@ -26,8 +26,8 @@ LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5), optional Opus 5 for menus if 
 
 | Wave | Agent | Model | Scope | Status |
 |---|---|---|---|---|
-| 1 | kie-infra | Sonnet | `src/lib/ai/kie/` client + poll + media→Blob helper + unit tests | [ ] pending |
-| 1 | gemini-infra | Sonnet | `src/lib/ai/gemini/` wrapper (lazy init, retry/timeout), migrate text functions to `gemini-3.7-flash`, `maxDuration` on text routes | [ ] pending |
+| 1 | kie-infra | Sonnet | `src/lib/ai/kie/` client + poll + media→Blob helper + unit tests | [x] done |
+| 1 | gemini-infra | Sonnet | `src/lib/ai/gemini/` wrapper (lazy init, retry/timeout), migrate text functions to `gemini-3.7-flash`, `maxDuration` on text routes | [x] done |
 | 2 | image-routes | Sonnet | generate-image + generate-infographic → KIE + Blob, delete HF/SDXL code, UI contract update | [ ] pending |
 | 2 | menu-agent | Opus | menuPlannerService rewrite as real agent (`gemini-3.1-pro-preview`), fix `ai_reason` bug, tests | [ ] pending |
 | 3 | (main) | — | Integration: tsc + vitest + build green, docs, final commit | [ ] pending |
@@ -35,20 +35,20 @@ LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5), optional Opus 5 for menus if 
 ## Wave 1 — Infrastructure
 
 ### 1A. KIE client (`src/lib/ai/kie/`)
-- [ ] `types.ts` — task lifecycle types (`CreateTaskResponse`, `RecordInfoResponse`, task states)
-- [ ] `client.ts` — `createTask(model, input)` / `getTask(taskId)` with Bearer `KIE_API_KEY`, lazy env read, typed error mapping
-- [ ] `poll.ts` — `pollTask(taskId, {timeoutMs, intervalMs})` with backoff; respects KIE 20 req/10s limit
-- [ ] `models.ts` — model ids (`nano-banana-2`, `nano-banana-pro`) + per-model input builders
-- [ ] `src/lib/ai/media.ts` — `storeGeneratedImage(url, keyHint)`: fetch result URL → Vercel Blob (`recipes/…`), returns public URL
-- [ ] Unit tests (mock `fetch`): create/poll happy path, failure states, timeout, missing env
+- [x] `types.ts` — task lifecycle types (`CreateTaskResponse`, `RecordInfoResponse`, task states)
+- [x] `client.ts` — `createTask(model, input)` / `getTask(taskId)` with Bearer `KIE_API_KEY`, lazy env read, typed error mapping
+- [x] `poll.ts` — `pollTask(taskId, {timeoutMs, intervalMs})` with backoff; respects KIE 20 req/10s limit
+- [x] `models.ts` — model ids (`nano-banana-2`, `nano-banana-pro`) + per-model input builders
+- [x] `src/lib/ai/media.ts` — `storeGeneratedImage(url, keyHint)`: fetch result URL → Vercel Blob (`recipes/…`), returns public URL
+- [x] Unit tests (mock `fetch`): create/poll happy path, failure states, timeout, missing env
 
 ### 1B. Gemini wrapper (`src/lib/ai/gemini/`)
-- [ ] `client.ts` — single lazy `GoogleGenAI` instance; throws clearly on missing `GOOGLE_API_KEY` at call time
-- [ ] `retry.ts` — `withRetry(fn, {retries, timeoutMs})`: backoff on 429/5xx, AbortSignal timeout
-- [ ] `models.ts` — `GEMINI_TEXT_MODEL = 'gemini-3.7-flash'`, `GEMINI_AGENT_MODEL = 'gemini-3.1-pro-preview'`
-- [ ] Migrate `aiService.ts` text functions (reformat / suggest / refine / optimize-steps) to the wrapper
-- [ ] `maxDuration = 60` on reformat / refine / suggest routes (optimize-steps already has it)
-- [ ] Existing tests stay green (they mock `aiService`)
+- [x] `client.ts` — single lazy `GoogleGenAI` instance; throws clearly on missing `GOOGLE_API_KEY` at call time
+- [x] `retry.ts` — `withRetry(fn, {retries, timeoutMs})`: backoff on 429/5xx, AbortSignal timeout
+- [x] `models.ts` — `GEMINI_TEXT_MODEL = 'gemini-3.7-flash'`, `GEMINI_AGENT_MODEL = 'gemini-3.1-pro-preview'`
+- [x] Migrate `aiService.ts` text functions (reformat / suggest / refine / optimize-steps) to the wrapper
+- [x] `maxDuration = 60` on reformat / refine / suggest routes (optimize-steps already has it)
+- [x] Existing tests stay green (they mock `aiService`)
 
 ## Wave 2 — Features
 
