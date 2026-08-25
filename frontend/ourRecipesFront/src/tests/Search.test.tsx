@@ -106,7 +106,7 @@ describe('Search Component', () => {
     await waitFor(() => {
       expect(
         calledEndpoints().some((endpoint) =>
-          endpoint.startsWith(`/api/recipes/search/suggestions?q=${encodeURIComponent('עוגה')}`)
+          endpoint.startsWith(`/api/recipes/search/suggestions?query=${encodeURIComponent('עוגה')}`)
         )
       ).toBe(true);
     });

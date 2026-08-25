@@ -107,7 +107,7 @@ export class SearchService {
   // Get search suggestions
   static async getSearchSuggestions(query: string): Promise<ApiResponse<string[]>> {
     return apiService.get<ApiResponse<string[]>>(
-      `${this.BASE_PATH}/suggestions?q=${encodeURIComponent(query)}`
+      `${this.BASE_PATH}/suggestions?query=${encodeURIComponent(query)}`
     );
   }
 }
