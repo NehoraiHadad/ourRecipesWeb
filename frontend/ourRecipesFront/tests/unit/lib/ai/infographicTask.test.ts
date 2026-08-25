@@ -6,9 +6,9 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 vi.mock('@/lib/ai/kie', () => ({
   createTask: vi.fn(),
   pollTaskResult: vi.fn(),
-  getKieImageModel: vi.fn(() => 'nano-banana-2'),
-  getKieInfographicModel: vi.fn(() => 'nano-banana-pro'),
-  kieImageInput: vi.fn((prompt: string, options?: Record<string, unknown>) => ({ prompt, ...options }))
+  getKieImageModel: vi.fn(() => 'gpt-image-2-text-to-image'),
+  getKieInfographicModel: vi.fn(() => 'gpt-image-2-text-to-image'),
+  kieImageInput: vi.fn((_model: string, prompt: string, options?: Record<string, unknown>) => ({ prompt, ...options }))
 }));
 
 vi.mock('@/lib/ai/media', () => ({
@@ -51,7 +51,7 @@ describe('generateRecipeInfographic', () => {
     const url = await generateRecipeInfographic('כותרת: עוגה');
 
     expect(url).toBe('https://blob.vercel-storage.com/recipes/infographic-T1-abc.jpg');
-    expect(createTaskMock).toHaveBeenCalledWith('nano-banana-pro', expect.objectContaining({ prompt: expect.any(String) }));
+    expect(createTaskMock).toHaveBeenCalledWith('gpt-image-2-text-to-image', expect.objectContaining({ prompt: expect.any(String) }));
     expect(generateContentMock).not.toHaveBeenCalled();
   });
 

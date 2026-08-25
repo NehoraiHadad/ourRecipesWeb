@@ -1,6 +1,6 @@
 /**
  * POST /api/recipes/generate-image
- * AI recipe photo generation via KIE (`nano-banana-2` by default —
+ * AI recipe photo generation via KIE (`gpt-image-2-text-to-image` by default —
  * `docs/architecture/AI_UPGRADE_TASKS.md` §2A). Auth is enforced globally by
  * `src/middleware.ts` for every `/api/**` route.
  */

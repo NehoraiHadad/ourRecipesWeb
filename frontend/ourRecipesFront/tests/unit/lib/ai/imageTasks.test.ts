@@ -6,9 +6,9 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 vi.mock('@/lib/ai/kie', () => ({
   createTask: vi.fn(),
   pollTaskResult: vi.fn(),
-  getKieImageModel: vi.fn(() => 'nano-banana-2'),
-  getKieInfographicModel: vi.fn(() => 'nano-banana-pro'),
-  kieImageInput: vi.fn((prompt: string, options?: Record<string, unknown>) => ({ prompt, ...options }))
+  getKieImageModel: vi.fn(() => 'gpt-image-2-text-to-image'),
+  getKieInfographicModel: vi.fn(() => 'gpt-image-2-text-to-image'),
+  kieImageInput: vi.fn((_model: string, prompt: string, options?: Record<string, unknown>) => ({ prompt, ...options }))
 }));
 
 vi.mock('@/lib/ai/media', () => ({
@@ -37,8 +37,8 @@ describe('generateRecipeImage', () => {
 
     expect(url).toBe('https://blob.vercel-storage.com/recipes/image-T1-abc.jpg');
     expect(createTaskMock).toHaveBeenCalledWith(
-      'nano-banana-2',
-      expect.objectContaining({ prompt: expect.stringContaining('עוגת שוקולד'), outputResolution: '2k' })
+      'gpt-image-2-text-to-image',
+      expect.objectContaining({ prompt: expect.stringContaining('עוגת שוקולד'), resolution: '2K', aspectRatio: '3:2' })
     );
     expect(pollTaskResultMock).toHaveBeenCalledWith('T1');
     expect(storeGeneratedImageMock).toHaveBeenCalledWith('https://kie.ai/result.jpg', 'image-T1');

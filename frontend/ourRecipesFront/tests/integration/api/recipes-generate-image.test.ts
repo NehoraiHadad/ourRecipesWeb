@@ -1,7 +1,7 @@
 // @vitest-environment node
 /**
  * Integration tests for POST /api/recipes/generate-image (Wave 2A: KIE
- * `nano-banana-2` via `aiService`, response carries a Blob `image_url`).
+ * `gpt-image-2-text-to-image` via `aiService`, response carries a Blob `image_url`).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest } from 'next/server';

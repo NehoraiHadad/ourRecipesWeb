@@ -1,6 +1,6 @@
 /**
  * Recipe infographic generation. Primary path: KIE (`getKieInfographicModel()`,
- * default `nano-banana-pro` — same model family as the old direct call,
+ * default `gpt-image-2-text-to-image` — typography leader, 4x cheaper,
  * cheaper + unified billing). Falls back to a direct Gemini call
  * (`gemini-3-pro-image-preview`, the pre-Wave-2 implementation) whenever the
  * KIE path throws — infographics are Hebrew-text-in-image, the more
@@ -43,7 +43,7 @@ export async function generateRecipeInfographic(recipeContent: string): Promise<
 
   try {
     const model = getKieInfographicModel();
-    const { taskId } = await createTask(model, kieImageInput(prompt));
+    const { taskId } = await createTask(model, kieImageInput(model, prompt, { resolution: '2K', aspectRatio: '2:3' }));
     const [resultUrl] = await pollTaskResult(taskId);
     if (!resultUrl) {
       throw new Error(`KIE task ${taskId} succeeded with no result URL`);

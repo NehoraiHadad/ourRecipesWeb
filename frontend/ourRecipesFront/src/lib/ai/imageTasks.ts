@@ -1,6 +1,6 @@
 /**
  * Recipe image generation — KIE (`getKieImageModel()`, default
- * `nano-banana-2`), replacing the retired HuggingFace SDXL path
+ * `gpt-image-2-text-to-image`), replacing the retired HuggingFace SDXL path
  * (`docs/architecture/AI_UPGRADE_TASKS.md` §2A).
  *
  * Flow: create a KIE task, poll it to a result URL, then copy that URL into
@@ -56,7 +56,7 @@ export async function generateRecipeImage(recipeContent: string): Promise<string
   const prompt = buildImagePrompt(recipeContent);
   const model = getKieImageModel();
 
-  const { taskId } = await createTask(model, kieImageInput(prompt, { outputResolution: '2k' }));
+  const { taskId } = await createTask(model, kieImageInput(model, prompt, { resolution: '2K', aspectRatio: '3:2' }));
   const [resultUrl] = await pollTaskResult(taskId);
   if (!resultUrl) {
     throw new Error(`KIE task ${taskId} succeeded with no result URL`);

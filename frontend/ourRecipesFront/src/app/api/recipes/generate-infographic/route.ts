@@ -1,6 +1,6 @@
 /**
  * POST /api/recipes/generate-infographic
- * AI-generated Hebrew recipe infographic via KIE (`nano-banana-pro` by
+ * AI-generated Hebrew recipe infographic via KIE (`gpt-image-2-text-to-image` by
  * default), falling back to a direct Gemini call on KIE failure —
  * `docs/architecture/AI_UPGRADE_TASKS.md` §2A.
  *

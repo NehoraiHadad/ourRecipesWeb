@@ -3,13 +3,13 @@
  *
  * Re-exported (unchanged names/signatures) from `src/lib/services/aiService.ts`
  * so routes and existing test mocks keep working. Migrated off the retired
- * `gemini-2.0-flash-exp` onto `GEMINI_TEXT_MODEL` via the retrying wrapper in
+ * `gemini-2.0-flash-exp` onto the per-task models via the retrying wrapper in
  * `./generate`.
  */
 import { logger } from '@/lib/logger';
 import { OPTIMIZED_STEPS_SCHEMA } from '@/lib/recipes/optimizedSteps';
 import { generateText, generateJson } from './generate';
-import { GEMINI_TEXT_MODEL } from './models';
+import { getModelFor } from './models';
 import {
   buildSuggestionPrompt,
   buildReformatPrompt,
@@ -21,7 +21,7 @@ import {
 export async function generateRecipeSuggestion(params: RecipeSuggestionParams): Promise<string> {
   logger.debug(params, 'Generating recipe suggestion');
 
-  const text = await generateText({ model: GEMINI_TEXT_MODEL, prompt: buildSuggestionPrompt(params) });
+  const text = await generateText({ model: getModelFor('suggest'), prompt: buildSuggestionPrompt(params) });
 
   logger.info('Recipe suggestion generated');
   return text;
@@ -30,7 +30,7 @@ export async function generateRecipeSuggestion(params: RecipeSuggestionParams): 
 export async function reformatRecipe(text: string): Promise<string> {
   logger.debug({ textLength: text.length }, 'Reformatting recipe');
 
-  const result = await generateText({ model: GEMINI_TEXT_MODEL, prompt: buildReformatPrompt(text) });
+  const result = await generateText({ model: getModelFor('reformat'), prompt: buildReformatPrompt(text) });
 
   logger.info('Recipe reformatted');
   return result;
@@ -40,7 +40,7 @@ export async function refineRecipe(recipeText: string, refinementRequest: string
   logger.debug({ refinementRequest }, 'Refining recipe');
 
   const result = await generateText({
-    model: GEMINI_TEXT_MODEL,
+    model: getModelFor('refine'),
     prompt: buildRefinePrompt(recipeText, refinementRequest)
   });
 
@@ -61,7 +61,7 @@ export async function optimizeRecipeSteps(recipeText: string): Promise<unknown> 
   logger.debug('Optimizing recipe steps');
 
   const text = await generateJson({
-    model: GEMINI_TEXT_MODEL,
+    model: getModelFor('optimize_steps'),
     prompt: buildOptimizeStepsPrompt(recipeText),
     schema: OPTIMIZED_STEPS_SCHEMA
   });

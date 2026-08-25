@@ -12,15 +12,17 @@
 |---|---|
 | Text tasks (reformat / suggest / refine / optimize-steps) | `gemini-3.7-flash`, direct `@google/genai` |
 | Menu planning | Real agent loop on `gemini-3.1-pro-preview`: SQL-filtered search tools, all function calls handled, final answer via `responseSchema` |
-| Recipe images | KIE `nano-banana-2` (2K) replaces HuggingFace SDXL |
-| Infographics | KIE `nano-banana-pro` primary; direct Gemini (`GOOGLE_API_KEY_NANO_BANANA`) fallback. Model ids overridable via env — pending a Hebrew side-by-side vs `gpt-image-2` (user leans GPT Image 2) |
+| Recipe images | KIE `gpt-image-2-text-to-image` (2K, 3:2) — user decision 2026-08-25; nano-banana family stays as env fallback |
+| Infographics | KIE `gpt-image-2-text-to-image` (2K, 2:3) — user decision; Hebrew rendering verified with a real API call (excellent). Direct Gemini stays as fallback |
 | Generated media | Uploaded to Vercel Blob server-side immediately (KIE retains media 14 days only); routes return Blob URLs, not data URIs |
 | LLM via KIE | No — LLM calls stay direct to Google (structured-output/function-calling fidelity) |
 | Env | `KIE_API_KEY` (already in Vercel), keep `GOOGLE_API_KEY` + `GOOGLE_API_KEY_NANO_BANANA`, delete `HUGGINGFACE_TOKEN` |
 | Auth | Already enforced globally by `src/middleware.ts` (JWT on all `/api/**`) — no per-route auth work needed |
 
-Open follow-ups (not in this phase): GPT Image 2 Hebrew side-by-side (4x cheaper if Hebrew renders),
-LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5), optional Opus 5 for menus if Gemini Pro feels shallow.
+Resolved 2026-08-25 (user decisions):
+- Images: GPT Image 2 for both photos and infographics — verified live: Hebrew infographic rendered near-perfectly (~85s generation, inside maxDuration=120).
+- LLMs: per-task model registry (`getModelFor(task)` in `src/lib/ai/gemini/models.ts`), every task overridable via `AI_MODEL_<TASK>` env.
+Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan
 
