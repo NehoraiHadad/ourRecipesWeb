@@ -119,6 +119,17 @@
 
 ---
 
+## ריפקטור מקור-אמת מובנה (2026-08-25, אחרי הפריסה הראשונית)
+
+- [x] 🤖 בוצע במלואו לפי `STRUCTURE_REFACTOR_TASKS.md` (שלבים A–H + G): פרסר מצרכים
+      מובנה, `ingredients_list` כמקור יחיד, `serializeRecipe` + חוזה `SerializedRecipe`
+      יחיד, UI ללא פרסור בצד לקוח, מחיקה בעמודי הניהול, כתיבות DB-first.
+- [x] 🤖 backfill הורץ על פרודקשן (205 מתכונים, 125 עם מצרכים מובנים) ואומת ב-SQL.
+- [x] 🤖 נפרס ל-production (קומיט `04730aa`) + `db push` שהסיר את העמודות המתות
+      (`ingredients`, `formatted_content`, `recipe_metadata`); אומת בדפדפן.
+
+---
+
 ## שלב 7 — התייצבות ומעקב
 
 - [ ] 🤖 7.1 יום-יומיים אחרי: בדיקת לוגים ב-Vercel (`get_runtime_errors`) — אין 5xx ב-webhook וב-cron
