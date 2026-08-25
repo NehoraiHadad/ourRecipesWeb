@@ -28,6 +28,8 @@ const PUBLIC_PATHS = new Set([
   '/api/auth/validate',
   // Authenticated by `X-Telegram-Bot-Api-Secret-Token` inside the handler.
   '/api/webhooks/telegram',
+  // Authenticated by the `MCP_SHARED_KEY` bearer check inside the handler.
+  '/api/mcp',
   '/api/ping'
 ]);
 

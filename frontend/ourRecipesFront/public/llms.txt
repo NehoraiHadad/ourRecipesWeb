@@ -1,0 +1,27 @@
+# המתכונים שלנו (Our Recipes)
+
+> A family recipe collection in Hebrew: ~200 parsed recipes with structured
+> ingredients, instructions, categories, prep/cook times and difficulty,
+> originally curated in a family Telegram channel.
+
+The web app at https://recipes.nehoraihadad.com requires a login (Telegram or
+guest). AI agents should use the MCP server instead of scraping pages.
+
+## MCP server (for AI agents)
+
+- Endpoint: https://recipes.nehoraihadad.com/api/mcp
+- Transport: Streamable HTTP (MCP spec 2025-03-26 and later)
+- Auth: `Authorization: Bearer <shared key>` — the key is distributed
+  privately by the site owner to family members; there is no public signup.
+- Access is read-only. Tools:
+  - `search_recipes` — free text / categories / difficulty / max total time
+  - `get_recipe_details` — ingredients + instructions preview by recipe id
+  - `list_categories` — all categories with recipe counts
+
+Human-readable setup instructions (Hebrew): https://recipes.nehoraihadad.com/ai
+
+## Notes
+
+- All recipe content is in Hebrew (RTL).
+- Difficulty values: קל, בינוני, מורכב.
+- Categories are free-form Hebrew tags (e.g. עיקריות, קינוחים, צמחוני).
