@@ -70,9 +70,9 @@ const RecipeImageField: React.FC<RecipeImageFieldProps> = ({ image, onChange, re
       imageProgress.completeStep(0);
 
       imageProgress.startStep(1);
-      // `POST /api/recipes/generate-image` answers `{ data: { image } }`
-      // where `image` is raw base64 (the renderer adds the data: prefix).
-      const result = await apiService.post<{ data: { image: string } }>(
+      // `POST /api/recipes/generate-image` answers `{ data: { image_url } }`
+      // — a permanent Vercel Blob URL, not a data URI (Wave 2A).
+      const result = await apiService.post<{ data: { image_url: string } }>(
         '/api/recipes/generate-image',
         { recipeContent },
         { timeout: AI_TIMEOUT }
@@ -80,7 +80,7 @@ const RecipeImageField: React.FC<RecipeImageFieldProps> = ({ image, onChange, re
       imageProgress.completeStep(1);
 
       imageProgress.startStep(2);
-      onChange(result?.data?.image ?? null);
+      onChange(result?.data?.image_url ?? null);
       imageProgress.completeStep(2);
     } catch (error) {
       console.error('Error generating image:', error);
@@ -103,7 +103,7 @@ const RecipeImageField: React.FC<RecipeImageFieldProps> = ({ image, onChange, re
       ) : (
         image && (
           <img
-            src={image.startsWith('data:') ? image : `data:image/jpeg;base64,${image}`}
+            src={image}
             alt="Recipe"
             className="max-w-full h-auto rounded-lg shadow-md"
           />

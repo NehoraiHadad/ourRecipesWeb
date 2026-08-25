@@ -179,8 +179,9 @@ const MealSuggestionForm: React.FC = () => {
 
       // Step 2: Generate image
       imageProgress.startStep(1);
-      // `POST /api/recipes/generate-image` answers `{ data: { image } }`.
-      const response = await apiService.post<{ data: { image: string } }>(
+      // `POST /api/recipes/generate-image` answers `{ data: { image_url } }`
+      // — a permanent Vercel Blob URL, not a data URI (Wave 2A).
+      const response = await apiService.post<{ data: { image_url: string } }>(
         "/api/recipes/generate-image",
         { recipeContent: recipeText },
         { timeout: AI_TIMEOUT }
@@ -191,9 +192,9 @@ const MealSuggestionForm: React.FC = () => {
       // Step 3: Optimize image
       imageProgress.startStep(2);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
-      const image = response?.data?.image;
-      if (image) {
-        setRecipe((prev) => (prev ? { ...prev, image_url: image } : prev));
+      const imageUrl = response?.data?.image_url;
+      if (imageUrl) {
+        setRecipe((prev) => (prev ? { ...prev, image_url: imageUrl } : prev));
       }
       imageProgress.completeStep(2);
 

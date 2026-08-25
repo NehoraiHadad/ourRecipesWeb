@@ -26,7 +26,7 @@ import { createdResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
 import { formatRecipeText, parseRecipeMessage } from '@/lib/recipes/parser';
-import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
+import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/recipes/image';
 import { mirrorCreateRecipe, generatePendingTelegramId } from '@/lib/recipes/mirror';
 import { createRecipeRetryingId, applyCreateMirrorResult } from '@/lib/recipes/createRecipe';
 import { logger } from '@/lib/logger';
@@ -76,8 +76,12 @@ export async function POST(request: NextRequest) {
 
     const parsed = parseRecipeMessage(text);
 
-    const imageBuffer = decodeBase64Image(body.image);
-    const imageUrl = imageBuffer ? await uploadRecipeImage(imageBuffer, `create-${Date.now()}`) : null;
+    // AI-generated images (Wave 2A) already come back as a Blob URL — only a
+    // manual upload still needs decode + upload.
+    const submittedUrlImage = isHttpsImageUrl(body.image) ? body.image : null;
+    const imageBuffer = submittedUrlImage ? null : decodeBase64Image(body.image);
+    const imageUrl = submittedUrlImage
+      ?? (imageBuffer ? await uploadRecipeImage(imageBuffer, `create-${Date.now()}`) : null);
 
     let recipe = await createRecipeRetryingId({
       telegramId: generatePendingTelegramId(),
@@ -87,7 +91,7 @@ export async function POST(request: NextRequest) {
       createdBy: auth.session.sub
     });
 
-    const mirror = await mirrorCreateRecipe(text, imageBuffer);
+    const mirror = await mirrorCreateRecipe(text, imageBuffer ?? submittedUrlImage);
     recipe = await applyCreateMirrorResult(recipe, mirror);
 
     log.info(

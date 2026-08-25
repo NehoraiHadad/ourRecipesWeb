@@ -1,6 +1,7 @@
 // @vitest-environment node
 /**
- * Integration tests for POST /api/recipes/generate-infographic (Wave 1.B).
+ * Integration tests for POST /api/recipes/generate-infographic (Wave 2A:
+ * response now carries a Blob `image_url`, not a `data:` URI).
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { NextRequest } from 'next/server';
@@ -52,13 +53,21 @@ describe('POST /api/recipes/generate-infographic', () => {
     expect(response.status).toBe(400);
   });
 
-  it('returns a data:image/png;base64 URI built from the AI service output', async () => {
-    generateRecipeInfographicMock.mockResolvedValue('QUJD');
+  it('returns the Blob URL from the AI service as image_url', async () => {
+    generateRecipeInfographicMock.mockResolvedValue('https://blob.vercel-storage.com/recipes/infographic-abc.jpg');
 
     const response = await POST(postRequest({ recipeContent: 'כותרת: עוגה' }));
 
     expect(response.status).toBe(200);
     const json = await response.json();
-    expect(json.data.image).toBe('data:image/png;base64,QUJD');
+    expect(json.data.image_url).toBe('https://blob.vercel-storage.com/recipes/infographic-abc.jpg');
+  });
+
+  it('propagates a failure from the AI service as an error response', async () => {
+    generateRecipeInfographicMock.mockRejectedValue(new Error('KIE and Gemini both failed'));
+
+    const response = await POST(postRequest({ recipeContent: 'כותרת: עוגה' }));
+
+    expect(response.status).toBeGreaterThanOrEqual(500);
   });
 });

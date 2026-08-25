@@ -28,14 +28,14 @@ const RecipeInfographic: React.FC<RecipeInfographicProps> = ({ recipeContent, ti
     setError(null);
     try {
       // `POST /api/recipes/generate-infographic` answers
-      // `{ data: { image: "data:image/png;base64,..." } }`.
-      const response = await apiService.post<{ data: { image: string } }>(
+      // `{ data: { image_url } }` — a permanent Vercel Blob URL (Wave 2A).
+      const response = await apiService.post<{ data: { image_url: string } }>(
         '/api/recipes/generate-infographic',
         { recipeContent },
         { timeout: AI_TIMEOUT }
       );
 
-      const generated = response?.data?.image;
+      const generated = response?.data?.image_url;
       if (!generated) throw new Error('No infographic returned');
       setImage(generated);
     } catch (err) {

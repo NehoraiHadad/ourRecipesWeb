@@ -6,6 +6,8 @@ import type {
   RecipeSummary,
   MealRecipe,
 } from '../types';
+// Type-only import from the agent's pure data-contract file (no runtime deps).
+import type { MenuPlan } from '@/lib/ai/menu/types';
 
 interface ApiResponse<T> {
   success?: boolean;
@@ -16,8 +18,8 @@ interface ApiResponse<T> {
   suggestions?: RecipeSummary[];
   meal_recipe?: MealRecipe;
   item?: any;
-  preview?: any;  // For menu preview
-  preferences?: any;  // For menu preview preferences echo
+  preview?: MenuPlan;
+  preferences?: MenuGenerationRequest;
   error?: string;
   message?: string;
 }
@@ -32,12 +34,12 @@ export class MenuService {
    * Note: This can take 30-90 seconds due to AI processing
    */
   static async generateMenuPreview(request: MenuGenerationRequest): Promise<ApiResponse<{
-    preview: any;
+    preview: MenuPlan;
     preferences: MenuGenerationRequest;
   }>> {
     // `POST /api/menus/generate-preview` answers `{ data: { preview, preferences } }`.
     const response = await apiService.post<{
-      data: { preview: any; preferences: MenuGenerationRequest };
+      data: { preview: MenuPlan; preferences: MenuGenerationRequest };
     }>(`${this.BASE_PATH}/generate-preview`, request, {
       timeout: 120000 // 2 minutes timeout for AI menu generation
     });
@@ -47,7 +49,7 @@ export class MenuService {
   /**
    * Save menu to database after user confirms the preview
    */
-  static async saveMenu(preview: any, preferences: MenuGenerationRequest): Promise<ApiResponse<{
+  static async saveMenu(preview: MenuPlan, preferences: MenuGenerationRequest): Promise<ApiResponse<{
     menu: Menu;
     shopping_list: ShoppingList;
   }>> {

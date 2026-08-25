@@ -28,9 +28,9 @@ LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5), optional Opus 5 for menus if 
 |---|---|---|---|---|
 | 1 | kie-infra | Sonnet | `src/lib/ai/kie/` client + poll + media→Blob helper + unit tests | [x] done |
 | 1 | gemini-infra | Sonnet | `src/lib/ai/gemini/` wrapper (lazy init, retry/timeout), migrate text functions to `gemini-3.7-flash`, `maxDuration` on text routes | [x] done |
-| 2 | image-routes | Sonnet | generate-image + generate-infographic → KIE + Blob, delete HF/SDXL code, UI contract update | [ ] pending |
-| 2 | menu-agent | Opus | menuPlannerService rewrite as real agent (`gemini-3.1-pro-preview`), fix `ai_reason` bug, tests | [ ] pending |
-| 3 | (main) | — | Integration: tsc + vitest + build green, docs, final commit | [ ] pending |
+| 2 | image-routes | Sonnet | generate-image + generate-infographic → KIE + Blob, delete HF/SDXL code, UI contract update | [x] done |
+| 2 | menu-agent | Opus | menuPlannerService rewrite as real agent (`gemini-3.1-pro-preview`), fix `ai_reason` bug, tests | [x] done |
+| 3 | (main) | — | Integration: tsc + vitest + build green, docs, final commit | [x] done |
 
 ## Wave 1 — Infrastructure
 
@@ -53,27 +53,34 @@ LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5), optional Opus 5 for menus if 
 ## Wave 2 — Features
 
 ### 2A. Image routes → KIE
-- [ ] `generateRecipeImage` → KIE `nano-banana-2` 2K; Hebrew-aware prompt (title passed as-is, no regex-and-'dish' fallback); delete HuggingFace code path
-- [ ] `generateRecipeInfographic` → KIE `nano-banana-pro`; fallback to direct Gemini when KIE fails
-- [ ] Both routes upload to Blob server-side and return `{ image_url }`; `maxDuration = 120`
-- [ ] UI: `RecipeImageField` + `RecipeInfographic` consume URL instead of data URI (infographic download keeps working)
-- [ ] Remove `HUGGINGFACE_TOKEN` from `.env.example`; document `KIE_API_KEY`
-- [ ] Tests: route tests updated; KIE client mocked
+- [x] `generateRecipeImage` → KIE `nano-banana-2` 2K; Hebrew-aware prompt (title passed as-is, no regex-and-'dish' fallback); delete HuggingFace code path
+- [x] `generateRecipeInfographic` → KIE `nano-banana-pro`; fallback to direct Gemini when KIE fails
+- [x] Both routes upload to Blob server-side and return `{ image_url }`; `maxDuration = 120`
+- [x] UI: `RecipeImageField` + `RecipeInfographic` consume URL instead of data URI (infographic download keeps working)
+- [x] Remove `HUGGINGFACE_TOKEN` from `.env.example`; document `KIE_API_KEY`
+- [x] Tests: route tests updated; KIE client mocked
 
 ### 2B. Menu agent rewrite
-- [ ] Replace catalog-dump tools with SQL-filtered search: `search_recipes({query?, categories?, dietary?, max_time?, limit})`, `get_recipes_details(ids)` (capped, ACTIVE+parsed only), `review_menu_draft(draft)` returning balance feedback
-- [ ] Agent loop on `gemini-3.1-pro-preview`: handle **all** `functionCalls` per turn, iteration cap, retry on transient errors
-- [ ] Final output via `responseSchema` (typed `MenuPlan`) — no regex JSON extraction
-- [ ] Fix `ai_reason` contract bug (prompt says `ai_reason`, save route read `reason`)
-- [ ] Type the whole path (`MenuPlan`, `MealPlan`, no `any`)
-- [ ] Tests: agent loop with mocked chat (tool dispatch, multi-call turns, schema validation), generate-preview route test
+- [x] Replace catalog-dump tools with SQL-filtered search: `search_recipes({query?, categories?, dietary?, max_time?, limit})`, `get_recipes_details(ids)` (capped, ACTIVE+parsed only), `review_menu_draft(draft)` returning balance feedback
+- [x] Agent loop on `gemini-3.1-pro-preview`: handle **all** `functionCalls` per turn, iteration cap, retry on transient errors
+- [x] Final output via `responseSchema` (typed `MenuPlan`) — no regex JSON extraction
+- [x] Fix `ai_reason` contract bug (prompt says `ai_reason`, save route read `reason`)
+- [x] Type the whole path (`MenuPlan`, `MealPlan`, no `any`)
+- [x] Tests: agent loop with mocked chat (tool dispatch, multi-call turns, schema validation), generate-preview route test
 
 ## Wave 3 — Integration
-- [ ] `npx tsc --noEmit` clean
-- [ ] `npm test` green 
-- [ ] `npm run build` succeeds
-- [ ] Update this file + `DEPLOYMENT_TASKS.md`
-- [ ] Final commit (code committed locally; **push/deploy awaits explicit user approval** per Vercel guardrail — though note production AI is currently broken, so deploying is the fix)
+- [x] `npx tsc --noEmit` clean
+- [x] `npm test` green 
+- [x] `npm run build` succeeds
+- [x] Update this file + `DEPLOYMENT_TASKS.md`
+- [x] Final commit (code committed locally; **push/deploy awaits explicit user approval** per Vercel guardrail — though note production AI is currently broken, so deploying is the fix)
+
+## Completion notes (Wave 2/3)
+- `menuPlannerService.ts` deleted outright — the agent lives in `src/lib/ai/menu/` (11 small modules), route imports updated, `menuService.ts` client typed with `MenuPlan` (type-only import).
+- `review_menu_draft` gives the model deterministic Hebrew feedback (missing main course, duplicates, ingredient overlap) so it can iterate before finalizing.
+- Finalize is a separate `responseSchema` call — Gemini rejects a response schema on a request that also declares tools.
+- Extra fix beyond plan: `mirrorCreateRecipe` now accepts a photo URL, so AI-generated (Blob-hosted) images attach to the Telegram mirror on create; edits/reconcile already used URLs.
+- Final state: tsc clean, 498/498 tests, production build succeeds. Code committed locally, NOT pushed.
 
 ## Verification notes
 - Production breakage verified 2026-08-25 via guest JWT → `POST /api/recipes/reformat` → 500.

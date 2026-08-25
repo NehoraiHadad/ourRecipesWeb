@@ -1,14 +1,19 @@
 /**
  * POST /api/recipes/generate-image
- * AI image generation for recipe using HuggingFace
- *
- * @note Authentication will be added in Phase 3
+ * AI recipe photo generation via KIE (`nano-banana-2` by default —
+ * `docs/architecture/AI_UPGRADE_TASKS.md` §2A). Auth is enforced globally by
+ * `src/middleware.ts` for every `/api/**` route.
  */
 import { NextRequest } from 'next/server';
 import { generateRecipeImage } from '@/lib/services/aiService';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
+
+const log = logger.child({ context: 'api/recipes/generate-image:POST' });
+
+/** KIE task creation + polling can take well over the platform default. */
+export const maxDuration = 120;
 
 export async function POST(request: NextRequest) {
   try {
@@ -18,17 +23,15 @@ export async function POST(request: NextRequest) {
       throw BadRequestError('recipeContent is required');
     }
 
-    logger.debug({ contentLength: body.recipeContent.length }, 'Generating recipe image');
+    log.debug({ contentLength: body.recipeContent.length }, 'Generating recipe image');
 
-    const imageBase64 = await generateRecipeImage(body.recipeContent);
+    const imageUrl = await generateRecipeImage(body.recipeContent);
 
-    logger.info('Recipe image generated successfully');
+    log.info('Recipe image generated successfully');
 
-    // Full data-URI, like Flask and the sibling generate-infographic route —
-    // the save paths (`decodeBase64Image`) reject anything without the prefix.
-    return successResponse({ image: `data:image/jpeg;base64,${imageBase64}` });
+    return successResponse({ image_url: imageUrl });
   } catch (error) {
-    logger.error({ error }, 'Failed to generate recipe image');
+    log.error({ error }, 'Failed to generate recipe image');
     return handleApiError(error);
   }
 }

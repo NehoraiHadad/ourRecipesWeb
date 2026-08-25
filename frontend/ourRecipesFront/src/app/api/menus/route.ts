@@ -77,11 +77,22 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * The body the client posts: the untouched `MenuPlan` preview from
+ * `POST /api/menus/generate-preview` plus the preferences it was generated
+ * from. Every field is optional because it arrives from the network — the
+ * handler skips what it cannot use.
+ *
+ * `ai_reason` is the field name across the whole chain (agent schema →
+ * preview → here → `MealRecipe.ai_reason`). This route used to read `reason`,
+ * which nothing ever produced, so every saved menu silently lost its
+ * per-recipe explanations.
+ */
 interface SaveMenuRecipeInput {
   recipe_id?: number;
   course_type?: string;
   course_order?: number;
-  reason?: string;
+  ai_reason?: string;
 }
 
 interface SaveMenuMealInput {
@@ -91,7 +102,7 @@ interface SaveMenuMealInput {
   recipes?: SaveMenuRecipeInput[];
 }
 
-interface SaveMenuBody {
+interface SaveMenuInput {
   preview?: { meals?: SaveMenuMealInput[]; reasoning?: string };
   preferences?: {
     name?: string;
@@ -114,7 +125,7 @@ export async function POST(request: NextRequest) {
     if (!auth.ok) return authErrorResponse(auth);
     const userId = auth.session.sub;
 
-    const body = (await request.json().catch(() => null)) as SaveMenuBody | null;
+    const body = (await request.json().catch(() => null)) as SaveMenuInput | null;
     if (!body?.preview || !body?.preferences) {
       throw BadRequestError('Missing preview or preferences');
     }
@@ -175,7 +186,7 @@ export async function POST(request: NextRequest) {
               course_type: recipeData.course_type,
               course_order: recipeData.course_order ?? 0,
               servings: preferences.servings,
-              ai_reason: recipeData.reason
+              ai_reason: recipeData.ai_reason
             }
           });
         }

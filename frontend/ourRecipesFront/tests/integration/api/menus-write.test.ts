@@ -150,6 +150,57 @@ describe('POST /api/menus (save)', () => {
     expect(prismaMock.menu.update).toHaveBeenCalledTimes(1);
   });
 
+  it('persists the preview\'s `ai_reason` onto the meal recipe', async () => {
+    // Wave 2B contract fix: the preview emits `ai_reason` and this route used
+    // to read `reason`, so every saved menu lost its explanations.
+    const { POST } = await import('@/app/api/menus/route');
+
+    prismaMock.menu.create.mockResolvedValue({ id: 1 } as any);
+    prismaMock.menuMeal.create.mockResolvedValue({ id: 10 } as any);
+    prismaMock.recipe.findUnique.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
+    prismaMock.mealRecipe.create.mockResolvedValue({ id: 100 } as any);
+    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
+    sendMessageMock.mockResolvedValue({ message_id: 999 } as any);
+    prismaMock.menu.update.mockResolvedValue(baseMenuRow({ telegram_message_id: 999 }) as any);
+
+    const request = createMockRequest('http://localhost:3000/api/menus', {
+      method: 'POST',
+      headers: await authHeaders(),
+      body: {
+        preview: {
+          meals: [
+            {
+              meal_type: 'ארוחת ערב',
+              meal_order: 1,
+              recipes: [
+                {
+                  recipe_id: 5,
+                  course_type: 'עיקרית',
+                  course_order: 1,
+                  ai_reason: 'מנה מרכזית חגיגית שמתאימה לשבת'
+                }
+              ]
+            }
+          ],
+          reasoning: 'בחירה מאוזנת'
+        },
+        preferences: { name: 'תפריט שבת', servings: 6 }
+      }
+    });
+
+    expect((await POST(request)).status).toBe(201);
+
+    expect(prismaMock.mealRecipe.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({
+        recipe_id: 5,
+        ai_reason: 'מנה מרכזית חגיגית שמתאימה לשבת'
+      })
+    });
+    expect(prismaMock.menu.create).toHaveBeenCalledWith({
+      data: expect.objectContaining({ ai_reasoning: 'בחירה מאוזנת' })
+    });
+  });
+
   it('still saves the menu when Telegram is down', async () => {
     const { POST } = await import('@/app/api/menus/route');
 

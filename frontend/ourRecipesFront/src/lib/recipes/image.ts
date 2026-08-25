@@ -12,6 +12,16 @@ import { logger } from '@/lib/logger';
 const log = logger.child({ context: 'recipes/image' });
 
 /**
+ * True when `image` is already a stored URL (manual upload used to be the
+ * only source of `data:image` payloads; AI generation — Wave 2A — now
+ * returns a Blob URL directly). Callers use this to skip decode/upload and
+ * store the URL as-is.
+ */
+export function isHttpsImageUrl(image: unknown): image is string {
+  return typeof image === 'string' && image.startsWith('https://');
+}
+
+/**
  * Decodes a `data:image/<type>;base64,<data>` string into a `Buffer`.
  *
  * Port of `_process_image_data` (`backend/ourRecipesBack/routes/recipes.py`):

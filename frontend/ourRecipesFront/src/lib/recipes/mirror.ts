@@ -66,7 +66,8 @@ export interface MirrorCreateResult {
  */
 export async function mirrorCreateRecipe(
   text: string,
-  imageBuffer: Buffer | null
+  /** Fresh upload bytes, or a public https URL (AI-generated images live in Blob). */
+  photo: Buffer | string | null
 ): Promise<MirrorCreateResult> {
   try {
     const channelId = getMainChannelId();
@@ -74,8 +75,8 @@ export async function mirrorCreateRecipe(
       throw new Error('TELEGRAM_CHANNEL_ID is not configured');
     }
 
-    const message = imageBuffer
-      ? await sendPhoto({ chat_id: channelId, photo: imageBuffer, caption: text })
+    const message = photo
+      ? await sendPhoto({ chat_id: channelId, photo, caption: text })
       : await sendMessage({ chat_id: channelId, text });
 
     return { ok: true, telegramId: message.message_id, error: null };

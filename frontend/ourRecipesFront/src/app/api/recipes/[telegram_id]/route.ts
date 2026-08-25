@@ -16,7 +16,7 @@ import { successResponse, noContentResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
-import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
+import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/recipes/image';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { commitPendingUpdate, applyEditMirrorResult } from '@/lib/recipes/updateRecipe';
 import { archiveRecipe } from '@/lib/recipes/deleteRecipe';
@@ -97,16 +97,24 @@ export async function PUT(
       throw NotFoundError('Recipe not found');
     }
 
-    const imageBuffer = decodeBase64Image(body.image);
+    // AI-generated images (Wave 2A) already come back as a Blob URL — only a
+    // manual upload still needs decode + upload. A URL equal to the recipe's
+    // current image_url is not a change (the edit form always resubmits it).
+    const submittedUrlImage = isHttpsImageUrl(body.image) ? body.image : null;
+    const urlImageChanged = submittedUrlImage !== null && submittedUrlImage !== recipe.image_url;
+    const imageBuffer = submittedUrlImage ? null : decodeBase64Image(body.image);
+    const hasNewImage = Boolean(imageBuffer) || urlImageChanged;
 
     // Matches RecipeService.update_recipe: unchanged content + no new image -> no-op.
-    if (recipe.raw_content === newText && !imageBuffer) {
+    if (recipe.raw_content === newText && !hasNewImage) {
       logger.debug({ telegramId }, 'Recipe update skipped — content unchanged');
       return successResponse(serializeRecipeWithRelations(recipe));
     }
 
     let imageUrl = recipe.image_url;
-    if (imageBuffer) {
+    if (urlImageChanged) {
+      imageUrl = submittedUrlImage;
+    } else if (imageBuffer) {
       const uploaded = await uploadRecipeImage(imageBuffer, `update-${recipe.id}-${Date.now()}`);
       // Best-effort: keep the previous image rather than losing it on a failed upload.
       if (uploaded) imageUrl = uploaded;
@@ -127,7 +135,7 @@ export async function PUT(
       telegramId: recipe.telegram_id,
       text: newText,
       hadImage: Boolean(recipe.image_url),
-      newImageUrl: imageBuffer ? imageUrl : null
+      newImageUrl: hasNewImage ? imageUrl : null
     });
 
     const updated = await applyEditMirrorResult(pending.id, mirror);

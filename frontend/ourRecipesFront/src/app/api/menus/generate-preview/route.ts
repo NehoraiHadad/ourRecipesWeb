@@ -5,22 +5,25 @@
  * @note Authentication will be added in Phase 3
  */
 import { NextRequest } from 'next/server';
-import { generateMenuPreview } from '@/lib/services/menuPlannerService';
+import { generateMenuPreview, type MenuPreferences } from '@/lib/ai/menu';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 
+/** The preview request body — `MenuPreferences` before validation. */
+type MenuPreviewInput = Partial<MenuPreferences> & Record<string, unknown>;
+
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body = ((await request.json().catch(() => null)) ?? {}) as MenuPreviewInput;
 
     // Validate required fields
     if (!body.name) {
       throw BadRequestError('Menu name is required');
     }
 
-    if (!body.meal_types || body.meal_types.length === 0) {
+    if (!Array.isArray(body.meal_types) || body.meal_types.length === 0) {
       throw BadRequestError('At least one meal type is required');
     }
 
