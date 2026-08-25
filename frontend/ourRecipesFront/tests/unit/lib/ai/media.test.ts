@@ -53,7 +53,7 @@ describe('storeGeneratedImage', () => {
   });
 
   it('throws when the fetched image exceeds the size limit', async () => {
-    fetchMock.mockResolvedValue(bufferResponse(9 * 1024 * 1024));
+    fetchMock.mockResolvedValue(bufferResponse(17 * 1024 * 1024));
 
     await expect(storeGeneratedImage('https://kie.ai/huge.jpg', 'r1')).rejects.toThrow(/exceeds/);
     expect(putMock).not.toHaveBeenCalled();

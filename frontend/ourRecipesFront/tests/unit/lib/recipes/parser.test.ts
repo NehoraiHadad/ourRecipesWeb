@@ -130,6 +130,37 @@ describe('parseRecipeMessage', () => {
     expect(result.parseErrors).toEqual([]);
   });
 
+  it('parses the AI suggestion emoji template (labels behind emoji, אופן ההכנה, tips excluded)', () => {
+    const aiMessage = [
+      '🍳 עוף ואורז במחבת',
+      '',
+      '⏱️ זמן הכנה: 25 דקות',
+      '👥 מנות: 2',
+      '🔥 רמת קושי: קל',
+      '',
+      '📝 רכיבים:',
+      '- 300 גרם חזה עוף',
+      '- 1 כוס אורז',
+      '',
+      '👨‍🍳 אופן ההכנה:',
+      '1. צורבים את העוף.',
+      '2. מוסיפים את האורז ומבשלים.',
+      '',
+      '💡 טיפים:',
+      '- אפשר להחליף בפרגיות.'
+    ].join('\n');
+
+    const result = parseRecipeMessage(aiMessage);
+
+    expect(result.title).toBe('עוף ואורז במחבת');
+    expect(result.preparationTime).toBe(25);
+    expect(result.difficulty).toBe('EASY');
+    expect(result.ingredients).toEqual(['300 גרם חזה עוף', '1 כוס אורז']);
+    expect(result.instructions).toBe('1. צורבים את העוף.\n2. מוסיפים את האורז ומבשלים.');
+    // No כותרת:/קטגוריות: labels — best-effort extraction, but not "parsed".
+    expect(result.isParsed).toBe(false);
+  });
+
   it('splits every ingredient line into structured parts', () => {
     const result = parseRecipeMessage(FULL_RECIPE);
 

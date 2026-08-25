@@ -38,7 +38,7 @@ describe('generateRecipeImage', () => {
     expect(url).toBe('https://blob.vercel-storage.com/recipes/image-T1-abc.jpg');
     expect(createTaskMock).toHaveBeenCalledWith(
       'gpt-image-2-text-to-image',
-      expect.objectContaining({ prompt: expect.stringContaining('עוגת שוקולד'), resolution: '2K', aspectRatio: '3:2' })
+      expect.objectContaining({ prompt: expect.stringContaining('עוגת שוקולד'), resolution: '1K', aspectRatio: '3:2' })
     );
     expect(pollTaskResultMock).toHaveBeenCalledWith('T1');
     expect(storeGeneratedImageMock).toHaveBeenCalledWith('https://kie.ai/result.jpg', 'image-T1');

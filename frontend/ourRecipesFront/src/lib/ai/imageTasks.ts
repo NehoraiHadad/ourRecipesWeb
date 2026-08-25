@@ -56,7 +56,9 @@ export async function generateRecipeImage(recipeContent: string): Promise<string
   const prompt = buildImagePrompt(recipeContent);
   const model = getKieImageModel();
 
-  const { taskId } = await createTask(model, kieImageInput(model, prompt, { resolution: '2K', aspectRatio: '3:2' }));
+  // 1K: a 2K GPT Image 2 PNG runs ~10MB — past the Blob store's cap and far
+  // more than a recipe card ever renders.
+  const { taskId } = await createTask(model, kieImageInput(model, prompt, { resolution: '1K', aspectRatio: '3:2' }));
   const [resultUrl] = await pollTaskResult(taskId);
   if (!resultUrl) {
     throw new Error(`KIE task ${taskId} succeeded with no result URL`);

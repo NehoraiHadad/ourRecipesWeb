@@ -19,10 +19,12 @@ import { pyLStrip } from '@/lib/recipes/messageText';
 import { parseCategoriesLine, parseDifficultyLine, parsePrepTimeLine } from '@/lib/recipes/parserFields';
 import {
   INGREDIENTS_LABELS,
+  INSTRUCTIONS_LABELS,
   LABEL_CATEGORIES,
   LABEL_DIFFICULTY,
   LABEL_INSTRUCTIONS,
   LABEL_PREP_TIME,
+  LABEL_TIPS,
   LABEL_TITLE,
   type RecipeDifficultyValue
 } from '@/lib/recipes/parserLabels';
@@ -54,6 +56,20 @@ export interface ParsedRecipe {
   parseErrors: string[];
 }
 
+/**
+ * Strips a decorative prefix (emoji, symbols, whitespace) so the AI's
+ * emoji-templated messages ("🍳 עוף בתנור", "📝 רכיבים:") match the same
+ * labels as plain channel messages. Letters, digits and the ingredient
+ * bullet "-" are never stripped.
+ */
+// Built via the constructor: the tsconfig target predates literal `u`-flag
+// syntax, but every runtime here (Node 20+, evergreen browsers) supports it.
+const DECORATION_PREFIX = new RegExp('^[^\\p{L}\\p{N}-]+', 'u');
+
+function stripDecorations(line: string): string {
+  return line.replace(DECORATION_PREFIX, '');
+}
+
 function emptyRecipe(raw: string): ParsedRecipe {
   return {
     title: '',
@@ -83,13 +99,14 @@ export function parseRecipeMessage(text: string): ParsedRecipe {
   const ingredients: string[] = [];
   const tempInstructions: string[] = [];
 
-  // Parse title (first line)
+  // Parse title (first line; "🍳 שם המתכון" falls back emoji-free)
   let title: string;
-  if (!recipeParts[0].startsWith(LABEL_TITLE)) {
+  const firstLine = stripDecorations(recipeParts[0].trim());
+  if (!firstLine.startsWith(LABEL_TITLE)) {
     parseErrors.push('חסרה כותרת מתכון');
-    title = recipeParts[0].trim();
+    title = firstLine;
   } else {
-    title = recipeParts[0].split(LABEL_TITLE).join('').trim();
+    title = firstLine.split(LABEL_TITLE).join('').trim();
     if (!title) {
       parseErrors.push('כותרת המתכון ריקה');
     }
@@ -98,7 +115,9 @@ export function parseRecipeMessage(text: string): ParsedRecipe {
   let currentSection: 'ingredients' | 'instructions' | null = null;
 
   for (const rawPart of recipeParts) {
-    const part = rawPart.trim();
+    // Labels are matched emoji-free ("⏱️ זמן הכנה:" ≡ "זמן הכנה:"); content
+    // lines keep only the plain trim.
+    const part = stripDecorations(rawPart.trim());
     if (!part) continue;
 
     if (part.startsWith(LABEL_PREP_TIME)) {
@@ -114,8 +133,11 @@ export function parseRecipeMessage(text: string): ParsedRecipe {
       if (ingredient) {
         ingredients.push(ingredient);
       }
-    } else if (part.startsWith(LABEL_INSTRUCTIONS)) {
+    } else if (INSTRUCTIONS_LABELS.some((label) => part.startsWith(label))) {
       currentSection = 'instructions';
+    } else if (part.startsWith(LABEL_TIPS)) {
+      // "💡 טיפים:" ends the instructions; tips stay in `raw` only.
+      currentSection = null;
     } else if (currentSection === 'instructions') {
       if (part !== LABEL_INSTRUCTIONS && part) {
         const instruction = part.trim();

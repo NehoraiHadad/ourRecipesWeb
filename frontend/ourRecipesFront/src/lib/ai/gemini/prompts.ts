@@ -46,7 +46,7 @@ ${params.additionalRequests ? `בקשות נוספות: ${params.additionalReque
 - [רכיב 2]
 ...
 
-👨‍🍳 אופן ההכנה:
+👨‍🍳 הוראות הכנה:
 1. [שלב 1]
 2. [שלב 2]
 ...

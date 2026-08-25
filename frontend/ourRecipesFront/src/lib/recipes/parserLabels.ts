@@ -22,6 +22,14 @@ export const LABEL_CATEGORIES = 'קטגוריות:';
 export const LABEL_INGREDIENTS = 'רשימת מצרכים:';
 export const INGREDIENTS_LABELS = [LABEL_INGREDIENTS, 'מצרכים:', 'רכיבים:'];
 export const LABEL_INSTRUCTIONS = 'הוראות הכנה:';
+/**
+ * The AI suggestion template used to emit "אופן ההכנה:" (its reformat sibling
+ * always said "הוראות הכנה:") — accepted as a synonym so older AI-authored
+ * messages keep their instructions section.
+ */
+export const INSTRUCTIONS_LABELS = [LABEL_INSTRUCTIONS, 'אופן ההכנה:'];
+/** AI-suggestion tips section — ends the instructions block, never part of it. */
+export const LABEL_TIPS = 'טיפים:';
 
 /**
  * `Recipe._parse_content`'s `difficulty_map` (Python dict), extended beyond

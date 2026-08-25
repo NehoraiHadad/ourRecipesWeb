@@ -15,8 +15,12 @@ import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'ai/media' });
 
-/** Same limit as `lib/images/upload.ts` — generated images should never approach this. */
-const MAX_IMAGE_BYTES = 8 * 1024 * 1024;
+/**
+ * Sanity cap, deliberately above `lib/images/upload.ts`'s 8MiB: a 2K
+ * GPT Image 2 PNG (the infographic task) measures ~10MB, and rejecting it
+ * here fails the whole generation after the credits were already spent.
+ */
+const MAX_IMAGE_BYTES = 16 * 1024 * 1024;
 
 /** HTTP timeout for fetching the source (KIE-hosted) image. */
 const FETCH_TIMEOUT_MS = 30_000;
