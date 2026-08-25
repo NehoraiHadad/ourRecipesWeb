@@ -105,10 +105,17 @@ export class SearchService {
   }
 
   // Get search suggestions
+  // The route returns recipe rows ({ id, title, telegram_id, image_url });
+  // the UI contract is a plain list of title strings.
   static async getSearchSuggestions(query: string): Promise<ApiResponse<string[]>> {
-    return apiService.get<ApiResponse<string[]>>(
+    const response = await apiService.get<ApiResponse<Array<string | { title?: string }>>>(
       `${this.BASE_PATH}/suggestions?query=${encodeURIComponent(query)}`
     );
+    const items = Array.isArray(response) ? response : response?.data ?? [];
+    const titles = items
+      .map((item) => (typeof item === 'string' ? item : item?.title))
+      .filter((title): title is string => Boolean(title));
+    return { data: titles, status: 200 };
   }
 }
 
