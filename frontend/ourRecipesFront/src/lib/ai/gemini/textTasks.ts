@@ -7,13 +7,15 @@
  * reformat / suggest / refine are routed per `getModelFor` (`@/lib/ai/models`):
  * by default that means KIE's GPT-5.6 Luna chat endpoint, with an automatic
  * fallback to direct Gemini on ANY failure from that call — a KIE outage or
- * integration bug must never take these features down. optimize_steps always
- * calls Gemini directly: it needs JSON-schema structured output, which KIE's
- * chat endpoint has no equivalent for.
+ * integration bug must never take these features down. optimize_steps needs
+ * JSON-schema structured output, so its KIE assignment goes through KIE's
+ * native Gemini proxy (`kieGeminiJson`) instead of the Luna chat endpoint,
+ * with the same fall-back-on-any-throw contract.
  */
+import { ThinkingLevel } from '@google/genai';
 import { logger } from '@/lib/logger';
 import { OPTIMIZED_STEPS_SCHEMA } from '@/lib/recipes/optimizedSteps';
-import { kieChatText } from '@/lib/ai/kie';
+import { kieChatText, kieGeminiJson } from '@/lib/ai/kie';
 import { getModelFor, GEMINI_TEXT_FALLBACK_MODEL, type AiTask } from '@/lib/ai/models';
 import { generateText, generateJson } from './generate';
 import {
@@ -87,6 +89,28 @@ export async function refineRecipe(recipeText: string, refinementRequest: string
 }
 
 /**
+ * Structured-JSON twin of `generateTaskText` for `optimize_steps`: a KIE
+ * assignment goes through KIE's Gemini proxy and falls back to direct Gemini
+ * on any throw. Thinking is pinned low on both paths — this is extraction,
+ * not reasoning, and dynamic thinking alone added ~5s and ~900 tokens.
+ */
+async function generateStepsJson(prompt: string): Promise<string> {
+  const assignment = getModelFor('optimize_steps');
+  const thinkingConfig = { thinkingLevel: ThinkingLevel.LOW };
+
+  if (assignment.provider === 'kie') {
+    try {
+      return await kieGeminiJson({ model: assignment.model, prompt, schema: OPTIMIZED_STEPS_SCHEMA });
+    } catch (error) {
+      logger.warn({ error }, 'KIE Gemini JSON call failed, falling back to direct Gemini');
+    }
+  }
+
+  const model = assignment.provider === 'gemini' ? assignment.model : GEMINI_TEXT_FALLBACK_MODEL;
+  return generateJson({ model, prompt, schema: OPTIMIZED_STEPS_SCHEMA, config: { thinkingConfig } });
+}
+
+/**
  * Optimize recipe steps.
  *
  * Asks Gemini for structured JSON (`OPTIMIZED_STEPS_SCHEMA`) rather than prose,
@@ -98,11 +122,7 @@ export async function refineRecipe(recipeText: string, refinementRequest: string
 export async function optimizeRecipeSteps(recipeText: string): Promise<unknown> {
   logger.debug('Optimizing recipe steps');
 
-  const text = await generateJson({
-    model: getModelFor('optimize_steps').model,
-    prompt: buildOptimizeStepsPrompt(recipeText),
-    schema: OPTIMIZED_STEPS_SCHEMA
-  });
+  const text = await generateStepsJson(buildOptimizeStepsPrompt(recipeText));
 
   const trimmed = text.trim();
   if (!trimmed) {

@@ -27,6 +27,7 @@ export interface GenerateJsonOptions {
   model: string;
   prompt: string;
   schema: Schema;
+  config?: GenerateContentConfig;
 }
 
 /**
@@ -34,10 +35,10 @@ export interface GenerateJsonOptions {
  * callers parse and validate it (e.g. `optimizeRecipeSteps` against
  * `parseOptimizedSteps`).
  */
-export async function generateJson({ model, prompt, schema }: GenerateJsonOptions): Promise<string> {
+export async function generateJson({ model, prompt, schema, config }: GenerateJsonOptions): Promise<string> {
   return generateText({
     model,
     prompt,
-    config: { responseMimeType: 'application/json', responseSchema: schema }
+    config: { ...config, responseMimeType: 'application/json', responseSchema: schema }
   });
 }

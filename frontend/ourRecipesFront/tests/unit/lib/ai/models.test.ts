@@ -2,7 +2,7 @@
  * @vitest-environment node
  */
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { getModelFor, GEMINI_TEXT_FALLBACK_MODEL } from '@/lib/ai/models';
+import { getModelFor } from '@/lib/ai/models';
 
 const ENV_KEYS = ['AI_MODEL_REFORMAT', 'AI_MODEL_SUGGEST', 'AI_MODEL_REFINE', 'AI_MODEL_OPTIMIZE_STEPS', 'AI_MODEL_MENU_AGENT'];
 const originalEnv: Record<string, string | undefined> = {};
@@ -28,8 +28,8 @@ describe('getModelFor', () => {
     expect(getModelFor('refine')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
   });
 
-  it('defaults optimize_steps and menu_agent to direct Gemini', () => {
-    expect(getModelFor('optimize_steps')).toEqual({ provider: 'gemini', model: GEMINI_TEXT_FALLBACK_MODEL });
+  it('defaults optimize_steps to KIE Gemini proxy and menu_agent to direct Gemini', () => {
+    expect(getModelFor('optimize_steps')).toEqual({ provider: 'kie', model: 'gemini-3-7-flash' });
     expect(getModelFor('menu_agent')).toEqual({ provider: 'gemini', model: 'gemini-3.1-pro-preview' });
   });
 

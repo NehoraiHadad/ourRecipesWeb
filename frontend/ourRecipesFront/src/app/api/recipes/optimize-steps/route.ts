@@ -47,5 +47,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// AI generation is slower than the platform default.
-export const maxDuration = 60; // 60 seconds (Vercel)
+// AI generation is slower than the platform default, and the direct-Gemini
+// fallback path can burn two 45s retry attempts when Google is overloaded
+// (the exact 504 seen in prod on 2026-08-25) — 60s was not enough for it.
+export const maxDuration = 120; // seconds (Vercel)

@@ -12,9 +12,13 @@
  *    failure falls back to direct Gemini at the call site
  *    (`gemini/textTasks.ts`) so the feature never goes down with the newer
  *    integration.
- *  - optimize_steps needs Gemini's JSON-schema structured output (KIE's chat
- *    endpoint has no equivalent), and menu_agent needs Gemini's multi-turn
- *    function-calling chat session — both stay on direct Gemini.
+ *  - optimize_steps needs Gemini's JSON-schema structured output, but runs it
+ *    through KIE's native Gemini proxy (`kie/geminiJson.ts`): direct Google
+ *    calls hit 503s and >45s hangs under load (prod 504s, 2026-08-25) while
+ *    the same model answers in ~6s via KIE. Any KIE failure falls back to
+ *    direct Gemini at the call site. Note KIE Gemini ids use dashes.
+ *  - menu_agent needs Gemini's multi-turn function-calling chat session and
+ *    stays on direct Gemini.
  *
  * Moved out of `gemini/models.ts`: this file now resolves a provider, not
  * just a Gemini model id, so it no longer belongs under `gemini/`.
@@ -42,7 +46,7 @@ const DEFAULT_MODELS: Record<AiTask, AiModelAssignment> = {
   reformat: { provider: 'kie', model: 'gpt-5-6-luna' },
   suggest: { provider: 'kie', model: 'gpt-5-6-luna' },
   refine: { provider: 'kie', model: 'gpt-5-6-luna' },
-  optimize_steps: { provider: 'gemini', model: GEMINI_TEXT_FALLBACK_MODEL },
+  optimize_steps: { provider: 'kie', model: 'gemini-3-7-flash' },
   menu_agent: { provider: 'gemini', model: 'gemini-3.1-pro-preview' }
 };
 

@@ -7,16 +7,17 @@
  */
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
 
-vi.mock('@/lib/ai/kie', () => ({ kieChatText: vi.fn() }));
+vi.mock('@/lib/ai/kie', () => ({ kieChatText: vi.fn(), kieGeminiJson: vi.fn() }));
 vi.mock('@/lib/ai/gemini/generate', () => ({ generateText: vi.fn(), generateJson: vi.fn() }));
 
-import { kieChatText } from '@/lib/ai/kie';
+import { kieChatText, kieGeminiJson } from '@/lib/ai/kie';
 import { generateText, generateJson } from '@/lib/ai/gemini/generate';
 import { GEMINI_TEXT_FALLBACK_MODEL } from '@/lib/ai/models';
 import { buildReformatPrompt, buildSuggestionPrompt, buildRefinePrompt } from '@/lib/ai/gemini/prompts';
 import { reformatRecipe, generateRecipeSuggestion, refineRecipe, optimizeRecipeSteps } from '@/lib/ai/gemini/textTasks';
 
 const kieChatTextMock = vi.mocked(kieChatText);
+const kieGeminiJsonMock = vi.mocked(kieGeminiJson);
 const generateTextMock = vi.mocked(generateText);
 const generateJsonMock = vi.mocked(generateJson);
 
@@ -120,19 +121,45 @@ describe('refineRecipe', () => {
 });
 
 describe('optimizeRecipeSteps', () => {
-  it('always calls Gemini directly, never KIE', async () => {
+  it('routes through the KIE Gemini proxy by default, never direct Gemini on success', async () => {
+    kieGeminiJsonMock.mockResolvedValue('{"steps": []}');
+
+    const result = await optimizeRecipeSteps('recipe text');
+
+    expect(result).toEqual({ steps: [] });
+    expect(kieGeminiJsonMock).toHaveBeenCalledWith(
+      expect.objectContaining({ model: 'gemini-3-7-flash', prompt: expect.any(String), schema: expect.any(Object) })
+    );
+    expect(generateJsonMock).not.toHaveBeenCalled();
+  });
+
+  it('falls back to direct Gemini with low thinking when the KIE call fails', async () => {
+    kieGeminiJsonMock.mockRejectedValue(new Error('KIE down'));
+    generateJsonMock.mockResolvedValue('{"steps": []}');
+
+    const result = await optimizeRecipeSteps('recipe text');
+
+    expect(result).toEqual({ steps: [] });
+    expect(generateJsonMock).toHaveBeenCalledWith(
+      expect.objectContaining({
+        model: GEMINI_TEXT_FALLBACK_MODEL,
+        config: expect.objectContaining({ thinkingConfig: expect.anything() })
+      })
+    );
+  });
+
+  it('goes straight to direct Gemini when overridden to the gemini provider', async () => {
+    process.env.AI_MODEL_OPTIMIZE_STEPS = 'gemini:gemini-3.7-flash';
     generateJsonMock.mockResolvedValue('{"steps": []}');
 
     await optimizeRecipeSteps('recipe text');
 
-    expect(kieChatTextMock).not.toHaveBeenCalled();
-    expect(generateJsonMock).toHaveBeenCalledWith(
-      expect.objectContaining({ model: GEMINI_TEXT_FALLBACK_MODEL })
-    );
+    expect(kieGeminiJsonMock).not.toHaveBeenCalled();
+    expect(generateJsonMock).toHaveBeenCalledWith(expect.objectContaining({ model: 'gemini-3.7-flash' }));
   });
 
   it('returns null for a non-JSON response', async () => {
-    generateJsonMock.mockResolvedValue('not json');
+    kieGeminiJsonMock.mockResolvedValue('not json');
 
     expect(await optimizeRecipeSteps('recipe text')).toBeNull();
   });

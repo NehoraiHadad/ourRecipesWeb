@@ -26,11 +26,22 @@ Resolved 2026-08-25 (user decisions):
   a no-Markdown instructions block + delimiters + low reasoning effort): Luna matched Gemini's format
   discipline, was more faithful to source wording, and ~3x cheaper on KIE credits. Approved hybrid:
   reformat/suggest/refine on `kie:gpt-5-6-luna` (KIE codex chat endpoint, Codex system prompt overridden
-  via `instructions`, auto-fallback to `gemini-3.7-flash` on any KIE failure); optimize_steps stays
-  `gemini:gemini-3.7-flash` (needs enforced responseSchema); menu_agent stays `gemini:gemini-3.1-pro-preview`
+  via `instructions`, auto-fallback to `gemini-3.7-flash` on any KIE failure); optimize_steps on
+  `kie:gemini-3-7-flash` (see post-deploy hotfix below); menu_agent stays `gemini:gemini-3.1-pro-preview`
   (function calling + finalize responseSchema). Registry moved to `src/lib/ai/models.ts`, returns
   `{provider, model}`, env overrides use `provider:model` format. Future experiment noted by user:
   moving the menu agent to a cheaper model via KIE once its endpoints prove out.
+
+Post-deploy hotfix 2026-08-25 — optimize-steps 504 in production:
+- Symptom: `POST /api/recipes/optimize-steps` → 504 FUNCTION_INVOCATION_TIMEOUT at 60s, right after the hybrid deploy.
+- Root cause (from Vercel runtime logs): direct Google API overload — attempt 0 aborted at the 45s
+  per-attempt retry timeout, attempt 1 got a 503 from Google, function killed at maxDuration=60.
+  NOT a prompt/schema problem: the same model + full `OPTIMIZED_STEPS_SCHEMA` through KIE's Gemini
+  proxy answered in 6–7s during the outage.
+- Fix: optimize_steps default moved to `kie:gemini-3-7-flash` via new `src/lib/ai/kie/geminiJson.ts`
+  (KIE's native Gemini endpoint, supports responseSchema; model ids use dashes). Falls back to direct
+  Gemini on any KIE throw, with `thinkingConfig: LOW` (dynamic thinking alone added ~5s / ~900 tokens);
+  route `maxDuration` raised to 120 so the fallback's two 45s retry attempts fit.
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan

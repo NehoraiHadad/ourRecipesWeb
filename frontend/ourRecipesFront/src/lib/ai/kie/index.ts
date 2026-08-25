@@ -6,4 +6,6 @@ export { getKieImageModel, getKieInfographicModel, kieImageInput } from './model
 export type { KieImageOptions } from './models';
 export { kieChatText } from './chat';
 export type { KieChatTextOptions } from './chat';
+export { kieGeminiJson } from './geminiJson';
+export type { KieGeminiJsonOptions } from './geminiJson';
 export type * from './types';
