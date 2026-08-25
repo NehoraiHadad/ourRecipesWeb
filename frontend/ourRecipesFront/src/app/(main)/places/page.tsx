@@ -12,7 +12,6 @@ import { Place, PlaceFormData, getLocationParts } from '@/components/place/types
 import { filterAndSortPlaces } from '@/components/place/utils';
 import Spinner from '@/components/ui/Spinner';
 import { PlaceService } from '@/services/placeService';
-import type { ApiResponse } from '@/types/api';
 import dynamic from 'next/dynamic';
 import { ViewToggle } from '@/components/place/ViewToggle';
 
@@ -36,7 +35,7 @@ const INITIAL_FORM_DATA: PlaceFormData = {
 };
 
 export default function PlacesPage() {
-  const [places, setPlaces] = useState<ApiResponse<Place[]> | Place[]>([]);
+  const [places, setPlaces] = useState<Place[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPlace, setEditingPlace] = useState<Place | null>(null);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -55,7 +54,7 @@ export default function PlacesPage() {
   // Get unique areas from places
   const areas = isLoading || !places ? [{ value: '', label: 'כל האזורים' }] : [
     { value: '', label: 'כל האזורים' },
-    ...Array.from(new Set((Array.isArray(places) ? places : places.data).map(place => {
+    ...Array.from(new Set(places.map(place => {
       const locationParts = getLocationParts(place.location);
       return locationParts.area || locationParts.city;
     }).filter(Boolean))).map(area => ({
@@ -66,7 +65,7 @@ export default function PlacesPage() {
 
   // Filter and sort places
   const filteredAndSortedPlaces = filterAndSortPlaces(
-    Array.isArray(places) ? places : places.data,
+    places,
     {
       searchQuery,
       selectedType,

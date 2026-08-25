@@ -1,8 +1,23 @@
+// @vitest-environment node
+/**
+ * `@tests/mocks/prisma` must be imported *before* anything that pulls in
+ * `@/lib/prisma`, and the routes themselves are loaded lazily inside each
+ * test — otherwise the route module resolves the real Prisma client first and
+ * the mock never applies (which used to make these tests hit a real database).
+ */
 import { describe, it, expect, beforeEach } from 'vitest';
-import { GET as categoriesGET } from '@/app/api/categories/route';
-import { GET as pingGET } from '@/app/api/ping/route';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
+
+async function categoriesGET(request: any) {
+  const { GET } = await import('@/app/api/categories/route');
+  return GET(request);
+}
+
+async function pingGET(request: any) {
+  const { GET } = await import('@/app/api/ping/route');
+  return GET(request);
+}
 
 describe('Categories & Basic APIs', () => {
   beforeEach(() => {
@@ -22,7 +37,7 @@ describe('Categories & Basic APIs', () => {
       const response = await categoriesGET(request);
 
       expect(response.status).toBe(200);
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
 
       // Should have unique categories: עיקריות, מרקים, קינוחים, סלטים
       expect(json.data).toHaveLength(4);
@@ -47,7 +62,7 @@ describe('Categories & Basic APIs', () => {
       const request = createMockRequest('http://localhost:3000/api/categories');
       const response = await categoriesGET(request);
 
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
       expect(json.data).toHaveLength(1);
       expect(json.data[0]).toBe('עיקריות');
     });
@@ -60,7 +75,7 @@ describe('Categories & Basic APIs', () => {
       const request = createMockRequest('http://localhost:3000/api/categories');
       const response = await categoriesGET(request);
 
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
       expect(json.data).toHaveLength(2);
       expect(json.data).toContain('עיקריות');
       expect(json.data).toContain('מרקים');
@@ -74,7 +89,7 @@ describe('Categories & Basic APIs', () => {
       const request = createMockRequest('http://localhost:3000/api/categories');
       const response = await categoriesGET(request);
 
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
       expect(json.data).toHaveLength(2);
       expect(json.data).not.toContain('');
     });
@@ -88,7 +103,7 @@ describe('Categories & Basic APIs', () => {
       const response = await pingGET(request);
 
       expect(response.status).toBe(200);
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
       expect(json.data.status).toBe('ok');
       expect(json.data.database).toBe('connected');
       expect(json.data).toHaveProperty('timestamp');
@@ -103,7 +118,7 @@ describe('Categories & Basic APIs', () => {
       const response = await pingGET(request);
 
       expect(response.status).toBe(503);
-      const json = await parseJsonResponse(response);
+      const json = await parseJsonResponse<any>(response);
       expect(json.status).toBe('error');
       expect(json.database).toBe('disconnected');
       expect(json).toHaveProperty('error');

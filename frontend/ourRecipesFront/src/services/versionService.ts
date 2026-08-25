@@ -1,47 +1,36 @@
 import { apiService } from './apiService';
-import type { ApiResponse } from '../types/api';
 import type { RecipeVersion } from '../types/index';
 
-interface CreateVersionData {
-  recipe_id: number;
-  content: {
-    title: string;
-    raw_content: string;
-    categories?: string[];
-    ingredients?: string[];
-    instructions?: string;
-  };
-  change_description?: string;
-  image?: string | null;
+/** Flat body of `POST /api/versions/recipe/:telegram_id/restore/:versionId`. */
+export interface RestoredVersion {
+  message: string;
+  title: string | null;
+  details: string | null;
+  image: string | null;
 }
 
 export class VersionService {
-  private static readonly BASE_PATH = '/versions';
+  private static readonly BASE_PATH = '/api/versions';
 
-  // Get all versions for a recipe
-  static async getVersions(recipeId: number): Promise<ApiResponse<RecipeVersion[]>> {
-    return apiService.get<ApiResponse<RecipeVersion[]>>(`${this.BASE_PATH}/recipe/${recipeId}`);
+  /**
+   * Version history for a recipe, keyed by its `telegram_id`.
+   * `GET /api/versions/recipe/:telegram_id` answers with a bare array.
+   */
+  static async getVersions(telegramId: number): Promise<RecipeVersion[]> {
+    return apiService.get<RecipeVersion[]>(`${this.BASE_PATH}/recipe/${telegramId}`);
   }
 
-  // Get a specific version
-  static async getVersion(versionId: number): Promise<ApiResponse<RecipeVersion>> {
-    return apiService.get<ApiResponse<RecipeVersion>>(`${this.BASE_PATH}/${versionId}`);
-  }
-
-  // Create a new version
-  static async createVersion(data: CreateVersionData): Promise<ApiResponse<RecipeVersion>> {
-    return apiService.post<ApiResponse<RecipeVersion>>(this.BASE_PATH, data);
-  }
-
-  // Restore a version
-  static async restoreVersion(versionId: number): Promise<ApiResponse<RecipeVersion>> {
-    return apiService.post<ApiResponse<RecipeVersion>>(`${this.BASE_PATH}/${versionId}/restore`);
-  }
-
-  // Compare versions
-  static async compareVersions(versionId1: number, versionId2: number): Promise<ApiResponse<any>> {
-    return apiService.get<ApiResponse<any>>(`${this.BASE_PATH}/compare/${versionId1}/${versionId2}`);
+  /**
+   * Restore a previous version. Answers with the flat
+   * `{ message, title, details, image }` body (not wrapped in `data`).
+   */
+  static async restoreVersion(telegramId: number, versionId: number): Promise<RestoredVersion> {
+    return apiService.post<RestoredVersion>(
+      `${this.BASE_PATH}/recipe/${telegramId}/restore/${versionId}`,
+      undefined,
+      { timeout: 60000 }
+    );
   }
 }
 
-export const versionService = new VersionService(); 
+export const versionService = new VersionService();

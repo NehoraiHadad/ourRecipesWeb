@@ -9,6 +9,11 @@ import { Input } from '@/components/ui/Input'
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 import { ProgressIndicator } from '@/components/ui/ProgressIndicator';
 import { useProgress, AI_IMAGE_GENERATION_STEPS, AI_RECIPE_GENERATION_STEPS } from '@/hooks/useProgress';
+import { apiService } from '@/services/apiService';
+import { RecipeService } from '@/services/recipeService';
+
+/** The AI routes take far longer than apiService's default timeout. */
+const AI_TIMEOUT = 180000;
 
 type MealType = "ארוחת בוקר" | "ארוחת צהריים" | "ארוחת ערב" | "חטיף";
 
@@ -79,34 +84,25 @@ const MealSuggestionForm: React.FC = () => {
 
       // Step 2: Generate recipe
       recipeProgress.startStep(1);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/suggest`,
+      // `POST /api/recipes/suggest` answers `{ data: { message } }`.
+      const response = await apiService.post<{ data: { message: string } }>(
+        "/api/recipes/suggest",
         {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            ingredients,
-            mealType,
-            quickPrep,
-            childFriendly,
-            additionalRequests,
-          }),
-        }
+          ingredients,
+          mealType,
+          quickPrep,
+          childFriendly,
+          additionalRequests,
+        },
+        { timeout: AI_TIMEOUT }
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch the recipe");
-      }
-
-      const result = await response.json();
+      const result = response?.data;
       recipeProgress.completeStep(1);
 
       // Step 3: Format recipe
       recipeProgress.startStep(2);
-      if (result.message) {
+      if (result?.message) {
         setRecipeText(result.message);
         const parsedRecipe = parseRecipe(result.message);
         setRecipe({
@@ -147,27 +143,19 @@ const MealSuggestionForm: React.FC = () => {
     setLoadingRecipe(true);
     setError("");
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/refine`,
+      // `POST /api/recipes/refine` takes `{ recipeText, refinementRequest }`
+      // and answers `{ data: { message } }`.
+      const response = await apiService.post<{ data: { message: string } }>(
+        "/api/recipes/refine",
         {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            recipe_text: recipeText,
-            refinement_request: refinementRequest,
-          }),
-        }
+          recipeText,
+          refinementRequest,
+        },
+        { timeout: AI_TIMEOUT }
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to refine the recipe");
-      }
-
-      const result = await response.json();
-      if (result.message) {
+      const result = response?.data;
+      if (result?.message) {
         setRecipeText(result.message);
         const parsedRecipe = parseRecipe(result.message);
         setRecipe({
@@ -212,29 +200,19 @@ const MealSuggestionForm: React.FC = () => {
 
       // Step 2: Generate image
       imageProgress.startStep(1);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-image`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({ recipeContent: recipeText }),
-        }
+      // `POST /api/recipes/generate-image` answers `{ data: { image } }`.
+      const response = await apiService.post<{ data: { image: string } }>(
+        "/api/recipes/generate-image",
+        { recipeContent: recipeText },
+        { timeout: AI_TIMEOUT }
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to fetch the photo");
-      }
-
-      const result = await response.json();
       imageProgress.completeStep(1);
 
       // Step 3: Optimize image
       imageProgress.startStep(2);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
-      setRecipe((prevRecipe) => ({ ...prevRecipe, image: result.image }));
+      setRecipe((prevRecipe) => ({ ...prevRecipe, image: response?.data?.image }));
       imageProgress.completeStep(2);
 
     } catch (error: any) {
@@ -296,26 +274,11 @@ const MealSuggestionForm: React.FC = () => {
     setRefinementHistory([]);
   };
 
-  const sendToTelegram = async (data: {}) => {
+  const sendToTelegram = async (data: { newText: string; image?: string | null }) => {
     setSavingToTelegram(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/send_recipe`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(data),
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to update the recipe in Telegram.");
-      }
-
-      const result = await response.json();
+      // Flask's `POST /send_recipe` was merged into `POST /api/recipes`.
+      const result = await RecipeService.createRecipe(data);
       console.log("Update successful:", result);
       // setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
     } catch (error) {

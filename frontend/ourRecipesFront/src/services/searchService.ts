@@ -1,8 +1,7 @@
 import { apiService } from './apiService';
+import { toUiRecipe, type RawRecipeRow } from './recipeMapper';
 import type { ApiResponse, SearchParams } from '../types/api';
 import type { recipe as Recipe } from '../types/index';
-import type { Category } from './categoryService';
-import type { Place } from '../components/place/types';
 
 export interface SearchResult {
   id: number;
@@ -18,37 +17,60 @@ export interface SearchResponse {
   hasMore: boolean;
 }
 
-export interface FilterOptions {
-  categories?: string[];
-  difficulty?: string;
-  preparationTime?: number;
-  includeTerms?: string[];
-  excludeTerms?: string[];
+/** Raw body of `GET /api/recipes/search` (see `paginatedResponse`). */
+interface PaginatedSearchResponse {
+  data: RawRecipeRow[];
+  pagination: {
+    page: number;
+    pageSize: number;
+    totalPages: number;
+    totalItems: number;
+  };
 }
 
 export class SearchService {
-  private static readonly BASE_PATH = '/recipes/search';
+  private static readonly BASE_PATH = '/api/recipes/search';
 
-  // Global search across all types
+  // Recipe search
   static async search(params: SearchParams): Promise<SearchResponse> {
     try {
+      // `GET /api/recipes/search` understands `query`, a single `category`,
+      // an upper-case `difficulty` and pagination. Anything else the UI can
+      // ask for (extra categories, prep time, include/exclude terms) has no
+      // server-side equivalent and is filtered out here rather than sent as
+      // dead query string.
       const queryParams = new URLSearchParams();
-      Object.entries(params).forEach(([key, value]) => {
-        if (value) {
-          if (Array.isArray(value)) {
-            value.forEach(v => queryParams.append(key, v.toString()));
-          } else {
-            queryParams.append(key, value.toString());
-          }
-        }
+      const { query, categories, difficulty } = params as SearchParams & {
+        categories?: string[];
+        difficulty?: string;
+      };
+
+      if (query) queryParams.set('query', String(query));
+
+      const category = Array.isArray(categories) ? categories[0] : categories;
+      if (category) queryParams.set('category', String(category));
+
+      if (difficulty) queryParams.set('difficulty', String(difficulty).toUpperCase());
+
+      const response = await apiService.get<PaginatedSearchResponse>(
+        `${this.BASE_PATH}?${queryParams.toString()}`
+      );
+
+      const rows = response?.data ?? [];
+      const pagination = response?.pagination;
+
+      // The UI works with a `{ [telegram_id]: recipe }` map.
+      const results: Record<string, Recipe> = {};
+      rows.forEach((row) => {
+        const uiRecipe = toUiRecipe(row);
+        results[String(uiRecipe.telegram_id || uiRecipe.id)] = uiRecipe;
       });
 
-      const response = await apiService.get<SearchResponse>(`${this.BASE_PATH}?${queryParams.toString()}`);
-      console.log('API Response:', response); // For debugging
-      
-      // Return the response directly since it's already in the correct format
-      return response || { results: {}, total: 0, hasMore: false };
-      
+      return {
+        results,
+        total: pagination?.totalItems ?? rows.length,
+        hasMore: pagination ? pagination.page < pagination.totalPages : false
+      };
     } catch (error) {
       console.error('Search failed:', error);
       return {
@@ -59,52 +81,12 @@ export class SearchService {
     }
   }
 
-  // Search recipes with filters
-  static async searchRecipes(query: string, filters?: FilterOptions): Promise<ApiResponse<Record<string, Recipe>>> {
-    try {
-      const queryParams = new URLSearchParams({ query });
-      
-      if (filters) {
-        Object.entries(filters).forEach(([key, value]) => {
-          if (value) {
-            if (Array.isArray(value)) {
-              value.forEach(v => queryParams.append(key, v.toString()));
-            } else {
-              queryParams.append(key, value.toString());
-            }
-          }
-        });
-      }
-
-      const response = await apiService.get<ApiResponse<Record<string, Recipe>>>(`${this.BASE_PATH}/recipes?${queryParams.toString()}`);
-      return {
-        ...response,
-        data: response.data || {}
-      };
-    } catch (error) {
-      console.error('Recipe search failed:', error);
-      return {
-        data: {},
-        status: 500,
-        message: error instanceof Error ? error.message : 'Recipe search failed'
-      };
-    }
-  }
-
-  // Search categories
-  static async searchCategories(query: string): Promise<ApiResponse<Category[]>> {
-    return apiService.get<ApiResponse<Category[]>>(`${this.BASE_PATH}/categories?query=${encodeURIComponent(query)}`);
-  }
-
-  // Search places
-  static async searchPlaces(query: string): Promise<ApiResponse<Place[]>> {
-    return apiService.get<ApiResponse<Place[]>>(`${this.BASE_PATH}/places?query=${encodeURIComponent(query)}`);
-  }
-
   // Get search suggestions
   static async getSearchSuggestions(query: string): Promise<ApiResponse<string[]>> {
-    return apiService.get<ApiResponse<string[]>>(`${this.BASE_PATH}/suggestions?q=${encodeURIComponent(query)}`);
+    return apiService.get<ApiResponse<string[]>>(
+      `${this.BASE_PATH}/suggestions?q=${encodeURIComponent(query)}`
+    );
   }
 }
 
-export const searchService = new SearchService(); 
+export const searchService = new SearchService();

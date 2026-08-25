@@ -1,11 +1,11 @@
 import { authService } from './authService';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
-// Log API URL on initialization (only in browser, not during SSR)
-if (typeof window !== 'undefined') {
-  console.log('🔧 API Service initialized with URL:', API_URL || '[NOT SET]');
-}
+/**
+ * The API now lives inside this Next.js app (`src/app/api/**`), so every call
+ * is a same-origin relative request: the base URL is empty and each endpoint
+ * carries its own `/api/...` prefix. There is no external backend any more.
+ */
+const API_URL = '';
 
 // Custom error class for API errors
 export class ApiError extends Error {
@@ -101,12 +101,18 @@ class ApiService {
       window.addEventListener('offline', () => {
         console.log('Device is offline');
       });
-      this.initIndexedDB();
+      // Persistent caching is a nice-to-have: environments without IndexedDB
+      // (private modes, jsdom in tests) must not break the whole service.
+      this.initIndexedDB().catch(() => {
+        this.db = null;
+      });
     }
   }
 
   // IndexedDB initialization
   private async initIndexedDB(): Promise<void> {
+    if (typeof indexedDB === 'undefined') return;
+
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(this.DB_NAME, 1);
 
@@ -445,7 +451,10 @@ class ApiService {
         );
       }
 
-      const data = await interceptedResponse.json();
+      // `204 No Content` (e.g. DELETE /api/places/:id) has no body to parse.
+      const data = (interceptedResponse.status === 204
+        ? null
+        : await interceptedResponse.json()) as T;
 
       // Cache successful GET requests
       if (options.method === 'GET' && cache !== 'no-store') {

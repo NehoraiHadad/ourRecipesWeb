@@ -23,7 +23,6 @@ export default function SharedMenuPage() {
   const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
   const [loadingMessage, setLoadingMessage] = useState<string>('טוען תפריט...');
-  const [recipeLoadingMessage, setRecipeLoadingMessage] = useState<string>('טוען מתכון...');
 
   useEffect(() => {
     if (shareToken) {
@@ -96,48 +95,21 @@ export default function SharedMenuPage() {
 
   const handleRecipeClick = async (recipeId: number) => {
     setLoadingRecipe(true);
-    setRecipeLoadingMessage('טוען מתכון...');
-
-    // Show server wake-up message after 3 seconds
-    const wakeUpTimer = setTimeout(() => {
-      setRecipeLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
-    }, 3000);
 
     try {
-      const response = await RecipeService.getRecipeByIdWithRetry(
-        recipeId,
-        (attempt, maxAttempts) => {
-          setRecipeLoadingMessage(
-            `השרת עדיין מתעורר... מנסה שוב (ניסיון ${attempt} מתוך ${maxAttempts}) ⏳`
-          );
-        }
-      );
-
-      clearTimeout(wakeUpTimer);
+      const response = await RecipeService.getRecipeById(recipeId);
       setViewingRecipe(response.data);
     } catch (error: any) {
-      clearTimeout(wakeUpTimer);
       console.error('Error loading recipe:', error);
 
       let errorMessage = 'שגיאה בטעינת המתכון';
-      if (error.name === 'TimeoutError' || error.status === 408) {
-        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או נסה שוב בעוד 30 שניות.';
-      } else if (error.message === 'Recipe not found or empty response from server') {
-        errorMessage = 'השרת לא החזיר את המתכון. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
-      } else if (error.status === 404) {
+      if (error.status === 404) {
         errorMessage = 'מתכון לא נמצא';
-      } else if (error.status === 502 || error.status === 504) {
-        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
+      } else if (error.name === 'TimeoutError' || error.status === 408) {
+        errorMessage = 'הבקשה ארכה זמן רב מדי. אנא נסה שוב.';
       } else if (error.name === 'NetworkError' || error.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
-
-      console.error('💥 שגיאה בטעינת מתכון מתפריט משותף:', {
-        errorName: error?.name,
-        errorStatus: error?.status,
-        errorMessage: error?.message,
-        chosenMessage: errorMessage
-      });
 
       addNotification({ message: errorMessage, type: 'error' });
     } finally {
@@ -314,7 +286,7 @@ export default function SharedMenuPage() {
           <div className="flex flex-col justify-center items-center p-8 gap-4">
             <Spinner />
             <p className="text-center text-secondary-700 text-sm">
-              {recipeLoadingMessage}
+              טוען מתכון...
             </p>
           </div>
         )}

@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "../../../hooks/useAuth";
 import RecipeManagement from "../../../components/RecipeManagement";
 import Spinner from "@/components/ui/Spinner";
-import { SyncStatus } from '@/components/SyncStatus';
 
 export default function ManagePage() {
   const router = useRouter();
@@ -36,10 +35,7 @@ export default function ManagePage() {
   return (
     <main className="flex flex-col h-[calc(100dvh-52px)]">
       <div className="p-4 border-b bg-white">
-        <div className="flex justify-between items-center">
-          <h1 className="text-xl font-bold">ניהול מתכונים</h1>
-          <SyncStatus compact />
-        </div>
+        <h1 className="text-xl font-bold">ניהול מתכונים</h1>
       </div>
       <div className="flex-1 overflow-hidden">
         <RecipeManagement />

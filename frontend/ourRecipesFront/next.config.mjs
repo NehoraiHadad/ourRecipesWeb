@@ -13,6 +13,13 @@ const nextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        // Recipe images live in Vercel Blob (`image_url`, ARCHITECTURE §5).
+        protocol: 'https',
+        hostname: '*.public.blob.vercel-storage.com',
+        port: '',
+        pathname: '/**',
+      },
     ],
   },
 };

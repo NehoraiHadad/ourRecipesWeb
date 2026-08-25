@@ -34,18 +34,19 @@ export default function Page() {
   const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const handleRecipeClick = async (recipeId: number) => {
+  const handleRecipeClick = async (telegramId: number) => {
     setIsLoadingRecipe(true);
     try {
-      // Try to find recipe in existing data sources
-      const recipe = Object.values(searchResults).find(r => r.id === recipeId) || 
-                    favoriteRecipes.find(r => r.id === recipeId);
+      // Try to find recipe in existing data sources (all keyed by telegram_id,
+      // which is also what `GET /api/recipes/:telegram_id` expects).
+      const recipe = Object.values(searchResults).find(r => r.telegram_id === telegramId) ||
+                    favoriteRecipes.find(r => r.telegram_id === telegramId);
       
       if (recipe) {
         setSelectedRecipe(recipe);
       } else {
         // Fetch from server if not found locally
-        const response = await RecipeService.getRecipeById(recipeId);
+        const response = await RecipeService.getRecipeById(telegramId);
         setSelectedRecipe(response.data);
       }
     } catch (error) {

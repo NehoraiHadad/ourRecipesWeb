@@ -1,6 +1,9 @@
 import { apiService } from './apiService';
 import type { ApiResponse } from '../types/api';
-import type { AuthResponse, User } from '../types/auth';
+import type { AuthResponse } from '../types/auth';
+
+/** Login/validate hit the Telegram Bot API for the edit-permission check. */
+const AUTH_TIMEOUT = 30000;
 
 interface LoginCredentials {
   telegramData?: any;
@@ -8,7 +11,7 @@ interface LoginCredentials {
 }
 
 export class AuthService {
-  private static readonly BASE_PATH = '/auth';
+  private static readonly BASE_PATH = '/api/auth';
   private static readonly GUEST_TOKEN_KEY = 'guest_token';
   private static readonly AUTH_TOKEN_KEY = 'auth_token'; // Token for all users (Telegram + Guest)
 
@@ -17,6 +20,9 @@ export class AuthService {
     const headers: HeadersInit = {
       'Content-Type': 'application/json'
     };
+
+    // No localStorage outside the browser (SSR / tests).
+    if (typeof window === 'undefined') return headers;
 
     // Try to get auth token (for all users)
     const authToken = localStorage.getItem(AuthService.AUTH_TOKEN_KEY);
@@ -35,7 +41,11 @@ export class AuthService {
 
   // Validate current session
   async validate(): Promise<ApiResponse<AuthResponse>> {
-    return apiService.get<ApiResponse<AuthResponse>>(`${AuthService.BASE_PATH}/validate`);
+    // `GET /api/auth/validate` verifies edit permission against Telegram, so
+    // it can outlast apiService's default timeout.
+    return apiService.get<ApiResponse<AuthResponse>>(`${AuthService.BASE_PATH}/validate`, {
+      timeout: AUTH_TIMEOUT
+    });
   }
 
   // Login (Telegram or Guest)
@@ -45,7 +55,11 @@ export class AuthService {
 
       // If it's guest login, use guest-login endpoint
       if ('guestName' in credentials) {
-        response = await apiService.post<AuthResponse>(`${AuthService.BASE_PATH}/guest`, credentials);
+        response = await apiService.post<AuthResponse>(
+          `${AuthService.BASE_PATH}/guest`,
+          credentials,
+          { timeout: AUTH_TIMEOUT }
+        );
 
         // Store token in localStorage for guest (backward compatibility)
         if (response.token) {
@@ -53,7 +67,11 @@ export class AuthService {
         }
       } else {
         // For Telegram login, send data directly
-        response = await apiService.post<AuthResponse>(`${AuthService.BASE_PATH}/login`, credentials);
+        response = await apiService.post<AuthResponse>(
+          `${AuthService.BASE_PATH}/login`,
+          credentials,
+          { timeout: AUTH_TIMEOUT }
+        );
       }
 
       // Store token in localStorage for ALL users (iOS fallback when cookies don't work)
@@ -77,11 +95,6 @@ export class AuthService {
     localStorage.removeItem(AuthService.GUEST_TOKEN_KEY);
     console.log('[iOS Fix] All auth tokens cleared from localStorage');
     return response;
-  }
-
-  // Get current user
-  async getCurrentUser(): Promise<ApiResponse<User>> {
-    return apiService.get<ApiResponse<User>>(`${AuthService.BASE_PATH}/me`);
   }
 }
 
