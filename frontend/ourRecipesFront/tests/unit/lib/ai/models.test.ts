@@ -22,7 +22,7 @@ afterEach(() => {
 });
 
 describe('getModelFor', () => {
-  it('defaults reformat / suggest / refine to KIE GPT-5.6 Luna', () => {
+  it('defaults the recipe-writing tasks to KIE GPT-5.6 Luna', () => {
     expect(getModelFor('reformat')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
     expect(getModelFor('suggest')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
     expect(getModelFor('refine')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
@@ -48,7 +48,7 @@ describe('getModelFor', () => {
 
   it('reads the env var lazily, per call', () => {
     expect(getModelFor('suggest')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
-    process.env.AI_MODEL_SUGGEST = 'kie:gpt-5-6-luna-mini';
-    expect(getModelFor('suggest')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna-mini' });
+    process.env.AI_MODEL_SUGGEST = 'gemini:gemini-3.7-flash';
+    expect(getModelFor('suggest')).toEqual({ provider: 'gemini', model: 'gemini-3.7-flash' });
   });
 });

@@ -49,6 +49,18 @@ describe('kieChatText', () => {
     });
   });
 
+  it('sends a schema as a strict text.format json_schema (and omits text otherwise)', async () => {
+    fetchMock.mockResolvedValue(jsonResponse({ output: [{ type: 'message', content: [{ text: '{}' }] }] }));
+
+    const schema = { type: 'object', properties: {}, required: [], additionalProperties: false };
+    await kieChatText({ model: 'gpt-5-6-luna', instructions: 'x', input: 'y', schema });
+
+    const [, init] = fetchMock.mock.calls[0];
+    expect(JSON.parse(init?.body as string).text).toEqual({
+      format: { type: 'json_schema', name: 'response', strict: true, schema }
+    });
+  });
+
   it('respects a custom reasoning effort', async () => {
     fetchMock.mockResolvedValue(jsonResponse({ output: [{ type: 'message', content: [{ text: 'ok' }] }] }));
 

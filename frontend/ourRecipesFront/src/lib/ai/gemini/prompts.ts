@@ -1,7 +1,11 @@
 /**
- * Hebrew prompt templates for the Gemini text tasks. Copied verbatim from
- * the pre-migration `aiService.ts` — Wave 1B only swaps the model wrapper,
- * not the prompt content.
+ * Hebrew prompt templates for the AI text tasks.
+ *
+ * suggest / reformat / refine are JSON-first (2026-08-26): the response shape
+ * is enforced by `RECIPE_JSON_SCHEMA` via structured output, so these prompts
+ * only carry the culinary instructions — no output-format contortions, no
+ * "don't use Markdown" rules. The channel text is derived from the JSON by
+ * `recipeJsonToChannelText`, never written by the model.
  */
 
 export interface RecipeSuggestionParams {
@@ -24,72 +28,55 @@ export function normalizeMealTypes(value: unknown): string[] | undefined {
   return items.length > 0 ? items : undefined;
 }
 
+const RECIPE_JSON_RULES = `כללים:
+- כל הטקסט בעברית.
+- ingredients: פריט אחד לכל רכיב, עם כמות ויחידה (למשל "2 כוסות קמח").
+- instructions: שלב אחד לכל פריט, בלי מספור בתחילת השלב.
+- categories: 1–5 קטגוריות קצרות שמתארות את המתכון.`;
+
 export function buildSuggestionPrompt(params: RecipeSuggestionParams): string {
-  return `
-אתה עוזר מטבח מומחה. צור מתכון מפורט על בסיס המידע הבא:
+  const requestLines = [
+    params.ingredients ? `רכיבים זמינים: ${params.ingredients}` : '',
+    params.mealType?.length ? `סוג ארוחה: ${params.mealType.join(', ')}` : '',
+    params.quickPrep ? 'דרישה: הכנה מהירה (עד 30 דקות)' : '',
+    params.childFriendly ? 'דרישה: ידידותי לילדים' : '',
+    params.additionalRequests ? `בקשות נוספות: ${params.additionalRequests}` : ''
+  ]
+    .filter(Boolean)
+    .join('\n');
 
-${params.ingredients ? `רכיבים זמינים: ${params.ingredients}` : ''}
-${params.mealType?.length ? `סוג ארוחה: ${params.mealType.join(', ')}` : ''}
-${params.quickPrep ? 'דרישה: הכנה מהירה (עד 30 דקות)' : ''}
-${params.childFriendly ? 'דרישה: ידידותי לילדים' : ''}
-${params.additionalRequests ? `בקשות נוספות: ${params.additionalRequests}` : ''}
+  return `אתה עוזר מטבח מומחה. צור מתכון מפורט וחדש על בסיס הבקשה הבאה:
 
-פורמט התגובה:
-🍳 [שם המתכון]
+${requestLines || 'מתכון ביתי טעים, לבחירתך.'}
 
-⏱️ זמן הכנה: [X דקות]
-👥 מנות: [X]
-🔥 רמת קושי: [קל/בינוני/מאתגר]
-
-📝 רכיבים:
-- [רכיב 1]
-- [רכיב 2]
-...
-
-👨‍🍳 הוראות הכנה:
-1. [שלב 1]
-2. [שלב 2]
-...
-
-💡 טיפים:
-- [טיפ 1]
-`;
+${RECIPE_JSON_RULES}`;
 }
 
 export function buildReformatPrompt(text: string): string {
-  return `
-עצב מחדש את המתכון הבא בפורמט מסודר וברור:
+  return `סדר את המתכון שבין המפרידים <recipe> למבנה הנדרש.
 
+<recipe>
 ${text}
+</recipe>
 
-פורמט נדרש:
-🍳 [שם המתכון]
-
-⏱️ זמן הכנה: [X דקות]
-👥 מנות: [X]
-
-📝 רכיבים:
-- [רכיב + כמות]
-...
-
-👨‍🍳 הוראות הכנה:
-1. [שלב מפורט]
-...
-
-אל תוסיף מידע שלא מופיע במתכון המקורי.
-`;
+${RECIPE_JSON_RULES}
+- אל תוסיף מידע שלא מופיע במתכון המקורי; שמור על ניסוח ההוראות המקורי ככל האפשר.
+- אם ערך לא מופיע במקור (למשל זמן הכנה) — הערך אותו לפי תוכן המתכון.`;
 }
 
 export function buildRefinePrompt(recipeText: string, refinementRequest: string): string {
-  return `
-המתכון הנוכחי:
+  return `שפר את המתכון שבין המפרידים <recipe> על פי הבקשה שבין המפרידים <request>, והחזר את המתכון המלא המעודכן.
+
+<recipe>
 ${recipeText}
+</recipe>
 
-בקשת השיפור:
+<request>
 ${refinementRequest}
+</request>
 
-שפר את המתכון על פי הבקשה, אך שמור על המבנה והפורמט המקורי.
-`;
+${RECIPE_JSON_RULES}
+- שמור על תוכן המתכון המקורי ככל האפשר; בצע רק את השינוי המבוקש.`;
 }
 
 export function buildOptimizeStepsPrompt(recipeText: string): string {

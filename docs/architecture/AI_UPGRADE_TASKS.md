@@ -68,6 +68,33 @@ Post-deploy hotfix 2 2026-08-25 — menu agent 500 in production:
   instead of failing the session with 'הסוכן לא הפיק תפריט'.
 - Final production verification 2026-08-25: optimize-steps 200 in ~6s; generate-preview 200 in
   102s — 1 meal, 3 courses, every course with a Hebrew `ai_reason`.
+
+JSON-first refactor 2026-08-26 (user decision: "כל המודלים המודרניים יודעים להחזיר מבנה נדרש"):
+- Trigger: AI-generated recipes came back with emoji templates + label synonyms that the channel
+  parser missed (`is_parsed: false`, recipes excluded from menu planner / MCP). Root fix: stop
+  asking models for free text at all.
+- All four text tasks now use JSON-schema structured output. New contract module
+  `src/lib/recipes/recipeJson.ts`: `RECIPE_JSON_SCHEMA` (Gemini `Schema` form, authored once),
+  `parseRecipeJson` (validation/normalization; null on missing essentials), and
+  `recipeJsonToChannelText` (canonical channel text via `formatRecipeText` + numbered steps +
+  a trailing `טיפים:` section that the parser deliberately keeps out of instructions). AI
+  recipe text is guaranteed to round-trip `parseRecipeMessage` with `is_parsed: true`.
+- KIE surface discovery (verified empirically — undocumented in KIE's docs): the codex
+  `/responses` endpoint passes OpenAI's `text.format` json_schema through, and strict mode is
+  enforced on `gpt-5-6-luna`. So the recipe tasks KEEP Luna (Hebrew prose quality, the round-2
+  A/B winner) and gain structured output: `kieChatText` accepts an optional `schema`, and
+  `src/lib/ai/kie/schema.ts#toStrictJsonSchema` derives the strict JSON Schema from the Gemini
+  form (all-required + additionalProperties:false; `parseRecipeJson` stays the arbiter of what
+  is actually optional).
+- `textTasks.ts` unified on one `generateTaskJson(task, prompt, schema)`: a `kie:` assignment
+  picks its surface by model family (GPT ids → codex proxy, Gemini ids → native Gemini proxy),
+  any KIE throw falls back to direct Gemini structured output at `GEMINI_TEXT_FALLBACK_MODEL`
+  with LOW thinking. Task signatures unchanged (`Promise<string>` of channel text) — routes,
+  bulk reformat and UI untouched. `kie/chatPrompts.ts` (per-task chat prompt splitting) deleted;
+  prompts in `gemini/prompts.ts` rewritten schema-first (one builder per task, shared rules).
+- Live E2E before deploy: Luna + strict `RECIPE_JSON_SCHEMA` → valid JSON → canonical text →
+  `parseRecipeMessage` round-trip `isParsed: true`, 0 errors (420 output tokens).
+
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan

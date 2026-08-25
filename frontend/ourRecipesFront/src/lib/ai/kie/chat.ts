@@ -23,6 +23,14 @@ export interface KieChatTextOptions {
   instructions: string;
   input: string;
   reasoningEffort?: 'low' | 'medium' | 'high';
+  /**
+   * Standard JSON Schema for structured output. The endpoint is an OpenAI
+   * Responses API proxy and passes `text.format` through even though KIE's
+   * docs omit it (verified empirically 2026-08-26: strict json_schema is
+   * enforced on gpt-5-6-luna). Use `toStrictJsonSchema` to derive this from
+   * a Gemini `Schema` so each schema is authored once.
+   */
+  schema?: Record<string, unknown>;
 }
 
 interface KieChatContentItem {
@@ -79,7 +87,8 @@ export async function kieChatText({
   model,
   instructions,
   input,
-  reasoningEffort = 'low'
+  reasoningEffort = 'low',
+  schema
 }: KieChatTextOptions): Promise<string> {
   const key = getApiKey();
 
@@ -88,7 +97,14 @@ export async function kieChatText({
     response = await fetch(CHAT_API_URL, {
       method: 'POST',
       headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ model, stream: false, instructions, input, reasoning: { effort: reasoningEffort } }),
+      body: JSON.stringify({
+        model,
+        stream: false,
+        instructions,
+        input,
+        reasoning: { effort: reasoningEffort },
+        ...(schema ? { text: { format: { type: 'json_schema', name: 'response', strict: true, schema } } } : {})
+      }),
       signal: AbortSignal.timeout(HTTP_TIMEOUT_MS)
     });
   } catch (error) {

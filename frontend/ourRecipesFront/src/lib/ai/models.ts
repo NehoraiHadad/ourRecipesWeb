@@ -6,17 +6,20 @@
  * `docs/architecture/AI_UPGRADE_TASKS.md`, since extended to a per-task
  * *provider* choice rather than just a per-task Gemini model:
  *
- *  - reformat / suggest / refine are free-text Hebrew writing tasks with no
- *    structured-output or tool-calling requirement, so they run on KIE's
- *    GPT-5.6 Luna chat endpoint for its stronger prose quality. Any KIE
+ *  - reformat / suggest / refine / optimize_steps are all JSON-first
+ *    (2026-08-26): every task uses JSON-schema structured output. A KIE
+ *    assignment picks its surface by model family — GPT ids go through KIE's
+ *    OpenAI Responses proxy (`kie/chat.ts`, which passes `text.format`
+ *    json_schema through even though KIE's docs omit it; verified
+ *    empirically), Gemini ids through KIE's native Gemini proxy
+ *    (`kie/geminiJson.ts`). The recipe-writing tasks stay on GPT-5.6 Luna
+ *    for its stronger Hebrew prose; optimize_steps is extraction, so it runs
+ *    the cheaper/faster Gemini flash. KIE is preferred over direct Google
+ *    because direct calls hit 503s and >45s hangs under load (prod 504s,
+ *    2026-08-25) while the same model answers in ~6s via KIE. Any KIE
  *    failure falls back to direct Gemini at the call site
  *    (`gemini/textTasks.ts`) so the feature never goes down with the newer
- *    integration.
- *  - optimize_steps needs Gemini's JSON-schema structured output, but runs it
- *    through KIE's native Gemini proxy (`kie/geminiJson.ts`): direct Google
- *    calls hit 503s and >45s hangs under load (prod 504s, 2026-08-25) while
- *    the same model answers in ~6s via KIE. Any KIE failure falls back to
- *    direct Gemini at the call site. Note KIE Gemini ids use dashes.
+ *    integration. Note KIE Gemini ids use dashes.
  *  - menu_agent needs Gemini's multi-turn function-calling chat session; the
  *    SDK is pointed at KIE's proxy (`gemini/client.ts#getGeminiVia`) since the
  *    production Google key is free-tier, where `gemini-3.1-pro` has quota 0
@@ -42,7 +45,7 @@ export interface AiModelAssignment {
   model: string;
 }
 
-/** Direct-Gemini fallback model used whenever a KIE chat call fails. */
+/** Direct-Gemini fallback model used whenever a KIE call fails. */
 export const GEMINI_TEXT_FALLBACK_MODEL = 'gemini-3.7-flash';
 
 const DEFAULT_MODELS: Record<AiTask, AiModelAssignment> = {
