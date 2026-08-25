@@ -11,7 +11,8 @@
  */
 import { logger } from '@/lib/logger';
 import { generateJson } from '@/lib/ai/gemini/generate';
-import { getModelFor } from '@/lib/ai/models';
+import { kieGeminiJson } from '@/lib/ai/kie';
+import { getModelFor, GEMINI_TEXT_FALLBACK_MODEL } from '@/lib/ai/models';
 import { buildFinalizePrompt } from './prompt';
 import { MENU_PLAN_SCHEMA, parseMenuPlan } from './schema';
 import type { MenuPlan, MenuPreferences } from './types';
@@ -23,6 +24,26 @@ export class MenuPlanFormatError extends Error {
   }
 }
 
+/**
+ * Same KIE-first / direct-Gemini-fallback routing as the other text tasks
+ * (`gemini/textTasks.ts#generateStepsJson`), keyed off the menu agent's
+ * assignment so the finalize call rides the same provider as the session.
+ */
+async function generatePlanJson(prompt: string): Promise<string> {
+  const assignment = getModelFor('menu_agent');
+
+  if (assignment.provider === 'kie') {
+    try {
+      return await kieGeminiJson({ model: assignment.model, prompt, schema: MENU_PLAN_SCHEMA });
+    } catch (error) {
+      logger.warn({ error }, 'KIE finalize call failed, falling back to direct Gemini');
+      return generateJson({ model: GEMINI_TEXT_FALLBACK_MODEL, prompt, schema: MENU_PLAN_SCHEMA });
+    }
+  }
+
+  return generateJson({ model: assignment.model, prompt, schema: MENU_PLAN_SCHEMA });
+}
+
 export async function finalizeMenuPlan(
   preferences: MenuPreferences,
   conclusion: string
@@ -31,11 +52,7 @@ export async function finalizeMenuPlan(
     throw new MenuPlanFormatError('הסוכן לא הפיק תפריט');
   }
 
-  const raw = await generateJson({
-    model: getModelFor('menu_agent').model,
-    prompt: buildFinalizePrompt(preferences, conclusion),
-    schema: MENU_PLAN_SCHEMA
-  });
+  const raw = await generatePlanJson(buildFinalizePrompt(preferences, conclusion));
 
   let decoded: unknown;
   try {

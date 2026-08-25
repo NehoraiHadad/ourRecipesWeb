@@ -17,8 +17,11 @@
  *    calls hit 503s and >45s hangs under load (prod 504s, 2026-08-25) while
  *    the same model answers in ~6s via KIE. Any KIE failure falls back to
  *    direct Gemini at the call site. Note KIE Gemini ids use dashes.
- *  - menu_agent needs Gemini's multi-turn function-calling chat session and
- *    stays on direct Gemini.
+ *  - menu_agent needs Gemini's multi-turn function-calling chat session; the
+ *    SDK is pointed at KIE's proxy (`gemini/client.ts#getGeminiVia`) since the
+ *    production Google key is free-tier, where `gemini-3.1-pro` has quota 0
+ *    (hard 429, verified 2026-08-25) — KIE's native surface only carries the
+ *    flash family, so the agent runs `gemini-3-7-flash` there.
  *
  * Moved out of `gemini/models.ts`: this file now resolves a provider, not
  * just a Gemini model id, so it no longer belongs under `gemini/`.
@@ -47,7 +50,7 @@ const DEFAULT_MODELS: Record<AiTask, AiModelAssignment> = {
   suggest: { provider: 'kie', model: 'gpt-5-6-luna' },
   refine: { provider: 'kie', model: 'gpt-5-6-luna' },
   optimize_steps: { provider: 'kie', model: 'gemini-3-7-flash' },
-  menu_agent: { provider: 'gemini', model: 'gemini-3.1-pro-preview' }
+  menu_agent: { provider: 'kie', model: 'gemini-3-7-flash' }
 };
 
 /** `provider:model` (hybrid config) or a bare model id (pre-hybrid back-compat, implies Gemini). */

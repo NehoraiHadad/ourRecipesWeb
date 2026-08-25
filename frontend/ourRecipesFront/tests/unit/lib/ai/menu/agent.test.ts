@@ -7,10 +7,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import type { GoogleGenAI, Part } from '@google/genai';
 
-vi.mock('@/lib/ai/gemini/client', () => ({ getGemini: vi.fn() }));
+vi.mock('@/lib/ai/gemini/client', () => ({ getGeminiVia: vi.fn() }));
 vi.mock('@/lib/ai/menu/tools', () => ({ executeMenuTool: vi.fn() }));
 
-import { getGemini } from '@/lib/ai/gemini/client';
+import { getGeminiVia } from '@/lib/ai/gemini/client';
 import { executeMenuTool } from '@/lib/ai/menu/tools';
 import { runMenuAgent, MAX_AGENT_ITERATIONS } from '@/lib/ai/menu/agent';
 
@@ -30,7 +30,7 @@ function modelTurn(options: { calls?: { name: string; args?: unknown }[]; text?:
 
 beforeEach(() => {
   vi.clearAllMocks();
-  vi.mocked(getGemini).mockReturnValue({ chats: { create: createChat } } as unknown as GoogleGenAI);
+  vi.mocked(getGeminiVia).mockReturnValue({ chats: { create: createChat } } as unknown as GoogleGenAI);
   vi.mocked(executeMenuTool).mockResolvedValue({ recipes: [] });
 });
 

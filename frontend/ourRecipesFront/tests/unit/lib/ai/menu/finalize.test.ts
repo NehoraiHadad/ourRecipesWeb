@@ -7,8 +7,10 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 vi.mock('@/lib/ai/gemini/generate', () => ({ generateJson: vi.fn() }));
+vi.mock('@/lib/ai/kie', () => ({ kieGeminiJson: vi.fn() }));
 
 import { generateJson } from '@/lib/ai/gemini/generate';
+import { kieGeminiJson } from '@/lib/ai/kie';
 import { finalizeMenuPlan, MenuPlanFormatError } from '@/lib/ai/menu/finalize';
 import { parseMenuPlan, MENU_PLAN_SCHEMA } from '@/lib/ai/menu/schema';
 
@@ -32,7 +34,18 @@ beforeEach(() => {
 });
 
 describe('finalizeMenuPlan', () => {
-  it('asks for JSON against the menu schema and returns the typed plan', async () => {
+  it('asks KIE for JSON against the menu schema and returns the typed plan', async () => {
+    vi.mocked(kieGeminiJson).mockResolvedValue(JSON.stringify(PLAN));
+
+    const plan = await finalizeMenuPlan(PREFERENCES, 'ארוחת ערב: מתכון 5');
+
+    expect(plan).toEqual(PLAN);
+    expect(vi.mocked(kieGeminiJson).mock.calls[0][0].schema).toBe(MENU_PLAN_SCHEMA);
+    expect(generateJson).not.toHaveBeenCalled();
+  });
+
+  it('falls back to direct Gemini when the KIE call fails', async () => {
+    vi.mocked(kieGeminiJson).mockRejectedValue(new Error('KIE down'));
     vi.mocked(generateJson).mockResolvedValue(JSON.stringify(PLAN));
 
     const plan = await finalizeMenuPlan(PREFERENCES, 'ארוחת ערב: מתכון 5');
@@ -43,11 +56,12 @@ describe('finalizeMenuPlan', () => {
 
   it('refuses to call the model when the agent produced nothing', async () => {
     await expect(finalizeMenuPlan(PREFERENCES, '   ')).rejects.toBeInstanceOf(MenuPlanFormatError);
+    expect(kieGeminiJson).not.toHaveBeenCalled();
     expect(generateJson).not.toHaveBeenCalled();
   });
 
   it('throws on an answer that is not JSON — no regex rescue', async () => {
-    vi.mocked(generateJson).mockResolvedValue('הנה התפריט: { meals: ... }');
+    vi.mocked(kieGeminiJson).mockResolvedValue('הנה התפריט: { meals: ... }');
 
     await expect(finalizeMenuPlan(PREFERENCES, 'סיכום')).rejects.toBeInstanceOf(
       MenuPlanFormatError
@@ -55,7 +69,7 @@ describe('finalizeMenuPlan', () => {
   });
 
   it('throws when the JSON parses but fails validation', async () => {
-    vi.mocked(generateJson).mockResolvedValue(JSON.stringify({ meals: [], reasoning: 'ריק' }));
+    vi.mocked(kieGeminiJson).mockResolvedValue(JSON.stringify({ meals: [], reasoning: 'ריק' }));
 
     await expect(finalizeMenuPlan(PREFERENCES, 'סיכום')).rejects.toBeInstanceOf(
       MenuPlanFormatError

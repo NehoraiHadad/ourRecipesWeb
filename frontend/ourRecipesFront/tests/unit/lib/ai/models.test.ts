@@ -28,9 +28,9 @@ describe('getModelFor', () => {
     expect(getModelFor('refine')).toEqual({ provider: 'kie', model: 'gpt-5-6-luna' });
   });
 
-  it('defaults optimize_steps to KIE Gemini proxy and menu_agent to direct Gemini', () => {
+  it('defaults optimize_steps and menu_agent to the KIE Gemini proxy', () => {
     expect(getModelFor('optimize_steps')).toEqual({ provider: 'kie', model: 'gemini-3-7-flash' });
-    expect(getModelFor('menu_agent')).toEqual({ provider: 'gemini', model: 'gemini-3.1-pro-preview' });
+    expect(getModelFor('menu_agent')).toEqual({ provider: 'kie', model: 'gemini-3-7-flash' });
   });
 
   it('parses a provider:model env override', () => {
