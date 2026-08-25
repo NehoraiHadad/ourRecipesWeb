@@ -1,474 +1,149 @@
-import React, { useState, useEffect, useRef } from "react";
+/**
+ * Manual recipe editing (STRUCTURE_REFACTOR_TASKS.md §E1).
+ *
+ * The form edits the structured fields and hands its caller the finished
+ * channel message, built by `formatRecipeText` through `recipeDraft` — the
+ * caller only has to `PUT { newText, image }`, and the server re-parses it.
+ *
+ * A recipe the server could not parse has no structured content to show, so
+ * for those the form edits the channel message itself rather than silently
+ * dropping everything that is not a recognised section.
+ */
+import React, { useState } from "react";
 import { Button } from "@/components/ui/Button";
-import Spinner from "@/components/ui/Spinner";
-import CategoryTags from "../CategoryTags";
-import { recipe } from "@/types";
+import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
+import { hasStructuredContent } from "@/lib/recipes/recipeView";
 import { difficultyOptions } from "@/utils/difficulty";
-import type { Difficulty } from "@/types";
-import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
-import { useProgress, AI_IMAGE_GENERATION_STEPS } from "@/hooks/useProgress";
-import { apiService } from "@/services/apiService";
-import { CategoryService } from "@/services/categoryService";
+import type { RecipeDifficultyValue } from "@/lib/recipes/parserLabels";
+import CategoryPicker from "./CategoryPicker";
+import RecipeImageField from "./RecipeImageField";
+import { draftFromRecipe, draftToChannelText, draftToPlainText, type RecipeDraft } from "./recipeDraft";
 
-/** Image generation is an AI call — far slower than the default timeout. */
-const AI_TIMEOUT = 180000;
+export interface RecipeEditPayload {
+  /** The channel message to save — already in canonical format. */
+  newText: string;
+  image: string | null;
+}
 
 interface RecipeEditFormProps {
-  recipeData: recipe | null;
-  onSave: (updatedData: recipe) => void;
+  recipe: SerializedRecipe;
+  onSave: (payload: RecipeEditPayload) => void | Promise<void>;
   onCancel: () => void;
 }
 
-export function RecipeEditForm({
-  recipeData,
-  onSave,
-  onCancel,
-}: RecipeEditFormProps) {
+export function RecipeEditForm({ recipe, onSave, onCancel }: RecipeEditFormProps) {
+  const [draft, setDraft] = useState<RecipeDraft>(() => draftFromRecipe(recipe));
+  const [rawText, setRawText] = useState(recipe.raw_content);
+  const isStructured = hasStructuredContent(recipe);
 
-  const [formData, setFormData] = useState<recipe | null>(recipeData);
-  const [isLoading, setIsLoading] = useState(false);
-  const [existingCategories, setExistingCategories] = useState<string[]>([]);
-  const [showCategoryDropdown, setShowCategoryDropdown] = useState(false);
-  const [categoryInput, setCategoryInput] = useState("");
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  // Progress tracking for AI image generation
-  const imageProgress = useProgress({
-    steps: AI_IMAGE_GENERATION_STEPS,
-    onComplete: () => {
-      setIsLoading(false);
-    },
-    onError: (error) => {
-      alert(error.message);
-      setIsLoading(false);
-    }
-  });
-
-  useEffect(() => {
-    fetchExistingCategories();
-  }, []);
-
-  useEffect(() => {
-    function handleClickOutside(event: MouseEvent) {
-      if (
-        dropdownRef.current &&
-        !dropdownRef.current.contains(event.target as Node)
-      ) {
-        setShowCategoryDropdown(false);
-      }
-    }
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const handlePhotoUpload = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    if (!event.target.files?.length) return;
-
-    const file = event.target.files[0];
-
-    // בדיקת סוג הקובץ
-    if (!file.type.startsWith("image/")) {
-      alert("נא להעלות קובץ תמונה בלבד");
-      return;
-    }
-
-    // בדיקת גודל הקובץ (מקסימום 5MB)
-    const MAX_SIZE = 5 * 1024 * 1024; // 5MB
-    if (file.size > MAX_SIZE) {
-      alert("גודל התמונה חורג מהמותר (מקסימום 5MB)");
-      return;
-    }
-
-    try {
-      setIsLoading(true);
-      const reader = new FileReader();
-
-      reader.onloadend = () => {
-        setFormData((prev) =>
-          prev
-            ? {
-                ...prev,
-                image: reader.result as string,
-              }
-            : null
-        );
-        setIsLoading(false);
-      };
-
-      reader.onerror = () => {
-        alert("שגיאה בקריאת הקובץ");
-        setIsLoading(false);
-      };
-
-      reader.readAsDataURL(file);
-    } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("שגיאה בהעלאת התמונה");
-      setIsLoading(false);
-    }
-  };
-
-  const handleAIGenerate = async () => {
-    if (!formData) return;
-
-    try {
-      setIsLoading(true);
-      imageProgress.start();
-
-      // וידוא שיש מספיק מידע ליצירת תמונה
-      if (!formData.title || !formData.ingredients?.length) {
-        throw new Error("נדרש למלא כותרת ומצרכים לפני יצירת תמונה");
-      }
-
-      // Step 1: Analyze recipe content
-      imageProgress.startStep(0);
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate analysis
-      imageProgress.completeStep(0);
-
-      // Step 2: Generate image
-      imageProgress.startStep(1);
-      // `POST /api/recipes/generate-image` answers `{ data: { image } }`
-      // where `image` is raw base64 (the renderer adds the data: prefix).
-      const result = await apiService.post<{ data: { image: string } }>(
-        "/api/recipes/generate-image",
-        {
-          recipeContent: `${formData.title}\n${
-            Array.isArray(formData.ingredients)
-              ? formData.ingredients.join("\n")
-              : formData.ingredients
-          }\n${
-            Array.isArray(formData.instructions)
-              ? formData.instructions.join("\n")
-              : formData.instructions || ""
-          }`,
-        },
-        { timeout: AI_TIMEOUT }
-      );
-
-      imageProgress.completeStep(1);
-
-      // Step 3: Optimize image
-      imageProgress.startStep(2);
-      await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
-      setFormData((prev) => (prev ? { ...prev, image: result?.data?.image } : null));
-      imageProgress.completeStep(2);
-
-    } catch (error) {
-      console.error("Error generating image:", error);
-      imageProgress.errorStep(imageProgress.currentStepIndex, error as Error);
-      alert(error instanceof Error ? error.message : "שגיאה ביצירת התמונה");
-    }
-  };
-
-  const fetchExistingCategories = async () => {
-    try {
-      // `GET /api/categories` answers `{ data: string[] }`.
-      const response = await CategoryService.getCategories();
-      if (Array.isArray(response?.data)) {
-        setExistingCategories(response.data);
-      }
-    } catch (error) {
-      console.error("Failed to fetch categories:", error);
-    }
-  };
+  const update = (changes: Partial<RecipeDraft>) => setDraft((prev) => ({ ...prev, ...changes }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData) {
-      // Add missing required fields from recipeData
-      const updatedRecipe: recipe = {
-        ...formData,
-        telegram_id: recipeData?.telegram_id ?? 0,
-        details: recipeData?.details ?? "",
-        is_parsed: recipeData?.is_parsed ?? false,
-        parse_errors: recipeData?.parse_errors ?? null,
-        created_at: recipeData?.created_at ?? new Date().toISOString(),
-      };
-      onSave(updatedRecipe);
-    }
+    void onSave({
+      newText: isStructured ? draftToChannelText(draft) : rawText,
+      image: draft.image
+    });
   };
 
-  if (!formData) return null;
+  const fieldClass = "w-full px-3 py-2 border border-gray-300 rounded-md";
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      {/* Image Section */}
-      <div className="space-y-4">
-        {isLoading ? (
-          <div className="bg-gradient-to-br from-primary-50 to-white rounded-lg p-4 shadow-sm border border-primary-200">
-            <ProgressIndicator
-              steps={imageProgress.steps}
-              currentStepIndex={imageProgress.currentStepIndex}
-              variant="bar"
-              showEstimatedTime={true}
-            />
-          </div>
-        ) : (
-          formData?.image && (
-            <img
-              src={
-                formData.image.startsWith("data:")
-                  ? formData.image
-                  : `data:image/jpeg;base64,${formData.image}`
-              }
-              alt="Recipe"
-              className="max-w-full h-auto rounded-lg shadow-md"
-            />
-          )
-        )}
-        <div className="flex gap-2">
-          <input
-            type="file"
-            onChange={handlePhotoUpload}
-            accept="image/*"
-            className="hidden"
-            id="photo-upload"
-          />
-          <label htmlFor="photo-upload" className="flex-1">
-            <Button
-              type="button"
-              variant="secondary"
-              className="w-full"
-              onClick={() => document.getElementById("photo-upload")?.click()}
-            >
-              {formData?.image ? "החלף תמונה" : "העלה תמונה"}
-            </Button>
+      <RecipeImageField
+        image={draft.image}
+        onChange={(image) => update({ image })}
+        recipeContent={isStructured ? draftToPlainText(draft) : rawText}
+      />
+
+      {!isStructured ? (
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            תוכן המתכון
           </label>
-          <Button
-            type="button"
-            variant="secondary"
-            onClick={handleAIGenerate}
-            className="flex-1"
-          >
-            צור תמונה עם AI
-          </Button>
+          <p className="text-xs text-gray-500 mb-2">
+            המתכון הזה שמור כטקסט חופשי — עריכה כאן נשמרת כפי שהיא לערוץ.
+          </p>
+          <textarea
+            value={rawText}
+            onChange={(e) => setRawText(e.target.value)}
+            className={`${fieldClass} font-mono text-sm`}
+            rows={16}
+          />
         </div>
-      </div>
-
-      {/* Title */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          כותרת
-        </label>
-        <input
-          type="text"
-          value={formData.title}
-          onChange={(e) =>
-            setFormData((prev) =>
-              prev ? { ...prev, title: e.target.value } : null
-            )
-          }
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-        />
-      </div>
-
-      {/* Categories Section */}
-      <div className="relative">
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          קטגוריות
-        </label>
-        <div className="flex flex-wrap gap-2 mb-2">
-          <div className="relative w-full">
+      ) : (
+        <>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">כותרת</label>
             <input
               type="text"
-              value={categoryInput}
-              onChange={(e) => {
-                setCategoryInput(e.target.value);
-                setShowCategoryDropdown(true);
-              }}
-              placeholder="הוסף או בחר קטגוריה"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md"
-              onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  e.preventDefault();
-                  const newCategory = categoryInput.trim();
-                  if (
-                    newCategory &&
-                    !formData?.categories?.includes(newCategory)
-                  ) {
-                    setFormData((prev) =>
-                      prev
-                        ? {
-                            ...prev,
-                            categories: [
-                              ...(prev.categories || []),
-                              newCategory,
-                            ],
-                          }
-                        : null
-                    );
-                    setCategoryInput("");
-                    setShowCategoryDropdown(false);
-                  }
-                }
-              }}
-              onFocus={() => setShowCategoryDropdown(true)}
+              value={draft.title}
+              onChange={(e) => update({ title: e.target.value })}
+              className={fieldClass}
             />
-
-            {showCategoryDropdown && (
-              <div
-                ref={dropdownRef}
-                className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto"
-              >
-                {existingCategories
-                  .filter((category) =>
-                    category.toLowerCase().includes(categoryInput.toLowerCase())
-                  )
-                  .map((category) => (
-                    <div
-                      key={category}
-                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => {
-                        if (!formData?.categories?.includes(category)) {
-                          setFormData((prev) =>
-                            prev
-                              ? {
-                                  ...prev,
-                                  categories: [...(prev.categories || []), category],
-                                }
-                              : null
-                          );
-                        }
-                        setCategoryInput("");
-                        setShowCategoryDropdown(false);
-                      }}
-                    >
-                      {category}
-                    </div>
-                  ))}
-              </div>
-            )}
           </div>
-        </div>
 
-        {formData?.categories && formData.categories.length > 0 && (
-          <CategoryTags
-            categories={formData.categories}
-            onClick={(category) => {
-              setFormData((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      categories: prev.categories?.filter(
-                        (c) => c !== category
-                      ),
-                    }
-                  : null
-              );
-            }}
+          <CategoryPicker
+            categories={draft.categories}
+            onChange={(categories) => update({ categories })}
           />
-        )}
-      </div>
 
-      {/* Preparation Time & Difficulty */}
-      <div className="grid grid-cols-2 gap-4">
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            זמן הכנה (בדקות)
-          </label>
-          <input
-            type="number"
-            min="0"
-            value={formData.preparation_time || ""}
-            onChange={(e) =>
-              setFormData((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      preparation_time: e.target.value
-                        ? Number(e.target.value)
-                        : undefined,
-                    }
-                  : null
-              )
-            }
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
-            placeholder="למשל: 30"
-          />
-        </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                זמן הכנה (בדקות)
+              </label>
+              <input
+                type="number"
+                min="0"
+                value={draft.preparationTime}
+                onChange={(e) => update({ preparationTime: e.target.value })}
+                className={fieldClass}
+                placeholder="למשל: 30"
+              />
+            </div>
 
-        <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
-            רמת קושי
-          </label>
-          <select
-            value={formData?.difficulty?.toUpperCase() || ""}
-            onChange={(e) =>
-              setFormData((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      difficulty: e.target.value
-                        ? (e.target.value as Difficulty)
-                        : undefined,
-                    }
-                  : null
-              )
-            }
-            className="w-full px-3 py-2 border border-gray-300 rounded-md"
-          >
-            <option value="">בחר רמת קושי</option>
-            {difficultyOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">רמת קושי</label>
+              <select
+                value={draft.difficulty}
+                onChange={(e) => update({ difficulty: e.target.value as RecipeDifficultyValue | '' })}
+                className={fieldClass}
+              >
+                <option value="">בחר רמת קושי</option>
+                {difficultyOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
-      {/* Ingredients */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          מצרכים
-        </label>
-        <textarea
-          value={
-            Array.isArray(formData.ingredients)
-              ? formData.ingredients.join("\n")
-              : formData.ingredients
-          }
-          onChange={(e) =>
-            setFormData((prev) =>
-              prev ? { ...prev, ingredients: e.target.value.split("\n") } : null
-            )
-          }
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-          rows={5}
-          placeholder="כל מצרך בשורה חדשה"
-        />
-      </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">מצרכים</label>
+            <textarea
+              value={draft.ingredientsText}
+              onChange={(e) => update({ ingredientsText: e.target.value })}
+              className={fieldClass}
+              rows={5}
+              placeholder="כל מצרך בשורה חדשה"
+            />
+          </div>
 
-      {/* Instructions */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1">
-          הוראות הכנה
-        </label>
-        <textarea
-          value={
-            Array.isArray(formData.instructions)
-              ? formData.instructions.join("\n")
-              : formData.instructions || ""
-          }
-          onChange={(e) =>
-            setFormData((prev) =>
-              prev
-                ? {
-                    ...prev,
-                    instructions: e.target.value.split("\n"),
-                  }
-                : null
-            )
-          }
-          className="w-full px-3 py-2 border border-gray-300 rounded-md"
-          rows={8}
-          placeholder="פרט את שלבי ההכנה"
-        />
-      </div>
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">הוראות הכנה</label>
+            <textarea
+              value={draft.instructions}
+              onChange={(e) => update({ instructions: e.target.value })}
+              className={fieldClass}
+              rows={8}
+              placeholder="פרט את שלבי ההכנה"
+            />
+          </div>
+        </>
+      )}
 
-      {/* Form Actions */}
       <div className="flex justify-end gap-3">
         <Button variant="ghost" onClick={onCancel}>
           ביטול

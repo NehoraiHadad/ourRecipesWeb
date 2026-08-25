@@ -9,7 +9,7 @@ import Spinner from '@/components/ui/Spinner';
 import Modal from '@/components/Modal';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
 import type { Menu } from '@/types';
-import type { recipe } from '@/types';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 
 export default function SharedMenuPage() {
   const params = useParams();
@@ -20,7 +20,7 @@ export default function SharedMenuPage() {
   const [menu, setMenu] = useState<Menu | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
-  const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
+  const [viewingRecipe, setViewingRecipe] = useState<SerializedRecipe | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
   const [loadingMessage, setLoadingMessage] = useState<string>('טוען תפריט...');
 
@@ -98,8 +98,7 @@ export default function SharedMenuPage() {
     setLoadingRecipe(true);
 
     try {
-      const response = await RecipeService.getRecipeById(telegramId);
-      setViewingRecipe(response.data);
+      setViewingRecipe(await RecipeService.fetchRecipe(telegramId));
     } catch (error: any) {
       console.error('Error loading recipe:', error);
 
@@ -281,7 +280,7 @@ export default function SharedMenuPage() {
         onClose={() => {
           setViewingRecipe(null);
         }}
-        title={viewingRecipe?.title}
+        title={viewingRecipe?.title ?? undefined}
       >
         {loadingRecipe && (
           <div className="flex flex-col justify-center items-center p-8 gap-4">

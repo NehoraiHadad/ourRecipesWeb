@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import Spinner from "@/components/ui/Spinner";
 import RecipeDisplay from "./RecipeDisplay";
 import { parseRecipe } from "../utils/formatChecker";
+import { parseIngredientLine } from "@/lib/recipes/ingredientParser";
 import { useAuthContext } from "../context/AuthContext";
 import { useNotification } from '@/context/NotificationContext'
 import { Button } from '@/components/ui/Button'
@@ -304,17 +305,32 @@ const MealSuggestionForm: React.FC = () => {
               />
             </div>
           )}
+          {/*
+            TODO(stage-D2): the suggestion is still parsed in the browser
+            (`parseRecipe`); once it goes through the server parser this maps
+            straight from the response. The shape below is the wire contract
+            `RecipeDisplay` renders.
+          */}
           <RecipeDisplay recipe={{
-            ...recipe,
             id: 0,
             telegram_id: 0,
             title: recipe.title || 'מתכון חדש',
+            raw_content: recipeText,
             categories: recipe.categories || [],
-            raw_content: '',
-            details: recipe.instructions || '',
+            ingredients: (recipe.ingredients || []).map(parseIngredientLine),
+            instructions: recipe.instructions || '',
+            difficulty: recipe.difficulty || null,
+            preparation_time: recipe.preparation_time ?? null,
+            cooking_time: null,
+            servings: null,
+            image_url: recipe.image ?? null,
             is_parsed: true,
-            parse_errors: null,
+            parse_errors: [],
+            status: 'ACTIVE',
+            sync_status: 'synced',
+            is_verified: false,
             created_at: new Date().toISOString(),
+            updated_at: null,
           }} />
 
           {/* Recipe Refinement Form */}

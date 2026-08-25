@@ -4,11 +4,13 @@ import RecipeModal from "../RecipeModal";
 import { useAuthContext } from "../../context/AuthContext";
 import ParseErrors from "../ParseErrors";
 import Modal from "../Modal";
-import { RecipeEditForm } from '../recipe/RecipeEditForm';
+import { RecipeEditForm, type RecipeEditPayload } from '../recipe/RecipeEditForm';
 import { difficultyDisplay } from "@/utils/difficulty";
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
 import { RecipeService } from '@/services/recipeService';
+import { toUiRecipe } from '@/services/recipeMapper';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { TrashIcon } from '@/components/ui/icons';
 
 interface RecipeListProps {
@@ -33,7 +35,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
   observerTarget
 }) => {
   const [modalRecipe, setModalRecipe] = useState<recipe | null>(null);
-  const [editModalRecipe, setEditModalRecipe] = useState<recipe | null>(null);
+  const [editModalRecipe, setEditModalRecipe] = useState<SerializedRecipe | null>(null);
   
   const { authState } = useAuthContext();
 
@@ -56,64 +58,33 @@ const RecipeList: React.FC<RecipeListProps> = ({
     setModalRecipe(await loadFullRecipe(recipe));
   };
 
+  /**
+   * Editing always starts from the recipe itself (`GET /api/recipes/:id`),
+   * never from the list projection — the list may be stale and saving over
+   * newer content would lose it.
+   */
   const handleEditClick = async (e: React.MouseEvent, listRow: recipe) => {
     e.stopPropagation();
-    const recipe = await loadFullRecipe(listRow);
-    setEditModalRecipe({
-      ...recipe,
-      id: recipe.id,
-      telegram_id: recipe.telegram_id,
-      ingredients: recipe.ingredients || [],
-      instructions: recipe.instructions || recipe.details || "",
-      categories: recipe.categories || [],
-      preparation_time: recipe.preparation_time,
-      difficulty: recipe.difficulty,
-    });
+    try {
+      setEditModalRecipe(await RecipeService.fetchRecipe(listRow.telegram_id));
+    } catch (error) {
+      console.error('Failed to load recipe for editing:', error);
+    }
   };
 
-  const handleSaveEdit = async (updatedFormData: recipe) => {
-    console.log('Saving updated recipe:', updatedFormData); // Debug log
-    
-    if (editModalRecipe && onRecipeUpdate) {
-      try {
-        if (!editModalRecipe.telegram_id) {
-          throw new Error("Missing telegram_id");
-        }
+  /**
+   * The form hands over the finished channel message (built by
+   * `formatRecipeText`); saving is one `PUT`, and the server re-parses it.
+   */
+  const handleSaveEdit = async (payload: RecipeEditPayload) => {
+    if (!editModalRecipe || !onRecipeUpdate) return;
 
-        // Update the recipe data with the form changes
-        const updatedRecipeData = {
-          ...editModalRecipe,
-          title: updatedFormData.title,
-          ingredients: updatedFormData.ingredients,
-          instructions: updatedFormData.instructions,
-          image: updatedFormData.image,
-          categories: updatedFormData.categories,
-          preparation_time: updatedFormData.preparation_time,
-          difficulty: updatedFormData.difficulty,
-        };
-
-        const formattedRecipe = `כותרת: ${updatedRecipeData.title}
-${updatedRecipeData.categories?.length ? `\nקטגוריות: ${updatedRecipeData.categories.join(', ')}` : ''}
-${updatedRecipeData.preparation_time ? `\nזמן הכנה: ${updatedRecipeData.preparation_time} דקות` : ''}
-${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updatedRecipeData.difficulty.toUpperCase() as keyof typeof difficultyDisplay]}` : ''}
-\nרשימת מצרכים:\n-${Array.isArray(updatedRecipeData.ingredients) ? updatedRecipeData.ingredients.join("\n-") : updatedRecipeData.ingredients}
-\nהוראות הכנה:\n${updatedRecipeData.instructions || ""}`;
-
-        // Single update route: `PUT /api/recipes/:telegram_id`. It answers with
-        // the updated recipe itself, not Flask's `{status, new_message_id}`.
-        const response = await RecipeService.updateRecipe(
-          editModalRecipe.telegram_id,
-          {
-            newText: formattedRecipe,
-            image: updatedRecipeData.image ?? null,
-          }
-        );
-
-        await onRecipeUpdate(response.data);
-        setEditModalRecipe(null);
-      } catch (error) {
-        console.error("Error updating recipe:", error);
-      }
+    try {
+      const updated = await RecipeService.saveRecipe(editModalRecipe.telegram_id, payload);
+      await onRecipeUpdate(toUiRecipe(updated));
+      setEditModalRecipe(null);
+    } catch (error) {
+      console.error("Error updating recipe:", error);
     }
   };
 
@@ -336,10 +307,8 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
       >
         {editModalRecipe && (
           <RecipeEditForm
-            recipeData={editModalRecipe}
-            onSave={async (updatedRecipe) => {
-              await handleSaveEdit(updatedRecipe);
-            }}
+            recipe={editModalRecipe}
+            onSave={handleSaveEdit}
             onCancel={() => setEditModalRecipe(null)}
           />
         )}

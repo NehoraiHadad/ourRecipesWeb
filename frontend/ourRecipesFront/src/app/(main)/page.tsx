@@ -18,6 +18,7 @@ import { useFavorites } from '@/contexts/FavoritesContext';
 import { useSearchContext } from '@/contexts/SearchContext';
 import RecipeDetails from "@/components/recipe/RecipeDetails";
 import { RecipeService } from "@/services/recipeService";
+import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
 
 export default function Page() {
   const [mealSuggestionForm, setMealSuggestionForm] = useState(false);
@@ -29,26 +30,19 @@ export default function Page() {
   const { searchResults, resultCount, setSearchResults, setResultCount } = useSearchContext();
   
   // Recipe Modal State
-  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
+  const [selectedRecipe, setSelectedRecipe] = useState<SerializedRecipe | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoadingRecipe, setIsLoadingRecipe] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleRecipeClick = async (telegramId: number) => {
     setIsLoadingRecipe(true);
+    setError(null);
     try {
-      // Try to find recipe in existing data sources (all keyed by telegram_id,
-      // which is also what `GET /api/recipes/:telegram_id` expects).
-      const recipe = Object.values(searchResults).find(r => r.telegram_id === telegramId) ||
-                    favoriteRecipes.find(r => r.telegram_id === telegramId);
-      
-      if (recipe) {
-        setSelectedRecipe(recipe);
-      } else {
-        // Fetch from server if not found locally
-        const response = await RecipeService.getRecipeById(telegramId);
-        setSelectedRecipe(response.data);
-      }
+      // Always read the recipe itself (`GET /api/recipes/:telegram_id`): the
+      // search/favourite rows are list projections, and a modal that opens on
+      // stale content would save over newer text.
+      setSelectedRecipe(await RecipeService.fetchRecipe(telegramId));
     } catch (error) {
       setError(error instanceof Error ? error.message : 'לא ניתן למצוא את המתכון');
     } finally {
@@ -318,7 +312,7 @@ export default function Page() {
           setIsEditing(false);
           setError(null);
         }}
-        title={isEditing ? 'עריכת מתכון' : selectedRecipe?.title}
+        title={isEditing ? 'עריכת מתכון' : selectedRecipe?.title ?? undefined}
       >
         {isLoadingRecipe && (
           <div className="flex justify-center items-center p-8">

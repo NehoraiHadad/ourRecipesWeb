@@ -81,25 +81,46 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 ### שלב D — UI מרנדר מובנה בלבד
 
 > נשאר משלב C: הטיפוס הישן `recipe` (`src/types/index.ts`) ו-`toUiRecipe`
-> (`src/services/recipeMapper.ts`) קיימים רק בשביל הקומפוננטות שעדיין מרנדרות
-> טקסט: `RecipeDetails`, `RecipeDisplay`, `RecipeEditForm`, `RecipeModal`,
-> `MealSuggestionForm`, `Recipes`/`RecipeGridItem`/`RecipeListItem`,
-> `management/RecipeList`+`RecipeGrid`, `RecentlyViewedRecipes`, `Search`,
-> `SearchContext`, `MenuDisplay`, `utils/share.ts`, `app/(main)/page.tsx`,
-> `app/(main)/recipe/[id]/page.tsx`, `menus/shared/[token]/page.tsx`.
-> כשכולן יעברו ל-`SerializedRecipe` — למחוק את שניהם.
+> (`src/services/recipeMapper.ts`). אחרי D1/D3/E1/E2 (גל 4) עברו ל-`SerializedRecipe`:
+> `RecipeDetails`, `RecipeDisplay`, `RecipeEditForm`, `utils/share.ts`,
+> `app/(main)/page.tsx`, `app/(main)/recipe/[id]/page.tsx`,
+> `menus/shared/[token]/page.tsx`, מודל הצפייה/עריכה ב-`MenuDisplay`
+> ובעריכה של `management/RecipeList`+`RecipeGrid`; `RecentlyViewedRecipes`
+> ויתר על מודל מת ו-`IngredientList` הישן נמחק.
+> עדיין על הטיפוס הישן (D2/D4): `RecipeModal`, `MealSuggestionForm`,
+> `VersionHistory`, `Recipes`/`RecipeGridItem`/`RecipeListItem`, תצוגות
+> הרשימה ב-`management/*`, `RecipeManagement`, `Search`, `SearchContext`,
+> `searchService`. כשכולן יעברו — למחוק את הטיפוס, את המאפר ואת שלושת
+> העוטפים המסומנים `TODO(stage-D)` ב-`recipeService`.
 
-- [ ] D1 `RecipeDetails` מרנדר מהשדות המובנים (מצרכים, שלבים, קטגוריות, זמן, קושי) —
-      בלי `parseRecipe` בצד לקוח. מכפיל המנות (1X/2X) עובד על `quantity` המספרי.
+- [x] D1 `RecipeDetails` / `RecipeDisplay` / `RecipeEditForm` צורכים `SerializedRecipe`
+      ומרנדרים מהשדות המובנים בלבד — אפס `parseRecipe`/`isRecipeUpdated` בהם.
+      מכפיל המנות עובר דרך `quantityAsNumber` (`lib/recipes/servingsScale.ts`,
+      + בדיקות): כמות שאינה מספר יחיד (טווח/טקסט) מוצגת כלשונה בלי שינוי.
+      פוצלו קומפוננטות: `IngredientListView` / `ServingsMultiplier` /
+      `RecipeTimersPanel` + `ActiveTimerRow` / `RecipeInfographic` /
+      `RecipeImageField` / `CategoryPicker` / `useRecipeActions`
+      (RecipeDetails 521→211, RecipeDisplay 646→148, RecipeEditForm 482→157).
 - [ ] D2 מחיקת `src/utils/formatChecker.tsx` + כל השימושים
       (`MealSuggestionForm`, `VersionHistory` — גרסאות ירונדרו דרך פרסור שרת או שדה שמור).
-- [ ] D3 קומפוננטת fallback מפורשת `RawRecipeView` ל-`is_parsed=false` (טקסט נקי, לא "שבור").
+- [x] D3 `src/components/recipe/RawRecipeView.tsx` (68 שורות): כותרת + טקסט עם
+      שמירת שורות. משמש כשאין תוכן מובנה (`hasStructuredContent` ב-
+      `lib/recipes/recipeView.ts` — `is_parsed`, או מצרכים+הוראות קיימים) וגם
+      כתצוגה מקדימה לטקסט AI שטרם נשמר.
 - [ ] D4 תצוגות מקדימות (ניהול, חיפוש, תפריטים) — מאותם שדות מובנים.
 
 ### שלב E — עריכה דרך הפורמטר
-- [ ] E1 שמירת עריכה: הטופס בונה אובייקט מובנה → `formatRecipeText` → טלגרם → ingest.
-      אף קומפוננטה לא מרכיבה טקסט ערוץ ידנית.
-- [ ] E2 גם מסלולי AI (reformat, הצעות ארוחה) עוברים דרך אותו parse/format.
+- [x] E1 `RecipeEditForm` בונה `FormatRecipeInput` (`components/recipe/recipeDraft.ts`,
+      שורות מצרכים מ-`formatIngredient`) → `formatRecipeText` → `PUT { newText }`.
+      נמחקו כל שלושת ההרכבות הידניות של טקסט ערוץ (`RecipeDetails.buildRecipeText`,
+      `management/RecipeList`, `management/RecipeGrid`) וגם
+      `share.formatRecipeForSharing` המת. מתכון בלי תוכן מובנה נערך כטקסט הערוץ
+      עצמו (במקום לאבד את מה שאינו מזוהה כסקשן).
+- [x] E2 אחרי כתיבה ה-UI מאמץ את מה שהשרת פירסר: `PUT` מחזיר
+      `SerializedRecipeWithRelations` (נשמר ישירות ב-state), ושחזור גרסה מלווה
+      ב-`GET` מחדש (`useRecipeActions`) — נתיב ה-restore לא שונה. טקסט AI
+      (reformat) מוצג כתצוגה מקדימה גולמית עד שמירה, ואז מוחלף במתכון המפורסר.
+      הצעות ארוחה (`MealSuggestionForm`) — נשאר ל-D2.
 
 ### שלב F — מחיקה בעמודי הניהול (UX)
 - [x] F1 מתכונים: `DELETE /api/recipes/[telegram_id]` — ארכוב (`status=ARCHIVED`) +
@@ -132,7 +153,7 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 | 1 | F-delete (Sonnet) | F1–F4 | ✅ |
 | 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ✅ |
 | 3 | C-contract (Opus) | C1–C2 | ✅ |
-| 4 | D-main (Opus) | D1, D3, E1, E2 | ⬜ |
+| 4 | D-main (Opus) | D1, D3, E1, E2 | ✅ |
 | 4 | D-aux (Sonnet) | D2, D4 | ⬜ |
 | 5 | ראשי | G1–G3 + backfill + drop עמודות | ⬜ |
 

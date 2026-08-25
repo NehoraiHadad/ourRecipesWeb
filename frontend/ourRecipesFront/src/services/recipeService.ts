@@ -4,12 +4,8 @@ import type { SerializedRecipeWithRelations } from '@/lib/serializers/recipeType
 import type { ApiResponse } from '../types/api';
 import type { recipe as Recipe } from '../types/index';
 
-interface UpdateRecipeData {
-  newText: string;
-  image?: string | null;
-}
-
-interface CreateRecipeData {
+export interface RecipeWriteData {
+  /** The channel message, canonical format (built by `formatRecipeText`). */
   newText: string;
   image?: string | null;
 }
@@ -17,44 +13,70 @@ interface CreateRecipeData {
 /** Writes mirror to Telegram and may upload an image — slower than a plain read. */
 const WRITE_TIMEOUT = 60000;
 
+/**
+ * Every method speaks the shared contract (`SerializedRecipe`); the
+ * `*ById` / `updateRecipe` / `createRecipe` wrappers below only exist for the
+ * components still on the legacy `recipe` view model and disappear with it
+ * (TODO(stage-D)).
+ */
 export class RecipeService {
   private static readonly BASE_PATH = '/api/recipes';
 
-  // Get a single recipe by its telegram_id
-  static async getRecipeById(id: number): Promise<ApiResponse<Recipe>> {
-    const response = await apiService.get<ApiResponse<SerializedRecipeWithRelations>>(`${this.BASE_PATH}/${id}`);
-    return { ...response, data: toUiRecipe(response?.data) };
+  /** `GET /api/recipes/:telegram_id` — the recipe as the API defines it. */
+  static async fetchRecipe(telegramId: number): Promise<SerializedRecipeWithRelations> {
+    const response = await apiService.get<ApiResponse<SerializedRecipeWithRelations>>(
+      `${this.BASE_PATH}/${telegramId}`
+    );
+    return response?.data;
   }
 
   /**
-   * Create a recipe. `POST /api/recipes` absorbed Flask's `POST /recipes` and
-   * `POST /send_recipe` (the "save the AI suggestion" flow) into one route.
+   * `PUT /api/recipes/:telegram_id`. The single update route replaces Flask's
+   * two client-side forms and answers with the same serialization as `GET` —
+   * the recipe the server re-parsed from `newText`, not `{ status, new_message_id }`.
    */
-  static async createRecipe(data: CreateRecipeData): Promise<ApiResponse<Recipe>> {
-    const response = await apiService.post<ApiResponse<SerializedRecipeWithRelations>>(this.BASE_PATH, data, {
-      timeout: WRITE_TIMEOUT
-    });
-    return { ...response, data: toUiRecipe(response?.data) };
-  }
-
-  /**
-   * Update a recipe. The single `PUT /api/recipes/[telegram_id]` route replaces
-   * Flask's two client-side forms (`/recipes/update/{id}` and `/recipes/{id}`)
-   * and answers with the same serialization as `GET` — the shared
-   * `SerializedRecipe`, not Flask's `{ status, new_message_id }`.
-   */
-  static async updateRecipe(telegramId: number, data: UpdateRecipeData): Promise<ApiResponse<Recipe>> {
+  static async saveRecipe(
+    telegramId: number,
+    data: RecipeWriteData
+  ): Promise<SerializedRecipeWithRelations> {
     const response = await apiService.put<ApiResponse<SerializedRecipeWithRelations>>(
       `${this.BASE_PATH}/${telegramId}`,
       data,
       { timeout: WRITE_TIMEOUT }
     );
-    return { ...response, data: toUiRecipe(response?.data) };
+    return response?.data;
+  }
+
+  /**
+   * `POST /api/recipes` — absorbed Flask's `POST /recipes` and `POST
+   * /send_recipe` (the "save the AI suggestion" flow) into one route.
+   */
+  static async addRecipe(data: RecipeWriteData): Promise<SerializedRecipeWithRelations> {
+    const response = await apiService.post<ApiResponse<SerializedRecipeWithRelations>>(
+      this.BASE_PATH,
+      data,
+      { timeout: WRITE_TIMEOUT }
+    );
+    return response?.data;
   }
 
   /** `DELETE /api/recipes/:telegram_id` archives the recipe and answers `204 No Content`. */
   static async deleteRecipe(telegramId: number): Promise<void> {
     await apiService.delete<null>(`${this.BASE_PATH}/${telegramId}`);
+  }
+
+  // --- TODO(stage-D): legacy view-model wrappers -------------------------
+
+  static async getRecipeById(id: number): Promise<ApiResponse<Recipe>> {
+    return { data: toUiRecipe(await this.fetchRecipe(id)) };
+  }
+
+  static async createRecipe(data: RecipeWriteData): Promise<ApiResponse<Recipe>> {
+    return { data: toUiRecipe(await this.addRecipe(data)) };
+  }
+
+  static async updateRecipe(telegramId: number, data: RecipeWriteData): Promise<ApiResponse<Recipe>> {
+    return { data: toUiRecipe(await this.saveRecipe(telegramId, data)) };
   }
 }
 

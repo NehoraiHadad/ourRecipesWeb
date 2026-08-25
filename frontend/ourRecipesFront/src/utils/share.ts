@@ -1,46 +1,10 @@
-import { recipe } from '@/types';
 import { Place } from '@/components/place/types';
 
-const formatRecipeForSharing = (recipe: recipe): string => {
-  let content = `🍳 ${recipe.title}\n\n`;
-
-  if (recipe.categories && recipe.categories.length > 0) {
-    content += `קטגוריות: ${recipe.categories.join(', ')}\n\n`;
-  }
-
-  if (recipe.preparation_time) {
-    content += `⏱️ זמן הכנה: ${recipe.preparation_time} דקות\n`;
-  }
-
-  if (recipe.difficulty) {
-    const difficultyMap = {
-      easy: 'קל',
-      medium: 'בינוני',
-      hard: 'מאתגר'
-    };
-    content += `📊 רמת קושי: ${difficultyMap[recipe.difficulty as keyof typeof difficultyMap]}\n\n`;
-  }
-
-  if (recipe.ingredients && recipe.ingredients.length > 0) {
-    content += '🛒 מצרכים:\n';
-    content += recipe.ingredients.map(ing => `• ${ing}`).join('\n');
-    content += '\n\n';
-  }
-
-  if (recipe.instructions) {
-    content += '📝 הוראות הכנה:\n';
-    if (Array.isArray(recipe.instructions)) {
-      content += recipe.instructions.join('\n');
-    } else {
-      content += recipe.instructions;
-    }
-    content += '\n';
-  } else if (recipe.raw_content) {
-    content += `📝 הוראות הכנה:\n${recipe.raw_content}\n`;
-  }
-
-  return content;
-};
+/** All a share link needs — satisfied by `SerializedRecipe` and by list rows. */
+interface ShareableRecipe {
+  telegram_id: number;
+  title: string | null;
+}
 
 const formatPlaceForSharing = (place: Place): string => {
   let content = `📍 ${place.name}\n\n`;
@@ -103,14 +67,14 @@ const copyToClipboard = async (text: string) => {
   }
 };
 
-export const shareRecipe = (recipe: recipe) => {
+export const shareRecipe = (recipe: ShareableRecipe) => {
   // יצירת קישור למתכון - שימוש ב-telegram_id כדי שהלינק יהיה יציב
   const recipeUrl = `${window.location.origin}/r/${recipe.telegram_id}`;
   const shareText = `🍳 ${recipe.title}\n\n${recipeUrl}`;
 
   if (navigator.share) {
     return navigator.share({
-      title: recipe.title,
+      title: recipe.title ?? '',
       text: `🍳 ${recipe.title}`,
       url: recipeUrl
     }).catch(error => {
@@ -124,12 +88,6 @@ export const shareRecipe = (recipe: recipe) => {
     // Fallback to clipboard
     return copyToClipboard(shareText);
   }
-};
-
-// שמירת הפונקציה המקורית למקרה הצורך
-export const shareRecipeText = (recipe: recipe) => {
-  const content = formatRecipeForSharing(recipe);
-  return shareContent(content);
 };
 
 export const sharePlace = (place: Place) => {

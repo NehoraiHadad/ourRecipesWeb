@@ -7,7 +7,7 @@ import { useNotification } from '@/context/NotificationContext';
 import RecipeDisplay from '@/components/RecipeDisplay';
 import Modal from '@/components/Modal';
 import Spinner from '@/components/ui/Spinner';
-import type { recipe } from '@/types';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 
 export default function RecipeDetailPage() {
   const params = useParams();
@@ -16,7 +16,7 @@ export default function RecipeDetailPage() {
 
   const recipeId = parseInt(params.id as string);
 
-  const [recipe, setRecipe] = useState<recipe | null>(null);
+  const [recipe, setRecipe] = useState<SerializedRecipe | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(true);
@@ -32,12 +32,11 @@ export default function RecipeDetailPage() {
     setError('');
 
     try {
-      const response = await RecipeService.getRecipeById(recipeId);
+      const loaded = await RecipeService.fetchRecipe(recipeId);
 
-      if (response && response.data) {
-        setRecipe(response.data);
+      if (loaded) {
+        setRecipe(loaded);
       } else {
-        console.error('❌ תשובה ריקה מהשרת:', response);
         setError('מתכון לא נמצא');
       }
     } catch (err: any) {
@@ -102,7 +101,7 @@ export default function RecipeDetailPage() {
       isOpen={isOpen}
       onClose={handleClose}
       size="lg"
-      title={recipe.title}
+      title={recipe.title ?? undefined}
       contentClassName="!p-0"
     >
       <RecipeDisplay recipe={recipe} />

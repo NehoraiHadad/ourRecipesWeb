@@ -11,6 +11,7 @@ import { RecipeService } from '@/services/recipeService';
 import { SearchService } from '@/services/searchService';
 import { useDebounce } from '@/hooks/useDebounce';
 import type { Menu, RecipeSummary, recipe } from '@/types';
+import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import {
   ShoppingListIcon,
   PlusIcon,
@@ -44,7 +45,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
   const [loading, setLoading] = useState<boolean>(false);
 
   // For viewing a recipe
-  const [viewingRecipe, setViewingRecipe] = useState<recipe | null>(null);
+  const [viewingRecipe, setViewingRecipe] = useState<SerializedRecipe | null>(null);
   const [loadingRecipe, setLoadingRecipe] = useState<boolean>(false);
 
   // For replacing a recipe
@@ -119,8 +120,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     setLoadingRecipe(true);
 
     try {
-      const response = await RecipeService.getRecipeById(telegramId);
-      setViewingRecipe(response.data);
+      setViewingRecipe(await RecipeService.fetchRecipe(telegramId));
     } catch (error) {
       console.error('Error loading recipe:', error);
       addNotification({ message: 'שגיאה בטעינת המתכון', type: 'error' });
@@ -902,7 +902,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
         onClose={() => {
           setViewingRecipe(null);
         }}
-        title={viewingRecipe?.title}
+        title={viewingRecipe?.title ?? undefined}
       >
         {loadingRecipe && (
           <div className="flex justify-center items-center p-8">

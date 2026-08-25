@@ -1,24 +1,16 @@
-import { useState } from 'react';
 import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
 import { useFavorites } from '@/contexts/FavoritesContext';
-import Modal from '@/components/Modal';
-import RecipeDetails from '@/components/recipe/RecipeDetails';
-import { recipe } from '@/types';
-import Spinner from '@/components/ui/Spinner';
 import { Typography } from '@/components/ui/Typography';
 import { Button } from '@/components/ui/Button';
 
 interface RecentlyViewedRecipesProps {
+  /** Opening a recipe is the page's job — this strip only lists them. */
   onRecipeClick?: (recipeId: number) => void;
 }
 
 export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesProps) {
   const { recentlyViewed, removeFromHistory, clearHistory } = useRecipeHistory();
   const { toggleFavorite, isFavorite } = useFavorites();
-  const [selectedRecipe, setSelectedRecipe] = useState<recipe | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   if (recentlyViewed.length === 0) {
     return null;
@@ -48,7 +40,6 @@ export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesPr
   };
 
   return (
-    <>
       <div className="bg-gradient-to-br from-white to-primary-50/30 rounded-lg shadow-warm p-4 border border-primary-100/30">
         <div className="flex justify-between items-center mb-3">
           <div className="flex items-center gap-2">
@@ -148,40 +139,5 @@ export function RecentlyViewedRecipes({ onRecipeClick }: RecentlyViewedRecipesPr
         <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent pointer-events-none" />
         <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
-
-      {/* Recipe Modal */}
-      <Modal
-        isOpen={!!selectedRecipe || isLoading || !!error}
-        onClose={() => {
-          setSelectedRecipe(null);
-          setIsEditing(false);
-          setError(null);
-        }}
-        title={isEditing ? 'עריכת מתכון' : selectedRecipe?.title}
-      >
-        {isLoading && (
-          <div className="flex justify-center items-center p-8">
-            <Spinner message="טוען מתכון..." />
-          </div>
-        )}
-        
-        {error && (
-          <div className="p-8 text-center">
-            <Typography variant="body" className="text-red-600">
-              {error}
-            </Typography>
-          </div>
-        )}
-        
-        {selectedRecipe && !isLoading && !error && (
-          <RecipeDetails
-            recipe={selectedRecipe}
-            isEditing={isEditing}
-            onEditStart={() => setIsEditing(true)}
-            onEditEnd={() => setIsEditing(false)}
-          />
-        )}
-      </Modal>
-    </>
   );
 } 
