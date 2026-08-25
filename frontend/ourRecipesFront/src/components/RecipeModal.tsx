@@ -5,6 +5,7 @@ import { useAuthContext } from "../context/AuthContext";
 import Spinner from "@/components/ui/Spinner";
 import ParseErrors from "./ParseErrors";
 import { useNotification } from '@/context/NotificationContext'
+import { RecipeService } from '@/services/recipeService';
 
 interface RecipeModalProps {
   recipe: recipe;
@@ -30,22 +31,13 @@ const RecipeModal: React.FC<RecipeModalProps> = ({
     setError(null);
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/${recipe.telegram_id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(editedRecipe),
-        }
-      );
+      // Single update route: `PUT /api/recipes/:telegram_id`, body `{ newText, image }`.
+      const response = await RecipeService.updateRecipe(recipe.telegram_id, {
+        newText: editedRecipe.raw_content,
+        image: editedRecipe.image ?? null,
+      });
 
-      if (!response.ok) throw new Error("Failed to update recipe");
-
-      const updatedRecipe = await response.json();
-      onUpdate(updatedRecipe);
+      onUpdate(response.data);
       addNotification({
         message: 'המתכון עודכן בהצלחה',
         type: 'success',

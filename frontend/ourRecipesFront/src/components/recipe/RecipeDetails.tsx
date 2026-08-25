@@ -13,6 +13,9 @@ import VersionHistory from '@/components/VersionHistory';
 import { useRecipeHistory } from '@/contexts/RecipeHistoryContext';
 import { ActiveTimers } from './ActiveTimers';
 import RecipeStepOptimizer from './RecipeStepOptimizer';
+import { apiService } from '@/services/apiService';
+import { RecipeService } from '@/services/recipeService';
+import { VersionService } from '@/services/versionService';
 
 
 interface RecipeDetailProps {
@@ -26,6 +29,9 @@ interface UpdateRecipeData {
   messageId: number;
   newText: string;
 }
+
+/** AI routes (reformat / infographic) take far longer than the default timeout. */
+const AI_TIMEOUT = 180000;
 
 const RecipeDetails: React.FC<RecipeDetailProps> = ({ 
   recipe, 
@@ -121,29 +127,27 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
   const fetchReformattedRecipe = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/reformat_recipe`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: recipe.title + "\n" + recipe.details }),
-        }
+      // `POST /api/recipes/reformat` answers `{ data: { message } }`.
+      const response = await apiService.post<{ data: { message: string } }>(
+        "/api/recipes/reformat",
+        { text: recipe.title + "\n" + recipe.details },
+        { timeout: AI_TIMEOUT }
       );
-      const data = await response.json();
-      if (response.ok) {
-        setReformat_recipe(data.reformatted_text);
-        const formattedRecipe = parseRecipe(data.reformatted_text);
-        setRecipeData({
-          id: recipe.id,
-          telegram_id: recipe.telegram_id,
-          ...formattedRecipe,
-          image: recipe.image || null,
-        });
-        setNewFormat(true);
-      } else {
-        throw new Error(data.error);
+
+      const reformattedText = response?.data?.message;
+      if (!reformattedText) {
+        throw new Error("No reformatted text returned");
       }
+
+      setReformat_recipe(reformattedText);
+      const formattedRecipe = parseRecipe(reformattedText);
+      setRecipeData({
+        id: recipe.id,
+        telegram_id: recipe.telegram_id,
+        ...formattedRecipe,
+        image: recipe.image || null,
+      });
+      setNewFormat(true);
     } catch (error: any) {
       setShowMessage({ status: true, message: "שגיאה בעיבוד המתכון" });
     } finally {
@@ -157,29 +161,23 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
     setShowMessage({ status: false, message: "" });
     try {
       const recipeContent = recipe.title + "\n" + recipe.details;
-      const url = `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-infographic`;
-      console.log("[INFOGRAPHIC] API URL:", url);
       console.log("[INFOGRAPHIC] Recipe content length:", recipeContent.length);
 
-      const response = await fetch(url, {
-        method: "POST",
-        credentials: "include",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ recipeContent }),
-      });
+      // `POST /api/recipes/generate-infographic` answers
+      // `{ data: { image: "data:image/png;base64,..." } }`.
+      const response = await apiService.post<{ data: { image: string } }>(
+        "/api/recipes/generate-infographic",
+        { recipeContent },
+        { timeout: AI_TIMEOUT }
+      );
 
-      console.log("[INFOGRAPHIC] Response status:", response.status);
-      console.log("[INFOGRAPHIC] Response headers:", response.headers);
-
-      const data = await response.json();
-      console.log("[INFOGRAPHIC] Response data:", data);
-
-      if (response.ok) {
-        setGeneratedInfographic(data.image);
-        setShowMessage({ status: true, message: "האינפוגרפיקה נוצרה בהצלחה!" });
-      } else {
-        throw new Error(data.error || data.message);
+      const image = response?.data?.image;
+      if (!image) {
+        throw new Error("No infographic returned");
       }
+
+      setGeneratedInfographic(image);
+      setShowMessage({ status: true, message: "האינפוגרפיקה נוצרה בהצלחה!" });
     } catch (error: any) {
       console.error("[INFOGRAPHIC] Error generating infographic:", error);
       console.error("[INFOGRAPHIC] Error stack:", error.stack);
@@ -252,31 +250,13 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
   const updateRecipeInTelegram = async (data: UpdateRecipeData) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/update/${data.messageId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            newText: data.newText,
-            image: recipeData?.image,
-          }),
-        }
-      );
+      // `PUT /api/recipes/:telegram_id` answers with the updated recipe itself
+      // (same serialization as `GET`), not Flask's `{status, new_message_id}`.
+      const result = await RecipeService.updateRecipe(data.messageId, {
+        newText: data.newText,
+        image: recipeData?.image,
+      });
 
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Failed to update the recipe in Telegram.");
-      }
-
-      const result = await response.json();
-      if (result.new_message_id) {
-        recipe.id = result.new_message_id;
-      }
       setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
       return result;
     } catch (error: any) {
@@ -294,22 +274,17 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
   const handleVersionRestore = async (versionId: number) => {
     setIsLoading(true);
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipe.telegram_id}/restore/${versionId}`,
-        {
-          method: "POST",
-          credentials: "include",
-        }
+      // Flat `{ message, title, details, image }` body.
+      const restoredRecipe = await VersionService.restoreVersion(
+        recipe.telegram_id,
+        versionId
       );
-      
-      if (!response.ok) {
-        throw new Error("Failed to restore version");
-      }
-      
-      const restoredRecipe = await response.json();
+      const restoredTitle = restoredRecipe.title ?? "";
+      const restoredDetails = restoredRecipe.details ?? "";
+
       // Update the recipe data with the restored version
-      if (isRecipeUpdated(restoredRecipe.title + "\n" + restoredRecipe.details)) {
-        const formattedRecipe = parseRecipe(restoredRecipe.title + "\n" + restoredRecipe.details);
+      if (isRecipeUpdated(restoredTitle + "\n" + restoredDetails)) {
+        const formattedRecipe = parseRecipe(restoredTitle + "\n" + restoredDetails);
         setRecipeData({
           id: recipe.id,
           telegram_id: recipe.telegram_id,
@@ -323,9 +298,9 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
         setRecipeData({
           id: recipe.id,
           telegram_id: recipe.telegram_id,
-          title: restoredRecipe.title,
+          title: restoredTitle,
           ingredients: [],
-          instructions: restoredRecipe.details,
+          instructions: restoredDetails,
           image: restoredRecipe.image || null,
           categories: [],
           difficulty: undefined

@@ -42,6 +42,8 @@ export type CourseType = "appetizer" | "main" | "side" | "dessert" | "salad" | "
 
 export interface RecipeSummary {
   id: number;
+  /** The key `GET /api/recipes/:telegram_id` looks up by — use it to open the recipe. */
+  telegram_id?: number;
   title: string;
   categories?: string;
   difficulty?: Difficulty;

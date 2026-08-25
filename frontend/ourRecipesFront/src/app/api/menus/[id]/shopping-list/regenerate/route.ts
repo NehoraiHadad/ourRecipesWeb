@@ -1,17 +1,23 @@
 /**
  * POST /api/menus/:id/shopping-list/regenerate
- * Regenerate shopping list from menu's recipes
+ * Rebuild the shopping list from the menu's recipes.
  *
- * @note Authentication will be added in Phase 3
+ * Access control: owner only — a public menu is readable by anyone but its
+ * shopping list is only rewritable by the person who owns the menu (matches
+ * Flask's `regenerate_shopping_list`, which answered 403 "Access denied").
+ * A menu that does not exist still answers 404.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { successResponse } from '@/lib/utils/api-response';
 import {
   handleApiError,
-  NotFoundError
+  NotFoundError,
+  ForbiddenError
 } from '@/lib/utils/api-errors';
+import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
+import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { generateShoppingList } from '@/lib/services/shoppingListService';
 
 interface RouteParams {
@@ -23,15 +29,13 @@ export async function POST(
   { params }: RouteParams
 ) {
   try {
-    const menuId = parseInt(params.id);
+    const auth = await requireAuth(request);
+    if (!auth.ok) return authErrorResponse(auth);
 
-    if (isNaN(menuId)) {
-      throw new Error('Invalid menu ID');
-    }
+    const menuId = validateId(params.id);
 
-    logger.debug({ menuId }, 'Regenerating shopping list');
+    logger.debug({ menuId, userId: auth.session.sub }, 'Regenerating shopping list');
 
-    // Verify menu exists
     const menu = await prisma.menu.findUnique({
       where: { id: menuId },
       select: {
@@ -40,11 +44,8 @@ export async function POST(
       }
     });
 
-    if (!menu) {
-      throw NotFoundError('Menu not found');
-    }
-
-    // TODO (Phase 3): Add access control - only owner can regenerate
+    if (!menu) throw NotFoundError('Menu not found');
+    if (menu.user_id !== auth.session.sub) throw ForbiddenError('Access denied');
 
     // Delete existing shopping list
     await prisma.shoppingListItem.deleteMany({

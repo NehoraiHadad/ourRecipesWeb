@@ -8,6 +8,7 @@ import Spinner from "@/components/ui/Spinner";
 import TypingEffect from "@/components/TypingEffect";
 import { cn } from '@/utils/cn';
 import { difficultyDisplay } from '@/utils/difficulty';
+import { VersionService } from '@/services/versionService';
 
 interface Version {
   id: number;
@@ -61,24 +62,13 @@ const VersionHistory: React.FC<VersionHistoryProps> = ({ recipeId, onRestore, on
 
   const fetchVersions = async () => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/versions/recipe/${recipeId}`,
-        {
-          credentials: 'include',
-        }
-      );
-      
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || 'Failed to fetch versions');
-      }
-      
-      const data = await response.json();
+      const data = await VersionService.getVersions(recipeId);
+
       if (Array.isArray(data) && data.length === 0) {
         setError('אין היסטוריית גרסאות למתכון זה');
         return;
       }
-      setVersions(data);
+      setVersions(data as unknown as Version[]);
     } catch (error) {
       console.error('Error fetching versions:', error);
       setError('שגיאה בטעינת היסטוריית גרסאות');

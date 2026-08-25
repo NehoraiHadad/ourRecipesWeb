@@ -8,6 +8,7 @@ import { RecipeEditForm } from '../recipe/RecipeEditForm';
 import { difficultyDisplay } from "@/utils/difficulty";
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
+import { RecipeService } from '@/services/recipeService';
 
 interface RecipeListProps {
   recipes: recipe[];
@@ -33,12 +34,29 @@ const RecipeList: React.FC<RecipeListProps> = ({
   
   const { authState } = useAuthContext();
 
-  const handleRecipeClick = (recipe: recipe) => {
-    setModalRecipe(recipe);
+  /**
+   * `GET /api/recipes/manage` serves a trimmed projection (no `raw_content`,
+   * ingredients, instructions or difficulty), so the full recipe is fetched by
+   * `telegram_id` before opening a detail/edit dialog — editing a partial row
+   * would otherwise save an emptied-out recipe.
+   */
+  const loadFullRecipe = async (listRow: recipe): Promise<recipe> => {
+    try {
+      const response = await RecipeService.getRecipeById(listRow.telegram_id);
+      return response?.data ? { ...listRow, ...response.data } : listRow;
+    } catch (error) {
+      console.error('Failed to load full recipe:', error);
+      return listRow;
+    }
   };
 
-  const handleEditClick = (e: React.MouseEvent, recipe: recipe) => {
+  const handleRecipeClick = async (recipe: recipe) => {
+    setModalRecipe(await loadFullRecipe(recipe));
+  };
+
+  const handleEditClick = async (e: React.MouseEvent, listRow: recipe) => {
     e.stopPropagation();
+    const recipe = await loadFullRecipe(listRow);
     setEditModalRecipe({
       ...recipe,
       id: recipe.id,
@@ -79,23 +97,17 @@ ${updatedRecipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[updated
 \nרשימת מצרכים:\n-${Array.isArray(updatedRecipeData.ingredients) ? updatedRecipeData.ingredients.join("\n-") : updatedRecipeData.ingredients}
 \nהוראות הכנה:\n${updatedRecipeData.instructions || ""}`;
 
-        const response = await fetch(
-          `${process.env.NEXT_PUBLIC_API_URL}/recipes/update/${editModalRecipe.telegram_id}`,
+        // Single update route: `PUT /api/recipes/:telegram_id`. It answers with
+        // the updated recipe itself, not Flask's `{status, new_message_id}`.
+        const response = await RecipeService.updateRecipe(
+          editModalRecipe.telegram_id,
           {
-            method: "PUT",
-            headers: { "Content-Type": "application/json" },
-            credentials: "include",
-            body: JSON.stringify({
-              newText: formattedRecipe,
-              image: updatedRecipeData.image,
-            }),
+            newText: formattedRecipe,
+            image: updatedRecipeData.image ?? null,
           }
         );
 
-        if (!response.ok) throw new Error("Failed to update recipe");
-
-        const updatedRecipe = await response.json();
-        await onRecipeUpdate(updatedRecipe);
+        await onRecipeUpdate(response.data);
         setEditModalRecipe(null);
       } catch (error) {
         console.error("Error updating recipe:", error);

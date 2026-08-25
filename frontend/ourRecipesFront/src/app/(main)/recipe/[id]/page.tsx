@@ -20,8 +20,6 @@ export default function RecipeDetailPage() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>('');
   const [isOpen, setIsOpen] = useState<boolean>(true);
-  const [loadingMessage, setLoadingMessage] = useState<string>('טוען מתכון...');
-  const [retryAttempt, setRetryAttempt] = useState<number>(0);
 
   useEffect(() => {
     if (recipeId) {
@@ -32,58 +30,27 @@ export default function RecipeDetailPage() {
   const loadRecipe = async () => {
     setLoading(true);
     setError('');
-    setLoadingMessage('טוען מתכון...');
-    setRetryAttempt(0);
-
-    // Show server wake-up message after 3 seconds
-    const wakeUpTimer = setTimeout(() => {
-      setLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
-    }, 3000);
 
     try {
-      const response = await RecipeService.getRecipeByIdWithRetry(
-        recipeId,
-        (attempt, maxAttempts) => {
-          setRetryAttempt(attempt);
-          setLoadingMessage(
-            `השרת עדיין מתעורר... מנסה שוב (ניסיון ${attempt} מתוך ${maxAttempts}) ⏳`
-          );
-        }
-      );
-
-      clearTimeout(wakeUpTimer);
+      const response = await RecipeService.getRecipeById(recipeId);
 
       if (response && response.data) {
         setRecipe(response.data);
       } else {
-        // This shouldn't happen with retry logic, but just in case
-        console.error('❌ תשובה ריקה למרות ניסיונות חוזרים:', response);
+        console.error('❌ תשובה ריקה מהשרת:', response);
         setError('מתכון לא נמצא');
       }
     } catch (err: any) {
-      clearTimeout(wakeUpTimer);
       console.error('Error loading recipe:', err);
 
-      // Provide helpful error messages based on error type
       let errorMessage = 'שגיאה בטעינת המתכון';
-      if (err.name === 'TimeoutError' || err.status === 408) {
-        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
-      } else if (err.message === 'Recipe not found or empty response from server') {
-        errorMessage = 'השרת לא החזיר את המתכון. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
-      } else if (err.status === 404) {
+      if (err.status === 404) {
         errorMessage = 'מתכון לא נמצא';
-      } else if (err.status === 502 || err.status === 504) {
-        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
+      } else if (err.name === 'TimeoutError' || err.status === 408) {
+        errorMessage = 'הבקשה ארכה זמן רב מדי. אנא נסה שוב.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
-
-      console.error('💥 שגיאה סופית בטעינת מתכון:', {
-        errorName: err?.name,
-        errorStatus: err?.status,
-        errorMessage: err?.message,
-        chosenMessage: errorMessage
-      });
 
       setError(errorMessage);
       addNotification({ message: errorMessage, type: 'error' });
@@ -105,13 +72,8 @@ export default function RecipeDetailPage() {
         <div className="flex flex-col items-center justify-center py-8 px-4">
           <Spinner />
           <p className="mt-4 text-center text-secondary-700 text-sm">
-            {loadingMessage}
+            טוען מתכון...
           </p>
-          {retryAttempt > 0 && (
-            <p className="mt-2 text-center text-secondary-500 text-xs">
-              השרת עובד על שרת חינמי ולכן נרדם לעיתים. נא להמתין...
-            </p>
-          )}
         </div>
       </Modal>
     );

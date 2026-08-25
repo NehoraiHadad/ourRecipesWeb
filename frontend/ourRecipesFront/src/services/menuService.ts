@@ -23,7 +23,8 @@ interface ApiResponse<T> {
 }
 
 export class MenuService {
-  private static readonly BASE_PATH = '/menus';
+  private static readonly BASE_PATH = '/api/menus';
+  private static readonly SHOPPING_LIST_ITEMS_PATH = '/api/shopping-list/items';
 
   /**
    * Generate menu PREVIEW using AI (without saving to database)
@@ -34,12 +35,13 @@ export class MenuService {
     preview: any;
     preferences: MenuGenerationRequest;
   }>> {
-    return apiService.post<ApiResponse<{
-      preview: any;
-      preferences: MenuGenerationRequest;
-    }>>(`${this.BASE_PATH}/generate-preview`, request, {
+    // `POST /api/menus/generate-preview` answers `{ data: { preview, preferences } }`.
+    const response = await apiService.post<{
+      data: { preview: any; preferences: MenuGenerationRequest };
+    }>(`${this.BASE_PATH}/generate-preview`, request, {
       timeout: 120000 // 2 minutes timeout for AI menu generation
     });
+    return { ...response?.data };
   }
 
   /**
@@ -49,34 +51,50 @@ export class MenuService {
     menu: Menu;
     shopping_list: ShoppingList;
   }>> {
+    // Flask's `POST /menus/save` became `POST /api/menus`; the flat
+    // `{ success, menu, shopping_list }` body is unchanged.
     return apiService.post<ApiResponse<{
       menu: Menu;
       shopping_list: ShoppingList;
-    }>>(`${this.BASE_PATH}/save`, {
+    }>>(this.BASE_PATH, {
       preview,
       preferences
-    });
+    }, { timeout: 60000 });
   }
 
   /**
    * Get all menus for the current user
    */
   static async getUserMenus(): Promise<ApiResponse<Menu[]>> {
-    return apiService.get<ApiResponse<Menu[]>>(this.BASE_PATH);
+    // `GET /api/menus` answers `{ data, pagination }`, and unlike the single
+    // menu route it serves raw rows — `dietary_type` still carries the Prisma
+    // enum casing, which the UI's label map expects in lower case.
+    const response = await apiService.get<{ data: Menu[] }>(this.BASE_PATH);
+    const menus = (response?.data ?? []).map((menu) => ({
+      ...menu,
+      dietary_type: menu.dietary_type
+        ? (String(menu.dietary_type).toLowerCase() as Menu['dietary_type'])
+        : menu.dietary_type
+    }));
+    return { menus };
   }
 
   /**
    * Get a specific menu by ID
    */
   static async getMenu(menuId: number): Promise<ApiResponse<Menu>> {
-    return apiService.get<ApiResponse<Menu>>(`${this.BASE_PATH}/${menuId}`);
+    // `GET /api/menus/:id` answers `{ data: menu }`.
+    const response = await apiService.get<{ data: Menu }>(`${this.BASE_PATH}/${menuId}`);
+    return { menu: response?.data };
   }
 
   /**
    * Get a shared menu by token (no auth required)
    */
   static async getSharedMenu(shareToken: string): Promise<ApiResponse<Menu>> {
-    return apiService.get<ApiResponse<Menu>>(`${this.BASE_PATH}/shared/${shareToken}`);
+    // `GET /api/menus/shared/:token` answers `{ data: menu }`.
+    const response = await apiService.get<{ data: Menu }>(`${this.BASE_PATH}/shared/${shareToken}`);
+    return { menu: response?.data };
   }
 
   /**
@@ -133,16 +151,24 @@ export class MenuService {
    * Get shopping list for a menu
    */
   static async getShoppingList(menuId: number): Promise<ApiResponse<ShoppingList>> {
-    return apiService.get<ApiResponse<ShoppingList>>(`${this.BASE_PATH}/${menuId}/shopping-list`);
+    // `GET /api/menus/:id/shopping-list` answers `{ data: <grouped list> }`.
+    const response = await apiService.get<{ data: ShoppingList }>(
+      `${this.BASE_PATH}/${menuId}/shopping-list`
+    );
+    return { shopping_list: response?.data };
   }
 
   /**
    * Regenerate shopping list for a menu
    */
   static async regenerateShoppingList(menuId: number): Promise<ApiResponse<ShoppingList>> {
-    return apiService.post<ApiResponse<ShoppingList>>(
-      `${this.BASE_PATH}/${menuId}/shopping-list/regenerate`
+    // `POST /api/menus/:id/shopping-list/regenerate` answers `{ data: <grouped list> }`.
+    const response = await apiService.post<{ data: ShoppingList }>(
+      `${this.BASE_PATH}/${menuId}/shopping-list/regenerate`,
+      undefined,
+      { timeout: 60000 }
     );
+    return { shopping_list: response?.data };
   }
 
   /**
@@ -152,8 +178,9 @@ export class MenuService {
     itemId: number,
     isChecked: boolean
   ): Promise<ApiResponse<any>> {
+    // Standalone route, not nested under `/menus`.
     return apiService.patch<ApiResponse<any>>(
-      `${this.BASE_PATH}/shopping-list/items/${itemId}`,
+      `${this.SHOPPING_LIST_ITEMS_PATH}/${itemId}`,
       { is_checked: isChecked }
     );
   }

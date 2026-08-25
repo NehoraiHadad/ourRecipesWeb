@@ -32,6 +32,10 @@ export const ConflictError = (message: string) =>
 export const InternalServerError = (message = 'Internal server error') =>
   new ApiError(500, message);
 
+/** An upstream dependency (AI provider, Telegram, …) answered unusably. */
+export const BadGatewayError = (message = 'Upstream service error') =>
+  new ApiError(502, message);
+
 /**
  * Handle errors and return Response
  */

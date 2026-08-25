@@ -2,6 +2,25 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import VersionHistory from '../VersionHistory';
+import { VersionService } from '@/services/versionService';
+
+// The component now goes through `VersionService` (and thus `apiService`,
+// which adds the iOS `Authorization: Bearer` fallback) instead of calling
+// `fetch` directly.
+vi.mock('@/services/versionService', () => ({
+  VersionService: {
+    getVersions: vi.fn(),
+    restoreVersion: vi.fn()
+  }
+}));
+
+// Status messages are rendered through TypingEffect, which reveals them one
+// character at a time — render them instantly so assertions are deterministic.
+vi.mock('@/components/TypingEffect', () => ({
+  default: ({ message }: { message: string }) => <span>{message}</span>
+}));
+
+const getVersionsMock = vi.mocked(VersionService.getVersions);
 
 describe('VersionHistory Component', () => {
   const mockRecipeId = 123;
@@ -44,12 +63,8 @@ describe('VersionHistory Component', () => {
   ];
 
   beforeEach(() => {
-    global.fetch = vi.fn().mockImplementation(() =>
-      Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(mockVersions)
-      })
-    );
+    vi.clearAllMocks();
+    getVersionsMock.mockResolvedValue(mockVersions as any);
   });
 
   it('shows version content when expanded', async () => {
@@ -100,7 +115,7 @@ describe('VersionHistory Component', () => {
 
   it('handles API error gracefully', async () => {
     const consoleSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-    global.fetch = vi.fn().mockRejectedValueOnce(new Error('API Error'));
+    getVersionsMock.mockRejectedValueOnce(new Error('API Error'));
 
     render(
       <VersionHistory 

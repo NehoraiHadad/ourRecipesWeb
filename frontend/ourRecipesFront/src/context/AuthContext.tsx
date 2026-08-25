@@ -2,15 +2,15 @@
 import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 import { authService } from '@/services/authService';
 import type { User } from '@/types/auth';
-import { ApiResponse } from '@/types/api';
 
-type ValidateResponse = ApiResponse<{
+/** `GET /api/auth/validate` answers with a flat body (no `data` envelope). */
+type ValidateResponse = {
   authenticated: boolean;
   canEdit: boolean;
   user_id?: string;
   name?: string;
   type?: string;
-}>;
+};
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -48,14 +48,14 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = (await authService.validate() as unknown) as ValidateResponse;
       
       setAuthState({
-        isAuthenticated: response.data.authenticated,
-        canEdit: response.data.canEdit,
+        isAuthenticated: response.authenticated,
+        canEdit: response.canEdit,
         isLoading: false,
         error: null,
-        user: response.data.user_id ? {
-          id: response.data.user_id,
-          name: response.data.name || '',
-          type: (response.data.type as "guest" | "telegram") || null
+        user: response.user_id ? {
+          id: response.user_id,
+          name: response.name || '',
+          type: (response.type as "guest" | "telegram") || null
         } : null
       });
     } catch (error) {

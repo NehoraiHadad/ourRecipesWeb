@@ -9,8 +9,6 @@ interface MobileMenuProps {
   isOpen: boolean
   onClose: () => void
   canEdit: boolean
-  onSync: () => void
-  isSyncing: boolean
   onLogout: () => void
 }
 
@@ -18,8 +16,6 @@ export function MobileMenu({
   isOpen, 
   onClose,
   canEdit,
-  onSync,
-  isSyncing,
   onLogout
 }: MobileMenuProps) {
   const { currentFont, setFont, fonts } = useFont();
@@ -147,23 +143,6 @@ export function MobileMenu({
                   >
                     ניהול מתכונים
                   </Link>
-                  <button
-                    className="w-full text-right text-secondary-600 hover:text-secondary-900 transition-all duration-200 py-2 px-3 rounded-md hover:bg-secondary-50 flex items-center"
-                    onClick={() => {
-                      onSync();
-                      onClose();
-                    }}
-                    disabled={isSyncing}
-                  >
-                    {isSyncing ? (
-                      <>
-                        <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900 ml-2" />
-                        מסנכרן...
-                      </>
-                    ) : (
-                      'סנכרן'
-                    )}
-                  </button>
                 </div>
               )}
             </nav>

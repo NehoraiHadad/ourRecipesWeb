@@ -13,7 +13,8 @@ type ViewMode = 'grid' | 'list';
 interface RecipesProps {
   recipes: recipe[];
   defaultView?: ViewMode;
-  onRecipeClick?: (recipeId: number) => void;
+  /** Called with the recipe's `telegram_id` — the key every recipe endpoint uses. */
+  onRecipeClick?: (telegramId: number) => void;
 }
 
 const VIEW_MODE_KEY = 'recipeViewMode';
@@ -77,7 +78,7 @@ export default function Recipes({ recipes, defaultView = 'grid', onRecipeClick }
                 <RecipeGridItem
                   key={recipe.id}
                   recipe={recipe}
-                  onClick={() => onRecipeClick?.(recipe.id)}
+                  onClick={() => onRecipeClick?.(recipe.telegram_id)}
                   font={currentFont}
                 />
               ))}
@@ -120,7 +121,7 @@ export default function Recipes({ recipes, defaultView = 'grid', onRecipeClick }
                 <RecipeListItem
                   key={recipe.id}
                   recipe={recipe}
-                  onClick={() => onRecipeClick?.(recipe.id)}
+                  onClick={() => onRecipeClick?.(recipe.telegram_id)}
                   font={currentFont}
                 />
               ))}

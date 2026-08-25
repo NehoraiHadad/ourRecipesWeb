@@ -1,39 +1,28 @@
 import { apiService } from './apiService';
-import type { ApiResponse } from '../types/api';
 import type { Place, PlaceFormData } from '../components/place/types';
 
 export class PlaceService {
-  private static readonly BASE_PATH = '/places';
+  private static readonly BASE_PATH = '/api/places';
 
-  // Get all places
-  static async getPlaces(): Promise<ApiResponse<Place[]>> {
-    return apiService.get<ApiResponse<Place[]>>(this.BASE_PATH);
+  /** `GET /api/places` answers with a bare array (see `serializePlace`). */
+  static async getPlaces(): Promise<Place[]> {
+    return apiService.get<Place[]>(this.BASE_PATH);
   }
 
-  // Get a single place by ID
-  static async getPlaceById(id: number): Promise<ApiResponse<Place>> {
-    return apiService.get<ApiResponse<Place>>(`${this.BASE_PATH}/${id}`);
+  /** `POST /api/places` answers with the created place itself (201). */
+  static async createPlace(data: PlaceFormData): Promise<Place> {
+    return apiService.post<Place>(this.BASE_PATH, data);
   }
 
-  // Create a new place
-  static async createPlace(data: PlaceFormData): Promise<ApiResponse<Place>> {
-    return apiService.post<ApiResponse<Place>>(this.BASE_PATH, data);
+  /** `PUT /api/places/:id` answers with the updated place itself. */
+  static async updatePlace(id: number, data: PlaceFormData): Promise<Place> {
+    return apiService.put<Place>(`${this.BASE_PATH}/${id}`, data);
   }
 
-  // Update a place
-  static async updatePlace(id: number, data: PlaceFormData): Promise<ApiResponse<Place>> {
-    return apiService.put<ApiResponse<Place>>(`${this.BASE_PATH}/${id}`, data);
-  }
-
-  // Delete a place
-  static async deletePlace(id: number): Promise<ApiResponse<void>> {
-    return apiService.delete<ApiResponse<void>>(`${this.BASE_PATH}/${id}`);
-  }
-
-  // Sync places
-  static async syncPlaces(): Promise<ApiResponse<Place[]>> {
-    return apiService.post<ApiResponse<Place[]>>(`${this.BASE_PATH}/sync`);
+  /** `DELETE /api/places/:id` is a soft delete answering `204 No Content`. */
+  static async deletePlace(id: number): Promise<void> {
+    await apiService.delete<null>(`${this.BASE_PATH}/${id}`);
   }
 }
 
-export const placeService = new PlaceService(); 
+export const placeService = new PlaceService();

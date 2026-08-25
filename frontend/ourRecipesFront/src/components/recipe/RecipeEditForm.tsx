@@ -7,6 +7,11 @@ import { difficultyOptions } from "@/utils/difficulty";
 import type { Difficulty } from "@/types";
 import { ProgressIndicator } from "@/components/ui/ProgressIndicator";
 import { useProgress, AI_IMAGE_GENERATION_STEPS } from "@/hooks/useProgress";
+import { apiService } from "@/services/apiService";
+import { CategoryService } from "@/services/categoryService";
+
+/** Image generation is an AI call — far slower than the default timeout. */
+const AI_TIMEOUT = 180000;
 
 interface RecipeEditFormProps {
   recipeData: recipe | null;
@@ -124,38 +129,30 @@ export function RecipeEditForm({
 
       // Step 2: Generate image
       imageProgress.startStep(1);
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/generate-image`,
+      // `POST /api/recipes/generate-image` answers `{ data: { image } }`
+      // where `image` is raw base64 (the renderer adds the data: prefix).
+      const result = await apiService.post<{ data: { image: string } }>(
+        "/api/recipes/generate-image",
         {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          credentials: "include",
-          body: JSON.stringify({
-            recipeContent: `${formData.title}\n${
-              Array.isArray(formData.ingredients)
-                ? formData.ingredients.join("\n")
-                : formData.ingredients
-            }\n${
-              Array.isArray(formData.instructions)
-                ? formData.instructions.join("\n")
-                : formData.instructions || ""
-            }`,
-          }),
-        }
+          recipeContent: `${formData.title}\n${
+            Array.isArray(formData.ingredients)
+              ? formData.ingredients.join("\n")
+              : formData.ingredients
+          }\n${
+            Array.isArray(formData.instructions)
+              ? formData.instructions.join("\n")
+              : formData.instructions || ""
+          }`,
+        },
+        { timeout: AI_TIMEOUT }
       );
 
-      if (!response.ok) {
-        const error = await response.json();
-        throw new Error(error.message || "שגיאה ביצרת התמונה");
-      }
-
-      const result = await response.json();
       imageProgress.completeStep(1);
 
       // Step 3: Optimize image
       imageProgress.startStep(2);
       await new Promise(resolve => setTimeout(resolve, 500)); // Simulate optimization
-      setFormData((prev) => (prev ? { ...prev, image: result.image } : null));
+      setFormData((prev) => (prev ? { ...prev, image: result?.data?.image } : null));
       imageProgress.completeStep(2);
 
     } catch (error) {
@@ -167,15 +164,10 @@ export function RecipeEditForm({
 
   const fetchExistingCategories = async () => {
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/categories`,
-        { credentials: "include" }
-      );
-      if (response.ok) {
-        const data = await response.json();
-        if (Array.isArray(data)) {
-          setExistingCategories(data);
-        }
+      // `GET /api/categories` answers `{ data: string[] }`.
+      const response = await CategoryService.getCategories();
+      if (Array.isArray(response?.data)) {
+        setExistingCategories(response.data);
       }
     } catch (error) {
       console.error("Failed to fetch categories:", error);

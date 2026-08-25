@@ -11,11 +11,9 @@ import { FeatureIndicator } from '@/components/ui/FeatureIndicator'
 import { FontSwitcher } from '@/components/FontSwitcher'
 import { useSearchContext } from '@/contexts/SearchContext'
 import { authService } from '@/services/authService'
-import { SyncService } from '@/services/syncService'
 
 export function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [isSyncing, setIsSyncing] = useState(false)
   const router = useRouter()
   const { setAuthState, authState } = useAuthContext()
   const [showUserMenu, setShowUserMenu] = useState(false)
@@ -46,18 +44,6 @@ export function Header() {
       console.groupEnd();
     }
   };
-
-  const handleSync = async () => {
-    setIsSyncing(true)
-    try {
-      await SyncService.startSync();
-      //TODO: Add a notification here for the user about the sync results
-    } catch (error) {
-      console.error('Sync error:', error)
-    } finally {
-      setIsSyncing(false)
-    }
-  }
 
   const handleLogoClick = (e: React.MouseEvent) => {
     e.preventDefault()
@@ -181,25 +167,6 @@ export function Header() {
               </Link>
             )}
 
-            {authState.canEdit && (
-              <Button 
-                variant="secondary" 
-                size="sm" 
-                onClick={handleSync} 
-                disabled={isSyncing}
-                className="hidden sm:flex"
-              >
-                {isSyncing ? (
-                  <>
-                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-gray-900 ml-2"></div>
-                    מסנכרן...
-                  </>
-                ) : (
-                  'סנכרן'
-                )}
-              </Button>
-            )}
-            
             {/* GitHub Link */}
             <a
               href="https://github.com/NehoraiHadad/ourRecipesWeb"
@@ -261,8 +228,6 @@ export function Header() {
         isOpen={isMobileMenuOpen} 
         onClose={() => setIsMobileMenuOpen(false)}
         canEdit={authState.canEdit}
-        onSync={handleSync}
-        isSyncing={isSyncing}
         onLogout={handleLogout}
       />
     </header>

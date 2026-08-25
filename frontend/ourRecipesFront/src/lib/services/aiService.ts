@@ -3,6 +3,7 @@
  */
 import { GoogleGenAI } from '@google/genai';
 import { logger } from '@/lib/logger';
+import { OPTIMIZED_STEPS_SCHEMA } from '@/lib/recipes/optimizedSteps';
 
 const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_API_KEY || '' });
 
@@ -102,6 +103,46 @@ export async function generateRecipeImage(recipeContent: string): Promise<string
 }
 
 /**
+ * Generate a Hebrew recipe infographic image using Gemini 3 Pro Image
+ * ("Nano Banana Pro"). Port of `AIService.generate_recipe_infographic`.
+ *
+ * Uses `GOOGLE_API_KEY_NANO_BANANA` (a separate, billing-enabled project)
+ * when configured, falling back to the regular `GOOGLE_API_KEY` — this
+ * model requires a paid plan and is not available on the free tier.
+ */
+export async function generateRecipeInfographic(recipeContent: string): Promise<string> {
+  logger.debug({ contentLength: recipeContent.length }, 'Generating recipe infographic');
+
+  const apiKey = process.env.GOOGLE_API_KEY_NANO_BANANA || process.env.GOOGLE_API_KEY || '';
+  const client = new GoogleGenAI({ apiKey });
+
+  const prompt = `Generate an image:
+
+Create a beautiful Hebrew recipe infographic for this recipe:
+
+${recipeContent}
+
+Style: Modern infographic design, warm appetizing colors, clean layout.
+`;
+
+  const response = await client.models.generateContent({
+    model: 'gemini-3-pro-image-preview',
+    contents: prompt,
+    config: {
+      responseModalities: ['IMAGE']
+    }
+  });
+
+  const base64 = response.data;
+  if (!base64) {
+    throw new Error('No image generated in response');
+  }
+
+  logger.info('Recipe infographic generated');
+  return base64;
+}
+
+/**
  * Reformat recipe text
  */
 export async function reformatRecipe(text: string): Promise<string> {
@@ -164,9 +205,15 @@ ${refinementRequest}
 }
 
 /**
- * Optimize recipe steps
+ * Optimize recipe steps.
+ *
+ * Asks Gemini for structured JSON (`OPTIMIZED_STEPS_SCHEMA`) rather than prose,
+ * so `RecipeStepOptimizer` can render the rich view without sniffing text.
+ * Returns the decoded JSON as `unknown`: the caller validates it with
+ * `parseOptimizedSteps` and decides what a non-conforming answer means.
+ * Resolves to `null` when the model returns nothing parseable at all.
  */
-export async function optimizeRecipeSteps(recipeText: string): Promise<string> {
+export async function optimizeRecipeSteps(recipeText: string): Promise<unknown> {
   logger.debug('Optimizing recipe steps');
 
   const prompt = `
@@ -180,14 +227,36 @@ ${recipeText}
 3. ניצול מיטבי של כלים וזמן
 4. צמצום המתנות מיותרות
 
-החזר רק את הצעדים המשופרים עם הסברים קצרים.
+כללים:
+- כל הטקסט בעברית.
+- כל שדות הזמן הם מספר דקות כמחרוזת (למשל "25"), ללא יחידות, פרט ל-max_prep_time שהוא מספר שעות מראש כמחרוזת.
+- time_saved הוא ההפרש בין total_sequential_time ל-total_optimized_time.
+- dependencies מפנה לשמות שלבים קודמים, ורשימה ריקה אם אין תלות.
 `;
 
   const response = await genAI.models.generateContent({
     model: 'gemini-2.0-flash-exp',
-    contents: prompt
+    contents: prompt,
+    config: {
+      responseMimeType: 'application/json',
+      responseSchema: OPTIMIZED_STEPS_SCHEMA
+    }
   });
 
-  logger.info('Recipe steps optimized');
-  return response.text || '';
+  const text = response.text?.trim();
+  if (!text) {
+    logger.warn('Step optimization returned an empty response');
+    return null;
+  }
+
+  try {
+    const parsed = JSON.parse(text) as unknown;
+    logger.info('Recipe steps optimized');
+    return parsed;
+  } catch (error) {
+    // Structured output makes this unlikely, but a truncated answer is still
+    // possible — surface it as non-conformance rather than as a crash.
+    logger.warn({ error, textLength: text.length }, 'Step optimization returned non-JSON');
+    return null;
+  }
 }

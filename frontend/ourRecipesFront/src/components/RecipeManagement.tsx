@@ -10,6 +10,14 @@ import TypingEffect from './TypingEffect';
 import { useInfiniteScroll } from '@/hooks/useInfiniteScroll';
 import { LoadingSpinner } from '@/components/ui/LoadingSpinner';
 import { RecipeCardSkeleton } from '@/components/ui/Skeleton';
+import { apiService } from '@/services/apiService';
+import { toUiRecipe, type RawRecipeRow } from '@/services/recipeMapper';
+
+/** `GET /api/recipes/manage` is paginated; the management screen wants them all. */
+const MANAGE_PAGE_SIZE = 100;
+
+/** Bulk AI parsing runs per recipe — it needs a generous timeout. */
+const BULK_TIMEOUT = 600000;
 
 export default function RecipeManagement() {
   const [recipes, setRecipes] = useState<recipe[]>([]);
@@ -27,15 +35,24 @@ export default function RecipeManagement() {
   const fetchRecipes = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/manage`, {
-        credentials: 'include'
-      });
-      
-      if (!response.ok) throw new Error('Failed to fetch recipes');
-      
-      const data = await response.json();
-      
-      setRecipes(data);
+
+      // `GET /api/recipes/manage` answers `{ data, pagination }` — walk the pages.
+      const collected: RawRecipeRow[] = [];
+      let page = 1;
+      let totalPages = 1;
+
+      do {
+        const response = await apiService.get<{
+          data: RawRecipeRow[];
+          pagination: { page: number; totalPages: number };
+        }>(`/api/recipes/manage?page=${page}&pageSize=${MANAGE_PAGE_SIZE}`, { timeout: 30000 });
+
+        collected.push(...(response?.data ?? []));
+        totalPages = response?.pagination?.totalPages ?? 1;
+        page += 1;
+      } while (page <= totalPages);
+
+      setRecipes(collected.map(toUiRecipe));
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
@@ -52,20 +69,17 @@ export default function RecipeManagement() {
     
     setIsProcessing(true);
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/recipes/bulk`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include',
-        body: JSON.stringify({
-          action,
-          recipeIds: selectedRecipes,
-          data
-        })
-      });
-      
-      if (!response.ok) throw new Error('Bulk action failed');
-      
-      const result = await response.json();
+      // `POST /api/recipes/bulk` answers flat `{ processed, failed, total }`.
+      const result = await apiService.post<{
+        processed: number;
+        failed: number;
+        total: number;
+      }>('/api/recipes/bulk', {
+        action,
+        recipeIds: selectedRecipes,
+        data
+      }, { timeout: BULK_TIMEOUT });
+
       setShowMessage({
         status: true,
         message: `${action === 'parse' ? 'פרסור' : 'פעולה'} הושלמה בהצלחה: ${result.processed} מתכונים עודכנו`

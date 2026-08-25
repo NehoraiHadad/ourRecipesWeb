@@ -3,6 +3,11 @@ import { Button } from "@/components/ui/Button";
 import { Typography } from "@/components/ui/Typography";
 import Spinner from "@/components/ui/Spinner";
 import { FeatureIndicator } from "@/components/ui/FeatureIndicator";
+import { apiService } from "@/services/apiService";
+import type { OptimizedSteps } from "@/lib/recipes/optimizedSteps";
+
+/** Step optimization is an AI call — far slower than the default timeout. */
+const AI_TIMEOUT = 180000;
 
 const OptimizeIcon = () => (
   <svg
@@ -28,30 +33,6 @@ const OptimizeIcon = () => (
   </svg>
 );
 
-interface OptimizedStep {
-  description: string;
-  estimated_time: string;
-  dependencies: string[];
-}
-
-interface StepGroup {
-  step_group: string;
-  parallel_steps: OptimizedStep[];
-}
-
-interface PrepAheadStep {
-  description: string;
-  max_prep_time: string;
-}
-
-interface OptimizedSteps {
-  optimized_steps: StepGroup[];
-  prep_ahead_steps: PrepAheadStep[];
-  total_optimized_time: string;
-  total_sequential_time: string;
-  time_saved: string;
-}
-
 interface RecipeStepOptimizerProps {
   recipeText: string;
 }
@@ -75,34 +56,26 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
     setError(null);
 
     try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/recipes/optimize-steps`,
-        {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ recipe_text: recipeText }),
-        }
+      // The route validates the model's answer against `OptimizedSteps` and
+      // fails with 502 when it does not conform, so anything that arrives
+      // here is already the structured plan.
+      const response = await apiService.post<{ data: OptimizedSteps }>(
+        "/api/recipes/optimize-steps",
+        { recipeText },
+        { timeout: AI_TIMEOUT }
       );
 
-      if (!response.ok) {
-        throw new Error("Failed to optimize recipe steps");
-      }
-
-      const data = await response.json();
-      console.log("Server response:", data);
-
-      // The data is already parsed, no need for additional parsing
-      if (!data.optimized_steps || typeof data.optimized_steps !== "object") {
+      const plan = response?.data;
+      if (!plan?.optimized_steps) {
         throw new Error("Invalid response format from server");
       }
 
-      setOptimizedSteps(data.optimized_steps);
+      setOptimizedSteps(plan);
     } catch (err) {
       console.error("Optimization error:", err);
-      setError(err instanceof Error ? err.message : "An error occurred");
+      setError(
+        err instanceof Error ? err.message : "אירעה שגיאה בייעול זמני ההכנה"
+      );
     } finally {
       setLoading(false);
     }
@@ -141,9 +114,7 @@ const RecipeStepOptimizer: React.FC<RecipeStepOptimizerProps> = ({
         </div>
       )}
 
-      {optimizedSteps &&
-        optimizedSteps.prep_ahead_steps &&
-        optimizedSteps.optimized_steps && (
+      {optimizedSteps && optimizedSteps.optimized_steps && (
           <div className="space-y-4">
             <Typography variant="h3">ייעול זמני הכנה</Typography>
             <div className="flex gap-4 flex-wrap">

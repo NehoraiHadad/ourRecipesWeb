@@ -29,13 +29,26 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
   const [advancedFilters, setAdvancedFilters] = useState({
     preparationTime: '',
     difficulty: '',
-    includeTerms: [] as string[],
-    excludeTerms: [] as string[]
+    // Raw, comma-separated text exactly as typed. Splitting on every
+    // keystroke would swallow the separator the user just pressed, so the
+    // terms are derived with `splitTerms` where they are actually needed.
+    includeTerms: '',
+    excludeTerms: ''
   });
   const [showAdvancedFilters, setShowAdvancedFilters] = useState(false);
   const { currentFont } = useFont();
 
   const debouncedQuery = useDebounce(query, 300);
+
+  /** `"שוקולד, אגוזים"` -> `['שוקולד', 'אגוזים']`. */
+  const splitTerms = (value: string): string[] =>
+    value
+      .split(',')
+      .map((term) => term.trim())
+      .filter(Boolean);
+
+  const includeTerms = splitTerms(advancedFilters.includeTerms);
+  const excludeTerms = splitTerms(advancedFilters.excludeTerms);
 
   const handleSearch = useCallback(async (searchQuery: string) => {
     if (!searchQuery.trim()) {
@@ -84,12 +97,10 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
     setQuery(suggestion);
     setShowSuggestions(false);
     // Trigger search automatically when suggestion is selected
-    const searchParams = new URLSearchParams();
-    searchParams.append('query', suggestion);
-    performSearch(searchParams);
+    performSearch(suggestion);
   };
 
-  const performSearch = async (searchParams: URLSearchParams) => {
+  const performSearch = async (searchQuery: string) => {
     setIsLoading(true);
     setShowSuggestions(false);
     setShowCategories(false);
@@ -97,12 +108,12 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
 
     try {
       const response = await SearchService.search({
-        query: searchParams.get('query') || '',
+        query: searchQuery,
         ...(selectedCategories.length > 0 && { categories: selectedCategories }),
         ...(advancedFilters.preparationTime && { preparationTime: parseInt(advancedFilters.preparationTime) }),
         ...(advancedFilters.difficulty && { difficulty: advancedFilters.difficulty }),
-        ...(advancedFilters.includeTerms.length > 0 && { includeTerms: advancedFilters.includeTerms }),
-        ...(advancedFilters.excludeTerms.length > 0 && { excludeTerms: advancedFilters.excludeTerms })
+        ...(includeTerms.length > 0 && { includeTerms }),
+        ...(excludeTerms.length > 0 && { excludeTerms })
       });
 
       console.log('Search response:', response); // For debugging
@@ -178,26 +189,9 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const searchParams = new URLSearchParams();
-    if (query) searchParams.append('query', query);
-    if (selectedCategories.length > 0) {
-      searchParams.append('categories', selectedCategories.join(','));
-    }
-
-    if (advancedFilters.preparationTime) {
-      searchParams.append('prepTime', advancedFilters.preparationTime);
-    }
-    if (advancedFilters.difficulty) {
-      searchParams.append('difficulty', advancedFilters.difficulty);
-    }
-    if (advancedFilters.includeTerms.length > 0) {
-      searchParams.append('includeTerms', advancedFilters.includeTerms.join(','));
-    }
-    if (advancedFilters.excludeTerms.length > 0) {
-      searchParams.append('excludeTerms', advancedFilters.excludeTerms.join(','));
-    }
-
-    await performSearch(searchParams);
+    // `performSearch` reads the selected categories and the advanced filters
+    // straight off state and hands them all to `SearchService.search`.
+    await performSearch(query);
   };
 
   const handleCategoryClick = (category: string) => {
@@ -217,8 +211,8 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
     setAdvancedFilters({
       preparationTime: '',
       difficulty: '',
-      includeTerms: [],
-      excludeTerms: []
+      includeTerms: '',
+      excludeTerms: ''
     });
   };
 
@@ -304,6 +298,8 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
               >
                 <button
                   type="button"
+                  aria-label="חיפוש מתקדם"
+                  aria-expanded={showAdvancedFilters}
                   onClick={() => {
                     setShowAdvancedFilters(!showAdvancedFilters);
                     setShowCategories(true);
@@ -319,6 +315,7 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
               {/* Search Button */}
               <button
                 type="submit"
+                aria-label="חפש"
                 disabled={isLoading}
                 className="px-3 h-full flex items-center justify-center text-secondary-500 hover:text-primary-500 transition-colors"
               >
@@ -375,22 +372,22 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
                   {(selectedCategories.length > 0 || 
                     advancedFilters.preparationTime || 
                     advancedFilters.difficulty || 
-                    advancedFilters.includeTerms.length > 0 || 
-                    advancedFilters.excludeTerms.length > 0) && (
+                    includeTerms.length > 0 || 
+                    excludeTerms.length > 0) && (
                     <span className="bg-primary-100 text-primary-700 text-sm px-2 py-0.5 rounded-full">
                       {selectedCategories.length + 
                        (advancedFilters.preparationTime ? 1 : 0) + 
                        (advancedFilters.difficulty ? 1 : 0) + 
-                       advancedFilters.includeTerms.length + 
-                       advancedFilters.excludeTerms.length}
+                       includeTerms.length + 
+                       excludeTerms.length}
                     </span>
                   )}
                 </div>
                 {(selectedCategories.length > 0 || 
                   advancedFilters.preparationTime || 
                   advancedFilters.difficulty || 
-                  advancedFilters.includeTerms.length > 0 || 
-                  advancedFilters.excludeTerms.length > 0) && (
+                  includeTerms.length > 0 || 
+                  excludeTerms.length > 0) && (
                   <button
                     type="button"
                     onClick={clearAllFilters}
@@ -443,8 +440,14 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
                 <div className="space-y-4">
                   <div className="grid grid-cols-2 gap-3">
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-secondary-700">זמן הכנה:</label>
+                      <label
+                        htmlFor="search-preparation-time"
+                        className="text-sm font-medium text-secondary-700"
+                      >
+                        זמן הכנה:
+                      </label>
                       <select
+                        id="search-preparation-time"
                         value={advancedFilters.preparationTime}
                         onChange={(e) => setAdvancedFilters(prev => ({
                           ...prev,
@@ -462,8 +465,14 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
                     </div>
 
                     <div className="space-y-1.5">
-                      <label className="text-sm font-medium text-secondary-700">רמת קושי:</label>
+                      <label
+                        htmlFor="search-difficulty"
+                        className="text-sm font-medium text-secondary-700"
+                      >
+                        רמת קושי:
+                      </label>
                       <select
+                        id="search-difficulty"
                         value={advancedFilters.difficulty}
                         onChange={(e) => setAdvancedFilters(prev => ({
                           ...prev,
@@ -483,14 +492,20 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
                   {/* Include/Exclude Terms */}
                   <div className="space-y-3">
                     <div className="col-span-2 space-y-1.5">
-                      <label className="text-sm font-medium text-secondary-700">חייב להכיל:</label>
+                      <label
+                        htmlFor="search-include-terms"
+                        className="text-sm font-medium text-secondary-700"
+                      >
+                        חייב להכיל:
+                      </label>
                       <input
+                        id="search-include-terms"
                         type="text"
                         placeholder="הקלד מילים מופרדות בפסיקים..."
-                        value={advancedFilters.includeTerms.join(', ')}
+                        value={advancedFilters.includeTerms}
                         onChange={(e) => setAdvancedFilters(prev => ({
                           ...prev,
-                          includeTerms: e.target.value.split(',').map(i => i.trim()).filter(Boolean)
+                          includeTerms: e.target.value
                         }))}
                         className="w-full px-3 py-1.5 text-sm border border-secondary-200 rounded-lg
                                  bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100
@@ -499,14 +514,20 @@ export function Search({ onSearch, resultCount, className }: SearchProps) {
                     </div>
 
                     <div className="col-span-2 space-y-1.5">
-                      <label className="text-sm font-medium text-secondary-700">לא להכיל:</label>
+                      <label
+                        htmlFor="search-exclude-terms"
+                        className="text-sm font-medium text-secondary-700"
+                      >
+                        לא להכיל:
+                      </label>
                       <input
+                        id="search-exclude-terms"
                         type="text"
                         placeholder="הקלד מילים מופרדות בפסיקים..."
-                        value={advancedFilters.excludeTerms.join(', ')}
+                        value={advancedFilters.excludeTerms}
                         onChange={(e) => setAdvancedFilters(prev => ({
                           ...prev,
-                          excludeTerms: e.target.value.split(',').map(i => i.trim()).filter(Boolean)
+                          excludeTerms: e.target.value
                         }))}
                         className="w-full px-3 py-1.5 text-sm border border-secondary-200 rounded-lg
                                  bg-white focus:border-primary-300 focus:ring-2 focus:ring-primary-100

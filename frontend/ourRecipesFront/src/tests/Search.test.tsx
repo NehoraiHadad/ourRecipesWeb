@@ -1,132 +1,227 @@
+import React from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Search from '../components/Search';
 
-const API_URL = 'http://test-api';
-vi.stubGlobal('process', { env: { NEXT_PUBLIC_API_URL: API_URL } });
+/**
+ * The Search screen after the Wave 2.A cutover: it talks to the local
+ * `/api/...` routes through `apiService` (no external base URL, no direct
+ * `fetch`), so these tests assert on the endpoint each service hits and on the
+ * `{ [telegram_id]: recipe }` map the component hands back to its parent.
+ */
+vi.mock('next/navigation', () => ({
+  useRouter: () => ({ push: vi.fn(), replace: vi.fn(), back: vi.fn() })
+}));
+
+// The mocked hooks must return *stable* objects: Search memoizes callbacks on
+// `addNotification`, so a fresh identity per render would loop forever.
+vi.mock('@/context/NotificationContext', () => {
+  const value = { addNotification: vi.fn() };
+  return { useNotification: () => value };
+});
+
+vi.mock('@/context/FontContext', () => {
+  const value = { currentFont: 'default', setFont: vi.fn(), fonts: [] };
+  return { useFont: () => value };
+});
+
+vi.mock('@/components/ui/FeatureIndicator', () => ({
+  FeatureIndicator: ({ children }: { children: React.ReactNode }) => <>{children}</>
+}));
+
+vi.mock('@/services/apiService', () => ({
+  apiService: {
+    get: vi.fn(),
+    post: vi.fn(),
+    put: vi.fn(),
+    patch: vi.fn(),
+    delete: vi.fn()
+  }
+}));
+
+import Search from '../components/Search';
+import { apiService } from '@/services/apiService';
+
+const getMock = vi.mocked(apiService.get);
+
+const SEARCH_ROW = {
+  id: 7,
+  telegram_id: 4242,
+  title: 'עוגת שוקולד',
+  raw_content: 'כותרת: עוגת שוקולד\nרשימת מצרכים:\n-קמח',
+  categories: 'קינוחים,עוגות',
+  difficulty: 'EASY',
+  preparation_time: 30,
+  image_url: null,
+  created_at: '2024-01-01T00:00:00.000Z'
+};
+
+function mockEndpoints() {
+  getMock.mockImplementation((endpoint: string) => {
+    if (endpoint.startsWith('/api/categories')) {
+      return Promise.resolve({ data: ['קינוחים', 'עוגות'] }) as any;
+    }
+    if (endpoint.startsWith('/api/recipes/search/suggestions')) {
+      return Promise.resolve({ data: ['עוגת שוקולד'] }) as any;
+    }
+    if (endpoint.startsWith('/api/recipes/search')) {
+      return Promise.resolve({
+        data: [SEARCH_ROW],
+        pagination: { page: 1, pageSize: 20, totalPages: 1, totalItems: 1 }
+      }) as any;
+    }
+    return Promise.resolve({ data: [] }) as any;
+  });
+}
+
+function calledEndpoints(): string[] {
+  return getMock.mock.calls.map((call) => String(call[0]));
+}
 
 describe('Search Component', () => {
   const mockOnSearch = vi.fn();
-  
+
   beforeEach(() => {
     vi.clearAllMocks();
-    global.fetch = vi.fn()
-      .mockImplementationOnce(() => Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve(['קינוחים', 'עוגות'])
-      }))
-      .mockImplementation(() => Promise.resolve({
-        ok: true,
-        json: () => Promise.resolve({ results: [] })
-      }));
+    mockEndpoints();
   });
 
-  it('handles search with text input', async () => {
+  it('loads the category list from /api/categories', async () => {
     render(<Search onSearch={mockOnSearch} />);
-    
-    const searchInput = screen.getByLabelText('חיפוש מתכונים');
-    await userEvent.type(searchInput, 'עוגת שוקולד');
-    
-    await userEvent.click(screen.getByLabelText('חפש'));
 
     await waitFor(() => {
-      const expectedUrl = `${API_URL}/search?query=${encodeURIComponent('עוגת שוקולד').replace(/%20/g, '+')}`;
-      expect(global.fetch).toHaveBeenNthCalledWith(2, expectedUrl, expect.any(Object));
+      expect(calledEndpoints()).toContain('/api/categories');
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('קינוחים')).toBeInTheDocument();
     });
   });
 
-  it('handles search with category selection', async () => {
+  it('requests suggestions from /api/recipes/search/suggestions while typing', async () => {
     render(<Search onSearch={mockOnSearch} />);
-    
-    const searchInput = screen.getByLabelText('חיפוש מתכונים');
-    await userEvent.click(searchInput);
-    
-    await waitFor(() => {
-      const categoryButton = screen.getByText('קינוחים');
-      userEvent.click(categoryButton);
-    });
 
-    await userEvent.click(screen.getByLabelText('חפש'));
+    await userEvent.type(screen.getByPlaceholderText('חיפוש...'), 'עוגה');
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenNthCalledWith(2,
-        `${API_URL}/search?categories=${encodeURIComponent('קינוחים')}`,
-        expect.any(Object)
-      );
+      expect(
+        calledEndpoints().some((endpoint) =>
+          endpoint.startsWith(`/api/recipes/search/suggestions?q=${encodeURIComponent('עוגה')}`)
+        )
+      ).toBe(true);
     });
   });
 
-  it('performs search with both text and categories', async () => {
+  it('searches /api/recipes/search with the typed query', async () => {
     render(<Search onSearch={mockOnSearch} />);
-    
-    const searchInput = screen.getByLabelText('חיפוש מתכונים');
-    await userEvent.type(searchInput, 'עוגה');
-    
-    await userEvent.click(searchInput);
-    await waitFor(() => {
-      const categoryButton = screen.getByText('קינוחים');
-      userEvent.click(categoryButton);
-    });
 
-    await userEvent.click(screen.getByLabelText('חפש'));
+    await userEvent.type(screen.getByPlaceholderText('חיפוש...'), 'עוגה');
+    // Submitting the form is the reliable trigger — the search button is icon-only.
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
 
     await waitFor(() => {
-      expect(global.fetch).toHaveBeenNthCalledWith(2,
-        `${API_URL}/search?query=${encodeURIComponent('עוגה')}&categories=${encodeURIComponent('קינוחים')}`,
-        expect.any(Object)
-      );
+      expect(
+        calledEndpoints().some(
+          (endpoint) => endpoint === `/api/recipes/search?query=${encodeURIComponent('עוגה')}`
+        )
+      ).toBe(true);
     });
   });
 
-  it('handles advanced filters correctly', async () => {
+  it('passes a selected category through as the `categories` query param', async () => {
     render(<Search onSearch={mockOnSearch} />);
-    
-    // Open advanced filters
-    const advancedButton = screen.getByText('חיפוש מתקדם');
-    await userEvent.click(advancedButton);
-    
-    // Set preparation time
-    const prepTimeSelect = screen.getByLabelText('זמן הכנה (בדקות):');
-    await userEvent.selectOptions(prepTimeSelect, '30');
-    
-    // Set difficulty
-    const difficultySelect = screen.getByLabelText('רמת קושי:');
-    await userEvent.selectOptions(difficultySelect, 'easy');
-    
-    // Add required ingredients
-    const includeInput = screen.getByPlaceholderText('הקלד מצרכים מופרדים בפסיקים');
-    await userEvent.type(includeInput, 'קמח, סוכר');
-    
-    await userEvent.click(screen.getByLabelText('חפש'));
+
+    await waitFor(() => expect(screen.getByText('קינוחים')).toBeInTheDocument());
+    await userEvent.click(screen.getByText('קינוחים'));
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
 
     await waitFor(() => {
-      const expectedUrl = `${API_URL}/search?prepTime=30&difficulty=easy&includeIngredients=${encodeURIComponent('קמח,סוכר')}`;
-      expect(global.fetch).toHaveBeenCalledWith(expectedUrl, expect.any(Object));
+      expect(
+        calledEndpoints().some(
+          (endpoint) =>
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים')}`
+        )
+      ).toBe(true);
     });
   });
 
-  it('combines advanced filters with basic search', async () => {
+  it('keeps every selected category, not just the first one', async () => {
     render(<Search onSearch={mockOnSearch} />);
-    
-    // Basic search
-    const searchInput = screen.getByLabelText('חיפוש מתכונים');
-    await userEvent.type(searchInput, 'עוגה');
-    
-    // Advanced filters
-    const advancedButton = screen.getByText('חיפוש מתקדם');
-    await userEvent.click(advancedButton);
-    
-    const excludeInput = screen.getByPlaceholderText('הקלד מצרכים מופרדים בפסיקים');
-    await userEvent.type(excludeInput, 'שוקולד');
-    
-    await userEvent.click(screen.getByLabelText('חפש'));
+
+    await waitFor(() => expect(screen.getByText('קינוחים')).toBeInTheDocument());
+    await userEvent.click(screen.getByText('קינוחים'));
+    await userEvent.click(screen.getByText('עוגות'));
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
 
     await waitFor(() => {
-      const expectedUrl = `${API_URL}/search?query=${encodeURIComponent('עוגה')}&excludeIngredients=${encodeURIComponent('שוקולד')}`;
-      expect(global.fetch).toHaveBeenCalledWith(expectedUrl, expect.any(Object));
+      expect(
+        calledEndpoints().some(
+          (endpoint) =>
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים,עוגות')}`
+        )
+      ).toBe(true);
     });
   });
 
-  // ... rest of tests
-}); 
+  it('sends the advanced filters (prep time, difficulty, include/exclude terms)', async () => {
+    render(<Search onSearch={mockOnSearch} />);
+
+    // The advanced panel is behind the icon-only sliders button.
+    await userEvent.click(screen.getByLabelText('חיפוש מתקדם'));
+
+    await userEvent.selectOptions(screen.getByLabelText('זמן הכנה:'), '30');
+    await userEvent.selectOptions(screen.getByLabelText('רמת קושי:'), 'easy');
+    await userEvent.type(screen.getByLabelText('חייב להכיל:'), 'שוקולד, אגוזים');
+    await userEvent.type(screen.getByLabelText('לא להכיל:'), 'חמאה');
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
+
+    await waitFor(() => {
+      expect(
+        calledEndpoints().some((endpoint) => endpoint.startsWith('/api/recipes/search?'))
+      ).toBe(true);
+    });
+
+    const searchCall = calledEndpoints()
+      .filter(
+        (endpoint) =>
+          endpoint.startsWith('/api/recipes/search?') &&
+          !endpoint.startsWith('/api/recipes/search/suggestions')
+      )
+      .at(-1) as string;
+    const sent = new URLSearchParams(searchCall.split('?')[1]);
+
+    expect(sent.get('maxPrepTime')).toBe('30');
+    expect(sent.get('difficulty')).toBe('EASY');
+    expect(sent.get('includeTerms')).toBe('שוקולד,אגוזים');
+    expect(sent.get('excludeTerms')).toBe('חמאה');
+  });
+
+  it('maps the paginated response onto a telegram_id-keyed recipe map', async () => {
+    render(<Search onSearch={mockOnSearch} />);
+
+    const form = document.querySelector('form[role="search"]') as HTMLFormElement;
+    form.requestSubmit();
+
+    await waitFor(() => {
+      expect(mockOnSearch).toHaveBeenCalled();
+    });
+
+    const results = mockOnSearch.mock.calls.at(-1)?.[0];
+    expect(Object.keys(results)).toEqual(['4242']);
+    expect(results['4242']).toMatchObject({
+      id: 7,
+      telegram_id: 4242,
+      title: 'עוגת שוקולד',
+      // Prisma column names translated for the UI.
+      categories: ['קינוחים', 'עוגות'],
+      difficulty: 'easy'
+    });
+  });
+});
