@@ -102,6 +102,46 @@ export async function generateRecipeImage(recipeContent: string): Promise<string
 }
 
 /**
+ * Generate a Hebrew recipe infographic image using Gemini 3 Pro Image
+ * ("Nano Banana Pro"). Port of `AIService.generate_recipe_infographic`.
+ *
+ * Uses `GOOGLE_API_KEY_NANO_BANANA` (a separate, billing-enabled project)
+ * when configured, falling back to the regular `GOOGLE_API_KEY` — this
+ * model requires a paid plan and is not available on the free tier.
+ */
+export async function generateRecipeInfographic(recipeContent: string): Promise<string> {
+  logger.debug({ contentLength: recipeContent.length }, 'Generating recipe infographic');
+
+  const apiKey = process.env.GOOGLE_API_KEY_NANO_BANANA || process.env.GOOGLE_API_KEY || '';
+  const client = new GoogleGenAI({ apiKey });
+
+  const prompt = `Generate an image:
+
+Create a beautiful Hebrew recipe infographic for this recipe:
+
+${recipeContent}
+
+Style: Modern infographic design, warm appetizing colors, clean layout.
+`;
+
+  const response = await client.models.generateContent({
+    model: 'gemini-3-pro-image-preview',
+    contents: prompt,
+    config: {
+      responseModalities: ['IMAGE']
+    }
+  });
+
+  const base64 = response.data;
+  if (!base64) {
+    throw new Error('No image generated in response');
+  }
+
+  logger.info('Recipe infographic generated');
+  return base64;
+}
+
+/**
  * Reformat recipe text
  */
 export async function reformatRecipe(text: string): Promise<string> {
