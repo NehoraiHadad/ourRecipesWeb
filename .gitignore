@@ -68,3 +68,6 @@ google_credentials.json
 # Development Telegram sessions
 backend/sessions_dev/
 backend/sessions_dev/*.session
+
+# stray root installs
+/node_modules/
