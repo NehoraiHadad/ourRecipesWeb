@@ -68,6 +68,8 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// AI generation runs 30-90s; must cover the client's 120s timeout
+// The agent session runs 60-150s in production (a 120s cap produced an
+// intermittent 504 on 2026-08-25); must cover the client's 240s timeout
 // (`menuService.generateMenuPreview`) or Vercel kills the function first.
-export const maxDuration = 120;
+// Fluid Compute makes the I/O-wait time nearly free.
+export const maxDuration = 300;

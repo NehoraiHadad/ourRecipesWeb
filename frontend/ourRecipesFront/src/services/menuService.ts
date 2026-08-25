@@ -41,7 +41,9 @@ export class MenuService {
     const response = await apiService.post<{
       data: { preview: MenuPlan; preferences: MenuGenerationRequest };
     }>(`${this.BASE_PATH}/generate-preview`, request, {
-      timeout: 120000 // 2 minutes timeout for AI menu generation
+      // The agent session runs 60-150s (multi-turn planning + finalize);
+      // must stay under the route's maxDuration=300.
+      timeout: 240000
     });
     return { ...response?.data };
   }

@@ -42,6 +42,24 @@ Post-deploy hotfix 2026-08-25 — optimize-steps 504 in production:
   (KIE's native Gemini endpoint, supports responseSchema; model ids use dashes). Falls back to direct
   Gemini on any KIE throw, with `thinkingConfig: LOW` (dynamic thinking alone added ~5s / ~900 tokens);
   route `maxDuration` raised to 120 so the fallback's two 45s retry attempts fit.
+  Verified in production: 200 in 9s with a full 4-group plan.
+
+Post-deploy hotfix 2 2026-08-25 — menu agent 500 in production:
+- Symptom: `POST /api/menus/generate-preview` → 500 after 3s.
+- Root cause (runtime logs): the production GOOGLE_API_KEY is FREE TIER, and `gemini-3.1-pro` has
+  free-tier quota limit **0** — every call 429s with RESOURCE_EXHAUSTED. The menu agent model was
+  never usable with this key; earlier optimize-steps flakiness was the same free-tier key.
+- Fix (the user's own suggested direction, made mandatory): the whole agent runs through KIE's
+  Gemini proxy. `gemini/client.ts#getGeminiVia('kie')` points the @google/genai SDK at
+  `https://api.kie.ai/gemini` (v1, Bearer auth) — multi-turn function calling passes through the
+  proxy unchanged (probed live before committing). KIE's native surface only carries the flash
+  family (pro ids 404 there; pro exists only on a separate OpenAI-compatible surface), so
+  menu_agent defaults to `kie:gemini-3-7-flash`; finalize routes through `kieGeminiJson` with
+  direct-Gemini fallback. Local end-to-end run: 8 tool iterations, 94.8s, 5-course Shabbat plan,
+  every course with a rich Hebrew `ai_reason`; finalize cost 0.16 KIE credits.
+- If menu quality on flash disappoints: the pro model is reachable via KIE's OpenAI-compatible
+  endpoint (`/gemini-3.1-pro/v1/chat/completions`, supports OpenAI-format tools) — a bigger
+  conversion, or upgrade the Google key to a paid tier and set `AI_MODEL_MENU_AGENT=gemini:...`.
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan
