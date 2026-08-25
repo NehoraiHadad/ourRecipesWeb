@@ -43,7 +43,7 @@
 - [x] 🤖 2.3 ארבעת הסודות יוצרו ונשמרו גם ב-`.env.local` המקומי
 - [x] 🤖 2.4 הוזנו ל-Production: `JWT_SECRET`, `TELEGRAM_WEBHOOK_SECRET`, `INTERNAL_API_SECRET`, `CRON_SECRET`, `TELEGRAM_BOT_TOKEN` (הבוט הקיים `ourRecipes_bot`), `GOOGLE_API_KEY`, `HUGGINGFACE_TOKEN`, `NEXT_PUBLIC_TELEGRAM_BOT=ourRecipes_bot`
   - [ ] 👤 חסר: `TELEGRAM_CHANNEL_ID`, `TELEGRAM_OLD_CHANNEL_ID` (ראה שלב 3.5)
-  - [ ] 👤 אופציונלי: `GOOGLE_API_KEY_NANO_BANANA` (בלעדיו — fallback ל-`GOOGLE_API_KEY`; האינפוגרפיקה דורשת מפתח עם חיוב)
+  - [x] 🤖 `GOOGLE_API_KEY_NANO_BANANA` הוזן (המפתח סופק מתוך env של Render)
 - [x] 🤖 2.5 הוסר `NEXT_PUBLIC_API_URL`; שאר משתני העבר לא היו קיימים בפרויקט
 - [x] 🤖 2.6 cron ב-`vercel.json` ✓
 
