@@ -1,0 +1,16 @@
+# Web framework
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+
+# Telegram MTProto client — the only reason this service exists
+telethon==1.38.1
+
+# Validation / settings
+pydantic==2.10.4
+pydantic-settings==2.7.0
+
+# HTTP client for the Next.js internal API
+httpx==0.28.1
+
+# Structured logging
+structlog==24.4.0
