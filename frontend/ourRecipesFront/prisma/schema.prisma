@@ -70,10 +70,8 @@ model Recipe {
   // Core content
   title        String?  @db.VarChar(500)
   raw_content  String   @db.Text
-  ingredients  String?  @db.Text  // Stored as || separated
   instructions String?  @db.Text
   categories   String?  @db.Text  // Stored as comma-separated
-  recipe_metadata Json?
 
   // Media
   image_url    String?  @db.VarChar(500)
@@ -92,6 +90,7 @@ model Recipe {
   status       String   @default("ACTIVE") @db.VarChar(20)
 
   // Recipe details
+  // Single source for ingredients: StructuredIngredient[] (see ingredientParser.ts)
   ingredients_list   Json?
   cooking_time       Int?
   difficulty         RecipeDifficulty?
@@ -99,7 +98,6 @@ model Recipe {
   preparation_time   Int?
 
   // Sync status
-  formatted_content  Json?
   is_verified        Boolean @default(false)
   sync_status        String  @default("synced") @db.VarChar(20)
   sync_error         String? @db.Text

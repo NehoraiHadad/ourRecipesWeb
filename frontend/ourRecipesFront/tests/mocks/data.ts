@@ -16,10 +16,8 @@ export const mockRecipe: Recipe = {
   telegram_id: 12345,
   title: 'Test Recipe',
   raw_content: 'Test content',
-  ingredients: 'flour||eggs||milk',
   instructions: 'Mix and bake',
   categories: 'dessert,baking',
-  recipe_metadata: null,
   image_url: 'https://example.com/image.jpg',
   media_type: 'photo',
   created_at: new Date('2024-01-01'),
@@ -29,14 +27,13 @@ export const mockRecipe: Recipe = {
   parse_errors: null,
   status: 'ACTIVE',
   ingredients_list: [
-    { name: 'flour', amount: '2', unit: 'cups' },
-    { name: 'eggs', amount: '3', unit: 'pieces' }
+    { quantity: 2, unit: 'כוסות', name: 'קמח' },
+    { quantity: 3, name: 'ביצים' }
   ],
   cooking_time: 30,
   difficulty: RecipeDifficulty.EASY,
   servings: 4,
   preparation_time: 15,
-  formatted_content: null,
   is_verified: false,
   sync_status: 'synced',
   sync_error: null
