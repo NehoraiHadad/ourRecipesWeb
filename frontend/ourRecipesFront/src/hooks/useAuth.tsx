@@ -19,16 +19,6 @@ interface AuthData {
   type?: UserType;
 }
 
-type ValidateResponse = {
-  authenticated: boolean;
-  canEdit: boolean;
-  user_id?: string;
-  name?: string;
-  type?: string;
-  status: string;
-  message: string;
-};
-
 export function useAuth(
   redirectTo: string = "",
   redirectIfFound: boolean = false
@@ -62,12 +52,10 @@ export function useAuth(
   };
 
   useEffect(() => {
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 second timeout
-
     async function checkAuth() {
       try {
-        const response = (await authService.validate() as unknown) as ValidateResponse;
+        // apiService enforces its own timeout for validate (see authService).
+        const response = await authService.validate();
         const authData: AuthData = {
           authenticated: response.authenticated,
           canEdit: response.canEdit,
@@ -94,38 +82,21 @@ export function useAuth(
             router.push(redirectTo);
         }
       } catch (error) {
-        if (error instanceof Error && error.name === 'AbortError') {
-          setAuthState({
-            isAuthenticated: false,
-            canEdit: false,
-            isLoading: false,
-            error: "בקשת האימות נכשלה עקב תקשורת איטית",
-            user: null
-          });
-        } else {
-          console.error(error);
-          setAuthState({
-            isAuthenticated: false,
-            canEdit: false,
-            isLoading: false,
-            error: error instanceof Error ? error.message : "An unknown error occurred",
-            user: null
-          });
-          if (!redirectIfFound) {
-            router.push(redirectTo);
-          }
+        console.error(error);
+        setAuthState({
+          isAuthenticated: false,
+          canEdit: false,
+          isLoading: false,
+          error: error instanceof Error ? error.message : "An unknown error occurred",
+          user: null
+        });
+        if (!redirectIfFound) {
+          router.push(redirectTo);
         }
-      } finally {
-        clearTimeout(timeoutId);
       }
     }
 
     checkAuth();
-
-    return () => {
-      controller.abort();
-      clearTimeout(timeoutId);
-    };
   }, [redirectIfFound, redirectTo, router, setAuthState]);
 
   return { ...authState, logout };

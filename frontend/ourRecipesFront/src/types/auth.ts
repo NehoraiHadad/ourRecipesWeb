@@ -12,6 +12,16 @@ export interface AuthResponse {
   user?: User;  // Changed to match the actual response structure
 }
 
+/** `GET /api/auth/validate` answers with this flat body (no `data` envelope). */
+export interface ValidateResponse {
+  authenticated: boolean;
+  canEdit: boolean;
+  user_id?: string;
+  name?: string;
+  type?: string;
+  message?: string;
+}
+
 export interface AuthState {
   isAuthenticated: boolean;
   canEdit: boolean;

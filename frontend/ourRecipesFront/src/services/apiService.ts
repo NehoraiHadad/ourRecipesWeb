@@ -397,6 +397,8 @@ class ApiService {
   // Enhanced fetch with advanced caching
   private async fetch<T>(endpoint: string, options: CustomRequestOptions = {}): Promise<T> {
     const startTime = Date.now();
+    // Interceptors see the effective cache strategy ('no-store' by default).
+    options = await this.applyRequestInterceptors({ cache: 'no-store', ...options });
     const { timeout = 5000, cache = 'no-store', priority = 'auto', ...fetchOptions } = options;
 
     // Handle offline state
@@ -587,12 +589,18 @@ export const apiService = new ApiService();
 
 // Add default interceptors
 apiService.addRequestInterceptor(async (config) => {
-  // Add timestamp to prevent caching
+  // Ask intermediaries not to serve stale responses. Plain-object headers —
+  // fetch() merges them with a spread, which a `Headers` instance would not
+  // survive.
   if (config.cache === 'no-store') {
-    const headers = new Headers(config.headers);
-    headers.set('Cache-Control', 'no-store');
-    headers.set('Pragma', 'no-cache');
-    return { ...config, headers };
+    return {
+      ...config,
+      headers: {
+        ...(config.headers as Record<string, string> | undefined),
+        'Cache-Control': 'no-store',
+        Pragma: 'no-cache'
+      }
+    };
   }
   return config;
 });

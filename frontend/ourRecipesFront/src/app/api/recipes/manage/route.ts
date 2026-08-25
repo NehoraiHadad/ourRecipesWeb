@@ -38,11 +38,22 @@ export async function GET(request: NextRequest) {
 
     const recipes = await prisma.recipe.findMany({
       where,
+      // Flask's `get_recipes_for_management` returned full rows; the card
+      // previews (`RecipeList`/`RecipeGrid`) render ingredients/instructions/
+      // raw_content snippets and difficulty/prep-time badges. (`created_by`
+      // does not exist in the new schema — that badge stays hidden.)
       select: {
         id: true,
         telegram_id: true,
         title: true,
+        raw_content: true,
+        ingredients: true,
+        instructions: true,
         categories: true,
+        difficulty: true,
+        preparation_time: true,
+        cooking_time: true,
+        servings: true,
         is_parsed: true,
         // The management screen's "with errors"/"no errors" filters and the
         // per-row error badge read this column (`RecipeManagement`, `RecipeList`).

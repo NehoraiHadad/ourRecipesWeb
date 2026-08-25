@@ -24,7 +24,9 @@ export async function POST(request: NextRequest) {
 
     logger.info('Recipe image generated successfully');
 
-    return successResponse({ image: imageBase64 });
+    // Full data-URI, like Flask and the sibling generate-infographic route —
+    // the save paths (`decodeBase64Image`) reject anything without the prefix.
+    return successResponse({ image: `data:image/jpeg;base64,${imageBase64}` });
   } catch (error) {
     logger.error({ error }, 'Failed to generate recipe image');
     return handleApiError(error);

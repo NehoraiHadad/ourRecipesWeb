@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { parseRecipe } from '../utils/formatChecker';
 
 describe('parseRecipe', () => {

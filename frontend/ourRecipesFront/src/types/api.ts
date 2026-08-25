@@ -1,6 +1,9 @@
+/**
+ * The `{ data, message? }` success envelope the API routes emit (see
+ * `src/lib/utils/api-response.ts`). No HTTP status lives in the body.
+ */
 export interface ApiResponse<T> {
   data: T;
-  status: number;
   message?: string;
 }
 

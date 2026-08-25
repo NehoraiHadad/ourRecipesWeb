@@ -28,6 +28,8 @@ interface RecipeDetailProps {
 interface UpdateRecipeData {
   messageId: number;
   newText: string;
+  /** When set, replaces the recipe image; otherwise the current one is kept. */
+  image?: string | null;
 }
 
 /** AI routes (reformat / infographic) take far longer than the default timeout. */
@@ -222,6 +224,9 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
       await updateRecipeInTelegram({
         messageId: recipe.telegram_id,
         newText: formattedText,
+        // The edit form may have replaced the image — without this the old
+        // `recipeData` image is re-sent and the new one is silently dropped.
+        image: updatedData.image,
       });
 
       // Update local state
@@ -254,7 +259,7 @@ ${recipeData.difficulty ? `\nרמת קושי: ${difficultyDisplay[recipeData.dif
       // (same serialization as `GET`), not Flask's `{status, new_message_id}`.
       const result = await RecipeService.updateRecipe(data.messageId, {
         newText: data.newText,
-        image: recipeData?.image,
+        image: data.image !== undefined ? data.image : recipeData?.image,
       });
 
       setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });

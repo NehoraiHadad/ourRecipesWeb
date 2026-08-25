@@ -10,6 +10,7 @@ import { prisma } from '@/lib/prisma';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
+import { menuMealsInclude, serializeMenu, type MenuRow } from '@/lib/serializers/menu';
 
 export async function GET(
   request: NextRequest,
@@ -27,35 +28,7 @@ export async function GET(
         is_public: true  // Only public menus can be shared
       },
       include: {
-        meals: {
-          include: {
-            recipes: {
-              include: {
-                recipe: {
-                  select: {
-                    id: true,
-                    telegram_id: true,
-                    title: true,
-                    ingredients: true,
-                    instructions: true,
-                    categories: true,
-                    difficulty: true,
-                    cooking_time: true,
-                    preparation_time: true,
-                    servings: true,
-                    image_url: true
-                  }
-                }
-              },
-              orderBy: {
-                course_order: 'asc'
-              }
-            }
-          },
-          orderBy: {
-            meal_order: 'asc'
-          }
-        },
+        ...menuMealsInclude,
         shopping_list_items: {
           orderBy: [
             { category: 'asc' },
@@ -72,7 +45,12 @@ export async function GET(
 
     logger.info({ menuId: menu.id, shareToken }, 'Shared menu fetched');
 
-    return successResponse(menu);
+    // Serialized like the authenticated menu routes — the UI expects Flask's
+    // lowercase enum values (`dietary_type: 'meat'`, `difficulty: 'easy'`).
+    return successResponse({
+      ...serializeMenu(menu as MenuRow),
+      shopping_list_items: menu.shopping_list_items
+    });
   } catch (error) {
     return handleApiError(error);
   }

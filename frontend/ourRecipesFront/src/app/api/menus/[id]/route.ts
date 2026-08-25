@@ -47,36 +47,7 @@ export async function GET(
     const menu = await prisma.menu.findUnique({
       where: { id: menuId },
       include: {
-        meals: {
-          include: {
-            recipes: {
-              include: {
-                recipe: {
-                  select: {
-                    id: true,
-                    telegram_id: true,
-                    title: true,
-                    ingredients: true,
-                    instructions: true,
-                    categories: true,
-                    difficulty: true,
-                    cooking_time: true,
-                    preparation_time: true,
-                    servings: true,
-                    image_url: true,
-                    is_verified: true
-                  }
-                }
-              },
-              orderBy: {
-                course_order: 'asc'
-              }
-            }
-          },
-          orderBy: {
-            meal_order: 'asc'
-          }
-        },
+        ...menuMealsInclude,
         shopping_list_items: {
           orderBy: [
             { category: 'asc' },
@@ -93,7 +64,13 @@ export async function GET(
 
     logger.info({ menuId, userId }, 'Menu fetched successfully');
 
-    return successResponse(menu);
+    // Serialized like PUT/POST — the UI expects Flask's lowercase enum values
+    // (`dietary_type: 'meat'`, `recipe.difficulty: 'easy'`), not the raw
+    // Prisma row's uppercase members.
+    return successResponse({
+      ...serializeMenu(menu as MenuRow),
+      shopping_list_items: menu.shopping_list_items
+    });
   } catch (error) {
     return handleApiError(error);
   }

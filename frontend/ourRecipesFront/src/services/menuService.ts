@@ -66,10 +66,12 @@ export class MenuService {
    * Get all menus for the current user
    */
   static async getUserMenus(): Promise<ApiResponse<Menu[]>> {
-    // `GET /api/menus` answers `{ data, pagination }`, and unlike the single
-    // menu route it serves raw rows — `dietary_type` still carries the Prisma
-    // enum casing, which the UI's label map expects in lower case.
-    const response = await apiService.get<{ data: Menu[] }>(this.BASE_PATH);
+    // `GET /api/menus` answers `{ data, pagination }` with a default page size
+    // of 20 — ask for the route's maximum so the list shows every menu (Flask
+    // returned all of them). Unlike the single menu route it serves raw rows —
+    // `dietary_type` still carries the Prisma enum casing, which the UI's
+    // label map expects in lower case.
+    const response = await apiService.get<{ data: Menu[] }>(`${this.BASE_PATH}?pageSize=100`);
     const menus = (response?.data ?? []).map((menu) => ({
       ...menu,
       dietary_type: menu.dietary_type

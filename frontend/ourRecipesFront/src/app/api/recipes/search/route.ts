@@ -152,20 +152,29 @@ export async function GET(request: NextRequest) {
     // Get total count
     const totalItems = await prisma.recipe.count({ where });
 
-    // Get recipes (select only needed fields for performance)
+    // Full rows: the UI renders the recipe body straight from the search
+    // results (RecipeDetails derives `details` from `raw_content`), matching
+    // the old Flask contract — a summary-only projection leaves the recipe
+    // modal empty.
     const recipes = await prisma.recipe.findMany({
       where,
       select: {
         id: true,
         telegram_id: true,
         title: true,
+        raw_content: true,
+        ingredients: true,
+        instructions: true,
         categories: true,
         difficulty: true,
         cooking_time: true,
         preparation_time: true,
         servings: true,
         image_url: true,
+        is_parsed: true,
+        parse_errors: true,
         created_at: true,
+        updated_at: true,
         is_verified: true
       },
       orderBy: {

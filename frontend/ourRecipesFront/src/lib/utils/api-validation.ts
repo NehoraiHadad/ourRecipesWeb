@@ -74,3 +74,24 @@ export function validateId(id: string | undefined): number {
 
   return numId;
 }
+
+/**
+ * Validate a telegram_id path parameter.
+ *
+ * Unlike DB ids, a telegram_id may be a **negative** placeholder: `POST
+ * /api/recipes` assigns `-(Date.now()...)` when the Telegram mirror fails
+ * (see `src/lib/recipes/mirror.ts`), and the UI must still be able to open
+ * that recipe until reconcile swaps in the real id. Zero is never valid.
+ */
+export function validateTelegramId(id: string | undefined): number {
+  if (!id) {
+    throw BadRequestError('ID is required');
+  }
+
+  const numId = parseInt(id, 10);
+  if (isNaN(numId) || numId === 0) {
+    throw BadRequestError('Invalid ID format');
+  }
+
+  return numId;
+}

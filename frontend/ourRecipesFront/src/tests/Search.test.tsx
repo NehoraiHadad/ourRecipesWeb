@@ -112,6 +112,8 @@ describe('Search Component', () => {
     });
   });
 
+  // The service always appends `page`/`pageSize` — it drains the paginated
+  // route so the UI gets the complete result set, as Flask used to return.
   it('searches /api/recipes/search with the typed query', async () => {
     render(<Search onSearch={mockOnSearch} />);
 
@@ -123,7 +125,8 @@ describe('Search Component', () => {
     await waitFor(() => {
       expect(
         calledEndpoints().some(
-          (endpoint) => endpoint === `/api/recipes/search?query=${encodeURIComponent('עוגה')}`
+          (endpoint) =>
+            endpoint === `/api/recipes/search?query=${encodeURIComponent('עוגה')}&page=1&pageSize=100`
         )
       ).toBe(true);
     });
@@ -142,7 +145,7 @@ describe('Search Component', () => {
       expect(
         calledEndpoints().some(
           (endpoint) =>
-            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים')}`
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים')}&page=1&pageSize=100`
         )
       ).toBe(true);
     });
@@ -162,7 +165,7 @@ describe('Search Component', () => {
       expect(
         calledEndpoints().some(
           (endpoint) =>
-            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים,עוגות')}`
+            endpoint === `/api/recipes/search?categories=${encodeURIComponent('קינוחים,עוגות')}&page=1&pageSize=100`
         )
       ).toBe(true);
     });

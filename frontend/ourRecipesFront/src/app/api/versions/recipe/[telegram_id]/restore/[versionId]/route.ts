@@ -16,7 +16,7 @@ import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError } from '@/lib/utils/api-errors';
-import { validateId } from '@/lib/utils/api-validation';
+import { validateId, validateTelegramId } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { snapshotVersion } from '@/lib/recipes/versioning';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
@@ -32,7 +32,7 @@ export async function POST(
     const auth = await requireEditPermission(request);
     if (!auth.ok) return authErrorResponse(auth);
 
-    const telegramId = validateId(params.telegram_id);
+    const telegramId = validateTelegramId(params.telegram_id);
     const versionId = validateId(params.versionId);
 
     const recipe = await prisma.recipe.findUnique({ where: { telegram_id: telegramId } });

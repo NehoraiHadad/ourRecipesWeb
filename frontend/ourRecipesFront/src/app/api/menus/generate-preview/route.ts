@@ -65,5 +65,6 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Increase timeout for AI generation
-export const maxDuration = 60; // 60 seconds (Vercel)
+// AI generation runs 30-90s; must cover the client's 120s timeout
+// (`menuService.generateMenuPreview`) or Vercel kills the function first.
+export const maxDuration = 120;

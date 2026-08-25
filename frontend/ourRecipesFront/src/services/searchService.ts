@@ -72,28 +72,45 @@ export class SearchService {
       const exclude = this.toList(excludeTerms);
       if (exclude) queryParams.set('excludeTerms', exclude);
 
-      if (page) queryParams.set('page', String(page));
-      if (pageSize) queryParams.set('pageSize', String(pageSize));
+      // Flask returned every match in one response and the UI still assumes
+      // that: it renders `results` as the complete set, with no load-more
+      // control, and shows its size as the result count. The route caps
+      // `pageSize` at 100, so unless the caller paginates explicitly we walk
+      // the pages and accumulate (bounded as a runaway guard).
+      const explicitPaging = Boolean(page || pageSize);
+      const effectivePageSize = pageSize ?? 100;
+      const MAX_PAGES = 20;
 
-      const response = await apiService.get<PaginatedSearchResponse>(
-        `${this.BASE_PATH}?${queryParams.toString()}`
-      );
-
-      const rows = response?.data ?? [];
-      const pagination = response?.pagination;
-
-      // The UI works with a `{ [telegram_id]: recipe }` map.
       const results: Record<string, Recipe> = {};
-      rows.forEach((row) => {
-        const uiRecipe = toUiRecipe(row);
-        results[String(uiRecipe.telegram_id || uiRecipe.id)] = uiRecipe;
-      });
+      let total = 0;
+      let hasMore = false;
+      let currentPage = page ?? 1;
 
-      return {
-        results,
-        total: pagination?.totalItems ?? rows.length,
-        hasMore: pagination ? pagination.page < pagination.totalPages : false
-      };
+      for (let i = 0; i < MAX_PAGES; i++) {
+        queryParams.set('page', String(currentPage));
+        queryParams.set('pageSize', String(effectivePageSize));
+
+        const response = await apiService.get<PaginatedSearchResponse>(
+          `${this.BASE_PATH}?${queryParams.toString()}`
+        );
+
+        const rows = response?.data ?? [];
+        const pagination = response?.pagination;
+
+        // The UI works with a `{ [telegram_id]: recipe }` map.
+        rows.forEach((row) => {
+          const uiRecipe = toUiRecipe(row);
+          results[String(uiRecipe.telegram_id || uiRecipe.id)] = uiRecipe;
+        });
+
+        total = pagination?.totalItems ?? rows.length;
+        hasMore = pagination ? pagination.page < pagination.totalPages : false;
+
+        if (explicitPaging || !hasMore || rows.length === 0) break;
+        currentPage += 1;
+      }
+
+      return { results, total, hasMore };
     } catch (error) {
       console.error('Search failed:', error);
       return {
@@ -115,7 +132,7 @@ export class SearchService {
     const titles = items
       .map((item) => (typeof item === 'string' ? item : item?.title))
       .filter((title): title is string => Boolean(title));
-    return { data: titles, status: 200 };
+    return { data: titles };
   }
 }
 

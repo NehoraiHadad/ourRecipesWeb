@@ -10,7 +10,7 @@ import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
-import { validateId, parseBody } from '@/lib/utils/api-validation';
+import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
 import { snapshotVersion } from '@/lib/recipes/versioning';
@@ -22,7 +22,7 @@ export async function GET(
   { params }: { params: { telegram_id: string } }
 ) {
   try {
-    const telegramId = validateId(params.telegram_id);
+    const telegramId = validateTelegramId(params.telegram_id);
 
     logger.debug({ telegramId }, 'Fetching recipe');
 
@@ -95,7 +95,7 @@ export async function PUT(
     const auth = await requireEditPermission(request);
     if (!auth.ok) return authErrorResponse(auth);
 
-    const telegramId = validateId(params.telegram_id);
+    const telegramId = validateTelegramId(params.telegram_id);
     const body = await parseBody<UpdateRecipeBody>(request);
 
     if (!body?.newText || !body.newText.trim()) {

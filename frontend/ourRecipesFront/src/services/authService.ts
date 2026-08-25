@@ -1,6 +1,6 @@
 import { apiService } from './apiService';
 import type { ApiResponse } from '../types/api';
-import type { AuthResponse } from '../types/auth';
+import type { AuthResponse, ValidateResponse } from '../types/auth';
 
 /** Login/validate hit the Telegram Bot API for the edit-permission check. */
 const AUTH_TIMEOUT = 30000;
@@ -40,10 +40,11 @@ export class AuthService {
   }
 
   // Validate current session
-  async validate(): Promise<ApiResponse<AuthResponse>> {
-    // `GET /api/auth/validate` verifies edit permission against Telegram, so
-    // it can outlast apiService's default timeout.
-    return apiService.get<ApiResponse<AuthResponse>>(`${AuthService.BASE_PATH}/validate`, {
+  async validate(): Promise<ValidateResponse> {
+    // `GET /api/auth/validate` answers a flat body (no `data` envelope) and
+    // verifies edit permission against Telegram, so it can outlast
+    // apiService's default timeout.
+    return apiService.get<ValidateResponse>(`${AuthService.BASE_PATH}/validate`, {
       timeout: AUTH_TIMEOUT
     });
   }

@@ -20,7 +20,7 @@ import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { requireAuth, requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
-import { validateId, parseBody } from '@/lib/utils/api-validation';
+import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { cleanupOldVersions, versionToDict } from '@/lib/recipes/versioning';
 import { logger } from '@/lib/logger';
 
@@ -46,7 +46,7 @@ export async function GET(
     const auth = await requireAuth(request);
     if (!auth.ok) return authErrorResponse(auth);
 
-    const telegramId = validateId(params.telegram_id);
+    const telegramId = validateTelegramId(params.telegram_id);
     const recipe = await findRecipeOrThrow(telegramId);
 
     // Matches Flask: cleanup runs on every GET, not just on writes.
@@ -78,7 +78,7 @@ export async function POST(
     const auth = await requireEditPermission(request);
     if (!auth.ok) return authErrorResponse(auth);
 
-    const telegramId = validateId(params.telegram_id);
+    const telegramId = validateTelegramId(params.telegram_id);
     const recipe = await findRecipeOrThrow(telegramId);
 
     const body = await parseBody<CreateVersionBody>(request);

@@ -35,10 +35,9 @@ const RecipeList: React.FC<RecipeListProps> = ({
   const { authState } = useAuthContext();
 
   /**
-   * `GET /api/recipes/manage` serves a trimmed projection (no `raw_content`,
-   * ingredients, instructions or difficulty), so the full recipe is fetched by
-   * `telegram_id` before opening a detail/edit dialog — editing a partial row
-   * would otherwise save an emptied-out recipe.
+   * Refresh by `telegram_id` before opening a detail/edit dialog — the list
+   * may be stale, and editing an out-of-date row would save over newer
+   * content.
    */
   const loadFullRecipe = async (listRow: recipe): Promise<recipe> => {
     try {

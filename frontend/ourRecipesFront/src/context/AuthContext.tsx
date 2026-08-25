@@ -3,15 +3,6 @@ import React, { createContext, useContext, useState, ReactNode, useCallback } fr
 import { authService } from '@/services/authService';
 import type { User } from '@/types/auth';
 
-/** `GET /api/auth/validate` answers with a flat body (no `data` envelope). */
-type ValidateResponse = {
-  authenticated: boolean;
-  canEdit: boolean;
-  user_id?: string;
-  name?: string;
-  type?: string;
-};
-
 interface AuthState {
   isAuthenticated: boolean;
   canEdit: boolean;
@@ -45,7 +36,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const checkAuth = useCallback(async () => {
     try {
-      const response = (await authService.validate() as unknown) as ValidateResponse;
+      const response = await authService.validate();
       
       setAuthState({
         isAuthenticated: response.authenticated,
