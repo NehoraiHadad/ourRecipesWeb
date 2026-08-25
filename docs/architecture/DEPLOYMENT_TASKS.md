@@ -52,7 +52,8 @@
 ## שלב 3 — בוט טלגרם ושני הערוצים (DEPLOYMENT §3)
 
 - [x] 👤 3.1 נבחר הבוט הקיים: `ourRecipes_bot` ("המתכונים שלנו") — הטוקן אומת מול `getMe`, אין webhook ישן רשום עליו
-- [ ] 👤 3.2 @BotFather: `/setdomain` → `the-our-recipes.vercel.app` (בלעדיו Login Widget לא נטען)
+- [ ] 👤 3.2 @BotFather: `/setdomain` → `recipes.nehoraihadad.com` (בלעדיו Login Widget לא נטען)
+- [ ] 👤 3.2.1 **דומיין קנוני**: הוחלט `recipes.nehoraihadad.com`; 🤖 נוסף לפרויקט ב-Vercel. נדרש ב-Cloudflare (זון `nehoraihadad.com`): רשומת `CNAME recipes → cname.vercel-dns.com`, **DNS only (ענן אפור, בלי proxy)**
 - [ ] 👤 3.3 הוספת הבוט כאדמין ב**ערוץ הראשי** עם: Post + Edit + Delete Messages
 - [ ] 👤 3.4 הוספת הבוט כאדמין ב**ערוץ הישן** (קריאה בלבד — בלי פרסום/עריכה/מחיקה)
 - [ ] 👤 3.5 חילוץ מזהי `-100…`: אחרי ש-3.3+3.4 בוצעו — לפרסם הודעה קצרה בכל ערוץ, ואז 🤖 `getUpdates` יחלץ את המזהים (החלופה: העברת הודעה ל-@userinfobot)
