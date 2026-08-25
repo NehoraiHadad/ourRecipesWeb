@@ -1,3 +1,4 @@
+> ⚠️ **מסמך זה הוחלף (2026-08-25).** הארכיטקטורה והתוכנית העדכניות: [`docs/architecture/`](../architecture/ARCHITECTURE.md). התיקייה הזו תימחק בסיום המימוש.
 # 🏛️ Architecture Decision Record (ADR)
 
 תאריך: 2025-11-22
