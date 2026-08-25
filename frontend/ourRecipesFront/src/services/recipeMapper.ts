@@ -48,12 +48,6 @@ function toIsoString(value: string | Date | null | undefined): string {
   return value instanceof Date ? value.toISOString() : value;
 }
 
-/** "everything after the first line" — the `details` field Flask used to send. */
-function detailsFromRawContent(rawContent: string): string {
-  const lines = rawContent.split('\n');
-  return lines.length > 1 ? lines.slice(1).join('\n') : '';
-}
-
 export function toUiRecipe(row: RawRecipeRow | null | undefined): Recipe {
   const raw = row ?? {};
   const rawContent = raw.raw_content ?? '';
@@ -64,7 +58,11 @@ export function toUiRecipe(row: RawRecipeRow | null | undefined): Recipe {
     telegram_id: raw.telegram_id ?? 0,
     title: raw.title ?? '',
     raw_content: rawContent,
-    details: raw.details ?? detailsFromRawContent(rawContent),
+    // Flask sent `details: raw_content` verbatim (`Recipe.to_dict`), and the
+    // format detection depends on it: `isRecipeUpdated` looks for the
+    // "כותרת:" line, so stripping the first line here would push every
+    // recipe onto the raw-text fallback instead of the structured display.
+    details: raw.details ?? rawContent,
     categories: toArray(raw.categories, ','),
     ingredients: toArray(raw.ingredients, '||'),
     instructions: raw.instructions ?? undefined,
