@@ -171,8 +171,13 @@ describe('POST /api/webhooks/telegram', () => {
       expect(call.create.telegram_id).toBe(501);
       expect(call.create.title).toBe('עוגת שוקולד');
       expect(call.create.raw_content).toBe(RECIPE_TEXT);
-      // '||'-separated ingredients, comma-separated categories (Flask convention).
-      expect(call.create.ingredients).toBe('200 גרם שוקולד||3 ביצים');
+      // Structured ingredients (Stage B) — the legacy `||`-separated text
+      // column is no longer written at all.
+      expect(call.create.ingredients).toBeUndefined();
+      expect(call.create.ingredients_list).toEqual([
+        { quantity: 200, unit: 'גרם', name: 'שוקולד' },
+        { quantity: 3, name: 'ביצים' }
+      ]);
       expect(call.create.categories).toBe('קינוחים,עוגות');
       expect(call.create.preparation_time).toBe(45);
       expect(call.create.difficulty).toBe('EASY');

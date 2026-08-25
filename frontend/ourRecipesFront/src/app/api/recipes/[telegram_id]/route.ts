@@ -12,6 +12,7 @@ import { successResponse, noContentResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
+import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
 import { snapshotVersion } from '@/lib/recipes/versioning';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
@@ -142,15 +143,8 @@ export async function PUT(
       return tx.recipe.update({
         where: { id: recipe.id },
         data: {
-          title: parsed.title || null,
           raw_content: newText,
-          ingredients: parsed.ingredients.length ? parsed.ingredients.join('||') : null,
-          instructions: parsed.instructions || null,
-          categories: parsed.categories.length ? parsed.categories.join(',') : null,
-          preparation_time: parsed.preparationTime ?? null,
-          difficulty: parsed.difficulty ?? null,
-          is_parsed: parsed.isParsed,
-          parse_errors: parsed.parseErrors.length ? parsed.parseErrors.join('||') : null,
+          ...recipeFieldsFromParsed(parsed),
           image_url: imageUrl,
           sync_status: mirror.syncStatus,
           sync_error: mirror.syncError

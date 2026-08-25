@@ -82,13 +82,12 @@ describe('GET /api/recipes/search', () => {
     expect(findManyArgs.take).toBe(5);
   });
 
-  it('matches the free-text query against title, ingredients and raw_content', async () => {
+  it('matches the free-text query against title and raw_content', async () => {
     const { where } = await search('?query=' + encodeURIComponent('שוקולד'));
 
     expect(andClauses(where)).toContainEqual({
       OR: [
         { title: { contains: 'שוקולד', mode: 'insensitive' } },
-        { ingredients: { contains: 'שוקולד', mode: 'insensitive' } },
         { raw_content: { contains: 'שוקולד', mode: 'insensitive' } }
       ]
     });

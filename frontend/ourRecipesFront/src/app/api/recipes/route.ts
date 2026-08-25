@@ -26,6 +26,7 @@ import { createdResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
 import { formatRecipeText, parseRecipeMessage, type ParsedRecipe } from '@/lib/recipes/parser';
+import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
 import { buildVersionContent } from '@/lib/recipes/versioning';
 import { mirrorCreateRecipe, generatePendingTelegramId } from '@/lib/recipes/mirror';
@@ -129,16 +130,9 @@ async function createRecipeRetryingId(input: CreateRecipeInput) {
       return await prisma.recipe.create({
         data: {
           telegram_id: telegramId,
-          title: input.parsed.title || null,
           raw_content: input.text,
-          ingredients: input.parsed.ingredients.length ? input.parsed.ingredients.join('||') : null,
-          instructions: input.parsed.instructions || null,
-          categories: input.parsed.categories.length ? input.parsed.categories.join(',') : null,
+          ...recipeFieldsFromParsed(input.parsed),
           image_url: input.imageUrl,
-          preparation_time: input.parsed.preparationTime ?? null,
-          difficulty: input.parsed.difficulty ?? null,
-          is_parsed: input.parsed.isParsed,
-          parse_errors: input.parsed.parseErrors.length ? input.parsed.parseErrors.join('||') : null,
           sync_status: input.syncStatus,
           sync_error: input.syncError,
           versions: {

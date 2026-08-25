@@ -14,6 +14,7 @@
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
+import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { storeTelegramPhoto } from '@/lib/images/blob';
 import { storeImageBase64 } from '@/lib/images/upload';
 
@@ -97,7 +98,7 @@ export function isArchiveMarked(text: string): boolean {
  * recipe stays readable. `raw_content` still keeps the message verbatim —
  * loop prevention compares against exactly what Telegram sent.
  */
-function stripArchiveMarker(text: string): string {
+export function stripArchiveMarker(text: string): string {
   const head = (text ?? '').replace(LEADING_NOISE, '');
   for (const marker of ARCHIVE_MARKERS) {
     if (head.startsWith(marker)) {
@@ -181,14 +182,7 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
 
   const data = {
     raw_content: text,
-    title: parsed.title || null,
-    ingredients: parsed.ingredients.join('||'),
-    instructions: parsed.instructions || null,
-    categories: parsed.categories.join(','),
-    difficulty: parsed.difficulty ?? null,
-    preparation_time: parsed.preparationTime ?? null,
-    is_parsed: parsed.isParsed,
-    parse_errors: parsed.parseErrors.join('||'),
+    ...recipeFieldsFromParsed(parsed),
     status: archived ? RECIPE_STATUS_ARCHIVED : RECIPE_STATUS_ACTIVE,
     sync_status: SYNC_STATUS_SYNCED,
     sync_error: null,

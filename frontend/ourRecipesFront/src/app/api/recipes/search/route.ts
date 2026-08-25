@@ -6,7 +6,7 @@
  *
  * | param          | type                  | semantics                                                              |
  * | -------------- | --------------------- | ---------------------------------------------------------------------- |
- * | `query`        | string                | free text; matches title OR ingredients OR raw_content (insensitive)     |
+ * | `query`        | string                | free text; matches title OR raw_content (insensitive)                    |
  * | `categories`   | comma-separated list  | recipe must carry **every** listed category (AND)                        |
  * | `category`     | string                | legacy single-category alias, folded into `categories`                   |
  * | `maxPrepTime`  | integer (minutes)     | `preparation_time <= maxPrepTime`                                        |
@@ -111,15 +111,11 @@ export async function GET(request: NextRequest) {
     // Build where clause: AND of narrow OR-groups.
     const and: Prisma.RecipeWhereInput[] = [];
 
-    // Text search (in title, ingredients, or raw_content)
+    // Text search (title or raw_content — raw_content already carries every
+    // ingredient line, so a separate `ingredients` probe is redundant; that
+    // column is dead per Stage B).
     if (query) {
-      and.push({
-        OR: [
-          { title: { contains: query, mode: 'insensitive' } },
-          { ingredients: { contains: query, mode: 'insensitive' } },
-          { raw_content: { contains: query, mode: 'insensitive' } }
-        ]
-      });
+      and.push(textMatch(query));
     }
 
     // Category filters — one `contains` probe per selected category (AND).

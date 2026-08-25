@@ -52,12 +52,18 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
       ו-round-trip מלא parse⇄format על פיקסטורות אמיתיות מהערוץ. 65 בדיקות ירוקות.
 
 ### שלב B — כתיבה ל-DB + backfill
-- [ ] B1 ingest שומר את `structuredIngredients` ב-`ingredients_list` (העמודה כבר קיימת).
-- [ ] B2 החלטה על עמודות מתות: `formatted_content`, `recipe_metadata`, ושדה
-      `ingredients` הטקסטואלי (`||`) — לאחד ל-`ingredients_list` ולמחוק את היתר
-      במיגרציה (לא להשאיר כפילות).
-- [ ] B3 backfill: ריצה חד-פעמית שמפרסרת מחדש את כל 204 המתכונים מ-`raw_content`
-      (מקומית מול ה-DB, בלי טלגרם) וממלאת את השדות החדשים. לאמת ספירות לפני/אחרי.
+- [x] B1 helper משותף `recipeFieldsFromParsed` (`src/lib/recipes/recipeFields.ts`);
+      כל 5 נתיבי הכתיבה (ingest, POST create, PUT, restore, bulk parse) עברו אליו —
+      כותבים `ingredients_list` בלבד, אף אחד לא כותב יותר לעמודת `ingredients` הטקסטואלית.
+- [x] B2 `formatted_content`/`recipe_metadata` כבר לא נקראים/נכתבים בשום מקום ב-`src`
+      (נבדק בגריפ מלא). כתיבות ל-`ingredients` הוסרו מכל 5 הנתיבים; חיפוש חופשי
+      (`/api/recipes/search`) עבר ל-title+raw_content בלבד. פרויקציות קריאה
+      (`manage`, `search` select, `versioning.ts`, `mirrorPending.ts`) לא נגעו בהן —
+      שלב C.
+- [x] B3 סקריפט backfill מוכן: `scripts/backfillStructuredRecipes.ts` +
+      `npm run backfill:structured` (dry-run כברירת מחדל, `--apply` לכתיבה בפועל).
+      טרנספורמציה טהורה + בדיקות יחידה ב-`src/lib/recipes/backfillTransform.ts`.
+      הרצה בפועל מול הפרודקשן — ממתינה לשלב G.
 
 ### שלב C — חוזה API אחיד
 - [ ] C1 serializer יחיד `serializeRecipe` (כמו `serializeMenu`) + טיפוס תשובה משותף;
@@ -107,7 +113,7 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 |---|---|---|---|
 | 1 | A-parser (Opus) | A1–A3 | ✅ |
 | 1 | F-delete (Sonnet) | F1–F4 | ✅ |
-| 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ⬜ |
+| 2 | B-ingest (Sonnet) | B1 + סקריפט backfill | ✅ |
 | 3 | C-contract (Opus) | C1–C2 | ⬜ |
 | 4 | D-main (Opus) | D1, D3, E1, E2 | ⬜ |
 | 4 | D-aux (Sonnet) | D2, D4 | ⬜ |

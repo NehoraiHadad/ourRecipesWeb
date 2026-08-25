@@ -18,6 +18,7 @@ import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError } from '@/lib/utils/api-errors';
 import { validateId, validateTelegramId } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
+import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { snapshotVersion } from '@/lib/recipes/versioning';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { logger } from '@/lib/logger';
@@ -88,15 +89,8 @@ export async function POST(
       return tx.recipe.update({
         where: { id: recipe.id },
         data: {
-          title: parsed.title || null,
           raw_content: versionRawContent,
-          ingredients: parsed.ingredients.length ? parsed.ingredients.join('||') : null,
-          instructions: parsed.instructions || null,
-          categories: parsed.categories.length ? parsed.categories.join(',') : null,
-          preparation_time: parsed.preparationTime ?? null,
-          difficulty: parsed.difficulty ?? null,
-          is_parsed: parsed.isParsed,
-          parse_errors: parsed.parseErrors.length ? parsed.parseErrors.join('||') : null,
+          ...recipeFieldsFromParsed(parsed),
           image_url: restoredImageUrl,
           sync_status: mirror.syncStatus,
           sync_error: mirror.syncError

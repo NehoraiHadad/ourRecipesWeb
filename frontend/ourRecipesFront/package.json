@@ -16,7 +16,8 @@
     "prisma:generate": "prisma generate",
     "prisma:studio": "prisma studio",
     "prisma:push": "prisma db push",
-    "prisma:migrate": "prisma migrate dev"
+    "prisma:migrate": "prisma migrate dev",
+    "backfill:structured": "tsx scripts/backfillStructuredRecipes.ts"
   },
   "dependencies": {
     "@google/genai": "^1.30.0",
