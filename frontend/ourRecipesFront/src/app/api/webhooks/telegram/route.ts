@@ -12,6 +12,8 @@
  * | body is not JSON                            | 200      | ignored                             |
  * | no `channel_post` / `edited_channel_post`   | 200      | ignored                             |
  * | `chat.id` is neither of our channels        | 200      | ignored, logged                     |
+ * | main channel, place message ("המלצה")       | 200      | upsert into `places`, not `recipes` |
+ * | main channel, menu mirror ("תפריט חדש")     | 200      | ignored (menus are app-authored)    |
  * | main channel, text identical to DB          | 200      | no-op (loop prevention)             |
  * | main channel, 🗑️ prefix                     | 200      | `status = ARCHIVED`                 |
  * | main channel, otherwise                     | 200      | parse + upsert by `message_id`      |
@@ -30,7 +32,8 @@ import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
 import { unauthorizedResponse, verifyTelegramWebhookSecret } from '@/lib/internal/auth';
 import { classifyChannel, getMainChannelId } from '@/lib/telegram/channels';
-import { ingestRecipeMessage, largestPhotoFileId } from '@/lib/recipes/ingest';
+import { ingestChannelMessage } from '@/lib/telegram/channelIngest';
+import { largestPhotoFileId } from '@/lib/recipes/ingest';
 import { republishOldChannelPost } from '@/lib/recipes/oldChannel';
 import type { TelegramMessage, TelegramUpdate } from '@/lib/telegram/types';
 
@@ -120,8 +123,9 @@ export async function POST(request: NextRequest): Promise<Response> {
       });
     }
 
-    // 4. Main channel: parse + upsert under this message id.
-    const result = await ingestRecipeMessage({
+    // 4. Main channel: classify (recipe/place/menu) + upsert under this
+    //    message id.
+    const result = await ingestChannelMessage({
       telegramId: message.message_id,
       text,
       photoFileId: largestPhotoFileId(message.photo),
@@ -131,6 +135,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     return ack({
       source: 'main_channel',
       edited: isEdit,
+      kind: result.kind,
       telegram_id: result.telegramId,
       action: result.action,
       status: result.status

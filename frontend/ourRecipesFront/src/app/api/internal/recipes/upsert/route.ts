@@ -26,7 +26,7 @@
 import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
 import { requireInternalSecret } from '@/lib/internal/auth';
-import { ingestRecipeMessage } from '@/lib/recipes/ingest';
+import { ingestChannelMessage } from '@/lib/telegram/channelIngest';
 
 export const dynamic = 'force-dynamic';
 
@@ -82,7 +82,7 @@ export async function POST(request: NextRequest): Promise<Response> {
   const imageUrl = typeof body?.image_url === 'string' ? body.image_url : null;
 
   try {
-    const result = await ingestRecipeMessage({
+    const result = await ingestChannelMessage({
       telegramId,
       text: rawText,
       photoBase64,
@@ -92,6 +92,7 @@ export async function POST(request: NextRequest): Promise<Response> {
 
     return Response.json({
       ok: true,
+      kind: result.kind,
       action: result.action,
       telegram_id: result.telegramId,
       recipe_id: result.recipeId ?? null,
