@@ -12,6 +12,18 @@ export interface RecipeSuggestionParams {
   additionalRequests?: string;
 }
 
+/**
+ * The suggestion form sends `mealType` as one string; the prompt builders
+ * expect an array. Accept both shapes at the API boundary and drop anything
+ * that is not a non-empty string.
+ */
+export function normalizeMealTypes(value: unknown): string[] | undefined {
+  const items = (Array.isArray(value) ? value : [value])
+    .filter((item): item is string => typeof item === 'string' && item.trim() !== '')
+    .map((item) => item.trim());
+  return items.length > 0 ? items : undefined;
+}
+
 export function buildSuggestionPrompt(params: RecipeSuggestionParams): string {
   return `
 אתה עוזר מטבח מומחה. צור מתכון מפורט על בסיס המידע הבא:

@@ -6,6 +6,7 @@
  */
 import { NextRequest } from 'next/server';
 import { generateRecipeSuggestion } from '@/lib/services/aiService';
+import { normalizeMealTypes } from '@/lib/ai/gemini/prompts';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { serializePreviewFromParsed } from '@/lib/serializers/recipePreview';
 import { successResponse } from '@/lib/utils/api-response';
@@ -20,7 +21,7 @@ export async function POST(request: NextRequest) {
 
     const suggestion = await generateRecipeSuggestion({
       ingredients: body.ingredients,
-      mealType: body.mealType,
+      mealType: normalizeMealTypes(body.mealType),
       quickPrep: body.quickPrep,
       childFriendly: body.childFriendly,
       additionalRequests: body.additionalRequests
