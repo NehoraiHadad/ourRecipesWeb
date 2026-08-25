@@ -10,7 +10,12 @@ import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { generateShoppingList } from '@/lib/services/shoppingListService';
-import { menuMealsInclude, serializeMealRecipe, type MenuRow } from '@/lib/serializers/menu';
+import {
+  menuMealsInclude,
+  recipeSummarySelect,
+  serializeMealRecipe,
+  type MenuRow
+} from '@/lib/serializers/menu';
 import { mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
 
 interface AddRecipeBody {
@@ -66,17 +71,7 @@ export async function POST(
         notes: body.notes
       },
       include: {
-        recipe: {
-          select: {
-            id: true,
-            title: true,
-            cooking_time: true,
-            preparation_time: true,
-            difficulty: true,
-            servings: true,
-            image_url: true
-          }
-        }
+        recipe: { select: recipeSummarySelect }
       }
     });
 

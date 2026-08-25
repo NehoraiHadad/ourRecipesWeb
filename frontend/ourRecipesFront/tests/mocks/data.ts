@@ -28,7 +28,7 @@ export const mockRecipe: Recipe = {
   last_sync: null,
   is_parsed: true,
   parse_errors: null,
-  status: 'active',
+  status: 'ACTIVE',
   ingredients_list: [
     { name: 'flour', amount: '2', unit: 'cups' },
     { name: 'eggs', amount: '3', unit: 'pieces' }

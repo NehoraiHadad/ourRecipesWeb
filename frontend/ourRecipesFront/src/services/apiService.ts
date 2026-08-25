@@ -47,6 +47,27 @@ export class AuthenticationError extends ApiError {
   }
 }
 
+/**
+ * Pulls the human-readable message out of an error body.
+ *
+ * The API routes answer with `handleApiError`'s nested shape
+ * (`{ error: { message, statusCode } }`), but a few routes still reply flat
+ * (`{ message }` / `{ error: 'text' }`), so both are accepted.
+ */
+export function extractErrorMessage(errorData: any): string {
+  if (!errorData || typeof errorData !== 'object') return 'Network response was not ok';
+
+  const nested = errorData.error;
+  if (typeof nested === 'string' && nested) return nested;
+  if (nested && typeof nested === 'object' && typeof nested.message === 'string' && nested.message) {
+    return nested.message;
+  }
+
+  if (typeof errorData.message === 'string' && errorData.message) return errorData.message;
+
+  return 'Network response was not ok';
+}
+
 // Custom cache strategy type
 type CustomCacheStrategy = 'persistent' | 'cache-first' | 'network-first';
 
@@ -446,7 +467,7 @@ class ApiService {
         });
         throw new ApiError(
           interceptedResponse.status,
-          errorData.message || 'Network response was not ok',
+          extractErrorMessage(errorData),
           errorData
         );
       }

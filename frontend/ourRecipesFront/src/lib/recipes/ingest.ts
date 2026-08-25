@@ -22,13 +22,12 @@ const log = logger.child({ context: 'recipes/ingest' });
 /**
  * `Recipe.status` values.
  *
- * Deliberately UPPERCASE: every consumer in this app compares against
- * `'ACTIVE'` (`/api/recipes/search` filters `status: 'ACTIVE'`,
+ * UPPERCASE is the single convention across the app: every consumer compares
+ * against `'ACTIVE'` (`/api/recipes/search` filters `status: 'ACTIVE'`,
  * `/api/recipes/manage` validates against `ACTIVE|ARCHIVED|DELETED`), so a row
- * written as lowercase `'active'` would be invisible to the UI. Note this
- * differs from the Prisma column default (`"active"`, inherited from the Flask
- * schema) — which is why ingestion always sets `status` explicitly instead of
- * relying on the default.
+ * written as lowercase `'active'` would be invisible to the UI. The Prisma
+ * column default matches (`@default("ACTIVE")`); ingestion still sets `status`
+ * explicitly, since an upsert's update branch never sees a column default.
  */
 export const RECIPE_STATUS_ACTIVE = 'ACTIVE';
 export const RECIPE_STATUS_ARCHIVED = 'ARCHIVED';

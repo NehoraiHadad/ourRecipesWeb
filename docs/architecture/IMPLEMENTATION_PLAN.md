@@ -203,3 +203,18 @@ login guest → חיפוש → פתיחת מתכון → יצירת מתכון (
 | בדיקת הרשאות בערוץ | `backend/ourRecipesBack/services/telegram_service.py` (`check_permissions`) |
 | פורמט הודעות | `telegram_service/utils/formatters.py` (אם קיים תוכן רלוונטי) |
 | Telethon ליבוא | `telegram_service/telegram_client.py`, `main.py` (`sync-messages`) |
+
+---
+
+## נספח ג' — פערים ידועים שנותרו (סוף Wave 3)
+
+נסקר ב-2026-08-25 בסריקה האדוורסרית של Wave 3. כל אלה **מודעים** — לא באגים
+שנשכחו — ואף אחד מהם לא חוסם את ההפעלה לפי [DEPLOYMENT.md](./DEPLOYMENT.md).
+
+| # | פער | היכן | למה נשאר |
+|---|------|------|-----------|
+| 1 | `GET /api/menus` ו-`GET /api/menus/:id` לא מסננים לפי בעלות: כל משתמש מאומת רואה כל תפריט (`where = {}` + TODO "Phase 3"). | `src/app/api/menus/route.ts`, `src/app/api/menus/[id]/route.ts` | כתיבות התפריט (PUT/DELETE, meals, meal-recipes) **כן** אוכפות בעלות. שינוי סינון הקריאה משנה סמנטיקה של מסך "התפריטים שלי" — החלטת מוצר, לא תיקון טכני. |
+| 2 | `PATCH/PUT/DELETE /api/shopping-list/items/:id` מוגנים רק ב-JWT של ה-middleware; אין בדיקה שהפריט שייך לתפריט של המשתמש. | `src/app/api/shopping-list/items/[id]/route.ts` | שקילות מלאה ל-Flask (`@jwt_required()` בלבד). תלוי בהכרעה של פער 1. |
+| 3 | ה-routes של ה-AI (`suggest`, `refine`, `optimize-steps`, `reformat`, `generate-image`) דורשים session אך לא הרשאת עריכה — אורח יכול לצרוך מכסת AI. | `src/app/api/recipes/*` | שקילות ל-Flask. `generate-infographic` דורש `requireAuth`, וכל **כתיבת** מתכון דורשת `requireEditPermission`. |
+| 4 | `HUGGINGFACE_TOKEN` ו-`NEXT_PUBLIC_TELEGRAM_BOT` בשימוש בקוד אך לא מופיעים ב-ARCHITECTURE §7. | `src/lib/services/aiService.ts`, `src/components/TelegramLoginWidget.tsx` | תועדו ב-`.env.example` וב-DEPLOYMENT.md §2.2. §7 ראוי לעדכון בעדכון הבא של מסמך האב. |
+| 5 | `Recipe.image_data` / `RecipeVersion.image_data` נשארו בסכמה. | `prisma/schema.prisma` | **קריאה בלבד** — אין ולו כתיבה אחת בקוד; כל תמונה חדשה נשמרת ל-Blob ו-`image_url`. הסרת העמודות היא מיגרציה נפרדת שדורשת גיבוי. |

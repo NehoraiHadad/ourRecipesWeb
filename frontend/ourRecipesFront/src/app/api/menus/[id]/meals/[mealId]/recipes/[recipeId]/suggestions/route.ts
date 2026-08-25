@@ -80,6 +80,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
       },
       select: {
         id: true,
+        telegram_id: true,
         title: true,
         categories: true,
         difficulty: true,
@@ -93,6 +94,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
     return Response.json({
       suggestions: suggestions.map((r) => ({
         id: r.id,
+        telegram_id: r.telegram_id,
         title: r.title,
         categories: r.categories,
         difficulty: difficultyToValue(r.difficulty),

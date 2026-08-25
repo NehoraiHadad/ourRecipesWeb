@@ -75,6 +75,7 @@ function baseMenuRow(overrides: Partial<any> = {}) {
             created_at: new Date('2024-01-01T10:00:00Z'),
             recipe: {
               id: 5,
+              telegram_id: 5005,
               title: 'עוף בתנור',
               cooking_time: 60,
               preparation_time: 15,
@@ -139,6 +140,9 @@ describe('POST /api/menus (save)', () => {
     expect(json.menu.name).toBe('תפריט שבת');
     expect(json.menu.dietary_type).toBe('meat');
     expect(json.shopping_list).toBeDefined();
+    // The UI opens a menu recipe through `GET /api/recipes/:telegram_id`, so
+    // the embedded summary must carry the telegram id, not just the PK.
+    expect(json.menu.meals[0].recipes[0].recipe).toMatchObject({ id: 5, telegram_id: 5005 });
 
     expect(sendMessageMock).toHaveBeenCalledTimes(1);
     expect(sendMessageMock.mock.calls[0][0].chat_id).toBe('-1001234567890');
@@ -462,7 +466,7 @@ describe('POST /api/menus/:id/meals/:mealId/recipes', () => {
       notes: null,
       ai_reason: null,
       created_at: new Date(),
-      recipe: { id: 7, title: 'סלט ירוק', cooking_time: 10, preparation_time: 5, difficulty: 'EASY', servings: 4, image_url: null }
+      recipe: { id: 7, telegram_id: 7007, title: 'סלט ירוק', cooking_time: 10, preparation_time: 5, difficulty: 'EASY', servings: 4, image_url: null }
     } as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
@@ -478,6 +482,7 @@ describe('POST /api/menus/:id/meals/:mealId/recipes', () => {
     const json = await parseJsonResponse<any>(response);
     expect(json.meal_recipe.recipe_id).toBe(7);
     expect(json.meal_recipe.recipe.title).toBe('סלט ירוק');
+    expect(json.meal_recipe.recipe.telegram_id).toBe(7007);
   });
 
   it('404s when the recipe does not exist', async () => {
@@ -514,7 +519,7 @@ describe('PUT /api/menus/:id/meals/:mealId/recipes/:recipeId (replace)', () => {
       notes: null,
       ai_reason: null,
       created_at: new Date(),
-      recipe: { id: 8, title: 'דג בתנור', cooking_time: 40, preparation_time: 10, difficulty: 'MEDIUM', servings: 4, image_url: null }
+      recipe: { id: 8, telegram_id: 8008, title: 'דג בתנור', cooking_time: 40, preparation_time: 10, difficulty: 'MEDIUM', servings: 4, image_url: null }
     } as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
@@ -529,6 +534,7 @@ describe('PUT /api/menus/:id/meals/:mealId/recipes/:recipeId (replace)', () => {
     expect(response.status).toBe(200);
     const json = await parseJsonResponse<any>(response);
     expect(json.meal_recipe.recipe_id).toBe(8);
+    expect(json.meal_recipe.recipe.telegram_id).toBe(8008);
   });
 
   it('404s when the recipe is not in the meal', async () => {
@@ -578,7 +584,7 @@ describe('GET /api/menus/:id/meals/:mealId/recipes/:recipeId/suggestions', () =>
     prismaMock.menu.findUnique.mockResolvedValue({ id: 1, user_id: OWNER, is_public: false, dietary_type: 'MEAT' } as any);
     prismaMock.mealRecipe.findFirst.mockResolvedValue({ course_type: 'main' } as any);
     prismaMock.recipe.findMany.mockResolvedValue([
-      { id: 9, title: 'עוף צלוי', categories: 'עוף,עיקרית', difficulty: 'MEDIUM', cooking_time: 50, preparation_time: 10, image_url: null }
+      { id: 9, telegram_id: 9009, title: 'עוף צלוי', categories: 'עוף,עיקרית', difficulty: 'MEDIUM', cooking_time: 50, preparation_time: 10, image_url: null }
     ] as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10/recipes/5/suggestions', {
@@ -590,6 +596,7 @@ describe('GET /api/menus/:id/meals/:mealId/recipes/:recipeId/suggestions', () =>
     const json = await parseJsonResponse<any>(response);
     expect(json.suggestions).toHaveLength(1);
     expect(json.suggestions[0].difficulty).toBe('medium');
+    expect(json.suggestions[0].telegram_id).toBe(9009);
   });
 
   it('403s for a private menu belonging to someone else', async () => {

@@ -14,22 +14,17 @@ import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { generateShoppingList } from '@/lib/services/shoppingListService';
-import { menuMealsInclude, serializeMealRecipe, type MenuRow } from '@/lib/serializers/menu';
+import {
+  menuMealsInclude,
+  recipeSummarySelect,
+  serializeMealRecipe,
+  type MenuRow
+} from '@/lib/serializers/menu';
 import { mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
 
 interface RouteParams {
   params: { id: string; mealId: string; recipeId: string };
 }
-
-const mealRecipeRecipeSelect = {
-  id: true,
-  title: true,
-  cooking_time: true,
-  preparation_time: true,
-  difficulty: true,
-  servings: true,
-  image_url: true
-} as const;
 
 async function assertOwner(menuId: number, userId: string) {
   const menu = await prisma.menu.findUnique({ where: { id: menuId }, select: { user_id: true } });
@@ -70,7 +65,7 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const updated = await prisma.mealRecipe.update({
       where: { id: mealRecipe.id },
       data: { recipe_id: body.new_recipe_id },
-      include: { recipe: { select: mealRecipeRecipeSelect } }
+      include: { recipe: { select: recipeSummarySelect } }
     });
 
     // Regenerate shopping list (Flask's `generate_shopping_list` clears existing items first).

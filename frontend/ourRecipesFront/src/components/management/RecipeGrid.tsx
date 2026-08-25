@@ -27,9 +27,9 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
 
   /**
    * `GET /api/recipes/manage` serves a trimmed projection (no `raw_content`,
-   * ingredients, instructions, difficulty or parse errors), so the full recipe
-   * is fetched by `telegram_id` before opening a detail/edit dialog — editing a
-   * partial row would otherwise save an emptied-out recipe.
+   * ingredients, instructions or difficulty), so the full recipe is fetched by
+   * `telegram_id` before opening a detail/edit dialog — editing a partial row
+   * would otherwise save an emptied-out recipe.
    */
   const loadFullRecipe = async (listRow: recipe): Promise<recipe> => {
     try {

@@ -88,7 +88,9 @@ model Recipe {
   // Status flags
   is_parsed    Boolean  @default(false)
   parse_errors String?
-  status       String   @default("active") @db.VarChar(20)
+  // Upper case everywhere: every read filters `status: 'ACTIVE'` and every
+  // write goes through `RECIPE_STATUS_*` in `src/lib/recipes/ingest.ts`.
+  status       String   @default("ACTIVE") @db.VarChar(20)
 
   // Recipe details
   ingredients_list   Json?

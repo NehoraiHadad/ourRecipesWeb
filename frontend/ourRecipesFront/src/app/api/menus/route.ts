@@ -64,11 +64,18 @@ export async function GET(request: NextRequest) {
         created_at: true,
         updated_at: true,
         telegram_message_id: true,
-        // Don't include meals for list view (performance)
-        _count: {
+        // The list card renders `menu.meals.length` ("N ארוחות"), so the meals
+        // themselves ship — but only their own columns, never the recipe tree.
+        meals: {
+          orderBy: { meal_order: 'asc' as const },
           select: {
-            meals: true,
-            shopping_list_items: true
+            id: true,
+            menu_id: true,
+            meal_type: true,
+            meal_order: true,
+            meal_time: true,
+            notes: true,
+            created_at: true
           }
         }
       },

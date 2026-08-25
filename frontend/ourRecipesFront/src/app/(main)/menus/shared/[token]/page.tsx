@@ -35,15 +35,8 @@ export default function SharedMenuPage() {
     setError('');
     setLoadingMessage('טוען תפריט...');
 
-    // Show server wake-up message after 3 seconds
-    const wakeUpTimer = setTimeout(() => {
-      setLoadingMessage('מעיר את השרת... זה עשוי לקחת עד דקה וחצי ⏳');
-    }, 3000);
-
     try {
       const response = await menuService.getSharedMenu(shareToken);
-
-      clearTimeout(wakeUpTimer);
 
       if (response.menu) {
         setMenu(response.menu);
@@ -51,14 +44,15 @@ export default function SharedMenuPage() {
         setError('תפריט לא נמצא או לא שותף');
       }
     } catch (err: any) {
-      clearTimeout(wakeUpTimer);
       console.error('Error loading shared menu:', err);
 
+      // No cold-start wording any more: the API is serverless and same-origin
+      // (ARCHITECTURE §3) — a slow response is a real failure, not a sleeping host.
       let errorMessage = 'שגיאה בטעינת התפריט';
       if (err.name === 'TimeoutError' || err.status === 408) {
-        errorMessage = 'השרת לוקח זמן להתעורר. אנא רענן את הדף או חזור לקישור בעוד 30 שניות.';
+        errorMessage = 'הבקשה ארכה זמן רב מדי. אנא רענן את הדף ונסה שוב.';
       } else if (err.status === 502 || err.status === 504) {
-        errorMessage = 'השרת מתעורר כעת. אנא רענן את הדף או נסה שוב בעוד כמה שניות.';
+        errorMessage = 'השרת לא הגיב. אנא רענן את הדף ונסה שוב.';
       } else if (err.name === 'NetworkError' || err.status === 503) {
         errorMessage = 'בעיית תקשורת עם השרת. אנא בדוק את החיבור לאינטרנט ונסה שוב.';
       }
@@ -93,11 +87,18 @@ export default function SharedMenuPage() {
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
-  const handleRecipeClick = async (recipeId: number) => {
+  // Menu rows carry the DB primary key (`recipe_id`), but every recipe endpoint
+  // is keyed by `telegram_id` — so the lookup uses the embedded summary's id.
+  const handleRecipeClick = async (telegramId?: number) => {
+    if (!telegramId) {
+      addNotification({ message: 'המתכון אינו זמין', type: 'error' });
+      return;
+    }
+
     setLoadingRecipe(true);
 
     try {
-      const response = await RecipeService.getRecipeById(recipeId);
+      const response = await RecipeService.getRecipeById(telegramId);
       setViewingRecipe(response.data);
     } catch (error: any) {
       console.error('Error loading recipe:', error);
@@ -221,7 +222,7 @@ export default function SharedMenuPage() {
                   meal.recipes.map((mealRecipe) => (
                     <div
                       key={mealRecipe.id}
-                      onClick={() => handleRecipeClick(mealRecipe.recipe_id)}
+                      onClick={() => handleRecipeClick(mealRecipe.recipe?.telegram_id)}
                       className="flex items-start gap-4 p-4 bg-gray-50 rounded-lg cursor-pointer hover:bg-gray-100 transition-colors"
                     >
                       {mealRecipe.recipe?.image_url && (

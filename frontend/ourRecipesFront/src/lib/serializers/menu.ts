@@ -11,6 +11,22 @@
 import { randomBytes } from 'node:crypto';
 import type { DietaryType, MealRecipe, Menu, MenuMeal, RecipeDifficulty } from '@prisma/client';
 
+/**
+ * Columns every embedded recipe summary carries. `telegram_id` is not
+ * decoration: it is the key `GET /api/recipes/[telegram_id]` looks up by, so
+ * without it the UI cannot open a recipe it found inside a menu.
+ */
+export const recipeSummarySelect = {
+  id: true,
+  telegram_id: true,
+  title: true,
+  cooking_time: true,
+  preparation_time: true,
+  difficulty: true,
+  servings: true,
+  image_url: true
+} as const;
+
 /** Prisma `include` shape for a menu with its full meal/recipe tree, sorted like Flask's `lazy='joined', order_by=...`. */
 export const menuMealsInclude = {
   meals: {
@@ -20,15 +36,7 @@ export const menuMealsInclude = {
         orderBy: { course_order: 'asc' as const },
         include: {
           recipe: {
-            select: {
-              id: true,
-              title: true,
-              cooking_time: true,
-              preparation_time: true,
-              difficulty: true,
-              servings: true,
-              image_url: true
-            }
+            select: recipeSummarySelect
           }
         }
       }
@@ -38,6 +46,7 @@ export const menuMealsInclude = {
 
 export interface RecipeSummaryRow {
   id: number;
+  telegram_id: number | null;
   title: string | null;
   cooking_time: number | null;
   preparation_time: number | null;
@@ -88,6 +97,7 @@ export function difficultyToValue(d: RecipeDifficulty | null | undefined): 'easy
 export function serializeRecipeSummary(recipe: RecipeSummaryRow) {
   return {
     id: recipe.id,
+    telegram_id: recipe.telegram_id,
     title: recipe.title,
     cooking_time: recipe.cooking_time,
     preparation_time: recipe.preparation_time,

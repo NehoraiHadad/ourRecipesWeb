@@ -44,6 +44,9 @@ export async function GET(request: NextRequest) {
         title: true,
         categories: true,
         is_parsed: true,
+        // The management screen's "with errors"/"no errors" filters and the
+        // per-row error badge read this column (`RecipeManagement`, `RecipeList`).
+        parse_errors: true,
         is_verified: true,
         sync_status: true,
         created_at: true,

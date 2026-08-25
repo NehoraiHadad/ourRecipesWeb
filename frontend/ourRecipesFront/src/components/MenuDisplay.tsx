@@ -96,12 +96,19 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
     return type ? labels[type as keyof typeof labels] || type : 'כללי';
   };
 
-  // Handle recipe click to VIEW the recipe
-  const handleRecipeClick = async (recipeId: number) => {
+  // Handle recipe click to VIEW the recipe.
+  // Menu rows carry the DB primary key (`recipe_id`), but every recipe endpoint
+  // is keyed by `telegram_id` — so the lookup uses the embedded summary's id.
+  const handleRecipeClick = async (telegramId?: number) => {
+    if (!telegramId) {
+      addNotification({ message: 'המתכון אינו זמין', type: 'error' });
+      return;
+    }
+
     setLoadingRecipe(true);
 
     try {
-      const response = await RecipeService.getRecipeById(recipeId);
+      const response = await RecipeService.getRecipeById(telegramId);
       setViewingRecipe(response.data);
     } catch (error) {
       console.error('Error loading recipe:', error);
@@ -608,7 +615,7 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
                       className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
                                hover:bg-secondary-100 transition-colors
                                cursor-pointer"
-                      onClick={() => handleRecipeClick(mealRecipe.recipe_id)}
+                      onClick={() => handleRecipeClick(mealRecipe.recipe?.telegram_id)}
                     >
                       {mealRecipe.recipe?.image_url && (
                         <img
