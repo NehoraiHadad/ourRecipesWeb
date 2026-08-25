@@ -9,6 +9,7 @@
  * (rendered by the management screens) calls them out.
  */
 import React from 'react';
+import { imageSrc } from '@/utils/imageSrc';
 import { Typography } from '@/components/ui/Typography';
 
 const TITLE_LABEL = 'כותרת:';
@@ -41,7 +42,7 @@ const RawRecipeView: React.FC<RawRecipeViewProps> = ({ title, text, notice, imag
     <div className="bg-white rounded-lg overflow-hidden">
       {image && (
         <img
-          src={image.startsWith('data:') ? image : `data:image/jpeg;base64,${image}`}
+          src={imageSrc(image)}
           alt={heading}
           className="rounded-lg w-full h-auto mb-4"
         />

@@ -6,6 +6,7 @@
  * not parse.
  */
 import React, { useEffect, useState } from "react";
+import { imageSrc } from '@/utils/imageSrc';
 import { useFeatureAnnouncement } from '@/context/FeatureAnnouncementContext';
 import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 import CategoryTags from './CategoryTags';
@@ -47,11 +48,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
     <div className="bg-white rounded-lg overflow-hidden">
       {recipe.image_url && (
         <img
-          src={
-            recipe.image_url.startsWith("data:")
-              ? recipe.image_url
-              : `data:image/jpeg;base64,${recipe.image_url}`
-          }
+          src={imageSrc(recipe.image_url)}
           alt={title}
           className="rounded-lg w-full h-auto mb-4"
         />
