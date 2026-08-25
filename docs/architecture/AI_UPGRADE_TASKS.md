@@ -60,6 +60,14 @@ Post-deploy hotfix 2 2026-08-25 — menu agent 500 in production:
 - If menu quality on flash disappoints: the pro model is reachable via KIE's OpenAI-compatible
   endpoint (`/gemini-3.1-pro/v1/chat/completions`, supports OpenAI-format tools) — a bigger
   conversion, or upgrade the Google key to a paid tier and set `AI_MODEL_MENU_AGENT=gemini:...`.
+- Hardening that followed (prod agent sessions showed high latency variance through KIE from
+  fra1 — measured 64s / 102s / 120s+ for the same request): route `maxDuration` 120→300 and
+  client timeout 120s→240s; agent turns get a 75s per-attempt retry budget (was 45s — turns were
+  aborted mid-generation and retried from scratch); an empty final model turn (KIE occasionally
+  answers HTTP 200 with no candidates under load) gets one tool-less nudge for the summary
+  instead of failing the session with 'הסוכן לא הפיק תפריט'.
+- Final production verification 2026-08-25: optimize-steps 200 in ~6s; generate-preview 200 in
+  102s — 1 meal, 3 courses, every course with a Hebrew `ai_reason`.
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan
