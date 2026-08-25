@@ -106,6 +106,19 @@ describe('runMenuAgent', () => {
     expect(result.conclusion).toBe('סיכום אחרי ניסיון שני');
   });
 
+  it('nudges once for a summary when a turn comes back completely empty', async () => {
+    sendMessage
+      .mockResolvedValueOnce(modelTurn({ calls: [{ name: 'search_recipes' }] }))
+      .mockResolvedValueOnce(modelTurn({}))
+      .mockResolvedValueOnce(modelTurn({ text: 'סיכום אחרי דחיפה' }));
+
+    const result = await runMenuAgent(PREFERENCES);
+
+    expect(result.conclusion).toBe('סיכום אחרי דחיפה');
+    const nudge = sendMessage.mock.calls[2][0];
+    expect(nudge.config.tools).toBeUndefined();
+  });
+
   it('stops at the iteration cap and asks for a summary without tools', async () => {
     sendMessage.mockResolvedValue(modelTurn({ calls: [{ name: 'search_recipes' }], text: '' }));
     sendMessage.mockResolvedValueOnce(modelTurn({ calls: [{ name: 'search_recipes' }] }));

@@ -33,6 +33,17 @@ export const MAX_AGENT_ITERATIONS = 12;
 const WRAP_UP =
   'הגעת למגבלת הצעדים. סכם עכשיו בטקסט את התפריט הטוב ביותר שהרכבת עד כה, בלי לקרוא לכלים נוספים.';
 
+const EMPTY_TURN_NUDGE =
+  'התשובה הקודמת הגיעה ריקה. סכם עכשיו בטקסט את התפריט שהרכבת, בלי לקרוא לכלים נוספים.';
+
+/**
+ * Agent turns carry the whole planning conversation, so they legitimately run
+ * past the default 45s per-attempt budget under load (prod 2026-08-25: turns
+ * aborted at 45s, were retried from scratch, and blew the session). The
+ * route's maxDuration=300 leaves room for a longer attempt.
+ */
+const TURN_TIMEOUT_MS = 75_000;
+
 export interface MenuAgentResult {
   /** The model's free-text conclusion; `finalize` turns it into a typed plan. */
   conclusion: string;
@@ -51,7 +62,10 @@ function send(
   message: PartListUnion,
   config: GenerateContentConfig
 ): Promise<GenerateContentResponse> {
-  return withRetry((signal) => chat.sendMessage({ message, config: { ...config, abortSignal: signal } }));
+  return withRetry(
+    (signal) => chat.sendMessage({ message, config: { ...config, abortSignal: signal } }),
+    { timeoutMs: TURN_TIMEOUT_MS }
+  );
 }
 
 async function runCall(call: FunctionCall): Promise<Part> {
@@ -83,8 +97,17 @@ export async function runMenuAgent(preferences: MenuPreferences): Promise<MenuAg
   for (let iteration = 1; iteration <= MAX_AGENT_ITERATIONS; iteration++) {
     const calls = response.functionCalls ?? [];
     if (calls.length === 0) {
-      logger.info({ iterations: iteration - 1 }, 'Menu agent finished planning');
-      return { conclusion: response.text ?? '', iterations: iteration - 1 };
+      const conclusion = response.text?.trim() ?? '';
+      if (conclusion) {
+        logger.info({ iterations: iteration - 1 }, 'Menu agent finished planning');
+        return { conclusion, iterations: iteration - 1 };
+      }
+      // The KIE proxy occasionally answers a turn with no candidates at all
+      // (HTTP 200, empty body) under load; ending the session here would fail
+      // finalize with an empty plan, so nudge once for the summary instead.
+      logger.warn({ iteration }, 'Menu agent got an empty model turn, nudging for a summary');
+      const nudged = await send(chat, EMPTY_TURN_NUDGE, { systemInstruction: config.systemInstruction });
+      return { conclusion: nudged.text ?? '', iterations: iteration - 1 };
     }
 
     logger.debug(
