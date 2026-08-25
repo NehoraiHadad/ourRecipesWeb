@@ -12,7 +12,10 @@ import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
 
 vi.mock('@/lib/telegram/botApi', () => ({
-  sendMessage: vi.fn()
+  sendMessage: vi.fn(),
+  editMessageText: vi.fn(),
+  editMessageCaption: vi.fn(),
+  editMessageMedia: vi.fn()
 }));
 vi.mock('@/lib/images/blob', () => ({
   storeTelegramPhoto: vi.fn()
@@ -25,7 +28,7 @@ import { POST as upsertPOST } from '@/app/api/internal/recipes/upsert/route';
 import { GET as summaryGET } from '@/app/api/internal/recipes/summary/route';
 import { POST as mirrorPendingPOST } from '@/app/api/internal/mirror-pending/route';
 import { GET as cronGET } from '@/app/api/cron/reconcile/route';
-import { sendMessage } from '@/lib/telegram/botApi';
+import { sendMessage, editMessageText } from '@/lib/telegram/botApi';
 import { storeImageBase64 } from '@/lib/images/upload';
 
 const INTERNAL_SECRET = 'internal-secret-value';
@@ -60,6 +63,7 @@ describe('Internal + cron routes', () => {
   beforeEach(() => {
     resetPrismaMock();
     vi.mocked(sendMessage).mockReset();
+    vi.mocked(editMessageText).mockReset();
     vi.mocked(storeImageBase64).mockReset();
 
     process.env.INTERNAL_API_SECRET = INTERNAL_SECRET;
@@ -310,6 +314,65 @@ describe('Internal + cron routes', () => {
       // Only sync_error is written — the row stays pending for the next run.
       const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
       expect(updateArgs.data).toEqual({ sync_error: 'Bad Gateway' });
+    });
+
+    it('re-pushes a pending EDIT (positive telegram_id) onto its existing message, never as a new one', async () => {
+      prismaMock.recipe.findMany.mockResolvedValue([
+        {
+          id: 9,
+          telegram_id: 4242,
+          raw_content: RECIPE_TEXT,
+          image_url: null
+        }
+      ] as any);
+      prismaMock.recipe.update.mockResolvedValue({ id: 9 } as any);
+      vi.mocked(editMessageText).mockResolvedValue({
+        message_id: 4242,
+        chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
+        date: 1,
+        text: RECIPE_TEXT
+      } as any);
+
+      const response = await mirrorPendingPOST(
+        internalRequest('/api/internal/mirror-pending', { method: 'POST' })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, processed: 1, mirrored: 1, failed: 0 });
+
+      // Edits the existing message id — never a brand-new `sendMessage`, which
+      // would duplicate the recipe in the channel.
+      expect(editMessageText).toHaveBeenCalledWith(
+        expect.objectContaining({ chat_id: MAIN_CHANNEL_ID, message_id: 4242, text: RECIPE_TEXT })
+      );
+      expect(sendMessage).not.toHaveBeenCalled();
+
+      // telegram_id is never touched for an edit retry — only the sync flags are.
+      const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
+      expect(updateArgs.where).toEqual({ id: 9 });
+      expect(updateArgs.data.telegram_id).toBeUndefined();
+      expect(updateArgs.data.sync_status).toBe('synced');
+      expect(updateArgs.data.sync_error).toBeNull();
+    });
+
+    it('keeps a pending EDIT pending when the retry still fails', async () => {
+      prismaMock.recipe.findMany.mockResolvedValue([
+        { id: 9, telegram_id: 4242, raw_content: RECIPE_TEXT, image_url: null }
+      ] as any);
+      prismaMock.recipe.update.mockResolvedValue({ id: 9 } as any);
+      vi.mocked(editMessageText).mockRejectedValue(new Error('Bad Gateway'));
+
+      const response = await mirrorPendingPOST(
+        internalRequest('/api/internal/mirror-pending', { method: 'POST' })
+      );
+
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, processed: 1, mirrored: 0, failed: 1 });
+
+      const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
+      expect(updateArgs.data.sync_status).toBe('pending_telegram');
+      expect(updateArgs.data.sync_error).toBe('Bad Gateway');
     });
   });
 

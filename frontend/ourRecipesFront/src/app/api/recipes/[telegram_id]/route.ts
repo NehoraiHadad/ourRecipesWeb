@@ -16,10 +16,9 @@ import { successResponse, noContentResponse } from '@/lib/utils/api-response';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
-import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
-import { snapshotVersion } from '@/lib/recipes/versioning';
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
+import { commitPendingUpdate, applyEditMirrorResult } from '@/lib/recipes/updateRecipe';
 import { archiveRecipe } from '@/lib/recipes/deleteRecipe';
 import { logger } from '@/lib/logger';
 
@@ -65,11 +64,13 @@ interface UpdateRecipeBody {
  * and `PUT /recipes/{id}` — IMPLEMENTATION_PLAN Appendix A) into this single
  * route. Body shape matches what the UI already sends: `{ newText, image? }`.
  *
- * DB-first / Telegram best-effort (ARCHITECTURE §4.3): a `RecipeVersion`
- * snapshot of the *previous* content is created, the recipe row is updated,
- * and the channel message is mirrored (`editMessageText`/`Caption`/`Media`)
- * — a mirror failure downgrades `sync_status` to `'pending_telegram'` rather
- * than failing the request. Response shape matches `GET` above (the shared
+ * DB-first / Telegram best-effort (ARCHITECTURE §4.3, Stage H1): a
+ * `RecipeVersion` snapshot of the *previous* content is created and the new
+ * content is committed to the DB with `sync_status: 'pending_telegram'`
+ * *before* the channel message is mirrored (`editMessageText`/`Caption`/
+ * `Media`). Only once that best-effort mirror resolves is the row patched to
+ * `'synced'` (or left pending with `sync_error` set) — a mirror failure
+ * never fails the request. Response shape matches `GET` above (the shared
  * `SerializedRecipeWithRelations`), not Flask's `{status, new_message_id}`.
  */
 export async function PUT(
@@ -111,6 +112,17 @@ export async function PUT(
       if (uploaded) imageUrl = uploaded;
     }
 
+    const parsed = parseRecipeMessage(newText);
+
+    // DB-first: commit the new content as pending before touching Telegram.
+    const pending = await commitPendingUpdate({
+      recipe,
+      newText,
+      parsed,
+      imageUrl,
+      createdBy: auth.session.sub
+    });
+
     const mirror = await mirrorEditRecipe({
       telegramId: recipe.telegram_id,
       text: newText,
@@ -118,26 +130,7 @@ export async function PUT(
       newImageUrl: imageBuffer ? imageUrl : null
     });
 
-    const parsed = parseRecipeMessage(newText);
-
-    const updated = await prisma.$transaction(async (tx) => {
-      await snapshotVersion(tx, recipe, {
-        createdBy: auth.session.sub,
-        changeDescription: 'Recipe update'
-      });
-
-      return tx.recipe.update({
-        where: { id: recipe.id },
-        data: {
-          raw_content: newText,
-          ...recipeFieldsFromParsed(parsed),
-          image_url: imageUrl,
-          sync_status: mirror.syncStatus,
-          sync_error: mirror.syncError
-        },
-        select: recipeWithRelationsSelect
-      });
-    });
+    const updated = await applyEditMirrorResult(pending.id, mirror);
 
     logger.info(
       { recipeId: updated.id, telegramId, syncStatus: updated.sync_status },

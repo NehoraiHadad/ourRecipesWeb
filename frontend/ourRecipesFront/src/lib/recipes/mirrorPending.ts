@@ -1,22 +1,28 @@
 /**
- * Retry of failed outgoing mirrors (ARCHITECTURE §4.3, §4.6).
+ * Retry of failed outgoing mirrors (ARCHITECTURE §4.3, §4.6, Stage H1).
  *
  * `mirror.ts` is the *forward* path: it tries to publish a recipe the moment
- * the app writes it, and when Telegram is unreachable it parks the row with
- * `sync_status = 'pending_telegram'` (and, for a failed create, a placeholder
- * negative `telegram_id`) rather than failing the user's request. This module
- * is the other half — the sweeper that publishes those rows later, driven by
- * the daily Vercel Cron job and callable on demand through
+ * the app writes it (create or edit), and when Telegram is unreachable it
+ * parks the row with `sync_status = 'pending_telegram'` — a failed create
+ * also leaves a placeholder negative `telegram_id`, a failed edit keeps the
+ * existing real one. This module is the sweeper that publishes those rows
+ * later: the daily Vercel Cron job, and on demand via
  * `POST /api/internal/mirror-pending`.
  *
- * Deliberately implemented in TypeScript rather than in the Python function:
- * the mirror is a plain Bot API `sendMessage`, so Python is left with the one
- * job only it can do — reading channel history over MTProto.
+ * A pending row's `telegram_id` sign says which retry it needs: negative
+ * means "never sent" (`sendMessage`), positive means "sent, but a later edit
+ * failed to sync" (edit the existing message via {@link mirrorEditRecipe} —
+ * never a second send, which would duplicate it in the channel).
+ *
+ * TypeScript, not the Python function: the mirror is a plain Bot API call,
+ * leaving Python the one job only it can do — reading channel history over
+ * MTProto.
  */
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { sendMessage } from '@/lib/telegram/botApi';
 import { getMainChannelId } from '@/lib/telegram/channels';
+import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { SYNC_STATUS_PENDING_TELEGRAM, SYNC_STATUS_SYNCED } from '@/lib/recipes/ingest';
 
 const log = logger.child({ context: 'recipes/mirrorPending' });
@@ -45,12 +51,15 @@ export interface MirrorPendingResult {
 /**
  * What the sweeper needs. `raw_content` is the message body verbatim — it is
  * a NOT NULL column that every write path fills with the channel text, so
- * there is nothing to rebuild from the structured fields here.
+ * there is nothing to rebuild from the structured fields here. `image_url`
+ * decides whether a pending *edit* retry uses `editMessageCaption` or
+ * `editMessageText` (see {@link mirrorEditRecipe}).
  */
 interface PendingRecipe {
   id: number;
   telegram_id: number;
   raw_content: string;
+  image_url: string | null;
 }
 
 /**
@@ -82,7 +91,7 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
 
   const pending = (await prisma.recipe.findMany({
     where: { sync_status: SYNC_STATUS_PENDING_TELEGRAM },
-    select: { id: true, telegram_id: true, raw_content: true },
+    select: { id: true, telegram_id: true, raw_content: true, image_url: true },
     orderBy: { updated_at: 'asc' },
     take
   })) as PendingRecipe[];
@@ -95,61 +104,12 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
   log.info({ count: pending.length }, 'Mirroring pending recipes to the channel');
 
   const items: MirrorItemResult[] = [];
-
   for (const recipe of pending) {
-    try {
-      const sent = await sendMessage({
-        chat_id: mainChannelId,
-        text: recipe.raw_content,
-        disable_web_page_preview: true
-      });
-
-      try {
-        await prisma.recipe.update({
-          where: { id: recipe.id },
-          data: {
-            telegram_id: sent.message_id,
-            sync_status: SYNC_STATUS_SYNCED,
-            sync_error: null,
-            last_sync: new Date()
-          }
-        });
-      } catch (updateError) {
-        // Almost certainly a unique-constraint clash on telegram_id, i.e. the
-        // webhook for this very message already landed. The content is in the
-        // channel either way — just clear the pending flag.
-        log.warn(
-          { err: updateError, recipeId: recipe.id, messageId: sent.message_id },
-          'Could not adopt the new message id — marking synced under the existing id'
-        );
-        await prisma.recipe.update({
-          where: { id: recipe.id },
-          data: { sync_status: SYNC_STATUS_SYNCED, sync_error: null, last_sync: new Date() }
-        });
-      }
-
-      items.push({
-        recipeId: recipe.id,
-        previousTelegramId: recipe.telegram_id,
-        telegramId: sent.message_id,
-        ok: true
-      });
-    } catch (error) {
-      const message = error instanceof Error ? error.message : String(error);
-      log.error({ err: error, recipeId: recipe.id }, 'Mirror to Telegram failed — staying pending');
-
-      // Record the reason but keep the row pending so the next run retries it.
-      await prisma.recipe
-        .update({ where: { id: recipe.id }, data: { sync_error: message.slice(0, 500) } })
-        .catch(() => undefined);
-
-      items.push({
-        recipeId: recipe.id,
-        previousTelegramId: recipe.telegram_id,
-        ok: false,
-        error: message
-      });
-    }
+    items.push(
+      recipe.telegram_id > 0
+        ? await retryPendingEdit(recipe)
+        : await retryPendingCreate(recipe, mainChannelId)
+    );
   }
 
   const mirrored = items.filter((item) => item.ok).length;
@@ -164,5 +124,78 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
     mirrored,
     failed: items.length - mirrored,
     items
+  };
+}
+
+/**
+ * A pending row that was never sent (negative placeholder `telegram_id`):
+ * send it as a brand-new message and adopt the real id. If that id is
+ * already taken (the webhook for our own `sendMessage` won the race and
+ * claimed the row first), just mark synced under the existing id rather than
+ * fighting over the unique constraint.
+ */
+async function retryPendingCreate(recipe: PendingRecipe, mainChannelId: number): Promise<MirrorItemResult> {
+  try {
+    const sent = await sendMessage({
+      chat_id: mainChannelId,
+      text: recipe.raw_content,
+      disable_web_page_preview: true
+    });
+
+    try {
+      await prisma.recipe.update({
+        where: { id: recipe.id },
+        data: { telegram_id: sent.message_id, sync_status: SYNC_STATUS_SYNCED, sync_error: null, last_sync: new Date() }
+      });
+    } catch (updateError) {
+      log.warn(
+        { err: updateError, recipeId: recipe.id, messageId: sent.message_id },
+        'Could not adopt the new message id — marking synced under the existing id'
+      );
+      await prisma.recipe.update({
+        where: { id: recipe.id },
+        data: { sync_status: SYNC_STATUS_SYNCED, sync_error: null, last_sync: new Date() }
+      });
+    }
+
+    return { recipeId: recipe.id, previousTelegramId: recipe.telegram_id, telegramId: sent.message_id, ok: true };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    log.error({ err: error, recipeId: recipe.id }, 'Mirror to Telegram failed — staying pending');
+
+    // Record the reason but keep the row pending so the next run retries it.
+    await prisma.recipe
+      .update({ where: { id: recipe.id }, data: { sync_error: message.slice(0, 500) } })
+      .catch(() => undefined);
+
+    return { recipeId: recipe.id, previousTelegramId: recipe.telegram_id, ok: false, error: message };
+  }
+}
+
+/**
+ * A pending row that already has a real message (a later *edit* failed to
+ * sync): re-push the current content onto that same message via
+ * {@link mirrorEditRecipe} — never `sendMessage`, which would duplicate it.
+ */
+async function retryPendingEdit(recipe: PendingRecipe): Promise<MirrorItemResult> {
+  const mirror = await mirrorEditRecipe({
+    telegramId: recipe.telegram_id,
+    text: recipe.raw_content,
+    hadImage: Boolean(recipe.image_url),
+    newImageUrl: null
+  });
+
+  const ok = mirror.syncStatus === SYNC_STATUS_SYNCED;
+  await prisma.recipe.update({
+    where: { id: recipe.id },
+    data: { sync_status: mirror.syncStatus, sync_error: mirror.syncError, ...(ok ? { last_sync: new Date() } : {}) }
+  });
+
+  return {
+    recipeId: recipe.id,
+    previousTelegramId: recipe.telegram_id,
+    telegramId: ok ? recipe.telegram_id : undefined,
+    ok,
+    error: mirror.syncError ?? undefined
   };
 }

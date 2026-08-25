@@ -9,6 +9,12 @@
  * and the one kept here; other people's public menus stay reachable through
  * their share link (`GET /api/menus/shared/:token`) and by id.
  *
+ * Serializes through the shared `serializeMenu`/`menuMealsInclude` (Stage H2)
+ * — the same contract `POST` below and `GET /api/menus/[id]` answer with —
+ * rather than a hand-written projection. The list card (`app/(main)/menus`)
+ * only renders `menu.meals.length`, but shipping the full meal/recipe tree
+ * keeps this one shape for every menu route instead of a second, thinner one.
+ *
  * POST /api/menus
  * Save a menu after the user confirms an AI-generated preview.
  * Port of `POST /menus/save` (`routes/menus.py::save_menu`) — see the
@@ -52,46 +58,19 @@ export async function GET(request: NextRequest) {
 
     const totalItems = await prisma.menu.count({ where });
 
-    const menus = await prisma.menu.findMany({
+    const menus = (await prisma.menu.findMany({
       where,
-      select: {
-        id: true,
-        user_id: true,
-        name: true,
-        event_type: true,
-        description: true,
-        total_servings: true,
-        dietary_type: true,
-        share_token: true,
-        is_public: true,
-        created_at: true,
-        updated_at: true,
-        telegram_message_id: true,
-        // The list card renders `menu.meals.length` ("N ארוחות"), so the meals
-        // themselves ship — but only their own columns, never the recipe tree.
-        meals: {
-          orderBy: { meal_order: 'asc' as const },
-          select: {
-            id: true,
-            menu_id: true,
-            meal_type: true,
-            meal_order: true,
-            meal_time: true,
-            notes: true,
-            created_at: true
-          }
-        }
-      },
+      include: menuMealsInclude,
       orderBy: {
         created_at: 'desc'
       },
       skip,
       take
-    });
+    })) as MenuRow[];
 
     logger.info({ count: menus.length, total: totalItems }, 'Menus fetched');
 
-    return paginatedResponse(menus, page, pageSize, totalItems);
+    return paginatedResponse(menus.map((menu) => serializeMenu(menu)), page, pageSize, totalItems);
   } catch (error) {
     logger.error({ error }, 'Fetch menus failed');
     return handleApiError(error);

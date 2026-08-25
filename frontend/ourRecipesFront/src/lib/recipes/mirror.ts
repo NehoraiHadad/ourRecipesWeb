@@ -1,11 +1,13 @@
 /**
- * Best-effort Telegram mirroring for recipe writes (ARCHITECTURE §4.3).
+ * Best-effort Telegram mirroring for recipe writes (ARCHITECTURE §4.3, Stage H1).
  *
- * The DB is the source of truth: every recipe write commits regardless of
- * whether the channel mirror succeeds. A mirror failure only ever downgrades
- * `sync_status` to `'pending_telegram'` — it never fails the HTTP request.
- * The periodic reconcile job (Wave 1.D / `api-python`) is what eventually
- * catches these up.
+ * DB-first: the caller (`app/api/recipes/route.ts` / `[telegram_id]/route.ts`)
+ * always writes the DB row *before* calling into this module, then patches
+ * the row afterwards with whatever this module reports. Nothing here talks
+ * to Prisma — these are pure "try to tell Telegram" functions that never
+ * throw, matching the `menuMirror.ts` pattern. A mirror failure only ever
+ * downgrades `sync_status` to `'pending_telegram'`; the periodic reconcile
+ * job (`mirrorPending.ts`) is what eventually catches these up.
  */
 import {
   editMessageCaption,
@@ -50,15 +52,17 @@ function errorMessage(error: unknown): string {
 }
 
 export interface MirrorCreateResult {
-  telegramId: number;
-  syncStatus: RecipeSyncStatus;
-  syncError: string | null;
+  ok: boolean;
+  /** The real Telegram message id, present only when `ok` is true. */
+  telegramId: number | null;
+  error: string | null;
 }
 
 /**
  * Sends a brand-new recipe message to the main channel.
- * Port of `RecipeService.create_recipe`'s Telegram half — best-effort here
- * rather than failing the whole create, per ARCHITECTURE §4.3.
+ * Port of `RecipeService.create_recipe`'s Telegram half — called *after* the
+ * DB row already exists under a placeholder id (Stage H1); the caller patches
+ * the row with the result rather than this function touching Prisma.
  */
 export async function mirrorCreateRecipe(
   text: string,
@@ -74,14 +78,10 @@ export async function mirrorCreateRecipe(
       ? await sendPhoto({ chat_id: channelId, photo: imageBuffer, caption: text })
       : await sendMessage({ chat_id: channelId, text });
 
-    return { telegramId: message.message_id, syncStatus: 'synced', syncError: null };
+    return { ok: true, telegramId: message.message_id, error: null };
   } catch (error) {
-    log.error({ err: error }, 'Telegram mirror failed for recipe create — falling back to pending_telegram');
-    return {
-      telegramId: generatePendingTelegramId(),
-      syncStatus: 'pending_telegram',
-      syncError: errorMessage(error)
-    };
+    log.error({ err: error }, 'Telegram mirror failed for recipe create — leaving pending_telegram');
+    return { ok: false, telegramId: null, error: errorMessage(error) };
   }
 }
 

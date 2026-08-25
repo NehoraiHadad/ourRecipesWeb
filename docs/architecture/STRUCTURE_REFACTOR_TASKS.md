@@ -151,10 +151,22 @@ DB (שדות מובנים) ──serializer──▶ API ──▶ UI מרנדר
 
 ### שלב H — DB-first (הרחבת תכולה, הוחלט תוך כדי הסשן)
 > הדגש עובר ל-DB כמקור התפעולי; טלגרם = ערוץ קלט/הפצה בלבד.
-- [ ] H1 יצירה/עריכת מתכון: כתיבה ל-DB קודם, שיקוף לטלגרם best-effort אחרי
-      (יישור לדפוס של מקומות/תפריטים; מנגנון pending_telegram הקיים נשאר כ-recovery).
-- [ ] H2 רשימת תפריטים (`GET /api/menus`) עוברת ל-`serializeMenu` במקום select ידני
-      (סגירת הפער האחרון של "חוזה אחד").
+- [x] H1 יצירה/עריכת מתכון: `POST`/`PUT /api/recipes` כותבים ל-DB קודם
+      (`sync_status='pending_telegram'`, ב-create עם `telegram_id` שלילי מ-
+      `generatePendingTelegramId`) ורק אז מנסים שיקוף לטלגרם best-effort; הצלחה
+      → פאץ' ל-`telegram_id`/`synced` (+`last_sync`), כישלון → נשאר pending עם
+      `sync_error`. לוגיקת ה-DB פוצלה ל-`src/lib/recipes/createRecipe.ts` /
+      `updateRecipe.ts` כדי לשמור על ה-routes דקים. `mirrorPendingRecipes`
+      (`mirrorPending.ts`) הורחב: `telegram_id` שלילי = פנייה ראשונה
+      (`sendMessage`), חיובי = עריכה pending שנכשלה בעבר → `mirrorEditRecipe`
+      על אותה הודעה (לעולם לא `sendMessage` שני, שהיה משכפל בערוץ). בדיקות
+      `recipes-create`/`recipes-update`/`internal-reconcile` עודכנו לסדר החדש
+      + בדיקות מפורשות ל-pending edit retry ולכך שכשל טלגרם עדיין מחזיר הצלחה.
+- [x] H2 `GET /api/menus` עובר מ-select ידני ל-`menuMealsInclude`+`serializeMenu`
+      המשותפים (אותו חוזה כמו `POST`/`GET /api/menus/[id]`); ה-UI (`menus/page.tsx`,
+      `menuService`) צורך רק `id`/`name`/`meals.length`/שדות סקלריים שכולם
+      נשארו תואמים. בדיקת `read-projections.test.ts` עודכנה לבדוק `include`
+      במקום `select` ידני.
 
 ### שלב G — אימות וסגירה
 - [ ] G1 `npm test` + `tsc` + build מקומי ירוקים; בדיקות round-trip עוברות.

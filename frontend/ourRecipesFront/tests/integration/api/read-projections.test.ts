@@ -3,7 +3,10 @@
  * The list endpoints hand the UI a *projection*, not the whole row, so the
  * columns the screens actually render are part of the contract:
  *
- * - `GET /api/menus` — the menus grid prints `menu.meals.length` ("N ארוחות").
+ * - `GET /api/menus` — the menus grid prints `menu.meals.length` ("N ארוחות"),
+ *   and (Stage H2) serializes through the same `serializeMenu`/
+ *   `menuMealsInclude` every other menu route uses — one contract, not a
+ *   trimmed-down list projection.
  * - `GET /api/recipes/manage` — the management toolbar filters on
  *   `parse_errors` and the rows render it as an error badge.
  *
@@ -17,6 +20,7 @@ import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
 import { recipeRow } from '@tests/helpers/recipeFixtures';
 import { signSession } from '@/lib/auth/session';
+import { menuMealsInclude } from '@/lib/serializers/menu';
 
 const OWNER = '111';
 
@@ -31,7 +35,7 @@ beforeEach(() => {
 });
 
 describe('GET /api/menus', () => {
-  it('includes each menu\'s meals so the list can count them', async () => {
+  it('includes each menu\'s meals (via the shared serializer) so the list can count them', async () => {
     const { GET } = await import('@/app/api/menus/route');
 
     prismaMock.menu.count.mockResolvedValue(1);
@@ -46,12 +50,12 @@ describe('GET /api/menus', () => {
         dietary_type: 'MEAT',
         share_token: 'tok123',
         is_public: false,
+        ai_reasoning: null,
         created_at: new Date('2024-01-01T10:00:00Z'),
         updated_at: new Date('2024-01-01T10:00:00Z'),
-        telegram_message_id: null,
         meals: [
-          { id: 10, menu_id: 1, meal_type: 'ארוחת ערב', meal_order: 1, meal_time: null, notes: null, created_at: new Date('2024-01-01T10:00:00Z') },
-          { id: 11, menu_id: 1, meal_type: 'ארוחת בוקר', meal_order: 2, meal_time: null, notes: null, created_at: new Date('2024-01-01T10:00:00Z') }
+          { id: 10, menu_id: 1, meal_type: 'ארוחת ערב', meal_order: 1, meal_time: null, notes: null, created_at: new Date('2024-01-01T10:00:00Z'), recipes: [] },
+          { id: 11, menu_id: 1, meal_type: 'ארוחת בוקר', meal_order: 2, meal_time: null, notes: null, created_at: new Date('2024-01-01T10:00:00Z'), recipes: [] }
         ]
       } as any
     ]);
@@ -67,9 +71,9 @@ describe('GET /api/menus', () => {
     expect(json.data[0].meals).toHaveLength(2);
     expect(json.data[0].meals[0].meal_type).toBe('ארוחת ערב');
 
-    // Meals ship without their recipe tree — the list view never renders it.
-    const select = (prismaMock.menu.findMany.mock.calls[0][0] as any).select;
-    expect(select.meals.select.recipes).toBeUndefined();
+    // Same shape every menu route answers with — the shared include, not a
+    // hand-trimmed list projection.
+    expect((prismaMock.menu.findMany.mock.calls[0][0] as any).include).toEqual(menuMealsInclude);
   });
 });
 

@@ -11,29 +11,24 @@
  * (`title`/`categories`/`ingredients`/`instructions`/...) can also skip
  * `newText` and let `formatRecipeText` build the canonical channel message.
  *
- * DB-first / Telegram best-effort (ARCHITECTURE §4.3): the Telegram
- * `sendMessage`/`sendPhoto` mirror is attempted before the DB write so the
- * confirmed `message_id` can become `telegram_id` — but a mirror failure
- * never fails the request. It instead persists with a small negative
- * placeholder `telegram_id` and `sync_status: 'pending_telegram'`, which the
- * periodic reconcile job (Wave 1.D) is expected to resolve.
+ * DB-first / Telegram best-effort (ARCHITECTURE §4.3, Stage H1): the DB row
+ * is written first with a small negative placeholder `telegram_id` and
+ * `sync_status: 'pending_telegram'`. The Telegram `sendMessage`/`sendPhoto`
+ * mirror is only attempted afterwards; on success the row is patched with the
+ * real `telegram_id` and `sync_status: 'synced'`. A mirror failure never
+ * fails the request — the row simply stays pending for the periodic
+ * reconcile job (`mirrorPending.ts`) to resolve later.
  */
 import { NextRequest } from 'next/server';
-import { Prisma } from '@prisma/client';
-import { prisma } from '@/lib/prisma';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
-import {
-  recipeWithRelationsSelect,
-  serializeRecipeWithRelations
-} from '@/lib/serializers/recipe';
+import { serializeRecipeWithRelations } from '@/lib/serializers/recipe';
 import { createdResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
-import { formatRecipeText, parseRecipeMessage, type ParsedRecipe } from '@/lib/recipes/parser';
-import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
+import { formatRecipeText, parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage } from '@/lib/recipes/image';
-import { buildVersionContent } from '@/lib/recipes/versioning';
 import { mirrorCreateRecipe, generatePendingTelegramId } from '@/lib/recipes/mirror';
+import { createRecipeRetryingId, applyCreateMirrorResult } from '@/lib/recipes/createRecipe';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'api/recipes:POST' });
@@ -67,8 +62,6 @@ function resolveText(body: CreateRecipeBody): string | null {
   return null;
 }
 
-const MAX_TELEGRAM_ID_RETRIES = 3;
-
 export async function POST(request: NextRequest) {
   try {
     const auth = await requireEditPermission(request);
@@ -86,17 +79,16 @@ export async function POST(request: NextRequest) {
     const imageBuffer = decodeBase64Image(body.image);
     const imageUrl = imageBuffer ? await uploadRecipeImage(imageBuffer, `create-${Date.now()}`) : null;
 
-    const mirror = await mirrorCreateRecipe(text, imageBuffer);
-
-    const recipe = await createRecipeRetryingId({
-      telegramId: mirror.telegramId,
+    let recipe = await createRecipeRetryingId({
+      telegramId: generatePendingTelegramId(),
       text,
       parsed,
       imageUrl,
-      syncStatus: mirror.syncStatus,
-      syncError: mirror.syncError,
       createdBy: auth.session.sub
     });
+
+    const mirror = await mirrorCreateRecipe(text, imageBuffer);
+    recipe = await applyCreateMirrorResult(recipe, mirror);
 
     log.info(
       { recipeId: recipe.id, telegramId: recipe.telegram_id, syncStatus: recipe.sync_status },
@@ -108,74 +100,4 @@ export async function POST(request: NextRequest) {
     log.error({ error }, 'Recipe creation failed');
     return handleApiError(error);
   }
-}
-
-interface CreateRecipeInput {
-  telegramId: number;
-  text: string;
-  parsed: ParsedRecipe;
-  imageUrl: string | null;
-  syncStatus: 'synced' | 'pending_telegram';
-  syncError: string | null;
-  createdBy: string;
-}
-
-/**
- * Creates the `Recipe` (+ initial `RecipeVersion`). When the mirror failed
- * and left us with a placeholder negative `telegram_id`, an extremely rare
- * collision with another pending recipe is retried with a fresh id rather
- * than failing the whole request.
- */
-async function createRecipeRetryingId(input: CreateRecipeInput) {
-  let telegramId = input.telegramId;
-
-  for (let attempt = 1; attempt <= MAX_TELEGRAM_ID_RETRIES; attempt++) {
-    try {
-      return await prisma.recipe.create({
-        data: {
-          telegram_id: telegramId,
-          raw_content: input.text,
-          ...recipeFieldsFromParsed(input.parsed),
-          image_url: input.imageUrl,
-          sync_status: input.syncStatus,
-          sync_error: input.syncError,
-          versions: {
-            create: {
-              version_num: 1,
-              content: buildVersionContent({
-                title: input.parsed.title || null,
-                raw_content: input.text,
-                categories: input.parsed.categories,
-                ingredients: input.parsed.ingredients,
-                instructions: input.parsed.instructions || null,
-                preparation_time: input.parsed.preparationTime ?? null,
-                difficulty: input.parsed.difficulty ?? null,
-                image_url: input.imageUrl
-              }),
-              created_by: input.createdBy,
-              change_description: 'Initial creation',
-              is_current: true
-            }
-          }
-        },
-        select: recipeWithRelationsSelect
-      });
-    } catch (error) {
-      const isPlaceholderCollision =
-        telegramId < 0 &&
-        error instanceof Prisma.PrismaClientKnownRequestError &&
-        error.code === 'P2002';
-
-      if (isPlaceholderCollision && attempt < MAX_TELEGRAM_ID_RETRIES) {
-        log.warn({ attempt, telegramId }, 'Placeholder telegram_id collision — retrying with a new one');
-        telegramId = generatePendingTelegramId();
-        continue;
-      }
-
-      throw error;
-    }
-  }
-
-  // Unreachable — the loop above always returns or throws.
-  throw new Error('Failed to create recipe after retries');
 }
