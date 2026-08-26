@@ -6,6 +6,7 @@
  */
 import { NextRequest } from 'next/server';
 import { generateMenuPreview, type MenuPreferences } from '@/lib/ai/menu';
+import { buildMenuPreview } from '@/lib/menus/menuPreview';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { prisma } from '@/lib/prisma';
@@ -59,7 +60,9 @@ export async function POST(request: NextRequest) {
     });
 
     return successResponse({
-      preview: menuPlan,
+      // The agent's plan carries bare recipe ids; the client contract is
+      // `MenuPreview` — the same tree a saved menu renders.
+      preview: await buildMenuPreview(menuPlan),
       preferences: body  // Echo back for save endpoint
     });
   } catch (error) {

@@ -6,7 +6,8 @@ import { useNotification } from '@/context/NotificationContext';
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import Spinner from '@/components/ui/Spinner';
-import type { DietaryType, MenuGenerationRequest, RecipeSummary } from '@/types';
+import MealCourseCard from '@/components/menu/MealCourseCard';
+import type { DietaryType, MenuGenerationRequest, MenuPreview, RecipeSummary } from '@/types';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import {
   SparklesIcon,
@@ -42,7 +43,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   const [error, setError] = useState<string>('');
 
   // Preview state
-  const [menuPreview, setMenuPreview] = useState<any>(null);
+  const [menuPreview, setMenuPreview] = useState<MenuPreview | null>(null);
   const [previewPreferences, setPreviewPreferences] = useState<MenuGenerationRequest | null>(null);
 
   // Recipe replacement in preview
@@ -213,13 +214,13 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
   };
 
   // Handle replacing a recipe in preview
-  const handleConfirmReplacement = (newRecipeId: number, newRecipeData: any) => {
+  const handleConfirmReplacement = (newRecipeId: number, newRecipeData: RecipeSummary) => {
     if (!replacingRecipe || !menuPreview) return;
 
     const { mealIndex, recipeIndex } = replacingRecipe;
 
     // Create a deep copy of the menu preview
-    const updatedPreview = JSON.parse(JSON.stringify(menuPreview));
+    const updatedPreview: MenuPreview = JSON.parse(JSON.stringify(menuPreview));
 
     // Update the recipe at the specified position
     updatedPreview.meals[mealIndex].recipes[recipeIndex] = {
@@ -470,7 +471,7 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
           </h3>
 
           <div className="space-y-6 mb-6">
-            {menuPreview.meals?.map((meal: any, index: number) => (
+            {menuPreview.meals?.map((meal, index) => (
               <div key={index} className="bg-white rounded-lg shadow-warm p-6 border border-secondary-100">
                 <h4 className="text-xl font-bold text-secondary-800 mb-4">
                   {meal.meal_type}
@@ -482,72 +483,40 @@ const MenuGenerator: React.FC<MenuGeneratorProps> = ({ onMenuCreated }) => {
                 </h4>
 
                 <div className="space-y-4">
-                  {meal.recipes?.map((mealRecipe: any, rIndex: number) => (
-                    <div
+                  {meal.recipes?.map((course, rIndex) => (
+                    <MealCourseCard
                       key={rIndex}
-                      className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-colors"
-                    >
-                      {mealRecipe.recipe?.image_url && (
-                        <img
-                          src={mealRecipe.recipe.image_url}
-                          alt={mealRecipe.recipe?.title}
-                          className="w-20 h-20 object-cover rounded-md"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <h5 className="text-lg font-semibold text-secondary-800">
-                          {mealRecipe.recipe?.title || 'מתכון לא זמין'}
-                        </h5>
-                        {mealRecipe.course_type && (
-                          <p className="text-sm text-secondary-500 mt-1">
-                            סוג: {mealRecipe.course_type}
-                          </p>
-                        )}
-                        {mealRecipe.ai_reason && (
-                          <p className="text-sm text-secondary-600 mt-1 flex items-start gap-1">
-                            <LightbulbIcon size="xs" className="flex-shrink-0 mt-0.5" />
-                            <span>{mealRecipe.ai_reason}</span>
-                          </p>
-                        )}
-                        <div className="flex gap-3 mt-2 text-xs text-secondary-500">
-                          {mealRecipe.recipe?.cooking_time && (
-                            <span className="flex items-center gap-1">
-                              <ClockIcon className="w-3 h-3" />
-                              {mealRecipe.recipe.cooking_time} דק׳
-                            </span>
-                          )}
-                          {mealRecipe.recipe?.difficulty && (
-                            <span className="flex items-center gap-1">
-                              <ChartBarIcon size="xs" />
-                              {mealRecipe.recipe.difficulty}
-                            </span>
-                          )}
-                          {mealRecipe.recipe?.servings && (
-                            <span>👥 {mealRecipe.recipe.servings} מנות</span>
-                          )}
-                        </div>
-                      </div>
-                      <Button
-                        variant="secondary"
-                        size="sm"
-                        onClick={() => handleReplaceInPreview(index, rIndex, mealRecipe.recipe_id, mealRecipe.course_type)}
-                      >
-                        <RefreshIcon size="sm" className="ml-1" />
-                        החלף
-                      </Button>
-                    </div>
+                      course={course}
+                      // A new tab, not navigation: the preview is unsaved and
+                      // leaving the page would discard it.
+                      onOpenRecipe={(telegramId) =>
+                        telegramId
+                          ? window.open(`/recipe/${telegramId}`, '_blank')
+                          : addNotification({ message: 'המתכון אינו זמין', type: 'error' })
+                      }
+                      actions={
+                        <Button
+                          variant="secondary"
+                          size="sm"
+                          onClick={() => handleReplaceInPreview(index, rIndex, course.recipe_id, course.course_type ?? '')}
+                        >
+                          <RefreshIcon size="sm" className="ml-1" />
+                          החלף
+                        </Button>
+                      }
+                    />
                   ))}
                 </div>
               </div>
             ))}
           </div>
 
-          {menuPreview.reasoning && (
+          {menuPreview.ai_reasoning && (
             <div className="bg-primary-50 rounded-lg p-4 mb-6 border border-primary-200">
               <p className="text-sm text-primary-700 flex items-start gap-2">
                 <LightbulbIcon size="sm" className="flex-shrink-0 mt-0.5" />
                 <span>
-                  <span className="font-semibold">למה בחרנו ככה?</span> {menuPreview.reasoning}
+                  <span className="font-semibold">למה בחרנו ככה?</span> {menuPreview.ai_reasoning}
                 </span>
               </p>
             </div>

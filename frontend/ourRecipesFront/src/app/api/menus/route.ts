@@ -103,7 +103,12 @@ interface SaveMenuMealInput {
 }
 
 interface SaveMenuInput {
-  preview?: { meals?: SaveMenuMealInput[]; reasoning?: string };
+  /**
+   * `ai_reasoning` is the canonical name (shared with the saved menu and the
+   * `MenuPreview` wire type); `reasoning` is the pre-2026-08-26 preview field,
+   * still accepted so a preview generated before a deploy can be saved after.
+   */
+  preview?: { meals?: SaveMenuMealInput[]; ai_reasoning?: string; reasoning?: string };
   preferences?: {
     name?: string;
     event_type?: string;
@@ -150,7 +155,7 @@ export async function POST(request: NextRequest) {
           dietary_type: parseDietaryType(preferences.dietary_type),
           is_public: isPublic,
           share_token: generateShareToken(),
-          ai_reasoning: menuPlan.reasoning,
+          ai_reasoning: menuPlan.ai_reasoning ?? menuPlan.reasoning,
           generation_prompt: JSON.stringify(preferences)
         }
       });

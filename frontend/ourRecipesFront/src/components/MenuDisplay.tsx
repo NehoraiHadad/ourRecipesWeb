@@ -7,6 +7,7 @@ import Spinner from '@/components/ui/Spinner';
 import Modal from '@/components/Modal';
 import ConfirmDialog from '@/components/ui/ConfirmDialog';
 import RecipeDetails from '@/components/recipe/RecipeDetails';
+import MealCourseCard from '@/components/menu/MealCourseCard';
 import { RecipeService } from '@/services/recipeService';
 import { SearchService } from '@/services/searchService';
 import { useDebounce } from '@/hooks/useDebounce';
@@ -604,76 +605,32 @@ const MenuDisplay: React.FC<MenuDisplayProps> = ({
               <div className="space-y-4">
                 {meal.recipes && meal.recipes.length > 0 ? (
                   meal.recipes.map((mealRecipe) => (
-                    <div
+                    <MealCourseCard
                       key={mealRecipe.id}
-                      className="flex items-start gap-4 p-4 bg-secondary-50 rounded-lg
-                               hover:bg-secondary-100 transition-colors
-                               cursor-pointer"
-                      onClick={() => handleRecipeClick(mealRecipe.recipe?.telegram_id)}
-                    >
-                      {mealRecipe.recipe?.image_url && (
-                        <img
-                          src={mealRecipe.recipe.image_url}
-                          alt={mealRecipe.recipe?.title}
-                          className="w-20 h-20 object-cover rounded-md"
-                        />
-                      )}
-                      <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-secondary-800 hover:text-primary-600 transition-colors">
-                          {mealRecipe.recipe?.title || 'מתכון לא זמין'}
-                        </h3>
-                        {mealRecipe.course_type && (
-                          <p className="text-sm text-secondary-500">
-                            {mealRecipe.course_type}
-                          </p>
-                        )}
-                        {mealRecipe.ai_reason && (
-                          <p className="text-sm text-secondary-600 mt-1 flex items-start gap-1">
-                            <LightbulbIcon size="xs" className="flex-shrink-0 mt-0.5" />
-                            <span>{mealRecipe.ai_reason}</span>
-                          </p>
-                        )}
-                        <div className="flex gap-3 mt-2 text-xs text-secondary-500">
-                          {mealRecipe.recipe?.cooking_time && (
-                            <span className="flex items-center gap-1">
-                              <ClockIcon className="w-3 h-3" />
-                              {mealRecipe.recipe.cooking_time} דק׳
-                            </span>
-                          )}
-                          {mealRecipe.recipe?.difficulty && (
-                            <span className="flex items-center gap-1">
-                              <ChartBarIcon size="xs" />
-                              {mealRecipe.recipe.difficulty}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      <div className="flex gap-2">
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleReplaceClick(meal.id, mealRecipe.recipe_id);
-                          }}
-                        >
-                          <RefreshIcon size="sm" className="ml-1" />
-                          החלף
-                        </Button>
-                        <Button
-                          variant="secondary"
-                          size="sm"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleDeleteRecipe(meal.id, mealRecipe.recipe_id);
-                          }}
-                          className="text-red-600 hover:bg-red-50"
-                        >
-                          <XIcon size="sm" className="ml-1" />
-                          הסר
-                        </Button>
-                      </div>
-                    </div>
+                      course={mealRecipe}
+                      onOpenRecipe={handleRecipeClick}
+                      actions={
+                        <>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => handleReplaceClick(meal.id, mealRecipe.recipe_id)}
+                          >
+                            <RefreshIcon size="sm" className="ml-1" />
+                            החלף
+                          </Button>
+                          <Button
+                            variant="secondary"
+                            size="sm"
+                            onClick={() => handleDeleteRecipe(meal.id, mealRecipe.recipe_id)}
+                            className="text-red-600 hover:bg-red-50"
+                          >
+                            <XIcon size="sm" className="ml-1" />
+                            הסר
+                          </Button>
+                        </>
+                      }
+                    />
                   ))
                 ) : (
                   <p className="text-secondary-500">

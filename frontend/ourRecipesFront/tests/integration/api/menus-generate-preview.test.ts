@@ -1,8 +1,9 @@
 // @vitest-environment node
 /**
  * `POST /api/menus/generate-preview` — the agent's entry point. The route
- * itself only validates, pre-checks the recipe count, and echoes the plan back
- * for the save step, so the agent is mocked here.
+ * validates, pre-checks the recipe count, and converts the agent's plan into
+ * the `MenuPreview` wire contract (recipe summaries embedded per course), so
+ * the agent itself is mocked here.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
@@ -12,6 +13,7 @@ vi.mock('@/lib/ai/menu', () => ({ generateMenuPreview: vi.fn() }));
 
 import { generateMenuPreview } from '@/lib/ai/menu';
 import { POST } from '@/app/api/menus/generate-preview/route';
+import type { MenuPreview } from '@/types';
 
 const PLAN = {
   meals: [
@@ -48,20 +50,37 @@ beforeEach(() => {
 });
 
 describe('POST /api/menus/generate-preview', () => {
-  it('returns the plan and echoes the preferences back for the save step', async () => {
+  it('returns a preview with each course resolved to a recipe, plus the preferences', async () => {
     prismaMock.recipe.count.mockResolvedValue(42 as never);
+    prismaMock.recipe.findMany.mockResolvedValue([
+      {
+        id: 5,
+        telegram_id: 205,
+        title: 'צלי בקר',
+        cooking_time: 180,
+        preparation_time: 30,
+        difficulty: 'MEDIUM',
+        servings: 6,
+        image_url: null
+      }
+    ] as never);
     vi.mocked(generateMenuPreview).mockResolvedValue(PLAN);
 
     const response = await POST(previewRequest(BODY));
 
     expect(response.status).toBe(200);
-    const json = await parseJsonResponse<{ data: { preview: typeof PLAN; preferences: unknown } }>(
+    const json = await parseJsonResponse<{ data: { preview: MenuPreview; preferences: unknown } }>(
       response
     );
-    expect(json.data.preview).toEqual(PLAN);
     expect(json.data.preferences).toMatchObject({ name: 'תפריט שבת' });
-    // `ai_reason` survives the route untouched — the save endpoint reads it by that name.
-    expect(json.data.preview.meals[0].recipes[0].ai_reason).toBe('מנה מרכזית חגיגית');
+    expect(json.data.preview.ai_reasoning).toBe('תפריט מאוזן לשבת');
+
+    const course = json.data.preview.meals[0].recipes[0];
+    // The whole point of the contract: the client gets the dish, not just an id.
+    expect(course.recipe).toMatchObject({ id: 5, telegram_id: 205, title: 'צלי בקר', difficulty: 'medium' });
+    // `ai_reason` survives the conversion — the save endpoint reads it by that name.
+    expect(course.ai_reason).toBe('מנה מרכזית חגיגית');
+    expect(course.recipe_id).toBe(5);
     expect(generateMenuPreview).toHaveBeenCalledWith(
       expect.objectContaining({ name: 'תפריט שבת', servings: 6, meal_types: ['ארוחת ערב'] })
     );

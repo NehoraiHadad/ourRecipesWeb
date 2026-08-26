@@ -95,6 +95,26 @@ JSON-first refactor 2026-08-26 (user decision: "כל המודלים המודרנ
 - Live E2E before deploy: Luna + strict `RECIPE_JSON_SCHEMA` → valid JSON → canonical text →
   `parseRecipeMessage` round-trip `isParsed: true`, 0 errors (420 output tokens).
 
+Menu preview contract 2026-08-26 — every previewed course rendered "מתכון לא זמין":
+- Symptom (user report): the AI menu preview showed the course type and the Hebrew `ai_reason`
+  for each dish, but never a title — so there was no way to tell which recipes were chosen.
+- Root cause was structural, not a missing field: `POST /api/menus/generate-preview` handed the
+  client the agent's internal `MenuPlan` (bare `recipe_id`s — all it needs to reason and all the
+  save route consumes), while the UI renders a preview exactly like a saved menu, off the
+  embedded `recipe` summary that Prisma's `menuMealsInclude` provides. Two shapes for one
+  concept, and `MenuGenerator`'s `menuPreview` was typed `any`, so nothing caught the drift.
+  The duplicated course-row markup in `MenuGenerator` and `MenuDisplay` is what let the two
+  diverge silently — same fallback string in both copies.
+- Fix (contract + component, not a patch): `PlannedCourse` in `src/types` is now the single
+  definition of a course (saved `MealRecipe` extends it), `MenuPreview` is the wire contract and
+  carries the saved menu's field names (`ai_reasoning`, not `reasoning`); `src/lib/menus/
+  menuPreview.ts#buildMenuPreview` converts plan → preview with one query using the same
+  `recipeSummarySelect` saved menus use, so `MenuPlan` never crosses the wire. Both screens now
+  render `components/menu/MealCourseCard` — one copy of the row, one fallback string. Preview
+  rows became clickable too (new tab, so the unsaved preview survives).
+- The save route accepts `ai_reasoning ?? reasoning` so a preview generated before the deploy
+  can still be saved after it.
+
 Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env dials, optional Opus 5 for menus if Gemini Pro feels shallow.
 
 ## Wave plan

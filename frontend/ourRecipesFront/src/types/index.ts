@@ -17,17 +17,46 @@ export interface RecipeSummary {
   image_url?: string;
 }
 
-export interface MealRecipe {
-  id: number;
-  menu_meal_id: number;
+/**
+ * One course inside a meal: which recipe, where it sits, and why the planner
+ * chose it. A saved course (`MealRecipe`) and an unsaved AI-preview course are
+ * the same thing at different points in its life, so both carry this shape —
+ * including the embedded `recipe` summary. Without that summary the UI can
+ * only show a bare id, which is what made every previewed course render as
+ * "מתכון לא זמין".
+ */
+export interface PlannedCourse {
   recipe_id: number;
   course_type?: string;
   course_order: number;
+  ai_reason?: string;
+  recipe?: RecipeSummary;
+}
+
+export interface MealRecipe extends PlannedCourse {
+  id: number;
+  menu_meal_id: number;
   servings?: number;
   notes?: string;
-  ai_reason?: string;
   created_at: string;
-  recipe?: RecipeSummary;
+}
+
+export interface MenuPreviewMeal {
+  meal_type: string;
+  meal_order: number;
+  meal_time?: string;
+  recipes: PlannedCourse[];
+}
+
+/**
+ * An AI menu before it is saved. Deliberately the same tree a saved `Menu`
+ * renders (meals → courses → recipe summary), and it uses the saved menu's
+ * field name `ai_reasoning` — the two shapes drifting apart is exactly how
+ * preview rendering broke once already.
+ */
+export interface MenuPreview {
+  meals: MenuPreviewMeal[];
+  ai_reasoning?: string;
 }
 
 export interface MenuMeal {
