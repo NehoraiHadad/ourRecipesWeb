@@ -14,9 +14,13 @@ import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-he
 vi.mock('@/lib/services/aiService', () => ({
   reformatRecipe: vi.fn()
 }));
+vi.mock('@/lib/images/blob', () => ({
+  storeTelegramPhoto: vi.fn()
+}));
 
 import { POST as webhookPOST } from '@/app/api/webhooks/telegram/route';
 import { reformatRecipe } from '@/lib/services/aiService';
+import { storeTelegramPhoto } from '@/lib/images/blob';
 
 const WEBHOOK_SECRET = 'webhook-secret-value';
 const MAIN_CHANNEL_ID = -1001111111111;
@@ -92,6 +96,7 @@ describe('POST /api/webhooks/telegram', () => {
   beforeEach(() => {
     resetPrismaMock();
     vi.mocked(reformatRecipe).mockReset();
+    vi.mocked(storeTelegramPhoto).mockReset();
 
     process.env.TELEGRAM_WEBHOOK_SECRET = WEBHOOK_SECRET;
     process.env.TELEGRAM_CHANNEL_ID = String(MAIN_CHANNEL_ID);
@@ -213,6 +218,36 @@ describe('POST /api/webhooks/telegram', () => {
       expect(call.create.source_message_id).toBe(42);
       // Original post time becomes created_at.
       expect(call.create.created_at).toEqual(new Date(1_700_000_800 * 1000));
+    });
+
+    it('stores the photo of a photo-with-caption post', async () => {
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+      vi.mocked(storeTelegramPhoto).mockResolvedValue('https://blob.example/photo.jpg');
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 14, image_url: 'https://blob.example/photo.jpg' });
+
+      const base = oldChannelMessage();
+      const response = await webhookPOST(
+        webhookRequest({
+          update_id: 9,
+          channel_post: {
+            ...base,
+            text: undefined,
+            caption: base.text,
+            photo: [
+              { file_id: 'small', file_size: 100 },
+              { file_id: 'large', file_size: 900 }
+            ]
+          }
+        })
+      );
+
+      expect(response.status).toBe(200);
+      // The largest size is the one stored.
+      expect(storeTelegramPhoto).toHaveBeenCalledWith('large');
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.image_url).toBe('https://blob.example/photo.jpg');
     });
 
     it('stores a 🗑️-marked post as ARCHIVED (rebuild replaying a deleted recipe)', async () => {

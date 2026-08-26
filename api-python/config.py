@@ -38,6 +38,8 @@ class Settings(BaseSettings):
     #: costs a Gemini call, so this is deliberately modest. Raised for the
     #: one-time full rebuild (see README).
     RECONCILE_INGEST_LIMIT: int = 20
+    #: Photos above this size are skipped (never worth failing the recipe).
+    MAX_PHOTO_BYTES: int = 5 * 1024 * 1024
     #: The ingest route does a Gemini reformat before answering, well past a
     #: typical API timeout — give it room.
     HTTP_TIMEOUT_SECONDS: float = 60.0

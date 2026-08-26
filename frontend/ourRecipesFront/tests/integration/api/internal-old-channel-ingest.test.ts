@@ -15,9 +15,13 @@ import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-he
 vi.mock('@/lib/services/aiService', () => ({
   reformatRecipe: vi.fn()
 }));
+vi.mock('@/lib/images/upload', () => ({
+  storeImageBase64: vi.fn()
+}));
 
 import { POST as ingestPOST } from '@/app/api/internal/old-channel/ingest/route';
 import { reformatRecipe } from '@/lib/services/aiService';
+import { storeImageBase64 } from '@/lib/images/upload';
 
 const INTERNAL_SECRET = 'internal-secret-value';
 
@@ -57,6 +61,7 @@ function trackedRecipe(overrides: Record<string, unknown> = {}) {
     preparation_time: 45,
     difficulty: 'EASY',
     image_url: null,
+    status: 'ACTIVE',
     app_edited_at: null,
     ...overrides
   };
@@ -75,6 +80,7 @@ describe('POST /api/internal/old-channel/ingest', () => {
   beforeEach(() => {
     resetPrismaMock();
     vi.mocked(reformatRecipe).mockReset();
+    vi.mocked(storeImageBase64).mockReset();
     process.env.INTERNAL_API_SECRET = INTERNAL_SECRET;
   });
 
@@ -160,6 +166,23 @@ describe('POST /api/internal/old-channel/ingest', () => {
       expect(call.create.source_message_id).toBe(42);
       // Original post time (unix seconds) becomes created_at.
       expect(call.create.created_at).toEqual(new Date(1_700_000_800 * 1000));
+    });
+
+    it('stores a base64 photo shipped by the Telethon reconcile', async () => {
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 12, image_url: 'https://blob.example/r.jpg' });
+      vi.mocked(storeImageBase64).mockResolvedValue('https://blob.example/r.jpg');
+
+      const response = await ingestPOST(
+        ingestRequest({ sourceMessageId: 43, text: 'מתכון עם תמונה', photoBase64: 'AAAA' })
+      );
+
+      expect(response.status).toBe(200);
+      expect(storeImageBase64).toHaveBeenCalledWith('AAAA', expect.any(Number));
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.image_url).toBe('https://blob.example/r.jpg');
     });
   });
 

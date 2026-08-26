@@ -2,10 +2,10 @@
  * Blob upload for images that did **not** come through the Bot API.
  *
  * `src/lib/images/blob.ts` (Wave 0) covers the webhook path: a Telegram
- * `file_id` → `getFile` → download → Blob. The history importer has no usable
+ * `file_id` → `getFile` → download → Blob. The reconcile/rebuild has no usable
  * `file_id` — it reads the channel with Telethon (MTProto), whose file
  * references the Bot API cannot resolve — so it downloads the photo itself and
- * ships the bytes to `POST /api/internal/recipes/upsert` as base64.
+ * ships the bytes to `POST /api/internal/old-channel/ingest` as base64.
  *
  * Same contract as `storeTelegramPhoto`: best-effort, never throws, `null` on
  * failure. A missing image must not cost us the recipe.

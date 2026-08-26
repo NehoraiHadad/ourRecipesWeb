@@ -1,48 +1,44 @@
 /**
  * GET /api/internal/recipes/summary — what the reconcile job compares against.
  *
- * The Python function reads the last N channel messages and needs to answer one
- * question per message: *does the DB already have exactly this?* Shipping the
- * full `raw_content` of hundreds of recipes back over the wire to answer that
- * would be wasteful, so this returns a SHA-256 of the stored text instead. The
- * caller hashes the message it just read and only POSTs an upsert when the
- * digests differ (or the row is missing entirely).
+ * The Python function reads the last N old-channel messages and needs to
+ * answer one question per message: *does a row already claim this
+ * `source_message_id`?* There is no text comparison — the stored
+ * `raw_content` is Gemini's reformat of the raw post, so it can never equal
+ * the channel text; existence is the only signal (ARCHITECTURE §4.6).
  *
  * Auth: `Authorization: Bearer <INTERNAL_API_SECRET>`.
  *
- * Query parameters (all optional, `ids` and `since` are mutually usable):
- *  - `ids`   — comma-separated `telegram_id`s to look up (max 500).
- *  - `since` — ISO-8601 timestamp; only recipes updated at/after it.
- *  - `limit` — cap on rows returned (default 200, max 1000).
+ * Query parameters:
+ *  - `source_ids` — required; comma-separated old-channel `message_id`s
+ *    (max 500 per request).
  *
  * Response:
  * ```jsonc
  * {
  *   "ok": true,
- *   "count": 2,
+ *   "count": 1,
  *   "recipes": [
- *     { "telegram_id": 12, "content_hash": "…", "content_length": 431,
- *       "status": "ACTIVE", "source_channel": "old", "source_message_id": 12,
+ *     { "source_message_id": 12, "telegram_id": -900123, "status": "ACTIVE",
  *       "has_image": true, "updated_at": "2026-08-25T09:00:00.000Z" }
  *   ]
  * }
  * ```
+ * Ids absent from `recipes` have no row — those are the reconcile's misses.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { requireInternalSecret } from '@/lib/internal/auth';
-import { contentHash } from '@/lib/internal/hash';
+import { SOURCE_CHANNEL_OLD } from '@/lib/recipes/ingest';
 
 export const dynamic = 'force-dynamic';
 
 const log = logger.child({ context: 'api/internal/recipes/summary' });
 
-const DEFAULT_LIMIT = 200;
-const MAX_LIMIT = 1000;
 const MAX_IDS = 500;
 
-function parseIds(raw: string | null): number[] | null {
+function parseSourceIds(raw: string | null): number[] | null {
   if (!raw) return null;
 
   const ids = raw
@@ -50,7 +46,7 @@ function parseIds(raw: string | null): number[] | null {
     .map((part) => Number(part.trim()))
     .filter((value) => Number.isInteger(value) && value > 0);
 
-  return ids.length > 0 ? ids.slice(0, MAX_IDS) : [];
+  return ids.slice(0, MAX_IDS);
 }
 
 export async function GET(request: NextRequest): Promise<Response> {
@@ -60,56 +56,41 @@ export async function GET(request: NextRequest): Promise<Response> {
   try {
     const { searchParams } = new URL(request.url);
 
-    const ids = parseIds(searchParams.get('ids'));
-    const sinceRaw = searchParams.get('since');
-    const limitRaw = Number(searchParams.get('limit'));
-    const take = Number.isFinite(limitRaw) && limitRaw > 0
-      ? Math.min(Math.trunc(limitRaw), MAX_LIMIT)
-      : DEFAULT_LIMIT;
-
-    // `ids=` present but none valid: an explicit empty question, empty answer.
-    if (ids !== null && ids.length === 0) {
+    const sourceIds = parseSourceIds(searchParams.get('source_ids'));
+    if (sourceIds === null) {
+      return Response.json(
+        { ok: false, error: 'source_ids is required (comma-separated old-channel message ids)' },
+        { status: 400 }
+      );
+    }
+    // Present but none valid: an explicit empty question, empty answer.
+    if (sourceIds.length === 0) {
       return Response.json({ ok: true, count: 0, recipes: [] });
     }
 
-    const where: { telegram_id?: { in: number[] }; updated_at?: { gte: Date } } = {};
-    if (ids) where.telegram_id = { in: ids };
-
-    if (sinceRaw) {
-      const since = new Date(sinceRaw);
-      if (Number.isNaN(since.getTime())) {
-        return Response.json({ ok: false, error: 'since must be an ISO-8601 date' }, { status: 400 });
-      }
-      where.updated_at = { gte: since };
-    }
-
     const recipes = await prisma.recipe.findMany({
-      where,
+      where: {
+        source_channel: SOURCE_CHANNEL_OLD,
+        source_message_id: { in: sourceIds }
+      },
       select: {
+        source_message_id: true,
         telegram_id: true,
-        raw_content: true,
         image_url: true,
         status: true,
-        source_channel: true,
-        source_message_id: true,
         updated_at: true
-      },
-      orderBy: { telegram_id: 'desc' },
-      take
+      }
     });
 
     const summary = recipes.map((recipe) => ({
-      telegram_id: recipe.telegram_id,
-      content_hash: contentHash(recipe.raw_content ?? ''),
-      content_length: (recipe.raw_content ?? '').length,
-      status: recipe.status,
-      source_channel: recipe.source_channel,
       source_message_id: recipe.source_message_id,
+      telegram_id: recipe.telegram_id,
+      status: recipe.status,
       has_image: Boolean(recipe.image_url),
       updated_at: recipe.updated_at ? recipe.updated_at.toISOString() : null
     }));
 
-    log.debug({ count: summary.length }, 'Summary served');
+    log.debug({ asked: sourceIds.length, found: summary.length }, 'Summary served');
 
     return Response.json({ ok: true, count: summary.length, recipes: summary });
   } catch (error) {

@@ -18,6 +18,7 @@ Run locally:      uvicorn main:app --reload --port 8000
 Deploy (Vercel):  vercel deploy   (from this directory; api/index.py is the entry)
 """
 
+import base64
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
@@ -123,15 +124,51 @@ async def fetch_page(client: Any, limit: int) -> ChannelPage:
     return ChannelPage(collected, scanned)
 
 
+async def download_photo_base64(message: Any) -> Optional[str]:
+    """
+    Download a message photo and return it base64-encoded, or None.
+
+    Telethon file references are MTProto-only — the Bot API cannot resolve
+    them — so the bytes travel to Next in the ingest payload and are stored to
+    Vercel Blob there. Best-effort: an image is never worth losing a recipe.
+    Must run while the Telethon connection is open.
+    """
+    if not getattr(message, "photo", None):
+        return None
+
+    try:
+        data = await message.download_media(file=bytes)
+        if not data:
+            return None
+
+        if len(data) > settings.MAX_PHOTO_BYTES:
+            logger.warning(
+                "photo_too_large",
+                message_id=message.id,
+                bytes=len(data),
+                limit=settings.MAX_PHOTO_BYTES,
+            )
+            return None
+
+        return base64.b64encode(data).decode("ascii")
+
+    except Exception as error:  # noqa: BLE001 — best-effort by design
+        logger.warning("photo_download_failed", message_id=message.id, error=str(error))
+        return None
+
+
 async def ingest_missing_message(
     next_client: NextInternalClient, message: Any, text: str
 ) -> MessageOutcome:
     """POST one message the DB is missing through the old-channel ingest route."""
+    photo_base64 = await download_photo_base64(message)
+
     try:
         result = await next_client.old_channel_ingest(
             source_message_id=message.id,
             text=text,
             date=message_epoch_seconds(message),
+            photo_base64=photo_base64,
         )
         return MessageOutcome(source_message_id=message.id, action=result.get("action", "unknown"))
 

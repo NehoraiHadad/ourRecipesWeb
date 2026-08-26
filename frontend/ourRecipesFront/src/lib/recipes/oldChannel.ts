@@ -30,6 +30,10 @@ export interface OldChannelInput {
   sourceMessageId: number;
   /** Raw text/caption of the old-channel post. */
   text: string;
+  /** Bot API `file_id` of the post's photo (webhook path). */
+  photoFileId?: string | null;
+  /** Base64 photo bytes (Telethon reconcile/rebuild path — no usable file_id). */
+  photoBase64?: string | null;
   /** Original post time, used as `created_at` when the row is first created. */
   messageDate?: Date | null;
 }
@@ -71,6 +75,8 @@ export async function ingestOldChannelPost(input: OldChannelInput): Promise<OldC
     telegramId,
     source: { channel: SOURCE_CHANNEL_OLD, messageId: sourceMessageId },
     text: archived ? `${ARCHIVE_MARKERS[0]} ${formatted}` : formatted,
+    photoFileId: input.photoFileId ?? null,
+    photoBase64: input.photoBase64 ?? null,
     messageDate: input.messageDate ?? null
   });
 

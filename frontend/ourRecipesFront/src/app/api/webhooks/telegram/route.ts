@@ -33,6 +33,7 @@ import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
 import { unauthorizedResponse, verifyTelegramWebhookSecret } from '@/lib/internal/auth';
 import { classifyChannel } from '@/lib/telegram/channels';
+import { largestPhotoFileId } from '@/lib/recipes/ingest';
 import { ingestOldChannelPost } from '@/lib/recipes/oldChannel';
 import { applyOldChannelEdit, findRecipeByOldChannelSource } from '@/lib/recipes/oldChannelEdit';
 import type { TelegramMessage, TelegramUpdate } from '@/lib/telegram/types';
@@ -113,6 +114,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     const result = await ingestOldChannelPost({
       sourceMessageId: message.message_id,
       text,
+      photoFileId: largestPhotoFileId(message.photo),
       messageDate: message.date ? new Date(message.date * 1000) : null
     });
 

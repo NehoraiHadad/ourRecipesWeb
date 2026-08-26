@@ -1,13 +1,13 @@
 /**
- * Recipe ingestion — the one place a Telegram channel message becomes a row.
+ * Recipe ingestion — the one place channel-derived content becomes a row.
  *
- * Two callers, identical semantics, so gap-filling can never drift from
- * real-time input (ARCHITECTURE §4.1, §4.2, §4.6):
- *  - `POST /api/webhooks/telegram` — Bot API push, `channel_post` /
- *    `edited_channel_post` on the main channel.
- *  - `POST /api/internal/recipes/upsert` — the Python (Telethon) reconcile and
- *    history importer, which the Bot API cannot replace because it cannot read
- *    messages predating the bot.
+ * Both intakes reach this through `ingestOldChannelPost`, with identical
+ * semantics so gap-filling can never drift from real-time input
+ * (ARCHITECTURE §4.1, §4.2, §4.6):
+ *  - `POST /api/webhooks/telegram` — Bot API push from the old channel.
+ *  - `POST /api/internal/old-channel/ingest` — the Python (Telethon)
+ *    reconcile/rebuild, which the Bot API cannot replace because it cannot
+ *    read messages predating the bot.
  *
  * Everything here is idempotent: re-ingesting the same message is a no-op.
  */
@@ -15,6 +15,7 @@ import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
+import { storeTelegramPhoto } from '@/lib/images/blob';
 import { storeImageBase64 } from '@/lib/images/upload';
 import { RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 
@@ -56,7 +57,9 @@ export interface IngestRecipeInput {
   source?: RecipeSource;
   /** `message.text` or `message.caption`. May be empty for a photo-only post. */
   text: string;
-  /** Base64 photo bytes (Telethon history import, which has no usable file_id). */
+  /** Bot API `file_id` of the largest photo size, if the message carries one. */
+  photoFileId?: string | null;
+  /** Base64 photo bytes (Telethon history reads, which have no usable file_id). */
   photoBase64?: string | null;
   /** Pre-resolved image URL, when the caller already stored the blob. */
   imageUrl?: string | null;
@@ -105,9 +108,23 @@ export function stripArchiveMarker(text: string): string {
   return text ?? '';
 }
 
+/** Largest `PhotoSize` of a message — Telegram sends them in ascending order. */
+export function largestPhotoFileId(
+  photos: Array<{ file_id: string; file_size?: number }> | undefined | null
+): string | null {
+  if (!photos || photos.length === 0) return null;
+
+  const largest = photos.reduce((best, current) =>
+    (current.file_size ?? 0) >= (best.file_size ?? 0) ? current : best
+  );
+
+  return largest.file_id ?? photos[photos.length - 1].file_id ?? null;
+}
+
 /** Resolves whichever image form the caller supplied into a Blob URL. */
 async function resolveImageUrl(input: IngestRecipeInput): Promise<string | null> {
   if (input.imageUrl) return input.imageUrl;
+  if (input.photoFileId) return storeTelegramPhoto(input.photoFileId);
   if (input.photoBase64) return storeImageBase64(input.photoBase64, input.telegramId);
   return null;
 }
@@ -133,7 +150,7 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
     select: { id: true, raw_content: true, image_url: true, status: true, source_message_id: true }
   });
 
-  const hasIncomingImage = Boolean(input.imageUrl || input.photoBase64);
+  const hasIncomingImage = Boolean(input.imageUrl || input.photoFileId || input.photoBase64);
 
   // Source fields are set whenever the caller knows them — including on
   // updates, so a row created before its origin was known (e.g. the webhook

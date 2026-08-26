@@ -1,9 +1,9 @@
 /**
  * Who may see a place — the places-side twin of `recipes/visibility.ts`.
  *
- * Places soft-delete too, via their own column (`is_deleted`, set by the 🗑️
- * channel-edit convention in `places/ingest.ts` as well as by
- * `DELETE /api/places/:id`). The column differs from the recipe one for
+ * Places soft-delete too, via their own column (`is_deleted`, set by
+ * `DELETE /api/places/:id` — places are app-authored only since Wave 5).
+ * The column differs from the recipe one for
  * historical reasons; the *rule* should not, so it lives in one constant here
  * and every reader spreads it in rather than restating `is_deleted: false`.
  */

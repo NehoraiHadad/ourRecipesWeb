@@ -47,50 +47,36 @@ class NextInternalClient:
             raise RuntimeError("NextInternalClient must be used as an async context manager")
         return self._client
 
+    #: The summary route accepts at most this many ids per request.
+    SUMMARY_BATCH = 500
+
     async def summary_old_channel(self, message_ids: Iterable[int]) -> Dict[int, Dict[str, Any]]:
         """
         Fetch which of the given old-channel message ids already have a row.
 
         Returns ``{source_message_id: {...}}``. An id absent from the result
         has no row yet under ``source_channel == "old"`` and is a candidate
-        for ``/old-channel/ingest``.
-
-        Deliberately does **not** filter the request with ``ids=`` — that
-        query param matches `Recipe.telegram_id` (the route's one remaining
-        consumer before Wave 5 was the main-channel reconcile, keyed by
-        `telegram_id`). Every old-channel row now gets its `telegram_id` from
-        the internal negative-id generator, unrelated to the channel's real
-        message id, so filtering by it would silently match nothing and make
-        every message look "missing" on every run. Instead this pulls the
-        most recent rows (ordered `telegram_id desc`, i.e. most recently
-        created first — the right order for "did reconcile already see
-        this?") and matches `source_message_id` against `message_ids`
-        locally. ``limit`` is padded well past what was asked for, since the
-        recipe most recently *created* is not always the one most recently
-        *posted*.
+        for ``/old-channel/ingest``. Batched in chunks of ``SUMMARY_BATCH``
+        so the full-rebuild scan (thousands of ids) works unchanged.
         """
-        wanted = {int(i) for i in message_ids}
+        wanted = sorted({int(i) for i in message_ids})
         if not wanted:
             return {}
 
-        limit = min(max(len(wanted) * 10, 200), 1000)  # summary route caps at 1000
-        response = await self.client.get(
-            "/api/internal/recipes/summary",
-            params={"limit": limit},
-        )
-        response.raise_for_status()
-        payload = response.json()
-
         known: Dict[int, Dict[str, Any]] = {}
-        for item in payload.get("recipes", []):
-            if item.get("source_channel") != "old":
-                continue
-            source_message_id = item.get("source_message_id")
-            if source_message_id is None:
-                continue
-            source_message_id = int(source_message_id)
-            if source_message_id in wanted:
-                known[source_message_id] = item
+        for start in range(0, len(wanted), self.SUMMARY_BATCH):
+            batch = wanted[start : start + self.SUMMARY_BATCH]
+            response = await self.client.get(
+                "/api/internal/recipes/summary",
+                params={"source_ids": ",".join(str(i) for i in batch)},
+            )
+            response.raise_for_status()
+            payload = response.json()
+
+            for item in payload.get("recipes", []):
+                source_message_id = item.get("source_message_id")
+                if source_message_id is not None:
+                    known[int(source_message_id)] = item
 
         return known
 
@@ -99,17 +85,22 @@ class NextInternalClient:
         source_message_id: int,
         text: str,
         date: Optional[int] = None,
+        photo_base64: Optional[str] = None,
     ) -> Dict[str, Any]:
         """
         Push one old-channel message through the AI reformat + store pipeline.
 
         Idempotent from the caller's point of view: whether the row already
         exists or not, the route decides (edit vs. create) and this just
-        reports the outcome.
+        reports the outcome. ``photo_base64`` carries the post's photo —
+        Telethon file references are MTProto-only, so the bytes travel in the
+        payload and are stored to Vercel Blob on the Next side.
         """
         body: Dict[str, Any] = {"sourceMessageId": source_message_id, "text": text}
         if date is not None:
             body["date"] = date
+        if photo_base64:
+            body["photoBase64"] = photo_base64
 
         response = await self.client.post("/api/internal/old-channel/ingest", json=body)
         response.raise_for_status()

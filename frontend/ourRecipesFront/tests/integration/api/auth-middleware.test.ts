@@ -67,7 +67,7 @@ describe('middleware — public paths', () => {
     ['POST', '/api/webhooks/telegram'],
     ['GET', '/api/ping'],
     ['GET', '/api/ping/'],
-    ['POST', '/api/internal/recipes/upsert'],
+    ['POST', '/api/internal/old-channel/ingest'],
     ['GET', '/api/cron/reconcile']
   ] as const;
 

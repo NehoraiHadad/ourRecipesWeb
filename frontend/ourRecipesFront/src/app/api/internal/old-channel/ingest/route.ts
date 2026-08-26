@@ -4,11 +4,7 @@
  * The old channel is the sole intake (ARCHITECTURE §4.1, §4.6, Wave 5.5). The
  * Bot API webhook covers it in real time; this route is the *other* place that
  * pipeline runs — the Python (Telethon) function's history reads, which the
- * Bot API cannot do because it cannot see messages older than the bot. It
- * exists apart from `/api/internal/recipes/upsert` on purpose: that route is
- * the plain, AI-free upsert door, and deliberately keeps the Gemini SDK out of
- * its bundle. Ingesting an old-channel message always needs a reformat, so it
- * gets a route of its own.
+ * Bot API cannot do because it cannot see messages older than the bot.
  *
  * Same lookup-then-branch the webhook uses: a message id a row already claims
  * (`{source_channel: 'old', source_message_id}`) is an edit of that row;
@@ -18,7 +14,8 @@
  *
  * Request body:
  * ```jsonc
- * { "sourceMessageId": 42, "text": "...", "date": 1700000800 } // date: unix seconds, optional
+ * { "sourceMessageId": 42, "text": "...", "date": 1700000800, "photoBase64": "..." }
+ * // date: unix seconds; photoBase64: the post's photo bytes — both optional
  * ```
  *
  * Response: `{ ok, action, telegram_id, recipeId, needs_review? }`, where
@@ -44,6 +41,7 @@ interface IngestBody {
   sourceMessageId?: unknown;
   text?: unknown;
   date?: unknown;
+  photoBase64?: unknown;
 }
 
 function badRequest(message: string): Response {
@@ -93,6 +91,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     const result = await ingestOldChannelPost({
       sourceMessageId,
       text,
+      photoBase64: typeof body?.photoBase64 === 'string' && body.photoBase64 ? body.photoBase64 : null,
       messageDate: parseMessageDate(body?.date)
     });
 
