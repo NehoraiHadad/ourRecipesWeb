@@ -20,8 +20,6 @@ export interface TelegramApiResponse<T> {
   };
 }
 
-export type TelegramParseMode = 'HTML' | 'Markdown' | 'MarkdownV2';
-
 export interface TelegramUser {
   id: number;
   is_bot: boolean;
@@ -120,64 +118,6 @@ export interface TelegramChatMember {
 
 /** Chat id: numeric (`-100…` for channels) or `@username`. */
 export type TelegramChatId = number | string;
-
-export interface SendMessageParams {
-  chat_id: TelegramChatId;
-  text: string;
-  parse_mode?: TelegramParseMode;
-  disable_web_page_preview?: boolean;
-  disable_notification?: boolean;
-  reply_to_message_id?: number;
-  message_thread_id?: number;
-}
-
-export interface SendPhotoParams {
-  chat_id: TelegramChatId;
-  /** file_id, public URL, or a Buffer/Blob for a fresh upload. */
-  photo: string | Buffer | Blob;
-  caption?: string;
-  parse_mode?: TelegramParseMode;
-  disable_notification?: boolean;
-  reply_to_message_id?: number;
-  message_thread_id?: number;
-  /** Filename used when `photo` is binary. Defaults to `photo.jpg`. */
-  filename?: string;
-}
-
-export interface EditMessageTextParams {
-  chat_id: TelegramChatId;
-  message_id: number;
-  text: string;
-  parse_mode?: TelegramParseMode;
-  disable_web_page_preview?: boolean;
-}
-
-export interface EditMessageCaptionParams {
-  chat_id: TelegramChatId;
-  message_id: number;
-  caption?: string;
-  parse_mode?: TelegramParseMode;
-}
-
-/** Only the photo variant is needed here. */
-export interface TelegramInputMediaPhoto {
-  type: 'photo';
-  /** file_id, public URL, or `attach://<name>` for an uploaded part. */
-  media: string;
-  caption?: string;
-  parse_mode?: TelegramParseMode;
-}
-
-export interface EditMessageMediaParams {
-  chat_id: TelegramChatId;
-  message_id: number;
-  media: TelegramInputMediaPhoto;
-}
-
-export interface DeleteMessageParams {
-  chat_id: TelegramChatId;
-  message_id: number;
-}
 
 export interface GetChatMemberParams {
   chat_id: TelegramChatId;

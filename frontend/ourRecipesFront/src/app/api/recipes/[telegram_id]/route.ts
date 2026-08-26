@@ -17,8 +17,7 @@ import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/recipes/image';
-import { mirrorEditRecipe } from '@/lib/recipes/mirror';
-import { commitPendingUpdate, applyEditMirrorResult } from '@/lib/recipes/updateRecipe';
+import { commitUpdate } from '@/lib/recipes/updateRecipe';
 import { archiveRecipe } from '@/lib/recipes/deleteRecipe';
 import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { logger } from '@/lib/logger';
@@ -71,14 +70,11 @@ interface UpdateRecipeBody {
  * and `PUT /recipes/{id}` — IMPLEMENTATION_PLAN Appendix A) into this single
  * route. Body shape matches what the UI already sends: `{ newText, image? }`.
  *
- * DB-first / Telegram best-effort (ARCHITECTURE §4.3, Stage H1): a
- * `RecipeVersion` snapshot of the *previous* content is created and the new
- * content is committed to the DB with `sync_status: 'pending_telegram'`
- * *before* the channel message is mirrored (`editMessageText`/`Caption`/
- * `Media`). Only once that best-effort mirror resolves is the row patched to
- * `'synced'` (or left pending with `sync_error` set) — a mirror failure
- * never fails the request. Response shape matches `GET` above (the shared
- * `SerializedRecipeWithRelations`), not Flask's `{status, new_message_id}`.
+ * A `RecipeVersion` snapshot of the *previous* content is created and the new
+ * content committed in the same transaction (`commitUpdate`) — the DB is the
+ * only store now that the main Telegram channel is gone. Response shape
+ * matches `GET` above (the shared `SerializedRecipeWithRelations`), not
+ * Flask's `{status, new_message_id}`.
  */
 export async function PUT(
   request: NextRequest,
@@ -131,8 +127,7 @@ export async function PUT(
 
     const parsed = parseRecipeMessage(newText);
 
-    // DB-first: commit the new content as pending before touching Telegram.
-    const pending = await commitPendingUpdate({
+    const updated = await commitUpdate({
       recipe,
       newText,
       parsed,
@@ -140,19 +135,7 @@ export async function PUT(
       createdBy: auth.session.sub
     });
 
-    const mirror = await mirrorEditRecipe({
-      telegramId: recipe.telegram_id,
-      text: newText,
-      hadImage: Boolean(recipe.image_url),
-      newImageUrl: hasNewImage ? imageUrl : null
-    });
-
-    const updated = await applyEditMirrorResult(pending.id, mirror);
-
-    logger.info(
-      { recipeId: updated.id, telegramId, syncStatus: updated.sync_status },
-      'Recipe updated'
-    );
+    logger.info({ recipeId: updated.id, telegramId }, 'Recipe updated');
 
     return successResponse(serializeRecipeWithRelations(updated));
   } catch (error) {
@@ -162,10 +145,10 @@ export async function PUT(
 
 /**
  * DELETE /api/recipes/:telegram_id
- * Archives a recipe (Stage F1): best-effort channel-message delete +
- * `status -> ARCHIVED`. Never a hard delete — matches the 🗑️ channel-edit
- * convention already handled by ingest (`isArchiveMarked`), just reachable
- * from the management UI instead of Telegram.
+ * Archives a recipe (Stage F1): `status -> ARCHIVED`. Never a hard delete —
+ * matches the 🗑️ channel-edit convention already handled by ingest
+ * (`isArchiveMarked`), just reachable from the management UI instead of
+ * Telegram.
  */
 export async function DELETE(
   request: NextRequest,

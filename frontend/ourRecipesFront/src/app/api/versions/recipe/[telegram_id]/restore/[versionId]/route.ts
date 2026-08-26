@@ -7,10 +7,9 @@
  * `{ data }` — `RecipeDetails.handleVersionRestore` reads
  * `restoredRecipe.title` / `.details` / `.image` directly off the JSON body.
  *
- * DB-first / Telegram best-effort (ARCHITECTURE §4.3): Flask raises (and
- * 500s) when the Telegram edit fails during a restore; here the DB update
- * always commits and a mirror failure only downgrades `sync_status` to
- * `'pending_telegram'`, per the Wave 1.B brief ("same best-effort").
+ * The DB is the only store now that the main Telegram channel is gone: the
+ * update either commits or the request fails — there is no mirror step to
+ * wait on or fall back from.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -21,7 +20,6 @@ import { validateId, validateTelegramId } from '@/lib/utils/api-validation';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { snapshotVersion } from '@/lib/recipes/versioning';
-import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'api/versions/.../restore' });
@@ -74,13 +72,6 @@ export async function POST(
     // overwrites when the incoming value isn't `None`.
     const restoredImageUrl = versionImageUrl ?? recipe.image_url;
 
-    const mirror = await mirrorEditRecipe({
-      telegramId: recipe.telegram_id,
-      text: versionRawContent,
-      hadImage: Boolean(recipe.image_url),
-      newImageUrl: versionImageUrl
-    });
-
     const parsed = parseRecipeMessage(versionRawContent);
     const restoreDescription = `שחזור לגרסה ${version.version_num ?? ''}`.trim();
 
@@ -98,17 +89,12 @@ export async function POST(
           image_url: restoredImageUrl,
           // A restore is an app edit: mark for conflict tracking, clear any flag.
           app_edited_at: new Date(),
-          needs_review: false,
-          sync_status: mirror.syncStatus,
-          sync_error: mirror.syncError
+          needs_review: false
         }
       });
     });
 
-    log.info(
-      { recipeId: updated.id, telegramId, versionId, syncStatus: updated.sync_status },
-      'Version restored'
-    );
+    log.info({ recipeId: updated.id, telegramId, versionId }, 'Version restored');
 
     return Response.json({
       message: 'Version restored successfully',

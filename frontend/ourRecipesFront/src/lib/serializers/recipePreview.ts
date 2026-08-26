@@ -35,7 +35,6 @@ export function serializePreviewFromParsed(parsed: ParsedRecipe): SerializedReci
     is_parsed: parsed.isParsed,
     parse_errors: parsed.parseErrors,
     status: 'ACTIVE',
-    sync_status: 'synced',
     is_verified: false,
     created_at: new Date().toISOString(),
     updated_at: null

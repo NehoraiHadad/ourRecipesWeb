@@ -1,26 +1,17 @@
 /**
  * @vitest-environment node
  *
- * Integration tests for the Places API (Wave 1.C). Prisma is mocked with
- * vitest-mock-extended; the Telegram Bot API is mocked at
- * `@/lib/telegram/botApi` so the real mirror/format code in
- * `@/lib/telegram/placeMirror` still runs.
+ * Integration tests for the Places API. Prisma is mocked with
+ * vitest-mock-extended.
+ *
+ * The main Telegram channel these routes used to mirror every write to is
+ * gone (Wave 5.4b) — the DB write is the whole operation now, so nothing
+ * here mocks `botApi`.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
 import { signSession } from '@/lib/auth/session';
-import { sendMessage, editMessageText, TelegramApiError } from '@/lib/telegram/botApi';
-
-vi.mock('@/lib/telegram/botApi', () => ({
-  sendMessage: vi.fn(),
-  editMessageText: vi.fn(),
-  deleteMessage: vi.fn(),
-  TelegramApiError: class TelegramApiError extends Error {}
-}));
-
-const sendMessageMock = vi.mocked(sendMessage);
-const editMessageTextMock = vi.mocked(editMessageText);
 
 const USER_ID = '111';
 
@@ -52,7 +43,6 @@ beforeEach(() => {
   resetPrismaMock();
   vi.clearAllMocks();
   process.env.JWT_SECRET = 'test-jwt-secret-value-not-a-real-one';
-  process.env.TELEGRAM_CHANNEL_ID = '-1001234567890';
 });
 
 describe('GET /api/places', () => {
@@ -85,12 +75,10 @@ describe('GET /api/places', () => {
 });
 
 describe('POST /api/places', () => {
-  it('creates a place and mirrors it to Telegram', async () => {
+  it('creates a place', async () => {
     const { POST } = await import('@/app/api/places/route');
 
     prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
-    sendMessageMock.mockResolvedValue({ message_id: 42 } as any);
-    prismaMock.place.update.mockResolvedValue(basePlaceRow({ telegram_message_id: 42 }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/places', {
       method: 'POST',
@@ -103,17 +91,12 @@ describe('POST /api/places', () => {
 
     const json = await parseJsonResponse<any>(response);
     expect(json.name).toBe('פיצה רומא');
-    expect(sendMessageMock).toHaveBeenCalledTimes(1);
-    expect(sendMessageMock.mock.calls[0][0].text).toContain('המלצה חדשה');
-    expect(prismaMock.place.update).toHaveBeenCalledWith({ where: { id: 1 }, data: { telegram_message_id: 42 } });
   });
 
   it('attributes the place to the session display name, not the raw user id', async () => {
     const { POST } = await import('@/app/api/places/route');
 
     prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
-    sendMessageMock.mockResolvedValue({ message_id: 42 } as any);
-    prismaMock.place.update.mockResolvedValue(basePlaceRow({ telegram_message_id: 42 }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/places', {
       method: 'POST',
@@ -127,15 +110,12 @@ describe('POST /api/places', () => {
     expect((prismaMock.place.create.mock.calls[0][0] as any).data.created_by).toBe(
       `דנה כהן (${USER_ID})`
     );
-    expect(sendMessageMock.mock.calls[0][0].text).toContain('נוסף על ידי: דנה כהן');
   });
 
   it('falls back to the user id when the token carries no name claim', async () => {
     const { POST } = await import('@/app/api/places/route');
 
     prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
-    sendMessageMock.mockResolvedValue({ message_id: 42 } as any);
-    prismaMock.place.update.mockResolvedValue(basePlaceRow({ telegram_message_id: 42 }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/places', {
       method: 'POST',
@@ -148,25 +128,6 @@ describe('POST /api/places', () => {
     expect((prismaMock.place.create.mock.calls[0][0] as any).data.created_by).toBe(
       `${USER_ID} (${USER_ID})`
     );
-  });
-
-  it('still creates the place when Telegram is down', async () => {
-    const { POST } = await import('@/app/api/places/route');
-
-    prismaMock.place.create.mockResolvedValue(basePlaceRow() as any);
-    sendMessageMock.mockRejectedValue(new TelegramApiError({ method: 'sendMessage', error_code: 500, description: 'down' } as any));
-
-    const request = createMockRequest('http://localhost:3000/api/places', {
-      method: 'POST',
-      headers: await authHeaders(),
-      body: { name: 'פיצה רומא' }
-    });
-
-    const response = await POST(request);
-    expect(response.status).toBe(201);
-    const json = await parseJsonResponse<any>(response);
-    expect(json.name).toBe('פיצה רומא');
-    expect(prismaMock.place.update).not.toHaveBeenCalled();
   });
 
   it('400s when name is missing', async () => {
@@ -184,13 +145,12 @@ describe('POST /api/places', () => {
 });
 
 describe('PUT /api/places/:id', () => {
-  it('updates the place and mirrors the edit to Telegram', async () => {
+  it('updates the place', async () => {
     const { PUT } = await import('@/app/api/places/[id]/route');
 
-    const existing = basePlaceRow({ telegram_message_id: 42 });
+    const existing = basePlaceRow();
     prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, name: 'פיצה רומא 2' } as any);
-    editMessageTextMock.mockResolvedValue({ message_id: 42 } as any);
 
     const request = createMockRequest('http://localhost:3000/api/places/1', {
       method: 'PUT',
@@ -202,8 +162,6 @@ describe('PUT /api/places/:id', () => {
     expect(response.status).toBe(200);
     const json = await parseJsonResponse<any>(response);
     expect(json.name).toBe('פיצה רומא 2');
-    expect(editMessageTextMock).toHaveBeenCalledTimes(1);
-    expect(editMessageTextMock.mock.calls[0][0].text).toContain('(עודכן)');
   });
 
   it('404s when the place does not exist', async () => {
@@ -240,13 +198,12 @@ describe('PUT /api/places/:id', () => {
 });
 
 describe('DELETE /api/places/:id', () => {
-  it('soft-deletes the place and mirrors the deletion to Telegram', async () => {
+  it('soft-deletes the place', async () => {
     const { DELETE } = await import('@/app/api/places/[id]/route');
 
-    const existing = basePlaceRow({ telegram_message_id: 42 });
+    const existing = basePlaceRow();
     prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, is_deleted: true } as any);
-    editMessageTextMock.mockResolvedValue({ message_id: 42 } as any);
 
     const request = createMockRequest('http://localhost:3000/api/places/1', {
       method: 'DELETE',
@@ -257,25 +214,6 @@ describe('DELETE /api/places/:id', () => {
     expect(response.status).toBe(204);
 
     expect(prismaMock.place.update).toHaveBeenCalledWith({ where: { id: 1 }, data: { is_deleted: true } });
-    expect(editMessageTextMock).toHaveBeenCalledTimes(1);
-    expect(editMessageTextMock.mock.calls[0][0].text).toContain('❌ נמחק על ידי');
-  });
-
-  it('still soft-deletes when Telegram is down', async () => {
-    const { DELETE } = await import('@/app/api/places/[id]/route');
-
-    const existing = basePlaceRow({ telegram_message_id: 42 });
-    prismaMock.place.findFirst.mockResolvedValue(existing as any);
-    prismaMock.place.update.mockResolvedValue({ ...existing, is_deleted: true } as any);
-    editMessageTextMock.mockRejectedValue(new TelegramApiError({ method: 'editMessageText', error_code: 500, description: 'down' } as any));
-
-    const request = createMockRequest('http://localhost:3000/api/places/1', {
-      method: 'DELETE',
-      headers: await authHeaders()
-    });
-
-    const response = await DELETE(request, { params: { id: '1' } });
-    expect(response.status).toBe(204);
   });
 
   it('404s when the place does not exist', async () => {

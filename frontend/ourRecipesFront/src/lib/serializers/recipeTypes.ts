@@ -37,7 +37,6 @@ export interface SerializedRecipe {
   is_parsed: boolean;
   parse_errors: string[];
   status: string;
-  sync_status: string;
   is_verified: boolean;
   created_at: string;
   updated_at: string | null;

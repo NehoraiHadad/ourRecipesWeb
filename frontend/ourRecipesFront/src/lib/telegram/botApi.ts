@@ -13,17 +13,10 @@
  */
 import { logger } from '@/lib/logger';
 import type {
-  DeleteMessageParams,
-  EditMessageCaptionParams,
-  EditMessageMediaParams,
-  EditMessageTextParams,
-  SendMessageParams,
-  SendPhotoParams,
   TelegramApiResponse,
   TelegramChatId,
   TelegramChatMember,
-  TelegramFile,
-  TelegramMessage
+  TelegramFile
 } from './types';
 
 const API_ROOT = 'https://api.telegram.org';
@@ -85,13 +78,6 @@ function compact<T extends Record<string, unknown>>(params: T): Record<string, u
   return out;
 }
 
-function isBinary(value: unknown): value is Buffer | Blob {
-  return (
-    (typeof Blob !== 'undefined' && value instanceof Blob) ||
-    (typeof Buffer !== 'undefined' && Buffer.isBuffer(value))
-  );
-}
-
 /**
  * Low-level call. Exported so future methods (`setWebhook`, `getMe`, …) can be
  * issued without extending this module.
@@ -150,63 +136,6 @@ export async function callTelegramApi<T>(
   }
 
   return body.result as T;
-}
-
-/** `sendMessage` — supports `parse_mode: 'HTML'` for formatted recipe posts. */
-export async function sendMessage(params: SendMessageParams): Promise<TelegramMessage> {
-  return callTelegramApi<TelegramMessage>('sendMessage', { ...params });
-}
-
-/**
- * `sendPhoto` — `photo` may be a `file_id`, a public URL, or binary
- * (`Buffer`/`Blob`), in which case the request is sent as multipart form-data.
- */
-export async function sendPhoto(params: SendPhotoParams): Promise<TelegramMessage> {
-  const { photo, filename, ...rest } = params;
-
-  if (!isBinary(photo)) {
-    return callTelegramApi<TelegramMessage>('sendPhoto', { ...rest, photo });
-  }
-
-  const form = new FormData();
-  for (const [key, value] of Object.entries(compact(rest as Record<string, unknown>))) {
-    form.append(key, String(value));
-  }
-  const blob = Buffer.isBuffer(photo)
-    ? new Blob([new Uint8Array(photo)], { type: 'image/jpeg' })
-    : photo;
-  form.append('photo', blob, filename ?? 'photo.jpg');
-
-  return callTelegramApi<TelegramMessage>('sendPhoto', form);
-}
-
-/**
- * `editMessageText`. We always edit by `chat_id` + `message_id`, so Telegram
- * returns the edited Message (the `true` variant is inline-only).
- */
-export async function editMessageText(params: EditMessageTextParams): Promise<TelegramMessage> {
-  return callTelegramApi<TelegramMessage>('editMessageText', { ...params });
-}
-
-/** `editMessageCaption` — used when the channel message carries a photo. */
-export async function editMessageCaption(
-  params: EditMessageCaptionParams
-): Promise<TelegramMessage> {
-  return callTelegramApi<TelegramMessage>('editMessageCaption', { ...params });
-}
-
-/** `editMessageMedia` — replaces the photo of an existing message. */
-export async function editMessageMedia(params: EditMessageMediaParams): Promise<TelegramMessage> {
-  const { media, ...rest } = params;
-  return callTelegramApi<TelegramMessage>('editMessageMedia', {
-    ...rest,
-    media: JSON.stringify(compact(media as unknown as Record<string, unknown>))
-  });
-}
-
-/** `deleteMessage` — resolves to `true`, throws when the message is gone. */
-export async function deleteMessage(params: DeleteMessageParams): Promise<true> {
-  return callTelegramApi<true>('deleteMessage', { ...params });
 }
 
 /** `getFile` — resolves the temporary `file_path` used by {@link downloadFile}. */

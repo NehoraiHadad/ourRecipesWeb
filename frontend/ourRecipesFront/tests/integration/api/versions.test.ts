@@ -1,8 +1,11 @@
 // @vitest-environment node
 /**
- * Integration tests for the versions routes (Wave 1.B):
+ * Integration tests for the versions routes:
  *  - GET/POST /api/versions/recipe/:telegram_id
  *  - POST     /api/versions/recipe/:telegram_id/restore/:versionId
+ *
+ * With the main Telegram channel gone, a restore either commits or the
+ * request fails — no mirror step, so nothing here mocks `botApi`.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mockDeep, mockReset, type DeepMockProxy } from 'vitest-mock-extended';
@@ -18,22 +21,14 @@ vi.mock('@/lib/auth', async () => {
   return { ...actual, requireAuth: vi.fn(), requireEditPermission: vi.fn() };
 });
 
-vi.mock('@/lib/telegram/botApi', () => ({
-  editMessageText: vi.fn(),
-  editMessageCaption: vi.fn(),
-  editMessageMedia: vi.fn()
-}));
-
 import { prisma } from '@/lib/prisma';
 import { requireAuth, requireEditPermission } from '@/lib/auth';
-import { editMessageText } from '@/lib/telegram/botApi';
 import { GET as versionsGET, POST as versionsPOST } from '@/app/api/versions/recipe/[telegram_id]/route';
 import { POST as restorePOST } from '@/app/api/versions/recipe/[telegram_id]/restore/[versionId]/route';
 
 const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
 const requireAuthMock = vi.mocked(requireAuth);
 const requireEditPermissionMock = vi.mocked(requireEditPermission);
-const editMessageTextMock = vi.mocked(editMessageText);
 
 const VIEWER_SESSION = {
   ok: true as const,
@@ -67,8 +62,6 @@ function recipeRow(overrides: Record<string, unknown> = {}) {
     preparation_time: null,
     difficulty: null,
     image_url: null,
-    sync_status: 'synced',
-    sync_error: null,
     ...overrides
   };
 }
@@ -77,8 +70,6 @@ beforeEach(() => {
   mockReset(prismaMock);
   requireAuthMock.mockReset();
   requireEditPermissionMock.mockReset();
-  editMessageTextMock.mockReset();
-  process.env.TELEGRAM_CHANNEL_ID = '-1001234567890';
   requireAuthMock.mockResolvedValue(VIEWER_SESSION as any);
   requireEditPermissionMock.mockResolvedValue(EDITOR_SESSION as any);
   (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
@@ -210,11 +201,10 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
       details: 'כותרת: נוכחי',
       image: null
     });
-    expect(editMessageTextMock).not.toHaveBeenCalled();
     expect(prismaMock.recipe.update).not.toHaveBeenCalled();
   });
 
-  it('restores a differing version: snapshots current state, edits Telegram, updates the recipe', async () => {
+  it('restores a differing version: snapshots current state, commits the new content', async () => {
     const recipe = recipeRow({ raw_content: 'כותרת: נוכחי' });
     prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findUnique.mockResolvedValue({
@@ -229,7 +219,6 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
     } as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 3 } } as any);
-    editMessageTextMock.mockResolvedValue({ message_id: 555 } as any);
     prismaMock.recipe.update.mockResolvedValue({
       ...recipe,
       title: 'ישן יותר',
@@ -252,37 +241,9 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
     const versionArgs = prismaMock.recipeVersion.create.mock.calls[0][0] as any;
     expect(versionArgs.data.content.raw_content).toBe('כותרת: נוכחי');
 
-    expect(editMessageTextMock).toHaveBeenCalled();
-  });
-
-  it('Telegram down: restore still commits and sync_status becomes pending_telegram', async () => {
-    const recipe = recipeRow({ raw_content: 'כותרת: נוכחי' });
-    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
-    prismaMock.recipeVersion.findUnique.mockResolvedValue({
-      id: 10,
-      recipe_id: 1,
-      version_num: 3,
-      content: { raw_content: 'כותרת: ישן יותר', image_url: null }
-    } as any);
-    prismaMock.recipeVersion.findMany.mockResolvedValue([]);
-    prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 3 } } as any);
-    editMessageTextMock.mockRejectedValue(new Error('Network request failed'));
-    prismaMock.recipe.update.mockResolvedValue({
-      ...recipe,
-      title: 'ישן יותר',
-      raw_content: 'כותרת: ישן יותר',
-      sync_status: 'pending_telegram'
-    } as any);
-
-    const response = await restoreRequest('555', '10');
-
-    expect(response.status).toBe(200);
+    // A restore counts as an app edit for conflict tracking.
     const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
-    expect(updateArgs.data.sync_status).toBe('pending_telegram');
-    expect(updateArgs.data.sync_error).toContain('Network request failed');
-
-    // Response is still the success shape — Telegram being down never fails the request.
-    const json = await response.json();
-    expect(json.message).toBe('Version restored successfully');
+    expect(updateArgs.data.app_edited_at).toBeInstanceOf(Date);
+    expect(updateArgs.data.needs_review).toBe(false);
   });
 });

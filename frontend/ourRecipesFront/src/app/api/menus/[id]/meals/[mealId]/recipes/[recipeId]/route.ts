@@ -14,13 +14,7 @@ import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { generateShoppingList } from '@/lib/services/shoppingListService';
-import {
-  menuMealsInclude,
-  recipeSummarySelect,
-  serializeMealRecipe,
-  type MenuRow
-} from '@/lib/serializers/menu';
-import { mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
+import { recipeSummarySelect, serializeMealRecipe } from '@/lib/serializers/menu';
 
 interface RouteParams {
   params: { id: string; mealId: string; recipeId: string };
@@ -30,17 +24,6 @@ async function assertOwner(menuId: number, userId: string) {
   const menu = await prisma.menu.findUnique({ where: { id: menuId }, select: { user_id: true } });
   if (!menu) throw NotFoundError('Menu not found');
   if (menu.user_id !== userId) throw ForbiddenError('Access denied');
-}
-
-async function mirrorAfterMutation(menuId: number): Promise<void> {
-  const fullMenu = (await prisma.menu.findUniqueOrThrow({
-    where: { id: menuId },
-    include: menuMealsInclude
-  })) as MenuRow;
-  const lastSync = await mirrorMenuUpdate(fullMenu, fullMenu.telegram_message_id);
-  if (lastSync) {
-    await prisma.menu.update({ where: { id: menuId }, data: { last_sync: lastSync } });
-  }
 }
 
 export async function PUT(request: NextRequest, { params }: RouteParams) {
@@ -71,9 +54,6 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     // Regenerate shopping list (Flask's `generate_shopping_list` clears existing items first).
     await prisma.shoppingListItem.deleteMany({ where: { menu_id: menuId } });
     const shoppingList = await generateShoppingList(menuId);
-
-    // Update in Telegram if the menu is synced (best-effort).
-    await mirrorAfterMutation(menuId);
 
     logger.info({ menuId, mealId, oldRecipeId: recipeId, newRecipeId: body.new_recipe_id }, 'Recipe replaced in meal');
 
@@ -109,9 +89,6 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     // Regenerate shopping list (Flask's `generate_shopping_list` clears existing items first).
     await prisma.shoppingListItem.deleteMany({ where: { menu_id: menuId } });
     const shoppingList = await generateShoppingList(menuId);
-
-    // Update in Telegram if the menu is synced (best-effort).
-    await mirrorAfterMutation(menuId);
 
     logger.info({ menuId, mealId, recipeId }, 'Recipe deleted from meal');
 

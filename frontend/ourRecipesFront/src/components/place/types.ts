@@ -8,7 +8,6 @@ export interface Place {
   type?: string;
   created_by: string;
   created_at: string;
-  is_synced: boolean;
   // Matches `serializePlace` (`src/lib/serializers/place.ts`) — the wire key
   // is `last_sync`, not `last_sync_at`.
   last_sync?: string | null;

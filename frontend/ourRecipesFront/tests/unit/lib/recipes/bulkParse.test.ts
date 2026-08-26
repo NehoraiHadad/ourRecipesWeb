@@ -13,11 +13,9 @@ import type { PrismaClient } from '@prisma/client';
 
 vi.mock('@/lib/prisma', () => ({ prisma: mockDeep<PrismaClient>() }));
 vi.mock('@/lib/services/aiService', () => ({ reformatRecipe: vi.fn() }));
-vi.mock('@/lib/recipes/mirror', () => ({ mirrorEditRecipe: vi.fn() }));
 
 import { prisma } from '@/lib/prisma';
 import { reformatRecipe } from '@/lib/services/aiService';
-import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { bulkParseRecipes } from '@/lib/recipes/bulkParse';
 
 const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
@@ -43,13 +41,11 @@ const GENEROUS = () => Date.now() + 600_000;
 beforeEach(() => {
   mockReset(prismaMock);
   vi.mocked(reformatRecipe).mockReset();
-  vi.mocked(mirrorEditRecipe).mockReset();
   (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
   prismaMock.recipeVersion.findMany.mockResolvedValue([] as never);
   prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: null } } as never);
   prismaMock.recipe.update.mockResolvedValue({} as never);
   vi.mocked(reformatRecipe).mockResolvedValue('כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל');
-  vi.mocked(mirrorEditRecipe).mockResolvedValue({ syncStatus: 'synced', syncError: null } as never);
 });
 
 describe('bulkParseRecipes', () => {
@@ -74,9 +70,8 @@ describe('bulkParseRecipes', () => {
   });
 
   it('runs recipes concurrently rather than one at a time', async () => {
-    prismaMock.recipe.findMany.mockResolvedValue(
-      [1, 2, 3, 4].map(recipeRow) as never
-    );
+    const ids = Array.from({ length: 10 }, (_, i) => i + 1);
+    prismaMock.recipe.findMany.mockResolvedValue(ids.map(recipeRow) as never);
 
     let inFlight = 0;
     let peak = 0;
@@ -88,11 +83,12 @@ describe('bulkParseRecipes', () => {
       return 'כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל';
     });
 
-    const result = await bulkParseRecipes([1, 2, 3, 4], GENEROUS());
+    const result = await bulkParseRecipes(ids, GENEROUS());
 
-    expect(result.processed).toBe(4);
-    // Sequential would peak at 1. The cap is Telegram's edit limit, not the model's.
-    expect(peak).toBeGreaterThan(1);
+    expect(result.processed).toBe(10);
+    // Sequential would peak at 1. The wave is sized by the AI provider now —
+    // the Telegram mirror this used to also throttle is gone.
+    expect(peak).toBe(10);
   });
 
   it('keeps the rest of a wave when one recipe throws', async () => {

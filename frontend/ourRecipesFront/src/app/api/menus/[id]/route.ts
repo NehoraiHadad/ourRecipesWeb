@@ -14,8 +14,8 @@
  *
  * DELETE /api/menus/:id
  * Delete a menu (cascades to meals/recipes/shopping list). Owner only.
- * Port of `delete_menu` (`routes/menus.py`) — deletes the mirrored Telegram
- * message first (best-effort), then the DB row (ARCHITECTURE §4.3/§4.4).
+ * Port of `delete_menu` (`routes/menus.py`). The DB is the only store now
+ * that the main Telegram channel is gone, so this is a single DB delete.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -29,7 +29,6 @@ import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { menuMealsInclude, serializeMenu, type MenuRow } from '@/lib/serializers/menu';
-import { mirrorMenuDelete, mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
 
 export async function GET(
   request: NextRequest,
@@ -104,20 +103,10 @@ export async function PUT(
 
     await prisma.menu.update({ where: { id: menuId }, data });
 
-    let menu = (await prisma.menu.findUniqueOrThrow({
+    const menu = (await prisma.menu.findUniqueOrThrow({
       where: { id: menuId },
       include: menuMealsInclude
     })) as MenuRow;
-
-    // Update in Telegram if the menu is synced (best-effort — DB update already succeeded).
-    const lastSync = await mirrorMenuUpdate(menu, menu.telegram_message_id);
-    if (lastSync) {
-      menu = (await prisma.menu.update({
-        where: { id: menuId },
-        data: { last_sync: lastSync },
-        include: menuMealsInclude
-      })) as MenuRow;
-    }
 
     logger.info({ menuId }, 'Menu updated');
 
@@ -140,15 +129,11 @@ export async function DELETE(
 
     const menu = await prisma.menu.findUnique({
       where: { id: menuId },
-      select: { user_id: true, telegram_message_id: true }
+      select: { user_id: true }
     });
     if (!menu) throw NotFoundError('Menu not found');
     // Only the owner can delete — not public access (matches `delete_menu`).
     if (menu.user_id !== auth.session.sub) throw ForbiddenError('Access denied');
-
-    // Delete from Telegram first (best-effort), then the DB — DB delete always succeeds
-    // regardless of the Telegram outcome (ARCHITECTURE §4.3/§4.4).
-    await mirrorMenuDelete(menu.telegram_message_id);
 
     await prisma.menu.delete({ where: { id: menuId } });
 

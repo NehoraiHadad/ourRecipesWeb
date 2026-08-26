@@ -1,9 +1,8 @@
 import { describe, it, expect } from 'vitest';
 import { parsePlaceMessage } from '@/lib/places/ingest';
-import { formatPlaceCreateMessage, formatPlaceUpdateMessage } from '@/lib/telegram/placeMirror';
 
 describe('parsePlaceMessage', () => {
-  it('round-trips what placeMirror writes', () => {
+  it('round-trips the field-line format the old channel used', () => {
     const place = {
       name: 'נאיה',
       type: 'restaurant',
@@ -13,7 +12,19 @@ describe('parsePlaceMessage', () => {
       description: 'טעים ובשרי'
     };
 
-    const parsed = parsePlaceMessage(formatPlaceCreateMessage(place, 'n.h'));
+    const text = [
+      '🍽️ המלצה חדשה',
+      '',
+      `שם: ${place.name}`,
+      `סוג: ${place.type}`,
+      `אתר: ${place.website}`,
+      `מיקום: ${place.location}`,
+      `Waze: ${place.waze_link}`,
+      `תיאור: ${place.description}`,
+      'נוסף על ידי: n.h'
+    ].join('\n');
+
+    const parsed = parsePlaceMessage(text);
     expect(parsed).toMatchObject({ ...place, created_by: 'n.h', isDeleted: false });
   });
 
@@ -40,10 +51,19 @@ describe('parsePlaceMessage', () => {
   });
 
   it('ignores the "(עודכן)" suffix line of update messages', () => {
-    const message = formatPlaceUpdateMessage(
-      { name: 'קפה', type: 'cafe', website: null, location: null, waze_link: null, description: null },
-      'אורח'
-    );
+    const message = [
+      '☕ המלצה',
+      '',
+      'שם: קפה',
+      'סוג: cafe',
+      'אתר: לא צוין',
+      'מיקום: לא צוין',
+      'Waze: לא צוין',
+      'תיאור: לא צוין',
+      'נוסף על ידי: אורח',
+      '(עודכן)'
+    ].join('\n');
+
     expect(parsePlaceMessage(message)).toMatchObject({ name: 'קפה', isDeleted: false });
   });
 

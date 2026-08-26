@@ -138,24 +138,7 @@ export function PlaceCard({ place, onEdit, onDelete }: PlaceCardProps) {
         <Typography variant="body" className="text-secondary-500 text-sm truncate flex-1">
           {place.created_by.includes('(') ? place.created_by.split('(')[0].trim() : place.created_by}
         </Typography>
-        <div className="flex items-center text-sm flex-shrink-0">
-          {place.is_synced ? (
-            <div className="flex items-center text-green-600 px-2 py-1 rounded-full">
-              <svg className="w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M20 6L9 17l-5-5" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span className="hidden sm:inline">מסונכרן</span>
-            </div>
-          ) : (
-            <div className="flex items-center text-amber-600 px-2 py-1 rounded-full">
-              <svg className="w-3.5 h-3.5 ml-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-              <span className="hidden sm:inline">לא מסונכרן</span>
-            </div>
-          )}
-        </div>
       </div>
     </Card>
   );
-} 
+}

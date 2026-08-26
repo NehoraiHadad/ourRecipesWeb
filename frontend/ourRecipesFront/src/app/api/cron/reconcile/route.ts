@@ -2,27 +2,21 @@
  * GET /api/cron/reconcile — the daily safety net (ARCHITECTURE §4.6).
  *
  * Not a synchronisation mechanism: Postgres is the source of truth and the
- * webhook is the input path. This job exists only to clean up after the two
- * things that can silently go wrong —
- *
- *  1. an outgoing mirror that failed while the app was answering the user
- *     (`sync_status = 'pending_telegram'`), retried here directly;
- *  2. a channel post the webhook never received (delivery lost, webhook
- *     briefly unset), which needs MTProto history reads — delegated to the
- *     Python function at `PYTHON_RECONCILE_URL`.
+ * webhook is the input path. This job exists only to clean up after the one
+ * thing that can still silently go wrong — a channel post the webhook never
+ * received (delivery lost, webhook briefly unset), which needs MTProto
+ * history reads — delegated to the Python function at `PYTHON_RECONCILE_URL`.
  *
  * Wired up in `vercel.json`. Vercel Cron sends `Authorization: Bearer
  * ${CRON_SECRET}`; `INTERNAL_API_SECRET` is accepted too so the job can be run
  * by hand.
  *
- * Both halves are best-effort and independent: no Python deployment, or a
- * Python deployment that is down, still leaves a useful mirror run. The route
- * always answers 200 unless auth fails.
+ * Best-effort: no Python deployment, or a Python deployment that is down,
+ * still leaves the route answering 200 rather than failing the cron run.
  */
 import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
 import { requireCronSecret } from '@/lib/internal/auth';
-import { mirrorPendingRecipes, type MirrorPendingResult } from '@/lib/recipes/mirrorPending';
 
 export const dynamic = 'force-dynamic';
 /** Telethon needs a couple of seconds to connect; give the round trip room. */
@@ -99,35 +93,10 @@ export async function GET(request: NextRequest): Promise<Response> {
   const startedAt = Date.now();
   log.info('Reconcile cron started');
 
-  let mirror: MirrorPendingResult;
-  try {
-    mirror = await mirrorPendingRecipes();
-  } catch (error) {
-    log.error({ err: error }, 'Mirror phase failed');
-    mirror = {
-      processed: 0,
-      mirrored: 0,
-      failed: 0,
-      items: [],
-      skippedReason: error instanceof Error ? error.message : 'mirror_failed'
-    };
-  }
-
   const reconcile = await triggerPythonReconcile();
 
   const durationMs = Date.now() - startedAt;
-  log.info({ mirror: { processed: mirror.processed, mirrored: mirror.mirrored }, reconcile, durationMs },
-    'Reconcile cron finished');
+  log.info({ reconcile, durationMs }, 'Reconcile cron finished');
 
-  return Response.json({
-    ok: true,
-    durationMs,
-    mirror: {
-      processed: mirror.processed,
-      mirrored: mirror.mirrored,
-      failed: mirror.failed,
-      skippedReason: mirror.skippedReason ?? null
-    },
-    reconcile
-  });
+  return Response.json({ ok: true, durationMs, reconcile });
 }

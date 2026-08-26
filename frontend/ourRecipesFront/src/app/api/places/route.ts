@@ -4,7 +4,7 @@
  * Port of `get_places` (`routes/places.py`).
  *
  * POST /api/places
- * Create a place recommendation, mirrored to Telegram best-effort.
+ * Create a place recommendation.
  * Port of `create_place` (`routes/places.py`).
  *
  * @note Flask read a `user_name` set on login into the Flask session. Our JWT
@@ -19,7 +19,6 @@ import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
 import { serializePlace } from '@/lib/serializers/place';
-import { mirrorPlaceCreate } from '@/lib/telegram/placeMirror';
 
 export async function GET(request: NextRequest) {
   try {
@@ -73,13 +72,7 @@ export async function POST(request: NextRequest) {
 
     logger.info({ placeId: place.id }, 'Place created');
 
-    // Backup to Telegram (best-effort — the place is already saved).
-    const telegramMessageId = await mirrorPlaceCreate(place, userName);
-    const finalPlace = telegramMessageId
-      ? await prisma.place.update({ where: { id: place.id }, data: { telegram_message_id: telegramMessageId } })
-      : place;
-
-    return Response.json(serializePlace(finalPlace), { status: 201 });
+    return Response.json(serializePlace(place), { status: 201 });
   } catch (error) {
     logger.error({ error }, 'Error creating place');
     return handleApiError(error);

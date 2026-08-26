@@ -9,12 +9,11 @@
  * `result.processed` directly (`RecipeManagement.handleBulkAction`) — plus
  * `remaining`, which Flask had no notion of (see {@link bulkParseRecipes}).
  *
- * DB-first / Telegram best-effort per-recipe (ARCHITECTURE §4.3): unlike
- * Flask (which only updates the DB when the Telegram edit succeeds), each
- * recipe's DB write always commits; a mirror failure just marks that recipe
- * `sync_status: 'pending_telegram'` rather than skipping it. A recipe still
- * counts as `failed` only when reformatting itself throws or the recipe is
- * missing required data — never solely because Telegram was unreachable.
+ * Unlike Flask (which only updated the DB when the Telegram edit succeeded —
+ * a mirror this app no longer has), each recipe's DB write is simply the
+ * whole operation: it commits or it doesn't. A recipe counts as `failed`
+ * only when reformatting itself throws or the recipe is missing required
+ * data.
  */
 import { NextRequest } from 'next/server';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';

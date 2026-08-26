@@ -8,7 +8,7 @@ export interface RecipeWriteData {
   image?: string | null;
 }
 
-/** Writes mirror to Telegram and may upload an image — slower than a plain read. */
+/** A write may upload an image and re-parse the recipe text — slower than a plain read. */
 const WRITE_TIMEOUT = 60000;
 
 /** Every method speaks the shared wire contract (`SerializedRecipe`). */

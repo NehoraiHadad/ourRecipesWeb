@@ -1,8 +1,8 @@
 /**
  * Bulk AI re-parse — the work behind `POST /api/recipes/bulk`.
  *
- * Each recipe costs a full AI reformat (~7-10s), a Telegram edit, and a
- * transaction. Two things bound the batch:
+ * Each recipe costs a full AI reformat (~7-10s) and a transaction. Two things
+ * bound the batch:
  *
  * **The function's budget.** The route timed out at 15s on a two-recipe batch
  * because it never declared a `maxDuration`, and the client saw only an opaque
@@ -14,12 +14,11 @@
  *
  * **Concurrency.** The reformat is a plain synchronous request to KIE's
  * `responses` endpoint (the Jobs API with its task polling is for media, not
- * text), so independent recipes have no reason to wait for each other. The
- * genuinely rate-limited step is the *Telegram* edit: a channel tolerates
- * roughly 20 message edits per minute. `CONCURRENCY` is therefore set by
- * Telegram, not by the model — and even when it is exceeded the cost is mild,
- * because a rejected mirror only parks the recipe as `pending_telegram` for
- * the sweeper while its DB write commits regardless.
+ * text), so independent recipes have no reason to wait for each other. There
+ * used to be a second constraint here — the Telegram mirror this bulk parse
+ * also edited tolerated roughly 20 message edits per minute — but that
+ * channel is gone along with the mirror, so `CONCURRENCY` is now bounded only
+ * by being a good citizen of the AI provider's own rate limits.
  */
 import type { Recipe } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
@@ -28,20 +27,23 @@ import { reformatRecipe } from '@/lib/services/aiService';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { snapshotVersion } from '@/lib/recipes/versioning';
-import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'recipes/bulkParse' });
 
 /**
  * What one wave is assumed to need. Measured against production: the AI call
- * alone ran 6.2s, and the Telegram edit plus the transaction follow it. A wave
- * runs its recipes together, so this is a per-wave cost, not a per-recipe one.
+ * alone ran 6.2s, and the transaction follows it. A wave runs its recipes
+ * together, so this is a per-wave cost, not a per-recipe one.
  */
 const WAVE_BUDGET_MS = 25_000;
 
-/** Set by Telegram's edit limit, not by the model. See the module docs. */
-const CONCURRENCY = 4;
+/**
+ * Set by the AI provider, not by Telegram — the mirror this bulk parse used
+ * to edit (and its 20-edits/minute channel limit) is gone, so the only
+ * remaining bottleneck is being reasonable toward KIE's `responses` endpoint.
+ */
+const CONCURRENCY = 10;
 
 export interface BulkParseResult {
   processed: number;
@@ -62,13 +64,6 @@ async function parseOneRecipe(recipe: Recipe): Promise<void> {
   const reformattedText = await reformatRecipe(recipe.raw_content);
   const parsed = parseRecipeMessage(reformattedText);
 
-  const mirror = await mirrorEditRecipe({
-    telegramId: recipe.telegram_id,
-    text: reformattedText,
-    hadImage: Boolean(recipe.image_url),
-    newImageUrl: null
-  });
-
   await prisma.$transaction(async (tx) => {
     await snapshotVersion(tx, recipe, {
       createdBy: 'AI Parser',
@@ -79,9 +74,7 @@ async function parseOneRecipe(recipe: Recipe): Promise<void> {
       where: { id: recipe.id },
       data: {
         raw_content: reformattedText,
-        ...recipeFieldsFromParsed(parsed),
-        sync_status: mirror.syncStatus,
-        sync_error: mirror.syncError
+        ...recipeFieldsFromParsed(parsed)
       }
     });
   });

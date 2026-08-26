@@ -61,7 +61,6 @@ const SEARCH_ROW = {
   is_parsed: true,
   parse_errors: [],
   status: 'ACTIVE',
-  sync_status: 'synced',
   is_verified: false,
   created_at: '2024-01-01T00:00:00.000Z',
   updated_at: null

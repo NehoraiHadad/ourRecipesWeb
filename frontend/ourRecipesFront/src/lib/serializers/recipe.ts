@@ -38,7 +38,6 @@ export const recipeSelect = {
   is_parsed: true,
   parse_errors: true,
   status: true,
-  sync_status: true,
   is_verified: true,
   created_at: true,
   updated_at: true
@@ -72,7 +71,6 @@ export interface RecipeRow {
   is_parsed: boolean;
   parse_errors: string | null;
   status: string;
-  sync_status: string;
   is_verified: boolean;
   created_at: Date;
   updated_at: Date | null;
@@ -126,7 +124,6 @@ export function serializeRecipe(recipe: RecipeRow): SerializedRecipe {
     // `recipeFieldsFromParsed` writes this column `||`-joined.
     parse_errors: splitColumn(recipe.parse_errors, '||'),
     status: recipe.status,
-    sync_status: recipe.sync_status,
     is_verified: recipe.is_verified,
     created_at: recipe.created_at.toISOString(),
     updated_at: recipe.updated_at ? recipe.updated_at.toISOString() : null

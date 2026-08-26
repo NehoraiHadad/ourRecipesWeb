@@ -11,13 +11,7 @@ import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { generateShoppingList } from '@/lib/services/shoppingListService';
-import {
-  menuMealsInclude,
-  recipeSummarySelect,
-  serializeMealRecipe,
-  type MenuRow
-} from '@/lib/serializers/menu';
-import { mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
+import { recipeSummarySelect, serializeMealRecipe } from '@/lib/serializers/menu';
 
 interface AddRecipeBody {
   recipe_id?: number;
@@ -84,16 +78,6 @@ export async function POST(
     // Regenerate shopping list (Flask's `generate_shopping_list` clears existing items first).
     await prisma.shoppingListItem.deleteMany({ where: { menu_id: menuId } });
     const shoppingList = await generateShoppingList(menuId);
-
-    // Update in Telegram if the menu is synced (best-effort).
-    const fullMenu = (await prisma.menu.findUniqueOrThrow({
-      where: { id: menuId },
-      include: menuMealsInclude
-    })) as MenuRow;
-    const lastSync = await mirrorMenuUpdate(fullMenu, fullMenu.telegram_message_id);
-    if (lastSync) {
-      await prisma.menu.update({ where: { id: menuId }, data: { last_sync: lastSync } });
-    }
 
     logger.info({ menuId, mealId, recipeId: body.recipe_id }, 'Recipe added to meal');
 

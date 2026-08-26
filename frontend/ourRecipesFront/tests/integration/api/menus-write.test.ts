@@ -1,32 +1,21 @@
 /**
  * @vitest-environment node
  *
- * Integration tests for the menus write surface (Wave 1.C): save, update,
- * delete, meals, meal-recipes. Prisma is mocked with vitest-mock-extended;
- * the Telegram Bot API is mocked at `@/lib/telegram/botApi` (per Wave 0's
- * own test style) so the real mirror/format code in
- * `@/lib/telegram/menuMirror` still runs.
+ * Integration tests for the menus write surface: save, update, delete,
+ * meals, meal-recipes. Prisma is mocked with vitest-mock-extended.
+ *
+ * The main Telegram channel these routes used to mirror every write to is
+ * gone (Wave 5.4b) — the DB write is the whole operation now, so nothing
+ * here mocks `botApi`.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
 import { signSession } from '@/lib/auth/session';
-import { sendMessage, editMessageText, deleteMessage, TelegramApiError } from '@/lib/telegram/botApi';
-
-vi.mock('@/lib/telegram/botApi', () => ({
-  sendMessage: vi.fn(),
-  editMessageText: vi.fn(),
-  deleteMessage: vi.fn(),
-  TelegramApiError: class TelegramApiError extends Error {}
-}));
 
 vi.mock('@/lib/services/shoppingListService', () => ({
   generateShoppingList: vi.fn().mockResolvedValue({ 'ירקות': [] })
 }));
-
-const sendMessageMock = vi.mocked(sendMessage);
-const editMessageTextMock = vi.mocked(editMessageText);
-const deleteMessageMock = vi.mocked(deleteMessage);
 
 const OWNER = '111';
 const OTHER_USER = '222';
@@ -95,7 +84,6 @@ beforeEach(() => {
   resetPrismaMock();
   vi.clearAllMocks();
   process.env.JWT_SECRET = 'test-jwt-secret-value-not-a-real-one';
-  process.env.TELEGRAM_CHANNEL_ID = '-1001234567890';
 
   // vitest-mock-extended doesn't run the real $transaction callback by default —
   // route the callback straight at the mocked client so `tx.*` calls hit the
@@ -106,7 +94,7 @@ beforeEach(() => {
 });
 
 describe('POST /api/menus (save)', () => {
-  it('creates the menu, generates the shopping list, and mirrors it to Telegram', async () => {
+  it('creates the menu and generates the shopping list', async () => {
     const { POST } = await import('@/app/api/menus/route');
 
     prismaMock.menu.create.mockResolvedValue({ id: 1 } as any);
@@ -114,8 +102,6 @@ describe('POST /api/menus (save)', () => {
     prismaMock.recipe.findFirst.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
     prismaMock.mealRecipe.create.mockResolvedValue({ id: 100 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
-    sendMessageMock.mockResolvedValue({ message_id: 999 } as any);
-    prismaMock.menu.update.mockResolvedValue(baseMenuRow({ telegram_message_id: 999 }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus', {
       method: 'POST',
@@ -143,11 +129,6 @@ describe('POST /api/menus (save)', () => {
     // The UI opens a menu recipe through `GET /api/recipes/:telegram_id`, so
     // the embedded summary must carry the telegram id, not just the PK.
     expect(json.menu.meals[0].recipes[0].recipe).toMatchObject({ id: 5, telegram_id: 5005 });
-
-    expect(sendMessageMock).toHaveBeenCalledTimes(1);
-    expect(sendMessageMock.mock.calls[0][0].chat_id).toBe('-1001234567890');
-    // Successful mirror persists the message id.
-    expect(prismaMock.menu.update).toHaveBeenCalledTimes(1);
   });
 
   it('persists the preview\'s `ai_reason` onto the meal recipe', async () => {
@@ -160,8 +141,6 @@ describe('POST /api/menus (save)', () => {
     prismaMock.recipe.findFirst.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
     prismaMock.mealRecipe.create.mockResolvedValue({ id: 100 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
-    sendMessageMock.mockResolvedValue({ message_id: 999 } as any);
-    prismaMock.menu.update.mockResolvedValue(baseMenuRow({ telegram_message_id: 999 }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus', {
       method: 'POST',
@@ -201,35 +180,6 @@ describe('POST /api/menus (save)', () => {
     });
   });
 
-  it('still saves the menu when Telegram is down', async () => {
-    const { POST } = await import('@/app/api/menus/route');
-
-    prismaMock.menu.create.mockResolvedValue({ id: 2 } as any);
-    prismaMock.recipe.findFirst.mockResolvedValue(null); // no meals/recipes needed for this case
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ id: 2, meals: [] }) as any);
-    sendMessageMock.mockRejectedValue(new TelegramApiError({ method: 'sendMessage', error_code: 500, description: 'down' } as any));
-
-    const request = createMockRequest('http://localhost:3000/api/menus', {
-      method: 'POST',
-      headers: await authHeaders(),
-      body: {
-        preview: { meals: [], reasoning: null },
-        preferences: { name: 'תפריט שבת', servings: 6 }
-      }
-    });
-
-    const response = await POST(request);
-
-    expect(response.status).toBe(201);
-    const json = await parseJsonResponse<any>(response);
-    expect(json.success).toBe(true);
-    expect(json.menu.id).toBe(2);
-
-    // Mirror attempted and failed — the menu is not re-fetched/updated for a message id.
-    expect(sendMessageMock).toHaveBeenCalledTimes(1);
-    expect(prismaMock.menu.update).not.toHaveBeenCalled();
-  });
-
   it('400s when preview or preferences are missing', async () => {
     const { POST } = await import('@/app/api/menus/route');
 
@@ -257,17 +207,12 @@ describe('POST /api/menus (save)', () => {
 });
 
 describe('PUT /api/menus/:id', () => {
-  it("updates the owner's menu and mirrors the edit to Telegram", async () => {
+  it("updates the owner's menu", async () => {
     const { PUT } = await import('@/app/api/menus/[id]/route');
 
     prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER } as any);
-    prismaMock.menu.update.mockResolvedValue(
-      baseMenuRow({ telegram_message_id: 555, name: 'תפריט מעודכן' }) as any
-    );
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(
-      baseMenuRow({ telegram_message_id: 555, name: 'תפריט מעודכן' }) as any
-    );
-    editMessageTextMock.mockResolvedValue({ message_id: 555 } as any);
+    prismaMock.menu.update.mockResolvedValue(baseMenuRow({ name: 'תפריט מעודכן' }) as any);
+    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ name: 'תפריט מעודכן' }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1', {
       method: 'PUT',
@@ -281,8 +226,6 @@ describe('PUT /api/menus/:id', () => {
     const json = await parseJsonResponse<any>(response);
     expect(json.success).toBe(true);
     expect(json.menu.name).toBe('תפריט מעודכן');
-    expect(editMessageTextMock).toHaveBeenCalledTimes(1);
-    expect(editMessageTextMock.mock.calls[0][0].message_id).toBe(555);
   });
 
   it("403s when the menu belongs to a different user", async () => {
@@ -315,36 +258,13 @@ describe('PUT /api/menus/:id', () => {
     const response = await PUT(request, { params: { id: '999' } });
     expect(response.status).toBe(404);
   });
-
-  it('still updates the menu when Telegram is down', async () => {
-    const { PUT } = await import('@/app/api/menus/[id]/route');
-
-    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER } as any);
-    prismaMock.menu.update.mockResolvedValue({} as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ telegram_message_id: 555 }) as any);
-    editMessageTextMock.mockRejectedValue(new TelegramApiError({ method: 'editMessageText', error_code: 500, description: 'down' } as any));
-
-    const request = createMockRequest('http://localhost:3000/api/menus/1', {
-      method: 'PUT',
-      headers: await authHeaders(),
-      body: { description: 'תיאור חדש' }
-    });
-
-    const response = await PUT(request, { params: { id: '1' } });
-    expect(response.status).toBe(200);
-    const json = await parseJsonResponse<any>(response);
-    expect(json.success).toBe(true);
-    // Only the primary field update happened — no second `last_sync` update after a failed mirror.
-    expect(prismaMock.menu.update).toHaveBeenCalledTimes(1);
-  });
 });
 
 describe('DELETE /api/menus/:id', () => {
-  it('deletes the mirrored Telegram message before deleting the menu', async () => {
+  it('deletes the menu', async () => {
     const { DELETE } = await import('@/app/api/menus/[id]/route');
 
-    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER, telegram_message_id: 777 } as any);
-    deleteMessageMock.mockResolvedValue(true as any);
+    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER } as any);
     prismaMock.menu.delete.mockResolvedValue({} as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1', {
@@ -358,32 +278,13 @@ describe('DELETE /api/menus/:id', () => {
     const json = await parseJsonResponse<any>(response);
     expect(json.success).toBe(true);
     expect(json.message).toBe('Menu deleted successfully');
-
-    expect(deleteMessageMock).toHaveBeenCalledWith({ chat_id: '-1001234567890', message_id: 777 });
     expect(prismaMock.menu.delete).toHaveBeenCalledWith({ where: { id: 1 } });
-  });
-
-  it('still deletes the menu from the DB when the Telegram delete fails', async () => {
-    const { DELETE } = await import('@/app/api/menus/[id]/route');
-
-    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER, telegram_message_id: 777 } as any);
-    deleteMessageMock.mockRejectedValue(new TelegramApiError({ method: 'deleteMessage', error_code: 400, description: 'message not found' } as any));
-    prismaMock.menu.delete.mockResolvedValue({} as any);
-
-    const request = createMockRequest('http://localhost:3000/api/menus/1', {
-      method: 'DELETE',
-      headers: await authHeaders()
-    });
-
-    const response = await DELETE(request, { params: { id: '1' } });
-    expect(response.status).toBe(200);
-    expect(prismaMock.menu.delete).toHaveBeenCalledTimes(1);
   });
 
   it('403s when the menu belongs to a different user (owner-only, not public access)', async () => {
     const { DELETE } = await import('@/app/api/menus/[id]/route');
 
-    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OTHER_USER, telegram_message_id: null } as any);
+    prismaMock.menu.findUnique.mockResolvedValue({ user_id: OTHER_USER } as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1', {
       method: 'DELETE',
@@ -393,7 +294,6 @@ describe('DELETE /api/menus/:id', () => {
     const response = await DELETE(request, { params: { id: '1' } });
     expect(response.status).toBe(403);
     expect(prismaMock.menu.delete).not.toHaveBeenCalled();
-    expect(deleteMessageMock).not.toHaveBeenCalled();
   });
 
   it('404s when the menu does not exist', async () => {
@@ -426,7 +326,6 @@ describe('POST /api/menus/:id/meals', () => {
       notes: null,
       created_at: new Date()
     } as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ telegram_message_id: null }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals', {
       method: 'POST',
@@ -441,7 +340,6 @@ describe('POST /api/menus/:id/meals', () => {
     expect(json.success).toBe(true);
     expect(json.meal.meal_order).toBe(3);
     expect(json.meal.recipes).toEqual([]);
-    expect(editMessageTextMock).not.toHaveBeenCalled(); // no telegram_message_id on the menu yet
   });
 
   it('400s when meal_type is missing', async () => {
@@ -468,7 +366,6 @@ describe('DELETE /api/menus/:id/meals/:mealId', () => {
     prismaMock.menuMeal.findUnique.mockResolvedValue({ id: 10, menu_id: 1 } as any);
     prismaMock.menuMeal.delete.mockResolvedValue({} as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ meals: [] }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10', {
       method: 'DELETE',
@@ -520,7 +417,6 @@ describe('POST /api/menus/:id/meals/:mealId/recipes', () => {
       recipe: { id: 7, telegram_id: 7007, title: 'סלט ירוק', cooking_time: 10, preparation_time: 5, difficulty: 'EASY', servings: 4, image_url: null }
     } as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10/recipes', {
       method: 'POST',
@@ -573,7 +469,6 @@ describe('PUT /api/menus/:id/meals/:mealId/recipes/:recipeId (replace)', () => {
       recipe: { id: 8, telegram_id: 8008, title: 'דג בתנור', cooking_time: 40, preparation_time: 10, difficulty: 'MEDIUM', servings: 4, image_url: null }
     } as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10/recipes/5', {
       method: 'PUT',
@@ -613,7 +508,6 @@ describe('DELETE /api/menus/:id/meals/:mealId/recipes/:recipeId', () => {
     prismaMock.mealRecipe.findFirst.mockResolvedValue({ id: 100, menu_meal_id: 10, recipe_id: 5 } as any);
     prismaMock.mealRecipe.delete.mockResolvedValue({} as any);
     prismaMock.shoppingListItem.deleteMany.mockResolvedValue({ count: 0 } as any);
-    prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ meals: [] }) as any);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10/recipes/5', {
       method: 'DELETE',

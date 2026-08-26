@@ -1,6 +1,9 @@
 // @vitest-environment node
 /**
- * Integration tests for POST /api/recipes/bulk (Wave 1.B).
+ * Integration tests for POST /api/recipes/bulk.
+ *
+ * With the main Telegram channel gone, a recipe's reformat + DB commit is
+ * its whole outcome — no mirror step, so nothing here mocks `botApi`.
  */
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { mockDeep, mockReset, type DeepMockProxy } from 'vitest-mock-extended';
@@ -16,25 +19,17 @@ vi.mock('@/lib/auth', async () => {
   return { ...actual, requireEditPermission: vi.fn() };
 });
 
-vi.mock('@/lib/telegram/botApi', () => ({
-  editMessageText: vi.fn(),
-  editMessageCaption: vi.fn(),
-  editMessageMedia: vi.fn()
-}));
-
 vi.mock('@/lib/services/aiService', () => ({
   reformatRecipe: vi.fn()
 }));
 
 import { prisma } from '@/lib/prisma';
 import { requireEditPermission } from '@/lib/auth';
-import { editMessageText } from '@/lib/telegram/botApi';
 import { reformatRecipe } from '@/lib/services/aiService';
 import { POST } from '@/app/api/recipes/bulk/route';
 
 const prismaMock = prisma as unknown as DeepMockProxy<PrismaClient>;
 const requireEditPermissionMock = vi.mocked(requireEditPermission);
-const editMessageTextMock = vi.mocked(editMessageText);
 const reformatRecipeMock = vi.mocked(reformatRecipe);
 
 const EDITOR_SESSION = {
@@ -69,9 +64,7 @@ function recipeRow(overrides: Record<string, unknown> = {}) {
 beforeEach(() => {
   mockReset(prismaMock);
   requireEditPermissionMock.mockReset();
-  editMessageTextMock.mockReset();
   reformatRecipeMock.mockReset();
-  process.env.TELEGRAM_CHANNEL_ID = '-1001234567890';
   requireEditPermissionMock.mockResolvedValue(EDITOR_SESSION as any);
   (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
   prismaMock.recipeVersion.findMany.mockResolvedValue([]);
@@ -94,7 +87,6 @@ describe('POST /api/recipes/bulk', () => {
   it('reformats + updates each recipe and reports processed/failed/total (flat, unwrapped)', async () => {
     prismaMock.recipe.findMany.mockResolvedValue([recipeRow({ id: 1 }), recipeRow({ id: 2, telegram_id: 200 })] as any);
     reformatRecipeMock.mockResolvedValue('כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל');
-    editMessageTextMock.mockResolvedValue({ message_id: 100 } as any);
     prismaMock.recipe.update.mockResolvedValue({} as any);
 
     const response = await POST(postRequest({ action: 'parse', recipeIds: [1, 2] }));
@@ -105,21 +97,8 @@ describe('POST /api/recipes/bulk', () => {
     expect(json).toEqual({ processed: 2, failed: 0, total: 2, remaining: 0 });
     expect(reformatRecipeMock).toHaveBeenCalledTimes(2);
     expect(prismaMock.recipe.update).toHaveBeenCalledTimes(2);
-  });
-
-  it('Telegram down: recipes still get reformatted + saved (pending_telegram), not counted as failed', async () => {
-    prismaMock.recipe.findMany.mockResolvedValue([recipeRow({ id: 1 })] as any);
-    reformatRecipeMock.mockResolvedValue('כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל');
-    editMessageTextMock.mockRejectedValue(new Error('Network request failed'));
-    prismaMock.recipe.update.mockResolvedValue({} as any);
-
-    const response = await POST(postRequest({ action: 'parse', recipeIds: [1] }));
-
-    const json = await response.json();
-    expect(json).toEqual({ processed: 1, failed: 0, total: 1, remaining: 0 });
 
     const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
-    expect(updateArgs.data.sync_status).toBe('pending_telegram');
     expect(updateArgs.data.raw_content).toContain('מפורסר');
   });
 
@@ -141,7 +120,6 @@ describe('POST /api/recipes/bulk', () => {
     reformatRecipeMock
       .mockRejectedValueOnce(new Error('AI service down'))
       .mockResolvedValueOnce('כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל');
-    editMessageTextMock.mockResolvedValue({ message_id: 200 } as any);
     prismaMock.recipe.update.mockResolvedValue({} as any);
 
     const response = await POST(postRequest({ action: 'parse', recipeIds: [1, 2] }));

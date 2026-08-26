@@ -9,8 +9,7 @@ import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '@/lib/utils/api-errors';
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
-import { menuMealsInclude, serializeMeal, type MenuRow } from '@/lib/serializers/menu';
-import { mirrorMenuUpdate } from '@/lib/telegram/menuMirror';
+import { serializeMeal } from '@/lib/serializers/menu';
 
 interface AddMealBody {
   meal_type?: string;
@@ -54,16 +53,6 @@ export async function POST(
         notes: body.notes
       }
     });
-
-    // Update in Telegram if the menu is synced (best-effort).
-    const fullMenu = (await prisma.menu.findUniqueOrThrow({
-      where: { id: menuId },
-      include: menuMealsInclude
-    })) as MenuRow;
-    const lastSync = await mirrorMenuUpdate(fullMenu, fullMenu.telegram_message_id);
-    if (lastSync) {
-      await prisma.menu.update({ where: { id: menuId }, data: { last_sync: lastSync } });
-    }
 
     logger.info({ menuId, mealId: meal.id }, 'Meal added to menu');
 

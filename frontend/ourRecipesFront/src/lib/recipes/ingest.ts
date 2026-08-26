@@ -15,15 +15,10 @@ import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
-import { storeTelegramPhoto } from '@/lib/images/blob';
 import { storeImageBase64 } from '@/lib/images/upload';
 import { RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 
 const log = logger.child({ context: 'recipes/ingest' });
-
-/** `Recipe.sync_status` — outgoing-mirror state only (ARCHITECTURE §8). */
-export const SYNC_STATUS_SYNCED = 'synced';
-export const SYNC_STATUS_PENDING_TELEGRAM = 'pending_telegram';
 
 /**
  * Soft-delete convention (ARCHITECTURE §4.4): Telegram never notifies us about
@@ -61,8 +56,6 @@ export interface IngestRecipeInput {
   source?: RecipeSource;
   /** `message.text` or `message.caption`. May be empty for a photo-only post. */
   text: string;
-  /** Bot API `file_id` of the largest photo size, if the message carries one. */
-  photoFileId?: string | null;
   /** Base64 photo bytes (Telethon history import, which has no usable file_id). */
   photoBase64?: string | null;
   /** Pre-resolved image URL, when the caller already stored the blob. */
@@ -112,23 +105,9 @@ export function stripArchiveMarker(text: string): string {
   return text ?? '';
 }
 
-/** Largest `PhotoSize` of a message — Telegram sends them in ascending order. */
-export function largestPhotoFileId(
-  photos: Array<{ file_id: string; file_size?: number }> | undefined | null
-): string | null {
-  if (!photos || photos.length === 0) return null;
-
-  const largest = photos.reduce((best, current) =>
-    (current.file_size ?? 0) >= (best.file_size ?? 0) ? current : best
-  );
-
-  return largest.file_id ?? photos[photos.length - 1].file_id ?? null;
-}
-
 /** Resolves whichever image form the caller supplied into a Blob URL. */
 async function resolveImageUrl(input: IngestRecipeInput): Promise<string | null> {
   if (input.imageUrl) return input.imageUrl;
-  if (input.photoFileId) return storeTelegramPhoto(input.photoFileId);
   if (input.photoBase64) return storeImageBase64(input.photoBase64, input.telegramId);
   return null;
 }
@@ -154,7 +133,7 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
     select: { id: true, raw_content: true, image_url: true, status: true, source_message_id: true }
   });
 
-  const hasIncomingImage = Boolean(input.imageUrl || input.photoFileId || input.photoBase64);
+  const hasIncomingImage = Boolean(input.imageUrl || input.photoBase64);
 
   // Source fields are set whenever the caller knows them — including on
   // updates, so a row created before its origin was known (e.g. the webhook
@@ -200,8 +179,8 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
     raw_content: text,
     ...recipeFieldsFromParsed(parsed),
     status: archived ? RECIPE_STATUS_ARCHIVED : RECIPE_STATUS_ACTIVE,
-    sync_status: SYNC_STATUS_SYNCED,
-    sync_error: null,
+    // Still meaningful without the outgoing mirror: "last time content
+    // arrived from the channel".
     last_sync: new Date(),
     ...(imageUrl ? { image_url: imageUrl, media_type: 'image_url' } : {})
   };

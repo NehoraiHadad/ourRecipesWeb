@@ -28,7 +28,7 @@ const getChatMemberMock = vi.mocked(getChatMember);
 beforeEach(() => {
   process.env.JWT_SECRET = JWT_SECRET;
   process.env.TELEGRAM_BOT_TOKEN = BOT_TOKEN;
-  process.env.TELEGRAM_CHANNEL_ID = CHANNEL_ID;
+  process.env.TELEGRAM_OLD_CHANNEL_ID = CHANNEL_ID;
   clearPermissionCache();
   getChatMemberMock.mockReset();
 });
@@ -36,7 +36,7 @@ beforeEach(() => {
 afterEach(() => {
   delete process.env.JWT_SECRET;
   delete process.env.TELEGRAM_BOT_TOKEN;
-  delete process.env.TELEGRAM_CHANNEL_ID;
+  delete process.env.TELEGRAM_OLD_CHANNEL_ID;
 });
 
 /** Builds Login-Widget payload signed the way Telegram signs it. */

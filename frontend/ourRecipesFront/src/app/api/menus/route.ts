@@ -38,7 +38,6 @@ import {
   serializeMenu,
   type MenuRow
 } from '@/lib/serializers/menu';
-import { mirrorMenuCreate } from '@/lib/telegram/menuMirror';
 
 export async function GET(request: NextRequest) {
   try {
@@ -122,8 +121,8 @@ interface SaveMenuInput {
 /**
  * Port of `save_menu` (`routes/menus.py`): create the menu + meals + recipes
  * (invalid recipe ids are skipped, not fatal — matches
- * `MenuPlannerService._create_menu_from_plan`), generate the shopping list,
- * then mirror to Telegram best-effort (ARCHITECTURE §4.3).
+ * `MenuPlannerService._create_menu_from_plan`), then generate the shopping
+ * list. The DB is the only store now that the main Telegram channel is gone.
  */
 export async function POST(request: NextRequest) {
   try {
@@ -208,23 +207,14 @@ export async function POST(request: NextRequest) {
     });
 
     // Reload with the full meal/recipe tree (mirrors the Flask handler's post-commit `Menu.query.get`).
-    let menu = (await prisma.menu.findUniqueOrThrow({
+    const menu = (await prisma.menu.findUniqueOrThrow({
       where: { id: menuId },
       include: menuMealsInclude
     })) as MenuRow;
 
     const shoppingList = await generateShoppingList(menu.id);
 
-    const mirrored = await mirrorMenuCreate(menu);
-    if (mirrored) {
-      menu = (await prisma.menu.update({
-        where: { id: menu.id },
-        data: { telegram_message_id: mirrored.telegram_message_id, last_sync: mirrored.last_sync },
-        include: menuMealsInclude
-      })) as MenuRow;
-    }
-
-    logger.info({ menuId: menu.id, telegramMirrored: !!mirrored }, 'Menu saved');
+    logger.info({ menuId: menu.id }, 'Menu saved');
 
     return Response.json(
       { success: true, menu: serializeMenu(menu), shopping_list: shoppingList },

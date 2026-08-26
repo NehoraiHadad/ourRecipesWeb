@@ -11,13 +11,10 @@
  * (`title`/`categories`/`ingredients`/`instructions`/...) can also skip
  * `newText` and let `formatRecipeText` build the canonical channel message.
  *
- * DB-first / Telegram best-effort (ARCHITECTURE §4.3, Stage H1): the DB row
- * is written first with a small negative placeholder `telegram_id` and
- * `sync_status: 'pending_telegram'`. The Telegram `sendMessage`/`sendPhoto`
- * mirror is only attempted afterwards; on success the row is patched with the
- * real `telegram_id` and `sync_status: 'synced'`. A mirror failure never
- * fails the request — the row simply stays pending for the periodic
- * reconcile job (`mirrorPending.ts`) to resolve later.
+ * The DB is the only store (the main Telegram channel this used to mirror to
+ * is gone): the row is created with a freshly generated negative
+ * `telegram_id`, which is the permanent key for its public URL, and that's
+ * the whole write.
  */
 import { NextRequest } from 'next/server';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
@@ -27,9 +24,8 @@ import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
 import { formatRecipeText, parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/recipes/image';
-import { mirrorCreateRecipe } from '@/lib/recipes/mirror';
 import { generateInternalTelegramId } from '@/lib/recipes/recipeId';
-import { createRecipeRetryingId, applyCreateMirrorResult } from '@/lib/recipes/createRecipe';
+import { createRecipeRetryingId } from '@/lib/recipes/createRecipe';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'api/recipes:POST' });
@@ -84,7 +80,7 @@ export async function POST(request: NextRequest) {
     const imageUrl = submittedUrlImage
       ?? (imageBuffer ? await uploadRecipeImage(imageBuffer, `create-${Date.now()}`) : null);
 
-    let recipe = await createRecipeRetryingId({
+    const recipe = await createRecipeRetryingId({
       telegramId: generateInternalTelegramId(),
       text,
       parsed,
@@ -92,13 +88,7 @@ export async function POST(request: NextRequest) {
       createdBy: auth.session.sub
     });
 
-    const mirror = await mirrorCreateRecipe(text, imageBuffer ?? submittedUrlImage);
-    recipe = await applyCreateMirrorResult(recipe, mirror);
-
-    log.info(
-      { recipeId: recipe.id, telegramId: recipe.telegram_id, syncStatus: recipe.sync_status },
-      'Recipe created'
-    );
+    log.info({ recipeId: recipe.id, telegramId: recipe.telegram_id }, 'Recipe created');
 
     return createdResponse(serializeRecipeWithRelations(recipe));
   } catch (error) {

@@ -16,7 +16,6 @@ import { handleApiError, BadRequestError, NotFoundError } from '@/lib/utils/api-
 import { validateId } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
 import { serializePlace } from '@/lib/serializers/place';
-import { mirrorPlaceDelete, mirrorPlaceUpdate } from '@/lib/telegram/placeMirror';
 
 interface RouteParams {
   params: { id: string };
@@ -60,9 +59,6 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
 
     logger.info({ placeId }, 'Place updated');
 
-    // Update the Telegram message if one exists (best-effort — DB update already succeeded).
-    await mirrorPlaceUpdate(updated, updated.created_by, updated.telegram_message_id);
-
     return Response.json(serializePlace(updated));
   } catch (error) {
     logger.error({ error }, 'Error updating place');
@@ -76,20 +72,14 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     if (!auth.ok) return authErrorResponse(auth);
 
     const placeId = validateId(params.id);
-    // Flask's `session.get("user_name", user_id)` — see the note in places/route.ts.
-    const userName = auth.session.name ?? auth.session.sub;
 
-    // Already-deleted places 404 rather than re-running the Telegram mirror.
+    // Already-deleted places 404 rather than being soft-deleted again.
     const existing = await prisma.place.findFirst({
       where: { ...VISIBLE_PLACE, id: placeId }
     });
     if (!existing) throw NotFoundError('Place not found');
 
-    const updated = await prisma.place.update({ where: { id: placeId }, data: { is_deleted: true } });
-
-    // Mark the Telegram message as deleted (edit, not remove — Telegram convention for manual
-    // deletes, ARCHITECTURE §4.4). Best-effort — DB update already succeeded.
-    await mirrorPlaceDelete(updated, updated.created_by, userName, updated.telegram_message_id);
+    await prisma.place.update({ where: { id: placeId }, data: { is_deleted: true } });
 
     logger.info({ placeId }, 'Place soft-deleted');
 
