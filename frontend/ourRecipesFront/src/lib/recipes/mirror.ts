@@ -23,24 +23,6 @@ const log = logger.child({ context: 'recipes/mirror' });
 
 export type RecipeSyncStatus = 'synced' | 'pending_telegram';
 
-/**
- * Generates a placeholder `telegram_id` for a recipe whose initial Telegram
- * `sendMessage`/`sendPhoto` failed.
- *
- * `telegram_id` is `NOT NULL UNIQUE` and maps to a Postgres `int4`
- * (max ±2^31), so a millisecond epoch timestamp (~1.7e12) overflows it —
- * this folds `Date.now()` into a 0..999_999_999 window, adds a small random
- * offset to avoid same-millisecond collisions, and negates it (real
- * Telegram message ids are always positive, so a negative id can never
- * collide with a real one). The reconcile job replaces it once the real
- * message id is known.
- */
-export function generatePendingTelegramId(): number {
-  const base = Date.now() % 1_000_000_000;
-  const jitter = Math.floor(Math.random() * 1000);
-  return -(base + jitter + 1);
-}
-
 /** Is Telegram's "message is not modified" error — treat as a successful no-op. */
 function isNotModifiedError(error: unknown): boolean {
   const message = error instanceof Error ? error.message : String(error);

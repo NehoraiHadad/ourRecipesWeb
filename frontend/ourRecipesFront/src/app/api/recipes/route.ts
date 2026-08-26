@@ -27,7 +27,8 @@ import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
 import { formatRecipeText, parseRecipeMessage } from '@/lib/recipes/parser';
 import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/recipes/image';
-import { mirrorCreateRecipe, generatePendingTelegramId } from '@/lib/recipes/mirror';
+import { mirrorCreateRecipe } from '@/lib/recipes/mirror';
+import { generateInternalTelegramId } from '@/lib/recipes/recipeId';
 import { createRecipeRetryingId, applyCreateMirrorResult } from '@/lib/recipes/createRecipe';
 import { logger } from '@/lib/logger';
 
@@ -84,7 +85,7 @@ export async function POST(request: NextRequest) {
       ?? (imageBuffer ? await uploadRecipeImage(imageBuffer, `create-${Date.now()}`) : null);
 
     let recipe = await createRecipeRetryingId({
-      telegramId: generatePendingTelegramId(),
+      telegramId: generateInternalTelegramId(),
       text,
       parsed,
       imageUrl,

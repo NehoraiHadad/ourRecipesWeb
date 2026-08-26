@@ -1,8 +1,14 @@
 /**
- * POST /api/webhooks/telegram — the input path (ARCHITECTURE §4.1, §4.2, §6).
+ * POST /api/webhooks/telegram — the input path (ARCHITECTURE §4.1, §6).
  *
  * Registered with `setWebhook` using `secret_token` and
  * `allowed_updates=["channel_post","edited_channel_post"]`.
+ *
+ * One channel matters (Wave 5.4): the **old** channel is the sole intake.
+ * Posts and edits share a single flow — a message id a row already claims
+ * (via `{source_channel, source_message_id}`) updates that row; anything
+ * else becomes a new recipe. That lookup is also what makes Telegram's
+ * redeliveries idempotent.
  *
  * ## Decision table
  *
@@ -12,30 +18,22 @@
  * | body is not JSON                            | 200      | ignored                             |
  * | no `channel_post` / `edited_channel_post`   | 200      | ignored                             |
  * | `chat.id` is neither of our channels        | 200      | ignored, logged                     |
- * | main channel, place message ("המלצה")       | 200      | upsert into `places`, not `recipes` |
- * | main channel, menu mirror ("תפריט חדש")     | 200      | ignored (menus are app-authored)    |
- * | main channel, text identical to DB          | 200      | no-op (loop prevention)             |
- * | main channel, 🗑️ prefix                     | 200      | `status = ARCHIVED`                 |
- * | main channel, otherwise                     | 200      | parse + upsert by `message_id`      |
- * | main channel + photo                        | 200      | photo → Blob, `image_url` saved     |
- * | old channel, new post                       | 200      | Gemini reformat → publish → upsert  |
- * | old channel, edit of a tracked message      | 200      | reformat → snapshot → row update    |
- * | old channel, edit of an untracked message   | 200      | treated as a new post               |
+ * | main channel (frozen, pre-deletion)         | 200      | ignored                             |
+ * | old channel, empty text                     | 200      | ignored                             |
+ * | old channel, message a row claims           | 200      | reformat → snapshot → row update    |
+ * | old channel, unclaimed message              | 200      | reformat → store under internal id  |
  * | anything throws after auth                  | 200      | logged; no Telegram retry storm     |
  *
  * **Everything after the secret check answers 200.** Telegram retries non-2xx
  * deliveries with backoff and eventually parks the webhook; for our failure
- * modes (Gemini hiccup, Blob outage) a retry would replay the same failure, and
- * for the old-channel path it could publish the recipe twice. Failures are
- * logged and swept up by the daily reconcile instead.
+ * modes (Gemini hiccup, DB outage) a retry would replay the same failure.
+ * Failures are logged and swept up by the daily reconcile instead.
  */
 import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
 import { unauthorizedResponse, verifyTelegramWebhookSecret } from '@/lib/internal/auth';
-import { classifyChannel, getMainChannelId } from '@/lib/telegram/channels';
-import { ingestChannelMessage } from '@/lib/telegram/channelIngest';
-import { largestPhotoFileId } from '@/lib/recipes/ingest';
-import { republishOldChannelPost } from '@/lib/recipes/oldChannel';
+import { classifyChannel } from '@/lib/telegram/channels';
+import { ingestOldChannelPost } from '@/lib/recipes/oldChannel';
 import { applyOldChannelEdit, findRecipeByOldChannelSource } from '@/lib/recipes/oldChannelEdit';
 import type { TelegramMessage, TelegramUpdate } from '@/lib/telegram/types';
 
@@ -87,68 +85,43 @@ export async function POST(request: NextRequest): Promise<Response> {
       return ack({ ignored: 'unknown_chat' });
     }
 
+    // The main channel is frozen: the app no longer writes there, and nothing
+    // posted there is ours to ingest. The row stays in the decision table only
+    // until the channel itself is deleted.
+    if (channel === 'main') {
+      return ack({ ignored: 'main_channel_frozen' });
+    }
+
     const text = messageText(message);
+    if (!text.trim()) {
+      return ack({ ignored: 'old_channel_empty' });
+    }
 
-    if (channel === 'old') {
-      if (!text.trim()) {
-        return ack({ ignored: 'old_channel_empty' });
-      }
-
-      // An edit whose message id a row already claims updates that row (the
-      // channel wins; see `applyOldChannelEdit`). An edit no row knows —
-      // a message from before source tracking, or one whose first delivery
-      // failed — falls through and is treated exactly like a new post.
-      if (isEdit) {
-        const existing = await findRecipeByOldChannelSource(message.message_id);
-        if (existing) {
-          const edit = await applyOldChannelEdit(existing, text);
-          return ack({
-            source: 'old_channel',
-            edited: true,
-            sourceMessageId: message.message_id,
-            telegram_id: edit.telegramId,
-            action: edit.action,
-            needs_review: edit.needsReview
-          });
-        }
-      }
-
-      const mainChannelId = getMainChannelId();
-      if (mainChannelId === null) {
-        log.error('TELEGRAM_CHANNEL_ID is not configured — cannot republish old-channel post');
-        return ack({ ignored: 'main_channel_not_configured' });
-      }
-
-      const result = await republishOldChannelPost({
-        sourceMessageId: message.message_id,
-        text,
-        mainChannelId
-      });
-
+    const existing = await findRecipeByOldChannelSource(message.message_id);
+    if (existing) {
+      const edit = await applyOldChannelEdit(existing, text);
       return ack({
         source: 'old_channel',
+        edited: isEdit,
         sourceMessageId: message.message_id,
-        telegram_id: result.publishedMessageId,
-        action: result.ingest.action
+        telegram_id: edit.telegramId,
+        action: edit.action,
+        needs_review: edit.needsReview
       });
     }
 
-    // 4. Main channel: classify (recipe/place/menu) + upsert under this
-    //    message id.
-    const result = await ingestChannelMessage({
-      telegramId: message.message_id,
+    const result = await ingestOldChannelPost({
+      sourceMessageId: message.message_id,
       text,
-      photoFileId: largestPhotoFileId(message.photo),
       messageDate: message.date ? new Date(message.date * 1000) : null
     });
 
     return ack({
-      source: 'main_channel',
+      source: 'old_channel',
       edited: isEdit,
-      kind: result.kind,
+      sourceMessageId: message.message_id,
       telegram_id: result.telegramId,
-      action: result.action,
-      status: result.status
+      action: result.ingest.action
     });
   } catch (error) {
     // Swallow deliberately — see the module docstring.

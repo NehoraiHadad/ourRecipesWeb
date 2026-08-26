@@ -1,29 +1,21 @@
 // @vitest-environment node
 /**
- * Wave 1.D — `POST /api/webhooks/telegram`.
+ * `POST /api/webhooks/telegram` (Wave 5.4).
  *
  * The webhook is the only unauthenticated-by-middleware entry point in the app,
  * so its decision table is pinned here: who gets in (secret token), what counts
- * as ours (channel id), and what each kind of channel post does to the DB.
+ * as ours (channel id), and what an old-channel post/edit does to the DB. The
+ * main channel is frozen — posts there are acknowledged and ignored.
  */
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import { prismaMock, resetPrismaMock } from '@tests/mocks/prisma';
 import { createMockRequest, parseJsonResponse } from '@tests/helpers/api-test-helpers';
 
-// Wave 0 libs the route leans on — mocked so no network/Blob/Gemini is touched.
-vi.mock('@/lib/images/blob', () => ({
-  storeTelegramPhoto: vi.fn()
-}));
-vi.mock('@/lib/telegram/botApi', () => ({
-  sendMessage: vi.fn()
-}));
 vi.mock('@/lib/services/aiService', () => ({
   reformatRecipe: vi.fn()
 }));
 
 import { POST as webhookPOST } from '@/app/api/webhooks/telegram/route';
-import { storeTelegramPhoto } from '@/lib/images/blob';
-import { sendMessage } from '@/lib/telegram/botApi';
 import { reformatRecipe } from '@/lib/services/aiService';
 
 const WEBHOOK_SECRET = 'webhook-secret-value';
@@ -57,12 +49,30 @@ function webhookRequest(
   });
 }
 
-function channelPost(overrides: Record<string, unknown> = {}) {
+function oldChannelMessage(overrides: Record<string, unknown> = {}) {
   return {
-    message_id: 501,
-    chat: { id: MAIN_CHANNEL_ID, type: 'channel', title: 'Main' },
-    date: 1_700_000_000,
-    text: RECIPE_TEXT,
+    message_id: 42,
+    chat: { id: OLD_CHANNEL_ID, type: 'channel', title: 'Old' },
+    date: 1_700_000_800,
+    text: 'עוגת שוקולד של סבתא, שוקולד וביצים, לערבב ולאפות',
+    ...overrides
+  };
+}
+
+/** The row `findRecipeByOldChannelSource` returns for a tracked message. */
+function trackedRecipe(overrides: Record<string, unknown> = {}) {
+  return {
+    id: 11,
+    telegram_id: -900123,
+    title: 'עוגת שוקולד',
+    raw_content: RECIPE_TEXT,
+    categories: 'קינוחים',
+    ingredients_list: [],
+    instructions: 'ממיסים.',
+    preparation_time: 45,
+    difficulty: 'EASY',
+    image_url: null,
+    app_edited_at: null,
     ...overrides
   };
 }
@@ -80,8 +90,6 @@ function mockUpsertResult(overrides: Record<string, unknown> = {}) {
 describe('POST /api/webhooks/telegram', () => {
   beforeEach(() => {
     resetPrismaMock();
-    vi.mocked(storeTelegramPhoto).mockReset();
-    vi.mocked(sendMessage).mockReset();
     vi.mocked(reformatRecipe).mockReset();
 
     process.env.TELEGRAM_WEBHOOK_SECRET = WEBHOOK_SECRET;
@@ -92,7 +100,7 @@ describe('POST /api/webhooks/telegram', () => {
   describe('authentication', () => {
     it('rejects a delivery with the wrong secret token', async () => {
       const response = await webhookPOST(
-        webhookRequest({ update_id: 1, channel_post: channelPost() }, { secret: 'nope' })
+        webhookRequest({ update_id: 1, channel_post: oldChannelMessage() }, { secret: 'nope' })
       );
 
       expect(response.status).toBe(401);
@@ -101,7 +109,7 @@ describe('POST /api/webhooks/telegram', () => {
 
     it('rejects a delivery with no secret token at all', async () => {
       const response = await webhookPOST(
-        webhookRequest({ update_id: 1, channel_post: channelPost() }, { secret: null })
+        webhookRequest({ update_id: 1, channel_post: oldChannelMessage() }, { secret: null })
       );
 
       expect(response.status).toBe(401);
@@ -112,7 +120,7 @@ describe('POST /api/webhooks/telegram', () => {
       delete process.env.TELEGRAM_WEBHOOK_SECRET;
 
       const response = await webhookPOST(
-        webhookRequest({ update_id: 1, channel_post: channelPost() })
+        webhookRequest({ update_id: 1, channel_post: oldChannelMessage() })
       );
 
       expect(response.status).toBe(401);
@@ -139,7 +147,7 @@ describe('POST /api/webhooks/telegram', () => {
       const response = await webhookPOST(
         webhookRequest({
           update_id: 3,
-          channel_post: channelPost({ chat: { id: -1009999999999, type: 'channel' } })
+          channel_post: oldChannelMessage({ chat: { id: -1009999999999, type: 'channel' } })
         })
       );
 
@@ -149,173 +157,37 @@ describe('POST /api/webhooks/telegram', () => {
       expect(prismaMock.recipe.findUnique).not.toHaveBeenCalled();
       expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
     });
-  });
 
-  describe('main channel', () => {
-    it('creates a recipe from a new channel post', async () => {
-      prismaMock.recipe.findUnique.mockResolvedValue(null);
-      mockUpsertResult();
-
-      const response = await webhookPOST(
-        webhookRequest({ update_id: 4, channel_post: channelPost() })
-      );
-
-      expect(response.status).toBe(200);
-      const json = await parseJsonResponse<any>(response);
-      expect(json).toMatchObject({ ok: true, action: 'created', telegram_id: 501 });
-
-      expect(prismaMock.recipe.upsert).toHaveBeenCalledTimes(1);
-      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-
-      expect(call.where).toEqual({ telegram_id: 501 });
-      expect(call.create.telegram_id).toBe(501);
-      expect(call.create.title).toBe('עוגת שוקולד');
-      expect(call.create.raw_content).toBe(RECIPE_TEXT);
-      // Structured ingredients (Stage B) — the legacy `||`-separated text
-      // column is no longer written at all.
-      expect(call.create.ingredients).toBeUndefined();
-      expect(call.create.ingredients_list).toEqual([
-        { quantity: 200, unit: 'גרם', name: 'שוקולד' },
-        { quantity: 3, name: 'ביצים' }
-      ]);
-      expect(call.create.categories).toBe('קינוחים,עוגות');
-      expect(call.create.preparation_time).toBe(45);
-      expect(call.create.difficulty).toBe('EASY');
-      expect(call.create.is_parsed).toBe(true);
-      expect(call.create.parse_errors).toBe('');
-      expect(call.create.status).toBe('ACTIVE');
-      expect(call.create.sync_status).toBe('synced');
-    });
-
-    it('updates an existing recipe on edited_channel_post', async () => {
-      const editedText = RECIPE_TEXT.replace('עוגת שוקולד', 'עוגת שוקולד מריר');
-
-      prismaMock.recipe.findUnique.mockResolvedValue({
-        id: 7,
-        raw_content: RECIPE_TEXT,
-        image_url: null,
-        status: 'ACTIVE'
-      } as any);
-      mockUpsertResult();
-
+    it('ignores posts on the frozen main channel', async () => {
       const response = await webhookPOST(
         webhookRequest({
-          update_id: 5,
-          edited_channel_post: channelPost({ text: editedText, edit_date: 1_700_000_500 })
+          update_id: 4,
+          channel_post: {
+            message_id: 501,
+            chat: { id: MAIN_CHANNEL_ID, type: 'channel', title: 'Main' },
+            date: 1_700_000_000,
+            text: RECIPE_TEXT
+          }
         })
       );
 
       expect(response.status).toBe(200);
       const json = await parseJsonResponse<any>(response);
-      expect(json).toMatchObject({ ok: true, action: 'updated', edited: true, telegram_id: 501 });
-
-      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-      expect(call.update.raw_content).toBe(editedText);
-      expect(call.update.title).toBe('עוגת שוקולד מריר');
-    });
-
-    it('no-ops when the incoming text is identical to the DB (loop prevention)', async () => {
-      prismaMock.recipe.findUnique.mockResolvedValue({
-        id: 7,
-        raw_content: RECIPE_TEXT,
-        image_url: null,
-        status: 'ACTIVE'
-      } as any);
-
-      const response = await webhookPOST(
-        webhookRequest({ update_id: 6, edited_channel_post: channelPost() })
-      );
-
-      expect(response.status).toBe(200);
-      const json = await parseJsonResponse<any>(response);
-      expect(json.action).toBe('unchanged');
+      expect(json.ignored).toBe('main_channel_frozen');
+      expect(prismaMock.recipe.findUnique).not.toHaveBeenCalled();
       expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
-    });
-
-    it('archives a recipe whose message was prefixed with 🗑️', async () => {
-      const archivedText = `🗑️ ${RECIPE_TEXT}`;
-
-      prismaMock.recipe.findUnique.mockResolvedValue({
-        id: 7,
-        raw_content: RECIPE_TEXT,
-        image_url: null,
-        status: 'ACTIVE'
-      } as any);
-      mockUpsertResult({ status: 'ARCHIVED' });
-
-      const response = await webhookPOST(
-        webhookRequest({
-          update_id: 7,
-          edited_channel_post: channelPost({ text: archivedText })
-        })
-      );
-
-      expect(response.status).toBe(200);
-
-      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-      expect(call.update.status).toBe('ARCHIVED');
-      // The message is stored verbatim so the next identical edit is a no-op…
-      expect(call.update.raw_content).toBe(archivedText);
-      // …but the marker is stripped before parsing, so the title stays clean.
-      expect(call.update.title).toBe('עוגת שוקולד');
-    });
-
-    it('stores a photo in Blob and saves the resulting URL', async () => {
-      prismaMock.recipe.findUnique.mockResolvedValue(null);
-      mockUpsertResult({ image_url: 'https://blob.example/recipes/big.jpg' });
-      vi.mocked(storeTelegramPhoto).mockResolvedValue('https://blob.example/recipes/big.jpg');
-
-      const response = await webhookPOST(
-        webhookRequest({
-          update_id: 8,
-          channel_post: channelPost({
-            text: undefined,
-            caption: RECIPE_TEXT,
-            photo: [
-              { file_id: 'small', file_unique_id: 's', width: 90, height: 90, file_size: 1_000 },
-              { file_id: 'large', file_unique_id: 'l', width: 1280, height: 1280, file_size: 90_000 }
-            ]
-          })
-        })
-      );
-
-      expect(response.status).toBe(200);
-      // The largest PhotoSize is the one we keep.
-      expect(storeTelegramPhoto).toHaveBeenCalledWith('large');
-
-      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-      expect(call.create.image_url).toBe('https://blob.example/recipes/big.jpg');
-      expect(call.create.media_type).toBe('image_url');
-      // Caption is used as the recipe body when there is no `text`.
-      expect(call.create.raw_content).toBe(RECIPE_TEXT);
+      expect(reformatRecipe).not.toHaveBeenCalled();
     });
   });
 
-  describe('old channel', () => {
-    it('reformats with Gemini, publishes to the main channel and stores the new id', async () => {
-      const rawText = 'עוגת שוקולד של סבתא, שוקולד וביצים, לערבב ולאפות';
-      const formatted = RECIPE_TEXT;
-
-      vi.mocked(reformatRecipe).mockResolvedValue(formatted);
-      vi.mocked(sendMessage).mockResolvedValue({
-        message_id: 909,
-        chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
-        date: 1_700_000_900,
-        text: formatted
-      } as any);
+  describe('old channel — new posts', () => {
+    it('reformats with Gemini and stores directly under an internal id', async () => {
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
       prismaMock.recipe.findUnique.mockResolvedValue(null);
       mockUpsertResult({ id: 11 });
 
       const response = await webhookPOST(
-        webhookRequest({
-          update_id: 9,
-          channel_post: {
-            message_id: 42,
-            chat: { id: OLD_CHANNEL_ID, type: 'channel', title: 'Old' },
-            date: 1_700_000_800,
-            text: rawText
-          }
-        })
+        webhookRequest({ update_id: 9, channel_post: oldChannelMessage() })
       );
 
       expect(response.status).toBe(200);
@@ -323,222 +195,164 @@ describe('POST /api/webhooks/telegram', () => {
       expect(json).toMatchObject({
         ok: true,
         source: 'old_channel',
+        edited: false,
         sourceMessageId: 42,
-        telegram_id: 909,
         action: 'created'
       });
+      // Stored under a generated internal id — the public URL key.
+      expect(json.telegram_id).toBeLessThan(0);
 
-      expect(reformatRecipe).toHaveBeenCalledWith(rawText);
-      expect(sendMessage).toHaveBeenCalledWith(
-        expect.objectContaining({ chat_id: MAIN_CHANNEL_ID, text: formatted })
-      );
+      expect(reformatRecipe).toHaveBeenCalledWith(oldChannelMessage().text);
 
-      // Stored under the NEW main-channel id, never the old-channel one —
-      // but the old-channel origin is recorded so a later edit there can
-      // find this row.
       const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-      expect(call.where).toEqual({ telegram_id: 909 });
-      expect(call.create.raw_content).toBe(formatted);
-      expect(call.create.sync_status).toBe('synced');
+      expect(call.where.telegram_id).toBeLessThan(0);
+      expect(call.create.raw_content).toBe(RECIPE_TEXT);
+      expect(call.create.title).toBe('עוגת שוקולד');
       expect(call.create.source_channel).toBe('old');
       expect(call.create.source_message_id).toBe(42);
+      // Original post time becomes created_at.
+      expect(call.create.created_at).toEqual(new Date(1_700_000_800 * 1000));
     });
 
-    it('stamps the source onto an existing row even when the content is unchanged', async () => {
-      // Race: the main-channel webhook for our own republished message created
-      // the row first (no source known). Our ingest then arrives with identical
-      // content — it must still record where the recipe came from.
-      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
-      vi.mocked(sendMessage).mockResolvedValue({
-        message_id: 909,
-        chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
-        date: 1_700_000_900,
-        text: RECIPE_TEXT
-      } as any);
-      prismaMock.recipe.findUnique.mockResolvedValue({
-        id: 11,
-        raw_content: RECIPE_TEXT,
-        image_url: null,
-        status: 'ACTIVE',
-        source_message_id: null
-      } as any);
-
+    it('ignores an empty post', async () => {
       const response = await webhookPOST(
-        webhookRequest({
-          update_id: 13,
-          channel_post: {
-            message_id: 42,
-            chat: { id: OLD_CHANNEL_ID, type: 'channel', title: 'Old' },
-            date: 1_700_000_800,
-            text: 'עוגת שוקולד של סבתא'
-          }
-        })
+        webhookRequest({ update_id: 9, channel_post: oldChannelMessage({ text: '   ' }) })
       );
 
-      expect(response.status).toBe(200);
       const json = await parseJsonResponse<any>(response);
-      expect(json.action).toBe('unchanged');
-      expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
-      expect(prismaMock.recipe.update).toHaveBeenCalledWith({
-        where: { id: 11 },
-        data: { source_channel: 'old', source_message_id: 42 }
-      });
+      expect(json.ignored).toBe('old_channel_empty');
+      expect(reformatRecipe).not.toHaveBeenCalled();
     });
 
     it('still answers 200 when Gemini fails, so Telegram does not retry forever', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
       vi.mocked(reformatRecipe).mockRejectedValue(new Error('Gemini unavailable'));
 
       const response = await webhookPOST(
-        webhookRequest({
-          update_id: 10,
-          channel_post: {
-            message_id: 43,
-            chat: { id: OLD_CHANNEL_ID, type: 'channel' },
-            date: 1_700_000_800,
-            text: 'משהו גולמי'
-          }
-        })
+        webhookRequest({ update_id: 10, channel_post: oldChannelMessage() })
       );
 
       expect(response.status).toBe(200);
       const json = await parseJsonResponse<any>(response);
       expect(json.ok).toBe(true);
       expect(json.error).toBe('processing_failed');
-      expect(sendMessage).not.toHaveBeenCalled();
       expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
     });
 
-    describe('edits', () => {
-      /** The row `findRecipeByOldChannelSource` returns for a tracked message. */
-      function trackedRecipe(overrides: Record<string, unknown> = {}) {
-        return {
-          id: 11,
-          telegram_id: 909,
-          title: 'עוגת שוקולד',
-          raw_content: RECIPE_TEXT,
-          categories: 'קינוחים',
-          ingredients_list: [],
-          instructions: 'ממיסים.',
-          preparation_time: 45,
-          difficulty: 'EASY',
-          image_url: null,
-          app_edited_at: null,
-          ...overrides
-        };
-      }
+    it('treats a redelivered post as an edit of the row it created (idempotency)', async () => {
+      // Second delivery of message 42: the source lookup finds the row, the
+      // reformat comes out identical, nothing is written.
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
 
-      function oldChannelEdit(text: string) {
-        return webhookRequest({
-          update_id: 11,
-          edited_channel_post: {
-            message_id: 44,
-            chat: { id: OLD_CHANNEL_ID, type: 'channel' },
-            date: 1_700_000_800,
-            text
+      const response = await webhookPOST(
+        webhookRequest({ update_id: 9, channel_post: oldChannelMessage() })
+      );
+
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ action: 'unchanged', telegram_id: -900123 });
+      expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
+      expect(prismaMock.recipe.update).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('old channel — edits', () => {
+    function oldChannelEdit(text: string) {
+      return webhookRequest({
+        update_id: 11,
+        edited_channel_post: oldChannelMessage({ message_id: 44, text })
+      });
+    }
+
+    beforeEach(() => {
+      (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
+      prismaMock.recipeVersion.findMany.mockResolvedValue([]);
+      prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 2 } } as any);
+    });
+
+    it('updates the matching row: reformat, snapshot, overwrite', async () => {
+      const editedFormatted = RECIPE_TEXT.replace('עוגת שוקולד', 'עוגת שוקולד מריר');
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+      vi.mocked(reformatRecipe).mockResolvedValue(editedFormatted);
+
+      const response = await webhookPOST(oldChannelEdit('גרסה ערוכה של המתכון'));
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({
+        ok: true,
+        source: 'old_channel',
+        edited: true,
+        sourceMessageId: 44,
+        telegram_id: -900123,
+        action: 'updated',
+        needs_review: false
+      });
+
+      // Matched by the source pair, never by telegram_id.
+      expect(prismaMock.recipe.findUnique).toHaveBeenCalledWith(
+        expect.objectContaining({
+          where: {
+            source_channel_source_message_id: { source_channel: 'old', source_message_id: 44 }
           }
-        });
-      }
+        })
+      );
 
-      beforeEach(() => {
-        (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
-        prismaMock.recipeVersion.findMany.mockResolvedValue([]);
-        prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 2 } } as any);
-      });
+      // Previous content snapshotted, row overwritten with the reformat.
+      expect(prismaMock.recipeVersion.create).toHaveBeenCalledTimes(1);
+      const versionData = (prismaMock.recipeVersion.create.mock.calls[0][0] as any).data;
+      expect(versionData.created_by).toBe('old_channel');
+      expect((versionData.content as any).raw_content).toBe(RECIPE_TEXT);
 
-      it('updates the matching row: reformat, snapshot, overwrite — no re-publish', async () => {
-        const editedFormatted = RECIPE_TEXT.replace('עוגת שוקולד', 'עוגת שוקולד מריר');
-        prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
-        vi.mocked(reformatRecipe).mockResolvedValue(editedFormatted);
+      const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+      expect(update.where).toEqual({ id: 11 });
+      expect(update.data.raw_content).toBe(editedFormatted);
+      expect(update.data.title).toBe('עוגת שוקולד מריר');
+      expect(update.data.needs_review).toBeUndefined();
+    });
 
-        const response = await webhookPOST(oldChannelEdit('גרסה ערוכה של המתכון'));
+    it('flags a row that was also edited in the app (channel wins, review requested)', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(
+        trackedRecipe({ app_edited_at: new Date('2026-08-20') }) as any
+      );
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT.replace('45', '50'));
 
-        expect(response.status).toBe(200);
-        const json = await parseJsonResponse<any>(response);
-        expect(json).toMatchObject({
-          ok: true,
-          source: 'old_channel',
-          edited: true,
-          sourceMessageId: 44,
-          telegram_id: 909,
-          action: 'updated',
-          needs_review: false
-        });
+      const response = await webhookPOST(oldChannelEdit('גרסה ערוכה'));
 
-        // Matched by the source pair, never by telegram_id.
-        expect(prismaMock.recipe.findUnique).toHaveBeenCalledWith(
-          expect.objectContaining({
-            where: {
-              source_channel_source_message_id: { source_channel: 'old', source_message_id: 44 }
-            }
-          })
-        );
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ action: 'updated', needs_review: true });
 
-        // The channel never gets written to — this is a row update only.
-        expect(sendMessage).not.toHaveBeenCalled();
+      const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+      expect(update.data.needs_review).toBe(true);
+    });
 
-        // Previous content snapshotted, row overwritten with the reformat.
-        expect(prismaMock.recipeVersion.create).toHaveBeenCalledTimes(1);
-        const versionData = (prismaMock.recipeVersion.create.mock.calls[0][0] as any).data;
-        expect(versionData.created_by).toBe('old_channel');
-        expect((versionData.content as any).raw_content).toBe(RECIPE_TEXT);
+    it('no-ops when the edit reformats to the exact stored content', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
 
-        const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
-        expect(update.where).toEqual({ id: 11 });
-        expect(update.data.raw_content).toBe(editedFormatted);
-        expect(update.data.title).toBe('עוגת שוקולד מריר');
-        expect(update.data.needs_review).toBeUndefined();
-      });
+      const response = await webhookPOST(oldChannelEdit('אותו תוכן, ניסוח גולמי'));
 
-      it('flags a row that was also edited in the app (channel wins, review requested)', async () => {
-        prismaMock.recipe.findUnique.mockResolvedValue(
-          trackedRecipe({ app_edited_at: new Date('2026-08-20') }) as any
-        );
-        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT.replace('45', '50'));
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ action: 'unchanged' });
+      expect(prismaMock.recipe.update).not.toHaveBeenCalled();
+      expect(prismaMock.recipeVersion.create).not.toHaveBeenCalled();
+    });
 
-        const response = await webhookPOST(oldChannelEdit('גרסה ערוכה'));
+    it('treats an edit no row claims as a brand-new post', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+      mockUpsertResult({ id: 12 });
 
-        const json = await parseJsonResponse<any>(response);
-        expect(json).toMatchObject({ action: 'updated', needs_review: true });
+      const response = await webhookPOST(oldChannelEdit('מתכון מלפני המעקב, עכשיו ערוך'));
 
-        const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
-        expect(update.data.needs_review).toBe(true);
-      });
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ source: 'old_channel', edited: true, action: 'created' });
+      expect(json.telegram_id).toBeLessThan(0);
 
-      it('no-ops when the edit reformats to the exact stored content', async () => {
-        prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
-        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
-
-        const response = await webhookPOST(oldChannelEdit('אותו תוכן, ניסוח גולמי'));
-
-        const json = await parseJsonResponse<any>(response);
-        expect(json).toMatchObject({ action: 'unchanged' });
-        expect(prismaMock.recipe.update).not.toHaveBeenCalled();
-        expect(prismaMock.recipeVersion.create).not.toHaveBeenCalled();
-      });
-
-      it('treats an edit no row claims as a brand-new post', async () => {
-        // First lookup: by source pair (miss). The republish path then looks
-        // up by the new telegram_id (also miss).
-        prismaMock.recipe.findUnique.mockResolvedValue(null);
-        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
-        vi.mocked(sendMessage).mockResolvedValue({
-          message_id: 910,
-          chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
-          date: 1_700_000_900,
-          text: RECIPE_TEXT
-        } as any);
-        mockUpsertResult({ id: 12 });
-
-        const response = await webhookPOST(oldChannelEdit('מתכון מלפני המעקב, עכשיו ערוך'));
-
-        expect(response.status).toBe(200);
-        const json = await parseJsonResponse<any>(response);
-        expect(json).toMatchObject({ source: 'old_channel', telegram_id: 910, action: 'created' });
-
-        const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
-        expect(call.create.source_channel).toBe('old');
-        expect(call.create.source_message_id).toBe(44);
-      });
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.source_channel).toBe('old');
+      expect(call.create.source_message_id).toBe(44);
     });
   });
 
@@ -546,7 +360,7 @@ describe('POST /api/webhooks/telegram', () => {
     prismaMock.recipe.findUnique.mockRejectedValue(new Error('Connection refused'));
 
     const response = await webhookPOST(
-      webhookRequest({ update_id: 12, channel_post: channelPost() })
+      webhookRequest({ update_id: 12, channel_post: oldChannelMessage() })
     );
 
     expect(response.status).toBe(200);

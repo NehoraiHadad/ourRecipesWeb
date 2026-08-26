@@ -11,7 +11,8 @@ import { prisma } from '@/lib/prisma';
 import { recipeWithRelationsSelect } from '@/lib/serializers/recipe';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { buildVersionContent } from '@/lib/recipes/versioning';
-import { generatePendingTelegramId, type MirrorCreateResult } from '@/lib/recipes/mirror';
+import { generateInternalTelegramId } from '@/lib/recipes/recipeId';
+import type { MirrorCreateResult } from '@/lib/recipes/mirror';
 import type { ParsedRecipe } from '@/lib/recipes/parser';
 import { logger } from '@/lib/logger';
 
@@ -76,7 +77,7 @@ export async function createRecipeRetryingId(input: CreateRecipeInput) {
 
       if (isPlaceholderCollision && attempt < MAX_TELEGRAM_ID_RETRIES) {
         log.warn({ attempt, telegramId }, 'Placeholder telegram_id collision — retrying with a new one');
-        telegramId = generatePendingTelegramId();
+        telegramId = generateInternalTelegramId();
         continue;
       }
 
