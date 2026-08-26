@@ -348,8 +348,9 @@ describe('POST /api/webhooks/telegram', () => {
       expect(call.create.raw_content).toBe('עוגת שמרים של סבתא');
     });
 
-    it('still answers 200 when Gemini fails, so Telegram does not retry forever', async () => {
+    it('stores the raw text when Gemini fails — channel content is never dropped', async () => {
       prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 17 });
       vi.mocked(reformatRecipe).mockRejectedValue(new Error('Gemini unavailable'));
 
       const response = await webhookPOST(
@@ -358,9 +359,12 @@ describe('POST /api/webhooks/telegram', () => {
 
       expect(response.status).toBe(200);
       const json = await parseJsonResponse<any>(response);
-      expect(json.ok).toBe(true);
-      expect(json.error).toBe('processing_failed');
-      expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
+      expect(json).toMatchObject({ ok: true, source: 'old_channel', action: 'created' });
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.raw_content).toBe(
+        'עוגת שוקולד של סבתא, שוקולד וביצים, לערבב ולאפות'
+      );
     });
 
     it('treats a redelivered post as an edit of the row it created (idempotency)', async () => {

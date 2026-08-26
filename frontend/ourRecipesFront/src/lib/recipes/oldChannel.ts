@@ -45,13 +45,15 @@ export interface OldChannelResult {
 }
 
 /**
- * The channel text, reformatted — or raw when the post is photo-first.
+ * The channel text, reformatted — or raw when the AI cannot make a recipe
+ * of it.
  *
- * A post that carries a photo is a recipe even when the AI cannot make a
- * recipe of its text: many old-channel posts are a *photograph* of a recipe
- * with a short caption (or none at all), completed by hand in the app later.
- * Those store as-is, unparsed. A text-only post that fails to reformat is
- * genuinely not a recipe and stays an error.
+ * Everything in the old channel is a recipe, however partial: a photographed
+ * recipe page with a bare caption, a title-only stub ("פשטידת בטטה"), an
+ * ingredient list with no instructions. When the reformat cannot produce a
+ * valid recipe, the post stores as-is — unparsed, for the family to complete
+ * by hand in the app — instead of being dropped. Only a post with no text
+ * *and* no photo has nothing to store.
  *
  * A 🗑️-marked message (ARCHITECTURE §4.4) — seen mostly when the history
  * rebuild replays recipes deleted over the years — is reformatted without
@@ -75,10 +77,9 @@ async function reformatOrRaw(
     }
     return isArchiveMarked(text) ? `${ARCHIVE_MARKERS[0]} ${formatted}` : formatted;
   } catch (error) {
-    if (!hasPhoto) throw error;
     log.warn(
-      { sourceMessageId, err: error },
-      'Reformat failed — storing the photo post with its raw caption'
+      { sourceMessageId, hasPhoto, err: error },
+      'Reformat failed — storing the post with its raw text, unparsed'
     );
     return text;
   }
@@ -93,9 +94,9 @@ async function reformatOrRaw(
  * check, the `(source_channel, source_message_id)` unique constraint rejects
  * the second insert.
  *
- * Throws on AI failure for text-only posts — the webhook route catches and
- * still answers 200, because a Telegram retry storm would only replay the
- * same failure.
+ * AI failure is not fatal — the post stores raw (see `reformatOrRaw`); only
+ * a storage/DB error propagates, and the webhook route catches even that and
+ * answers 200, because a Telegram retry storm would only replay the failure.
  */
 export async function ingestOldChannelPost(input: OldChannelInput): Promise<OldChannelResult> {
   const { sourceMessageId } = input;

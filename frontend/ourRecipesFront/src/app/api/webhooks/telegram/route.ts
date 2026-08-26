@@ -23,8 +23,9 @@
  * | old channel, message a row claims           | 200      | reformat → snapshot → row update    |
  * | old channel, unclaimed message              | 200      | reformat → store under internal id  |
  *
- * A photo without usable text is still a recipe — a photographed recipe page
- * completed by hand in the app — so only posts with *neither* are ignored.
+ * Everything in the old channel is a recipe, however partial — a photographed
+ * recipe page, a title-only stub, an ingredient list. Only posts with neither
+ * text nor a photo are ignored; a post the AI cannot reformat stores raw.
  * | anything throws after auth                  | 200      | logged; no Telegram retry storm     |
  *
  * **Everything after the secret check answers 200.** Telegram retries non-2xx

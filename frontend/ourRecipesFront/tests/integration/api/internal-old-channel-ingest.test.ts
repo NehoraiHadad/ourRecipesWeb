@@ -292,19 +292,21 @@ describe('POST /api/internal/old-channel/ingest', () => {
   });
 
   describe('AI failure', () => {
-    it('answers 5xx instead of swallowing into a 200 — the caller can retry', async () => {
+    it('stores the raw text instead of failing — channel content is never dropped', async () => {
       prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 18 });
       vi.mocked(reformatRecipe).mockRejectedValue(new Error('Gemini unavailable'));
 
       const response = await ingestPOST(
-        ingestRequest({ sourceMessageId: 42, text: 'raw text' })
+        ingestRequest({ sourceMessageId: 42, text: 'פשטידת בטטה' })
       );
 
-      expect(response.status).toBe(500);
+      expect(response.status).toBe(200);
       const json = await parseJsonResponse<any>(response);
-      expect(json.ok).toBe(false);
-      expect(typeof json.error).toBe('string');
-      expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
+      expect(json).toMatchObject({ ok: true, action: 'created', recipeId: 18 });
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.raw_content).toBe('פשטידת בטטה');
     });
 
     it('answers 5xx when the DB lookup itself fails', async () => {

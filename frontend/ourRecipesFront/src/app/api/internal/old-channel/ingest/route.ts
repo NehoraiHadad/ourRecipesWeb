@@ -23,7 +23,8 @@
  *
  * Unlike the webhook — which always answers 200 so Telegram never enters a
  * retry storm — this route is called by a caller that can and should retry:
- * an AI failure or a DB error here answers 500, not a swallowed 200.
+ * a DB error here answers 500, not a swallowed 200. (An AI failure is not an
+ * error: the post stores raw, unparsed — channel content is never dropped.)
  */
 import { NextRequest } from 'next/server';
 import { logger } from '@/lib/logger';
