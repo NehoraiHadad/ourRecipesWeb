@@ -1,11 +1,12 @@
 /**
  * Channel identity for the Telegram input path (ARCHITECTURE §3, §6).
  *
- * Two channels matter to this app:
- *  - the **main** channel (`TELEGRAM_CHANNEL_ID`) — input *and* shop window;
- *    everything posted there becomes a recipe row.
- *  - the **old** channel (`TELEGRAM_OLD_CHANNEL_ID`) — raw source material;
- *    posts there get reformatted by Gemini and re-published to the main channel.
+ * One channel matters since Wave 5: the **old** channel
+ * (`TELEGRAM_OLD_CHANNEL_ID`) — the raw free-text source, the sole intake.
+ * The **main** channel (`TELEGRAM_CHANNEL_ID`) is frozen pre-deletion: it is
+ * still *recognised* so the webhook can explicitly ignore its posts, and both
+ * the env var and the 'main' branch here go away with the channel itself
+ * (stage 5.7).
  *
  * Anything else is not ours and must be ignored (never trusted, never stored).
  *
@@ -27,12 +28,12 @@ function readChannelId(name: string): number | null {
   return parsed;
 }
 
-/** `TELEGRAM_CHANNEL_ID` — the main channel, target of every mirror write. */
+/** `TELEGRAM_CHANNEL_ID` — the frozen main channel, kept only to be ignored. */
 export function getMainChannelId(): number | null {
   return readChannelId('TELEGRAM_CHANNEL_ID');
 }
 
-/** `TELEGRAM_OLD_CHANNEL_ID` — the legacy raw-input channel. Optional. */
+/** `TELEGRAM_OLD_CHANNEL_ID` — the old channel, the sole intake. */
 export function getOldChannelId(): number | null {
   return readChannelId('TELEGRAM_OLD_CHANNEL_ID');
 }
@@ -41,7 +42,7 @@ export function getOldChannelId(): number | null {
  * Classifies an incoming `chat.id`.
  *
  * The main channel wins when both env vars are (mis)configured to the same id,
- * so a duplicated value can never cause an infinite reformat→publish loop.
+ * so a duplicated value freezes rather than ingests.
  */
 export function classifyChannel(chatId: number | undefined | null): ChannelKind {
   if (typeof chatId !== 'number' || !Number.isFinite(chatId)) return 'unknown';

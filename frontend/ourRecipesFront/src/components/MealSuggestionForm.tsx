@@ -263,8 +263,7 @@ const MealSuggestionForm: React.FC = () => {
     setSavedText(null);
   };
 
-  // DB-first save via `POST /api/recipes`; the Telegram channel mirror is
-  // best-effort on the server side (Flask's `POST /send_recipe` was merged in).
+  // Save via `POST /api/recipes` — a plain DB write (Flask's `POST /send_recipe` was merged in).
   const saveRecipe = async (data: { newText: string; image?: string | null }) => {
     setSavingRecipe(true);
     try {

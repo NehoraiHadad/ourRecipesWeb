@@ -78,10 +78,9 @@ export function validateId(id: string | undefined): number {
 /**
  * Validate a telegram_id path parameter.
  *
- * Unlike DB ids, a telegram_id may be a **negative** placeholder: `POST
- * /api/recipes` assigns `-(Date.now()...)` when the Telegram mirror fails
- * (see `src/lib/recipes/mirror.ts`), and the UI must still be able to open
- * that recipe until reconcile swaps in the real id. Zero is never valid.
+ * Unlike DB ids, a telegram_id may be — and for anything created since Wave 5
+ * always is — **negative**: `generateInternalTelegramId` assigns the permanent
+ * public URL key from the internal negative range. Zero is never valid.
  */
 export function validateTelegramId(id: string | undefined): number {
   if (!id) {

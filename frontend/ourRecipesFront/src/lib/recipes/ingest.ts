@@ -133,9 +133,9 @@ async function resolveImageUrl(input: IngestRecipeInput): Promise<string | null>
  * Upserts one channel message into `Recipe`, keyed by `telegram_id`.
  *
  * Order of business:
- *  1. **Loop prevention** — if the incoming text is identical to `raw_content`
- *     and no new image came with it, stop. Without this, every mirror write the
- *     app makes would bounce back as an `edited_channel_post` and be rewritten.
+ *  1. **Idempotency** — if the incoming text is identical to `raw_content`
+ *     and no new image came with it, stop. Re-delivering or re-scanning the
+ *     same message must never rewrite the row.
  *  2. **Archive marker** — a 🗑️ prefix flips `status` to ARCHIVED rather than
  *     deleting the row.
  *  3. **Parse** — best effort; parse failures are recorded, never fatal.

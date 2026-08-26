@@ -299,27 +299,25 @@ attributable to a row.
       miss → treat as new post; hit → `reformatRecipe` + `snapshotVersion` +
       row update, `needs_review = true` if `app_edited_at` is set. App edit
       paths (update, version restore) start setting `app_edited_at`.
-- [~] **5.4 Mirror disconnect** — 5.4a done (`b2b7abc`): old-channel intake
-      ingests directly under a generated internal id, main channel frozen in
-      the webhook, `generatePendingTelegramId` →
-      `generateInternalTelegramId` in `recipeId.ts`. 5.4b (sweep) in
-      progress: delete `mirror.ts`, `mirrorPending.ts`,
+- [x] **5.4 Mirror disconnect** — 5.4a (`b2b7abc`): old-channel intake ingests
+      directly under a generated internal id, main channel frozen in the
+      webhook, `generatePendingTelegramId` → `generateInternalTelegramId` in
+      `recipeId.ts`. 5.4b (`1575559`): deleted `mirror.ts`, `mirrorPending.ts`,
       `menuMirror.ts`, `placeMirror.ts`, `api/internal/mirror-pending`;
-      old-channel intake ingests directly under a generated internal id (no
-      more publish); webhook main-channel branch + `channelIngest.ts` removed;
-      `deleteRecipe` = row update only; reconcile loses its mirror phase;
-      `bulkParse` drops `mirrorEditRecipe` and raises `CONCURRENCY`;
+      webhook main-channel branch + `channelIngest.ts` removed (`d09f197`);
+      `deleteRecipe` = row update only; reconcile lost its mirror phase;
+      `bulkParse` dropped `mirrorEditRecipe` and raised `CONCURRENCY` to 10;
       `sync_status`/`sync_error` writers removed; create/update/restore routes
-      simplified; `generatePendingTelegramId` moves out of `mirror.ts`;
-      integration tests rewritten.
-- [~] **5.5 Repoint & surface** — `permissions.ts` → old channel done
-      (`778a09e`, bar loosened to creator/administrator — old-channel posting
-      already requires admin, `can_edit_messages` no longer relevant); `/manage`
-      shows a `needs_review` badge (+ clear on app edit); api-python: reconcile
-      reads the old channel, drops `mirror_pending`, matches by
-      `source_message_id`, calls the new internal old-channel ingest route;
-      docs + `.env.example` + README updated (ARCHITECTURE §4.1, §4.3, §4.4,
-      §4.6, §7).
+      simplified; integration tests rewritten (−2130 lines net).
+- [x] **5.5 Repoint & surface** — `permissions.ts` → old channel (`778a09e`,
+      bar loosened to creator/administrator — old-channel posting already
+      requires admin, `can_edit_messages` no longer relevant); `/manage` shows
+      a `needs_review` badge (`1785c22`); api-python reconcile reads the old
+      channel, matches by `source_message_id` via the `source_ids` summary
+      param, ingests misses through `/api/internal/old-channel/ingest`
+      incl. photo bytes (`2f2c40a`, `d09f197`); 🗑️ archive convention wired
+      into both intake paths (`40733b7`); docs + `.env.example` + README
+      updated (ARCHITECTURE §4.1–§4.6, §7 — `a061a3a` + final sweep).
 - [ ] **5.6 Wipe & rebuild (operational, after deploy, with explicit user
       go-ahead at execution time)** — truncate `recipes` (cascades favorites /
       versions / menu courses), then run the full old-channel history import:

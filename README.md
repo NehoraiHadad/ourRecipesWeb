@@ -1,10 +1,11 @@
 # Our Recipes
 
-אפליקציית ניהול מתכונים משפחתית בעברית, מסונכרנת דו-כיוונית עם ערוץ טלגרם.
+אפליקציית ניהול מתכונים משפחתית בעברית, הניזונה מערוץ טלגרם אחד.
 
-Our Recipes is a Hebrew-first family recipe management app, kept in two-way sync
-with a Telegram channel: recipes posted to the channel appear in the app within
-seconds, and recipes created or edited in the app are mirrored back to the channel.
+Our Recipes is a Hebrew-first family recipe management app fed by a single
+Telegram channel: free-text recipes posted (or edited) there are reformatted by
+AI and appear in the app within seconds. The database is the source of truth;
+the channel is the family's input surface.
 
 ## Demo
 
@@ -30,10 +31,10 @@ Full details: [docs/architecture/ARCHITECTURE.md](docs/architecture/ARCHITECTURE
   of the system.
 - **Telegram Bot API webhook** (`POST /api/webhooks/telegram`) — channel posts and
   edits are pushed into the app; no polling, no long-lived server.
-- **Outgoing mirror** — app writes go to the DB first and are mirrored to the
-  channel best-effort via the Bot API (`fetch` only).
-- **`api-python/`** — a small FastAPI + Telethon service used only for one-time
-  history import and periodic reconcile (Bot API cannot read channel history).
+- **App-authored content** — recipes created in the app live in the DB only;
+  nothing is written back to Telegram.
+- **`api-python/`** — a small FastAPI + Telethon service used only for history
+  import/rebuild and periodic reconcile (Bot API cannot read channel history).
   Triggered by Vercel Cron via `/api/cron/reconcile`.
 - **AI** — Gemini (recipe formatting, suggestions, menu planning, images).
 - **Images** — Vercel Blob; the DB stores URLs only.
