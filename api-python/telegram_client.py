@@ -59,13 +59,13 @@ async def telegram_client() -> AsyncIterator[TelegramClient]:
 
 async def resolve_channel(client: TelegramClient, channel_id: Optional[int] = None):
     """
-    Resolve the main channel entity.
+    Resolve the old channel entity — the sole intake since Wave 5.
 
     A fresh StringSession has an empty entity cache, so ``get_entity`` on a bare
     ``-100…`` id can fail with "Could not find the input entity". Three attempts,
     cheapest first:
 
-      1. ``TELEGRAM_CHANNEL_URL`` (@username or t.me link), when configured;
+      1. ``TELEGRAM_OLD_CHANNEL_URL`` (@username or t.me link), when configured;
       2. the numeric marked id;
       3. a walk over the account's dialogs, which populates the cache as a side
          effect.
@@ -73,12 +73,12 @@ async def resolve_channel(client: TelegramClient, channel_id: Optional[int] = No
     Raises:
         RuntimeError: if the channel cannot be resolved by any route.
     """
-    target_id = channel_id if channel_id is not None else settings.TELEGRAM_CHANNEL_ID
+    target_id = channel_id if channel_id is not None else settings.TELEGRAM_OLD_CHANNEL_ID
 
-    if settings.TELEGRAM_CHANNEL_URL:
+    if settings.TELEGRAM_OLD_CHANNEL_URL:
         try:
-            entity = await client.get_entity(settings.TELEGRAM_CHANNEL_URL)
-            logger.info("channel_resolved", via="url", channel=settings.TELEGRAM_CHANNEL_URL)
+            entity = await client.get_entity(settings.TELEGRAM_OLD_CHANNEL_URL)
+            logger.info("channel_resolved", via="url", channel=settings.TELEGRAM_OLD_CHANNEL_URL)
             return entity
         except Exception as error:  # noqa: BLE001 — fall through to the next strategy
             logger.warning("channel_resolve_by_url_failed", error=str(error))
@@ -97,5 +97,5 @@ async def resolve_channel(client: TelegramClient, channel_id: Optional[int] = No
 
     raise RuntimeError(
         f"Could not resolve channel {target_id}. "
-        "Set TELEGRAM_CHANNEL_URL, or make sure the session account is a member."
+        "Set TELEGRAM_OLD_CHANNEL_URL, or make sure the session account is a member."
     )

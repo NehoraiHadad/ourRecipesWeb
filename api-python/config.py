@@ -20,21 +20,27 @@ class Settings(BaseSettings):
     TELEGRAM_API_HASH: str
     SESSION_STRING: str
 
-    # Main channel. The numeric -100… id is the canonical identifier; the URL /
-    # @username is an optional fallback, because resolving a bare channel id on
-    # a freshly restored StringSession can fail until the entity is cached.
-    TELEGRAM_CHANNEL_ID: int
-    TELEGRAM_CHANNEL_URL: Optional[str] = None
+    # Old channel — the sole intake since Wave 5 (ARCHITECTURE §4.1). The
+    # numeric -100… id is the canonical identifier; the URL / @username is an
+    # optional fallback, because resolving a bare channel id on a freshly
+    # restored StringSession can fail until the entity is cached.
+    TELEGRAM_OLD_CHANNEL_ID: int
+    TELEGRAM_OLD_CHANNEL_URL: Optional[str] = None
 
     # Next.js internal API — the only way this service touches data.
     NEXT_BASE_URL: str
     INTERNAL_API_SECRET: str
 
     # Behaviour
+    #: How many recent old-channel messages `/reconcile` scans per run.
     RECONCILE_LIMIT: int = 50
-    IMPORT_LIMIT: int = 100
-    MAX_PHOTO_BYTES: int = 5 * 1024 * 1024
-    HTTP_TIMEOUT_SECONDS: float = 30.0
+    #: How many *missing* messages it will actually ingest per run — each one
+    #: costs a Gemini call, so this is deliberately modest. Raised for the
+    #: one-time full rebuild (see README).
+    RECONCILE_INGEST_LIMIT: int = 20
+    #: The ingest route does a Gemini reformat before answering, well past a
+    #: typical API timeout — give it room.
+    HTTP_TIMEOUT_SECONDS: float = 60.0
 
     # Runtime
     PORT: int = 8000

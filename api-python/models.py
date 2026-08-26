@@ -6,20 +6,32 @@ from pydantic import BaseModel, Field
 
 
 class ReconcileRequest(BaseModel):
-    """Body of ``POST /reconcile``."""
+    """
+    Body of ``POST /reconcile``.
 
-    limit: int = Field(default=50, ge=1, le=500, description="How many recent messages to check")
-    with_photos: bool = Field(
-        default=True,
-        description="Download and forward photos for messages missing from the DB",
+    The same request shape serves both the daily safety net (small, default
+    caps) and the one-time full rebuild (both caps raised) — see the README.
+    """
+
+    limit: int = Field(
+        default=50, ge=1, le=200_000, description="How many recent old-channel messages to scan"
+    )
+    ingest_limit: Optional[int] = Field(
+        default=None,
+        ge=1,
+        le=200_000,
+        description=(
+            "Max missing messages to ingest this run (each costs one Gemini call). "
+            "Defaults to the RECONCILE_INGEST_LIMIT env var."
+        ),
     )
 
 
 class MessageOutcome(BaseModel):
-    """What happened to one channel message."""
+    """What happened when one missing old-channel message was ingested."""
 
-    telegram_id: int
-    action: str  # created | updated | unchanged | skipped | failed
+    source_message_id: int
+    action: str  # created | updated | unchanged | failed
     error: Optional[str] = None
 
 
@@ -27,35 +39,15 @@ class ReconcileResponse(BaseModel):
     """Result of ``POST /reconcile``."""
 
     ok: bool
+    #: Old-channel messages with text scanned this run.
     checked: int
-    upserted: int
-    unchanged: int
+    #: Of those, how many had no row under ``source_channel == "old"``.
+    missing: int
+    #: Missing messages actually ingested this run (bounded by ``ingest_limit``).
+    ingested: int
+    #: Missing messages left for a future run because the cap was hit.
+    deferred: int
     failed: int
-    outcomes: List[MessageOutcome] = []
-    mirror: Optional[Dict[str, Any]] = None
-
-
-class ImportHistoryRequest(BaseModel):
-    """Body of ``POST /import-history``."""
-
-    offset_id: int = Field(
-        default=0,
-        ge=0,
-        description="Start below this message id; 0 starts at the newest message",
-    )
-    limit: int = Field(default=100, ge=1, le=500, description="Messages per page")
-    with_photos: bool = Field(default=True, description="Download and forward photos")
-
-
-class ImportHistoryResponse(BaseModel):
-    """Result of one ``POST /import-history`` page."""
-
-    ok: bool
-    processed: int
-    upserted: int
-    failed: int
-    next_offset_id: Optional[int] = None
-    has_more: bool = False
     outcomes: List[MessageOutcome] = []
 
 

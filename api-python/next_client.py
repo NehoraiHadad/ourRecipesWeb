@@ -7,21 +7,12 @@ and write goes through `/api/internal/*` on the Next app, authenticated with
 Telegram webhook uses — instead of a second, drifting writer.
 """
 
-import hashlib
 from types import TracebackType
 from typing import Any, Dict, Iterable, Optional, Type
 
 import httpx
 
-from config import logger, settings
-
-
-def content_hash(text: str) -> str:
-    """
-    SHA-256 of the message text, matching `contentHash` in the Next route
-    (`src/app/api/internal/recipes/summary/route.ts`).
-    """
-    return hashlib.sha256((text or "").encode("utf-8")).hexdigest()
+from config import settings
 
 
 class NextInternalClient:
@@ -56,58 +47,70 @@ class NextInternalClient:
             raise RuntimeError("NextInternalClient must be used as an async context manager")
         return self._client
 
-    async def summary(self, telegram_ids: Iterable[int]) -> Dict[int, Dict[str, Any]]:
+    async def summary_old_channel(self, message_ids: Iterable[int]) -> Dict[int, Dict[str, Any]]:
         """
-        Fetch stored content hashes for the given message ids.
+        Fetch which of the given old-channel message ids already have a row.
 
-        Returns:
-            ``{telegram_id: {"content_hash": str, "has_image": bool, ...}}``.
-            Ids absent from the result do not exist in the DB.
+        Returns ``{source_message_id: {...}}``. An id absent from the result
+        has no row yet under ``source_channel == "old"`` and is a candidate
+        for ``/old-channel/ingest``.
+
+        Deliberately does **not** filter the request with ``ids=`` — that
+        query param matches `Recipe.telegram_id` (the route's one remaining
+        consumer before Wave 5 was the main-channel reconcile, keyed by
+        `telegram_id`). Every old-channel row now gets its `telegram_id` from
+        the internal negative-id generator, unrelated to the channel's real
+        message id, so filtering by it would silently match nothing and make
+        every message look "missing" on every run. Instead this pulls the
+        most recent rows (ordered `telegram_id desc`, i.e. most recently
+        created first — the right order for "did reconcile already see
+        this?") and matches `source_message_id` against `message_ids`
+        locally. ``limit`` is padded well past what was asked for, since the
+        recipe most recently *created* is not always the one most recently
+        *posted*.
         """
-        ids = [str(i) for i in telegram_ids]
-        if not ids:
+        wanted = {int(i) for i in message_ids}
+        if not wanted:
             return {}
 
+        limit = min(max(len(wanted) * 10, 200), 1000)  # summary route caps at 1000
         response = await self.client.get(
             "/api/internal/recipes/summary",
-            params={"ids": ",".join(ids), "limit": len(ids)},
+            params={"limit": limit},
         )
         response.raise_for_status()
         payload = response.json()
 
-        return {item["telegram_id"]: item for item in payload.get("recipes", [])}
+        known: Dict[int, Dict[str, Any]] = {}
+        for item in payload.get("recipes", []):
+            if item.get("source_channel") != "old":
+                continue
+            source_message_id = item.get("source_message_id")
+            if source_message_id is None:
+                continue
+            source_message_id = int(source_message_id)
+            if source_message_id in wanted:
+                known[source_message_id] = item
 
-    async def upsert(
+        return known
+
+    async def old_channel_ingest(
         self,
-        telegram_id: int,
+        source_message_id: int,
         text: str,
-        date: Optional[str] = None,
-        photo_base64: Optional[str] = None,
+        date: Optional[int] = None,
     ) -> Dict[str, Any]:
-        """Upsert one channel message. Idempotent — identical content is a no-op."""
-        body: Dict[str, Any] = {"telegram_id": telegram_id, "text": text}
-        if date:
+        """
+        Push one old-channel message through the AI reformat + store pipeline.
+
+        Idempotent from the caller's point of view: whether the row already
+        exists or not, the route decides (edit vs. create) and this just
+        reports the outcome.
+        """
+        body: Dict[str, Any] = {"sourceMessageId": source_message_id, "text": text}
+        if date is not None:
             body["date"] = date
-        if photo_base64:
-            body["photo_base64"] = photo_base64
 
-        response = await self.client.post("/api/internal/recipes/upsert", json=body)
+        response = await self.client.post("/api/internal/old-channel/ingest", json=body)
         response.raise_for_status()
         return response.json()
-
-    async def mirror_pending(self, limit: int = 20) -> Dict[str, Any]:
-        """Ask Next to retry recipes whose Telegram mirror failed."""
-        response = await self.client.post(
-            "/api/internal/mirror-pending", json={"limit": limit}
-        )
-        response.raise_for_status()
-        return response.json()
-
-
-async def safe_mirror_pending(client: NextInternalClient, limit: int = 20) -> Dict[str, Any]:
-    """`mirror_pending` that reports failure instead of raising — it is a tail task."""
-    try:
-        return await client.mirror_pending(limit)
-    except Exception as error:  # noqa: BLE001 — best-effort by design
-        logger.warning("mirror_pending_failed", error=str(error))
-        return {"ok": False, "error": str(error)}

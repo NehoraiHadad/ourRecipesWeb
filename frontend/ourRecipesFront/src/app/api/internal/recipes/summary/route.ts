@@ -22,8 +22,8 @@
  *   "count": 2,
  *   "recipes": [
  *     { "telegram_id": 12, "content_hash": "…", "content_length": 431,
- *       "status": "ACTIVE", "sync_status": "synced", "has_image": true,
- *       "updated_at": "2026-08-25T09:00:00.000Z" }
+ *       "status": "ACTIVE", "source_channel": "old", "source_message_id": 12,
+ *       "has_image": true, "updated_at": "2026-08-25T09:00:00.000Z" }
  *   ]
  * }
  * ```
@@ -90,7 +90,8 @@ export async function GET(request: NextRequest): Promise<Response> {
         raw_content: true,
         image_url: true,
         status: true,
-        sync_status: true,
+        source_channel: true,
+        source_message_id: true,
         updated_at: true
       },
       orderBy: { telegram_id: 'desc' },
@@ -102,7 +103,8 @@ export async function GET(request: NextRequest): Promise<Response> {
       content_hash: contentHash(recipe.raw_content ?? ''),
       content_length: (recipe.raw_content ?? '').length,
       status: recipe.status,
-      sync_status: recipe.sync_status,
+      source_channel: recipe.source_channel,
+      source_message_id: recipe.source_message_id,
       has_image: Boolean(recipe.image_url),
       updated_at: recipe.updated_at ? recipe.updated_at.toISOString() : null
     }));

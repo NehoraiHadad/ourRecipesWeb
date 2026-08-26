@@ -2,41 +2,36 @@
 FastAPI application for Telegram history reads (ARCHITECTURE §4.6).
 
 Postgres is the source of truth and the Bot API webhook is the real-time input
-path. This function covers the one thing the Bot API cannot do — **read channel
-history**, including messages that predate the bot — and does so in two shapes:
-
-  * ``POST /reconcile``      — daily safety net over the last N messages.
-  * ``POST /import-history`` — one-time backfill, page by page.
+path. This function covers the one thing the Bot API cannot do — **read old
+channel history**, including messages that predate the bot — via
+``POST /reconcile``: scan the last N old-channel messages and ingest whatever
+the DB does not have yet.
 
 It owns no database credentials: every write goes to the Next.js internal API,
-which runs the same ingest code the webhook runs.
+which runs the same old-channel ingest pipeline (Gemini reformat) the webhook
+runs.
+
+The same endpoint also serves the one-time full history rebuild — raise both
+caps and run it once, locally. See the README.
 
 Run locally:      uvicorn main:app --reload --port 8000
 Deploy (Vercel):  vercel deploy   (from this directory; api/index.py is the entry)
 """
 
-import base64
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional, Tuple
 
 from fastapi import Depends, FastAPI, HTTPException, Request
 
 from config import logger, settings
-from models import (
-    HealthResponse,
-    ImportHistoryRequest,
-    ImportHistoryResponse,
-    MessageOutcome,
-    ReconcileRequest,
-    ReconcileResponse,
-)
-from next_client import NextInternalClient, content_hash, safe_mirror_pending
+from models import HealthResponse, MessageOutcome, ReconcileRequest, ReconcileResponse
+from next_client import NextInternalClient
 from telegram_client import resolve_channel, telegram_client
 
 app = FastAPI(
     title="Our Recipes — Telegram Reconcile",
-    description="Telethon history reads: periodic reconcile and one-time history import",
-    version="1.0.0",
+    description="Telethon history reads: periodic reconcile of the old channel, and the full rebuild",
+    version="2.0.0",
 )
 
 
@@ -81,100 +76,43 @@ def message_text(message: Any) -> str:
     return (getattr(message, "text", None) or "").strip()
 
 
-def message_date(message: Any) -> Optional[str]:
-    """ISO-8601 post time, for `created_at` on first insert."""
+def message_epoch_seconds(message: Any) -> Optional[int]:
+    """
+    Unix-seconds post time, forwarded as the ingest route's ``date`` so
+    ``created_at`` on a newly created recipe matches the original post time.
+    """
     date = getattr(message, "date", None)
     if not date:
         return None
     if date.tzinfo is None:
         date = date.replace(tzinfo=timezone.utc)
-    return date.isoformat()
-
-
-async def download_photo_base64(message: Any) -> Optional[str]:
-    """
-    Download a message photo and return it base64-encoded, or None.
-
-    Telethon file references are MTProto-only — the Bot API cannot resolve
-    them — so the bytes travel to Next in the upsert payload and are stored to
-    Vercel Blob there. Best-effort: an image is never worth losing a recipe.
-    """
-    if not getattr(message, "photo", None):
-        return None
-
-    try:
-        data = await message.download_media(file=bytes)
-        if not data:
-            return None
-
-        if len(data) > settings.MAX_PHOTO_BYTES:
-            logger.warning(
-                "photo_too_large",
-                message_id=message.id,
-                bytes=len(data),
-                limit=settings.MAX_PHOTO_BYTES,
-            )
-            return None
-
-        return base64.b64encode(data).decode("ascii")
-
-    except Exception as error:  # noqa: BLE001 — best-effort by design
-        logger.warning("photo_download_failed", message_id=message.id, error=str(error))
-        return None
-
-
-async def upsert_message(
-    next_client: NextInternalClient,
-    message: Any,
-    text: str,
-    with_photos: bool,
-) -> MessageOutcome:
-    """Push one channel message through the Next internal upsert endpoint."""
-    photo_base64 = await download_photo_base64(message) if with_photos else None
-
-    try:
-        result = await next_client.upsert(
-            telegram_id=message.id,
-            text=text,
-            date=message_date(message),
-            photo_base64=photo_base64,
-        )
-        return MessageOutcome(telegram_id=message.id, action=result.get("action", "unknown"))
-
-    except Exception as error:  # noqa: BLE001 — one bad message must not stop the batch
-        logger.error("upsert_failed", message_id=message.id, error=str(error))
-        return MessageOutcome(telegram_id=message.id, action="failed", error=str(error))
+    return int(date.timestamp())
 
 
 class ChannelPage:
-    """One page of channel history, newest first."""
+    """One page of old-channel history, newest first."""
 
-    def __init__(self, messages: List[Tuple[Any, str]], scanned: int, last_id: Optional[int]):
+    def __init__(self, messages: List[Tuple[Any, str]], scanned: int):
         #: (message, text) for messages that carry text — the only ones worth storing.
         self.messages = messages
         #: How many messages the iterator yielded, including skipped empty ones.
         self.scanned = scanned
-        #: Oldest message id seen, i.e. the next ``offset_id`` to page from.
-        self.last_id = last_id
 
 
-async def fetch_page(client: Any, limit: int, offset_id: int = 0) -> ChannelPage:
+async def fetch_page(client: Any, limit: int) -> ChannelPage:
     """
-    Read one page of channel messages, newest first, skipping empty ones.
+    Read the last ``limit`` old-channel messages, newest first, skipping empty
+    ones (a text-less post — e.g. a bare photo — is not a recipe).
 
-    Ported from ``telegram_service/main.py::sync_messages``. Must be called with
-    a connected client — the returned message objects are only usable (for photo
-    downloads) while that connection is alive.
+    Must be called with a connected client.
     """
     channel = await resolve_channel(client)
 
     collected: List[Tuple[Any, str]] = []
     scanned = 0
-    last_id: Optional[int] = None
 
-    async for message in client.iter_messages(channel, limit=limit, offset_id=offset_id):
+    async for message in client.iter_messages(channel, limit=limit):
         scanned += 1
-        last_id = message.id
 
         text = message_text(message)
         if not text:
@@ -182,7 +120,24 @@ async def fetch_page(client: Any, limit: int, offset_id: int = 0) -> ChannelPage
 
         collected.append((message, text))
 
-    return ChannelPage(collected, scanned, last_id)
+    return ChannelPage(collected, scanned)
+
+
+async def ingest_missing_message(
+    next_client: NextInternalClient, message: Any, text: str
+) -> MessageOutcome:
+    """POST one message the DB is missing through the old-channel ingest route."""
+    try:
+        result = await next_client.old_channel_ingest(
+            source_message_id=message.id,
+            text=text,
+            date=message_epoch_seconds(message),
+        )
+        return MessageOutcome(source_message_id=message.id, action=result.get("action", "unknown"))
+
+    except Exception as error:  # noqa: BLE001 — one bad message must not stop the batch
+        logger.error("old_channel_ingest_failed", message_id=message.id, error=str(error))
+        return MessageOutcome(source_message_id=message.id, action="failed", error=str(error))
 
 
 # ============================================================================
@@ -195,7 +150,7 @@ async def root() -> Dict[str, Any]:
     """Service info."""
     return {
         "service": "Our Recipes — Telegram Reconcile",
-        "version": "1.0.0",
+        "version": "2.0.0",
         "status": "running",
         "environment": settings.ENVIRONMENT,
     }
@@ -222,7 +177,7 @@ async def health() -> HealthResponse:
     next_status: Dict[str, Any] = {"reachable": False}
     try:
         async with NextInternalClient() as next_client:
-            await next_client.summary([1])
+            await next_client.summary_old_channel([1])
             next_status = {"reachable": True, "base_url": settings.NEXT_BASE_URL}
     except Exception as error:  # noqa: BLE001
         next_status = {"reachable": False, "error": str(error)}
@@ -243,109 +198,60 @@ async def reconcile(
     _: bool = Depends(require_internal_secret),
 ) -> ReconcileResponse:
     """
-    Compare the last N channel messages against the DB and close the gaps.
+    Scan the last N old-channel messages and ingest whatever the DB is
+    missing.
 
-    Only messages whose content hash differs from the stored one (or that are
-    missing entirely) are upserted, so a healthy channel costs one summary
-    request and nothing else. Finishes by asking Next to retry any recipe whose
-    outgoing mirror failed.
+    No text-drift detection: the stored ``raw_content`` is always Gemini's
+    reformat of the raw post, so it can never equal the channel text — "the
+    row exists under this ``source_message_id``" is the only signal that
+    matters. A message that already has a row is left alone; the webhook's
+    ``edited_channel_post`` path is what carries channel edits into the DB.
+
+    Each miss costs one Gemini call, so ``ingest_limit`` bounds how many of
+    them this run actually makes; anything past the cap is picked up next
+    time this endpoint is called. Raising both ``limit`` and ``ingest_limit``
+    turns this same endpoint into the one-time full rebuild (see README).
     """
-    logger.info("reconcile_started", limit=data.limit)
+    ingest_limit = (
+        data.ingest_limit if data.ingest_limit is not None else settings.RECONCILE_INGEST_LIMIT
+    )
+    logger.info("reconcile_started", limit=data.limit, ingest_limit=ingest_limit)
 
-    outcomes: List[MessageOutcome] = []
-    unchanged = 0
-
-    # Everything runs inside the Telethon connection: photo bytes can only be
-    # downloaded while it is open.
     async with telegram_client() as client:
         page = await fetch_page(client, limit=data.limit)
 
         async with NextInternalClient() as next_client:
-            known = await next_client.summary([message.id for message, _ in page.messages])
+            known = await next_client.summary_old_channel(
+                message.id for message, _ in page.messages
+            )
 
-            for message, text in page.messages:
-                stored = known.get(message.id)
-                if stored and stored.get("content_hash") == content_hash(text):
-                    unchanged += 1
-                    continue
+            missing = [pair for pair in page.messages if pair[0].id not in known]
+            to_ingest = missing[:ingest_limit]
+            deferred = len(missing) - len(to_ingest)
 
-                # Photos only for rows we are creating: an existing recipe
-                # already has its image, and re-uploading on every text edit is
-                # wasteful.
-                with_photos = data.with_photos and stored is None
-                outcomes.append(await upsert_message(next_client, message, text, with_photos))
-
-            mirror = await safe_mirror_pending(next_client)
+            outcomes: List[MessageOutcome] = []
+            for message, text in to_ingest:
+                outcomes.append(await ingest_missing_message(next_client, message, text))
 
     failed = sum(1 for outcome in outcomes if outcome.action == "failed")
+    ingested = len(outcomes) - failed
 
     logger.info(
         "reconcile_finished",
         checked=len(page.messages),
-        upserted=len(outcomes) - failed,
-        unchanged=unchanged,
+        missing=len(missing),
+        ingested=ingested,
+        deferred=deferred,
         failed=failed,
     )
 
     return ReconcileResponse(
         ok=True,
         checked=len(page.messages),
-        upserted=len(outcomes) - failed,
-        unchanged=unchanged,
+        missing=len(missing),
+        ingested=ingested,
+        deferred=deferred,
         failed=failed,
-        outcomes=outcomes,
-        mirror=mirror,
-    )
-
-
-@app.post("/import-history", response_model=ImportHistoryResponse)
-async def import_history(
-    data: ImportHistoryRequest,
-    _: bool = Depends(require_internal_secret),
-) -> ImportHistoryResponse:
-    """
-    Import one page of channel history, newest first.
-
-    Designed to be called repeatedly: feed ``next_offset_id`` from each response
-    back in as ``offset_id`` until ``has_more`` is false. Every upsert is
-    idempotent, so re-running a page is harmless.
-    """
-    logger.info("import_history_started", offset_id=data.offset_id, limit=data.limit)
-
-    outcomes: List[MessageOutcome] = []
-
-    async with telegram_client() as client:
-        page = await fetch_page(client, limit=data.limit, offset_id=data.offset_id)
-
-        async with NextInternalClient() as next_client:
-            for message, text in page.messages:
-                outcomes.append(
-                    await upsert_message(next_client, message, text, data.with_photos)
-                )
-
-    failed = sum(1 for outcome in outcomes if outcome.action == "failed")
-
-    # Page from the oldest id *scanned*, not the oldest stored: text-less
-    # messages must still advance the cursor or the import would loop forever.
-    next_offset_id = page.last_id
-    has_more = page.scanned >= data.limit and next_offset_id is not None
-
-    logger.info(
-        "import_history_finished",
-        processed=len(page.messages),
-        scanned=page.scanned,
-        failed=failed,
-        next_offset_id=next_offset_id,
-        has_more=has_more,
-    )
-
-    return ImportHistoryResponse(
-        ok=True,
-        processed=len(page.messages),
-        upserted=len(outcomes) - failed,
-        failed=failed,
-        next_offset_id=next_offset_id,
-        has_more=has_more,
         outcomes=outcomes,
     )
 

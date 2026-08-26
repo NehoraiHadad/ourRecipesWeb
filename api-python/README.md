@@ -3,25 +3,32 @@
 The one place Telethon still lives (ARCHITECTURE §4.6).
 
 Postgres is the source of truth; the Bot API webhook
-(`/api/webhooks/telegram` in the Next app) is the real-time input path. Neither
-can read **channel history** — the Bot API simply cannot see messages posted
-before the bot joined, and there is no long-lived server left to poll. That is
-this function's entire job:
+(`/api/webhooks/telegram` in the Next app) is the real-time input path for the
+**old** channel — the sole intake since Wave 5. The Bot API cannot read
+**channel history** — it simply cannot see messages posted before the bot
+joined, and there is no long-lived server left to poll. That is this
+function's entire job:
 
 | Endpoint | Purpose |
 |---|---|
-| `POST /reconcile` | Daily safety net: re-check the last N channel messages, upsert anything the DB is missing or has stale, then ask Next to retry failed outgoing mirrors. |
-| `POST /import-history` | One-time backfill of the whole channel, one page per call. |
+| `POST /reconcile` | Scan the last N old-channel messages, ingest whatever the DB is missing. Daily safety net at the default caps; the full history rebuild at raised caps (see below). |
 | `GET /health` | Connects to Telegram and pings the Next internal API. |
 | `GET /` | Service info. |
 
-**No database access.** Every write goes to the Next.js internal API, which runs
-the same `ingestRecipeMessage` the webhook runs — one ingest implementation, so
-a gap filled a year late is indistinguishable from a live post.
+**No database access.** Every write goes to the Next.js internal API, which
+runs the same old-channel ingest pipeline (Gemini reformat) the webhook
+runs — one ingest implementation, so a gap filled a year late is
+indistinguishable from a live post.
+
+**No text-drift detection.** The stored `raw_content` is always Gemini's
+reformat of the raw post, so it can never equal the channel text byte-for-byte.
+"A row exists under this `source_message_id`" is the only signal `/reconcile`
+uses — an existing row is left alone. Channel *edits* to an already-tracked
+message are the webhook's job (`edited_channel_post`), not this endpoint's.
 
 ## Auth
 
-`/reconcile` and `/import-history` require:
+`/reconcile` requires:
 
 ```
 Authorization: Bearer <INTERNAL_API_SECRET>
@@ -38,13 +45,13 @@ Copy `.env.example` to `.env`. Required:
 |---|---|
 | `TELEGRAM_API_ID` / `TELEGRAM_API_HASH` | MTProto app credentials from my.telegram.org |
 | `SESSION_STRING` | Telethon `StringSession` for an account that is a member of the channel |
-| `TELEGRAM_CHANNEL_ID` | Main channel, `-100…` form |
+| `TELEGRAM_OLD_CHANNEL_ID` | Old channel, `-100…` form — the sole intake |
 | `NEXT_BASE_URL` | Base URL of the Next app, e.g. `https://ourrecipes.vercel.app` |
 | `INTERNAL_API_SECRET` | Shared secret; must match the Next app's value |
 
-Optional: `TELEGRAM_CHANNEL_URL` (fallback for channel resolution),
-`RECONCILE_LIMIT`, `IMPORT_LIMIT`, `MAX_PHOTO_BYTES`, `HTTP_TIMEOUT_SECONDS`,
-`PORT`, `ENVIRONMENT`, `LOG_LEVEL`.
+Optional: `TELEGRAM_OLD_CHANNEL_URL` (fallback for channel resolution),
+`RECONCILE_LIMIT`, `RECONCILE_INGEST_LIMIT`, `HTTP_TIMEOUT_SECONDS`, `PORT`,
+`ENVIRONMENT`, `LOG_LEVEL`.
 
 ### Generating a `SESSION_STRING`
 
@@ -97,32 +104,27 @@ the full `…/reconcile` URL — the cron route accepts both). Running this loca
 instead of deploying it is fully supported: leave `PYTHON_RECONCILE_URL` unset
 and the daily cron simply skips the history pass.
 
-## One-time history import
+## One-time full rebuild
 
-`/import-history` pages from the newest message backwards. Feed each response's
-`next_offset_id` back in until `has_more` is false:
+Wave 5.6: wipe the `recipes` table (cascades favorites, versions, and every
+saved menu's courses — a deliberate, user-approved trade for giving every
+recipe a `source_message_id`), then re-run the *entire* old-channel history
+through this same reconcile endpoint with both caps raised so nothing is left
+for a "next run":
 
 ```bash
-OFFSET=0
-while :; do
-  RESPONSE=$(curl -sS -X POST "$BASE/import-history" \
-    -H "Authorization: Bearer $INTERNAL_API_SECRET" \
-    -H 'Content-Type: application/json' \
-    -d "{\"offset_id\": $OFFSET, \"limit\": 100}")
-  echo "$RESPONSE"
-  [ "$(echo "$RESPONSE" | jq -r .has_more)" = "true" ] || break
-  OFFSET=$(echo "$RESPONSE" | jq -r .next_offset_id)
-done
+curl -X POST "$BASE/reconcile" \
+  -H "Authorization: Bearer $INTERNAL_API_SECRET" \
+  -H 'Content-Type: application/json' \
+  -d '{"limit": 200000, "ingest_limit": 200000}'
 ```
 
-Every upsert is idempotent, so a re-run — or a page replayed after a timeout —
-changes nothing.
-
-### Photos
-
-Telethon file references are MTProto-only and the Bot API cannot resolve them,
-so photos are downloaded here, base64-encoded into the upsert payload, and
-stored to Vercel Blob by the Next route. Images above `MAX_PHOTO_BYTES` (5MB by
-default) are skipped — the recipe text still lands. `/reconcile` fetches photos
-only for messages missing from the DB, since re-uploading on every text edit
-would be pure waste.
+Every message in the channel's history goes through the Gemini reformat
+pipeline and lands with `{source_channel: "old", source_message_id}` and
+`created_at` set to the original post date. Do this **locally, via
+docker-compose** if available, not on Vercel: each ingested message is a
+Gemini call, so a channel of any real size will run past Vercel's function
+duration limits, and Vercel bills per invocation minute. Re-running is safe —
+`/reconcile` only acts on messages the DB doesn't have yet — but a message
+that failed mid-run (logged under `failed`, not `deferred`) needs the run
+repeated to pick it up.
