@@ -40,9 +40,25 @@ export const ARCHIVE_MARKERS = ['\u{1F5D1}\u{FE0F}', '\u{1F5D1}'] as const;
  */
 const LEADING_NOISE = /^[\s\u200E\u200F\u202A-\u202E\uFEFF]+/;
 
+/** `Recipe.source_channel` values — where a row's content originated. */
+export const SOURCE_CHANNEL_OLD = 'old';
+export const SOURCE_CHANNEL_APP = 'app';
+
+/** Old-channel origin of a message, recorded so later edits there can find the row. */
+export interface RecipeSource {
+  channel: typeof SOURCE_CHANNEL_OLD;
+  /** `message_id` in the old channel. */
+  messageId: number;
+}
+
 export interface IngestRecipeInput {
   /** Channel `message_id` — the recipe's stable identity (`Recipe.telegram_id`). */
   telegramId: number;
+  /**
+   * Old-channel origin, when the content was intaken from there. Omitted for
+   * app-authored content — the column default (`'app'`) covers that.
+   */
+  source?: RecipeSource;
   /** `message.text` or `message.caption`. May be empty for a photo-only post. */
   text: string;
   /** Bot API `file_id` of the largest photo size, if the message carries one. */
@@ -135,13 +151,24 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
 
   const existing = await prisma.recipe.findUnique({
     where: { telegram_id: telegramId },
-    select: { id: true, raw_content: true, image_url: true, status: true }
+    select: { id: true, raw_content: true, image_url: true, status: true, source_message_id: true }
   });
 
   const hasIncomingImage = Boolean(input.imageUrl || input.photoFileId || input.photoBase64);
 
+  // Source fields are set whenever the caller knows them — including on
+  // updates, so a row created before its origin was known (e.g. the webhook
+  // for our own republished message winning a race) still gets stamped.
+  const sourceFields = input.source
+    ? { source_channel: input.source.channel, source_message_id: input.source.messageId }
+    : {};
+
   // 1. Loop prevention (ARCHITECTURE §4.2).
   if (existing && existing.raw_content === text && !hasIncomingImage) {
+    if (input.source && existing.source_message_id !== input.source.messageId) {
+      await prisma.recipe.update({ where: { id: existing.id }, data: sourceFields });
+      log.info({ telegramId, source: input.source }, 'Stamped source onto an unchanged recipe');
+    }
     log.debug({ telegramId }, 'Incoming content identical to DB — ignoring');
     return {
       action: 'unchanged',
@@ -169,6 +196,7 @@ export async function ingestRecipeMessage(input: IngestRecipeInput): Promise<Ing
   const imageUrl = await resolveImageUrl(input);
 
   const data = {
+    ...sourceFields,
     raw_content: text,
     ...recipeFieldsFromParsed(parsed),
     status: archived ? RECIPE_STATUS_ARCHIVED : RECIPE_STATUS_ACTIVE,

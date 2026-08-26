@@ -2,10 +2,11 @@
  * Old-channel intake (ARCHITECTURE §4.1).
  *
  * The legacy channel holds raw, unstructured recipe text — the way people
- * actually write recipes to each other. It is an *input* only: nothing is ever
- * stored under an old-channel message id. Instead Gemini reformats the text
- * into the canonical channel format, the bot publishes that to the main
- * channel, and the recipe is stored under the **new** message id.
+ * actually write recipes to each other. Gemini reformats the text into the
+ * canonical channel format, the bot publishes that to the main channel, and
+ * the recipe is stored under the **new** message id — with the old-channel
+ * origin recorded as `{source_channel: 'old', source_message_id}` so a later
+ * edit in the old channel can be matched back to the row.
  *
  * Kept out of `ingest.ts` on purpose: the internal upsert route must not drag
  * the Gemini SDK into its bundle.
@@ -13,12 +14,16 @@
 import { logger } from '@/lib/logger';
 import { sendMessage } from '@/lib/telegram/botApi';
 import { reformatRecipe } from '@/lib/services/aiService';
-import { ingestRecipeMessage, type IngestResult } from '@/lib/recipes/ingest';
+import {
+  ingestRecipeMessage,
+  SOURCE_CHANNEL_OLD,
+  type IngestResult
+} from '@/lib/recipes/ingest';
 
 const log = logger.child({ context: 'recipes/oldChannel' });
 
 export interface OldChannelInput {
-  /** Message id in the *old* channel — logged for traceability, never stored. */
+  /** Message id in the *old* channel — stored as `source_message_id`, so a later edit there can find this row. */
   sourceMessageId: number;
   /** Raw text/caption of the old-channel post. */
   text: string;
@@ -62,10 +67,12 @@ export async function republishOldChannelPost(
     'Old-channel post republished to the main channel'
   );
 
-  // Stored under the NEW id. The main-channel webhook for this very message
-  // will arrive moments later and find identical content — a no-op.
+  // Stored under the NEW id, with the old-channel origin recorded. The
+  // main-channel webhook for this very message will arrive moments later and
+  // find identical content — a no-op.
   const ingest = await ingestRecipeMessage({
     telegramId: published.message_id,
+    source: { channel: SOURCE_CHANNEL_OLD, messageId: sourceMessageId },
     text: formatted,
     messageDate: published.date ? new Date(published.date * 1000) : null
   });

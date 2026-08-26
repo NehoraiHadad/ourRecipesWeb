@@ -333,11 +333,56 @@ describe('POST /api/webhooks/telegram', () => {
         expect.objectContaining({ chat_id: MAIN_CHANNEL_ID, text: formatted })
       );
 
-      // Stored under the NEW main-channel id, never the old-channel one.
+      // Stored under the NEW main-channel id, never the old-channel one —
+      // but the old-channel origin is recorded so a later edit there can
+      // find this row.
       const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
       expect(call.where).toEqual({ telegram_id: 909 });
       expect(call.create.raw_content).toBe(formatted);
       expect(call.create.sync_status).toBe('synced');
+      expect(call.create.source_channel).toBe('old');
+      expect(call.create.source_message_id).toBe(42);
+    });
+
+    it('stamps the source onto an existing row even when the content is unchanged', async () => {
+      // Race: the main-channel webhook for our own republished message created
+      // the row first (no source known). Our ingest then arrives with identical
+      // content — it must still record where the recipe came from.
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+      vi.mocked(sendMessage).mockResolvedValue({
+        message_id: 909,
+        chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
+        date: 1_700_000_900,
+        text: RECIPE_TEXT
+      } as any);
+      prismaMock.recipe.findUnique.mockResolvedValue({
+        id: 11,
+        raw_content: RECIPE_TEXT,
+        image_url: null,
+        status: 'ACTIVE',
+        source_message_id: null
+      } as any);
+
+      const response = await webhookPOST(
+        webhookRequest({
+          update_id: 13,
+          channel_post: {
+            message_id: 42,
+            chat: { id: OLD_CHANNEL_ID, type: 'channel', title: 'Old' },
+            date: 1_700_000_800,
+            text: 'עוגת שוקולד של סבתא'
+          }
+        })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json.action).toBe('unchanged');
+      expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
+      expect(prismaMock.recipe.update).toHaveBeenCalledWith({
+        where: { id: 11 },
+        data: { source_channel: 'old', source_message_id: 42 }
+      });
     });
 
     it('still answers 200 when Gemini fails, so Telegram does not retry forever', async () => {
