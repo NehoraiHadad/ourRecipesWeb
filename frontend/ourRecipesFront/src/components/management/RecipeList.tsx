@@ -11,6 +11,7 @@ import { RecipeService } from '@/services/recipeService';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { hasStructuredContent, previewIngredientLines } from '@/lib/recipes/recipeView';
 import { TrashIcon } from '@/components/ui/icons';
+import { NeedsReviewBadge } from './NeedsReviewBadge';
 import type { RecipeListProps } from '../../types/management';
 
 const RecipeList: React.FC<RecipeListProps> = ({
@@ -83,6 +84,7 @@ const RecipeList: React.FC<RecipeListProps> = ({
         <div className="flex justify-between items-start">
           <h3 className="text-base font-medium">{recipe.title}</h3>
           <div className="flex items-center gap-2">
+            {recipe.needs_review && <NeedsReviewBadge />}
             {recipe.preparation_time && (
               <span className="text-xs text-gray-500">
                 {recipe.preparation_time} דקות

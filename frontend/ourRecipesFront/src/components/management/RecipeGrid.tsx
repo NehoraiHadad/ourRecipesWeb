@@ -12,6 +12,7 @@ import { RecipeService } from '@/services/recipeService';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { hasStructuredContent, previewIngredientLines } from '@/lib/recipes/recipeView';
 import { TrashIcon } from '@/components/ui/icons';
+import { NeedsReviewBadge } from './NeedsReviewBadge';
 
 const RecipeGrid: React.FC<RecipeGridProps> = ({
   recipes,
@@ -129,6 +130,12 @@ const RecipeGrid: React.FC<RecipeGridProps> = ({
               </svg>
             </div>
           </div>
+
+          {recipe.needs_review && (
+            <div className="absolute top-3 left-3 z-10">
+              <NeedsReviewBadge className="shadow-sm" />
+            </div>
+          )}
 
           <div className="aspect-w-16 aspect-h-9 relative overflow-hidden">
             {recipe.image_url ? (

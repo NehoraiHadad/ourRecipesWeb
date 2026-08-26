@@ -39,6 +39,7 @@ export const recipeSelect = {
   parse_errors: true,
   status: true,
   is_verified: true,
+  needs_review: true,
   created_at: true,
   updated_at: true
 } as const;
@@ -72,6 +73,7 @@ export interface RecipeRow {
   parse_errors: string | null;
   status: string;
   is_verified: boolean;
+  needs_review: boolean;
   created_at: Date;
   updated_at: Date | null;
 }
@@ -125,6 +127,9 @@ export function serializeRecipe(recipe: RecipeRow): SerializedRecipe {
     parse_errors: splitColumn(recipe.parse_errors, '||'),
     status: recipe.status,
     is_verified: recipe.is_verified,
+    // An old-channel edit overwrote an app edit (channel wins) — surfaced
+    // as a conflict badge in /manage until the next app edit clears it.
+    needs_review: recipe.needs_review,
     created_at: recipe.created_at.toISOString(),
     updated_at: recipe.updated_at ? recipe.updated_at.toISOString() : null
   };

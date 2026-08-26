@@ -38,6 +38,8 @@ export interface SerializedRecipe {
   parse_errors: string[];
   status: string;
   is_verified: boolean;
+  /** An old-channel edit overwrote an app edit — needs a human look in /manage. */
+  needs_review: boolean;
   created_at: string;
   updated_at: string | null;
 }
