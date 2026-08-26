@@ -286,19 +286,24 @@ attributable to a row.
   of the old channel first.
 
 ## Stages (each stage = one commit, system deployable after each)
-- [ ] **5.1 Schema** — add `source_channel` (`@default("app")`),
+- [x] **5.1 Schema** (`8af56b2`) — add `source_channel` (`@default("app")`),
       `source_message_id`, `@@unique([source_channel, source_message_id])`,
-      `needs_review`, `app_edited_at`. Zero behavior change. `prisma db push`.
-- [ ] **5.2 Intake stores source** — `ingestRecipeMessage` accepts
+      `needs_review`, `app_edited_at`. Zero behavior change. `prisma db push`
+      still pending (worktree has no env; run before deploy).
+- [x] **5.2 Intake stores source** (`8ee12d0`) — `ingestRecipeMessage` accepts
       `{sourceChannel, sourceMessageId}` (create sets them; update never
       clobbers them); `republishOldChannelPost` passes them while still
       publishing to the main channel.
-- [ ] **5.3 Old-channel edit detection** — webhook `edited_channel_post` from
+- [x] **5.3 Old-channel edit detection** (`a658a36`) — webhook `edited_channel_post` from
       the old channel: lookup `{source_channel:'old', source_message_id}`;
       miss → treat as new post; hit → `reformatRecipe` + `snapshotVersion` +
       row update, `needs_review = true` if `app_edited_at` is set. App edit
       paths (update, version restore) start setting `app_edited_at`.
-- [ ] **5.4 Mirror disconnect** — delete `mirror.ts`, `mirrorPending.ts`,
+- [~] **5.4 Mirror disconnect** — 5.4a done (`b2b7abc`): old-channel intake
+      ingests directly under a generated internal id, main channel frozen in
+      the webhook, `generatePendingTelegramId` →
+      `generateInternalTelegramId` in `recipeId.ts`. 5.4b (sweep) in
+      progress: delete `mirror.ts`, `mirrorPending.ts`,
       `menuMirror.ts`, `placeMirror.ts`, `api/internal/mirror-pending`;
       old-channel intake ingests directly under a generated internal id (no
       more publish); webhook main-channel branch + `channelIngest.ts` removed;
@@ -307,7 +312,9 @@ attributable to a row.
       `sync_status`/`sync_error` writers removed; create/update/restore routes
       simplified; `generatePendingTelegramId` moves out of `mirror.ts`;
       integration tests rewritten.
-- [ ] **5.5 Repoint & surface** — `permissions.ts` → old channel; `/manage`
+- [~] **5.5 Repoint & surface** — `permissions.ts` → old channel done
+      (`778a09e`, bar loosened to creator/administrator — old-channel posting
+      already requires admin, `can_edit_messages` no longer relevant); `/manage`
       shows a `needs_review` badge (+ clear on app edit); api-python: reconcile
       reads the old channel, drops `mirror_pending`, matches by
       `source_message_id`, calls the new internal old-channel ingest route;
