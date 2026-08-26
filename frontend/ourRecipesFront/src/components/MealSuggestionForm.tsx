@@ -1,5 +1,6 @@
 import React, { useState, ChangeEvent } from "react";
 import Spinner from "@/components/ui/Spinner";
+import TypingEffect from "@/components/TypingEffect";
 import RecipeDisplay from "./RecipeDisplay";
 import RawRecipeView from "@/components/recipe/RawRecipeView";
 import { hasStructuredContent } from "@/lib/recipes/recipeView";
@@ -33,6 +34,9 @@ const MealSuggestionForm: React.FC = () => {
   const [recipeText, setRecipeText] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [savingRecipe, setSavingRecipe] = useState<boolean>(false);
+  const [saveMessage, setSaveMessage] = useState<string | null>(null);
+  /** The exact text that was last saved — refining produces new text, which may be saved again. */
+  const [savedText, setSavedText] = useState<string | null>(null);
   const [error, setError] = useState<string>("");
   const { addNotification } = useNotification()
   const [refinementRequest, setRefinementRequest] = useState<string>("");
@@ -255,6 +259,8 @@ const MealSuggestionForm: React.FC = () => {
     setIsRefining(false);
     setRefinementCount(0);
     setRefinementHistory([]);
+    setSaveMessage(null);
+    setSavedText(null);
   };
 
   // DB-first save via `POST /api/recipes`; the Telegram channel mirror is
@@ -262,13 +268,12 @@ const MealSuggestionForm: React.FC = () => {
   const saveRecipe = async (data: { newText: string; image?: string | null }) => {
     setSavingRecipe(true);
     try {
-      const result = await RecipeService.addRecipe(data);
-      console.log("Update successful:", result);
-      // setShowMessage({ status: true, message: "המתכון נשמר בהצלחה" });
+      await RecipeService.addRecipe(data);
+      setSavedText(data.newText);
+      setSaveMessage("המתכון נשמר בהצלחה בספר המתכונים");
     } catch (error) {
-      console.error("Error updating recipe:", error);
-      // setShowMessage({ status: true, message: "שגיאה בשמירת המתכון" });
-      throw error;
+      console.error("Error saving recipe:", error);
+      addNotification({ message: 'שגיאה בשמירת המתכון', type: 'error', duration: 5000 });
     } finally {
       setSavingRecipe(false);
     }
@@ -352,12 +357,16 @@ const MealSuggestionForm: React.FC = () => {
                     image: recipe.image_url,
                   })}
                   isLoading={savingRecipe}
+                  disabled={recipeText === savedText}
                   className="flex-1"
                 >
-                  שמור מתכון
+                  {recipeText === savedText ? "נשמר ✓" : "שמור מתכון"}
                 </Button>
               )}
             </div>
+            {saveMessage && (
+              <TypingEffect message={saveMessage} onComplete={() => setSaveMessage(null)} />
+            )}
           </div>
         </div>
       ) : (
