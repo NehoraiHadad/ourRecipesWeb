@@ -250,8 +250,15 @@ attributable to a row.
    (`generatePendingTelegramId` pattern — the UI already tolerates negative ids).
 2. Edit conflicts: the channel wins, but a row that was app-edited since its
    last channel ingest gets `needs_review = true`, surfaced in `/manage`.
-3. No source recovery for the 203 pre-existing recipes. Edit detection applies
-   only to recipes ingested after this change.
+3. ~~No source recovery for the 203 pre-existing recipes.~~ **Superseded
+   (user decision 2026-08-26, after an explicit data-loss warning): wipe all
+   recipe rows and rebuild the entire collection from the old channel's
+   history.** The wipe cascades user favorites, versions, and every saved
+   menu's courses, and discards app-side edits, AI images, and the old shared
+   `/recipe/<id>` links — accepted. In exchange, every recipe carries
+   `source_message_id`, so old-channel edit detection covers the whole
+   collection and the Python reconcile needs no cutover guard: steady state is
+   simply "match old-channel history by source id, ingest the misses".
 
 ## Deviations from the plan doc (verified against code)
 - `telegram_id` stays `Int @unique` **NOT NULL** (plan sketched `Int?`) — every
@@ -264,12 +271,12 @@ attributable to a row.
 - This project has **no prisma migrations folder** — schema changes apply via
   `prisma db push` (additive columns only; nothing dropped: `sync_status`,
   `sync_error`, `Menu.telegram_message_id`, `Place.*` stay as dormant columns).
-- The Python reconcile repoint is not just an env change: after cutover it must
-  match old-channel messages by `source_message_id` (not `telegram_id`), ingest
+- The Python reconcile repoint is not just an env change: it must match
+  old-channel messages by `source_message_id` (not `telegram_id`) and ingest
   misses through the old-channel pipeline (Gemini reformat — a new internal
-  route, since `/api/internal/recipes/upsert` deliberately excludes the AI SDK),
-  and **only consider messages after a cutover date** — otherwise all 203
-  legacy recipes (no stored source id) would re-import as duplicates.
+  route, since `/api/internal/recipes/upsert` deliberately excludes the AI
+  SDK). The full rebuild (decision 3) makes this the steady state from day
+  one — no cutover guard needed, since no row predates source tracking.
 - With the main-channel webhook branch gone, channel-side intake of *places*
   ("המלצה" posts) and the menu-mirror skip logic die with it (`channelIngest.ts`,
   `places/ingest.ts`); places become app-authored only. `Place.is_synced`
@@ -302,10 +309,16 @@ attributable to a row.
       integration tests rewritten.
 - [ ] **5.5 Repoint & surface** — `permissions.ts` → old channel; `/manage`
       shows a `needs_review` badge (+ clear on app edit); api-python: reconcile
-      reads the old channel with a cutover guard, drops `mirror_pending`,
-      matches by `source_message_id`, calls the new internal old-channel ingest
-      route; docs + `.env.example` + README updated (ARCHITECTURE §4.1, §4.3,
-      §4.4, §4.6, §7).
-- [ ] **5.6 (user, not code)** — after a bake period: delete the main channel
-      in Telegram. Prereq checklist: bot admin in the old channel, permissions
-      deploy verified, cutover env var set for the Python pass.
+      reads the old channel, drops `mirror_pending`, matches by
+      `source_message_id`, calls the new internal old-channel ingest route;
+      docs + `.env.example` + README updated (ARCHITECTURE §4.1, §4.3, §4.4,
+      §4.6, §7).
+- [ ] **5.6 Wipe & rebuild (operational, after deploy, with explicit user
+      go-ahead at execution time)** — truncate `recipes` (cascades favorites /
+      versions / menu courses), then run the full old-channel history import:
+      Telethon reads every message, each one goes through the reformat
+      pipeline and lands with `{source_channel:'old', source_message_id}` and
+      `created_at` = original post date.
+- [ ] **5.7 (user, not code)** — delete the main channel in Telegram. Prereq
+      checklist: bot admin in the old channel, permissions deploy verified,
+      rebuild verified.
