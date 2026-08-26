@@ -41,6 +41,11 @@ export async function commitPendingUpdate(input: CommitPendingUpdateInput) {
         raw_content: input.newText,
         ...recipeFieldsFromParsed(input.parsed),
         image_url: input.imageUrl,
+        // Conflict tracking (Wave 5.3): an app edit marks the row, so a later
+        // old-channel edit knows to flag it — and doubles as the reviewer's
+        // "resolved" action, clearing any standing flag.
+        app_edited_at: new Date(),
+        needs_review: false,
         sync_status: 'pending_telegram',
         sync_error: null
       },

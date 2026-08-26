@@ -96,6 +96,9 @@ export async function POST(
           raw_content: versionRawContent,
           ...recipeFieldsFromParsed(parsed),
           image_url: restoredImageUrl,
+          // A restore is an app edit: mark for conflict tracking, clear any flag.
+          app_edited_at: new Date(),
+          needs_review: false,
           sync_status: mirror.syncStatus,
           sync_error: mirror.syncError
         }

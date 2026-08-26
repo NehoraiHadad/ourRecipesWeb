@@ -408,24 +408,137 @@ describe('POST /api/webhooks/telegram', () => {
       expect(prismaMock.recipe.upsert).not.toHaveBeenCalled();
     });
 
-    it('ignores edits in the old channel (a re-publish would duplicate)', async () => {
-      const response = await webhookPOST(
-        webhookRequest({
+    describe('edits', () => {
+      /** The row `findRecipeByOldChannelSource` returns for a tracked message. */
+      function trackedRecipe(overrides: Record<string, unknown> = {}) {
+        return {
+          id: 11,
+          telegram_id: 909,
+          title: 'עוגת שוקולד',
+          raw_content: RECIPE_TEXT,
+          categories: 'קינוחים',
+          ingredients_list: [],
+          instructions: 'ממיסים.',
+          preparation_time: 45,
+          difficulty: 'EASY',
+          image_url: null,
+          app_edited_at: null,
+          ...overrides
+        };
+      }
+
+      function oldChannelEdit(text: string) {
+        return webhookRequest({
           update_id: 11,
           edited_channel_post: {
             message_id: 44,
             chat: { id: OLD_CHANNEL_ID, type: 'channel' },
             date: 1_700_000_800,
-            text: 'טקסט ערוך'
+            text
           }
-        })
-      );
+        });
+      }
 
-      expect(response.status).toBe(200);
-      const json = await parseJsonResponse<any>(response);
-      expect(json.ignored).toBe('old_channel_edit');
-      expect(reformatRecipe).not.toHaveBeenCalled();
-      expect(sendMessage).not.toHaveBeenCalled();
+      beforeEach(() => {
+        (prismaMock.$transaction as any).mockImplementation((cb: any) => cb(prismaMock));
+        prismaMock.recipeVersion.findMany.mockResolvedValue([]);
+        prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 2 } } as any);
+      });
+
+      it('updates the matching row: reformat, snapshot, overwrite — no re-publish', async () => {
+        const editedFormatted = RECIPE_TEXT.replace('עוגת שוקולד', 'עוגת שוקולד מריר');
+        prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+        vi.mocked(reformatRecipe).mockResolvedValue(editedFormatted);
+
+        const response = await webhookPOST(oldChannelEdit('גרסה ערוכה של המתכון'));
+
+        expect(response.status).toBe(200);
+        const json = await parseJsonResponse<any>(response);
+        expect(json).toMatchObject({
+          ok: true,
+          source: 'old_channel',
+          edited: true,
+          sourceMessageId: 44,
+          telegram_id: 909,
+          action: 'updated',
+          needs_review: false
+        });
+
+        // Matched by the source pair, never by telegram_id.
+        expect(prismaMock.recipe.findUnique).toHaveBeenCalledWith(
+          expect.objectContaining({
+            where: {
+              source_channel_source_message_id: { source_channel: 'old', source_message_id: 44 }
+            }
+          })
+        );
+
+        // The channel never gets written to — this is a row update only.
+        expect(sendMessage).not.toHaveBeenCalled();
+
+        // Previous content snapshotted, row overwritten with the reformat.
+        expect(prismaMock.recipeVersion.create).toHaveBeenCalledTimes(1);
+        const versionData = (prismaMock.recipeVersion.create.mock.calls[0][0] as any).data;
+        expect(versionData.created_by).toBe('old_channel');
+        expect((versionData.content as any).raw_content).toBe(RECIPE_TEXT);
+
+        const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+        expect(update.where).toEqual({ id: 11 });
+        expect(update.data.raw_content).toBe(editedFormatted);
+        expect(update.data.title).toBe('עוגת שוקולד מריר');
+        expect(update.data.needs_review).toBeUndefined();
+      });
+
+      it('flags a row that was also edited in the app (channel wins, review requested)', async () => {
+        prismaMock.recipe.findUnique.mockResolvedValue(
+          trackedRecipe({ app_edited_at: new Date('2026-08-20') }) as any
+        );
+        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT.replace('45', '50'));
+
+        const response = await webhookPOST(oldChannelEdit('גרסה ערוכה'));
+
+        const json = await parseJsonResponse<any>(response);
+        expect(json).toMatchObject({ action: 'updated', needs_review: true });
+
+        const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+        expect(update.data.needs_review).toBe(true);
+      });
+
+      it('no-ops when the edit reformats to the exact stored content', async () => {
+        prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+
+        const response = await webhookPOST(oldChannelEdit('אותו תוכן, ניסוח גולמי'));
+
+        const json = await parseJsonResponse<any>(response);
+        expect(json).toMatchObject({ action: 'unchanged' });
+        expect(prismaMock.recipe.update).not.toHaveBeenCalled();
+        expect(prismaMock.recipeVersion.create).not.toHaveBeenCalled();
+      });
+
+      it('treats an edit no row claims as a brand-new post', async () => {
+        // First lookup: by source pair (miss). The republish path then looks
+        // up by the new telegram_id (also miss).
+        prismaMock.recipe.findUnique.mockResolvedValue(null);
+        vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+        vi.mocked(sendMessage).mockResolvedValue({
+          message_id: 910,
+          chat: { id: MAIN_CHANNEL_ID, type: 'channel' },
+          date: 1_700_000_900,
+          text: RECIPE_TEXT
+        } as any);
+        mockUpsertResult({ id: 12 });
+
+        const response = await webhookPOST(oldChannelEdit('מתכון מלפני המעקב, עכשיו ערוך'));
+
+        expect(response.status).toBe(200);
+        const json = await parseJsonResponse<any>(response);
+        expect(json).toMatchObject({ source: 'old_channel', telegram_id: 910, action: 'created' });
+
+        const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+        expect(call.create.source_channel).toBe('old');
+        expect(call.create.source_message_id).toBe(44);
+      });
     });
   });
 

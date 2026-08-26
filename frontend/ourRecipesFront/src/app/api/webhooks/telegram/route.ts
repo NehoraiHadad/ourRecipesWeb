@@ -19,7 +19,8 @@
  * | main channel, otherwise                     | 200      | parse + upsert by `message_id`      |
  * | main channel + photo                        | 200      | photo → Blob, `image_url` saved     |
  * | old channel, new post                       | 200      | Gemini reformat → publish → upsert  |
- * | old channel, edit                           | 200      | ignored (would double-publish)      |
+ * | old channel, edit of a tracked message      | 200      | reformat → snapshot → row update    |
+ * | old channel, edit of an untracked message   | 200      | treated as a new post               |
  * | anything throws after auth                  | 200      | logged; no Telegram retry storm     |
  *
  * **Everything after the secret check answers 200.** Telegram retries non-2xx
@@ -35,6 +36,7 @@ import { classifyChannel, getMainChannelId } from '@/lib/telegram/channels';
 import { ingestChannelMessage } from '@/lib/telegram/channelIngest';
 import { largestPhotoFileId } from '@/lib/recipes/ingest';
 import { republishOldChannelPost } from '@/lib/recipes/oldChannel';
+import { applyOldChannelEdit, findRecipeByOldChannelSource } from '@/lib/recipes/oldChannelEdit';
 import type { TelegramMessage, TelegramUpdate } from '@/lib/telegram/types';
 
 export const dynamic = 'force-dynamic';
@@ -88,19 +90,27 @@ export async function POST(request: NextRequest): Promise<Response> {
     const text = messageText(message);
 
     if (channel === 'old') {
-      // Edits in the old channel are ignored: the recipe already lives in the
-      // main channel under its own id, and reformatting again would publish a
-      // duplicate. The reconcile pass is the place to notice such drift.
-      if (isEdit) {
-        log.info(
-          { messageId: message.message_id },
-          'Ignoring an edit in the old channel (would double-publish)'
-        );
-        return ack({ ignored: 'old_channel_edit' });
-      }
-
       if (!text.trim()) {
         return ack({ ignored: 'old_channel_empty' });
+      }
+
+      // An edit whose message id a row already claims updates that row (the
+      // channel wins; see `applyOldChannelEdit`). An edit no row knows —
+      // a message from before source tracking, or one whose first delivery
+      // failed — falls through and is treated exactly like a new post.
+      if (isEdit) {
+        const existing = await findRecipeByOldChannelSource(message.message_id);
+        if (existing) {
+          const edit = await applyOldChannelEdit(existing, text);
+          return ack({
+            source: 'old_channel',
+            edited: true,
+            sourceMessageId: message.message_id,
+            telegram_id: edit.telegramId,
+            action: edit.action,
+            needs_review: edit.needsReview
+          });
+        }
       }
 
       const mainChannelId = getMainChannelId();
