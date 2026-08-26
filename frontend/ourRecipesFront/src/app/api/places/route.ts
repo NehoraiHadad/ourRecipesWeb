@@ -14,6 +14,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_PLACE } from '@/lib/places/visibility';
 import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
@@ -26,7 +27,7 @@ export async function GET(request: NextRequest) {
     if (!auth.ok) return authErrorResponse(auth);
 
     const places = await prisma.place.findMany({
-      where: { is_deleted: false },
+      where: VISIBLE_PLACE,
       orderBy: { created_at: 'desc' }
     });
 

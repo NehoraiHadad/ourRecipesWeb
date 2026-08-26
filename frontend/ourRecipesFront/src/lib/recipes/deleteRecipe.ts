@@ -14,7 +14,7 @@
 import { prisma } from '@/lib/prisma';
 import { deleteMessage } from '@/lib/telegram/botApi';
 import { getMainChannelId } from '@/lib/telegram/channels';
-import { RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/ingest';
+import { RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'recipes/deleteRecipe' });

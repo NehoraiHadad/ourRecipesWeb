@@ -18,6 +18,7 @@
 import { NextRequest } from 'next/server';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireAuth, requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError, BadRequestError } from '@/lib/utils/api-errors';
 import { validateTelegramId, parseBody } from '@/lib/utils/api-validation';
@@ -27,8 +28,8 @@ import { logger } from '@/lib/logger';
 const log = logger.child({ context: 'api/versions/recipe/[telegram_id]' });
 
 async function findRecipeOrThrow(telegramId: number) {
-  const recipe = await prisma.recipe.findUnique({
-    where: { telegram_id: telegramId },
+  const recipe = await prisma.recipe.findFirst({
+    where: { ...VISIBLE_RECIPE, telegram_id: telegramId },
     select: { id: true }
   });
   if (!recipe) {

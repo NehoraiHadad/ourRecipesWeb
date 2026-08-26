@@ -111,7 +111,7 @@ describe('POST /api/menus (save)', () => {
 
     prismaMock.menu.create.mockResolvedValue({ id: 1 } as any);
     prismaMock.menuMeal.create.mockResolvedValue({ id: 10 } as any);
-    prismaMock.recipe.findUnique.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
+    prismaMock.recipe.findFirst.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
     prismaMock.mealRecipe.create.mockResolvedValue({ id: 100 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
     sendMessageMock.mockResolvedValue({ message_id: 999 } as any);
@@ -157,7 +157,7 @@ describe('POST /api/menus (save)', () => {
 
     prismaMock.menu.create.mockResolvedValue({ id: 1 } as any);
     prismaMock.menuMeal.create.mockResolvedValue({ id: 10 } as any);
-    prismaMock.recipe.findUnique.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
+    prismaMock.recipe.findFirst.mockResolvedValue({ id: 5, title: 'עוף בתנור' } as any);
     prismaMock.mealRecipe.create.mockResolvedValue({ id: 100 } as any);
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow() as any);
     sendMessageMock.mockResolvedValue({ message_id: 999 } as any);
@@ -205,7 +205,7 @@ describe('POST /api/menus (save)', () => {
     const { POST } = await import('@/app/api/menus/route');
 
     prismaMock.menu.create.mockResolvedValue({ id: 2 } as any);
-    prismaMock.recipe.findUnique.mockResolvedValue(null); // no meals/recipes needed for this case
+    prismaMock.recipe.findFirst.mockResolvedValue(null); // no meals/recipes needed for this case
     prismaMock.menu.findUniqueOrThrow.mockResolvedValue(baseMenuRow({ id: 2, meals: [] }) as any);
     sendMessageMock.mockRejectedValue(new TelegramApiError({ method: 'sendMessage', error_code: 500, description: 'down' } as any));
 
@@ -505,7 +505,7 @@ describe('POST /api/menus/:id/meals/:mealId/recipes', () => {
 
     prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER, total_servings: 6 } as any);
     prismaMock.menuMeal.findUnique.mockResolvedValue({ id: 10, menu_id: 1 } as any);
-    prismaMock.recipe.findUnique.mockResolvedValue({ id: 7 } as any);
+    prismaMock.recipe.findFirst.mockResolvedValue({ id: 7 } as any);
     prismaMock.mealRecipe.aggregate.mockResolvedValue({ _max: { course_order: 1 } } as any);
     prismaMock.mealRecipe.create.mockResolvedValue({
       id: 200,
@@ -541,7 +541,7 @@ describe('POST /api/menus/:id/meals/:mealId/recipes', () => {
 
     prismaMock.menu.findUnique.mockResolvedValue({ user_id: OWNER, total_servings: 6 } as any);
     prismaMock.menuMeal.findUnique.mockResolvedValue({ id: 10, menu_id: 1 } as any);
-    prismaMock.recipe.findUnique.mockResolvedValue(null);
+    prismaMock.recipe.findFirst.mockResolvedValue(null);
 
     const request = createMockRequest('http://localhost:3000/api/menus/1/meals/10/recipes', {
       method: 'POST',

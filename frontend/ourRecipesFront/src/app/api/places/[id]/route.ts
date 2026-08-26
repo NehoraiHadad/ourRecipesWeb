@@ -10,6 +10,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_PLACE } from '@/lib/places/visibility';
 import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError, NotFoundError } from '@/lib/utils/api-errors';
 import { validateId } from '@/lib/utils/api-validation';
@@ -39,7 +40,10 @@ export async function PUT(request: NextRequest, { params }: RouteParams) {
     const body = (await request.json().catch(() => null)) as UpdatePlaceBody | null;
     if (!body) throw BadRequestError('No data provided');
 
-    const existing = await prisma.place.findUnique({ where: { id: placeId } });
+    // Deleted places 404 rather than being editable back into view.
+    const existing = await prisma.place.findFirst({
+      where: { ...VISIBLE_PLACE, id: placeId }
+    });
     if (!existing) throw NotFoundError('Place not found');
 
     const updated = await prisma.place.update({
@@ -75,7 +79,10 @@ export async function DELETE(request: NextRequest, { params }: RouteParams) {
     // Flask's `session.get("user_name", user_id)` — see the note in places/route.ts.
     const userName = auth.session.name ?? auth.session.sub;
 
-    const existing = await prisma.place.findUnique({ where: { id: placeId } });
+    // Already-deleted places 404 rather than re-running the Telegram mirror.
+    const existing = await prisma.place.findFirst({
+      where: { ...VISIBLE_PLACE, id: placeId }
+    });
     if (!existing) throw NotFoundError('Place not found');
 
     const updated = await prisma.place.update({ where: { id: placeId }, data: { is_deleted: true } });

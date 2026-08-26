@@ -19,6 +19,7 @@
  * MTProto.
  */
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { logger } from '@/lib/logger';
 import { sendMessage } from '@/lib/telegram/botApi';
 import { getMainChannelId } from '@/lib/telegram/channels';
@@ -90,7 +91,10 @@ export async function mirrorPendingRecipes(limit = DEFAULT_LIMIT): Promise<Mirro
   }
 
   const pending = (await prisma.recipe.findMany({
-    where: { sync_status: SYNC_STATUS_PENDING_TELEGRAM },
+    // `VISIBLE_RECIPE` guards a real ordering hazard: a recipe created while
+    // Telegram was down, then deleted before the sweeper ran, would otherwise
+    // be posted to the channel after the user had already removed it.
+    where: { ...VISIBLE_RECIPE, sync_status: SYNC_STATUS_PENDING_TELEGRAM },
     select: { id: true, telegram_id: true, raw_content: true, image_url: true },
     orderBy: { updated_at: 'asc' },
     take

@@ -8,6 +8,7 @@
 import { NextRequest } from 'next/server';
 import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError, ForbiddenError } from '@/lib/utils/api-errors';
 import { validateId } from '@/lib/utils/api-validation';
@@ -73,8 +74,7 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
 
     const suggestions = await prisma.recipe.findMany({
       where: {
-        status: 'ACTIVE',
-        is_parsed: true,
+        ...PLANNABLE_RECIPE,
         id: { not: recipeId },
         AND: conditions
       },

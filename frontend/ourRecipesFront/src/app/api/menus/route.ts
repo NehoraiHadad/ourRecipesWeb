@@ -22,6 +22,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import {
   paginatedResponse
 } from '@/lib/utils/api-response';
@@ -175,12 +176,18 @@ export async function POST(request: NextRequest) {
         for (const recipeData of mealData.recipes ?? []) {
           if (!recipeData.recipe_id) continue;
 
-          const recipe = await tx.recipe.findUnique({
-            where: { id: recipeData.recipe_id },
+          // Same gate as the preview (`buildMenuPreview`): a course may only be
+          // saved if its recipe is still plannable. A stale preview held in the
+          // browser must not resurrect a recipe deleted since it was generated.
+          const recipe = await tx.recipe.findFirst({
+            where: { ...PLANNABLE_RECIPE, id: recipeData.recipe_id },
             select: { id: true, title: true }
           });
           if (!recipe) {
-            logger.warn({ recipeId: recipeData.recipe_id }, 'Recipe not found in DB, skipping in menu save');
+            logger.warn(
+              { recipeId: recipeData.recipe_id },
+              'Recipe missing or no longer plannable, skipping in menu save'
+            );
             continue;
           }
 

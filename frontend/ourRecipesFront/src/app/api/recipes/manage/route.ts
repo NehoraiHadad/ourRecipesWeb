@@ -2,8 +2,11 @@
  * GET /api/recipes/manage
  * List all recipes for management (admin view)
  *
- * Returns paginated list of recipes with management fields
- * Optional status filter (active, archived, deleted)
+ * Returns paginated list of recipes with management fields.
+ *
+ * The deliberate exception to `lib/recipes/visibility.ts`: this is the one
+ * route that may look past `VISIBLE_RECIPE`, because showing what was archived
+ * is its whole purpose. It still defaults to `ACTIVE`.
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
@@ -12,8 +15,9 @@ import { paginatedResponse } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { parsePaginationParams } from '@/lib/utils/api-validation';
 import { logger } from '@/lib/logger';
+import { RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 
-const VALID_STATUSES = ['ACTIVE', 'ARCHIVED', 'DELETED'] as const;
+const VALID_STATUSES = [RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED] as const;
 type RecipeStatus = typeof VALID_STATUSES[number];
 
 export async function GET(request: NextRequest) {
@@ -27,7 +31,7 @@ export async function GET(request: NextRequest) {
     const statusParam = searchParams.get('status');
     const status = (statusParam && VALID_STATUSES.includes(statusParam as RecipeStatus))
       ? statusParam as RecipeStatus
-      : 'ACTIVE' as const;
+      : RECIPE_STATUS_ACTIVE;
 
     logger.debug({ status, skip, take }, 'Listing recipes for management');
 

@@ -12,7 +12,7 @@ import {
   MAX_DETAIL_IDS,
   MAX_SEARCH_LIMIT
 } from './declarations';
-import { PLANNABLE_RECIPE } from './filters';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import { reviewMenuDraft } from './review';
 import { buildSearchWhere } from './searchWhere';
 import type {

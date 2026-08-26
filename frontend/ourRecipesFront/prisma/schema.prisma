@@ -13,10 +13,12 @@ datasource db {
 // Enums
 // ========================================
 
+// Documents the two values `Recipe.status` (a String column) ever holds.
+// There is no third "really deleted" state: deleting a recipe archives it, and
+// `lib/recipes/visibility.ts` is what makes that mean "invisible".
 enum RecipeStatus {
   ACTIVE
   ARCHIVED
-  DELETED
 }
 
 enum RecipeDifficulty {

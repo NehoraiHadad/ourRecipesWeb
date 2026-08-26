@@ -17,6 +17,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
@@ -50,7 +51,9 @@ export async function POST(request: NextRequest) {
       throw BadRequestError('Invalid action');
     }
 
-    const recipes = await prisma.recipe.findMany({ where: { id: { in: body.recipeIds } } });
+    const recipes = await prisma.recipe.findMany({
+      where: { ...VISIBLE_RECIPE, id: { in: body.recipeIds } }
+    });
 
     let processed = 0;
     let failed = 0;

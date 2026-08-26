@@ -34,6 +34,7 @@
 import { NextRequest } from 'next/server';
 import type { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { recipeSelect, serializeRecipe } from '@/lib/serializers/recipe';
 import {
   paginatedResponse
@@ -138,7 +139,7 @@ export async function GET(request: NextRequest) {
     }
 
     const where: Prisma.RecipeWhereInput = {
-      status: 'ACTIVE', // Only active recipes
+      ...VISIBLE_RECIPE,
       // Difficulty filter (enum) — unknown values are ignored, as in Flask.
       ...(difficulty && VALID_DIFFICULTIES.includes(difficulty)
         ? { difficulty }

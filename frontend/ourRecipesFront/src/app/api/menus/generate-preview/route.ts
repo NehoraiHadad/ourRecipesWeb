@@ -10,6 +10,7 @@ import { buildMenuPreview } from '@/lib/menus/menuPreview';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { prisma } from '@/lib/prisma';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import { logger } from '@/lib/logger';
 
 /** The preview request body — `MenuPreferences` before validation. */
@@ -34,12 +35,7 @@ export async function POST(request: NextRequest) {
     );
 
     // Pre-check: Verify we have enough recipes
-    const availableRecipes = await prisma.recipe.count({
-      where: {
-        status: 'ACTIVE',
-        is_parsed: true
-      }
-    });
+    const availableRecipes = await prisma.recipe.count({ where: PLANNABLE_RECIPE });
 
     if (availableRecipes < 5) {
       throw BadRequestError(

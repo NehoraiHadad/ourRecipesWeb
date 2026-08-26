@@ -17,21 +17,9 @@ import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { storeTelegramPhoto } from '@/lib/images/blob';
 import { storeImageBase64 } from '@/lib/images/upload';
+import { RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 
 const log = logger.child({ context: 'recipes/ingest' });
-
-/**
- * `Recipe.status` values.
- *
- * UPPERCASE is the single convention across the app: every consumer compares
- * against `'ACTIVE'` (`/api/recipes/search` filters `status: 'ACTIVE'`,
- * `/api/recipes/manage` validates against `ACTIVE|ARCHIVED|DELETED`), so a row
- * written as lowercase `'active'` would be invisible to the UI. The Prisma
- * column default matches (`@default("ACTIVE")`); ingestion still sets `status`
- * explicitly, since an upsert's update branch never sees a column default.
- */
-export const RECIPE_STATUS_ACTIVE = 'ACTIVE';
-export const RECIPE_STATUS_ARCHIVED = 'ARCHIVED';
 
 /** `Recipe.sync_status` — outgoing-mirror state only (ARCHITECTURE §8). */
 export const SYNC_STATUS_SYNCED = 'synced';

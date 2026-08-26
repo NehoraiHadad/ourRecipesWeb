@@ -5,6 +5,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireAuth, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError, NotFoundError, ForbiddenError } from '@/lib/utils/api-errors';
 import { validateId } from '@/lib/utils/api-validation';
@@ -49,7 +50,12 @@ export async function POST(
 
     if (!body.recipe_id) throw BadRequestError('recipe_id is required');
 
-    const recipe = await prisma.recipe.findUnique({ where: { id: body.recipe_id }, select: { id: true } });
+    // Same gate as the preview and the menu save: only a plannable recipe may
+    // enter a menu, whichever door it comes through.
+    const recipe = await prisma.recipe.findFirst({
+      where: { ...PLANNABLE_RECIPE, id: body.recipe_id },
+      select: { id: true }
+    });
     if (!recipe) throw NotFoundError('Recipe not found');
 
     let courseOrder = body.course_order;

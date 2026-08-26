@@ -6,7 +6,7 @@
  * with its context window.
  */
 import type { Prisma, RecipeDifficulty } from '@prisma/client';
-import { PLANNABLE_RECIPE } from './filters';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import type { SearchRecipesArgs } from './types';
 
 const DIFFICULTIES = new Set(['EASY', 'MEDIUM', 'HARD']);

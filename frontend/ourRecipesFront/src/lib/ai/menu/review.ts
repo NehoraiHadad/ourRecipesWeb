@@ -9,7 +9,7 @@
 import { prisma } from '@/lib/prisma';
 import { logger } from '@/lib/logger';
 import { structuredIngredientsOf } from '@/lib/serializers/recipe';
-import { PLANNABLE_RECIPE } from './filters';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import type { DraftMeal, ReviewMenuDraftArgs, ReviewResult } from './types';
 
 /** A course whose name contains this counts as the main course. */

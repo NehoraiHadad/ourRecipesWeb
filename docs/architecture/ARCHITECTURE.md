@@ -103,6 +103,23 @@ cache מסונכרן, שרץ כ-SQLite על דיסק ארעי ב-Render free tie
   בתחילתה במקום למחוק — ה-handler של העריכה מסמן `status=ARCHIVED`.
 - ה-reconcile (Telethon) מזהה פערים כאלה בדיעבד.
 
+**מחיקה היא רכה — ולכן היא שווה בדיוק כמה שהקוראים מכבדים אותה.** השורה נשארת
+ב-DB (`Recipe.status='ARCHIVED'`, `Place.is_deleted=true`), כך ש"נמחק" הוא כלל
+קריאה, לא מצב פיזי. הכלל מוגדר במקום אחד לכל ישות ואסור לשכפל אותו ב-`where`
+של route:
+
+| ישות   | מנגנון                | הכלל היחיד                                          |
+| ------ | --------------------- | --------------------------------------------------- |
+| מתכון  | `status='ARCHIVED'`   | `VISIBLE_RECIPE` / `PLANNABLE_RECIPE` ב-`lib/recipes/visibility.ts` |
+| מקום   | `is_deleted=true`     | `VISIBLE_PLACE` ב-`lib/places/visibility.ts`         |
+| תפריט  | מחיקה קשה (`menu.delete`) | אין צורך — השורה לא קיימת                        |
+
+`PLANNABLE_RECIPE` = `VISIBLE_RECIPE` + `is_parsed` — מה שסוכן התפריטים ו-MCP
+מותר להם לראות. הוא חייב לחול גם על נתיבי ה-**כתיבה** שמקבלים `recipe_id` מבחוץ
+(`buildMenuPreview`, שמירת תפריט, הוספת מתכון לארוחה), כי מזהה שהמודל המציא אינו
+מגיע מכלי חיפוש ולכן לא עבר שום סינון. החריג היחיד המכוון: `/api/recipes/manage`,
+שכל תפקידו להראות מה אורכב.
+
 ### 4.5 Auth
 
 נשאר Telegram, עובר לנקסט:

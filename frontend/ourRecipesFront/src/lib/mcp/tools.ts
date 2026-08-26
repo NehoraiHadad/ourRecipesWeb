@@ -10,7 +10,7 @@ import { z } from 'zod';
 import type { McpServer } from '@modelcontextprotocol/server';
 import { prisma } from '@/lib/prisma';
 import { searchRecipes, getRecipesDetails } from '@/lib/ai/menu/tools';
-import { PLANNABLE_RECIPE } from '@/lib/ai/menu/filters';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 
 const SITE_URL = 'https://recipes.nehoraihadad.com';
 

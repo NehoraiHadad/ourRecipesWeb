@@ -188,7 +188,7 @@ describe('PUT /api/places/:id', () => {
     const { PUT } = await import('@/app/api/places/[id]/route');
 
     const existing = basePlaceRow({ telegram_message_id: 42 });
-    prismaMock.place.findUnique.mockResolvedValue(existing as any);
+    prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, name: 'פיצה רומא 2' } as any);
     editMessageTextMock.mockResolvedValue({ message_id: 42 } as any);
 
@@ -209,7 +209,7 @@ describe('PUT /api/places/:id', () => {
   it('404s when the place does not exist', async () => {
     const { PUT } = await import('@/app/api/places/[id]/route');
 
-    prismaMock.place.findUnique.mockResolvedValue(null);
+    prismaMock.place.findFirst.mockResolvedValue(null);
 
     const request = createMockRequest('http://localhost:3000/api/places/999', {
       method: 'PUT',
@@ -225,7 +225,7 @@ describe('PUT /api/places/:id', () => {
     const { PUT } = await import('@/app/api/places/[id]/route');
 
     const existing = basePlaceRow({ created_by: 'someone-else (999)' });
-    prismaMock.place.findUnique.mockResolvedValue(existing as any);
+    prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, name: 'updated' } as any);
 
     const request = createMockRequest('http://localhost:3000/api/places/1', {
@@ -244,7 +244,7 @@ describe('DELETE /api/places/:id', () => {
     const { DELETE } = await import('@/app/api/places/[id]/route');
 
     const existing = basePlaceRow({ telegram_message_id: 42 });
-    prismaMock.place.findUnique.mockResolvedValue(existing as any);
+    prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, is_deleted: true } as any);
     editMessageTextMock.mockResolvedValue({ message_id: 42 } as any);
 
@@ -265,7 +265,7 @@ describe('DELETE /api/places/:id', () => {
     const { DELETE } = await import('@/app/api/places/[id]/route');
 
     const existing = basePlaceRow({ telegram_message_id: 42 });
-    prismaMock.place.findUnique.mockResolvedValue(existing as any);
+    prismaMock.place.findFirst.mockResolvedValue(existing as any);
     prismaMock.place.update.mockResolvedValue({ ...existing, is_deleted: true } as any);
     editMessageTextMock.mockRejectedValue(new TelegramApiError({ method: 'editMessageText', error_code: 500, description: 'down' } as any));
 
@@ -281,7 +281,7 @@ describe('DELETE /api/places/:id', () => {
   it('404s when the place does not exist', async () => {
     const { DELETE } = await import('@/app/api/places/[id]/route');
 
-    prismaMock.place.findUnique.mockResolvedValue(null);
+    prismaMock.place.findFirst.mockResolvedValue(null);
 
     const request = createMockRequest('http://localhost:3000/api/places/999', {
       method: 'DELETE',

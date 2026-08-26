@@ -14,6 +14,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, NotFoundError } from '@/lib/utils/api-errors';
 import { validateId, validateTelegramId } from '@/lib/utils/api-validation';
@@ -36,7 +37,10 @@ export async function POST(
     const telegramId = validateTelegramId(params.telegram_id);
     const versionId = validateId(params.versionId);
 
-    const recipe = await prisma.recipe.findUnique({ where: { telegram_id: telegramId } });
+    // A deleted recipe has no restorable history — 404, like its GET.
+    const recipe = await prisma.recipe.findFirst({
+      where: { ...VISIBLE_RECIPE, telegram_id: telegramId }
+    });
     if (!recipe) {
       throw NotFoundError('Recipe not found');
     }

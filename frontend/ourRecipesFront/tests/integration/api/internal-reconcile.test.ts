@@ -400,7 +400,9 @@ describe('Internal + cron routes', () => {
       // No PYTHON_RECONCILE_URL configured — the history pass is skipped, not failed.
       expect(json.reconcile).toMatchObject({ triggered: false, reason: 'not_configured' });
       expect(prismaMock.recipe.findMany).toHaveBeenCalledWith(
-        expect.objectContaining({ where: { sync_status: 'pending_telegram' } })
+        // `status: 'ACTIVE'` too: the sweeper must not publish a recipe that
+        // was deleted while its mirror was still pending.
+        expect.objectContaining({ where: { status: 'ACTIVE', sync_status: 'pending_telegram' } })
       );
     });
 

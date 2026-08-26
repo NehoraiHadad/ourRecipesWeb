@@ -106,7 +106,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
   });
 
   it('404s when the recipe does not exist', async () => {
-    prismaMock.recipe.findUnique.mockResolvedValue(null);
+    prismaMock.recipe.findFirst.mockResolvedValue(null);
 
     const response = await PUT(putRequest({ newText: NEW_TEXT }), {
       params: { telegram_id: '555' }
@@ -117,7 +117,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
 
   it('short-circuits (no version, no Telegram call) when content is unchanged', async () => {
     const recipe = existingRecipe({ raw_content: NEW_TEXT });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
 
     const response = await PUT(putRequest({ newText: NEW_TEXT }), {
       params: { telegram_id: '555' }
@@ -131,7 +131,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
 
   it('commits the new content as pending before touching Telegram, then patches it synced', async () => {
     const recipe = existingRecipe();
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: null } } as any);
     editMessageTextMock.mockResolvedValue({ message_id: 555 } as any);
@@ -169,7 +169,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
 
   it('Telegram down: the update still succeeds and sync_status becomes pending_telegram', async () => {
     const recipe = existingRecipe();
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: null } } as any);
     editMessageTextMock.mockRejectedValue(new Error('Telegram editMessageText failed (0): Network request failed'));
@@ -195,7 +195,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
 
   it('uses editMessageCaption when the message already has a photo and only the text changes', async () => {
     const recipe = existingRecipe({ image_url: 'https://blob.example/existing.jpg' });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: null } } as any);
     editMessageCaptionMock.mockResolvedValue({ message_id: 555 } as any);
@@ -216,7 +216,7 @@ describe('PUT /api/recipes/:telegram_id', () => {
 
   it('uploads a new image and calls editMessageMedia when a fresh image is supplied', async () => {
     const recipe = existingRecipe({ image_url: 'https://blob.example/old.jpg' });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: null } } as any);
     putMock.mockResolvedValue({ url: 'https://blob.example/new.jpg' } as any);

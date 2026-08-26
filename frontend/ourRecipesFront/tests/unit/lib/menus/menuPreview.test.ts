@@ -102,4 +102,21 @@ describe('buildMenuPreview', () => {
     // The ids still reach the save route, which skips the invalid ones.
     expect(preview.meals[0].recipes.map((c) => c.recipe_id)).toEqual([11, 22]);
   });
+
+  /**
+   * Regression: a deleted recipe ("חדש", a one-word test message archived by
+   * the user) appeared as a course in a generated menu. It could never have
+   * come from a search tool — those filter on `PLANNABLE_RECIPE` — so it was an
+   * id the model produced on its own, which this resolver then looked up
+   * unfiltered and dressed with a real title.
+   */
+  it('resolves ids through PLANNABLE_RECIPE, so an archived or unparsed recipe cannot come back', async () => {
+    prismaMock.recipe.findMany.mockResolvedValue([] as never);
+
+    await buildMenuPreview(PLAN);
+
+    expect(prismaMock.recipe.findMany.mock.calls[0][0]).toMatchObject({
+      where: { status: 'ACTIVE', is_parsed: true, id: { in: [11, 22] } }
+    });
+  });
 });

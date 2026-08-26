@@ -14,6 +14,7 @@
 import { prisma } from '@/lib/prisma';
 import { recipeSummarySelect, difficultyToValue, type RecipeSummaryRow } from '@/lib/serializers/menu';
 import { logger } from '@/lib/logger';
+import { PLANNABLE_RECIPE } from '@/lib/recipes/visibility';
 import type { MenuPlan } from '@/lib/ai/menu/types';
 import type { MenuPreview, RecipeSummary } from '@/types';
 
@@ -32,18 +33,31 @@ function toRecipeSummary(row: RecipeSummaryRow): RecipeSummary {
 }
 
 /**
- * A recipe id the agent invented has no row here; that course keeps its
- * `recipe` undefined, the UI says so honestly, and the save route skips it.
+ * This is also the gate that keeps a deleted recipe out of a menu.
+ *
+ * Nothing upstream checks the agent's ids against the database: `parseMenuPlan`
+ * validates shape only, and the finalize call can transcribe an id that no
+ * search tool ever returned. Recipe ids are small dense integers, so an
+ * invented one lands on a real row — that is how archived recipe `id=1` ("חדש",
+ * a deleted one-word test message) was resolved and rendered as a course.
+ *
+ * Resolving through `PLANNABLE_RECIPE` — the same filter the agent's own search
+ * tools use — means an id the agent could not legitimately have found cannot
+ * come back to life here: the course keeps its `recipe` undefined, the UI says
+ * so honestly, and the save route skips it.
  */
 export async function buildMenuPreview(plan: MenuPlan): Promise<MenuPreview> {
   // Array.from, not spread: the tsconfig target predates iterable spread.
   const ids = Array.from(new Set(plan.meals.flatMap((meal) => meal.recipes.map((r) => r.recipe_id))));
-  const rows = await prisma.recipe.findMany({ where: { id: { in: ids } }, select: recipeSummarySelect });
+  const rows = await prisma.recipe.findMany({
+    where: { ...PLANNABLE_RECIPE, id: { in: ids } },
+    select: recipeSummarySelect
+  });
   const summaries = new Map(rows.map((row) => [row.id, toRecipeSummary(row)]));
 
   const missing = ids.filter((id) => !summaries.has(id));
   if (missing.length > 0) {
-    logger.warn({ missing }, 'Menu plan references recipe ids with no matching row');
+    logger.warn({ missing }, 'Menu plan references recipe ids that are missing or not plannable');
   }
 
   return {

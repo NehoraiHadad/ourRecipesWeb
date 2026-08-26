@@ -20,6 +20,7 @@ import { decodeBase64Image, uploadRecipeImage, isHttpsImageUrl } from '@/lib/rec
 import { mirrorEditRecipe } from '@/lib/recipes/mirror';
 import { commitPendingUpdate, applyEditMirrorResult } from '@/lib/recipes/updateRecipe';
 import { archiveRecipe } from '@/lib/recipes/deleteRecipe';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { logger } from '@/lib/logger';
 
 export async function GET(
@@ -31,8 +32,14 @@ export async function GET(
 
     logger.debug({ telegramId }, 'Fetching recipe');
 
-    const recipe = await prisma.recipe.findUnique({
+    // `VISIBLE_RECIPE`, so a deleted recipe 404s here too. Archiving only hides
+    // a row from the listings; without this filter the recipe stayed fully
+    // readable to anyone holding its id — including a link shared before the
+    // delete. `/api/recipes/manage` is the deliberate exception: it filters by
+    // status on purpose, to show what was archived.
+    const recipe = await prisma.recipe.findFirst({
       where: {
+        ...VISIBLE_RECIPE,
         telegram_id: telegramId
       },
       select: recipeWithRelationsSelect
@@ -89,8 +96,10 @@ export async function PUT(
     }
     const newText = body.newText;
 
-    const recipe = await prisma.recipe.findUnique({
-      where: { telegram_id: telegramId },
+    // Editing a deleted recipe would silently un-hide nothing and write a
+    // version snapshot onto an archived row — 404 instead, like the GET.
+    const recipe = await prisma.recipe.findFirst({
+      where: { ...VISIBLE_RECIPE, telegram_id: telegramId },
       select: recipeWithRelationsSelect
     });
     if (!recipe) {
@@ -168,8 +177,9 @@ export async function DELETE(
 
     const telegramId = validateTelegramId(params.telegram_id);
 
-    const recipe = await prisma.recipe.findUnique({
-      where: { telegram_id: telegramId },
+    // Already-archived rows 404 rather than re-running the Telegram delete.
+    const recipe = await prisma.recipe.findFirst({
+      where: { ...VISIBLE_RECIPE, telegram_id: telegramId },
       select: { id: true, telegram_id: true }
     });
     if (!recipe) {

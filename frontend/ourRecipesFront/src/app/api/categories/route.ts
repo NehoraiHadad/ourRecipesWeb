@@ -6,6 +6,7 @@
  */
 import { NextRequest } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { successResponse } from '@/lib/utils/api-response';
 import { handleApiError } from '@/lib/utils/api-errors';
 import { logger } from '@/lib/logger';
@@ -17,7 +18,7 @@ export async function GET(request: NextRequest) {
     // Get all active recipes with categories
     const recipes = await prisma.recipe.findMany({
       where: {
-        status: 'ACTIVE',
+        ...VISIBLE_RECIPE,
         categories: {
           not: null
         }

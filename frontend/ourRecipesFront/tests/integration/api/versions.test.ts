@@ -86,7 +86,7 @@ beforeEach(() => {
 
 describe('GET /api/versions/recipe/:telegram_id', () => {
   it('404s when the recipe is missing', async () => {
-    prismaMock.recipe.findUnique.mockResolvedValue(null);
+    prismaMock.recipe.findFirst.mockResolvedValue(null);
 
     const response = await versionsGET(getRequest('http://localhost:3000/api/versions/recipe/555'), {
       params: { telegram_id: '555' }
@@ -96,7 +96,7 @@ describe('GET /api/versions/recipe/:telegram_id', () => {
   });
 
   it('returns a bare JSON array (not wrapped in { data }), newest first', async () => {
-    prismaMock.recipe.findUnique.mockResolvedValue({ id: 1 } as any);
+    prismaMock.recipe.findFirst.mockResolvedValue({ id: 1 } as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([
       {
         id: 10,
@@ -149,7 +149,7 @@ describe('POST /api/versions/recipe/:telegram_id (create version)', () => {
   });
 
   it('stores the client-supplied content as-is and returns the full list', async () => {
-    prismaMock.recipe.findUnique.mockResolvedValue({ id: 1 } as any);
+    prismaMock.recipe.findFirst.mockResolvedValue({ id: 1 } as any);
     prismaMock.recipeVersion.findMany.mockResolvedValue([]);
     prismaMock.recipeVersion.aggregate.mockResolvedValue({ _max: { version_num: 1 } } as any);
 
@@ -183,7 +183,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
   });
 
   it('404s when the version does not belong to the recipe', async () => {
-    prismaMock.recipe.findUnique.mockResolvedValue(recipeRow() as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipeRow() as any);
     prismaMock.recipeVersion.findUnique.mockResolvedValue({ id: 10, recipe_id: 999 } as any);
 
     const response = await restoreRequest('555', '10');
@@ -192,7 +192,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
 
   it('returns the flat { message, title, details, image } shape and skips the write when content is identical', async () => {
     const recipe = recipeRow({ raw_content: 'כותרת: נוכחי', image_url: null });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findUnique.mockResolvedValue({
       id: 10,
       recipe_id: 1,
@@ -216,7 +216,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
 
   it('restores a differing version: snapshots current state, edits Telegram, updates the recipe', async () => {
     const recipe = recipeRow({ raw_content: 'כותרת: נוכחי' });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findUnique.mockResolvedValue({
       id: 10,
       recipe_id: 1,
@@ -257,7 +257,7 @@ describe('POST /api/versions/recipe/:telegram_id/restore/:versionId', () => {
 
   it('Telegram down: restore still commits and sync_status becomes pending_telegram', async () => {
     const recipe = recipeRow({ raw_content: 'כותרת: נוכחי' });
-    prismaMock.recipe.findUnique.mockResolvedValue(recipe as any);
+    prismaMock.recipe.findFirst.mockResolvedValue(recipe as any);
     prismaMock.recipeVersion.findUnique.mockResolvedValue({
       id: 10,
       recipe_id: 1,
