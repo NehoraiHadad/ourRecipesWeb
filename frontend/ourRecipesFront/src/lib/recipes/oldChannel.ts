@@ -15,7 +15,10 @@ import { logger } from '@/lib/logger';
 import { reformatRecipe } from '@/lib/services/aiService';
 import { generateInternalTelegramId } from '@/lib/recipes/recipeId';
 import {
+  ARCHIVE_MARKERS,
   ingestRecipeMessage,
+  isArchiveMarked,
+  stripArchiveMarker,
   SOURCE_CHANNEL_OLD,
   type IngestResult
 } from '@/lib/recipes/ingest';
@@ -54,7 +57,11 @@ export async function ingestOldChannelPost(input: OldChannelInput): Promise<OldC
 
   log.info({ sourceMessageId, chars: text.length }, 'Reformatting old-channel post');
 
-  const formatted = (await reformatRecipe(text)).trim();
+  // A 🗑️-marked message (ARCHITECTURE §4.4) — seen mostly when the history
+  // rebuild replays recipes deleted over the years — is reformatted without
+  // the marker, then re-marked so `ingestRecipeMessage` stores it ARCHIVED.
+  const archived = isArchiveMarked(text);
+  const formatted = (await reformatRecipe(stripArchiveMarker(text))).trim();
   if (!formatted) {
     throw new Error(`Gemini returned empty text for old-channel message ${sourceMessageId}`);
   }
@@ -63,7 +70,7 @@ export async function ingestOldChannelPost(input: OldChannelInput): Promise<OldC
   const ingest = await ingestRecipeMessage({
     telegramId,
     source: { channel: SOURCE_CHANNEL_OLD, messageId: sourceMessageId },
-    text: formatted,
+    text: archived ? `${ARCHIVE_MARKERS[0]} ${formatted}` : formatted,
     messageDate: input.messageDate ?? null
   });
 

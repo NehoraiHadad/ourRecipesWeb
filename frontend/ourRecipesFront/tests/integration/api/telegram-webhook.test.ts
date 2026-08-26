@@ -72,6 +72,7 @@ function trackedRecipe(overrides: Record<string, unknown> = {}) {
     preparation_time: 45,
     difficulty: 'EASY',
     image_url: null,
+    status: 'ACTIVE',
     app_edited_at: null,
     ...overrides
   };
@@ -214,6 +215,25 @@ describe('POST /api/webhooks/telegram', () => {
       expect(call.create.created_at).toEqual(new Date(1_700_000_800 * 1000));
     });
 
+    it('stores a 🗑️-marked post as ARCHIVED (rebuild replaying a deleted recipe)', async () => {
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 13, status: 'ARCHIVED' });
+
+      const raw = oldChannelMessage().text as string;
+      const response = await webhookPOST(
+        webhookRequest({ update_id: 9, channel_post: oldChannelMessage({ text: `🗑️ ${raw}` }) })
+      );
+
+      expect(response.status).toBe(200);
+      // Gemini sees the recipe text, not the marker.
+      expect(reformatRecipe).toHaveBeenCalledWith(raw);
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.status).toBe('ARCHIVED');
+      expect(call.create.source_message_id).toBe(42);
+    });
+
     it('ignores an empty post', async () => {
       const response = await webhookPOST(
         webhookRequest({ update_id: 9, channel_post: oldChannelMessage({ text: '   ' }) })
@@ -336,6 +356,36 @@ describe('POST /api/webhooks/telegram', () => {
       expect(json).toMatchObject({ action: 'unchanged' });
       expect(prismaMock.recipe.update).not.toHaveBeenCalled();
       expect(prismaMock.recipeVersion.create).not.toHaveBeenCalled();
+    });
+
+    it('archives on a 🗑️-marked edit without calling Gemini', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+
+      const response = await webhookPOST(oldChannelEdit(`🗑️ ${RECIPE_TEXT}`));
+
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ action: 'archived', telegram_id: -900123 });
+      expect(reformatRecipe).not.toHaveBeenCalled();
+      expect(prismaMock.recipeVersion.create).not.toHaveBeenCalled();
+
+      const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+      expect(update.where).toEqual({ id: 11 });
+      expect(update.data.status).toBe('ARCHIVED');
+    });
+
+    it('restores an archived recipe when a later edit drops the 🗑️ marker', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(
+        trackedRecipe({ status: 'ARCHIVED' }) as any
+      );
+      vi.mocked(reformatRecipe).mockResolvedValue(RECIPE_TEXT);
+
+      const response = await webhookPOST(oldChannelEdit(RECIPE_TEXT));
+
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ action: 'updated' });
+
+      const update = prismaMock.recipe.update.mock.calls.at(-1)![0] as any;
+      expect(update.data.status).toBe('ACTIVE');
     });
 
     it('treats an edit no row claims as a brand-new post', async () => {

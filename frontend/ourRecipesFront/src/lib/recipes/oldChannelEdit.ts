@@ -15,13 +15,15 @@ import { reformatRecipe } from '@/lib/services/aiService';
 import { parseRecipeMessage } from '@/lib/recipes/parser';
 import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
 import { snapshotVersion, type RecipeSnapshotSource } from '@/lib/recipes/versioning';
-import { SOURCE_CHANNEL_OLD } from '@/lib/recipes/ingest';
+import { isArchiveMarked, SOURCE_CHANNEL_OLD } from '@/lib/recipes/ingest';
+import { RECIPE_STATUS_ACTIVE, RECIPE_STATUS_ARCHIVED } from '@/lib/recipes/visibility';
 
 const log = logger.child({ context: 'recipes/oldChannelEdit' });
 
 /** Everything the edit path needs: a version snapshot plus conflict state. */
 export interface OldChannelRecipeRow extends RecipeSnapshotSource {
   telegram_id: number;
+  status: string;
   app_edited_at: Date | null;
 }
 
@@ -47,13 +49,14 @@ export async function findRecipeByOldChannelSource(
       preparation_time: true,
       difficulty: true,
       image_url: true,
+      status: true,
       app_edited_at: true
     }
   });
 }
 
 export interface OldChannelEditResult {
-  action: 'updated' | 'unchanged';
+  action: 'updated' | 'unchanged' | 'archived';
   recipeId: number;
   /** The public URL key — unchanged by the edit. */
   telegramId: number;
@@ -71,19 +74,37 @@ export async function applyOldChannelEdit(
   recipe: OldChannelRecipeRow,
   text: string
 ): Promise<OldChannelEditResult> {
+  const base = { recipeId: recipe.id, telegramId: recipe.telegram_id, needsReview: false };
+
+  // 🗑️ prefix — the channel's deletion convention (ARCHITECTURE §4.4). A
+  // status flip, not a content edit: no AI call, no snapshot.
+  if (isArchiveMarked(text)) {
+    if (recipe.status !== RECIPE_STATUS_ARCHIVED) {
+      await prisma.recipe.update({
+        where: { id: recipe.id },
+        data: { status: RECIPE_STATUS_ARCHIVED, last_sync: new Date() }
+      });
+      log.info({ recipeId: recipe.id }, 'Old-channel 🗑️ edit — recipe archived');
+    }
+    return { action: 'archived', ...base };
+  }
+
   const formatted = (await reformatRecipe(text)).trim();
   if (!formatted) {
     throw new Error(`Gemini returned empty text for old-channel edit of recipe ${recipe.id}`);
   }
 
   if (formatted === recipe.raw_content) {
+    // An edit that only removed the 🗑️ marker restores the recipe.
+    if (recipe.status === RECIPE_STATUS_ARCHIVED) {
+      await prisma.recipe.update({
+        where: { id: recipe.id },
+        data: { status: RECIPE_STATUS_ACTIVE, last_sync: new Date() }
+      });
+      return { action: 'updated', ...base };
+    }
     log.debug({ recipeId: recipe.id }, 'Old-channel edit reformats to identical content — ignoring');
-    return {
-      action: 'unchanged',
-      recipeId: recipe.id,
-      telegramId: recipe.telegram_id,
-      needsReview: false
-    };
+    return { action: 'unchanged', ...base };
   }
 
   const needsReview = recipe.app_edited_at !== null;
@@ -100,6 +121,8 @@ export async function applyOldChannelEdit(
       data: {
         raw_content: formatted,
         ...recipeFieldsFromParsed(parsed),
+        // Status follows the channel: an edit without the 🗑️ marker is live.
+        status: RECIPE_STATUS_ACTIVE,
         ...(needsReview ? { needs_review: true } : {}),
         last_sync: new Date()
       }
