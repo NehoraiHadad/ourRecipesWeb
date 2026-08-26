@@ -70,14 +70,26 @@ export async function POST(request: NextRequest): Promise<Response> {
   }
 
   const text = typeof body?.text === 'string' ? body.text : '';
-  if (!text.trim()) {
-    return badRequest('text must be a non-empty string');
+  const photoBase64 =
+    typeof body?.photoBase64 === 'string' && body.photoBase64 ? body.photoBase64 : null;
+  // A photo-only post (a photographed recipe, no typed text) is still a recipe.
+  if (!text.trim() && !photoBase64) {
+    return badRequest('text must be non-empty unless a photo is attached');
   }
 
   try {
     const existing = await findRecipeByOldChannelSource(sourceMessageId);
 
     if (existing) {
+      // A photo-only message already has its row; there is no text edit to apply.
+      if (!text.trim()) {
+        return Response.json({
+          ok: true,
+          action: 'unchanged',
+          telegram_id: existing.telegram_id,
+          recipeId: existing.id
+        });
+      }
       const edit = await applyOldChannelEdit(existing, text);
       return Response.json({
         ok: true,
@@ -91,7 +103,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     const result = await ingestOldChannelPost({
       sourceMessageId,
       text,
-      photoBase64: typeof body?.photoBase64 === 'string' && body.photoBase64 ? body.photoBase64 : null,
+      photoBase64,
       messageDate: parseMessageDate(body?.date)
     });
 

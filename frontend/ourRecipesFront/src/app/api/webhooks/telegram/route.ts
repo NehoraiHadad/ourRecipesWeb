@@ -19,9 +19,12 @@
  * | no `channel_post` / `edited_channel_post`   | 200      | ignored                             |
  * | `chat.id` is neither of our channels        | 200      | ignored, logged                     |
  * | main channel (frozen, pre-deletion)         | 200      | ignored                             |
- * | old channel, empty text                     | 200      | ignored                             |
+ * | old channel, no text and no photo           | 200      | ignored                             |
  * | old channel, message a row claims           | 200      | reformat → snapshot → row update    |
  * | old channel, unclaimed message              | 200      | reformat → store under internal id  |
+ *
+ * A photo without usable text is still a recipe — a photographed recipe page
+ * completed by hand in the app — so only posts with *neither* are ignored.
  * | anything throws after auth                  | 200      | logged; no Telegram retry storm     |
  *
  * **Everything after the secret check answers 200.** Telegram retries non-2xx
@@ -94,12 +97,23 @@ export async function POST(request: NextRequest): Promise<Response> {
     }
 
     const text = messageText(message);
-    if (!text.trim()) {
+    const photoFileId = largestPhotoFileId(message.photo);
+    if (!text.trim() && !photoFileId) {
       return ack({ ignored: 'old_channel_empty' });
     }
 
     const existing = await findRecipeByOldChannelSource(message.message_id);
     if (existing) {
+      // A photo-only message already has its row; there is no text edit to apply.
+      if (!text.trim()) {
+        return ack({
+          source: 'old_channel',
+          edited: isEdit,
+          sourceMessageId: message.message_id,
+          telegram_id: existing.telegram_id,
+          action: 'unchanged'
+        });
+      }
       const edit = await applyOldChannelEdit(existing, text);
       return ack({
         source: 'old_channel',
@@ -114,7 +128,7 @@ export async function POST(request: NextRequest): Promise<Response> {
     const result = await ingestOldChannelPost({
       sourceMessageId: message.message_id,
       text,
-      photoFileId: largestPhotoFileId(message.photo),
+      photoFileId,
       messageDate: message.date ? new Date(message.date * 1000) : null
     });
 

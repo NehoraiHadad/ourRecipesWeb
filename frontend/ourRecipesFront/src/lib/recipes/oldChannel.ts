@@ -45,6 +45,46 @@ export interface OldChannelResult {
 }
 
 /**
+ * The channel text, reformatted — or raw when the post is photo-first.
+ *
+ * A post that carries a photo is a recipe even when the AI cannot make a
+ * recipe of its text: many old-channel posts are a *photograph* of a recipe
+ * with a short caption (or none at all), completed by hand in the app later.
+ * Those store as-is, unparsed. A text-only post that fails to reformat is
+ * genuinely not a recipe and stays an error.
+ *
+ * A 🗑️-marked message (ARCHITECTURE §4.4) — seen mostly when the history
+ * rebuild replays recipes deleted over the years — is reformatted without
+ * the marker, then re-marked so `ingestRecipeMessage` stores it ARCHIVED.
+ */
+async function reformatOrRaw(
+  sourceMessageId: number,
+  text: string,
+  hasPhoto: boolean
+): Promise<string> {
+  const stripped = stripArchiveMarker(text).trim();
+  if (!stripped) {
+    if (hasPhoto) return text;
+    throw new Error(`Old-channel message ${sourceMessageId} has no text and no photo`);
+  }
+
+  try {
+    const formatted = (await reformatRecipe(stripped)).trim();
+    if (!formatted) {
+      throw new Error(`Gemini returned empty text for old-channel message ${sourceMessageId}`);
+    }
+    return isArchiveMarked(text) ? `${ARCHIVE_MARKERS[0]} ${formatted}` : formatted;
+  } catch (error) {
+    if (!hasPhoto) throw error;
+    log.warn(
+      { sourceMessageId, err: error },
+      'Reformat failed — storing the photo post with its raw caption'
+    );
+    return text;
+  }
+}
+
+/**
  * Reformats an old-channel post and stores it as a recipe row.
  *
  * Callers must first check no row already claims this `sourceMessageId`
@@ -53,28 +93,23 @@ export interface OldChannelResult {
  * check, the `(source_channel, source_message_id)` unique constraint rejects
  * the second insert.
  *
- * Throws on AI failure — the webhook route catches and still answers 200,
- * because a Telegram retry storm would only replay the same failure.
+ * Throws on AI failure for text-only posts — the webhook route catches and
+ * still answers 200, because a Telegram retry storm would only replay the
+ * same failure.
  */
 export async function ingestOldChannelPost(input: OldChannelInput): Promise<OldChannelResult> {
-  const { sourceMessageId, text } = input;
+  const { sourceMessageId } = input;
+  const hasPhoto = Boolean(input.photoFileId || input.photoBase64);
 
-  log.info({ sourceMessageId, chars: text.length }, 'Reformatting old-channel post');
+  log.info({ sourceMessageId, chars: input.text.length, hasPhoto }, 'Reformatting old-channel post');
 
-  // A 🗑️-marked message (ARCHITECTURE §4.4) — seen mostly when the history
-  // rebuild replays recipes deleted over the years — is reformatted without
-  // the marker, then re-marked so `ingestRecipeMessage` stores it ARCHIVED.
-  const archived = isArchiveMarked(text);
-  const formatted = (await reformatRecipe(stripArchiveMarker(text))).trim();
-  if (!formatted) {
-    throw new Error(`Gemini returned empty text for old-channel message ${sourceMessageId}`);
-  }
+  const text = await reformatOrRaw(sourceMessageId, input.text, hasPhoto);
 
   const telegramId = generateInternalTelegramId();
   const ingest = await ingestRecipeMessage({
     telegramId,
     source: { channel: SOURCE_CHANNEL_OLD, messageId: sourceMessageId },
-    text: archived ? `${ARCHIVE_MARKERS[0]} ${formatted}` : formatted,
+    text,
     photoFileId: input.photoFileId ?? null,
     photoBase64: input.photoBase64 ?? null,
     messageDate: input.messageDate ?? null

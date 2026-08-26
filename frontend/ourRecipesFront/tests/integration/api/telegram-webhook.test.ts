@@ -269,7 +269,7 @@ describe('POST /api/webhooks/telegram', () => {
       expect(call.create.source_message_id).toBe(42);
     });
 
-    it('ignores an empty post', async () => {
+    it('ignores a post with neither text nor a photo', async () => {
       const response = await webhookPOST(
         webhookRequest({ update_id: 9, channel_post: oldChannelMessage({ text: '   ' }) })
       );
@@ -277,6 +277,75 @@ describe('POST /api/webhooks/telegram', () => {
       const json = await parseJsonResponse<any>(response);
       expect(json.ignored).toBe('old_channel_empty');
       expect(reformatRecipe).not.toHaveBeenCalled();
+    });
+
+    it('stores a photo-only post without calling the AI — a photographed recipe', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 15, image_url: 'https://blob.example/p.jpg' });
+      vi.mocked(storeTelegramPhoto).mockResolvedValue('https://blob.example/p.jpg');
+
+      const response = await webhookPOST(
+        webhookRequest({
+          update_id: 14,
+          channel_post: oldChannelMessage({
+            text: undefined,
+            photo: [{ file_id: 'photo-1', file_size: 999 }]
+          })
+        })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, source: 'old_channel', action: 'created' });
+      expect(reformatRecipe).not.toHaveBeenCalled();
+      expect(storeTelegramPhoto).toHaveBeenCalledWith('photo-1');
+    });
+
+    it('answers unchanged for a photo-only edit of a message a row already claims', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+
+      const response = await webhookPOST(
+        webhookRequest({
+          update_id: 15,
+          edited_channel_post: oldChannelMessage({
+            text: undefined,
+            photo: [{ file_id: 'photo-1', file_size: 999 }]
+          })
+        })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, action: 'unchanged', telegram_id: -900123 });
+      expect(reformatRecipe).not.toHaveBeenCalled();
+      expect(prismaMock.recipe.update).not.toHaveBeenCalled();
+    });
+
+    it('falls back to the raw caption when the AI cannot make a recipe of a photo post', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 16, image_url: 'https://blob.example/p.jpg' });
+      vi.mocked(storeTelegramPhoto).mockResolvedValue('https://blob.example/p.jpg');
+      vi.mocked(reformatRecipe).mockRejectedValue(
+        new Error('AI returned an invalid recipe for task "reformat"')
+      );
+
+      const response = await webhookPOST(
+        webhookRequest({
+          update_id: 16,
+          channel_post: oldChannelMessage({
+            text: undefined,
+            caption: 'עוגת שמרים של סבתא',
+            photo: [{ file_id: 'photo-1', file_size: 999 }]
+          })
+        })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, source: 'old_channel', action: 'created' });
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.raw_content).toBe('עוגת שמרים של סבתא');
     });
 
     it('still answers 200 when Gemini fails, so Telegram does not retry forever', async () => {

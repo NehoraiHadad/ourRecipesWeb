@@ -127,15 +127,67 @@ describe('POST /api/internal/old-channel/ingest', () => {
       expect(response.status).toBe(400);
     });
 
-    it('rejects empty text', async () => {
+    it('rejects empty text when no photo is attached', async () => {
       const response = await ingestPOST(ingestRequest({ sourceMessageId: 42, text: '   ' }));
       expect(response.status).toBe(400);
       expect(reformatRecipe).not.toHaveBeenCalled();
     });
 
-    it('rejects a missing text field', async () => {
+    it('rejects a missing text field when no photo is attached', async () => {
       const response = await ingestPOST(ingestRequest({ sourceMessageId: 42 }));
       expect(response.status).toBe(400);
+    });
+  });
+
+  describe('photo-first posts (a photographed recipe, completed by hand)', () => {
+    it('stores a photo-only post without calling the AI', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 13, image_url: 'https://blob.example/p.jpg' });
+      vi.mocked(storeImageBase64).mockResolvedValue('https://blob.example/p.jpg');
+
+      const response = await ingestPOST(
+        ingestRequest({ sourceMessageId: 45, text: '', photoBase64: 'AAAA' })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, action: 'created', recipeId: 13 });
+      expect(reformatRecipe).not.toHaveBeenCalled();
+      expect(storeImageBase64).toHaveBeenCalledWith('AAAA', expect.any(Number));
+    });
+
+    it('answers unchanged for a photo-only message a row already claims', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(trackedRecipe() as any);
+
+      const response = await ingestPOST(
+        ingestRequest({ sourceMessageId: 46, text: '', photoBase64: 'AAAA' })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, action: 'unchanged', telegram_id: -900123 });
+      expect(reformatRecipe).not.toHaveBeenCalled();
+      expect(prismaMock.recipe.update).not.toHaveBeenCalled();
+    });
+
+    it('falls back to the raw caption when the AI cannot make a recipe of it', async () => {
+      prismaMock.recipe.findUnique.mockResolvedValue(null);
+      mockUpsertResult({ id: 14, image_url: 'https://blob.example/p.jpg' });
+      vi.mocked(storeImageBase64).mockResolvedValue('https://blob.example/p.jpg');
+      vi.mocked(reformatRecipe).mockRejectedValue(
+        new Error('AI returned an invalid recipe for task "reformat"')
+      );
+
+      const response = await ingestPOST(
+        ingestRequest({ sourceMessageId: 47, text: 'עוגת שמרים של סבתא', photoBase64: 'AAAA' })
+      );
+
+      expect(response.status).toBe(200);
+      const json = await parseJsonResponse<any>(response);
+      expect(json).toMatchObject({ ok: true, action: 'created', recipeId: 14 });
+
+      const call = prismaMock.recipe.upsert.mock.calls[0][0] as any;
+      expect(call.create.raw_content).toBe('עוגת שמרים של סבתא');
     });
   });
 

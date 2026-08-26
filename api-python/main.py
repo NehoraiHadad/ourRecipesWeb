@@ -94,7 +94,8 @@ class ChannelPage:
     """One page of old-channel history, newest first."""
 
     def __init__(self, messages: List[Tuple[Any, str]], scanned: int):
-        #: (message, text) for messages that carry text — the only ones worth storing.
+        #: (message, text) for messages worth storing; text may be empty for a
+        #: photo-only post (a photographed recipe, completed by hand in the app).
         self.messages = messages
         #: How many messages the iterator yielded, including skipped empty ones.
         self.scanned = scanned
@@ -102,8 +103,8 @@ class ChannelPage:
 
 async def fetch_page(client: Any, limit: int) -> ChannelPage:
     """
-    Read the last ``limit`` old-channel messages, newest first, skipping empty
-    ones (a text-less post — e.g. a bare photo — is not a recipe).
+    Read the last ``limit`` old-channel messages, newest first, skipping only
+    messages that carry neither text nor a photo (nothing to store).
 
     Must be called with a connected client.
     """
@@ -116,7 +117,7 @@ async def fetch_page(client: Any, limit: int) -> ChannelPage:
         scanned += 1
 
         text = message_text(message)
-        if not text:
+        if not text and not getattr(message, "photo", None):
             continue
 
         collected.append((message, text))
