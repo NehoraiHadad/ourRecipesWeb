@@ -72,24 +72,32 @@ export default function RecipeManagement() {
     
     setIsProcessing(true);
     try {
-      // `POST /api/recipes/bulk` answers flat `{ processed, failed, total }`.
+      // `POST /api/recipes/bulk` answers flat `{ processed, failed, total, remaining }`.
       const result = await apiService.post<{
         processed: number;
         failed: number;
         total: number;
+        remaining: number;
       }>('/api/recipes/bulk', {
         action,
         recipeIds: selectedRecipes,
         data
       }, { timeout: BULK_TIMEOUT });
 
+      const label = action === 'parse' ? 'פרסור' : 'פעולה';
+      const failedNote = result.failed > 0 ? `, ${result.failed} נכשלו` : '';
+
       setShowMessage({
         status: true,
-        message: `${action === 'parse' ? 'פרסור' : 'פעולה'} הושלמה בהצלחה: ${result.processed} מתכונים עודכנו`
+        // A batch too big for one run stops at the server's deadline. Say so,
+        // and keep the selection so the next click continues from there.
+        message: result.remaining > 0
+          ? `${label} חלקי: ${result.processed} מתכונים עודכנו${failedNote}. נותרו ${result.remaining} — לחצו שוב כדי להמשיך.`
+          : `${label} הושלמה בהצלחה: ${result.processed} מתכונים עודכנו${failedNote}`
       });
-      
+
       await fetchRecipes();
-      setSelectedRecipes([]);
+      if (result.remaining === 0) setSelectedRecipes([]);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Bulk action failed');
       setShowMessage({

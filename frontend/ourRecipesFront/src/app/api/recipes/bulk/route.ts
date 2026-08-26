@@ -6,7 +6,8 @@
  * Port of `RecipeService.bulk_parse_recipes` (`routes/recipes.py` /
  * `services/recipe_service.py`). Response shape is Flask's flat
  * `{ processed, failed, total }` (not wrapped in `{ data }`) — the UI reads
- * `result.processed` directly (`RecipeManagement.handleBulkAction`).
+ * `result.processed` directly (`RecipeManagement.handleBulkAction`) — plus
+ * `remaining`, which Flask had no notion of (see {@link bulkParseRecipes}).
  *
  * DB-first / Telegram best-effort per-recipe (ARCHITECTURE §4.3): unlike
  * Flask (which only updates the DB when the Telegram edit succeeds), each
@@ -16,19 +17,24 @@
  * missing required data — never solely because Telegram was unreachable.
  */
 import { NextRequest } from 'next/server';
-import { prisma } from '@/lib/prisma';
-import { VISIBLE_RECIPE } from '@/lib/recipes/visibility';
 import { requireEditPermission, authErrorResponse } from '@/lib/auth';
 import { handleApiError, BadRequestError } from '@/lib/utils/api-errors';
 import { parseBody } from '@/lib/utils/api-validation';
-import { reformatRecipe } from '@/lib/services/aiService';
-import { parseRecipeMessage } from '@/lib/recipes/parser';
-import { recipeFieldsFromParsed } from '@/lib/recipes/recipeFields';
-import { snapshotVersion } from '@/lib/recipes/versioning';
-import { mirrorEditRecipe } from '@/lib/recipes/mirror';
+import { bulkParseRecipes } from '@/lib/recipes/bulkParse';
 import { logger } from '@/lib/logger';
 
 const log = logger.child({ context: 'api/recipes/bulk:POST' });
+
+/**
+ * Every other AI route declares its own budget; this one did not, so it
+ * inherited the project's 15s default and was killed mid-batch after a single
+ * recipe. 300s matches `menus/generate-preview`, the longest-running route the
+ * app already ships.
+ */
+export const maxDuration = 300;
+
+/** Leave the response itself room to be written before the platform cuts us off. */
+const RESPONSE_MARGIN_MS = 10_000;
 
 interface BulkActionBody {
   action?: string;
@@ -36,6 +42,8 @@ interface BulkActionBody {
 }
 
 export async function POST(request: NextRequest) {
+  const deadline = Date.now() + maxDuration * 1000 - RESPONSE_MARGIN_MS;
+
   try {
     const auth = await requireEditPermission(request);
     if (!auth.ok) return authErrorResponse(auth);
@@ -51,58 +59,7 @@ export async function POST(request: NextRequest) {
       throw BadRequestError('Invalid action');
     }
 
-    const recipes = await prisma.recipe.findMany({
-      where: { ...VISIBLE_RECIPE, id: { in: body.recipeIds } }
-    });
-
-    let processed = 0;
-    let failed = 0;
-
-    for (const recipe of recipes) {
-      try {
-        if (!recipe.raw_content || !recipe.telegram_id) {
-          log.warn({ recipeId: recipe.id }, 'Recipe missing content or telegram_id — skipped');
-          failed++;
-          continue;
-        }
-
-        const reformattedText = await reformatRecipe(recipe.raw_content);
-        const parsed = parseRecipeMessage(reformattedText);
-
-        const mirror = await mirrorEditRecipe({
-          telegramId: recipe.telegram_id,
-          text: reformattedText,
-          hadImage: Boolean(recipe.image_url),
-          newImageUrl: null
-        });
-
-        await prisma.$transaction(async (tx) => {
-          await snapshotVersion(tx, recipe, {
-            createdBy: 'AI Parser',
-            changeDescription: 'AI Bulk Parse'
-          });
-
-          await tx.recipe.update({
-            where: { id: recipe.id },
-            data: {
-              raw_content: reformattedText,
-              ...recipeFieldsFromParsed(parsed),
-              sync_status: mirror.syncStatus,
-              sync_error: mirror.syncError
-            }
-          });
-        });
-
-        processed++;
-      } catch (error) {
-        log.error({ error, recipeId: recipe.id }, 'Bulk parse failed for recipe');
-        failed++;
-      }
-    }
-
-    log.info({ processed, failed, total: body.recipeIds.length }, 'Bulk parse completed');
-
-    return Response.json({ processed, failed, total: body.recipeIds.length });
+    return Response.json(await bulkParseRecipes(body.recipeIds, deadline));
   } catch (error) {
     log.error({ error }, 'Bulk action failed');
     return handleApiError(error);

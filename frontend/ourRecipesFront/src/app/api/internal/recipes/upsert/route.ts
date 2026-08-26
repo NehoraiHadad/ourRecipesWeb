@@ -29,6 +29,13 @@ import { requireInternalSecret } from '@/lib/internal/auth';
 import { ingestChannelMessage } from '@/lib/telegram/channelIngest';
 
 export const dynamic = 'force-dynamic';
+/**
+ * One message per call, but `photo_base64` means a Blob upload sits in the
+ * middle of it. A ceiling costs nothing until it is used, and the failure it
+ * prevents is silent: a killed upsert is a channel message the reconcile
+ * believes it delivered.
+ */
+export const maxDuration = 60;
 
 const log = logger.child({ context: 'api/internal/recipes/upsert' });
 

@@ -18,6 +18,12 @@ import { requireInternalSecret } from '@/lib/internal/auth';
 import { mirrorPendingRecipes } from '@/lib/recipes/mirrorPending';
 
 export const dynamic = 'force-dynamic';
+/**
+ * Up to 100 recipes, each a Telegram round trip — the cron twin declares 60s
+ * for the same work, and without a declaration this route inherits the
+ * project's 15s default and is killed mid-sweep.
+ */
+export const maxDuration = 60;
 
 const log = logger.child({ context: 'api/internal/mirror-pending' });
 

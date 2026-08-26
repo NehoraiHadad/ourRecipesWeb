@@ -102,7 +102,7 @@ describe('POST /api/recipes/bulk', () => {
     expect(response.status).toBe(200);
     const json = await response.json();
     // UI reads result.processed directly (RecipeManagement.handleBulkAction) — must not be wrapped in { data }.
-    expect(json).toEqual({ processed: 2, failed: 0, total: 2 });
+    expect(json).toEqual({ processed: 2, failed: 0, total: 2, remaining: 0 });
     expect(reformatRecipeMock).toHaveBeenCalledTimes(2);
     expect(prismaMock.recipe.update).toHaveBeenCalledTimes(2);
   });
@@ -116,7 +116,7 @@ describe('POST /api/recipes/bulk', () => {
     const response = await POST(postRequest({ action: 'parse', recipeIds: [1] }));
 
     const json = await response.json();
-    expect(json).toEqual({ processed: 1, failed: 0, total: 1 });
+    expect(json).toEqual({ processed: 1, failed: 0, total: 1, remaining: 0 });
 
     const updateArgs = prismaMock.recipe.update.mock.calls[0][0] as any;
     expect(updateArgs.data.sync_status).toBe('pending_telegram');
@@ -129,7 +129,7 @@ describe('POST /api/recipes/bulk', () => {
     const response = await POST(postRequest({ action: 'parse', recipeIds: [1] }));
 
     const json = await response.json();
-    expect(json).toEqual({ processed: 0, failed: 1, total: 1 });
+    expect(json).toEqual({ processed: 0, failed: 1, total: 1, remaining: 0 });
     expect(reformatRecipeMock).not.toHaveBeenCalled();
   });
 
@@ -147,6 +147,6 @@ describe('POST /api/recipes/bulk', () => {
     const response = await POST(postRequest({ action: 'parse', recipeIds: [1, 2] }));
 
     const json = await response.json();
-    expect(json).toEqual({ processed: 1, failed: 1, total: 2 });
+    expect(json).toEqual({ processed: 1, failed: 1, total: 2, remaining: 0 });
   });
 });
