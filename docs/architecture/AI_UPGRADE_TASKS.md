@@ -181,3 +181,53 @@ Open follow-ups: LLM Hebrew A/B (3.7-flash vs GPT-5.6 vs Sonnet 5) via the env d
 - Production breakage verified 2026-08-25 via guest JWT → `POST /api/recipes/reformat` → 500.
 - Auth model verified: `src/middleware.ts` enforces JWT on all `/api/**`; guest JWTs pass. Rate limiting still absent (acceptable for now).
 - Local `.env.local` has no `GOOGLE_API_KEY`/`KIE_API_KEY` — tests must mock providers; smoke tests against real APIs need `vercel env pull` or manual paste.
+
+---
+
+# Wave 4 — Deletion & recipe visibility (2026-08-26)
+
+Trigger: a deleted recipe ("חדש" — a one-word test message) turned up as a
+course in a generated menu.
+
+## Root cause (verified against production data, not inferred)
+- The row is `id=1, telegram_id=531, status=ARCHIVED, is_parsed=false`.
+  **Deletion worked.** The agent's search tools filter `ACTIVE + is_parsed`, so
+  they could not have returned it.
+- Nothing validated ids in the agent's *output*: `parseMenuPlan` checks shape
+  only, and the finalize call can emit an id no tool ever returned. Recipe ids
+  are small dense integers, so an invented one (`1`) hits a real row —
+  `buildMenuPreview` then resolved it with no filter and rendered its title.
+
+## Done
+- [x] `lib/recipes/visibility.ts` — `VISIBLE_RECIPE`, `PLANNABLE_RECIPE`, and the
+      status constants. One definition; `lib/ai/menu/filters.ts` deleted.
+- [x] `lib/places/visibility.ts` — `VISIBLE_PLACE`, the same shape for places.
+- [x] `PLANNABLE_RECIPE` gates the three write paths that take an outside
+      `recipe_id`: `buildMenuPreview`, menu save, add-recipe-to-meal.
+- [x] `VISIBLE_RECIPE` applied to every leaking read path: recipe
+      GET/PUT/DELETE by telegram_id, versions list + restore, bulk reparse,
+      categories, search, suggestions, `mirrorPending`.
+- [x] Dead `DELETED` value dropped from the `RecipeStatus` enum.
+- [x] Regression tests: preview resolves through `PLANNABLE_RECIPE`; delete
+      looks up through `VISIBLE_RECIPE`. 556/556 green, tsc clean.
+- [x] ARCHITECTURE §4.4 documents the soft-delete contract per entity.
+
+## Open — needs a decision, not just code
+- [ ] **89 of 203 ACTIVE recipes are `is_parsed: false`**, so the agent plans
+      from 114. Backfill dry run rescues **0** of them (`false -> true: 0`) —
+      they never had the labeled structure. 48 of the 89 are under 40 chars
+      ("פסח", "נודלס", "חומוס") and *should* stay invisible; ~41 are real
+      free-text recipes that only an AI reformat pass can rescue
+      (`POST /api/recipes/bulk` `action: 'parse'`, ~41 AI calls).
+- [ ] **`dietary_type` is never enforced** — it reaches the agent as prose only.
+      No filter, no review check. A meat menu can get a dairy dessert: a
+      kashrut error, the worst failure mode this app has. The mapping already
+      exists inline in the replacement-suggestions route; extract it and apply
+      it in `searchWhere` + `review`.
+- [ ] Course type unenforced the same way (a cake can be the main course).
+- [ ] `reviewMenuDraft` never sees `MenuPreferences`, so a requested meal can be
+      silently dropped and `servings` is never checked against the recipes.
+- [ ] `search_recipes` logs counts, not ids — so "did the model invent this id?"
+      cannot be answered from logs. Cheapest high-value observability change.
+- [ ] Places have no ownership check on update/delete (ported from Flask
+      as-is). Menus do. Deliberate or an oversight? — user decision.
