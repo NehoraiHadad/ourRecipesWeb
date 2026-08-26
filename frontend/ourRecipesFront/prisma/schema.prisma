@@ -67,7 +67,24 @@ enum CourseType {
 
 model Recipe {
   id           Int      @id @default(autoincrement())
+  // Legacy main-channel message id, kept as the public `/recipe/<id>` URL key.
+  // No longer points at Telegram; new rows draw negative ids from the internal
+  // sequence (`generatePendingTelegramId`).
   telegram_id  Int      @unique
+
+  // Where the content came from: 'old' (the old Telegram channel, the sole
+  // intake) or 'app' (authored in the app — also the backfill value for every
+  // row that predates source tracking).
+  source_channel     String @default("app") @db.VarChar(20)
+  // `message_id` in the old channel. Message ids run per channel, so the pair
+  // (channel, id) is the collision-free identity; null for app-authored rows.
+  source_message_id  Int?
+
+  // Edit-conflict handling: the channel always wins, but a row that was edited
+  // in the app (`app_edited_at`) and then overwritten by a channel edit gets
+  // flagged for review in the management screen.
+  needs_review   Boolean   @default(false)
+  app_edited_at  DateTime?
 
   // Core content
   title        String?  @db.VarChar(500)
@@ -109,6 +126,7 @@ model Recipe {
   versions      RecipeVersion[]
   meal_recipes  MealRecipe[]
 
+  @@unique([source_channel, source_message_id])
   @@index([telegram_id])
   @@map("recipes")
 }

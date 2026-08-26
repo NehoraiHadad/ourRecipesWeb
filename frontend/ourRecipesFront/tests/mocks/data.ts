@@ -14,6 +14,10 @@ import {
 export const mockRecipe: Recipe = {
   id: 1,
   telegram_id: 12345,
+  source_channel: 'app',
+  source_message_id: null,
+  needs_review: false,
+  app_edited_at: null,
   title: 'Test Recipe',
   raw_content: 'Test content',
   instructions: 'Mix and bake',
