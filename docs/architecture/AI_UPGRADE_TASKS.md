@@ -328,6 +328,12 @@ attributable to a row.
       with images, 0 dropped. Two pipeline rules were born mid-rebuild
       (`8b9161e`, `f1e7795`): a photo makes a post a recipe, and reformat
       failure stores the raw text — old-channel content is never dropped.
+      Post-rebuild fix: the wipe had dropped app-era images (added via the
+      app, not present on the channel post — e.g. "חלות מעולות"); the Blob
+      files survived, so 6 unambiguous title matches were restored from the
+      pre-wipe backup directly in the DB (now 100 recipes with images).
+      Ambiguous leftovers (duplicate titles like "עוגיות שוקולד צ'יפס")
+      can still be matched by content on request.
 - [ ] **5.7 (user, not code)** — delete the main channel in Telegram. Prereqs
       all verified: bot is admin in the old channel, permissions deploy live,
       rebuild verified. After deletion: remove `TELEGRAM_CHANNEL_ID`, the
