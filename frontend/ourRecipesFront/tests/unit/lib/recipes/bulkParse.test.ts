@@ -73,6 +73,39 @@ describe('bulkParseRecipes', () => {
     expect(reformatRecipe).toHaveBeenCalledTimes(2);
   });
 
+  it('runs recipes concurrently rather than one at a time', async () => {
+    prismaMock.recipe.findMany.mockResolvedValue(
+      [1, 2, 3, 4].map(recipeRow) as never
+    );
+
+    let inFlight = 0;
+    let peak = 0;
+    vi.mocked(reformatRecipe).mockImplementation(async () => {
+      inFlight++;
+      peak = Math.max(peak, inFlight);
+      await new Promise((resolve) => setTimeout(resolve, 5));
+      inFlight--;
+      return 'כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל';
+    });
+
+    const result = await bulkParseRecipes([1, 2, 3, 4], GENEROUS());
+
+    expect(result.processed).toBe(4);
+    // Sequential would peak at 1. The cap is Telegram's edit limit, not the model's.
+    expect(peak).toBeGreaterThan(1);
+  });
+
+  it('keeps the rest of a wave when one recipe throws', async () => {
+    prismaMock.recipe.findMany.mockResolvedValue([1, 2, 3].map(recipeRow) as never);
+    vi.mocked(reformatRecipe)
+      .mockRejectedValueOnce(new Error('AI service down'))
+      .mockResolvedValue('כותרת: מפורסר\nרשימת מצרכים:\n- א\nהוראות הכנה:\nלבשל');
+
+    const result = await bulkParseRecipes([1, 2, 3], GENEROUS());
+
+    expect(result).toEqual({ processed: 2, failed: 1, remaining: 0, total: 3 });
+  });
+
   it('only reparses visible recipes, so a deleted one is never rewritten', async () => {
     prismaMock.recipe.findMany.mockResolvedValue([] as never);
 

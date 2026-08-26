@@ -1,17 +1,25 @@
 /**
  * Bulk AI re-parse — the work behind `POST /api/recipes/bulk`.
  *
- * Each recipe costs a full AI reformat (~7-10s against KIE), a Telegram edit,
- * and a transaction, and they run one at a time to stay inside the provider's
- * rate limits. That makes the batch, not the recipe, the thing that can exceed
- * the function's budget: the route timed out at 15s on a two-recipe batch
- * because it never declared a `maxDuration`, and the client saw only an opaque
- * network error even though the first recipe had already been rewritten.
+ * Each recipe costs a full AI reformat (~7-10s), a Telegram edit, and a
+ * transaction. Two things bound the batch:
  *
- * So the loop is bounded by a deadline rather than by hope. When the next
- * recipe would not comfortably fit, it stops and reports `remaining` — the
- * caller re-runs to continue. A partial batch is a normal outcome here, not a
- * failure: every recipe that finished is already committed.
+ * **The function's budget.** The route timed out at 15s on a two-recipe batch
+ * because it never declared a `maxDuration`, and the client saw only an opaque
+ * network error even though the first recipe had already been rewritten. So
+ * the loop is bounded by a deadline rather than by hope: when the next wave
+ * would not comfortably fit, it stops and reports `remaining`, and the caller
+ * re-runs to continue. A partial batch is a normal outcome here, not a
+ * failure — every recipe that finished is already committed.
+ *
+ * **Concurrency.** The reformat is a plain synchronous request to KIE's
+ * `responses` endpoint (the Jobs API with its task polling is for media, not
+ * text), so independent recipes have no reason to wait for each other. The
+ * genuinely rate-limited step is the *Telegram* edit: a channel tolerates
+ * roughly 20 message edits per minute. `CONCURRENCY` is therefore set by
+ * Telegram, not by the model — and even when it is exceeded the cost is mild,
+ * because a rejected mirror only parks the recipe as `pending_telegram` for
+ * the sweeper while its DB write commits regardless.
  */
 import type { Recipe } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
@@ -26,10 +34,14 @@ import { logger } from '@/lib/logger';
 const log = logger.child({ context: 'recipes/bulkParse' });
 
 /**
- * What one recipe is assumed to need. Measured against production: the AI call
- * alone ran 6.2s, and the Telegram edit plus the transaction follow it.
+ * What one wave is assumed to need. Measured against production: the AI call
+ * alone ran 6.2s, and the Telegram edit plus the transaction follow it. A wave
+ * runs its recipes together, so this is a per-wave cost, not a per-recipe one.
  */
-const PER_RECIPE_BUDGET_MS = 25_000;
+const WAVE_BUDGET_MS = 25_000;
+
+/** Set by Telegram's edit limit, not by the model. See the module docs. */
+const CONCURRENCY = 4;
 
 export interface BulkParseResult {
   processed: number;
@@ -76,8 +88,27 @@ async function parseOneRecipe(recipe: Recipe): Promise<void> {
 }
 
 /**
- * Re-parses each visible recipe in `recipeIds` until `deadline` (an epoch
- * millisecond value) no longer leaves room for another one.
+ * One recipe's whole outcome as a boolean, so a wave never rejects: a single
+ * bad recipe must not discard the results of the ones beside it.
+ */
+async function parseRecipeSafely(recipe: Recipe): Promise<boolean> {
+  if (!recipe.raw_content || !recipe.telegram_id) {
+    log.warn({ recipeId: recipe.id }, 'Recipe missing content or telegram_id — skipped');
+    return false;
+  }
+
+  try {
+    await parseOneRecipe(recipe);
+    return true;
+  } catch (error) {
+    log.error({ error, recipeId: recipe.id }, 'Bulk parse failed for recipe');
+    return false;
+  }
+}
+
+/**
+ * Re-parses each visible recipe in `recipeIds`, `CONCURRENCY` at a time, until
+ * `deadline` (an epoch millisecond value) no longer leaves room for a wave.
  */
 export async function bulkParseRecipes(
   recipeIds: number[],
@@ -89,29 +120,19 @@ export async function bulkParseRecipes(
 
   let processed = 0;
   let failed = 0;
-  let index = 0;
 
-  for (const recipe of recipes) {
-    if (Date.now() + PER_RECIPE_BUDGET_MS > deadline) {
-      const remaining = recipes.length - index;
+  for (let start = 0; start < recipes.length; start += CONCURRENCY) {
+    if (Date.now() + WAVE_BUDGET_MS > deadline) {
+      const remaining = recipes.length - start;
       log.info({ processed, failed, remaining }, 'Bulk parse stopped at the deadline');
       return { processed, failed, remaining, total: recipeIds.length };
     }
-    index++;
 
-    if (!recipe.raw_content || !recipe.telegram_id) {
-      log.warn({ recipeId: recipe.id }, 'Recipe missing content or telegram_id — skipped');
-      failed++;
-      continue;
-    }
+    const wave = recipes.slice(start, start + CONCURRENCY);
+    const outcomes = await Promise.all(wave.map(parseRecipeSafely));
 
-    try {
-      await parseOneRecipe(recipe);
-      processed++;
-    } catch (error) {
-      log.error({ error, recipeId: recipe.id }, 'Bulk parse failed for recipe');
-      failed++;
-    }
+    processed += outcomes.filter(Boolean).length;
+    failed += outcomes.filter((ok) => !ok).length;
   }
 
   log.info({ processed, failed, total: recipeIds.length }, 'Bulk parse completed');
