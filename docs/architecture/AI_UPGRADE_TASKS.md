@@ -318,12 +318,17 @@ attributable to a row.
       incl. photo bytes (`2f2c40a`, `d09f197`); 🗑️ archive convention wired
       into both intake paths (`40733b7`); docs + `.env.example` + README
       updated (ARCHITECTURE §4.1–§4.6, §7 — `a061a3a` + final sweep).
-- [ ] **5.6 Wipe & rebuild (operational, after deploy, with explicit user
-      go-ahead at execution time)** — truncate `recipes` (cascades favorites /
-      versions / menu courses), then run the full old-channel history import:
-      Telethon reads every message, each one goes through the reformat
-      pipeline and lands with `{source_channel:'old', source_message_id}` and
-      `created_at` = original post date.
-- [ ] **5.7 (user, not code)** — delete the main channel in Telegram. Prereq
-      checklist: bot admin in the old channel, permissions deploy verified,
-      rebuild verified.
+- [x] **5.6 Wipe & rebuild — executed 2026-08-26** with the user's go-ahead.
+      Pre-wipe backup (205 recipes + 2 versions) saved to
+      `C:\projects\ourRecipesWeb\backups\pre-wipe-2026-08-26.json`; `prisma db
+      push` applied; `recipes` truncated (cascade); full history import run
+      locally (Telethon → production ingest route). Result: **212/212**
+      old-channel messages stored — 140 fully parsed, 72 raw/unparsed
+      (photographed or partial recipes, completed by hand in the app), 94
+      with images, 0 dropped. Two pipeline rules were born mid-rebuild
+      (`8b9161e`, `f1e7795`): a photo makes a post a recipe, and reformat
+      failure stores the raw text — old-channel content is never dropped.
+- [ ] **5.7 (user, not code)** — delete the main channel in Telegram. Prereqs
+      all verified: bot is admin in the old channel, permissions deploy live,
+      rebuild verified. After deletion: remove `TELEGRAM_CHANNEL_ID`, the
+      webhook's frozen-main branch, and the `'main'` kind in `channels.ts`.
