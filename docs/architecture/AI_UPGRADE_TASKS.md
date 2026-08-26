@@ -231,3 +231,81 @@ course in a generated menu.
       cannot be answered from logs. Cheapest high-value observability change.
 - [ ] Places have no ownership check on update/delete (ported from Flask
       as-is). Menus do. Deliberate or an oversight? — user decision.
+
+---
+
+# Wave 5 — One channel, one source (2026-08-26)
+
+Plan doc: claude.ai artifact `43ffdc58` ("ערוץ אחד, מקור אחד"). The main channel
+(`TELEGRAM_CHANNEL_ID`) was the pre-DB database; Postgres replaced it, so every
+*write* to it goes away. The old channel (`TELEGRAM_OLD_CHANNEL_ID`) stays the
+sole intake. Root fix: `republishOldChannelPost` starts *storing*
+`sourceMessageId` instead of only logging it — which both frees `telegram_id`
+from double duty (channel pointer + public URL key) and makes old-channel edits
+attributable to a row.
+
+## Decisions (user-approved 2026-08-26)
+1. `telegram_id` stays the `/recipe/<id>` URL key. No redirect layer. New
+   recipes draw from the internal negative-id sequence
+   (`generatePendingTelegramId` pattern — the UI already tolerates negative ids).
+2. Edit conflicts: the channel wins, but a row that was app-edited since its
+   last channel ingest gets `needs_review = true`, surfaced in `/manage`.
+3. No source recovery for the 203 pre-existing recipes. Edit detection applies
+   only to recipes ingested after this change.
+
+## Deviations from the plan doc (verified against code)
+- `telegram_id` stays `Int @unique` **NOT NULL** (plan sketched `Int?`) — every
+  row always receives a value (real legacy id or generated), and nullability
+  would ripple null-checks through every serializer for nothing.
+- Decision 2 needs storage: `needs_review Boolean @default(false)` +
+  `app_edited_at DateTime?` (set by app edit paths, consumed by the webhook
+  edit path). Explicit columns beat deriving "app-edited" from
+  `updated_at`/version rows.
+- This project has **no prisma migrations folder** — schema changes apply via
+  `prisma db push` (additive columns only; nothing dropped: `sync_status`,
+  `sync_error`, `Menu.telegram_message_id`, `Place.*` stay as dormant columns).
+- The Python reconcile repoint is not just an env change: after cutover it must
+  match old-channel messages by `source_message_id` (not `telegram_id`), ingest
+  misses through the old-channel pipeline (Gemini reformat — a new internal
+  route, since `/api/internal/recipes/upsert` deliberately excludes the AI SDK),
+  and **only consider messages after a cutover date** — otherwise all 203
+  legacy recipes (no stored source id) would re-import as duplicates.
+- With the main-channel webhook branch gone, channel-side intake of *places*
+  ("המלצה" posts) and the menu-mirror skip logic die with it (`channelIngest.ts`,
+  `places/ingest.ts`); places become app-authored only. `Place.is_synced`
+  freezes as historical data.
+- `checkEditPermission` must repoint to `TELEGRAM_OLD_CHANNEL_ID` **before**
+  the Telegram channel is deleted; operational prereq: the bot must be an admin
+  of the old channel first.
+
+## Stages (each stage = one commit, system deployable after each)
+- [ ] **5.1 Schema** — add `source_channel` (`@default("app")`),
+      `source_message_id`, `@@unique([source_channel, source_message_id])`,
+      `needs_review`, `app_edited_at`. Zero behavior change. `prisma db push`.
+- [ ] **5.2 Intake stores source** — `ingestRecipeMessage` accepts
+      `{sourceChannel, sourceMessageId}` (create sets them; update never
+      clobbers them); `republishOldChannelPost` passes them while still
+      publishing to the main channel.
+- [ ] **5.3 Old-channel edit detection** — webhook `edited_channel_post` from
+      the old channel: lookup `{source_channel:'old', source_message_id}`;
+      miss → treat as new post; hit → `reformatRecipe` + `snapshotVersion` +
+      row update, `needs_review = true` if `app_edited_at` is set. App edit
+      paths (update, version restore) start setting `app_edited_at`.
+- [ ] **5.4 Mirror disconnect** — delete `mirror.ts`, `mirrorPending.ts`,
+      `menuMirror.ts`, `placeMirror.ts`, `api/internal/mirror-pending`;
+      old-channel intake ingests directly under a generated internal id (no
+      more publish); webhook main-channel branch + `channelIngest.ts` removed;
+      `deleteRecipe` = row update only; reconcile loses its mirror phase;
+      `bulkParse` drops `mirrorEditRecipe` and raises `CONCURRENCY`;
+      `sync_status`/`sync_error` writers removed; create/update/restore routes
+      simplified; `generatePendingTelegramId` moves out of `mirror.ts`;
+      integration tests rewritten.
+- [ ] **5.5 Repoint & surface** — `permissions.ts` → old channel; `/manage`
+      shows a `needs_review` badge (+ clear on app edit); api-python: reconcile
+      reads the old channel with a cutover guard, drops `mirror_pending`,
+      matches by `source_message_id`, calls the new internal old-channel ingest
+      route; docs + `.env.example` + README updated (ARCHITECTURE §4.1, §4.3,
+      §4.4, §4.6, §7).
+- [ ] **5.6 (user, not code)** — after a bake period: delete the main channel
+      in Telegram. Prereq checklist: bot admin in the old channel, permissions
+      deploy verified, cutover env var set for the Python pass.
