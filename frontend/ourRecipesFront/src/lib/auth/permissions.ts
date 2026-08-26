@@ -1,10 +1,12 @@
 /**
  * Channel edit permissions.
  *
- * Port of `AuthService.check_edit_permission` + `TelegramService.check_permissions`
- * from the Flask backend, moved off Telethon onto Bot API `getChatMember`:
- * `permissions.is_admin && permissions.edit_messages` becomes
- * `status === 'creator' || (status === 'administrator' && can_edit_messages)`.
+ * Bot API `getChatMember` against the **old** channel (Wave 5.5) — the sole
+ * remaining channel and the family's roster. Telegram only lets admins post
+ * to a channel, so "can write recipes to the source channel" is the bar:
+ * `status === 'creator' || status === 'administrator'`. (The pre-Wave-5 check
+ * required `can_edit_messages` on the main channel, which mattered when
+ * editing meant editing channel messages; edits are DB writes now.)
  */
 import { getChatMember } from '@/lib/telegram/botApi';
 import { logger } from '@/lib/logger';
@@ -30,21 +32,21 @@ interface CacheEntry {
 const permissionCache = new Map<string, CacheEntry>();
 
 function resolveChannelId(explicit?: TelegramChatId): TelegramChatId | null {
-  const raw = explicit ?? process.env.TELEGRAM_CHANNEL_ID;
+  const raw = explicit ?? process.env.TELEGRAM_OLD_CHANNEL_ID;
   if (raw === undefined || raw === null || raw === '') return null;
   if (typeof raw === 'number') return raw;
   return /^-?\d+$/.test(raw) ? Number(raw) : raw;
 }
 
 /**
- * Whether `userId` may edit messages in the main channel.
+ * Whether `userId` may edit recipes, judged by admin status on the old channel.
  *
  * Guests short-circuit to `false`. Successful checks are cached for an hour;
  * Telegram failures return `false` **without** being cached, so a transient
  * outage does not lock an admin out for an hour.
  *
  * @param userId Telegram user id (as string) or `guest_<uuid>`.
- * @param channelId Optional channel override; defaults to `TELEGRAM_CHANNEL_ID`.
+ * @param channelId Optional channel override; defaults to `TELEGRAM_OLD_CHANNEL_ID`.
  */
 export async function checkEditPermission(
   userId: string,
@@ -59,7 +61,7 @@ export async function checkEditPermission(
 
   const channel = resolveChannelId(channelId);
   if (channel === null) {
-    log.error('TELEGRAM_CHANNEL_ID is not configured — denying edit permission');
+    log.error('TELEGRAM_OLD_CHANNEL_ID is not configured — denying edit permission');
     return false;
   }
 
@@ -72,9 +74,7 @@ export async function checkEditPermission(
 
   try {
     const member = await getChatMember(channel, userId);
-    const canEdit =
-      member.status === 'creator' ||
-      (member.status === 'administrator' && member.can_edit_messages === true);
+    const canEdit = member.status === 'creator' || member.status === 'administrator';
 
     permissionCache.set(cacheKey, {
       value: canEdit,

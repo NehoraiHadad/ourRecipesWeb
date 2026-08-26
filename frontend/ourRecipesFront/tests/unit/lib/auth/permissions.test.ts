@@ -29,11 +29,13 @@ function member(
 beforeEach(() => {
   vi.clearAllMocks();
   clearPermissionCache();
-  process.env.TELEGRAM_CHANNEL_ID = '-1001234567890';
+  // Wave 5.5: edit rights come from admin status on the OLD channel — the
+  // sole remaining channel, where being able to post recipes is the bar.
+  process.env.TELEGRAM_OLD_CHANNEL_ID = '-1001234567890';
 });
 
 afterEach(() => {
-  delete process.env.TELEGRAM_CHANNEL_ID;
+  delete process.env.TELEGRAM_OLD_CHANNEL_ID;
 });
 
 describe('checkEditPermission', () => {
@@ -49,16 +51,10 @@ describe('checkEditPermission', () => {
     expect(getChatMemberMock).toHaveBeenCalledWith(-1001234567890, '12345678');
   });
 
-  it('returns true for an administrator with can_edit_messages', async () => {
-    getChatMemberMock.mockResolvedValue(member('administrator', { can_edit_messages: true }));
-
-    await expect(checkEditPermission('12345678')).resolves.toBe(true);
-  });
-
-  it('returns false for an administrator without can_edit_messages', async () => {
+  it('returns true for any administrator — posting rights are the bar', async () => {
     getChatMemberMock.mockResolvedValue(member('administrator', { can_edit_messages: false }));
 
-    await expect(checkEditPermission('12345678')).resolves.toBe(false);
+    await expect(checkEditPermission('12345678')).resolves.toBe(true);
   });
 
   it('returns false for a plain member', async () => {
@@ -126,8 +122,8 @@ describe('checkEditPermission', () => {
     expect(getChatMemberMock).toHaveBeenCalledTimes(2);
   });
 
-  it('returns false when TELEGRAM_CHANNEL_ID is not configured', async () => {
-    delete process.env.TELEGRAM_CHANNEL_ID;
+  it('returns false when TELEGRAM_OLD_CHANNEL_ID is not configured', async () => {
+    delete process.env.TELEGRAM_OLD_CHANNEL_ID;
 
     await expect(checkEditPermission('12345678')).resolves.toBe(false);
     expect(getChatMemberMock).not.toHaveBeenCalled();
