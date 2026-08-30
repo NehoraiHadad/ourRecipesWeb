@@ -88,7 +88,8 @@ export const metadata: Metadata = {
   appleWebApp: {
     capable: true,
     statusBarStyle: 'default',
-    title: 'Our Recipes'
+    // iOS reads its home-screen label from here, not from the manifest
+    title: 'המתכונים שלנו'
   },
   openGraph: {
     title: 'Our Recipes',
