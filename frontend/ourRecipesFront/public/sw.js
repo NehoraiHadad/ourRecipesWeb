@@ -16,8 +16,8 @@ self.addEventListener('message', (event) => {
   if (event.data.type === 'TIMER_END') {
     self.registration.showNotification('טיימר הסתיים!', {
       body: event.data.description,
-      icon: '/icon.png',
-      badge: '/badge.png',
+      icon: '/icons/icon-192.png',
+      badge: '/icons/badge-96.png',
       vibrate: [200, 100, 200],
       tag: 'timer-notification',
       renotify: true,

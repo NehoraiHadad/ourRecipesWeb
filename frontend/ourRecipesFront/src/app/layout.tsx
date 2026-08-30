@@ -78,8 +78,12 @@ export const metadata: Metadata = {
   manifest: '/manifest.json',
   metadataBase: new URL('http://localhost'),
   icons: {
-    icon: '/home-image.png',
-    apple: '/home-image.png'
+    icon: [
+      { url: '/icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icons/icon-512.png', sizes: '512x512', type: 'image/png' }
+    ],
+    // iOS flattens alpha to black, so the home-screen icon must be opaque
+    apple: [{ url: '/icons/apple-icon-180.png', sizes: '180x180', type: 'image/png' }]
   },
   appleWebApp: {
     capable: true,

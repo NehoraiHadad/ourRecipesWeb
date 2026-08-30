@@ -1,12 +1,11 @@
+import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useFont } from '@/context/FontContext';
 
 const Logo = () => {
   const router = useRouter();
-  const { currentFont } = useFont();
 
   return (
-    <div 
+    <div
       onClick={() => router.push('/')}
       className={`
         cursor-pointer group flex items-center gap-2 transition-all duration-300
@@ -16,9 +15,15 @@ const Logo = () => {
       <span className="transform group-hover:-rotate-2 transition-transform">
         המתכונים שלנו
       </span>
-      <span className="text-2xl transform group-hover:scale-110 transition-transform">
-        💝
-      </span>
+      {/* The hand-drawn heart lifted from the app logo, instead of a generic emoji */}
+      <Image
+        src="/logo-heart.png"
+        alt=""
+        width={122}
+        height={109}
+        priority
+        className="h-6 w-auto transform transition-transform group-hover:scale-110 group-hover:-rotate-6"
+      />
     </div>
   );
 };
