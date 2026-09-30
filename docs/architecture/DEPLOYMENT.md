@@ -54,6 +54,7 @@ Postgres שלא נמחק בריסטארט.
 ### 2.1 יצירת הפרויקט
 
 - **Root Directory**: `frontend/ourRecipesFront`
+- **Node.js Version**: `24.x` (מוגדר ב-`engines.node` בקובץ `package.json` של האפליקציה; גובר על הגדרת הפרויקט)
 - **Framework Preset**: Next.js (זיהוי אוטומטי)
 - **Build Command**: `npm run build` (מריץ `prisma generate && next build`)
 

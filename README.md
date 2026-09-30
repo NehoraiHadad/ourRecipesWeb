@@ -43,7 +43,7 @@ Full details: [docs/architecture/ARCHITECTURE.md](docs/architecture/ARCHITECTURE
 
 ## Local Development
 
-Prerequisites: Node.js 20+, Docker (for local Postgres).
+Prerequisites: Node.js 24.x, Docker (for local Postgres).
 
 ```bash
 # 1. Start a local Postgres
