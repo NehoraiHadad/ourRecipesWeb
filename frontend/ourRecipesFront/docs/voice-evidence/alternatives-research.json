@@ -1,0 +1,287 @@
+{
+  "checked": "2026-11-10",
+  "method": "Publisher READMEs, license files and Hugging Face model metadata; discovered via web/community posts",
+  "inferenceRun": false,
+  "physicalDeviceRun": false,
+  "models": [
+    {
+      "repo": "thewh1teagle/pocket-tts-onnx",
+      "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+      "licenseMetadata": "cc-by-4.0",
+      "files": [
+        {
+          "path": "de/assets.json",
+          "bytes": 771450
+        },
+        {
+          "path": "de/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "de/manifest.json",
+          "bytes": 494
+        },
+        {
+          "path": "de/model.onnx",
+          "bytes": 173604779
+        },
+        {
+          "path": "en/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "en/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "en/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "en/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "en/renikud.onnx",
+          "bytes": 20620594
+        },
+        {
+          "path": "es/assets.json",
+          "bytes": 756477
+        },
+        {
+          "path": "es/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "es/manifest.json",
+          "bytes": 492
+        },
+        {
+          "path": "es/model.onnx",
+          "bytes": 173604779
+        },
+        {
+          "path": "fr/assets.json",
+          "bytes": 883862
+        },
+        {
+          "path": "fr/encoder.onnx",
+          "bytes": 39183572
+        },
+        {
+          "path": "fr/manifest.json",
+          "bytes": 498
+        },
+        {
+          "path": "fr/model.onnx",
+          "bytes": 401857170
+        },
+        {
+          "path": "he/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "he/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "he/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "he/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "he/renikud.onnx",
+          "bytes": 20620594
+        },
+        {
+          "path": "it/assets.json",
+          "bytes": 681662
+        },
+        {
+          "path": "it/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "it/manifest.json",
+          "bytes": 496
+        },
+        {
+          "path": "it/model.onnx",
+          "bytes": 173604779
+        },
+        {
+          "path": "pocket-tts-english-ipa.onnx",
+          "bytes": 231924037
+        },
+        {
+          "path": "pocket-tts-english.onnx",
+          "bytes": 228144283
+        },
+        {
+          "path": "pt/assets.json",
+          "bytes": 770264
+        },
+        {
+          "path": "pt/encoder.onnx",
+          "bytes": 39183564
+        },
+        {
+          "path": "pt/manifest.json",
+          "bytes": 492
+        },
+        {
+          "path": "pt/model.onnx",
+          "bytes": 173604779
+        },
+        {
+          "path": "renikud.onnx",
+          "bytes": 20620594
+        }
+      ]
+    },
+    {
+      "repo": "notmax123/BlueTTS2.5-onnx",
+      "revision": "95feb5d0cbfc8e5a95bffb067d03537cbf35be3e",
+      "licenseMetadata": "mit",
+      "files": [
+        {
+          "path": "duration_predictor.onnx",
+          "bytes": 2151232
+        },
+        {
+          "path": "duration_predictor_style.onnx",
+          "bytes": 1508749
+        },
+        {
+          "path": "manifest.json",
+          "bytes": 2088
+        },
+        {
+          "path": "reference_encoder.onnx",
+          "bytes": 15024793
+        },
+        {
+          "path": "stats.npz",
+          "bytes": 1920
+        },
+        {
+          "path": "text_encoder.onnx",
+          "bytes": 27419694
+        },
+        {
+          "path": "tts.json",
+          "bytes": 9260
+        },
+        {
+          "path": "uncond.npz",
+          "bytes": 52732
+        },
+        {
+          "path": "vector_estimator.onnx",
+          "bytes": 132475789
+        },
+        {
+          "path": "vocab.json",
+          "bytes": 3157
+        },
+        {
+          "path": "vocoder.onnx",
+          "bytes": 101411919
+        },
+        {
+          "path": "voices/female.json",
+          "bytes": 288787
+        },
+        {
+          "path": "voices/libri_female_1088.json",
+          "bytes": 288994
+        },
+        {
+          "path": "voices/libri_female_6147.json",
+          "bytes": 289185
+        },
+        {
+          "path": "voices/libri_male_6209.json",
+          "bytes": 289115
+        },
+        {
+          "path": "voices/libri_male_8088.json",
+          "bytes": 288870
+        }
+      ]
+    },
+    {
+      "repo": "thewh1teagle/renikud",
+      "revision": "a59c632c8cbac0f8c63f298cad77ef3a3a2547c9",
+      "licenseMetadata": "cc-by-4.0",
+      "files": [
+        {
+          "path": "model.onnx",
+          "bytes": 20620594
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 17812
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 363
+        },
+        {
+          "path": "train_state.json",
+          "bytes": 257
+        }
+      ]
+    },
+    {
+      "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+      "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+      "licenseMetadata": "apache-2.0",
+      "files": [
+        {
+          "path": "added_tokens.json",
+          "bytes": 707
+        },
+        {
+          "path": "config.json",
+          "bytes": 1316
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 243
+        },
+        {
+          "path": "special_tokens_map.json",
+          "bytes": 762
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 11422648
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 5439
+        },
+        {
+          "path": "vocab.json",
+          "bytes": 2776833
+        }
+      ]
+    },
+    {
+      "repo": "EMD123/DictaLM-3.0-1.7B-Instruct-Q4_K_M-GGUF",
+      "revision": "2f41ecf9bdeb2d75ff4dd85266970402c59c14d8",
+      "licenseMetadata": "apache-2.0",
+      "files": [
+        {
+          "path": "dictalm-3.0-1.7b-instruct-q4_k_m.gguf",
+          "bytes": 1107404704
+        }
+      ]
+    }
+  ]
+}
