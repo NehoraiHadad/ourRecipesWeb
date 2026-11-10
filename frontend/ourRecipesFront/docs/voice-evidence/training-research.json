@@ -1,0 +1,129 @@
+{
+  "checked": "2026-11-10",
+  "method": "Fresh web search, publisher model cards and Hugging Face metadata; no weights downloaded, no new training/inference",
+  "trainingPerformed": false,
+  "physicalDeviceRun": false,
+  "candidates": [
+    {
+      "repo": "dicta-il/dictabert-tiny",
+      "sha": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+      "license": "cc-by-4.0",
+      "gated": false,
+      "parameters": {
+        "parameters": {
+          "F32": 44892008
+        },
+        "total": 44892008
+      },
+      "files": [
+        {
+          "path": "model.safetensors",
+          "bytes": 179576648
+        }
+      ],
+      "config": {
+        "architectures": [
+          "BertForMaskedLM"
+        ],
+        "attention_probs_dropout_prob": 0.1,
+        "hidden_act": "gelu",
+        "hidden_dropout_prob": 0.1,
+        "hidden_size": 312,
+        "initializer_range": 0.02,
+        "intermediate_size": 1200,
+        "max_position_embeddings": 512,
+        "num_attention_heads": 12,
+        "num_hidden_layers": 4,
+        "type_vocab_size": 2,
+        "vocab_size": 128000,
+        "model_type": "bert",
+        "newmodern": true
+      }
+    },
+    {
+      "repo": "google/functiongemma-270m-it",
+      "sha": "39eccb091651513a5dfb56892d3714c1b5b8276c",
+      "license": "gemma",
+      "gated": "manual",
+      "parameters": {
+        "parameters": {
+          "BF16": 268098176
+        },
+        "total": 268098176
+      },
+      "files": [
+        {
+          "path": "model.safetensors",
+          "bytes": 536223056
+        }
+      ]
+    },
+    {
+      "repo": "intfloat/multilingual-e5-small",
+      "sha": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+      "license": "mit",
+      "gated": false,
+      "parameters": {
+        "parameters": {
+          "I64": 512,
+          "F32": 117653760
+        },
+        "total": 117654272
+      },
+      "files": [
+        {
+          "path": "model.safetensors",
+          "bytes": 470641600
+        },
+        {
+          "path": "onnx/model.onnx",
+          "bytes": 470268510
+        },
+        {
+          "path": "onnx/model_O4.onnx",
+          "bytes": 235052531
+        },
+        {
+          "path": "onnx/model_qint8_avx512_vnni.onnx",
+          "bytes": 118346824
+        }
+      ]
+    },
+    {
+      "repo": "humy65/hebrew-intent-classifier",
+      "sha": "27f24a2e0adeac071dfd032eb7c4d5a1a0e7e718",
+      "license": "apache-2.0",
+      "gated": false,
+      "parameters": {
+        "parameters": {
+          "F32": 177856516
+        },
+        "total": 177856516
+      },
+      "files": [
+        {
+          "path": "model.safetensors",
+          "bytes": 711449608
+        }
+      ]
+    }
+  ],
+  "primarySources": [
+    "https://huggingface.co/dicta-il/dictabert-tiny",
+    "https://ai.google.dev/gemma/docs/functiongemma/model_card",
+    "https://ai.google.dev/gemma/docs/mobile-actions",
+    "https://huggingface.co/docs/setfit/en/tutorials/onnx",
+    "https://huggingface.co/abdelstark/Llama-3.1-Nemotron-Nano-8B-xlam-tool-calling-he-en-hymt-lora",
+    "https://github.com/AbdelStark/sommelier"
+  ],
+  "publishedHebrewExperiment": {
+    "publisher": "AbdelStark / Sommelier",
+    "base": "8B Llama-3.1-Nemotron-Nano",
+    "metric": "full-call exact match",
+    "heldOutHebrewRows": 945,
+    "before": 43.39,
+    "after": 83.17,
+    "trainingHebrewRows": 14286,
+    "limitations": "Publisher-reported; machine-translated single-turn/single-call corpus without human semantic review. Not independently reproduced here; not evidence of cooking accuracy, mobile memory or small-model performance."
+  }
+}
