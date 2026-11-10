@@ -18,7 +18,7 @@ export class TimerDB {
       const request = indexedDB.open(DB_NAME, DB_VERSION);
 
       request.onerror = () => reject(request.error);
-      
+
       request.onsuccess = () => {
         this.db = request.result;
         resolve();
@@ -26,7 +26,7 @@ export class TimerDB {
 
       request.onupgradeneeded = (event) => {
         const db = (event.target as IDBOpenDBRequest).result;
-        
+
         // Create timers store
         if (!db.objectStoreNames.contains(TIMERS_STORE)) {
           const timerStore = db.createObjectStore(TIMERS_STORE, { keyPath: 'id' });
@@ -47,11 +47,13 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(TIMERS_STORE, 'readwrite');
       const store = transaction.objectStore(TIMERS_STORE);
-      
+
       const request = store.put(timer);
-      
+
       request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve();
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+      transaction.onabort = () => reject(transaction.error ?? new Error('Transaction aborted'));
     });
   }
 
@@ -61,9 +63,9 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(TIMERS_STORE, 'readonly');
       const store = transaction.objectStore(TIMERS_STORE);
-      
+
       const request = store.getAll();
-      
+
       request.onerror = () => reject(request.error);
       request.onsuccess = () => resolve(request.result);
     });
@@ -75,11 +77,13 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(TIMERS_STORE, 'readwrite');
       const store = transaction.objectStore(TIMERS_STORE);
-      
+
       const request = store.delete(id);
-      
+
       request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve();
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+      transaction.onabort = () => reject(transaction.error ?? new Error('Transaction aborted'));
     });
   }
 
@@ -89,9 +93,9 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(TIMERS_STORE, 'readwrite');
       const store = transaction.objectStore(TIMERS_STORE);
-      
+
       const request = store.get(id);
-      
+
       request.onerror = () => reject(request.error);
       request.onsuccess = () => {
         const timer = request.result;
@@ -102,9 +106,11 @@ export class TimerDB {
 
         const updatedTimer = { ...timer, ...updates };
         const putRequest = store.put(updatedTimer);
-        
+
         putRequest.onerror = () => reject(putRequest.error);
-        putRequest.onsuccess = () => resolve();
+        transaction.oncomplete = () => resolve();
+        transaction.onerror = () => reject(transaction.error);
+        transaction.onabort = () => reject(transaction.error ?? new Error('Transaction aborted'));
       };
     });
   }
@@ -115,9 +121,9 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(SETTINGS_STORE, 'readonly');
       const store = transaction.objectStore(SETTINGS_STORE);
-      
+
       const request = store.get('settings');
-      
+
       request.onerror = () => reject(request.error);
       request.onsuccess = () => {
         resolve(request.result || {
@@ -134,14 +140,16 @@ export class TimerDB {
     return new Promise((resolve, reject) => {
       const transaction = this.db!.transaction(SETTINGS_STORE, 'readwrite');
       const store = transaction.objectStore(SETTINGS_STORE);
-      
+
       const request = store.put(settings, 'settings');
-      
+
       request.onerror = () => reject(request.error);
-      request.onsuccess = () => resolve();
+      transaction.oncomplete = () => resolve();
+      transaction.onerror = () => reject(transaction.error);
+      transaction.onabort = () => reject(transaction.error ?? new Error('Transaction aborted'));
     });
   }
 }
 
 // Create a singleton instance
-export const timerDB = new TimerDB(); 
+export const timerDB = new TimerDB();

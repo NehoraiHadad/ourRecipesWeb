@@ -30,7 +30,8 @@ const PUBLIC_PATHS = new Set([
   '/api/webhooks/telegram',
   // Authenticated by the `MCP_SHARED_KEY` bearer check inside the handler.
   '/api/mcp',
-  '/api/ping'
+  '/api/ping',
+  '/api/push/config'
 ]);
 
 /** Public prefixes — these authenticate with `INTERNAL_API_SECRET` in-route. */

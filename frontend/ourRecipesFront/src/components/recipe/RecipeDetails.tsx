@@ -19,7 +19,6 @@ import { useRecipeActions } from "./useRecipeActions";
 import { Typography } from "@/components/ui/Typography";
 import VersionHistory from "@/components/VersionHistory";
 import { useRecipeHistory } from "@/contexts/RecipeHistoryContext";
-import { ActiveTimers } from "./ActiveTimers";
 import RecipeStepOptimizer from "./RecipeStepOptimizer";
 import { hasStructuredContent } from "@/lib/recipes/recipeView";
 import type { SerializedRecipe } from "@/lib/serializers/recipeTypes";
@@ -203,7 +202,6 @@ const RecipeDetails: React.FC<RecipeDetailProps> = ({
         )}
       </div>
 
-      <ActiveTimers />
     </>
   );
 };

@@ -327,3 +327,41 @@ model SyncQueue {
   @@index([recipe_id], name: "idx_sync_queue_recipe")
   @@map("sync_queue")
 }
+
+// Push subscriptions belong to a signed-in browser, including guest sessions.
+model TimerPushSubscription {
+  id            String   @id @default(uuid())
+  owner_id      String   @db.VarChar(100)
+  endpoint_hash String   @unique @db.VarChar(64)
+  endpoint      String   @db.Text
+  p256dh        String   @db.VarChar(100)
+  auth          String   @db.VarChar(32)
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
+  timers        RecipeTimerPush[]
+
+  @@index([owner_id])
+  @@map("timer_push_subscriptions")
+}
+
+model RecipeTimerPush {
+  id              String   @id @default(uuid())
+  subscription_id String
+  timer_id        String   @db.VarChar(64)
+  version         Int
+  state           String   @db.VarChar(20)
+  ends_at         DateTime?
+  recipe_name     String   @db.VarChar(160)
+  description     String   @db.VarChar(500)
+  recipe_url      String   @db.VarChar(200)
+  muted           Boolean  @default(false)
+  workflow_id     String?
+  notified_at     DateTime?
+  created_at      DateTime @default(now())
+  updated_at      DateTime @updatedAt
+  subscription    TimerPushSubscription @relation(fields: [subscription_id], references: [id], onDelete: Cascade)
+
+  @@unique([subscription_id, timer_id])
+  @@index([subscription_id, state])
+  @@map("recipe_timer_push")
+}

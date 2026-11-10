@@ -56,7 +56,9 @@ Postgres שלא נמחק בריסטארט.
 - **Root Directory**: `frontend/ourRecipesFront`
 - **Node.js Version**: `24.x` (מוגדר ב-`engines.node` בקובץ `package.json` של האפליקציה; גובר על הגדרת הפרויקט)
 - **Framework Preset**: Next.js (זיהוי אוטומטי)
-- **Build Command**: `npm run build` (מריץ `prisma generate && next build`)
+- **Build Command**: `npm run build` (מריץ יצירת Prisma Client, עדכון SQL תוספתי
+  של טבלאות התראות הטיימר אוטומטית כאשר `VERCEL_ENV=production`, ואז `next build`).
+  כשל בעדכון הסכמה מכשיל את הבנייה; בבנייה מקומית וב־Preview העדכון האוטומטי מדולג.
 
 ### 2.2 טבלת משתני הסביבה
 

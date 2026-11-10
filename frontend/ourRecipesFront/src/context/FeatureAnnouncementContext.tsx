@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { FeatureAnnouncement } from '@/components/ui/FeatureAnnouncement';
 
 const STORAGE_KEY = 'shownFeatures';
@@ -30,11 +30,11 @@ export function FeatureAnnouncementProvider({ children }: { children: React.Reac
     }
   }, []);
 
-  const showFeature = (feature: Feature) => {
-    if (!hasSeenFeature(feature.id)) {
-      setCurrentFeature(feature);
+  const showFeature = useCallback((feature: Feature) => {
+    if (!shownFeatures.includes(feature.id)) {
+      setCurrentFeature(current => current?.id === feature.id ? current : feature);
     }
-  };
+  }, [shownFeatures]);
 
   const handleFeatureClosed = () => {
     if (currentFeature) {
@@ -70,4 +70,4 @@ export function useFeatureAnnouncement() {
     throw new Error('useFeatureAnnouncement must be used within a FeatureAnnouncementProvider');
   }
   return context;
-} 
+}

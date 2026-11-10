@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">המתכונים שלנו</string>
+    <string name="title_activity_main">המתכונים שלנו</string>
+    <string name="package_name">com.nehoraihadad.ourrecipes</string>
+    <string name="custom_url_scheme">com.nehoraihadad.ourrecipes</string>
+</resources>

@@ -8,11 +8,11 @@
 import React, { useEffect, useState } from "react";
 import { imageSrc } from '@/utils/imageSrc';
 import { useFeatureAnnouncement } from '@/context/FeatureAnnouncementContext';
-import { FeatureIndicator } from '@/components/ui/FeatureIndicator';
 import CategoryTags from './CategoryTags';
 import IngredientListView from './recipe/IngredientListView';
 import ServingsMultiplier from './recipe/ServingsMultiplier';
 import RecipeTimersPanel from './recipe/RecipeTimersPanel';
+import RecipeVoiceGuide from './recipe/RecipeVoiceGuide';
 import { difficultyLabel } from '@/utils/difficulty';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { shareRecipe } from '@/utils/share';
@@ -28,6 +28,8 @@ interface RecipeDisplayProps {
 const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, showTimer }) => {
   const { showFeature } = useFeatureAnnouncement();
   const [multiplier, setMultiplier] = useState(1);
+  const [localShowTimer, setLocalShowTimer] = useState(false);
+  const timerVisible = showTimer ?? localShowTimer;
 
   const title = recipe.title ?? '';
   const difficulty = difficultyLabel(recipe.difficulty);
@@ -35,14 +37,14 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
 
   // Show the timer feature announcement the first time prep time is clicked.
   useEffect(() => {
-    if (showTimer) {
+    if (timerVisible) {
       showFeature({
         id: 'recipe-timer',
         title: 'טיימר חכם למתכונים',
         description: 'לחץ על זמן ההכנה כדי להפעיל טיימר. המערכת תזהה אוטומטית זמני המתנה במתכון!'
       });
     }
-  }, [showTimer, showFeature]);
+  }, [timerVisible, showFeature]);
 
   return (
     <div className="bg-white rounded-lg overflow-hidden">
@@ -73,18 +75,17 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
         <div className="flex flex-col items-center mb-4">
           <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-2 text-xs sm:text-sm text-gray-600">
             {recipe.preparation_time && (
-              <FeatureIndicator featureId="recipe-timer">
-                <div
-                  className={`flex items-center gap-1 cursor-pointer transition-colors
-                    ${showTimer ? 'text-primary-600' : 'hover:text-primary-600'}`}
-                  onClick={onPrepTimeClick}
-                  role="button"
-                  title="לחץ להפעלת טיימר"
-                >
-                  <span>⏱️</span>
-                  <span className="break-words">{recipe.preparation_time} דקות</span>
-                </div>
-              </FeatureIndicator>
+              <button
+                type="button"
+                className={`flex items-center gap-1 cursor-pointer transition-colors
+                  ${timerVisible ? 'text-primary-600' : 'hover:text-primary-600'}`}
+                onClick={onPrepTimeClick ?? (() => setLocalShowTimer(prev => !prev))}
+                title="לחץ להפעלת טיימר"
+                aria-expanded={timerVisible}
+              >
+                <span>⏱️</span>
+                <span className="break-words">{recipe.preparation_time} דקות</span>
+              </button>
             )}
             {difficulty && (
               <div className="flex items-center gap-1">
@@ -103,9 +104,10 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
           <RecipeTimersPanel
             recipeId={recipe.id.toString()}
             recipeName={title}
+            recipeUrl={`/recipe/${recipe.telegram_id}`}
             instructions={recipe.instructions}
             preparationTime={recipe.preparation_time}
-            showForm={Boolean(showTimer)}
+            showForm={timerVisible}
           />
         </div>
 
@@ -130,6 +132,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
             <Typography variant="h3" className="text-base font-medium text-secondary-700 mb-1">
               הוראות הכנה
             </Typography>
+            <RecipeVoiceGuide key={`${recipe.id}:${recipe.instructions}`} steps={instructionLines} />
             <div className="space-y-1 leading-relaxed">
               {instructionLines.map((line, index) => (
                 <p key={index}>{line}</p>

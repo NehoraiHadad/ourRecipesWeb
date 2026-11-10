@@ -64,7 +64,7 @@ npm run dev                  # serves on port 80
 Tests and build:
 
 ```bash
-npm run test:run   # vitest (all Telegram/DB access is mocked)
+npm run test:run   # vitest (live PostgreSQL push tests opt in separately)
 npm run build      # prisma generate + next build
 ```
 
@@ -73,6 +73,31 @@ Environment variables are listed in
 `frontend/ourRecipesFront/.env.example`. Deployment and one-time setup steps
 (webhook registration, history import) live in
 [docs/architecture/DEPLOYMENT.md](docs/architecture/DEPLOYMENT.md).
+
+## Cooking timers and voice guidance
+
+- Timers start immediately and store an absolute end time in IndexedDB. Returning
+  from a locked screen or reopening the app restores the correct remaining time;
+  overdue timers notify once on return. Pausing stores the remaining duration.
+- Optional server-scheduled Web Push sends a notification without keeping the page
+  running. It uses PostgreSQL, Vercel Workflows and the browser's push service.
+  It needs network connectivity and notification permission; delivery can be delayed
+  by the network or OS. On iOS 16.4+, open the app from the Home Screen first.
+  Deployment, opt-in and verification steps are in
+  [TIMER_PUSH.md](frontend/ourRecipesFront/docs/TIMER_PUSH.md).
+- Native Android/iOS projects and an OS-scheduled notification adapter are now
+  available, along with a bundled offline timer verification client. Build/device
+  instructions, the plan for packaging the full Next.js recipe client, and platform
+  limits are in [mobile/README.md](frontend/ourRecipesFront/mobile/README.md).
+- Structured recipes offer Hebrew narration one instruction line at a time.
+  Enable the microphone to use commands such as “שמתי קמח, מה עכשיו?”,
+  “חזור על השלב”, “השלב הקודם”, “מההתחלה”, and “עצור”. Each next command advances
+  one step in recipe order; this is navigation, not an AI ingredient Q&A.
+- Speech synthesis needs browser support and a Hebrew voice on the device.
+  Recognition uses `SpeechRecognition`/`webkitSpeechRecognition` with `he-IL`, may
+  use the browser vendor's online service, and requires microphone permission.
+  Listening pauses during narration and stops when the page is hidden or closed.
+  Buttons remain available when speech APIs are unsupported.
 
 ## Repository Layout
 

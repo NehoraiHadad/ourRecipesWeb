@@ -1,80 +1,47 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useNotification } from '@/context/NotificationContext';
 
-interface ServiceWorkerState {
-  registration: ServiceWorkerRegistration | null;
-  error: Error | null;
-  isSupported: boolean;
-}
-
 export function useServiceWorker() {
-  const [state, setState] = useState<ServiceWorkerState>({
-    registration: null,
-    error: null,
-    isSupported: typeof window !== 'undefined' && 'serviceWorker' in navigator
-  });
+  const [registration, setRegistration] = useState<ServiceWorkerRegistration | null>(null);
   const { addNotification } = useNotification();
 
   useEffect(() => {
-    if (!state.isSupported) {
-      console.log('Service Workers are not supported');
-      return;
+    if (!('serviceWorker' in navigator)) return;
+    let disposed = false;
+    void navigator.serviceWorker.register('/sw.js')
+      .then(() => navigator.serviceWorker.ready)
+      .then(ready => { if (!disposed) setRegistration(ready); })
+      .catch(error => console.error('Service Worker registration failed:', error));
+    return () => { disposed = true; };
+  }, []);
+
+  // Call only from an explicit user gesture, never after a timer finishes.
+  const requestNotificationPermission = useCallback(async () => {
+    if (!('Notification' in window)) {
+      addNotification({ message: 'הדפדפן הזה אינו תומך בהתראות. ב-iPhone ייתכן שנדרשת התקנה במסך הבית.', type: 'info' });
+      return false;
     }
-
-    const registerServiceWorker = async () => {
-      try {
-        // Register Service Worker
-        const registration = await navigator.serviceWorker.register('/sw.js');
-        setState(prev => ({ ...prev, registration }));
-      } catch (error) {
-        console.error('Service Worker registration failed:', error);
-        setState(prev => ({ ...prev, error: error as Error }));
-      }
-    };
-
-    registerServiceWorker();
-  }, [state.isSupported]);
-
-  const requestNotificationPermission = async () => {
-    if (!('Notification' in window)) return false;
-    
     try {
       const permission = await Notification.requestPermission();
-      if (permission === 'granted') {
-        addNotification({
-          message: 'התראות טיימר הופעלו בהצלחה',
-          type: 'success',
-          duration: 3000
-        });
-        return true;
-      }
+      addNotification({
+        message: permission === 'granted' ? 'התראות הופעלו כשהאפליקציה פעילה. אין הבטחה לצלצול כשהיא סגורה.' : 'לא ניתנה הרשאה להתראות',
+        type: permission === 'granted' ? 'success' : 'info'
+      });
+      return permission === 'granted';
     } catch (error) {
       console.error('Failed to request notification permission:', error);
+      return false;
     }
-    return false;
-  };
+  }, [addNotification]);
 
-  const sendNotification = async (description: string) => {
-    if (!state.registration) return;
-
-    // Request permission if not already granted
-    if (Notification.permission !== 'granted') {
-      const granted = await requestNotificationPermission();
-      if (!granted) return;
-    }
-
+  const sendNotification = useCallback(async (description: string, timerId: string, version = 0, silent = false, url = '/') => {
+    if (!registration || !('Notification' in window) || Notification.permission !== 'granted') return;
     try {
-      await state.registration.active?.postMessage({
-        type: 'TIMER_END',
-        description
-      });
+      registration.active?.postMessage({ type: 'TIMER_END', description, timerId, version, silent, url });
     } catch (error) {
       console.error('Failed to send notification:', error);
     }
-  };
+  }, [registration]);
 
-  return {
-    ...state,
-    sendNotification
-  };
-} 
+  return { registration, sendNotification, requestNotificationPermission };
+}

@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' capacitor: https://localhost; media-src 'self'">
+  <title>בדיקת טיימר מקומי</title><link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <h1>בדיקת טיימר מקומי</h1>
+    <p>המתכונים שלנו · בדיקת התראות במכשיר</p>
+    <p id="platform" role="status"></p>
+    <section>
+      <h2>לפני הבדיקה</h2>
+      <p>אפשרו התראות. ב־Android נדרשת גם הרשאה לתזמון מדויק.</p>
+      <button id="permissions">אפשר התראות ותזמון מדויק</button>
+    </section>
+    <section>
+      <h2>הפעלת טיימר</h2>
+      <label>משך בשניות <input id="seconds" type="number" min="10" max="3600" value="60" inputmode="numeric"></label>
+      <label><input id="muted" type="checkbox"> התראה ללא צליל</label>
+      <button id="start">הפעל טיימר לבדיקה</button>
+      <p id="remaining" aria-live="off"></p>
+      <p id="status" role="status"></p>
+      <div class="actions"><button id="pause" disabled>השהה</button><button id="cancel" disabled>בטל טיימר</button></div>
+    </section>
+    <p id="error" role="alert"></p>
+    <section>
+      <h2>איך בודקים?</h2>
+      <ol>
+        <li>הפעילו טיימר, וודאו שמופיע ״התראה נקבעה במכשיר״.</li>
+        <li>נעלו את המסך והמתינו להתראה.</li>
+        <li>חזרו על הבדיקה במצב טיסה.</li>
+        <li>בדקו שהשהיה וביטול מונעים את ההתראה, והמשך קובע זמן סיום חדש.</li>
+      </ol>
+      <p>זהו מסך בדיקה מקומי. האתר המלא עדיין דורש חיבור לאינטרנט. התראה אינה עוקפת מצב שקט, Focus או הגבלות מערכת.</p>
+    </section>
+  </main>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

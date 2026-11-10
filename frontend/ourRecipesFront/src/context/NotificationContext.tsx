@@ -1,6 +1,6 @@
 'use client'
 
-import { createContext, useContext, useReducer, ReactNode } from 'react'
+import { createContext, useContext, useReducer, useCallback, ReactNode } from 'react'
 import { Toast } from '@/components/ui/Toast'
 
 type NotificationType = 'success' | 'error' | 'info' | 'warning'
@@ -16,7 +16,7 @@ interface NotificationState {
   notifications: Notification[]
 }
 
-type NotificationAction = 
+type NotificationAction =
   | { type: 'ADD_NOTIFICATION'; payload: Omit<Notification, 'id'> }
   | { type: 'REMOVE_NOTIFICATION'; payload: string }
 
@@ -32,7 +32,7 @@ function notificationReducer(state: NotificationState, action: NotificationActio
       return {
         notifications: [
           ...state.notifications,
-          { ...action.payload, id: Date.now().toString() }
+          { ...action.payload, id: crypto.randomUUID() }
         ]
       }
     case 'REMOVE_NOTIFICATION':
@@ -49,17 +49,17 @@ function notificationReducer(state: NotificationState, action: NotificationActio
 export function NotificationProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(notificationReducer, { notifications: [] })
 
-  const addNotification = (notification: Omit<Notification, 'id'>) => {
+  const addNotification = useCallback((notification: Omit<Notification, 'id'>) => {
     dispatch({ type: 'ADD_NOTIFICATION', payload: notification })
-  }
+  }, [])
 
-  const removeNotification = (id: string) => {
+  const removeNotification = useCallback((id: string) => {
     dispatch({ type: 'REMOVE_NOTIFICATION', payload: id })
-  }
+  }, [])
 
   return (
-    <NotificationContext.Provider 
-      value={{ 
+    <NotificationContext.Provider
+      value={{
         notifications: state.notifications,
         addNotification,
         removeNotification
@@ -87,4 +87,4 @@ export function useNotification() {
     throw new Error('useNotification must be used within a NotificationProvider')
   }
   return context
-} 
+}

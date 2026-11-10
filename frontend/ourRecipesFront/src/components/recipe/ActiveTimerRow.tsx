@@ -66,7 +66,7 @@ const ActiveTimerRow: React.FC<{ timer: Timer }> = ({ timer }) => {
         >
           <div
             className="cursor-pointer hover:text-primary-600"
-            onClick={() => setEditingName(timer.description)}
+            onClick={() => { if (!timer.pendingDelete) setEditingName(timer.description); }}
           >
             {timer.description}
           </div>
@@ -80,6 +80,7 @@ const ActiveTimerRow: React.FC<{ timer: Timer }> = ({ timer }) => {
           className={`flex items-center justify-center w-8 h-8 rounded-full transition-colors
             ${timer.isPaused ? 'text-primary-600 hover:bg-primary-50' : 'text-secondary-600 hover:bg-secondary-50'}`}
           onClick={() => (timer.isPaused ? resumeTimer(timer.id) : pauseTimer(timer.id))}
+          disabled={timer.pendingDelete}
           title={timer.isPaused ? 'המשך' : 'השהה'}
         >
           {timer.isPaused ? <PlayIcon /> : <PauseIcon />}

@@ -31,6 +31,7 @@
 # Logs and databases
 *.log
 *.sql
+!frontend/ourRecipesFront/prisma/sql/timer-push.sql
 *.db
 
 # Environment variables and configuration
@@ -61,3 +62,8 @@ google_credentials.json
 
 # stray root installs
 /node_modules/
+
+# Capacitor build output and signing material
+/frontend/ourRecipesFront/mobile/dist/
+*.jks
+*.keystore
