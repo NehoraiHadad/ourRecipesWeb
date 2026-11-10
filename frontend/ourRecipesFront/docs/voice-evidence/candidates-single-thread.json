@@ -1,0 +1,1454 @@
+{
+  "date": "2026-11-10T20:38:22.532Z",
+  "environment": "cloud Chromium, headless, WASM 1 thread, no physical mic/speaker",
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "EMD123/DictaLM-3.0-1.7B-Instruct-Q4_K_M-GGUF",
+      "revision": "2f41ecf9bdeb2d75ff4dd85266970402c59c14d8",
+      "license": "Apache-2.0 — Dicta; community GGUF: EMD123",
+      "files": [
+        {
+          "path": "dictalm-3.0-1.7b-instruct-q4_k_m.gguf",
+          "bytes": 1107404704
+        }
+      ]
+    },
+    "tts": {
+      "kind": "tts",
+      "repo": "thewh1teagle/pocket-tts-onnx",
+      "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+      "license": "CC-BY-4.0 — Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle; base: Kyutai",
+      "files": [
+        {
+          "path": "he/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "he/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "he/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "he/renikud.onnx",
+          "bytes": 20620594
+        }
+      ]
+    }
+  },
+  "requests": [
+    "blob:http://localhost:3000/e418cdcd-8773-4961-8d2a-abd6556264e1"
+  ],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "ttsLoad": {
+    "type": "ready",
+    "ms": 2196.2000000001863,
+    "sampleRate": 24000
+  },
+  "ttsCases": [
+    {
+      "input": "לפי המתכון, הפעולה הבאה שנותרה: להוסיף מים ולערבב.",
+      "type": "result",
+      "ms": 4506.899999999907,
+      "firstAudioMs": 386.79999999981374,
+      "audioSeconds": 5.04,
+      "normalized": "לפי המתכון, הפעולה הבאה שנותרה: להוסיף מים ולערבב."
+    },
+    {
+      "input": "להוסיף 2 כפות קמח וחצי כוס מים.",
+      "type": "result",
+      "ms": 2628.7000000001863,
+      "firstAudioMs": 297.79999999981374,
+      "audioSeconds": 3.04,
+      "normalized": "להוסיף שתיים כפות קמח וחצי כוס מים."
+    },
+    {
+      "input": "לאפות ב־180 מעלות במשך 10–15 דקות.",
+      "type": "result",
+      "ms": 3930.399999999907,
+      "firstAudioMs": 394.8000000002794,
+      "audioSeconds": 4.48,
+      "normalized": "לאפות ב־מאה שמונים מעלות במשך עשר עד חמש עשרה דקות."
+    }
+  ],
+  "llmLoad": {
+    "type": "ready",
+    "ms": 3983,
+    "engine": "wllama-3.13.0-cpu-1-thread"
+  },
+  "llmCases": [
+    {
+      "input": "שמתי קמח, מה עכשיו?",
+      "expected": "report:s0a0=true",
+      "actual": "next",
+      "valid": true,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"next\",\"changes\":[],\"focusActionId\":\"s0a0\"}",
+      "ms": 144773,
+      "usage": {
+        "completion_tokens": 40,
+        "prompt_tokens": 417,
+        "total_tokens": 457,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 417,
+        "prompt_ms": 125110.399,
+        "prompt_per_token_ms": 300.0249376498801,
+        "prompt_per_second": 3.33305627136558,
+        "predicted_n": 40,
+        "predicted_ms": 19618.201,
+        "predicted_per_token_ms": 503.0307948717949,
+        "predicted_per_second": 1.987949863496658
+      },
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "הוספתי מים אבל עוד לא ערבבתי",
+      "expected": "report:s1a0=true,s1a1=false",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"next\",\"changes\":[{\"actionId\":\"s1a1\",\"done\":false,\"evidence\":\"להוסיף מים אבל עוד לא ערבבתי\"},{\"actionId\":\"s1a0\",\"done\":false,\"evidence\":\"להוסיף מים אבל עוד לא ערבבתי\"}],\"focusActionId\":\"s1a1\"}",
+      "ms": 69016.5,
+      "usage": {
+        "completion_tokens": 92,
+        "prompt_tokens": 420,
+        "total_tokens": 512,
+        "prompt_tokens_details": {
+          "cached_tokens": 358
+        }
+      },
+      "timings": {
+        "cache_n": 358,
+        "prompt_n": 62,
+        "prompt_ms": 24121.1,
+        "prompt_per_token_ms": 389.04999999999995,
+        "prompt_per_second": 2.5703637064644647,
+        "predicted_n": 92,
+        "predicted_ms": 44879.9,
+        "predicted_per_token_ms": 493.1857142857143,
+        "predicted_per_second": 2.027633751412102
+      },
+      "finishReason": "stop",
+      "error": "Error: הצעת המודל אינה נתמכת במתכון ובדיווח."
+    },
+    {
+      "input": "תיקון, לא שמתי קמח",
+      "expected": "report:s0a0=false",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"next\",\"focusActionId\":\"s0a0\",\"changes\":[{\"actionId\":\"s0a0\",\"done\":false,\"evidence\":\"השתמשתי בקמח, אבל לא שמתי אותו\"}],\"clarify\":\"השתמשתי בקמח, אבל לא שמתי אותו\"}",
+      "ms": 51932.60000000009,
+      "usage": {
+        "completion_tokens": 84,
+        "prompt_tokens": 418,
+        "total_tokens": 502,
+        "prompt_tokens_details": {
+          "cached_tokens": 394
+        }
+      },
+      "timings": {
+        "cache_n": 394,
+        "prompt_n": 24,
+        "prompt_ms": 9775.3,
+        "prompt_per_token_ms": 407.3041666666666,
+        "prompt_per_second": 2.455167616339141,
+        "predicted_n": 84,
+        "predicted_ms": 42151.8,
+        "predicted_per_token_ms": 507.8530120481928,
+        "predicted_per_second": 1.969073681313728
+      },
+      "finishReason": "stop",
+      "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"clarify\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"clarify\\\"\"\n  }\n]"
+    },
+    {
+      "input": "עשיתי את זה",
+      "expected": "clarify",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"currentStep\":1,\"completed\":[\"s0a0\"],\"remaining\":[\"s1a0\",\"s1a1\",\"s2a0\"],\"intent\":\"next\",\"focusActionId\":\"s1a0\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"הוספתי מים\"}]}",
+      "ms": 52009.5,
+      "usage": {
+        "completion_tokens": 92,
+        "prompt_tokens": 412,
+        "total_tokens": 504,
+        "prompt_tokens_details": {
+          "cached_tokens": 394
+        }
+      },
+      "timings": {
+        "cache_n": 394,
+        "prompt_n": 18,
+        "prompt_ms": 7325.1,
+        "prompt_per_token_ms": 406.95000000000005,
+        "prompt_per_second": 2.4573043371421552,
+        "predicted_n": 92,
+        "predicted_ms": 44679.3,
+        "predicted_per_token_ms": 490.9813186813187,
+        "predicted_per_second": 2.0367373705496727
+      },
+      "finishReason": "stop",
+      "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"currentStep\",\n      \"completed\",\n      \"remaining\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized keys: \\\"currentStep\\\", \\\"completed\\\", \\\"remaining\\\"\"\n  }\n]"
+    },
+    {
+      "input": "על איזה שלב דילגתי?",
+      "expected": "missed",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"next\",\"focusActionId\":\"s1a0\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":false,\"evidence\":\"על איזה שלב דילגתי?\"}],\"nextStep\":\"s1\"}",
+      "ms": 61707.19999999972,
+      "usage": {
+        "completion_tokens": 73,
+        "prompt_tokens": 419,
+        "total_tokens": 492,
+        "prompt_tokens_details": {
+          "cached_tokens": 363
+        }
+      },
+      "timings": {
+        "cache_n": 363,
+        "prompt_n": 56,
+        "prompt_ms": 23717.799,
+        "prompt_per_token_ms": 423.532125,
+        "prompt_per_second": 2.361095985339955,
+        "predicted_n": 73,
+        "predicted_ms": 37984.4,
+        "predicted_per_token_ms": 527.5611111111111,
+        "predicted_per_second": 1.8955150008951043
+      },
+      "finishReason": "stop",
+      "error": "[\n  {\n    \"code\": \"unrecognized_keys\",\n    \"keys\": [\n      \"nextStep\"\n    ],\n    \"path\": [],\n    \"message\": \"Unrecognized key: \\\"nextStep\\\"\"\n  }\n]"
+    },
+    {
+      "input": "כמה שמן להוסיף?",
+      "expected": "advice",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"clarify\",\"changes\":[{\"actionId\":\"s0a0\",\"done\":false,\"evidence\":\"להוסיף קמח\"},{\"actionId\":\"s1a0\",\"done\":false,\"evidence\":\"להוסיף מים\"},{\"actionId\":\"s1a1\",\"done\":false,\"evidence\":\"ולערבב\"},{\"actionId\":\"s2a0\",\"done\":false,\"evidence\":\"ללוש את הבצק\"}],\"focusActionId\":\"s1a0\"}",
+      "ms": 128741.3999999999,
+      "usage": {
+        "completion_tokens": 122,
+        "prompt_tokens": 414,
+        "total_tokens": 536,
+        "prompt_tokens_details": {
+          "cached_tokens": 358
+        }
+      },
+      "timings": {
+        "cache_n": 358,
+        "prompt_n": 56,
+        "prompt_ms": 28544.7,
+        "prompt_per_token_ms": 509.7267857142857,
+        "prompt_per_second": 1.9618352969202688,
+        "predicted_n": 122,
+        "predicted_ms": 100184.8,
+        "predicted_per_token_ms": 827.9735537190082,
+        "predicted_per_second": 1.2077680446534802
+      },
+      "finishReason": "stop",
+      "error": "Error: הצעת המודל אינה נתמכת במתכון ובדיווח."
+    }
+  ],
+  "llmCaseSummary": {
+    "planned": 6,
+    "completed": 6,
+    "passed": 0
+  },
+  "rendererHeap": {
+    "usedJSHeapSize": 5318810,
+    "note": "renderer JS heap only; excludes Worker/WASM/native allocations"
+  },
+  "processMemory": {
+    "samples": [
+      {
+        "elapsedMs": 28,
+        "sumRssMiB": 551.421875
+      },
+      {
+        "elapsedMs": 2036,
+        "sumRssMiB": 705.41796875
+      },
+      {
+        "elapsedMs": 4047,
+        "sumRssMiB": 714.07421875
+      },
+      {
+        "elapsedMs": 6048,
+        "sumRssMiB": 958.60546875
+      },
+      {
+        "elapsedMs": 8050,
+        "sumRssMiB": 1402
+      },
+      {
+        "elapsedMs": 10047,
+        "sumRssMiB": 1194.2578125
+      },
+      {
+        "elapsedMs": 12057,
+        "sumRssMiB": 1206.9375
+      },
+      {
+        "elapsedMs": 14041,
+        "sumRssMiB": 1195.20703125
+      },
+      {
+        "elapsedMs": 16042,
+        "sumRssMiB": 1194.5859375
+      },
+      {
+        "elapsedMs": 18047,
+        "sumRssMiB": 1207.2578125
+      },
+      {
+        "elapsedMs": 20045,
+        "sumRssMiB": 1219.16796875
+      },
+      {
+        "elapsedMs": 22052,
+        "sumRssMiB": 2578.5
+      },
+      {
+        "elapsedMs": 24048,
+        "sumRssMiB": 2586.8046875
+      },
+      {
+        "elapsedMs": 26048,
+        "sumRssMiB": 2567.88671875
+      },
+      {
+        "elapsedMs": 28053,
+        "sumRssMiB": 2567.88671875
+      },
+      {
+        "elapsedMs": 30051,
+        "sumRssMiB": 2568.19921875
+      },
+      {
+        "elapsedMs": 32054,
+        "sumRssMiB": 2540.3828125
+      },
+      {
+        "elapsedMs": 34053,
+        "sumRssMiB": 2540.2890625
+      },
+      {
+        "elapsedMs": 36056,
+        "sumRssMiB": 2540.3046875
+      },
+      {
+        "elapsedMs": 38059,
+        "sumRssMiB": 2540.3203125
+      },
+      {
+        "elapsedMs": 40057,
+        "sumRssMiB": 2540.33203125
+      },
+      {
+        "elapsedMs": 42059,
+        "sumRssMiB": 2540.5390625
+      },
+      {
+        "elapsedMs": 44063,
+        "sumRssMiB": 2540.5546875
+      },
+      {
+        "elapsedMs": 46064,
+        "sumRssMiB": 2541.03125
+      },
+      {
+        "elapsedMs": 48068,
+        "sumRssMiB": 2540.4609375
+      },
+      {
+        "elapsedMs": 50070,
+        "sumRssMiB": 2540.47265625
+      },
+      {
+        "elapsedMs": 52071,
+        "sumRssMiB": 2540.484375
+      },
+      {
+        "elapsedMs": 54078,
+        "sumRssMiB": 2540.41796875
+      },
+      {
+        "elapsedMs": 56076,
+        "sumRssMiB": 2540.40234375
+      },
+      {
+        "elapsedMs": 58080,
+        "sumRssMiB": 2540.4140625
+      },
+      {
+        "elapsedMs": 60080,
+        "sumRssMiB": 2538.8046875
+      },
+      {
+        "elapsedMs": 62083,
+        "sumRssMiB": 2537.14453125
+      },
+      {
+        "elapsedMs": 64084,
+        "sumRssMiB": 2536.88671875
+      },
+      {
+        "elapsedMs": 66086,
+        "sumRssMiB": 2536.8359375
+      },
+      {
+        "elapsedMs": 68089,
+        "sumRssMiB": 2536.8125
+      },
+      {
+        "elapsedMs": 70091,
+        "sumRssMiB": 2535.3203125
+      },
+      {
+        "elapsedMs": 72096,
+        "sumRssMiB": 2535.3125
+      },
+      {
+        "elapsedMs": 74094,
+        "sumRssMiB": 2535.3203125
+      },
+      {
+        "elapsedMs": 76096,
+        "sumRssMiB": 2535.3203125
+      },
+      {
+        "elapsedMs": 78097,
+        "sumRssMiB": 2536.109375
+      },
+      {
+        "elapsedMs": 80100,
+        "sumRssMiB": 2535.9140625
+      },
+      {
+        "elapsedMs": 82102,
+        "sumRssMiB": 2535.859375
+      },
+      {
+        "elapsedMs": 84105,
+        "sumRssMiB": 2535.7890625
+      },
+      {
+        "elapsedMs": 86107,
+        "sumRssMiB": 2535.80078125
+      },
+      {
+        "elapsedMs": 88110,
+        "sumRssMiB": 2535.81640625
+      },
+      {
+        "elapsedMs": 90109,
+        "sumRssMiB": 2535.65234375
+      },
+      {
+        "elapsedMs": 92110,
+        "sumRssMiB": 2535.6640625
+      },
+      {
+        "elapsedMs": 94115,
+        "sumRssMiB": 2535.67578125
+      },
+      {
+        "elapsedMs": 96116,
+        "sumRssMiB": 2535.69921875
+      },
+      {
+        "elapsedMs": 98118,
+        "sumRssMiB": 2534.3359375
+      },
+      {
+        "elapsedMs": 100118,
+        "sumRssMiB": 2534.21484375
+      },
+      {
+        "elapsedMs": 102121,
+        "sumRssMiB": 2534.2265625
+      },
+      {
+        "elapsedMs": 104122,
+        "sumRssMiB": 2534.23828125
+      },
+      {
+        "elapsedMs": 106124,
+        "sumRssMiB": 2534.25
+      },
+      {
+        "elapsedMs": 108128,
+        "sumRssMiB": 2534.26171875
+      },
+      {
+        "elapsedMs": 110132,
+        "sumRssMiB": 2534.2734375
+      },
+      {
+        "elapsedMs": 112132,
+        "sumRssMiB": 2534.296875
+      },
+      {
+        "elapsedMs": 114132,
+        "sumRssMiB": 2534.3125
+      },
+      {
+        "elapsedMs": 116154,
+        "sumRssMiB": 2534.3125
+      },
+      {
+        "elapsedMs": 118147,
+        "sumRssMiB": 2534.32421875
+      },
+      {
+        "elapsedMs": 120139,
+        "sumRssMiB": 2534.609375
+      },
+      {
+        "elapsedMs": 122137,
+        "sumRssMiB": 2534.8984375
+      },
+      {
+        "elapsedMs": 124138,
+        "sumRssMiB": 2534.4609375
+      },
+      {
+        "elapsedMs": 126141,
+        "sumRssMiB": 2534.4765625
+      },
+      {
+        "elapsedMs": 128143,
+        "sumRssMiB": 2534.51171875
+      },
+      {
+        "elapsedMs": 130145,
+        "sumRssMiB": 2534.5234375
+      },
+      {
+        "elapsedMs": 132148,
+        "sumRssMiB": 2534.6015625
+      },
+      {
+        "elapsedMs": 134149,
+        "sumRssMiB": 2534.625
+      },
+      {
+        "elapsedMs": 136152,
+        "sumRssMiB": 2533.609375
+      },
+      {
+        "elapsedMs": 138152,
+        "sumRssMiB": 2533.52734375
+      },
+      {
+        "elapsedMs": 140153,
+        "sumRssMiB": 2533.5390625
+      },
+      {
+        "elapsedMs": 142156,
+        "sumRssMiB": 2533.55078125
+      },
+      {
+        "elapsedMs": 144158,
+        "sumRssMiB": 2533.5625
+      },
+      {
+        "elapsedMs": 146157,
+        "sumRssMiB": 2533.57421875
+      },
+      {
+        "elapsedMs": 148160,
+        "sumRssMiB": 2533.5859375
+      },
+      {
+        "elapsedMs": 150161,
+        "sumRssMiB": 2535.640625
+      },
+      {
+        "elapsedMs": 152163,
+        "sumRssMiB": 2535.65625
+      },
+      {
+        "elapsedMs": 154164,
+        "sumRssMiB": 2535.8203125
+      },
+      {
+        "elapsedMs": 156168,
+        "sumRssMiB": 2535.9765625
+      },
+      {
+        "elapsedMs": 158168,
+        "sumRssMiB": 2536.125
+      },
+      {
+        "elapsedMs": 160170,
+        "sumRssMiB": 2536.34375
+      },
+      {
+        "elapsedMs": 162173,
+        "sumRssMiB": 2536.51953125
+      },
+      {
+        "elapsedMs": 164175,
+        "sumRssMiB": 2536.609375
+      },
+      {
+        "elapsedMs": 166179,
+        "sumRssMiB": 2536.765625
+      },
+      {
+        "elapsedMs": 168178,
+        "sumRssMiB": 2537.16015625
+      },
+      {
+        "elapsedMs": 170180,
+        "sumRssMiB": 2538.05859375
+      },
+      {
+        "elapsedMs": 172181,
+        "sumRssMiB": 2538.0625
+      },
+      {
+        "elapsedMs": 174185,
+        "sumRssMiB": 2538.0625
+      },
+      {
+        "elapsedMs": 176186,
+        "sumRssMiB": 2538.00390625
+      },
+      {
+        "elapsedMs": 178190,
+        "sumRssMiB": 2538.06640625
+      },
+      {
+        "elapsedMs": 180190,
+        "sumRssMiB": 2538.45703125
+      },
+      {
+        "elapsedMs": 182190,
+        "sumRssMiB": 2538.45703125
+      },
+      {
+        "elapsedMs": 184194,
+        "sumRssMiB": 2538.45703125
+      },
+      {
+        "elapsedMs": 186195,
+        "sumRssMiB": 2538.46484375
+      },
+      {
+        "elapsedMs": 188197,
+        "sumRssMiB": 2536.83203125
+      },
+      {
+        "elapsedMs": 190200,
+        "sumRssMiB": 2537.09375
+      },
+      {
+        "elapsedMs": 192202,
+        "sumRssMiB": 2536.86328125
+      },
+      {
+        "elapsedMs": 194205,
+        "sumRssMiB": 2538.234375
+      },
+      {
+        "elapsedMs": 196207,
+        "sumRssMiB": 2538.24609375
+      },
+      {
+        "elapsedMs": 198207,
+        "sumRssMiB": 2538.31640625
+      },
+      {
+        "elapsedMs": 200210,
+        "sumRssMiB": 2538.1796875
+      },
+      {
+        "elapsedMs": 202210,
+        "sumRssMiB": 2538.2421875
+      },
+      {
+        "elapsedMs": 204212,
+        "sumRssMiB": 2538.64453125
+      },
+      {
+        "elapsedMs": 206214,
+        "sumRssMiB": 2538.6953125
+      },
+      {
+        "elapsedMs": 208216,
+        "sumRssMiB": 2538.109375
+      },
+      {
+        "elapsedMs": 210217,
+        "sumRssMiB": 2538.21484375
+      },
+      {
+        "elapsedMs": 212218,
+        "sumRssMiB": 2538.3046875
+      },
+      {
+        "elapsedMs": 214220,
+        "sumRssMiB": 2538.44140625
+      },
+      {
+        "elapsedMs": 216222,
+        "sumRssMiB": 2538.58984375
+      },
+      {
+        "elapsedMs": 218224,
+        "sumRssMiB": 2538.74609375
+      },
+      {
+        "elapsedMs": 220225,
+        "sumRssMiB": 2538.859375
+      },
+      {
+        "elapsedMs": 222228,
+        "sumRssMiB": 2538.92578125
+      },
+      {
+        "elapsedMs": 224230,
+        "sumRssMiB": 2538.984375
+      },
+      {
+        "elapsedMs": 226233,
+        "sumRssMiB": 2539.1796875
+      },
+      {
+        "elapsedMs": 228235,
+        "sumRssMiB": 2539.2109375
+      },
+      {
+        "elapsedMs": 230238,
+        "sumRssMiB": 2539.28515625
+      },
+      {
+        "elapsedMs": 232241,
+        "sumRssMiB": 2539.37109375
+      },
+      {
+        "elapsedMs": 234243,
+        "sumRssMiB": 2539.44921875
+      },
+      {
+        "elapsedMs": 236242,
+        "sumRssMiB": 2544.00390625
+      },
+      {
+        "elapsedMs": 238246,
+        "sumRssMiB": 2544.33984375
+      },
+      {
+        "elapsedMs": 240243,
+        "sumRssMiB": 2542.953125
+      },
+      {
+        "elapsedMs": 242246,
+        "sumRssMiB": 2542.97265625
+      },
+      {
+        "elapsedMs": 244249,
+        "sumRssMiB": 2542.69921875
+      },
+      {
+        "elapsedMs": 246252,
+        "sumRssMiB": 2542.70703125
+      },
+      {
+        "elapsedMs": 248253,
+        "sumRssMiB": 2542.66015625
+      },
+      {
+        "elapsedMs": 250256,
+        "sumRssMiB": 2542.75
+      },
+      {
+        "elapsedMs": 252262,
+        "sumRssMiB": 2542.63671875
+      },
+      {
+        "elapsedMs": 254260,
+        "sumRssMiB": 2542.859375
+      },
+      {
+        "elapsedMs": 256263,
+        "sumRssMiB": 2542.796875
+      },
+      {
+        "elapsedMs": 258265,
+        "sumRssMiB": 2543.01953125
+      },
+      {
+        "elapsedMs": 260264,
+        "sumRssMiB": 2543.1015625
+      },
+      {
+        "elapsedMs": 262268,
+        "sumRssMiB": 2543.3828125
+      },
+      {
+        "elapsedMs": 264270,
+        "sumRssMiB": 2543.140625
+      },
+      {
+        "elapsedMs": 266271,
+        "sumRssMiB": 2543.44140625
+      },
+      {
+        "elapsedMs": 268273,
+        "sumRssMiB": 2543.31640625
+      },
+      {
+        "elapsedMs": 270273,
+        "sumRssMiB": 2543.44921875
+      },
+      {
+        "elapsedMs": 272276,
+        "sumRssMiB": 2543.59765625
+      },
+      {
+        "elapsedMs": 274295,
+        "sumRssMiB": 2543.70703125
+      },
+      {
+        "elapsedMs": 276280,
+        "sumRssMiB": 2543.83984375
+      },
+      {
+        "elapsedMs": 278281,
+        "sumRssMiB": 2543.8046875
+      },
+      {
+        "elapsedMs": 280283,
+        "sumRssMiB": 2543.84375
+      },
+      {
+        "elapsedMs": 282286,
+        "sumRssMiB": 2543.8984375
+      },
+      {
+        "elapsedMs": 284288,
+        "sumRssMiB": 2543.95703125
+      },
+      {
+        "elapsedMs": 286290,
+        "sumRssMiB": 2543.6875
+      },
+      {
+        "elapsedMs": 288292,
+        "sumRssMiB": 2543.92578125
+      },
+      {
+        "elapsedMs": 290293,
+        "sumRssMiB": 2544.578125
+      },
+      {
+        "elapsedMs": 292296,
+        "sumRssMiB": 2544.40625
+      },
+      {
+        "elapsedMs": 294297,
+        "sumRssMiB": 2544.40625
+      },
+      {
+        "elapsedMs": 296299,
+        "sumRssMiB": 2544.40625
+      },
+      {
+        "elapsedMs": 298303,
+        "sumRssMiB": 2544.4609375
+      },
+      {
+        "elapsedMs": 300302,
+        "sumRssMiB": 2544.671875
+      },
+      {
+        "elapsedMs": 302304,
+        "sumRssMiB": 2544.8515625
+      },
+      {
+        "elapsedMs": 304310,
+        "sumRssMiB": 2545.19921875
+      },
+      {
+        "elapsedMs": 306308,
+        "sumRssMiB": 2545.2578125
+      },
+      {
+        "elapsedMs": 308310,
+        "sumRssMiB": 2545.33984375
+      },
+      {
+        "elapsedMs": 310311,
+        "sumRssMiB": 2545.48828125
+      },
+      {
+        "elapsedMs": 312314,
+        "sumRssMiB": 2545.0078125
+      },
+      {
+        "elapsedMs": 314316,
+        "sumRssMiB": 2544.9765625
+      },
+      {
+        "elapsedMs": 316316,
+        "sumRssMiB": 2544.99609375
+      },
+      {
+        "elapsedMs": 318319,
+        "sumRssMiB": 2545.06640625
+      },
+      {
+        "elapsedMs": 320320,
+        "sumRssMiB": 2545.12109375
+      },
+      {
+        "elapsedMs": 322321,
+        "sumRssMiB": 2545.1953125
+      },
+      {
+        "elapsedMs": 324324,
+        "sumRssMiB": 2545.2890625
+      },
+      {
+        "elapsedMs": 326326,
+        "sumRssMiB": 2545.4140625
+      },
+      {
+        "elapsedMs": 328328,
+        "sumRssMiB": 2545.7734375
+      },
+      {
+        "elapsedMs": 330332,
+        "sumRssMiB": 2545.76171875
+      },
+      {
+        "elapsedMs": 332331,
+        "sumRssMiB": 2545.8046875
+      },
+      {
+        "elapsedMs": 334335,
+        "sumRssMiB": 2545.83984375
+      },
+      {
+        "elapsedMs": 336335,
+        "sumRssMiB": 2545.8046875
+      },
+      {
+        "elapsedMs": 338337,
+        "sumRssMiB": 2545.7421875
+      },
+      {
+        "elapsedMs": 340339,
+        "sumRssMiB": 2545.703125
+      },
+      {
+        "elapsedMs": 342340,
+        "sumRssMiB": 2567.80078125
+      },
+      {
+        "elapsedMs": 344341,
+        "sumRssMiB": 2567.453125
+      },
+      {
+        "elapsedMs": 346345,
+        "sumRssMiB": 2567.45703125
+      },
+      {
+        "elapsedMs": 348346,
+        "sumRssMiB": 2567.46484375
+      },
+      {
+        "elapsedMs": 350349,
+        "sumRssMiB": 2567.46484375
+      },
+      {
+        "elapsedMs": 352353,
+        "sumRssMiB": 2567.46484375
+      },
+      {
+        "elapsedMs": 354351,
+        "sumRssMiB": 2567.47265625
+      },
+      {
+        "elapsedMs": 356353,
+        "sumRssMiB": 2567.47265625
+      },
+      {
+        "elapsedMs": 358359,
+        "sumRssMiB": 2567.4765625
+      },
+      {
+        "elapsedMs": 360361,
+        "sumRssMiB": 2567.5078125
+      },
+      {
+        "elapsedMs": 362363,
+        "sumRssMiB": 2567.51953125
+      },
+      {
+        "elapsedMs": 364369,
+        "sumRssMiB": 2567.65625
+      },
+      {
+        "elapsedMs": 366367,
+        "sumRssMiB": 2567.62890625
+      },
+      {
+        "elapsedMs": 368368,
+        "sumRssMiB": 2567.68359375
+      },
+      {
+        "elapsedMs": 370370,
+        "sumRssMiB": 2567.70703125
+      },
+      {
+        "elapsedMs": 372371,
+        "sumRssMiB": 2567.828125
+      },
+      {
+        "elapsedMs": 374374,
+        "sumRssMiB": 2567.97265625
+      },
+      {
+        "elapsedMs": 376376,
+        "sumRssMiB": 2568.11328125
+      },
+      {
+        "elapsedMs": 378378,
+        "sumRssMiB": 2568.35546875
+      },
+      {
+        "elapsedMs": 380382,
+        "sumRssMiB": 2568.390625
+      },
+      {
+        "elapsedMs": 382384,
+        "sumRssMiB": 2567.7265625
+      },
+      {
+        "elapsedMs": 384401,
+        "sumRssMiB": 2567.80859375
+      },
+      {
+        "elapsedMs": 386397,
+        "sumRssMiB": 2568.046875
+      },
+      {
+        "elapsedMs": 388392,
+        "sumRssMiB": 2568.1796875
+      },
+      {
+        "elapsedMs": 390399,
+        "sumRssMiB": 2568.234375
+      },
+      {
+        "elapsedMs": 392396,
+        "sumRssMiB": 2568.3359375
+      },
+      {
+        "elapsedMs": 394398,
+        "sumRssMiB": 2568.3828125
+      },
+      {
+        "elapsedMs": 396401,
+        "sumRssMiB": 2568.359375
+      },
+      {
+        "elapsedMs": 398407,
+        "sumRssMiB": 2568.390625
+      },
+      {
+        "elapsedMs": 400405,
+        "sumRssMiB": 2568.46484375
+      },
+      {
+        "elapsedMs": 402406,
+        "sumRssMiB": 2568.49609375
+      },
+      {
+        "elapsedMs": 404406,
+        "sumRssMiB": 2568.5703125
+      },
+      {
+        "elapsedMs": 406431,
+        "sumRssMiB": 2568.4453125
+      },
+      {
+        "elapsedMs": 408415,
+        "sumRssMiB": 2568.453125
+      },
+      {
+        "elapsedMs": 410417,
+        "sumRssMiB": 2568.546875
+      },
+      {
+        "elapsedMs": 412432,
+        "sumRssMiB": 2568.43359375
+      },
+      {
+        "elapsedMs": 414435,
+        "sumRssMiB": 2568.44140625
+      },
+      {
+        "elapsedMs": 416444,
+        "sumRssMiB": 2568.4140625
+      },
+      {
+        "elapsedMs": 418449,
+        "sumRssMiB": 2568.4140625
+      },
+      {
+        "elapsedMs": 420449,
+        "sumRssMiB": 2568.61328125
+      },
+      {
+        "elapsedMs": 422448,
+        "sumRssMiB": 2569.6953125
+      },
+      {
+        "elapsedMs": 424456,
+        "sumRssMiB": 2568.5703125
+      },
+      {
+        "elapsedMs": 426453,
+        "sumRssMiB": 2568.5703125
+      },
+      {
+        "elapsedMs": 428457,
+        "sumRssMiB": 2568.56640625
+      },
+      {
+        "elapsedMs": 430457,
+        "sumRssMiB": 2568.56640625
+      },
+      {
+        "elapsedMs": 432463,
+        "sumRssMiB": 2569.83203125
+      },
+      {
+        "elapsedMs": 434461,
+        "sumRssMiB": 2569.859375
+      },
+      {
+        "elapsedMs": 436465,
+        "sumRssMiB": 2569.3515625
+      },
+      {
+        "elapsedMs": 438470,
+        "sumRssMiB": 2569.390625
+      },
+      {
+        "elapsedMs": 440473,
+        "sumRssMiB": 2568.93359375
+      },
+      {
+        "elapsedMs": 442481,
+        "sumRssMiB": 2568.9765625
+      },
+      {
+        "elapsedMs": 444494,
+        "sumRssMiB": 2568.734375
+      },
+      {
+        "elapsedMs": 446524,
+        "sumRssMiB": 2570.91796875
+      },
+      {
+        "elapsedMs": 448516,
+        "sumRssMiB": 2568.703125
+      },
+      {
+        "elapsedMs": 450483,
+        "sumRssMiB": 2568.76171875
+      },
+      {
+        "elapsedMs": 452485,
+        "sumRssMiB": 2568.9140625
+      },
+      {
+        "elapsedMs": 454482,
+        "sumRssMiB": 2569.01171875
+      },
+      {
+        "elapsedMs": 456493,
+        "sumRssMiB": 2569.07421875
+      },
+      {
+        "elapsedMs": 458518,
+        "sumRssMiB": 2568.19921875
+      },
+      {
+        "elapsedMs": 460516,
+        "sumRssMiB": 2568.23828125
+      },
+      {
+        "elapsedMs": 462520,
+        "sumRssMiB": 2568.28515625
+      },
+      {
+        "elapsedMs": 464516,
+        "sumRssMiB": 2568.3984375
+      },
+      {
+        "elapsedMs": 466518,
+        "sumRssMiB": 2568.4453125
+      },
+      {
+        "elapsedMs": 468535,
+        "sumRssMiB": 2568.4765625
+      },
+      {
+        "elapsedMs": 470519,
+        "sumRssMiB": 2568.546875
+      },
+      {
+        "elapsedMs": 472528,
+        "sumRssMiB": 2567.8359375
+      },
+      {
+        "elapsedMs": 474527,
+        "sumRssMiB": 2567.8984375
+      },
+      {
+        "elapsedMs": 476523,
+        "sumRssMiB": 2568.01171875
+      },
+      {
+        "elapsedMs": 478551,
+        "sumRssMiB": 2568.17578125
+      },
+      {
+        "elapsedMs": 480539,
+        "sumRssMiB": 2568.265625
+      },
+      {
+        "elapsedMs": 482555,
+        "sumRssMiB": 2568.36328125
+      },
+      {
+        "elapsedMs": 484544,
+        "sumRssMiB": 2568.4375
+      },
+      {
+        "elapsedMs": 486543,
+        "sumRssMiB": 2568.46875
+      },
+      {
+        "elapsedMs": 488547,
+        "sumRssMiB": 2568.6015625
+      },
+      {
+        "elapsedMs": 490548,
+        "sumRssMiB": 2568.82421875
+      },
+      {
+        "elapsedMs": 492542,
+        "sumRssMiB": 2568.8984375
+      },
+      {
+        "elapsedMs": 494547,
+        "sumRssMiB": 2568.9609375
+      },
+      {
+        "elapsedMs": 496551,
+        "sumRssMiB": 2568.984375
+      },
+      {
+        "elapsedMs": 498557,
+        "sumRssMiB": 2569.140625
+      },
+      {
+        "elapsedMs": 500551,
+        "sumRssMiB": 2569.1796875
+      },
+      {
+        "elapsedMs": 502555,
+        "sumRssMiB": 2569.1015625
+      },
+      {
+        "elapsedMs": 504563,
+        "sumRssMiB": 2569.14453125
+      },
+      {
+        "elapsedMs": 506565,
+        "sumRssMiB": 2569.1640625
+      },
+      {
+        "elapsedMs": 508563,
+        "sumRssMiB": 2569.4140625
+      },
+      {
+        "elapsedMs": 510563,
+        "sumRssMiB": 2569.265625
+      },
+      {
+        "elapsedMs": 512575,
+        "sumRssMiB": 2569.26953125
+      },
+      {
+        "elapsedMs": 514575,
+        "sumRssMiB": 2569.29296875
+      },
+      {
+        "elapsedMs": 516575,
+        "sumRssMiB": 2569.1953125
+      },
+      {
+        "elapsedMs": 518570,
+        "sumRssMiB": 2569.234375
+      },
+      {
+        "elapsedMs": 520573,
+        "sumRssMiB": 2569.26171875
+      },
+      {
+        "elapsedMs": 522575,
+        "sumRssMiB": 2569.5234375
+      },
+      {
+        "elapsedMs": 524578,
+        "sumRssMiB": 2569.47265625
+      },
+      {
+        "elapsedMs": 526573,
+        "sumRssMiB": 2569.58203125
+      },
+      {
+        "elapsedMs": 528585,
+        "sumRssMiB": 2569.5390625
+      },
+      {
+        "elapsedMs": 530583,
+        "sumRssMiB": 2569.6328125
+      },
+      {
+        "elapsedMs": 532447,
+        "sumRssMiB": 2584.2109375
+      }
+    ],
+    "peakSumRssMiB": 2586.8046875,
+    "note": "Sum of RSS of Chromium processes with this profile; shared pages counted multiple times; includes browser/app/workers/native/WASM, not model-only memory."
+  },
+  "networkReview": {
+    "note": "Original request list includes local blob: Worker scripts; these are not outgoing network requests.",
+    "httpOutsideLoopback": []
+  },
+  "stateEvaluation": {
+    "method": "Exact intent and resulting completed/remaining state, allowing omission of an already-false no-op. Any unrelated change still fails. Original exact-change-list scores retained above.",
+    "passed": 0,
+    "total": 6,
+    "cases": [
+      {
+        "input": "שמתי קמח, מה עכשיו?",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": [],
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "הוספתי מים אבל עוד לא ערבבתי",
+        "expectedCompleted": [
+          "s0a0",
+          "s1a0"
+        ],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "תיקון, לא שמתי קמח",
+        "expectedCompleted": [],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "עשיתי את זה",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "על איזה שלב דילגתי?",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "כמה שמן להוסיף?",
+        "expectedCompleted": [],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      }
+    ]
+  }
+}

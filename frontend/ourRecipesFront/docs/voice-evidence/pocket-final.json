@@ -1,0 +1,156 @@
+{
+  "date": "2026-11-10T21:20:43.521Z",
+  "environment": "cloud Chromium, headless, WASM CPU, no physical mic/speaker",
+  "isolatedRequested": false,
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "unsloth/Qwen3.5-2B-GGUF",
+      "revision": "f6d5376be1edb4d416d56da11e5397a961aca8ae",
+      "license": "Apache-2.0 — Qwen; GGUF: Unsloth",
+      "files": [
+        {
+          "path": "Qwen3.5-2B-Q4_K_M.gguf",
+          "bytes": 1280835840
+        }
+      ]
+    },
+    "tts": {
+      "kind": "tts",
+      "repo": "thewh1teagle/pocket-tts-onnx",
+      "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+      "license": "CC-BY-4.0 — Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle; base: Kyutai",
+      "files": [
+        {
+          "path": "he/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "he/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "he/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "he/renikud.onnx",
+          "bytes": 20620594
+        }
+      ]
+    }
+  },
+  "requests": [],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": true,
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "ttsLoad": {
+    "type": "ready",
+    "ms": 2281.2549999998882,
+    "sampleRate": 24000
+  },
+  "ttsCases": [
+    {
+      "input": "לפי המתכון, הפעולה הבאה שנותרה: להוסיף מים ולערבב.",
+      "type": "result",
+      "ms": 4285.135000000708,
+      "firstAudioMs": 416.7600000007078,
+      "audioSeconds": 5.04,
+      "normalized": "לפי המתכון, הפעולה הבאה שנותרה: להוסיף מים ולערבב."
+    },
+    {
+      "input": "להוסיף 2 כפות קמח וחצי כוס מים.",
+      "type": "result",
+      "ms": 2543.739999999292,
+      "firstAudioMs": 303.5,
+      "audioSeconds": 2.88,
+      "normalized": "להוסיף שתי כפות קמח וחצי כוס מים."
+    },
+    {
+      "input": "לאפות ב־180 מעלות במשך 10–15 דקות.",
+      "type": "result",
+      "ms": 3904.4599999999627,
+      "firstAudioMs": 390.1900000004098,
+      "audioSeconds": 4.48,
+      "normalized": "לאפות ב־מאה שמונים מעלות במשך עשר עד חמש עשרה דקות."
+    }
+  ],
+  "rendererHeap": {
+    "usedJSHeapSize": 16827573,
+    "note": "renderer JS heap only; excludes Worker/WASM/native allocations"
+  },
+  "processMemory": {
+    "samples": [
+      {
+        "elapsedMs": 23,
+        "sumRssMiB": 557.40234375
+      },
+      {
+        "elapsedMs": 2041,
+        "sumRssMiB": 1336.90625
+      },
+      {
+        "elapsedMs": 4036,
+        "sumRssMiB": 1234.38671875
+      },
+      {
+        "elapsedMs": 6037,
+        "sumRssMiB": 1241.41796875
+      },
+      {
+        "elapsedMs": 8175,
+        "sumRssMiB": 1260.0078125
+      },
+      {
+        "elapsedMs": 10172,
+        "sumRssMiB": 1238.66015625
+      },
+      {
+        "elapsedMs": 12174,
+        "sumRssMiB": 1235.68359375
+      },
+      {
+        "elapsedMs": 14176,
+        "sumRssMiB": 1249.3984375
+      },
+      {
+        "elapsedMs": 15395,
+        "sumRssMiB": 1269.34375
+      }
+    ],
+    "peakSumRssMiB": 1336.90625,
+    "note": "Sum of RSS of Chromium processes with this profile; shared pages counted multiple times; includes browser/app/workers/native/WASM, not model-only memory."
+  }
+}

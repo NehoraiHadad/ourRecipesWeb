@@ -1,0 +1,56 @@
+OurRecipes Hebrew voice lab — third-party notices
+
+ONNX Runtime Web 1.30.0 (ASR and Pocket inference): MIT
+License source: https://github.com/microsoft/onnxruntime/blob/v1.30.0/LICENSE
+The full MIT notice follows below.
+
+Wllama 3.13.0: MIT. Its full notice is prepared at runtime/llm/LICENSE.
+https://github.com/ngxson/wllama
+
+Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle, CC-BY-4.0.
+https://github.com/thewh1teagle/pocket-tts-onnx
+https://huggingface.co/thewh1teagle/pocket-tts-onnx/tree/110f5251188e9407b4f724acdd8b0dfd0b20692a
+Preset Omer voice; no cloning encoder used. Adapter integration and numeric
+normalization were added by OurRecipes. Weights are not modified by this app.
+Upstream Kyutai Pocket TTS runtime: MIT (distinct from this Hebrew adapter).
+https://github.com/kyutai-labs/pocket-tts
+
+Zipformer2 Hebrew: Yakov Kolani, CC-BY-4.0; additional ONNX exports: ivrit.ai.
+https://huggingface.co/ivrit-ai/zipformer2-66m-streaming-he/tree/ee769a2a13b887f91572eec349458bfb0fe79e7a
+Selected published int8 weights are not modified by this app.
+
+CC-BY-4.0 license: https://creativecommons.org/licenses/by/4.0/
+
+DictaLM 3.0 1.7B: Dicta, Apache-2.0; community GGUF conversion: EMD123.
+https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct
+https://huggingface.co/EMD123/DictaLM-3.0-1.7B-Instruct-Q4_K_M-GGUF
+Qwen3.5 0.8B and 2B: Qwen, Apache-2.0; GGUF conversion: Unsloth.
+https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF
+https://huggingface.co/unsloth/Qwen3.5-2B-GGUF
+Apache-2.0 license: https://www.apache.org/licenses/LICENSE-2.0
+Pinned revisions and selected file sizes: src/lib/voice/models.ts.
+Model weights download separately after explicit selection.
+
+ONNX Runtime MIT notice:
+
+MIT License
+
+Copyright (c) Microsoft Corporation
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

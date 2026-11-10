@@ -1,0 +1,533 @@
+{
+  "date": "2026-11-10T21:25:48.821Z",
+  "environment": "cloud Chromium, headless, WASM CPU, no physical mic/speaker",
+  "isolatedRequested": false,
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "EMD123/DictaLM-3.0-1.7B-Instruct-Q4_K_M-GGUF",
+      "revision": "2f41ecf9bdeb2d75ff4dd85266970402c59c14d8",
+      "license": "Apache-2.0 — Dicta; community GGUF: EMD123",
+      "files": [
+        {
+          "path": "dictalm-3.0-1.7b-instruct-q4_k_m.gguf",
+          "bytes": 1107404704
+        }
+      ]
+    },
+    "tts": {
+      "kind": "tts",
+      "repo": "thewh1teagle/pocket-tts-onnx",
+      "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+      "license": "CC-BY-4.0 — Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle; base: Kyutai",
+      "files": [
+        {
+          "path": "he/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "he/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "he/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "he/renikud.onnx",
+          "bytes": 20620594
+        }
+      ]
+    }
+  },
+  "requests": [],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": true,
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "llmLoad": {
+    "type": "ready",
+    "ms": 3776.4199999999255,
+    "engine": "wllama-3.13.0",
+    "backend": "cpu",
+    "threads": 4
+  },
+  "llmCases": [
+    {
+      "input": "שמתי קמח, מה עכשיו?",
+      "expected": "report:s0a0=true",
+      "actual": "report:s0a0=true",
+      "valid": true,
+      "pass": true,
+      "stateMatches": true,
+      "supportedChanges": true,
+      "intentMatches": true,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"report\",\"changes\":[{\"actionId\":\"שלב 1, פעולה 1: להוסיף קמח\",\"done\":true,\"evidence\":\"שמתי קמח\"}],\"focusActionId\":null}",
+      "ms": 60135.77499999944,
+      "firstTokenMs": 47965.289999999106,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "הוספתי מים אבל עוד לא ערבבתי",
+      "expected": "report:s1a0=true,s1a1=false",
+      "actual": "clarify",
+      "valid": true,
+      "pass": false,
+      "stateMatches": false,
+      "supportedChanges": true,
+      "intentMatches": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"clarify\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 22784.734999999404,
+      "firstTokenMs": 16101.334999999963,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "תיקון, לא שמתי קמח",
+      "expected": "report:s0a0=false",
+      "actual": "report:s1a0=true",
+      "valid": true,
+      "pass": false,
+      "stateMatches": false,
+      "supportedChanges": false,
+      "intentMatches": true,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"report\",\"changes\":[{\"actionId\":\"שלב 2, פעולה 1: להוסיף מים\",\"done\":true,\"evidence\":\"תיקון\"}],\"focusActionId\":null}",
+      "ms": 14734.15500000026,
+      "firstTokenMs": 3223.4550000000745,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "עשיתי את זה",
+      "expected": "clarify",
+      "actual": "clarify",
+      "valid": true,
+      "pass": true,
+      "stateMatches": true,
+      "supportedChanges": true,
+      "intentMatches": true,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"clarify\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 9379.200000000186,
+      "firstTokenMs": 2665.875,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "על איזה שלב דילגתי?",
+      "expected": "missed",
+      "actual": "missed",
+      "valid": true,
+      "pass": true,
+      "stateMatches": true,
+      "supportedChanges": true,
+      "intentMatches": true,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"missed\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 10959.370000000112,
+      "firstTokenMs": 4355.799999999814,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "כמה שמן להוסיף?",
+      "expected": "advice",
+      "actual": "clarify",
+      "valid": true,
+      "pass": false,
+      "stateMatches": true,
+      "supportedChanges": true,
+      "intentMatches": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"clarify\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 21559.009999999776,
+      "firstTokenMs": 15308.084999999963,
+      "finishReason": "stop",
+      "error": ""
+    }
+  ],
+  "llmCaseSummary": {
+    "planned": 6,
+    "completed": 6,
+    "passed": 3
+  },
+  "rendererHeap": {
+    "usedJSHeapSize": 4963943,
+    "note": "renderer JS heap only; excludes Worker/WASM/native allocations"
+  },
+  "processMemory": {
+    "samples": [
+      {
+        "elapsedMs": 23,
+        "sumRssMiB": 553.58984375
+      },
+      {
+        "elapsedMs": 2048,
+        "sumRssMiB": 752.41796875
+      },
+      {
+        "elapsedMs": 4045,
+        "sumRssMiB": 753.91796875
+      },
+      {
+        "elapsedMs": 6049,
+        "sumRssMiB": 1370.4140625
+      },
+      {
+        "elapsedMs": 8064,
+        "sumRssMiB": 2460.8984375
+      },
+      {
+        "elapsedMs": 10043,
+        "sumRssMiB": 2391.66796875
+      },
+      {
+        "elapsedMs": 12042,
+        "sumRssMiB": 2389.953125
+      },
+      {
+        "elapsedMs": 14043,
+        "sumRssMiB": 2389.96875
+      },
+      {
+        "elapsedMs": 16043,
+        "sumRssMiB": 2390.359375
+      },
+      {
+        "elapsedMs": 18046,
+        "sumRssMiB": 2390.359375
+      },
+      {
+        "elapsedMs": 20047,
+        "sumRssMiB": 2386.8671875
+      },
+      {
+        "elapsedMs": 22049,
+        "sumRssMiB": 2386.73828125
+      },
+      {
+        "elapsedMs": 24051,
+        "sumRssMiB": 2386.73828125
+      },
+      {
+        "elapsedMs": 26051,
+        "sumRssMiB": 2386.828125
+      },
+      {
+        "elapsedMs": 28055,
+        "sumRssMiB": 2386.83203125
+      },
+      {
+        "elapsedMs": 30058,
+        "sumRssMiB": 2140.12890625
+      },
+      {
+        "elapsedMs": 32058,
+        "sumRssMiB": 2130.859375
+      },
+      {
+        "elapsedMs": 34061,
+        "sumRssMiB": 2130.8671875
+      },
+      {
+        "elapsedMs": 36064,
+        "sumRssMiB": 2130.2734375
+      },
+      {
+        "elapsedMs": 38070,
+        "sumRssMiB": 2130.28125
+      },
+      {
+        "elapsedMs": 40086,
+        "sumRssMiB": 2130.19140625
+      },
+      {
+        "elapsedMs": 42075,
+        "sumRssMiB": 2130.2109375
+      },
+      {
+        "elapsedMs": 44075,
+        "sumRssMiB": 2130.22265625
+      },
+      {
+        "elapsedMs": 46077,
+        "sumRssMiB": 2130.2421875
+      },
+      {
+        "elapsedMs": 48079,
+        "sumRssMiB": 2130.25390625
+      },
+      {
+        "elapsedMs": 50082,
+        "sumRssMiB": 2129.4921875
+      },
+      {
+        "elapsedMs": 52083,
+        "sumRssMiB": 2129.5078125
+      },
+      {
+        "elapsedMs": 54085,
+        "sumRssMiB": 2129.51953125
+      },
+      {
+        "elapsedMs": 56087,
+        "sumRssMiB": 2129.53515625
+      },
+      {
+        "elapsedMs": 58091,
+        "sumRssMiB": 2132.1796875
+      },
+      {
+        "elapsedMs": 60134,
+        "sumRssMiB": 2131.09375
+      },
+      {
+        "elapsedMs": 62103,
+        "sumRssMiB": 2151.97265625
+      },
+      {
+        "elapsedMs": 64108,
+        "sumRssMiB": 2152.90234375
+      },
+      {
+        "elapsedMs": 66104,
+        "sumRssMiB": 2153.390625
+      },
+      {
+        "elapsedMs": 68112,
+        "sumRssMiB": 2153.40625
+      },
+      {
+        "elapsedMs": 70106,
+        "sumRssMiB": 2152.703125
+      },
+      {
+        "elapsedMs": 72108,
+        "sumRssMiB": 2152.546875
+      },
+      {
+        "elapsedMs": 74109,
+        "sumRssMiB": 2152.546875
+      },
+      {
+        "elapsedMs": 76116,
+        "sumRssMiB": 2152.5390625
+      },
+      {
+        "elapsedMs": 78128,
+        "sumRssMiB": 2152.546875
+      },
+      {
+        "elapsedMs": 80123,
+        "sumRssMiB": 2152.44921875
+      },
+      {
+        "elapsedMs": 82119,
+        "sumRssMiB": 2152.44921875
+      },
+      {
+        "elapsedMs": 84121,
+        "sumRssMiB": 2152.453125
+      },
+      {
+        "elapsedMs": 86127,
+        "sumRssMiB": 2152.81640625
+      },
+      {
+        "elapsedMs": 88128,
+        "sumRssMiB": 2153.17578125
+      },
+      {
+        "elapsedMs": 90131,
+        "sumRssMiB": 2153.4921875
+      },
+      {
+        "elapsedMs": 92127,
+        "sumRssMiB": 2153.40625
+      },
+      {
+        "elapsedMs": 94130,
+        "sumRssMiB": 2153.41015625
+      },
+      {
+        "elapsedMs": 96131,
+        "sumRssMiB": 2153.58203125
+      },
+      {
+        "elapsedMs": 98137,
+        "sumRssMiB": 2153.7265625
+      },
+      {
+        "elapsedMs": 100139,
+        "sumRssMiB": 2154.07421875
+      },
+      {
+        "elapsedMs": 102138,
+        "sumRssMiB": 2154.21875
+      },
+      {
+        "elapsedMs": 104138,
+        "sumRssMiB": 2154.53515625
+      },
+      {
+        "elapsedMs": 106140,
+        "sumRssMiB": 2154.57421875
+      },
+      {
+        "elapsedMs": 108141,
+        "sumRssMiB": 2154.84765625
+      },
+      {
+        "elapsedMs": 110147,
+        "sumRssMiB": 2155.05859375
+      },
+      {
+        "elapsedMs": 112146,
+        "sumRssMiB": 2155.64453125
+      },
+      {
+        "elapsedMs": 114148,
+        "sumRssMiB": 2156.0625
+      },
+      {
+        "elapsedMs": 116150,
+        "sumRssMiB": 2156.7734375
+      },
+      {
+        "elapsedMs": 118149,
+        "sumRssMiB": 2156.78515625
+      },
+      {
+        "elapsedMs": 120153,
+        "sumRssMiB": 2157.32421875
+      },
+      {
+        "elapsedMs": 122150,
+        "sumRssMiB": 2157.42578125
+      },
+      {
+        "elapsedMs": 124152,
+        "sumRssMiB": 2157.3515625
+      },
+      {
+        "elapsedMs": 126157,
+        "sumRssMiB": 2155.62109375
+      },
+      {
+        "elapsedMs": 128162,
+        "sumRssMiB": 2155.84765625
+      },
+      {
+        "elapsedMs": 130164,
+        "sumRssMiB": 2155.86328125
+      },
+      {
+        "elapsedMs": 132164,
+        "sumRssMiB": 2155.875
+      },
+      {
+        "elapsedMs": 134168,
+        "sumRssMiB": 2155.88671875
+      },
+      {
+        "elapsedMs": 136168,
+        "sumRssMiB": 2155.91015625
+      },
+      {
+        "elapsedMs": 138169,
+        "sumRssMiB": 2156.1875
+      },
+      {
+        "elapsedMs": 140173,
+        "sumRssMiB": 2156.046875
+      },
+      {
+        "elapsedMs": 142174,
+        "sumRssMiB": 2156.07421875
+      },
+      {
+        "elapsedMs": 144178,
+        "sumRssMiB": 2155.99609375
+      },
+      {
+        "elapsedMs": 146175,
+        "sumRssMiB": 2156.3984375
+      },
+      {
+        "elapsedMs": 148178,
+        "sumRssMiB": 2194.19140625
+      },
+      {
+        "elapsedMs": 148213,
+        "sumRssMiB": 2174.65625
+      }
+    ],
+    "peakSumRssMiB": 2460.8984375,
+    "note": "Sum of RSS of Chromium processes with this profile; shared pages counted multiple times; includes browser/app/workers/native/WASM, not model-only memory."
+  },
+  "currentCodeValidation": {
+    "note": "Replay of the same recorded raw outputs through the final validator after adding a regression guard. Not another inference measurement.",
+    "cases": [
+      {
+        "input": "שמתי קמח, מה עכשיו?",
+        "acceptedForHumanReview": true
+      },
+      {
+        "input": "הוספתי מים אבל עוד לא ערבבתי",
+        "acceptedForHumanReview": true
+      },
+      {
+        "input": "תיקון, לא שמתי קמח",
+        "acceptedForHumanReview": false,
+        "error": "Error: ציטוט כללי אינו ראיה לביצוע פעולה. מה בדיוק עשית או לא עשית?"
+      },
+      {
+        "input": "עשיתי את זה",
+        "acceptedForHumanReview": true
+      },
+      {
+        "input": "על איזה שלב דילגתי?",
+        "acceptedForHumanReview": true
+      },
+      {
+        "input": "כמה שמן להוסיף?",
+        "acceptedForHumanReview": true
+      }
+    ]
+  }
+}

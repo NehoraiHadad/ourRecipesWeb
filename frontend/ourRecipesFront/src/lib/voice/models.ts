@@ -1,5 +1,20 @@
-export type ModelKind = 'asr' | 'llm';
+export type ModelKind = 'asr' | 'llm' | 'tts';
 export interface ModelSpec { kind: ModelKind; repo: string; revision: string; license: string; files: { path: string; bytes: number }[] }
+export const DICTA_MODEL: ModelSpec = {
+  kind: 'llm', repo: 'EMD123/DictaLM-3.0-1.7B-Instruct-Q4_K_M-GGUF', revision: '2f41ecf9bdeb2d75ff4dd85266970402c59c14d8', license: 'Apache-2.0 — Dicta; community GGUF: EMD123',
+  files: [{ path: 'dictalm-3.0-1.7b-instruct-q4_k_m.gguf', bytes: 1107404704 }],
+};
+// Measured lab candidates. None has passed the production quality/latency gate.
+export const QWEN35_MODEL: ModelSpec = {
+  kind: 'llm', repo: 'unsloth/Qwen3.5-0.8B-GGUF', revision: '6ab461498e2023f6e3c1baea90a8f0fe38ab64d0', license: 'Apache-2.0 — Qwen; GGUF: Unsloth',
+  files: [{ path: 'Qwen3.5-0.8B-Q4_K_M.gguf', bytes: 532517120 }],
+};
+export const QWEN35_2B_MODEL: ModelSpec = {
+  kind: 'llm', repo: 'unsloth/Qwen3.5-2B-GGUF', revision: 'f6d5376be1edb4d416d56da11e5397a961aca8ae', license: 'Apache-2.0 — Qwen; GGUF: Unsloth',
+  files: [{ path: 'Qwen3.5-2B-Q4_K_M.gguf', bytes: 1280835840 }],
+};
+export const LLM_CANDIDATES = { dicta: DICTA_MODEL, qwen35: QWEN35_MODEL, 'qwen35-2b': QWEN35_2B_MODEL };
+export type LlmChoice = keyof typeof LLM_CANDIDATES;
 export const MODELS: Record<ModelKind, ModelSpec> = {
   asr: {
     kind: 'asr', repo: 'ivrit-ai/zipformer2-66m-streaming-he', revision: 'ee769a2a13b887f91572eec349458bfb0fe79e7a', license: 'CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai',
@@ -8,12 +23,12 @@ export const MODELS: Record<ModelKind, ModelSpec> = {
       { path: 'sherpa-onnx/encoder.int8.onnx', bytes: 70478964 }, { path: 'sherpa-onnx/decoder.int8.onnx', bytes: 1049105 }, { path: 'sherpa-onnx/joiner.int8.onnx', bytes: 771805 },
     ],
   },
-  llm: {
-    kind: 'llm', repo: 'onnx-community/Qwen3-0.6B-ONNX', revision: '58ca03a5e7b354b480b1a82b34bde8dc7b854cc0', license: 'Apache-2.0 — Qwen; ONNX: ONNX Community',
+  llm: QWEN35_2B_MODEL,
+  tts: {
+    kind: 'tts', repo: 'thewh1teagle/pocket-tts-onnx', revision: '110f5251188e9407b4f724acdd8b0dfd0b20692a', license: 'CC-BY-4.0 — Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle; base: Kyutai',
     files: [
-      { path: 'config.json', bytes: 912 }, { path: 'generation_config.json', bytes: 219 },
-      { path: 'tokenizer.json', bytes: 9117040 }, { path: 'tokenizer_config.json', bytes: 10369 },
-      { path: 'onnx/model_q4.onnx', bytes: 919096585 },
+      { path: 'he/model.onnx', bytes: 176992315 }, { path: 'he/assets.json', bytes: 1654421 },
+      { path: 'he/manifest.json', bytes: 584 }, { path: 'he/renikud.onnx', bytes: 20620594 },
     ],
   },
 };

@@ -1,8 +1,11 @@
-/** Explicit fixture download, ~1 GB. No user audio or text is transmitted. */
+/** Explicit pinned fixture download, ~1.55 GB by default. No user content sent. */
 import { spawnSync } from 'node:child_process';
-import { MODELS, modelURL } from '../../src/lib/voice/models';
+import { MODELS, LLM_CANDIDATES, modelURL } from '../../src/lib/voice/models';
 const root = process.env.VOICE_MODEL_DIR || '/tmp/voice-models';
-const files = Object.values(MODELS).flatMap(s => s.files.map(f => ({ url: modelURL(s, f.path), path: `${root}/${s.kind}/${f.path}`, bytes: f.bytes })));
+const choice = process.env.VOICE_LLM_MODEL as keyof typeof LLM_CANDIDATES | undefined;
+const selected = { ...MODELS, llm: choice ? LLM_CANDIDATES[choice] : MODELS.llm };
+if (!selected.llm) throw new Error('Unknown VOICE_LLM_MODEL');
+const files = Object.values(selected).flatMap(s => s.files.map(f => ({ url: modelURL(s, f.path), path: `${root}/${s.kind}/${f.path}`, bytes: f.bytes })));
 // urllib honours the managed environment's inherited proxy and CA trust.
 const code = `import sys,json,pathlib,urllib.request,time
 for f in json.load(sys.stdin):

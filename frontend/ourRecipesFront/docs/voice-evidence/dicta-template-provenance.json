@@ -1,0 +1,12 @@
+{
+  "checked": "2026-11-10",
+  "ggufRevision": "2f41ecf9bdeb2d75ff4dd85266970402c59c14d8",
+  "ggufMetadataInspection": "Parsed local GGUF header and all 33 metadata entries. general.architecture=qwen3; tokenizer.chat_template absent.",
+  "upstreamTemplate": {
+    "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/chat_template.jinja",
+    "sha256": "00d3026f698ff7f844f9b489b1491b5423ed872b2e5bd7e68b0596c53f7ed784",
+    "format": "ChatML system/user/assistant; generation prefix <|im_start|>assistant\\n",
+    "license": "Apache-2.0"
+  },
+  "adapter": "Raw ChatML formatting. Only the exact pinned Dicta artifact is allowed to omit template metadata; other candidates must expose an embedded ChatML template. No runtime metadata fetch."
+}

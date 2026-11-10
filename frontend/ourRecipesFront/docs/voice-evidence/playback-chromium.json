@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-10T21:17:17.572Z",
+  "environment": "headless cloud Chromium, actual model/AudioContext, no physical audio device",
+  "checks": [
+    "actual PCM scheduled",
+    "microphone disabled during speech",
+    "stop cancels PCM",
+    "full playback drains",
+    "recipe switch cancels",
+    "actual LLM inference cancelled without state change",
+    "model cache deletion",
+    "zero external requests"
+  ],
+  "stats": {
+    "starts": 58,
+    "stops": 2
+  }
+}

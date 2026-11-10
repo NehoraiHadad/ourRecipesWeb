@@ -1,8 +1,9 @@
 import { act, renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, afterEach, describe, expect, it, vi } from 'vitest';
 import { useRecipeVoice } from '@/components/voice/useRecipeVoice';
-const mock = vi.hoisted(() => ({ hasModel: vi.fn(async () => true), deleteModels: vi.fn(async () => {}), downloadModel: vi.fn(async () => {}), start: vi.fn(async () => {}), cancelMic: vi.fn(), finish: vi.fn(async () => new Float32Array(1600)) }));
+const mock = vi.hoisted(() => ({ hasModel: vi.fn(async () => true), deleteModels: vi.fn(async () => {}), downloadModel: vi.fn(async () => {}), openSpeaker: vi.fn(async () => {}), stopSpeaker: vi.fn(), finishSpeaker: vi.fn(async () => {}), start: vi.fn(async () => {}), cancelMic: vi.fn(), finish: vi.fn(async () => new Float32Array(1600)) }));
 vi.mock('@/lib/voice/models', async importOriginal => ({ ...await importOriginal<object>(), hasModel: mock.hasModel, deleteModels: mock.deleteModels, downloadModel: mock.downloadModel }));
+vi.mock('@/lib/voice/streamingSpeaker', () => ({ StreamingSpeaker: class { open = mock.openSpeaker; stop = mock.stopSpeaker; finished = mock.finishSpeaker; push = vi.fn(); } }));
 vi.mock('@/lib/voice/microphone', () => ({ LocalMicrophone: class { start = mock.start; cancel = mock.cancelMic; finish = mock.finish; } }));
 class WorkerStub {
   static instances: WorkerStub[] = [];
@@ -96,4 +97,50 @@ describe('model deletion concurrency (simulated storage)', () => {
     await act(async () => { await result.current.prepare('asr'); });
     expect(mock.downloadModel).toHaveBeenCalledTimes(1);
   });
+});
+
+
+describe('Pocket playback lifecycle (simulated PCM/AudioContext)', () => {
+  it('blocks recording through streamed playback and stops playback/worker on cancel', async () => {
+    let finishAudio!: () => void;
+    mock.finishSpeaker.mockImplementationOnce(() => new Promise<void>(resolve => { finishAudio = resolve; }));
+    const { result } = renderHook(() => useRecipeVoice());
+    await waitFor(() => expect(result.current.status.tts).toBe('cached'));
+    act(() => result.current.setSpeechMode('pocket'));
+    act(() => result.current.speak('להוסיף מים'));
+    await waitFor(() => expect(mock.finishSpeaker).toHaveBeenCalled());
+    expect(result.current.speaking).toBe(true);
+    await act(async () => { await result.current.startRecording(vi.fn()); });
+    expect(mock.start).not.toHaveBeenCalled();
+    act(() => result.current.stopSpeech());
+    expect(mock.stopSpeaker).toHaveBeenCalled();
+    expect(WorkerStub.instances[0].terminate).toHaveBeenCalled();
+    await act(async () => { finishAudio(); });
+    expect(result.current.speaking).toBe(false);
+    expect(result.current.busy).toBe(false);
+    expect(result.current.error).toBe('');
+  });
+  it('releases streamed playback when changing recipe unmounts the guide', async () => {
+    mock.finishSpeaker.mockImplementationOnce(() => new Promise<void>(() => {}));
+    const { result, unmount } = renderHook(() => useRecipeVoice());
+    await waitFor(() => expect(result.current.status.tts).toBe('cached'));
+    act(() => result.current.setSpeechMode('pocket'));
+    act(() => result.current.speak('להוסיף מים'));
+    await waitFor(() => expect(mock.finishSpeaker).toHaveBeenCalled());
+    unmount(); expect(mock.stopSpeaker).toHaveBeenCalled(); expect(WorkerStub.instances[0].terminate).toHaveBeenCalled();
+  });
+});
+
+
+it('changes local LLM candidates without retaining the previous worker or model state', async () => {
+  const { result } = renderHook(() => useRecipeVoice());
+  await waitFor(() => expect(result.current.status.llm).toBe('cached'));
+  await act(async () => { await result.current.generate([]); });
+  const previousWorker = WorkerStub.instances[0];
+  act(() => result.current.changeLlm('dicta'));
+  await waitFor(() => expect(result.current.status.llm).toBe('cached'));
+  expect(previousWorker.terminate).toHaveBeenCalled();
+  expect(result.current.models.llm.repo).toContain('DictaLM');
+  await act(async () => { await result.current.generate([]); });
+  expect(WorkerStub.instances[1].postMessage.mock.calls[0][0]).toMatchObject({ type: 'load', spec: { repo: result.current.models.llm.repo } });
 });

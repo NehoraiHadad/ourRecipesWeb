@@ -1,0 +1,480 @@
+{
+  "date": "2026-11-10T20:55:36.317Z",
+  "environment": "cloud Chromium, headless, WASM CPU, no physical mic/speaker",
+  "isolatedRequested": false,
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "unsloth/Qwen3.5-0.8B-GGUF",
+      "revision": "6ab461498e2023f6e3c1baea90a8f0fe38ab64d0",
+      "license": "Apache-2.0 — Qwen; GGUF: Unsloth",
+      "files": [
+        {
+          "path": "Qwen3.5-0.8B-Q4_K_M.gguf",
+          "bytes": 532517120
+        }
+      ]
+    },
+    "tts": {
+      "kind": "tts",
+      "repo": "thewh1teagle/pocket-tts-onnx",
+      "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+      "license": "CC-BY-4.0 — Pocket Hebrew adapter / ONNX and ReNikud: thewh1teagle; base: Kyutai",
+      "files": [
+        {
+          "path": "he/model.onnx",
+          "bytes": 176992315
+        },
+        {
+          "path": "he/assets.json",
+          "bytes": 1654421
+        },
+        {
+          "path": "he/manifest.json",
+          "bytes": 584
+        },
+        {
+          "path": "he/renikud.onnx",
+          "bytes": 20620594
+        }
+      ]
+    }
+  },
+  "requests": [
+    "blob:http://127.0.0.1:36527/090b4e69-31c7-4793-be2e-d4896fd39e2f",
+    "blob:http://127.0.0.1:36527/d5c1aa4f-dc80-4139-9eda-70d4ee8737b8",
+    "blob:http://127.0.0.1:36527/e4280708-dbe3-45e2-8931-ea9fa695875c",
+    "blob:http://127.0.0.1:36527/a24d21e6-918f-4cff-bde8-f29074084c1b",
+    "blob:http://127.0.0.1:36527/2674ce89-4400-4dae-a615-320208bee16d"
+  ],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": true,
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "llmLoad": {
+    "type": "ready",
+    "ms": 2821.5900000007823,
+    "engine": "wllama-3.13.0-cpu",
+    "threads": 4
+  },
+  "llmCases": [
+    {
+      "input": "שמתי קמח, מה עכשיו?",
+      "expected": "report:s0a0=true",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"report\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"שמתי קמח\"},{\"actionId\":\"s1a1\",\"done\":false,\"evidence\":\"שמתי קמח\"},{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"שמתי קמח\"},{\"actionId\":\"s1a1\",\"done\":false,\"evidence\":\"שמתי קמח\"},{\"actionId\":\"s2a0\",\"done\":true,\"evidence\":\"שמתי קמח\"},{\"actionId\":\"s2a0\",\"done\":false,\"evidence\":\"שמתי קמח\"}],\"focusActionId\":null}",
+      "ms": 45216.08999999985,
+      "firstTokenMs": 27046.979999999516,
+      "finishReason": "stop",
+      "error": "Error: הצעת המודל אינה נתמכת במתכון ובדיווח."
+    },
+    {
+      "input": "הוספתי מים אבל עוד לא ערבבתי",
+      "expected": "report:s1a0=true,s1a1=false",
+      "actual": "report:s1a0=true",
+      "valid": true,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"report\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"הוספתי מים\"}],\"focusActionId\":null}",
+      "ms": 8081.4199999999255,
+      "firstTokenMs": 2849.160000000149,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "תיקון, לא שמתי קמח",
+      "expected": "report:s0a0=false",
+      "actual": "report:s1a0=true",
+      "valid": true,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"report\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"תיקון\"}],\"focusActionId\":null}",
+      "ms": 8831.390000000596,
+      "firstTokenMs": 3043.6450000004843,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "עשיתי את זה",
+      "expected": "clarify",
+      "actual": "clarify",
+      "valid": true,
+      "pass": true,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"clarify\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 7234.06500000041,
+      "firstTokenMs": 3407.054999999702,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "על איזה שלב דילגתי?",
+      "expected": "missed",
+      "actual": "clarify",
+      "valid": true,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":1,\"intent\":\"clarify\",\"changes\":[],\"focusActionId\":null}",
+      "ms": 13235.879999999888,
+      "firstTokenMs": 6136.2949999999255,
+      "finishReason": "stop",
+      "error": ""
+    },
+    {
+      "input": "כמה שמן להוסיף?",
+      "expected": "advice",
+      "actual": "",
+      "valid": false,
+      "pass": false,
+      "type": "result",
+      "text": "{\"recipeKey\":\"lab-0:4221514638\",\"revision\":0,\"intent\":\"report\",\"changes\":[{\"actionId\":\"s1a0\",\"done\":true,\"evidence\":\"כמה שמן להוסיף?\"},{\"actionId\":\"s1a1\",\"done\":false,\"evidence\":\"כמה שמן להוסיף?\"},{\"actionId\":\"s2a0\",\"done\":false,\"evidence\":\"כמה שמן להוסיף?\"}],\"focusActionId\":null}",
+      "ms": 17931.22500000056,
+      "firstTokenMs": 5232.110000000335,
+      "finishReason": "stop",
+      "error": "Error: השאלה או הדיווח העמום דורשים הבהרה ואינם עדכון התקדמות."
+    }
+  ],
+  "llmCaseSummary": {
+    "planned": 6,
+    "completed": 6,
+    "passed": 1
+  },
+  "rendererHeap": {
+    "usedJSHeapSize": 4716511,
+    "note": "renderer JS heap only; excludes Worker/WASM/native allocations"
+  },
+  "processMemory": {
+    "samples": [
+      {
+        "elapsedMs": 19,
+        "sumRssMiB": 555.70703125
+      },
+      {
+        "elapsedMs": 2038,
+        "sumRssMiB": 786.05078125
+      },
+      {
+        "elapsedMs": 4039,
+        "sumRssMiB": 1824.203125
+      },
+      {
+        "elapsedMs": 6039,
+        "sumRssMiB": 1517.9375
+      },
+      {
+        "elapsedMs": 8038,
+        "sumRssMiB": 1514.30859375
+      },
+      {
+        "elapsedMs": 10040,
+        "sumRssMiB": 1509.7109375
+      },
+      {
+        "elapsedMs": 12044,
+        "sumRssMiB": 1504.90625
+      },
+      {
+        "elapsedMs": 14044,
+        "sumRssMiB": 1504.99609375
+      },
+      {
+        "elapsedMs": 16041,
+        "sumRssMiB": 1505.1328125
+      },
+      {
+        "elapsedMs": 18046,
+        "sumRssMiB": 1504.80078125
+      },
+      {
+        "elapsedMs": 20044,
+        "sumRssMiB": 1504.82421875
+      },
+      {
+        "elapsedMs": 22050,
+        "sumRssMiB": 1505.390625
+      },
+      {
+        "elapsedMs": 24049,
+        "sumRssMiB": 1505.390625
+      },
+      {
+        "elapsedMs": 26050,
+        "sumRssMiB": 1502.9765625
+      },
+      {
+        "elapsedMs": 28113,
+        "sumRssMiB": 1522.40234375
+      },
+      {
+        "elapsedMs": 30076,
+        "sumRssMiB": 1522.3046875
+      },
+      {
+        "elapsedMs": 32083,
+        "sumRssMiB": 1571.3203125
+      },
+      {
+        "elapsedMs": 34087,
+        "sumRssMiB": 1570.65625
+      },
+      {
+        "elapsedMs": 36075,
+        "sumRssMiB": 1571.2421875
+      },
+      {
+        "elapsedMs": 38084,
+        "sumRssMiB": 1573.05078125
+      },
+      {
+        "elapsedMs": 40083,
+        "sumRssMiB": 1570.171875
+      },
+      {
+        "elapsedMs": 42088,
+        "sumRssMiB": 1570.82421875
+      },
+      {
+        "elapsedMs": 44084,
+        "sumRssMiB": 1571.1875
+      },
+      {
+        "elapsedMs": 46087,
+        "sumRssMiB": 1571.99609375
+      },
+      {
+        "elapsedMs": 48087,
+        "sumRssMiB": 1572.40234375
+      },
+      {
+        "elapsedMs": 50089,
+        "sumRssMiB": 1573.53125
+      },
+      {
+        "elapsedMs": 52093,
+        "sumRssMiB": 1573.5390625
+      },
+      {
+        "elapsedMs": 54097,
+        "sumRssMiB": 1574.01953125
+      },
+      {
+        "elapsedMs": 56102,
+        "sumRssMiB": 1574.85546875
+      },
+      {
+        "elapsedMs": 58109,
+        "sumRssMiB": 1575.4140625
+      },
+      {
+        "elapsedMs": 60110,
+        "sumRssMiB": 1573.734375
+      },
+      {
+        "elapsedMs": 62109,
+        "sumRssMiB": 1592.23046875
+      },
+      {
+        "elapsedMs": 64133,
+        "sumRssMiB": 1592.25
+      },
+      {
+        "elapsedMs": 66118,
+        "sumRssMiB": 1593.00390625
+      },
+      {
+        "elapsedMs": 68121,
+        "sumRssMiB": 1593.1484375
+      },
+      {
+        "elapsedMs": 70120,
+        "sumRssMiB": 1591.65234375
+      },
+      {
+        "elapsedMs": 72124,
+        "sumRssMiB": 1592.3984375
+      },
+      {
+        "elapsedMs": 74160,
+        "sumRssMiB": 1593.0625
+      },
+      {
+        "elapsedMs": 76162,
+        "sumRssMiB": 1592.9296875
+      },
+      {
+        "elapsedMs": 78160,
+        "sumRssMiB": 1593.734375
+      },
+      {
+        "elapsedMs": 80172,
+        "sumRssMiB": 1593.671875
+      },
+      {
+        "elapsedMs": 82168,
+        "sumRssMiB": 1594.05859375
+      },
+      {
+        "elapsedMs": 84173,
+        "sumRssMiB": 1594.43359375
+      },
+      {
+        "elapsedMs": 86177,
+        "sumRssMiB": 1594.390625
+      },
+      {
+        "elapsedMs": 88186,
+        "sumRssMiB": 1594.703125
+      },
+      {
+        "elapsedMs": 90177,
+        "sumRssMiB": 1594.59765625
+      },
+      {
+        "elapsedMs": 92178,
+        "sumRssMiB": 1594.50390625
+      },
+      {
+        "elapsedMs": 94181,
+        "sumRssMiB": 1594.265625
+      },
+      {
+        "elapsedMs": 96196,
+        "sumRssMiB": 1594.5
+      },
+      {
+        "elapsedMs": 98176,
+        "sumRssMiB": 1595.11328125
+      },
+      {
+        "elapsedMs": 100175,
+        "sumRssMiB": 1595.01953125
+      },
+      {
+        "elapsedMs": 102177,
+        "sumRssMiB": 1595.5078125
+      },
+      {
+        "elapsedMs": 104182,
+        "sumRssMiB": 1596.1328125
+      },
+      {
+        "elapsedMs": 105392,
+        "sumRssMiB": 1619.765625
+      }
+    ],
+    "peakSumRssMiB": 1824.203125,
+    "note": "Sum of RSS of Chromium processes with this profile; shared pages counted multiple times; includes browser/app/workers/native/WASM, not model-only memory."
+  },
+  "networkReview": {
+    "note": "Original request list includes local blob: Worker scripts; these are not outgoing network requests.",
+    "httpOutsideLoopback": []
+  },
+  "stateEvaluation": {
+    "method": "Exact intent and resulting completed/remaining state, allowing omission of an already-false no-op. Any unrelated change still fails. Original exact-change-list scores retained above.",
+    "passed": 2,
+    "total": 6,
+    "cases": [
+      {
+        "input": "שמתי קמח, מה עכשיו?",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "הוספתי מים אבל עוד לא ערבבתי",
+        "expectedCompleted": [
+          "s0a0",
+          "s1a0"
+        ],
+        "actualCompleted": [
+          "s0a0",
+          "s1a0"
+        ],
+        "intentMatches": true,
+        "onlyExpectedChanges": true,
+        "pass": true
+      },
+      {
+        "input": "תיקון, לא שמתי קמח",
+        "expectedCompleted": [],
+        "actualCompleted": [
+          "s0a0",
+          "s1a0"
+        ],
+        "intentMatches": true,
+        "onlyExpectedChanges": false,
+        "pass": false
+      },
+      {
+        "input": "עשיתי את זה",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": [
+          "s0a0"
+        ],
+        "intentMatches": true,
+        "onlyExpectedChanges": true,
+        "pass": true
+      },
+      {
+        "input": "על איזה שלב דילגתי?",
+        "expectedCompleted": [
+          "s0a0"
+        ],
+        "actualCompleted": [
+          "s0a0"
+        ],
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      },
+      {
+        "input": "כמה שמן להוסיף?",
+        "expectedCompleted": [],
+        "actualCompleted": null,
+        "intentMatches": false,
+        "onlyExpectedChanges": true,
+        "pass": false
+      }
+    ]
+  }
+}

@@ -2,13 +2,13 @@
   "date": "2026-11-10",
   "fullSuite": {
     "command": "npm run test:run",
-    "filesPassed": 60,
-    "testsPassed": 558
+    "filesPassed": 62,
+    "testsPassed": 572
   },
   "focusedSuite": {
-    "command": "npm run test:run -- tests/unit/lib/voice",
-    "filesPassed": 3,
-    "testsPassed": 16,
+    "command": "Included in npm run test:run; path filter tests/unit/lib/voice",
+    "filesPassed": 5,
+    "testsPassed": 30,
     "mode": "simulated model/network/speech/microphone/worker APIs"
   },
   "typescript": {
@@ -21,7 +21,7 @@
     "route": "/voice-lab"
   },
   "browserUi": {
-    "command": "VOICE_MODEL_DIR=/tmp/voice-models npm run voice:smoke",
+    "command": "npm run voice:smoke",
     "passed": [
       "partial completion",
       "correction",
@@ -30,9 +30,10 @@
       "390px viewport without horizontal overflow",
       "unsupported-engine alternatives",
       "no external content requests",
-      "download/cache/delete with local model fixtures"
+      "download/cache/delete with local model fixtures",
+      "typed navigation command without LLM download"
     ],
-    "networkForDownloads": "simulated; local prerecorded files replayed at pinned model URLs"
+    "networkForDownloads": "earlier phase replayed fixtures at pinned URLs; latest UI run used no downloads"
   },
   "nativeAsrReference": {
     "engine": "sherpa-onnx 2.0.1",
@@ -43,5 +44,37 @@
   },
   "physicalDeviceTesting": false,
   "realMicrophoneTesting": false,
-  "realHebrewTtsTesting": false
+  "realHebrewTtsTesting": true,
+  "actualBrowserPlayback": {
+    "command": "npm run voice:playback-smoke",
+    "evidence": "playback-chromium.json",
+    "realModel": true,
+    "realAudioContext": true,
+    "physicalSpeaker": false,
+    "checks": [
+      "actual PCM scheduled",
+      "microphone disabled during speech",
+      "stop cancels PCM",
+      "full playback drains",
+      "recipe switch cancels",
+      "actual LLM inference cancelled without state change",
+      "model cache deletion",
+      "zero external requests"
+    ]
+  },
+  "realHebrewTtsTestingScope": "Pinned Pocket Hebrew / ReNikud weights, generated PCM and browser audio clock on cloud host. No physical speaker or human listening assessment.",
+  "llmGate": {
+    "accepted": false,
+    "latest": "Qwen3.5-2B Q4_K_M, wllama 3.13.0, CPU4",
+    "semanticCasesPassed": 3,
+    "plannedCases": 6,
+    "evidence": "qwen35-2b-projected.json",
+    "automaticStateMutation": false,
+    "dictaFinal": {
+      "passed": 3,
+      "planned": 6,
+      "evidence": "dicta-grammar-final.json",
+      "unsupportedCorrection": "Raw answer proposed water=true from generic evidence תיקון; final validator replay rejects it."
+    }
+  }
 }
