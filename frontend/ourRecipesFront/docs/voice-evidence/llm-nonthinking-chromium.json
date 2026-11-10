@@ -1,0 +1,81 @@
+{
+  "date": "2026-11-10T20:06:10.769Z",
+  "environment": "cloud Chromium, headless, WASM 1 thread, no physical mic/speaker",
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "onnx-community/Qwen3-0.6B-ONNX",
+      "revision": "58ca03a5e7b354b480b1a82b34bde8dc7b854cc0",
+      "license": "Apache-2.0 — Qwen; ONNX: ONNX Community",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 912
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 219
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 9117040
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 10369
+        },
+        {
+          "path": "onnx/model_q4.onnx",
+          "bytes": 919096585
+        }
+      ]
+    }
+  },
+  "requests": [],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "llmLoad": {
+    "type": "ready",
+    "ms": 6200.5
+  },
+  "generationFailure": {
+    "input": "שמתי קמח, מה עכשיו?",
+    "timeoutMs": 180000,
+    "completedCases": 0,
+    "plannedCases": 6,
+    "configuration": "Explicit apply_chat_template(enable_thinking=false), 192 output-token cap, q4 WASM one thread",
+    "outcome": "No complete result before timeout; Hebrew interpretation quality not established"
+  }
+}

@@ -6,3 +6,6 @@ node_modules
 
 .vercel
 .env*.local
+
+# Reproducible, self-hosted voice inference assets (npm run voice:prepare).
+/public/voice/runtime/

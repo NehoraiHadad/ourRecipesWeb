@@ -1,0 +1,94 @@
+{
+  "date": "2026-11-10T19:57:48.026Z",
+  "environment": "cloud Chromium, headless, WASM 1 thread, no physical mic/speaker",
+  "cachePopulation": "local fixture HTTP; excluded from download latency",
+  "models": {
+    "asr": {
+      "kind": "asr",
+      "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+      "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+      "license": "CC-BY-4.0 — Yakov Kolani; ONNX exports: ivrit.ai",
+      "files": [
+        {
+          "path": "onnx/config.json",
+          "bytes": 10365
+        },
+        {
+          "path": "sherpa-onnx/tokens.txt",
+          "bytes": 17086
+        },
+        {
+          "path": "sherpa-onnx/encoder.int8.onnx",
+          "bytes": 70478964
+        },
+        {
+          "path": "sherpa-onnx/decoder.int8.onnx",
+          "bytes": 1049105
+        },
+        {
+          "path": "sherpa-onnx/joiner.int8.onnx",
+          "bytes": 771805
+        }
+      ]
+    },
+    "llm": {
+      "kind": "llm",
+      "repo": "onnx-community/Qwen3-0.6B-ONNX",
+      "revision": "58ca03a5e7b354b480b1a82b34bde8dc7b854cc0",
+      "license": "Apache-2.0 — Qwen; ONNX: ONNX Community",
+      "files": [
+        {
+          "path": "config.json",
+          "bytes": 912
+        },
+        {
+          "path": "generation_config.json",
+          "bytes": 219
+        },
+        {
+          "path": "tokenizer.json",
+          "bytes": 9117040
+        },
+        {
+          "path": "tokenizer_config.json",
+          "bytes": 10369
+        },
+        {
+          "path": "onnx/model_q4.onnx",
+          "bytes": 919096585
+        }
+      ]
+    }
+  },
+  "requests": [],
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "cores": 5,
+    "localHebrewVoices": []
+  },
+  "asrLoad": {
+    "type": "ready",
+    "ms": 2094.5999999999767
+  },
+  "asrSilence": {
+    "type": "result",
+    "text": "",
+    "ms": 485.30000000004657,
+    "audioSeconds": 3,
+    "chunks": 3
+  },
+  "llmLoad": {
+    "type": "ready",
+    "ms": 8645.400000000023
+  },
+  "generationFailure": {
+    "input": "שמתי קמח, מה עכשיו?",
+    "timeoutMs": 180000,
+    "outcome": "No complete result before timeout",
+    "configurationNote": "Initial run used unsupported pipeline tokenizer_kwargs; superseded by explicit non-thinking chat template follow-up."
+  },
+  "memorySnapshot": {
+    "rendererRssApproxGiB": 4.6,
+    "note": "ps RSS snapshot during generation; not peak or model-only memory"
+  }
+}

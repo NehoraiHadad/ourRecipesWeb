@@ -1,0 +1,47 @@
+{
+  "date": "2026-11-10",
+  "fullSuite": {
+    "command": "npm run test:run",
+    "filesPassed": 60,
+    "testsPassed": 558
+  },
+  "focusedSuite": {
+    "command": "npm run test:run -- tests/unit/lib/voice",
+    "filesPassed": 3,
+    "testsPassed": 16,
+    "mode": "simulated model/network/speech/microphone/worker APIs"
+  },
+  "typescript": {
+    "command": "npx tsc --noEmit",
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "npm run build",
+    "exitCode": 0,
+    "route": "/voice-lab"
+  },
+  "browserUi": {
+    "command": "VOICE_MODEL_DIR=/tmp/voice-models npm run voice:smoke",
+    "passed": [
+      "partial completion",
+      "correction",
+      "earlier gap",
+      "recipe switch reset",
+      "390px viewport without horizontal overflow",
+      "unsupported-engine alternatives",
+      "no external content requests",
+      "download/cache/delete with local model fixtures"
+    ],
+    "networkForDownloads": "simulated; local prerecorded files replayed at pinned model URLs"
+  },
+  "nativeAsrReference": {
+    "engine": "sherpa-onnx 2.0.1",
+    "threads": 1,
+    "decodeSeconds": 0.2618741900000714,
+    "text": "אמרת לי השביעה אתמול ועדת חדשה ועדת בחירות זמנית חדשה, בת אישה חברים.",
+    "matchesBrowser": true
+  },
+  "physicalDeviceTesting": false,
+  "realMicrophoneTesting": false,
+  "realHebrewTtsTesting": false
+}
