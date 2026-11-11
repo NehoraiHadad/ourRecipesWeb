@@ -12,6 +12,17 @@ from semantic_data import authored,build,audit_queries
 
 
 class SemanticTests(unittest.TestCase):
+    def test_opt_in_word_alignment_preserves_all_actions_and_frozen_v1(self):
+        recs,old=authored();newrecs,new=authored(aligned_gold=True)
+        self.assertEqual(recs,newrecs);changed=[]
+        for before,after in zip(old,new):
+            if before!=after:changed.append(before['id'])
+            self.assertEqual(before['utterance'],after['utterance'])
+            self.assertEqual([(x['actionId'],x['done']) for x in before['gold']['changes']],[(x['actionId'],x['done']) for x in after['gold']['changes']])
+            if before['split']!='test':self.assertEqual(before,after)
+        self.assertEqual(len(changed),4)
+        self.assertTrue(all('test-coreference' in key for key in changed))
+
     def test_same_text_requires_local_antecedent_and_context_retains_it(self):
         recs,rows=authored()
         local=next(r for r in rows if r['scenario']=='history-local-a0')

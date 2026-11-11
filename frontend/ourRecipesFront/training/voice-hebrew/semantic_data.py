@@ -22,7 +22,7 @@ PAIRS={'train':[('גזר','בטטה'),('בצל','עגבנייה'),('מלפפון
        'test':[('אפרסמון','לפת'),('משמש','דלורית'),('שזיף','פפאיה'),('אפרסק','נקטרינה')]}
 
 
-def authored():
+def authored(aligned_gold=False):
     recs={};rows=[]
     for split,pairs in PAIRS.items():
         for n,(male,female) in enumerate(pairs):
@@ -100,7 +100,11 @@ def authored():
                     add('dev-contrast',a['report']+'; '+c['definite']+' לא '+c['passive'],[(a,True,a['report']),(c,False,c['definite']+' לא '+c['passive'])])
                 else:
                     tail='ו'+b['pronoun']+' עדיין לא '+b['verb']
-                    add('test-coreference',a['report']+'; '+tail,[(a,True,a['report']),(b,False,b['pronoun']+' עדיין לא '+b['verb'])])
+                    # v1 is retained for exact reproduction of the frozen study.
+                    # v2 includes the conjunction: the pinned tokenizer merges
+                    # "ואותו" into one token, so stripping ו is unreachable.
+                    quote=tail if aligned_gold else b['pronoun']+' עדיין לא '+b['verb']
+                    add('test-coreference',a['report']+'; '+tail,[(a,True,a['report']),(b,False,quote)])
                     text='ובינתיים '+b['verb']+' '+b['pronoun']
                     add('test-local-context',text,[(b,True,b['verb']+' '+b['pronoun'])],previous={'recipe_id':rid,'utterance':a['report']})
                     add('test-foreign-context',text,intent='clarify',previous={'recipe_id':'unrelated','utterance':a['report']})
@@ -132,9 +136,9 @@ def write(output,recs,rows,origin):
     return output
 
 
-def build(output):
+def build(output,aligned_gold=False):
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
-    recs,new=authored()
+    recs,new=authored(aligned_gold)
     with tempfile.TemporaryDirectory() as tmp:
         old=augmented_data(Path(tmp)/'old');oldrecs,oldrows=load_data(old)
     # Historical holdouts are not used for checkpoint or family selection.
@@ -147,6 +151,7 @@ def build(output):
     for name in ['validation.jsonl','test.jsonl']:
         if (control/name).read_bytes()!=(richer/name).read_bytes():raise ValueError('Comparison holdouts differ')
     audit={'new_counts':validate(list(recs.values()),new),'human_reviewed':False,
+        'annotation_version':'v2-word-aligned' if aligned_gold else 'v1-frozen',
         'source_sha256':digest((ROOT/'semantic_data.py').read_bytes()),
         'new_split_sha256':{s:digest([r for r in new if r['split']==s]) for s in ['train','validation','test']},
         'historical_holdout_sha256':{s:digest((ROOT/'data'/f'{s}.jsonl').read_bytes()) for s in ['validation','test']},
@@ -172,5 +177,5 @@ def audit_queries(recs,rows):
 
 if __name__=='__main__':
     import argparse
-    p=argparse.ArgumentParser();p.add_argument('output');a=p.parse_args()
-    _,_,report=build(a.output);print(json.dumps(report,ensure_ascii=False,indent=2))
+    p=argparse.ArgumentParser();p.add_argument('output');p.add_argument('--aligned-gold',action='store_true');a=p.parse_args()
+    _,_,report=build(a.output,a.aligned_gold);print(json.dumps(report,ensure_ascii=False,indent=2))

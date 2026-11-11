@@ -39,3 +39,5 @@
 הריצה המרוחקת: `python3 colab_pilot.py --cli colab --session ourrecipes-semantic-new --run-id ourrecipes-semantic-new --output runs/semantic-new --semantic --steps 1000 --max-seconds 2000 --ssh-identity /path/to/local/key`. נדרש CLI מאומת. המפתח נשאר מקומי. אסור להקצות שוב סביבת GPU כדי לפתור תקלה במעקב; בודקים ומשחזרים את הסביבה הקיימת. לאחר סיום או כשל בודקים שהסביבה נסגרה.
 
 התיעוד הרלוונטי נשאר [שמירת מודל טוב באימות](https://huggingface.co/docs/transformers/en/training) ועקרון [דחיית תשובה ללא תמיכה מקומית](https://github.com/huggingface/transformers/blob/main/examples/pytorch/question-answering/run_qa_no_trainer.py). זה אינו אימון מחדש של עברית מאפס או מימוש של מדד SQuAD.
+
+[תוצאות הסבב](SEMANTIC_RESULTS.he.md). אחרי המבחן נמצא פגם בארבעה גבולות ציטוט בטסט בלבד. מצב `semantic_data.py OUTPUT --aligned-gold` הוא תיקון תיוג עתידי מפורש; v1 נשמר כברירת מחדל, ומדדי הסבב הקפואים לא שונו. טביעות קוד האימון המקוריות נשמרות בפרוטוקול וב־`runs/colab-semantic-v7/material.zip`; קוד האריזה, הסיכום ותיקון התיוג עודכנו אחרי ההרצה ונרשמים בנפרד.

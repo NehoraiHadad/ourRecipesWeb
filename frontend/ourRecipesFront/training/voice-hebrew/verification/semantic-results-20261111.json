@@ -1,0 +1,2613 @@
+{
+  "scope": "Synthetic model-only comparison; common context3 input; isolated data or loss changes, two fixed seeds",
+  "selected_arm": "loss_only",
+  "retained_seed": 42,
+  "aggregate_validation": {
+    "control": {
+      "seeds": 2,
+      "minimum_recall": 0.17647058823529413,
+      "mean_precision": 0.7375,
+      "mean_recall": 0.3014705882352941,
+      "mean_f0_5": 0.5452551834130781,
+      "mean_state_exact": 0.4326923076923077,
+      "mean_quote_exact": 0.40384615384615385
+    },
+    "data_only": {
+      "seeds": 2,
+      "minimum_recall": 0.5294117647058824,
+      "mean_precision": 0.8155676001204457,
+      "mean_recall": 0.7132352941176471,
+      "mean_f0_5": 0.7769616467276566,
+      "mean_state_exact": 0.6490384615384615,
+      "mean_quote_exact": 0.5576923076923077
+    },
+    "loss_only": {
+      "seeds": 2,
+      "minimum_recall": 0.45588235294117646,
+      "mean_precision": 0.8920525657071339,
+      "mean_recall": 0.5294117647058824,
+      "mean_f0_5": 0.7802925857843137,
+      "mean_state_exact": 0.6105769230769231,
+      "mean_quote_exact": 0.5528846153846154
+    }
+  },
+  "threshold": 0.5,
+  "test_used_for_selection": false,
+  "selection": "minimum seed recall >=70% preferred; mean F0.5, state exact, quote exact; fixed seed42 retained, no best-seed shopping",
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "profile": "context-span-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 500,
+        "training_seconds": 173.46169136100002,
+        "gpu_peak_allocated_bytes": 3710528000,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 104,
+          "exact_proposals": 32,
+          "exact_rate": 0.3076923076923077,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 68,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 104,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 42,
+          "exact_rate": 0.40384615384615385,
+          "false_updates": 4,
+          "proposed_updates": 16,
+          "expected_updates": 68,
+          "update_precision": 0.75,
+          "update_recall": 0.17647058823529413,
+          "clarifications": 88,
+          "exact_including_gold_evidence": 41,
+          "nonmatching_gold_evidence": 6
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 39,
+          "exact_rate": 0.375,
+          "false_updates": 2,
+          "proposed_updates": 14,
+          "expected_updates": 68,
+          "update_precision": 0.8571428571428571,
+          "update_recall": 0.17647058823529413,
+          "clarifications": 91,
+          "exact_including_gold_evidence": 38,
+          "nonmatching_gold_evidence": 4
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "4f709e3cac2fec0fa99b58801e7009d94fd4488263fb2cd87940d3309f2efc0c",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-span-v3",
+        "eval_every": 250,
+        "loss": "historical weighted token mean",
+        "selected_step": 500
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 58.838929216,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 41,
+            "exact_rate": 0.3942307692307692,
+            "false_updates": 41,
+            "proposed_updates": 81,
+            "expected_updates": 68,
+            "update_precision": 0.49382716049382713,
+            "update_recall": 0.5882352941176471,
+            "clarifications": 40,
+            "exact_including_gold_evidence": 28,
+            "nonmatching_gold_evidence": 58
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 99.87369850599998,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 42,
+            "exact_rate": 0.40384615384615385,
+            "false_updates": 4,
+            "proposed_updates": 16,
+            "expected_updates": 68,
+            "update_precision": 0.75,
+            "update_recall": 0.17647058823529413,
+            "clarifications": 88,
+            "exact_including_gold_evidence": 41,
+            "nonmatching_gold_evidence": 6
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 137.418322552,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 46,
+            "exact_rate": 0.4423076923076923,
+            "false_updates": 4,
+            "proposed_updates": 23,
+            "expected_updates": 68,
+            "update_precision": 0.8260869565217391,
+            "update_recall": 0.27941176470588236,
+            "clarifications": 80,
+            "exact_including_gold_evidence": 39,
+            "nonmatching_gold_evidence": 13
+          }
+        }
+      ]
+    },
+    {
+      "arm": "data_only",
+      "seed": 42,
+      "profile": "context-span-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 1000,
+        "training_seconds": 171.550391799,
+        "gpu_peak_allocated_bytes": 3711411712,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 104,
+          "exact_proposals": 32,
+          "exact_rate": 0.3076923076923077,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 68,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 104,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 76,
+          "exact_rate": 0.7307692307692307,
+          "false_updates": 20,
+          "proposed_updates": 81,
+          "expected_updates": 68,
+          "update_precision": 0.7530864197530864,
+          "update_recall": 0.8970588235294118,
+          "clarifications": 40,
+          "exact_including_gold_evidence": 61,
+          "nonmatching_gold_evidence": 42
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 76,
+          "exact_rate": 0.7307692307692307,
+          "false_updates": 20,
+          "proposed_updates": 81,
+          "expected_updates": 68,
+          "update_precision": 0.7530864197530864,
+          "update_recall": 0.8970588235294118,
+          "clarifications": 40,
+          "exact_including_gold_evidence": 61,
+          "nonmatching_gold_evidence": 42
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "c622b97e99b1c6eb7197bba3914a3019ac6972793d8020d1d590876ce18d513a",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-span-v3",
+        "eval_every": 250,
+        "loss": "historical weighted token mean",
+        "selected_step": 1000
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 57.21681461899999,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 56,
+            "exact_rate": 0.5384615384615384,
+            "false_updates": 48,
+            "proposed_updates": 98,
+            "expected_updates": 68,
+            "update_precision": 0.5102040816326531,
+            "update_recall": 0.7352941176470589,
+            "clarifications": 40,
+            "exact_including_gold_evidence": 44,
+            "nonmatching_gold_evidence": 74
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 98.50184447199996,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 61,
+            "exact_rate": 0.5865384615384616,
+            "false_updates": 5,
+            "proposed_updates": 39,
+            "expected_updates": 68,
+            "update_precision": 0.8717948717948718,
+            "update_recall": 0.5,
+            "clarifications": 66,
+            "exact_including_gold_evidence": 58,
+            "nonmatching_gold_evidence": 8
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 135.50849378499998,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 65,
+            "exact_rate": 0.625,
+            "false_updates": 15,
+            "proposed_updates": 65,
+            "expected_updates": 68,
+            "update_precision": 0.7692307692307693,
+            "update_recall": 0.7352941176470589,
+            "clarifications": 52,
+            "exact_including_gold_evidence": 52,
+            "nonmatching_gold_evidence": 31
+          }
+        }
+      ]
+    },
+    {
+      "arm": "loss_only",
+      "seed": 42,
+      "profile": "context-joint-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 1000,
+        "training_seconds": 198.60260534999998,
+        "gpu_peak_allocated_bytes": 3711411712,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 104,
+          "exact_proposals": 32,
+          "exact_rate": 0.3076923076923077,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 68,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 104,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 67,
+          "exact_rate": 0.6442307692307693,
+          "false_updates": 6,
+          "proposed_updates": 47,
+          "expected_updates": 68,
+          "update_precision": 0.8723404255319149,
+          "update_recall": 0.6029411764705882,
+          "clarifications": 58,
+          "exact_including_gold_evidence": 56,
+          "nonmatching_gold_evidence": 19
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 67,
+          "exact_rate": 0.6442307692307693,
+          "false_updates": 6,
+          "proposed_updates": 47,
+          "expected_updates": 68,
+          "update_precision": 0.8723404255319149,
+          "update_recall": 0.6029411764705882,
+          "clarifications": 58,
+          "exact_including_gold_evidence": 56,
+          "nonmatching_gold_evidence": 19
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "4f709e3cac2fec0fa99b58801e7009d94fd4488263fb2cd87940d3309f2efc0c",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "selected_step": 1000
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 53.688380618,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 46,
+            "exact_rate": 0.4423076923076923,
+            "false_updates": 4,
+            "proposed_updates": 22,
+            "expected_updates": 68,
+            "update_precision": 0.8181818181818182,
+            "update_recall": 0.2647058823529412,
+            "clarifications": 82,
+            "exact_including_gold_evidence": 40,
+            "nonmatching_gold_evidence": 10
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 100.94621210699995,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 42,
+            "exact_rate": 0.40384615384615385,
+            "false_updates": 2,
+            "proposed_updates": 18,
+            "expected_updates": 68,
+            "update_precision": 0.8888888888888888,
+            "update_recall": 0.23529411764705882,
+            "clarifications": 88,
+            "exact_including_gold_evidence": 42,
+            "nonmatching_gold_evidence": 2
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 147.74863861899996,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 61,
+            "exact_rate": 0.5865384615384616,
+            "false_updates": 18,
+            "proposed_updates": 63,
+            "expected_updates": 68,
+            "update_precision": 0.7142857142857143,
+            "update_recall": 0.6617647058823529,
+            "clarifications": 47,
+            "exact_including_gold_evidence": 49,
+            "nonmatching_gold_evidence": 32
+          }
+        }
+      ]
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "profile": "context-span-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 250,
+        "training_seconds": 165.7495639089999,
+        "gpu_peak_allocated_bytes": 3708350464,
+        "validation": {
+          "threshold": 0.95,
+          "examples": 104,
+          "exact_proposals": 41,
+          "exact_rate": 0.3942307692307692,
+          "false_updates": 0,
+          "proposed_updates": 13,
+          "expected_updates": 68,
+          "update_precision": 1.0,
+          "update_recall": 0.19117647058823528,
+          "clarifications": 87,
+          "exact_including_gold_evidence": 41,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 48,
+          "exact_rate": 0.46153846153846156,
+          "false_updates": 11,
+          "proposed_updates": 40,
+          "expected_updates": 68,
+          "update_precision": 0.725,
+          "update_recall": 0.4264705882352941,
+          "clarifications": 69,
+          "exact_including_gold_evidence": 43,
+          "nonmatching_gold_evidence": 18
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 41,
+          "exact_rate": 0.3942307692307692,
+          "false_updates": 4,
+          "proposed_updates": 17,
+          "expected_updates": 68,
+          "update_precision": 0.7647058823529411,
+          "update_recall": 0.19117647058823528,
+          "clarifications": 88,
+          "exact_including_gold_evidence": 40,
+          "nonmatching_gold_evidence": 8
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "4f709e3cac2fec0fa99b58801e7009d94fd4488263fb2cd87940d3309f2efc0c",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-span-v3",
+        "eval_every": 250,
+        "loss": "historical weighted token mean",
+        "selected_step": 250
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 51.53457944899992,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 48,
+            "exact_rate": 0.46153846153846156,
+            "false_updates": 11,
+            "proposed_updates": 40,
+            "expected_updates": 68,
+            "update_precision": 0.725,
+            "update_recall": 0.4264705882352941,
+            "clarifications": 69,
+            "exact_including_gold_evidence": 43,
+            "nonmatching_gold_evidence": 18
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 92.51152607099993,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 38,
+            "exact_rate": 0.36538461538461536,
+            "false_updates": 6,
+            "proposed_updates": 20,
+            "expected_updates": 68,
+            "update_precision": 0.7,
+            "update_recall": 0.20588235294117646,
+            "clarifications": 84,
+            "exact_including_gold_evidence": 38,
+            "nonmatching_gold_evidence": 7
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 129.87237443700008,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 35,
+            "exact_rate": 0.33653846153846156,
+            "false_updates": 13,
+            "proposed_updates": 26,
+            "expected_updates": 68,
+            "update_precision": 0.5,
+            "update_recall": 0.19117647058823528,
+            "clarifications": 84,
+            "exact_including_gold_evidence": 34,
+            "nonmatching_gold_evidence": 14
+          }
+        }
+      ]
+    },
+    {
+      "arm": "data_only",
+      "seed": 17,
+      "profile": "context-span-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 750,
+        "training_seconds": 185.98777574899987,
+        "gpu_peak_allocated_bytes": 3709322752,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 104,
+          "exact_proposals": 32,
+          "exact_rate": 0.3076923076923077,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 68,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 104,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 59,
+          "exact_rate": 0.5673076923076923,
+          "false_updates": 5,
+          "proposed_updates": 41,
+          "expected_updates": 68,
+          "update_precision": 0.8780487804878049,
+          "update_recall": 0.5294117647058824,
+          "clarifications": 70,
+          "exact_including_gold_evidence": 55,
+          "nonmatching_gold_evidence": 11
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 72,
+          "exact_rate": 0.6923076923076923,
+          "false_updates": 8,
+          "proposed_updates": 58,
+          "expected_updates": 68,
+          "update_precision": 0.8620689655172413,
+          "update_recall": 0.7352941176470589,
+          "clarifications": 54,
+          "exact_including_gold_evidence": 54,
+          "nonmatching_gold_evidence": 27
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "c622b97e99b1c6eb7197bba3914a3019ac6972793d8020d1d590876ce18d513a",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-span-v3",
+        "eval_every": 250,
+        "loss": "historical weighted token mean",
+        "selected_step": 750
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 51.93585351899992,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 49,
+            "exact_rate": 0.47115384615384615,
+            "false_updates": 9,
+            "proposed_updates": 37,
+            "expected_updates": 68,
+            "update_precision": 0.7567567567567568,
+            "update_recall": 0.4117647058823529,
+            "clarifications": 77,
+            "exact_including_gold_evidence": 48,
+            "nonmatching_gold_evidence": 12
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 94.66274117599983,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 64,
+            "exact_rate": 0.6153846153846154,
+            "false_updates": 14,
+            "proposed_updates": 60,
+            "expected_updates": 68,
+            "update_precision": 0.7666666666666667,
+            "update_recall": 0.6764705882352942,
+            "clarifications": 48,
+            "exact_including_gold_evidence": 50,
+            "nonmatching_gold_evidence": 30
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 143.35615702299992,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 59,
+            "exact_rate": 0.5673076923076923,
+            "false_updates": 5,
+            "proposed_updates": 41,
+            "expected_updates": 68,
+            "update_precision": 0.8780487804878049,
+            "update_recall": 0.5294117647058824,
+            "clarifications": 70,
+            "exact_including_gold_evidence": 55,
+            "nonmatching_gold_evidence": 11
+          }
+        }
+      ]
+    },
+    {
+      "arm": "loss_only",
+      "seed": 17,
+      "profile": "context-joint-v3",
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 1000,
+        "training_seconds": 237.68177355400007,
+        "gpu_peak_allocated_bytes": 3708350464,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 104,
+          "exact_proposals": 32,
+          "exact_rate": 0.3076923076923077,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 68,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 104,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 60,
+          "exact_rate": 0.5769230769230769,
+          "false_updates": 3,
+          "proposed_updates": 34,
+          "expected_updates": 68,
+          "update_precision": 0.9117647058823529,
+          "update_recall": 0.45588235294117646,
+          "clarifications": 72,
+          "exact_including_gold_evidence": 59,
+          "nonmatching_gold_evidence": 4
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 104,
+          "exact_proposals": 60,
+          "exact_rate": 0.5769230769230769,
+          "false_updates": 3,
+          "proposed_updates": 34,
+          "expected_updates": 68,
+          "update_precision": 0.9117647058823529,
+          "update_recall": 0.45588235294117646,
+          "clarifications": 72,
+          "exact_including_gold_evidence": 59,
+          "nonmatching_gold_evidence": 4
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "4f709e3cac2fec0fa99b58801e7009d94fd4488263fb2cd87940d3309f2efc0c",
+        "source_sha256": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "selected_step": 1000
+      },
+      "learning_curve": [
+        {
+          "step": 250,
+          "seconds": 62.180999031000056,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 46,
+            "exact_rate": 0.4423076923076923,
+            "false_updates": 10,
+            "proposed_updates": 38,
+            "expected_updates": 68,
+            "update_precision": 0.7368421052631579,
+            "update_recall": 0.4117647058823529,
+            "clarifications": 75,
+            "exact_including_gold_evidence": 41,
+            "nonmatching_gold_evidence": 16
+          }
+        },
+        {
+          "step": 500,
+          "seconds": 104.16462896100006,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 42,
+            "exact_rate": 0.40384615384615385,
+            "false_updates": 2,
+            "proposed_updates": 18,
+            "expected_updates": 68,
+            "update_precision": 0.8888888888888888,
+            "update_recall": 0.23529411764705882,
+            "clarifications": 92,
+            "exact_including_gold_evidence": 42,
+            "nonmatching_gold_evidence": 2
+          }
+        },
+        {
+          "step": 750,
+          "seconds": 195.9142403840001,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 104,
+            "exact_proposals": 56,
+            "exact_rate": 0.5384615384615384,
+            "false_updates": 4,
+            "proposed_updates": 33,
+            "expected_updates": 68,
+            "update_precision": 0.8787878787878788,
+            "update_recall": 0.4264705882352941,
+            "clarifications": 76,
+            "exact_including_gold_evidence": 55,
+            "nonmatching_gold_evidence": 5
+          }
+        }
+      ]
+    }
+  ],
+  "data_audit": {
+    "new_counts": {
+      "train": {
+        "recipes": 16,
+        "examples": 1472
+      },
+      "validation": {
+        "recipes": 4,
+        "examples": 104
+      },
+      "test": {
+        "recipes": 4,
+        "examples": 104
+      }
+    },
+    "human_reviewed": false,
+    "source_sha256": "3814d2ebe188631b4a38de33264656f31e720532235843ebd516f4d3b62c82dd",
+    "new_split_sha256": {
+      "train": "a05ad9a6a7243130673fa488f21afcfccc54242f26cb46a7622995a7f642dc79",
+      "validation": "f272480b7a23823037323f23b9ce2c26d7d3fef6915d0c7be460cea712d75ec3",
+      "test": "5fdf0d150b7094d57cac18af6e2b0d11f83f91e0e612d014d891de00fa31ffe6"
+    },
+    "historical_holdout_sha256": {
+      "validation": "a42cd2d3c8f4d6cb76333f23054ab54a96bf90c41690cfcac13c0bf82caa00d2",
+      "test": "8cad3595776c18aaf471f4350f2d204be64c101f1eafe0c8af632a005580e74c"
+    },
+    "scope": "Synthetic surface-form/recipe holdouts, not independently collected natural speech or full linguistic-family disjointness",
+    "ambiguity_policy": "Meta, uncertainty and partial-action reports do not assert completion; foreign-recipe antecedents are discarded. Negative correction needs an explicit negative assertion.",
+    "query_conflicts": {
+      "2": {
+        "conflicting_effective_inputs": 40,
+        "examples": [
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a0",
+              "semantic-train-0-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a2",
+              "semantic-train-0-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a0",
+              "semantic-train-0-different-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a2",
+              "semantic-train-0-different-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a0",
+              "semantic-train-1-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a2",
+              "semantic-train-1-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          }
+        ]
+      },
+      "3": {
+        "conflicting_effective_inputs": 0,
+        "examples": []
+      }
+    }
+  },
+  "human_reviewed": false,
+  "production_ready": false,
+  "source_sha256": {
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "span_pilot.py": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+    "semantic_data.py": "3814d2ebe188631b4a38de33264656f31e720532235843ebd516f4d3b62c82dd",
+    "semantic_sweep.py": "30088686d54b690617f846fc1543a1e38dfc7c80aa7ff64c68fd3f6f7bccd74a"
+  },
+  "new_test_once": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 50,
+        "exact_rate": 0.4807692307692308,
+        "false_updates": 11,
+        "proposed_updates": 44,
+        "expected_updates": 68,
+        "update_precision": 0.75,
+        "update_recall": 0.4852941176470588,
+        "clarifications": 77,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 4
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 46,
+        "nonmatching_gold_evidence": 18
+      }
+    },
+    {
+      "arm": "data_only",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 58,
+        "exact_rate": 0.5576923076923077,
+        "false_updates": 23,
+        "proposed_updates": 74,
+        "expected_updates": 68,
+        "update_precision": 0.6891891891891891,
+        "update_recall": 0.75,
+        "clarifications": 54,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 4
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 4
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 3
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 3
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 56,
+        "nonmatching_gold_evidence": 27
+      }
+    },
+    {
+      "arm": "loss_only",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 56,
+        "exact_rate": 0.5384615384615384,
+        "false_updates": 12,
+        "proposed_updates": 48,
+        "expected_updates": 68,
+        "update_precision": 0.75,
+        "update_recall": 0.5294117647058824,
+        "clarifications": 68,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 1
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 1
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 5
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 53,
+        "nonmatching_gold_evidence": 16
+      }
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 60,
+        "exact_rate": 0.5769230769230769,
+        "false_updates": 25,
+        "proposed_updates": 77,
+        "expected_updates": 68,
+        "update_precision": 0.6753246753246753,
+        "update_recall": 0.7647058823529411,
+        "clarifications": 52,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 1
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 3
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 1
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 2
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 4
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 6
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 3
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 49,
+        "nonmatching_gold_evidence": 40
+      }
+    },
+    {
+      "arm": "data_only",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 59,
+        "exact_rate": 0.5673076923076923,
+        "false_updates": 14,
+        "proposed_updates": 57,
+        "expected_updates": 68,
+        "update_precision": 0.7543859649122807,
+        "update_recall": 0.6323529411764706,
+        "clarifications": 63,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 1
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 3
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 2
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 51,
+        "nonmatching_gold_evidence": 27
+      }
+    },
+    {
+      "arm": "loss_only",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 104,
+        "exact_proposals": 50,
+        "exact_rate": 0.4807692307692308,
+        "false_updates": 15,
+        "proposed_updates": 48,
+        "expected_updates": 68,
+        "update_precision": 0.6875,
+        "update_recall": 0.4852941176470588,
+        "clarifications": 65,
+        "by_scenario": {
+          "test-finish-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-0": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-negative-0": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-negative-1": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "test-negative-2": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "test-partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-finish-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-assertion-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "test-negative-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-partial-3": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-coreference": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 5
+          },
+          "test-local-context": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-foreign-context": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 5
+          },
+          "test-two-objects": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 2
+          },
+          "test-next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-missed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-advice": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "test-ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "test-uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 49,
+        "nonmatching_gold_evidence": 19
+      }
+    }
+  ],
+  "selected_regressions": {
+    "historical-validation": {
+      "threshold": 0.5,
+      "examples": 120,
+      "exact_proposals": 103,
+      "exact_rate": 0.8583333333333333,
+      "false_updates": 4,
+      "proposed_updates": 86,
+      "expected_updates": 85,
+      "update_precision": 0.9534883720930233,
+      "update_recall": 0.9647058823529412,
+      "clarifications": 45,
+      "by_scenario": {
+        "positive": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "later_action": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 1
+        },
+        "two_positive": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "partial_step": {
+          "total": 5,
+          "exact": 3,
+          "false_updates": 2
+        },
+        "negative": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_undo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "already_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "negative_then_done": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "both_pending": {
+          "total": 5,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "ambiguous_pronoun": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "ambiguous_object": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "extra_advice": {
+          "total": 5,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "future_only": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "partial_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "recipe_switch": {
+          "total": 5,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "unknown_progress": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "report_then_question": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "last_clause_correction": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "synthetic_typo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "unknown_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 103,
+      "nonmatching_gold_evidence": 4
+    },
+    "regression68": {
+      "threshold": 0.5,
+      "examples": 68,
+      "exact_proposals": 47,
+      "exact_rate": 0.6911764705882353,
+      "false_updates": 13,
+      "proposed_updates": 41,
+      "expected_updates": 36,
+      "update_precision": 0.6829268292682927,
+      "update_recall": 0.7777777777777778,
+      "clarifications": 29,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 1
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 2
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 3
+        },
+        "correction": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 2
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 3
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 37,
+      "nonmatching_gold_evidence": 25
+    },
+    "regression16": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 10,
+      "exact_rate": 0.625,
+      "false_updates": 1,
+      "proposed_updates": 9,
+      "expected_updates": 12,
+      "update_precision": 0.8888888888888888,
+      "update_recall": 0.6666666666666666,
+      "clarifications": 6,
+      "by_scenario": {
+        "partial-step": {
+          "total": 2,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "passive": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "single": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "belief-correction": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-action": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "object-report": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "known-question": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 1
+        },
+        "correction": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "last-action": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "recipe-switch": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 10,
+      "nonmatching_gold_evidence": 1
+    }
+  },
+  "repeatable_validation_progress": {
+    "data_only": true,
+    "loss_only": true
+  },
+  "original_test_scored": false,
+  "remote_status": {
+    "status": "complete",
+    "phase": "complete",
+    "steps_requested": 1000,
+    "started_utc": "2026-11-11T16:20:15.320808+00:00",
+    "production_ready": false,
+    "elapsed_seconds": 1464.777999282
+  },
+  "primary_test_is_synthetic": true,
+  "paired_test_deltas": {
+    "data_only": [
+      {
+        "seed": 42,
+        "f0_5_delta": 0.024319942352729274,
+        "precision_delta": -0.060810810810810856,
+        "recall_delta": 0.2647058823529412,
+        "false_updates_delta": 12
+      },
+      {
+        "seed": 17,
+        "f0_5_delta": 0.03486198964922371,
+        "precision_delta": 0.07906128958760539,
+        "recall_delta": -0.13235294117647056,
+        "false_updates_delta": -11
+      }
+    ],
+    "loss_only": [
+      {
+        "seed": 42,
+        "f0_5_delta": 0.01607818411097106,
+        "precision_delta": 0.0,
+        "recall_delta": 0.04411764705882354,
+        "false_updates_delta": 1
+      },
+      {
+        "seed": 17,
+        "f0_5_delta": -0.05687397708674313,
+        "precision_delta": 0.012175324675324672,
+        "recall_delta": -0.2794117647058823,
+        "false_updates_delta": -10
+      }
+    ]
+  },
+  "test_per_recipe": {
+    "control-42": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 10,
+        "false_updates": 5
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 15,
+        "false_updates": 1
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 11,
+        "false_updates": 4
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 14,
+        "false_updates": 1
+      }
+    },
+    "data_only-42": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 12,
+        "false_updates": 9
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 18,
+        "false_updates": 2
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 10,
+        "false_updates": 9
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 18,
+        "false_updates": 3
+      }
+    },
+    "loss_only-42": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 13,
+        "false_updates": 4
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 18,
+        "false_updates": 2
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 15,
+        "false_updates": 3
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 10,
+        "false_updates": 3
+      }
+    },
+    "control-17": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 11,
+        "false_updates": 10
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 19,
+        "false_updates": 3
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 16,
+        "false_updates": 8
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 14,
+        "false_updates": 4
+      }
+    },
+    "data_only-17": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 12,
+        "false_updates": 7
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 17,
+        "false_updates": 1
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 14,
+        "false_updates": 5
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 16,
+        "false_updates": 1
+      }
+    },
+    "loss_only-17": {
+      "semantic-test-0-same-verb": {
+        "examples": 26,
+        "exact": 12,
+        "false_updates": 3
+      },
+      "semantic-test-1-different-verb": {
+        "examples": 26,
+        "exact": 15,
+        "false_updates": 2
+      },
+      "semantic-test-2-same-verb": {
+        "examples": 26,
+        "exact": 10,
+        "false_updates": 6
+      },
+      "semantic-test-3-different-verb": {
+        "examples": 26,
+        "exact": 13,
+        "false_updates": 4
+      }
+    }
+  },
+  "selected_failure_examples": [
+    {
+      "id": "semantic-test-0-same-verb-test-negative-3",
+      "utterance": "בהודעה הקודמת טעיתי; הלפת לא חתוכה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "הלפת לא חתוכה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "לא חתוכה"
+          },
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "הלפת לא חתוכה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "id": "semantic-test-0-same-verb-test-partial-3",
+      "utterance": "עשיתי חלק מחיתוך הלפת, עוד נותר חלק",
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": true,
+            "evidence": "וך הל"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "id": "semantic-test-0-same-verb-test-coreference",
+      "utterance": "שטפתי אפרסמון; ואותו עדיין לא חתכתי",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "שטפתי אפרסמון"
+          },
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "אותו עדיין לא חתכתי"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "שטפתי אפרסמון"
+          },
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "ואותו עדיין לא חתכתי"
+          },
+          {
+            "actionId": "a2",
+            "done": true,
+            "evidence": "שטפתי אפרסמון"
+          },
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "ואותו עדיין לא חתכתי"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 2
+    }
+  ],
+  "selected_other_failure_examples": [
+    {
+      "id": "semantic-test-0-same-verb-test-finish-0",
+      "utterance": "גמרתי עם שטיפת האפרסמון",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "גמרתי עם שטיפת האפרסמון"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 0
+    },
+    {
+      "id": "semantic-test-0-same-verb-test-assertion-0",
+      "utterance": "זה מה שעשיתי בפועל: שטפתי את האפרסמון",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "שטפתי את האפרסמון"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 0
+    },
+    {
+      "id": "semantic-test-0-same-verb-test-negative-0",
+      "utterance": "בהודעה הקודמת טעיתי; האפרסמון לא שטוף",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "האפרסמון לא שטוף"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 0
+    }
+  ],
+  "training_seconds_sum": 1133.033801722,
+  "gpu_peak_allocated_bytes": 3711411712,
+  "retained_weights": {
+    "bytes": 735066976,
+    "sha256": "d2f3bf9c9dc167e562c4adcda2fbd77b8ab71e776eeace2da9932d89a8c9c06a",
+    "seed": 42,
+    "arm": "loss_only"
+  },
+  "recovery_and_cpu": {
+    "scope": "Actual selected stored base weights, native CPU vs T4 proposals on previous16 regression cases; no new test rescoring or model reselection",
+    "proposal_mismatches": 0,
+    "examples": 16,
+    "metrics": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 10,
+      "exact_rate": 0.625,
+      "false_updates": 1,
+      "proposed_updates": 9,
+      "expected_updates": 12,
+      "update_precision": 0.8888888888888888,
+      "update_recall": 0.6666666666666666,
+      "clarifications": 6,
+      "exact_including_gold_evidence": 10,
+      "nonmatching_gold_evidence": 1
+    },
+    "archive_bytes": 786674562,
+    "archive_sha256": "26b75bea2c3c77f4f46ac979fb9f959cd74603aa086d739d901163de1c259d7f",
+    "crc_ok": true,
+    "seconds_including_model_load_and_archive_checks": 5.27726414699282
+  },
+  "cleanup": {
+    "dedicated_session": "ourrecipes-semantic-v7-20261111",
+    "stopped": true,
+    "active_sessions_confirmed_after": 0
+  },
+  "resources": {
+    "remote_job_seconds": 1464.777999282,
+    "driver_seconds_including_allocation_recovery_cleanup": 1552.7580655259953,
+    "reported_CU_balance_decrease_during_run": 0.48,
+    "cost_scope": "Balance difference during this execution window, not a separate monetary invoice",
+    "hardware": "Tesla T4",
+    "max_pytorch_allocated_GiB": 3.456521511077881
+  },
+  "interpretation": "Validation improvements repeated across seeds, but selected loss-only advantage did not generalize consistently to the frozen new test. Data-only had small positive F0.5 deltas in both test seeds with different precision/recall tradeoffs. Historical validation is regression, not independent evidence.",
+  "new_data_string_counts": {
+    "train_rows": 1472,
+    "train_unique_utterances": 683,
+    "validation_rows": 104,
+    "validation_unique_utterances": 79,
+    "test_rows": 104,
+    "test_unique_utterances": 79,
+    "recipes_per_holdout": 4
+  },
+  "error_decomposition": {
+    "control-42": {
+      "intent_errors": 45,
+      "gold_report_rejected_as_clarify": 35,
+      "report_with_action_errors": 9
+    },
+    "control-17": {
+      "intent_errors": 28,
+      "gold_report_rejected_as_clarify": 16,
+      "report_with_action_errors": 16
+    },
+    "data_only-42": {
+      "intent_errors": 23,
+      "gold_report_rejected_as_clarify": 16,
+      "report_with_action_errors": 23
+    },
+    "data_only-17": {
+      "intent_errors": 31,
+      "gold_report_rejected_as_clarify": 25,
+      "report_with_action_errors": 14
+    },
+    "loss_only-42": {
+      "intent_errors": 40,
+      "gold_report_rejected_as_clarify": 30,
+      "report_with_action_errors": 8
+    },
+    "loss_only-17": {
+      "intent_errors": 45,
+      "gold_report_rejected_as_clarify": 33,
+      "report_with_action_errors": 9
+    }
+  },
+  "post_test_annotation_findings": {
+    "unreachable_canonical_quotes": 4,
+    "affects": "Exact quote metrics in four new test cases only; no action labels, training labels, validation selection or primary scores altered",
+    "repair": "Opt-in semantic_data --aligned-gold preserves frozen v1 default. No quality claim or new test rescoring of corrected annotations."
+  },
+  "frozen_material_zip_sha256": "0862c5df5f69a72a7a12e4ea02919b178376e7fb23762e2dfe8a8fedc6145a59",
+  "postprocessing_source_sha256": {
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "semantic_summary.py": "69eb4f011aedd042eef890f944cd52c31ec808f2bfa409bb0a4fca4adc5b4e06",
+    "prepare.py": "cf2049d9dfb3802828e4270c1b76993cc0fc650dde4729b5fb1040616d674612"
+  },
+  "frozen_source_commit": "f58e729b3324c49eb8eab3b1b288e0a491be3af1"
+}

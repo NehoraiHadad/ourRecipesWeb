@@ -51,5 +51,59 @@
   "uses_mocks": [
     "remote CLI recovery/cleanup guards"
   ],
-  "actual_weights": "pinned DictaBERT-tiny"
+  "actual_weights": "pinned DictaBERT-tiny",
+  "tokenization_audit": {
+    "scope": "Actual local pinned base tokenizer, all1680 newly authored rows, context3, no model scoring",
+    "queries": 8400,
+    "max_tokens": 45,
+    "median_tokens": 14.0,
+    "tokenized_conflicts": 0,
+    "unknown_tokens": 0,
+    "total_tokens": 152355,
+    "silent_truncation": false
+  },
+  "gold_span_alignment_audit": {
+    "gold_spans": 1192,
+    "not_exactly_representable_by_current_token_labels": 4,
+    "examples": [
+      {
+        "id": "semantic-test-0-same-verb-test-coreference",
+        "split": "test",
+        "gold": "אותו עדיין לא חתכתי",
+        "token_aligned": "ואותו עדיין לא חתכתי"
+      },
+      {
+        "id": "semantic-test-1-different-verb-test-coreference",
+        "split": "test",
+        "gold": "אותו עדיין לא חתכתי",
+        "token_aligned": "ואותו עדיין לא חתכתי"
+      },
+      {
+        "id": "semantic-test-2-same-verb-test-coreference",
+        "split": "test",
+        "gold": "אותו עדיין לא חתכתי",
+        "token_aligned": "ואותו עדיין לא חתכתי"
+      },
+      {
+        "id": "semantic-test-3-different-verb-test-coreference",
+        "split": "test",
+        "gold": "אותו עדיין לא חתכתי",
+        "token_aligned": "ואותו עדיין לא חתכתי"
+      }
+    ],
+    "role": "Post-test data/measurement diagnostic only; no model/threshold reselection"
+  },
+  "gold_span_alignment_audit_v2": {
+    "gold_spans": 1192,
+    "not_exactly_representable_by_current_token_labels": 0,
+    "examples": [],
+    "role": "Post-test data/measurement diagnostic only; no model/threshold reselection"
+  },
+  "final_stdlib_tests_passed": 34,
+  "post_repair_default_v1_data_hashes_unchanged": true,
+  "postprocessing_source_sha256": {
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "semantic_summary.py": "69eb4f011aedd042eef890f944cd52c31ec808f2bfa409bb0a4fca4adc5b4e06",
+    "prepare.py": "cf2049d9dfb3802828e4270c1b76993cc0fc650dde4729b5fb1040616d674612"
+  }
 }
