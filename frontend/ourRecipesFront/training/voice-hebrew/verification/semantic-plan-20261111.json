@@ -1,0 +1,109 @@
+{
+  "date": "2026-11-11",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "seeds": [
+    42,
+    17
+  ],
+  "steps_each": 1000,
+  "eval_every": 250,
+  "batch": 8,
+  "encoder_lr": 3e-05,
+  "head_lr": 0.0003,
+  "shared_input_contract": 3,
+  "threshold": 0.5,
+  "arms": [
+    {
+      "name": "control",
+      "data": "control",
+      "profile": "context-span-v3"
+    },
+    {
+      "name": "data_only",
+      "data": "richer",
+      "profile": "context-span-v3"
+    },
+    {
+      "name": "loss_only",
+      "data": "control",
+      "profile": "context-joint-v3"
+    }
+  ],
+  "data": {
+    "control": {
+      "counts": {
+        "train": {
+          "recipes": 20,
+          "examples": 2272
+        },
+        "validation": {
+          "recipes": 4,
+          "examples": 104
+        },
+        "test": {
+          "recipes": 4,
+          "examples": 104
+        }
+      },
+      "corpus_sha256": "4f709e3cac2fec0fa99b58801e7009d94fd4488263fb2cd87940d3309f2efc0c",
+      "files": {
+        "train.jsonl": "cc997d6e55ae96c3446bb6005c0a2bfd0c71ea91d57e89d6e1a8f4ba1456dcee",
+        "test.jsonl": "745a07aeb38d48e17a61cc47a294067ac1abef81c7185aafa159f6ecbfbb6ede",
+        "recipes.json": "bb84dedc762c98a520c80075ddd5ba85bf5b3ec2745d8b8bd8dffb1c81e1a4be",
+        "validation.jsonl": "920e51ac91d16034fc423eacf390a15be6c3dc2d8ff29b283d6b23a1b42ed9f3"
+      }
+    },
+    "richer": {
+      "counts": {
+        "train": {
+          "recipes": 36,
+          "examples": 3744
+        },
+        "validation": {
+          "recipes": 4,
+          "examples": 104
+        },
+        "test": {
+          "recipes": 4,
+          "examples": 104
+        }
+      },
+      "corpus_sha256": "c622b97e99b1c6eb7197bba3914a3019ac6972793d8020d1d590876ce18d513a",
+      "files": {
+        "train.jsonl": "20ca59ce612042981a487714adde15a24a1b78535d04e01c325508d01538462e",
+        "test.jsonl": "745a07aeb38d48e17a61cc47a294067ac1abef81c7185aafa159f6ecbfbb6ede",
+        "recipes.json": "a573bd7716c6df52c975242a985235c41710c4cd9ec1d7929afa55aa2c24fa2f",
+        "validation.jsonl": "920e51ac91d16034fc423eacf390a15be6c3dc2d8ff29b283d6b23a1b42ed9f3"
+      }
+    }
+  },
+  "selection": "validation mean over two seeds; prefer minimum seed recall>=70%, then F0.5, state exact and quote exact; retain fixed seed42",
+  "checkpoint_selection": "grounded exact, precision, recall; restore best; never select on test",
+  "new_test_policy": "Score all six models once only after freezing validation selection; never retune on new test. New test is synthetic, not natural independent acceptance.",
+  "original_test_scored": false,
+  "regression_sets": [
+    "historical120validation",
+    "old68challenge",
+    "old16diagnostic"
+  ],
+  "repeatable_progress": "At least +0.05 F0.5 with no precision loss vs matched control in each seed; report heldout results too",
+  "resource_bounds": {
+    "hardware": "one T4",
+    "remote_job_seconds": 2000,
+    "comparison_seconds": 1600,
+    "each_trainer_seconds": 300,
+    "local_watchdog_seconds": 2300
+  },
+  "human_reviewed": false,
+  "scope": "Model only. No ONNX, quantization, browser, application, timers or mobile changes.",
+  "source_sha256": {
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "span_pilot.py": "6deb458ed612249270a3dbc52da10d42a518cf2b728811f14ef1e5980d4fc075",
+    "semantic_data.py": "3814d2ebe188631b4a38de33264656f31e720532235843ebd516f4d3b62c82dd",
+    "semantic_sweep.py": "30088686d54b690617f846fc1543a1e38dfc7c80aa7ff64c68fd3f6f7bccd74a",
+    "colab_job.py": "6ad9784fae9f35b409035fc8764b4769e63d44e6c5e7d353031a0581a9ed3093",
+    "colab_pilot.py": "39efe6d035c23063eaf4a929b3bdcef6996807dd4a808a17347b4818e91456cf",
+    "prepare.py": "67efd8455a9bb05c3c26f98daffd66dfe9b74f65b48441929337b2cbb5a63d1f"
+  }
+}

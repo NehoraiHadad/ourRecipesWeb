@@ -15,7 +15,7 @@ from engine import allowed, records_from_logits, score, training_order, verify_m
 
 def training_loss(logits, targets, items, profile, legacy_weights):
     import torch
-    if profile=='span-v1':
+    if profile in ('span-v1','context-span-v3'):
         losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,weight=legacy_weights,ignore_index=-100,reduction='none')
         return losses.sum()/(targets!=-100).sum()
     losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,ignore_index=-100,reduction='none')
@@ -35,9 +35,10 @@ def training_loss(logits, targets, items, profile, legacy_weights):
 
 
 def encode(tokenizer, recipe, row, profile='span-v1'):
-    if profile not in ('span-v1','joint-contrast-v2'):raise ValueError('Unknown span profile')
+    if profile not in ('span-v1','joint-contrast-v2','context-span-v3','context-joint-v3'):raise ValueError('Unknown span profile')
+    joint=profile in ('joint-contrast-v2','context-joint-v3')
     result=[]
-    for q in queries(recipe,row,2):
+    for q in queries(recipe,row,3 if profile.startswith('context-') else 2):
         encoded=tokenizer(q['context'],q['utterance'],return_offsets_mapping=True,truncation=False)
         if len(encoded['input_ids'])>512:raise ValueError('Span input too long; no silent truncation')
         offsets=encoded.pop('offset_mapping');sequence=encoded.sequence_ids()
@@ -45,7 +46,7 @@ def encode(tokenizer, recipe, row, profile='span-v1'):
         current_start=len(q['utterance'])-len(row['utterance'])
         if q['task']=='intent':labels[0]=LABELS.index(row['gold']['intent'])
         else:
-            if profile=='joint-contrast-v2':labels[0]=LABELS.index(q['label'])
+            if joint:labels[0]=LABELS.index(q['label'])
             gold=next((c for c in row['gold']['changes'] if c['actionId']==q['action_id']),None)
             span=None
             if gold:
@@ -59,7 +60,7 @@ def encode(tokenizer, recipe, row, profile='span-v1'):
             if gold and not any(label in (0,1) for label in labels):raise ValueError('Evidence has no supervised tokens')
         result.append({'query':q,'inputs':dict(encoded),'targets':labels,'positions':positions,
             'offsets':offsets,'current_start':current_start,'current_utterance':row['utterance'],
-            'joint_gate':profile=='joint-contrast-v2','profile':profile})
+            'joint_gate':joint,'profile':profile})
     return result
 
 
@@ -234,7 +235,7 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
@@ -242,10 +243,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     models={'tiny':(MODEL_ID,MODEL_REVISION),'base':('dicta-il/dictabert','8884c6db002aba4002ee638fe4070c92e9ffbbf1')}
     model_id,model_revision=models[model_choice]
     started=time.monotonic();deadline=started+max_seconds;torch.set_num_threads(4)
-    random.seed(42);torch.manual_seed(42)
-    if device=='cuda':torch.cuda.manual_seed_all(42)
+    random.seed(seed);torch.manual_seed(seed)
+    if device=='cuda':torch.cuda.manual_seed_all(seed)
     output=Path(output)
-    if profile=='joint-contrast-v2':
+    if data_source is not None:
+        import shutil
+        verify_manifest(data_source);data=output/'selected-data';shutil.copytree(data_source,data)
+    elif profile=='joint-contrast-v2':
         from targeted_data import build
         data=build(output/'selected-data')
     else:data=augmented_data(output/'selected-data')
@@ -254,13 +258,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=8,id2label=dict(enumerate(LABELS)),label2id={v:i for i,v in enumerate(LABELS)},attn_implementation='eager',trust_remote_code=False).to(device)
     recs,rows=load_data(data)
     sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row,profile)] for split in ['train','validation']}
-    items=sets['train'];rng=random.Random(42);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
+    items=sets['train'];rng=random.Random(seed);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
     head=[p for n,p in model.named_parameters() if n.startswith('classifier.')]
     body=[p for n,p in model.named_parameters() if not n.startswith('classifier.')]
     optimizer=torch.optim.AdamW([{'params':body,'lr':3e-5},{'params':head,'lr':3e-4}],weight_decay=.01)
     weights=torch.tensor([1.,1.,.15,1.,1.,1.,1.,1.],device=device)
-    config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':'2+current-evidence-spans','seed':42,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
-    config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile=='span-v1' else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
+    config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
+    config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile in ('span-v1','context-span-v3') else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
     if device=='cuda':torch.cuda.reset_peak_memory_stats()
@@ -338,9 +342,9 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1000);p.add_argument('--max-seconds',type=int,default=600);p.add_argument('--cpu-smoke',action='store_true');p.add_argument('--reexport',action='store_true');p.add_argument('--add-browser-metadata',action='store_true');p.add_argument('--model',choices=['tiny','base'],default='tiny');p.add_argument('--train-only',action='store_true');p.add_argument('--profile',choices=['span-v1','joint-contrast-v2'],default='span-v1');p.add_argument('--eval-every',type=int,default=1000)
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1000);p.add_argument('--max-seconds',type=int,default=600);p.add_argument('--cpu-smoke',action='store_true');p.add_argument('--reexport',action='store_true');p.add_argument('--add-browser-metadata',action='store_true');p.add_argument('--model',choices=['tiny','base'],default='tiny');p.add_argument('--train-only',action='store_true');p.add_argument('--profile',choices=['span-v1','joint-contrast-v2','context-span-v3','context-joint-v3'],default='span-v1');p.add_argument('--eval-every',type=int,default=1000);p.add_argument('--data');p.add_argument('--seed',type=int,default=42)
     a=p.parse_args()
     if not 1<=a.steps<=5000 or not 60<=a.max_seconds<=900 or not 1<=a.eval_every<=2500:raise SystemExit('Invalid span pilot budget')
     if a.add_browser_metadata:add_browser_metadata(a.output)
     elif a.reexport:reexport(a.output)
-    else:run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda',a.model,a.train_only,a.profile,a.eval_every)
+    else:run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda',a.model,a.train_only,a.profile,a.eval_every,a.data,a.seed)

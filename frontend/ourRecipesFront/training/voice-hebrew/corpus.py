@@ -155,7 +155,7 @@ def validate(recs, rows):
 
 def queries(recipe, row, contract=1):
     """Single shared contract for training, native evaluation, and browser fixtures."""
-    if contract not in (1, 2):
+    if contract not in (1, 2, 3):
         raise ValueError('Unknown query contract')
     state=row["state"]
     action_text={a["id"]:a["text"] for a in recipe["actions"]}
@@ -165,17 +165,21 @@ def queries(recipe, row, contract=1):
     context=f'שלב נוכחי: {state["currentStep"]+1}\nהושלמו: {completed}\nדיווח קודם: {previous_text}\nמתכון: {recipe["title"]}\nרכיבים: {", ".join(recipe["ingredients"])}\nהוראות: '+"; ".join(a["text"] for a in recipe["actions"])
     base={"example_id":row["id"],"utterance":row["utterance"],"scenario":row["scenario"]}
     intent_context = "משימה: סיווג כוונת הדיווח\n" + context
-    if contract == 2:
+    if contract in (2, 3):
         # Intent needs known actions to distinguish a report from an unrelated act.
         # Action queries below isolate the candidate from the distractor list.
         intent_context = 'כוונת הדיווח ביחס לפעולות: ' + '; '.join(a['text'] for a in recipe['actions'])
+        if contract == 3:
+            same = previous and previous['recipe_id'] == recipe['id']
+            intent_context += '\nדיווח קודם באותו מתכון: ' + (previous['utterance'] if same else 'אין')
+            intent_context += f'\nשלב נוכחי: {state["currentStep"]+1}\nהושלמו: {completed}'
     yield {**base,"task":"intent","action_id":None,"context":intent_context,"label":row["gold"]["intent"]}
     changes={c["actionId"]:c["done"] for c in row["gold"]["changes"]}
     for action in recipe["actions"]:
         status="done" if changes.get(action["id"]) is True else "not_done" if changes.get(action["id"]) is False else "not_mentioned"
         candidate_context = f'משימה: סיווג פעולה\nפעולה נבדקת: {action["text"]}\n' + context
         utterance = row['utterance']
-        if contract == 2:
+        if contract in (2, 3):
             candidate_context = 'פעולה נבדקת: ' + action['text']
             # IDs/positions are intentionally absent. Preserve explicit previous
             # report boundaries and discard dialogue from a different recipe.

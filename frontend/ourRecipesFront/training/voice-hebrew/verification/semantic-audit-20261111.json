@@ -1,0 +1,100 @@
+{
+  "new_counts": {
+    "train": {
+      "recipes": 16,
+      "examples": 1472
+    },
+    "validation": {
+      "recipes": 4,
+      "examples": 104
+    },
+    "test": {
+      "recipes": 4,
+      "examples": 104
+    }
+  },
+  "human_reviewed": false,
+  "source_sha256": "3814d2ebe188631b4a38de33264656f31e720532235843ebd516f4d3b62c82dd",
+  "new_split_sha256": {
+    "train": "a05ad9a6a7243130673fa488f21afcfccc54242f26cb46a7622995a7f642dc79",
+    "validation": "f272480b7a23823037323f23b9ce2c26d7d3fef6915d0c7be460cea712d75ec3",
+    "test": "5fdf0d150b7094d57cac18af6e2b0d11f83f91e0e612d014d891de00fa31ffe6"
+  },
+  "historical_holdout_sha256": {
+    "validation": "a42cd2d3c8f4d6cb76333f23054ab54a96bf90c41690cfcac13c0bf82caa00d2",
+    "test": "8cad3595776c18aaf471f4350f2d204be64c101f1eafe0c8af632a005580e74c"
+  },
+  "scope": "Synthetic surface-form/recipe holdouts, not independently collected natural speech or full linguistic-family disjointness",
+  "ambiguity_policy": "Meta, uncertainty and partial-action reports do not assert completion; foreign-recipe antecedents are discarded. Negative correction needs an explicit negative assertion.",
+  "query_conflicts": {
+    "2": {
+      "conflicting_effective_inputs": 40,
+      "examples": [
+        {
+          "examples": [
+            "semantic-train-0-same-verb-history-local-a0",
+            "semantic-train-0-same-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-same-verb-history-local-a2",
+            "semantic-train-0-same-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-different-verb-history-local-a0",
+            "semantic-train-0-different-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-different-verb-history-local-a2",
+            "semantic-train-0-different-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-1-same-verb-history-local-a0",
+            "semantic-train-1-same-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-1-same-verb-history-local-a2",
+            "semantic-train-1-same-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        }
+      ]
+    },
+    "3": {
+      "conflicting_effective_inputs": 0,
+      "examples": []
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "scope": "Actual CPU two-step smoke, no useful accuracy claim",
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-span-v3"
+    },
+    {
+      "arm": "data_only",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-span-v3"
+    },
+    {
+      "arm": "loss_only",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-joint-v3"
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-span-v3"
+    },
+    {
+      "arm": "data_only",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-span-v3"
+    },
+    {
+      "arm": "loss_only",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-joint-v3"
+    }
+  ],
+  "selection_frozen_before_test": true,
+  "all_six_new_tests_completed": true,
+  "original_test_scored": false,
+  "stdlib_tests_passed": 33,
+  "uses_mocks": [
+    "remote CLI recovery/cleanup guards"
+  ],
+  "actual_weights": "pinned DictaBERT-tiny"
+}
