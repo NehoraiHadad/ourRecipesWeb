@@ -47,10 +47,13 @@
     "cli": {
       "version": "0.8.0",
       "officialOperatorSkillRead": true,
-      "oauthFlow": "awaiting user authorization",
-      "accountVerified": false,
+      "oauthFlow": "completed; owner-only ADC outside repository",
+      "accountVerified": true,
       "vmAllocated": false,
-      "source": "https://github.com/googlecolab/google-colab-cli"
+      "source": "https://github.com/googlecolab/google-colab-cli",
+      "readOnlySessionsVerified": true,
+      "readOnlyUsageVerified": true,
+      "gpuAvailabilityVerified": false
     }
   },
   "corpus": {
