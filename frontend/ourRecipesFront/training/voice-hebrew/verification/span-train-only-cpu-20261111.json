@@ -1,0 +1,57 @@
+{
+  "scope": "Actual two-step CPU mechanics only; no trained quality claim",
+  "report": {
+    "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+    "steps": 2,
+    "selected_step": 2,
+    "training_seconds": 4.9765124850018765,
+    "gpu_peak_allocated_bytes": null,
+    "validation": {
+      "threshold": 0.5,
+      "examples": 120,
+      "exact_proposals": 35,
+      "exact_rate": 0.2916666666666667,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 85,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 120,
+      "exact_including_gold_evidence": 35,
+      "nonmatching_gold_evidence": 0
+    },
+    "validation_0_5": {
+      "threshold": 0.5,
+      "examples": 120,
+      "exact_proposals": 35,
+      "exact_rate": 0.2916666666666667,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 85,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 120,
+      "exact_including_gold_evidence": 35,
+      "nonmatching_gold_evidence": 0
+    },
+    "production_ready": false
+  },
+  "config": {
+    "model": "dicta-il/dictabert-tiny",
+    "revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+    "architecture": "BertForTokenClassification",
+    "input_contract": "2+current-evidence-spans",
+    "seed": 42,
+    "steps_requested": 2,
+    "batch_size": 8,
+    "encoder_lr": 3e-05,
+    "head_lr": 0.0003,
+    "sampling": "balanced-task",
+    "outside_token_weight": 0.15,
+    "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+    "source_sha256": "643a87d65439c1d3febf0cb0168cac1dec5e474b776cf5c1d9ba80595d4e655f",
+    "human_reviewed": false,
+    "production_ready": false,
+    "selected_step": 2
+  }
+}

@@ -20,12 +20,12 @@ def evaluate(run, data, split="test", onnx=False):
         artifact=run/"onnx/model.int8.onnx";export=json.loads((run/"onnx/export-report.json").read_text())
         if digest(artifact.read_bytes())!=export["files"]["model.int8.onnx"]["sha256"]:raise ValueError("ONNX artifact changed")
         tokenizer=AutoTokenizer.from_pretrained(run/"onnx/tokenizer",local_files_only=True)
-        records,timing=infer_onnx(artifact,tokenizer,expand(recs,rows,split),max_length=config["max_length"])
+        records,timing=infer_onnx(artifact,tokenizer,expand(recs,rows,split,config['input_contract']),max_length=config["max_length"])
     else:
         model=AutoModelForSequenceClassification.from_pretrained(run/"model",local_files_only=True,attn_implementation="eager")
         tokenizer=AutoTokenizer.from_pretrained(run/"model",local_files_only=True)
         device="cuda" if torch.cuda.is_available() else "cpu";model.to(device)
-        records,timing=infer(model,tokenizer,expand(recs,rows,split),device,max_length=config["max_length"])
+        records,timing=infer(model,tokenizer,expand(recs,rows,split,config['input_contract']),device,max_length=config["max_length"])
     metrics=score(selected,records,decision["threshold"])
     report={"split":split,"threshold_selected_on":"validation","metrics":metrics,"timing":timing,"corpus_sha256":manifest["corpus_sha256"],"data_review":manifest["human_review"],"production_ready":False,"note":"Synthetic fixture evaluation only. Repeated tuning on test invalidates its held-out role. Browser and physical-device quality/latency are separate gates."}
     report["engine"]="native_ort_int8" if onnx else "pytorch"

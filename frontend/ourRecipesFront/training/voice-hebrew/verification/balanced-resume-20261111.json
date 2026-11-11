@@ -1,0 +1,15 @@
+{
+  "scope": "Actual CPU training plumbing only, two steps; not a Hebrew accuracy result",
+  "full_steps": 2,
+  "resumed_steps": 2,
+  "weights_sha256": "c0dddc9cf650d613f72d4aca99c4f94867f051d712492f1f092396f511b58d2f",
+  "resume_weights_identical": true,
+  "device": "cpu",
+  "versions": {
+    "torch": "2.6.0+cpu",
+    "python": "3.13.17",
+    "transformers": "4.48.3"
+  },
+  "source_sha256": "07875ada251d7f617775bc7d9d72e9a3234a77b6ecaddadc07ac9f82f74a2d61",
+  "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c"
+}

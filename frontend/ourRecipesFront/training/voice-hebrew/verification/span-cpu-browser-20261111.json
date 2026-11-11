@@ -1,0 +1,622 @@
+{
+  "date": "2026-11-11T11:31:46.552Z",
+  "scope": "Two-step CPU mechanics model after ONNX input-order repair. FP32 parity passed; INT8 strict token-decision parity failed. Not trained-model quality or a physical-device check.",
+  "loads": {
+    "model.onnx": 1058.25,
+    "model.int8.onnx": 185.60999999940395
+  },
+  "cases": [
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 261.5199999958277,
+      "maxAbsLogitError": 1.1920928955078125e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 182.1550000011921,
+      "maxAbsLogitError": 1.2516975402832031e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 201.75,
+      "maxAbsLogitError": 1.1026859283447266e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 170.42999999970198,
+      "maxAbsLogitError": 1.4603137969970703e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 202.47999999672174,
+      "maxAbsLogitError": 1.6987323760986328e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 182.27500000596046,
+      "maxAbsLogitError": 1.1138617992401123e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 230.92000000178814,
+      "maxAbsLogitError": 8.493661880493164e-07,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 191.3800000026822,
+      "maxAbsLogitError": 1.3709068298339844e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 230.375,
+      "maxAbsLogitError": 3.3602118492126465e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 220.88499999791384,
+      "maxAbsLogitError": 1.780688762664795e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 258.7199999988079,
+      "maxAbsLogitError": 1.3560056686401367e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 219.67999999970198,
+      "maxAbsLogitError": 1.1324882507324219e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 193.90999999642372,
+      "maxAbsLogitError": 8.940696716308594e-07,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 233.7449999973178,
+      "maxAbsLogitError": 9.499490261077881e-07,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 228.2199999988079,
+      "maxAbsLogitError": 1.1026859283447266e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 209.8399999961257,
+      "maxAbsLogitError": 1.4007091522216797e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 201.38499999791384,
+      "maxAbsLogitError": 1.5012919902801514e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 230.86500000208616,
+      "maxAbsLogitError": 1.7918646335601807e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 170.57000000029802,
+      "maxAbsLogitError": 1.0319054126739502e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 211.625,
+      "maxAbsLogitError": 1.8849968910217285e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 190.23499999940395,
+      "maxAbsLogitError": 1.3113021850585938e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 232.59000000357628,
+      "maxAbsLogitError": 8.344650268554688e-07,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 172.00999999791384,
+      "maxAbsLogitError": 1.430511474609375e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 189.64000000059605,
+      "maxAbsLogitError": 1.043081283569336e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 187.8449999988079,
+      "maxAbsLogitError": 1.3932585716247559e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 201.09000000357628,
+      "maxAbsLogitError": 1.1511147022247314e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 195.46000000089407,
+      "maxAbsLogitError": 1.6354024410247803e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 177.82000000029802,
+      "maxAbsLogitError": 1.0281801223754883e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 196.42999999970198,
+      "maxAbsLogitError": 8.344650268554688e-07,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 221.34000000357628,
+      "maxAbsLogitError": 1.5795230865478516e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 221.75999999791384,
+      "maxAbsLogitError": 1.9073486328125e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 181.58500000089407,
+      "maxAbsLogitError": 1.4379620552062988e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 226.54999999701977,
+      "maxAbsLogitError": 1.2293457984924316e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 163.8149999976158,
+      "maxAbsLogitError": 1.1585652828216553e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 199.77000000327826,
+      "maxAbsLogitError": 1.0728836059570312e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 180.70000000298023,
+      "maxAbsLogitError": 1.4901161193847656e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 16,
+      "ms": 199.57000000029802,
+      "maxAbsLogitError": 1.0132789611816406e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 8,
+      "ms": 77.96500000357628,
+      "maxAbsLogitError": 1.2218952178955078e-06,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 119.84000000357628,
+      "maxAbsLogitError": 0.08008093386888504,
+      "labelDisagreements": 4,
+      "decisionDisagreements": 4
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 94.17500000447035,
+      "maxAbsLogitError": 0.10804322548210621,
+      "labelDisagreements": 7,
+      "decisionDisagreements": 7
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 97.90000000596046,
+      "maxAbsLogitError": 0.03540629521012306,
+      "labelDisagreements": 4,
+      "decisionDisagreements": 4
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 77.27499999850988,
+      "maxAbsLogitError": 0.02965596318244934,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 96.12000000476837,
+      "maxAbsLogitError": 0.032794490456581116,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 88.95000000298023,
+      "maxAbsLogitError": 0.06538373231887817,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 108.62999999523163,
+      "maxAbsLogitError": 0.013029754161834717,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 91.4100000038743,
+      "maxAbsLogitError": 0.03863215632736683,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 112.17999999970198,
+      "maxAbsLogitError": 0.06847194395959377,
+      "labelDisagreements": 2,
+      "decisionDisagreements": 2
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 99.53499999642372,
+      "maxAbsLogitError": 0.05892825126647949,
+      "labelDisagreements": 4,
+      "decisionDisagreements": 4
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 115.75,
+      "maxAbsLogitError": 0.029552102088928223,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 106.33000000566244,
+      "maxAbsLogitError": 0.0511670857667923,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 96.87000000476837,
+      "maxAbsLogitError": 0.01053992286324501,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 102.75499999523163,
+      "maxAbsLogitError": 0.02616577222943306,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 112.51500000059605,
+      "maxAbsLogitError": 0.03841192647814751,
+      "labelDisagreements": 2,
+      "decisionDisagreements": 2
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 97.5899999961257,
+      "maxAbsLogitError": 0.034931182861328125,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 92.85000000149012,
+      "maxAbsLogitError": 0.02370590716600418,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 106.34000000357628,
+      "maxAbsLogitError": 0.03823884576559067,
+      "labelDisagreements": 2,
+      "decisionDisagreements": 2
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 79.92999999970198,
+      "maxAbsLogitError": 0.019657157361507416,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 96.85000000149012,
+      "maxAbsLogitError": 0.02039116621017456,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 97.82499999552965,
+      "maxAbsLogitError": 0.04011017084121704,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 111.66499999910593,
+      "maxAbsLogitError": 0.06610522419214249,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 82.31499999761581,
+      "maxAbsLogitError": 0.036712607368826866,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 94.42000000178814,
+      "maxAbsLogitError": 0.041346095502376556,
+      "labelDisagreements": 2,
+      "decisionDisagreements": 2
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 95.26000000536442,
+      "maxAbsLogitError": 0.03921449929475784,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 106.26000000536442,
+      "maxAbsLogitError": 0.03577020764350891,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 99.23499999940395,
+      "maxAbsLogitError": 0.014818578958511353,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 89.35999999940395,
+      "maxAbsLogitError": 0.06101854331791401,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 102.2199999988079,
+      "maxAbsLogitError": 0.030832987278699875,
+      "labelDisagreements": 4,
+      "decisionDisagreements": 4
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 111.13499999791384,
+      "maxAbsLogitError": 0.03152734413743019,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 105.91499999910593,
+      "maxAbsLogitError": 0.028966106474399567,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 88.90000000596046,
+      "maxAbsLogitError": 0.053143542259931564,
+      "labelDisagreements": 8,
+      "decisionDisagreements": 8
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 111.625,
+      "maxAbsLogitError": 0.05308420956134796,
+      "labelDisagreements": 8,
+      "decisionDisagreements": 8
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 79.83499999344349,
+      "maxAbsLogitError": 0.06234351545572281,
+      "labelDisagreements": 3,
+      "decisionDisagreements": 3
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 100.53999999910593,
+      "maxAbsLogitError": 0.025747809559106827,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 88.74500000476837,
+      "maxAbsLogitError": 0.05029885470867157,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 16,
+      "ms": 99.13500000536442,
+      "maxAbsLogitError": 0.045225102454423904,
+      "labelDisagreements": 1,
+      "decisionDisagreements": 1
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 8,
+      "ms": 38.64000000059605,
+      "maxAbsLogitError": 5.960464477539063e-08,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "threads": 1,
+  "fp32Tested": true,
+  "externalRequests": []
+}

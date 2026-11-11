@@ -2,7 +2,7 @@
   "date": "2026-11-11",
   "pythonUnitTests": {
     "command": "python3 -m unittest discover -s tests -v",
-    "passed": 16
+    "passed": 25
   },
   "actualCpuTraining": {
     "steps": 2,
@@ -23,8 +23,12 @@
     "externalHttpRequests": 0,
     "fixtureDecisionDisagreements": 0,
     "physicalDevice": false,
-    "browserTokenizerTested": false,
-    "proof": "browser.json"
+    "browserTokenizerTested": true,
+    "proof": "browser.json",
+    "tokenizerProof": "tokenizer-browser-20261111.json",
+    "spanEvidenceProof": "span-results-20261111.json",
+    "baseInt8AcceptedRecordMismatchObserved": true,
+    "baseTokenizerProof": "base-tokenizer-browser-20261111.json"
   },
   "heldOutTestUsedForSmoke": false,
   "nativeInt8SemanticSmoke": {
@@ -59,7 +63,12 @@
     "cloudGpu": "T4",
     "trainingEvidence": "colab-pilots-20261111.json",
     "cpuPython": "3.13",
-    "productionReady": false
+    "productionReady": false,
+    "followUpEvidence": [
+      "ablation-results-20261111.json",
+      "span-results-20261111.json"
+    ],
+    "allExperimentSessionsStopped": true
   },
   "corpus": {
     "conversations": 720,
@@ -67,7 +76,8 @@
     "validation": 120,
     "test": 120,
     "humanReview": "pending",
-    "privacy": "original synthetic fixtures, no user audio/app records"
+    "privacy": "original synthetic fixtures, no user audio/app records",
+    "augmentedTrainingConversations": 2272
   },
   "appIntegration": false,
   "timersAndNativeFilesModified": false,
@@ -75,6 +85,7 @@
     "cpuTrainingResumeExport": true,
     "gpuTrainingExport": true,
     "browserPretokenizedFixtures": true,
-    "nativeTokenizerParityInBrowser": false
-  }
+    "nativeTokenizerParityInBrowser": true
+  },
+  "currentDecision": "No accepted model: precision and useful recall do not pass jointly; base INT8 native/WASM accepted evidence differs."
 }

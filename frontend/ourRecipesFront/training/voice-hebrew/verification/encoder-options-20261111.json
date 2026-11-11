@@ -1,0 +1,154 @@
+{
+  "date": "2026-11-11",
+  "source": "Publisher Hugging Face API and pinned config; metadata only, no comparative accuracy or browser benchmark",
+  "candidates": [
+    {
+      "id": "dicta-il/dictabert-tiny",
+      "source": "https://huggingface.co/dicta-il/dictabert-tiny",
+      "revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+      "createdAt": "2024-03-04T20:16:48.000Z",
+      "license": "cc-by-4.0",
+      "parameters": 44892008,
+      "config": {
+        "model_type": "bert",
+        "architectures": [
+          "BertForMaskedLM"
+        ],
+        "hidden_size": 312,
+        "num_hidden_layers": 4,
+        "max_position_embeddings": 512,
+        "vocab_size": 128000,
+        "auto_map": null
+      },
+      "weightFiles": [
+        {
+          "name": "model.safetensors",
+          "bytes": 179576648
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 179596492
+        }
+      ]
+    },
+    {
+      "id": "dicta-il/dictabert",
+      "source": "https://huggingface.co/dicta-il/dictabert",
+      "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+      "createdAt": "2023-08-29T16:58:07.000Z",
+      "license": "cc-by-4.0",
+      "parameters": 184475392,
+      "config": {
+        "model_type": "bert",
+        "architectures": [
+          "BertForMaskedLM"
+        ],
+        "hidden_size": 768,
+        "num_hidden_layers": 12,
+        "max_position_embeddings": 512,
+        "vocab_size": 128000,
+        "auto_map": null
+      },
+      "weightFiles": [
+        {
+          "name": "model.safetensors",
+          "bytes": 737927424
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 737970105
+        }
+      ]
+    },
+    {
+      "id": "dicta-il/neodictabert",
+      "source": "https://huggingface.co/dicta-il/neodictabert",
+      "revision": "9052b2e47fe3e615931563bb2a74b26df6e028a3",
+      "createdAt": "2025-09-07T13:59:49.000Z",
+      "license": "cc-by-4.0",
+      "parameters": 461020928,
+      "config": {
+        "model_type": "neobert",
+        "architectures": [
+          "NeoBERTLMHead"
+        ],
+        "hidden_size": 768,
+        "num_hidden_layers": 28,
+        "max_position_embeddings": null,
+        "vocab_size": 128000,
+        "auto_map": {
+          "AutoConfig": "modeling_neobert.NeoBERTConfig",
+          "AutoModel": "modeling_neobert.NeoBERT",
+          "AutoModelForMaskedLM": "modeling_neobert.NeoBERTLMHead",
+          "AutoModelForSequenceClassification": "modeling_neobert.NeoBERTForSequenceClassification",
+          "AutoModelForTokenClassification": "modeling_neobert.NeoBERTForTokenClassification",
+          "AutoModelForQuestionAnswering": "modeling_neobert.NeoBERTForQuestionAnswering"
+        }
+      },
+      "weightFiles": [
+        {
+          "name": "model.safetensors",
+          "bytes": 922061824
+        }
+      ]
+    },
+    {
+      "id": "HeNLP/HeRo",
+      "source": "https://huggingface.co/HeNLP/HeRo",
+      "revision": "8dc628f5e29a17aa73f924d8609421f3ec5bf763",
+      "createdAt": "2023-01-17T08:19:49.000Z",
+      "license": null,
+      "parameters": 124697947,
+      "config": {
+        "model_type": "roberta",
+        "architectures": [
+          "RobertaForMaskedLM"
+        ],
+        "hidden_size": 768,
+        "num_hidden_layers": 12,
+        "max_position_embeddings": 514,
+        "vocab_size": 50265,
+        "auto_map": null
+      },
+      "weightFiles": [
+        {
+          "name": "model.safetensors",
+          "bytes": 498818152
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 498858859
+        }
+      ]
+    },
+    {
+      "id": "dicta-il/alephbertgimmel-small",
+      "source": "https://huggingface.co/dicta-il/alephbertgimmel-small",
+      "revision": "bddb0aca7d04d35086b4706cb49c6ff0fdefa08a",
+      "createdAt": "2023-03-23T13:27:14.000Z",
+      "license": null,
+      "parameters": 78801920,
+      "config": {
+        "model_type": "bert",
+        "architectures": [
+          "BertForMaskedLM"
+        ],
+        "hidden_size": 512,
+        "num_hidden_layers": 4,
+        "max_position_embeddings": 512,
+        "vocab_size": 128000,
+        "auto_map": null
+      },
+      "weightFiles": [
+        {
+          "name": "model.safetensors",
+          "bytes": 315218440
+        },
+        {
+          "name": "pytorch_model.bin",
+          "bytes": 315233092
+        }
+      ]
+    }
+  ]
+}

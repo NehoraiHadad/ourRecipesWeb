@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-11",
+  "reason": "Evidence pilot has 70.5% exact on 200 sampled training conversations; 1000 steps is under one pass over expanded query set. Test learning progress before changing model capacity.",
+  "steps": 5000,
+  "learning_curve_validation_steps": [
+    1000,
+    2500,
+    5000
+  ],
+  "profile": "Same seeded span architecture/data/optimizer; only a larger bounded step budget, plus repaired export and validation checkpoints. No challenge/test selection.",
+  "source_sha256": "6f93e0b129dd473bd02f9d9e8684ea7945404d5b7297a87630686fb1f812ef68",
+  "max_job_seconds": 1200,
+  "max_training_evaluation_export_seconds": 600,
+  "no_physical_or_human_acceptance_claim": true
+}

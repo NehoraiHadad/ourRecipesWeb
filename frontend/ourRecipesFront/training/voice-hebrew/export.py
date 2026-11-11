@@ -26,7 +26,7 @@ def export(run, data):
         def forward(self,input_ids,attention_mask,token_type_ids):
             return self.base(input_ids=input_ids,attention_mask=attention_mask,token_type_ids=token_type_ids).logits
     wrapper=Wrapper(model).eval()
-    recs,rows=load_data(Path(data));items=expand(recs,rows,"validation")
+    recs,rows=load_data(Path(data));items=expand(recs,rows,"validation",config['input_contract'])
     # Different batch/sequence sizes validate dynamic axes. Never tune on test.
     batches=[items[:1],items[5:7],items[10:13],items[25:29]]
     tensors=[tokenizer.pad([encode(tokenizer,q,config["max_length"]) for q in batch],padding=True,return_tensors="pt") for batch in batches]
@@ -56,7 +56,7 @@ def export(run, data):
     tokenizer.save_pretrained(output/"tokenizer")
     if (run/"decision.json").exists():shutil.copyfile(run/"decision.json",output/"decision.json")
     (output/"browser-fixtures.json").write_text(json.dumps(fixtures))
-    report={"model":config["model"],"revision":config["revision"],"input_contract":1,"labels":LABELS,"max_length":config["max_length"],"source_license":"CC-BY-4.0; Dicta. Fine-tuned classifier and ONNX/quantization are modifications.","source_url":"https://huggingface.co/"+config["model"]+"/tree/"+config["revision"],"license_url":"https://creativecommons.org/licenses/by/4.0/","files":{name:{"bytes":(output/name).stat().st_size,"sha256":digest((output/name).read_bytes())} for name in sessions},"native_parity":checks,"production_ready":False,"browser_tested":False,"physical_device_tested":False,"note":"INT8 parity checks cover only these tensor fixtures. Full semantic evaluation must be repeated for the quantized artifact. Browser fixtures use Python tokenization; browser tokenizer parity is untested."}
+    report={"model":config["model"],"revision":config["revision"],"input_contract":config['input_contract'],"labels":LABELS,"max_length":config["max_length"],"source_license":"CC-BY-4.0; Dicta. Fine-tuned classifier and ONNX/quantization are modifications.","source_url":"https://huggingface.co/"+config["model"]+"/tree/"+config["revision"],"license_url":"https://creativecommons.org/licenses/by/4.0/","files":{name:{"bytes":(output/name).stat().st_size,"sha256":digest((output/name).read_bytes())} for name in sessions},"native_parity":checks,"production_ready":False,"browser_tested":False,"physical_device_tested":False,"note":"INT8 parity checks cover only these tensor fixtures. Full semantic evaluation must be repeated for the quantized artifact. Browser fixtures use Python tokenization; browser tokenizer parity is untested."}
     (output/"export-report.json").write_text(json.dumps(report,indent=2)+"\n")
     (output/"ATTRIBUTION.txt").write_text(f'Derived from {report["source_url"]}\nDictaBERT-tiny by Dicta, CC-BY-4.0: {report["license_url"]}\nChanges: supervised cooking-status classifier, ONNX export and INT8 quantization by OurRecipes.\nExperimental; no production-quality claim.\n')
     print(json.dumps(report,indent=2));return report

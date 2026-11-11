@@ -1,0 +1,1450 @@
+{
+  "selection": "Validation-only engineering candidate. Not production acceptance.",
+  "winner": "compact_balanced",
+  "steps_per_variant": 1000,
+  "variants": [
+    {
+      "name": "compact",
+      "training": {
+        "device": "cuda",
+        "steps": 1000,
+        "requested_steps": 1000,
+        "seconds": 51.92489534800001,
+        "last_loss": 1.1942440271377563,
+        "gpu_peak_allocated_bytes": 916870144,
+        "gpu_name": "Tesla T4",
+        "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+        "data_review": "pending",
+        "production_ready": false,
+        "max_seconds": 240,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.13.16",
+          "transformers": "4.48.3"
+        },
+        "note": "Step/wall limits are compute controls, not a provider billing cap. No paid run is launched by this script.",
+        "validation": {
+          "threshold": 0.95,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          }
+        },
+        "validation_timing": {
+          "seconds": 0.6044065250000017,
+          "queries": 600,
+          "max_tokens": 37
+        },
+        "status": "pilot_complete"
+      },
+      "at_0_5": {
+        "train": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 420,
+          "exact_rate": 0.875,
+          "false_updates": 60,
+          "proposed_updates": 354,
+          "expected_updates": 340,
+          "update_precision": 0.8305084745762712,
+          "update_recall": 0.8647058823529412,
+          "clarifications": 140
+        },
+        "validation": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 75,
+          "exact_rate": 0.625,
+          "false_updates": 21,
+          "proposed_updates": 69,
+          "expected_updates": 85,
+          "update_precision": 0.6956521739130435,
+          "update_recall": 0.5647058823529412,
+          "clarifications": 58
+        }
+      }
+    },
+    {
+      "name": "compact_balanced",
+      "training": {
+        "device": "cuda",
+        "steps": 1000,
+        "requested_steps": 1000,
+        "seconds": 48.00755941799997,
+        "last_loss": 0.45749351382255554,
+        "gpu_peak_allocated_bytes": 918176768,
+        "gpu_name": "Tesla T4",
+        "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+        "data_review": "pending",
+        "production_ready": false,
+        "max_seconds": 240,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.13.16",
+          "transformers": "4.48.3"
+        },
+        "note": "Step/wall limits are compute controls, not a provider billing cap. No paid run is launched by this script.",
+        "validation": {
+          "threshold": 0.99,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          }
+        },
+        "validation_timing": {
+          "seconds": 0.6025555190000205,
+          "queries": 600,
+          "max_tokens": 37
+        },
+        "status": "pilot_complete"
+      },
+      "at_0_5": {
+        "train": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 359,
+          "exact_rate": 0.7479166666666667,
+          "false_updates": 153,
+          "proposed_updates": 475,
+          "expected_updates": 340,
+          "update_precision": 0.6778947368421052,
+          "update_recall": 0.9470588235294117,
+          "clarifications": 140
+        },
+        "validation": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 76,
+          "exact_rate": 0.6333333333333333,
+          "false_updates": 46,
+          "proposed_updates": 104,
+          "expected_updates": 85,
+          "update_precision": 0.5576923076923077,
+          "update_recall": 0.6823529411764706,
+          "clarifications": 44
+        }
+      }
+    },
+    {
+      "name": "compact_balanced_augmented",
+      "training": {
+        "device": "cuda",
+        "steps": 1000,
+        "requested_steps": 1000,
+        "seconds": 54.39658504599993,
+        "last_loss": 0.42581087350845337,
+        "gpu_peak_allocated_bytes": 919328768,
+        "gpu_name": "Tesla T4",
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "data_review": "pending",
+        "production_ready": false,
+        "max_seconds": 240,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.13.16",
+          "transformers": "4.48.3"
+        },
+        "note": "Step/wall limits are compute controls, not a provider billing cap. No paid run is launched by this script.",
+        "validation": {
+          "threshold": 0.95,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          }
+        },
+        "validation_timing": {
+          "seconds": 0.766535451999971,
+          "queries": 600,
+          "max_tokens": 37
+        },
+        "status": "pilot_complete"
+      },
+      "at_0_5": {
+        "train": {
+          "threshold": 0.5,
+          "examples": 2272,
+          "exact_proposals": 761,
+          "exact_rate": 0.33494718309859156,
+          "false_updates": 3243,
+          "proposed_updates": 5409,
+          "expected_updates": 2692,
+          "update_precision": 0.4004437049362174,
+          "update_recall": 0.8046062407132244,
+          "clarifications": 548
+        },
+        "validation": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 45,
+          "exact_rate": 0.375,
+          "false_updates": 135,
+          "proposed_updates": 202,
+          "expected_updates": 85,
+          "update_precision": 0.3316831683168317,
+          "update_recall": 0.788235294117647,
+          "clarifications": 47
+        }
+      }
+    }
+  ],
+  "test_evaluated": false,
+  "human_reviewed": false,
+  "production_ready": false,
+  "provenance": {
+    "source": "Real Colab T4 / Python 3.13",
+    "test_evaluated": false,
+    "physical_device": false,
+    "synthetic_not_human_reviewed": true,
+    "baseline_diagnostic": "baseline-diagnostic-20261111.json",
+    "plan": "ablation-plan-20261111.json"
+  },
+  "selected_candidate_challenge": {
+    "scope": "Previously frozen synthetic diagnostic, not a human/physical-device benchmark",
+    "challenge": {
+      "sha256": "a3cc67cf0c2ffd66b62873ebc69cbaf27ebf3c7683e5c2849e325889478bf6df",
+      "examples": 68,
+      "recipes": 4,
+      "role": "Diagnostic challenge frozen before new runs; never training or model/threshold selection",
+      "human_reviewed": false
+    },
+    "model_run": "run",
+    "input_contract": 2,
+    "threshold_selected_on": "original validation, not this challenge",
+    "selected_threshold": 0.99,
+    "pytorch_selected": {
+      "threshold": 0.99,
+      "examples": 68,
+      "exact_proposals": 24,
+      "exact_rate": 0.35294117647058826,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 36,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 68,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        }
+      }
+    },
+    "pytorch_0_5": {
+      "threshold": 0.5,
+      "examples": 68,
+      "exact_proposals": 29,
+      "exact_rate": 0.4264705882352941,
+      "false_updates": 28,
+      "proposed_updates": 49,
+      "expected_updates": 36,
+      "update_precision": 0.42857142857142855,
+      "update_recall": 0.5833333333333334,
+      "clarifications": 17,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 8
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 4
+        },
+        "correction": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 4
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 7
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 4
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      }
+    },
+    "int8_selected": {
+      "threshold": 0.99,
+      "examples": 68,
+      "exact_proposals": 24,
+      "exact_rate": 0.35294117647058826,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 36,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 68,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        }
+      }
+    },
+    "seconds": 2.3831874590032385,
+    "production_ready": false,
+    "test_evaluated": false
+  },
+  "browser": {
+    "date": "2026-11-11T11:22:57.959Z",
+    "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+    "loads": {
+      "model.onnx": 2084.429999999702,
+      "model.int8.onnx": 326.2749999985099
+    },
+    "cases": [
+      {
+        "file": "model.onnx",
+        "batch": 1,
+        "ms": 120.33499999344349,
+        "maxAbsLogitError": 2.1457672119140625e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 2,
+        "ms": 22.059999994933605,
+        "maxAbsLogitError": 2.6226043701171875e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 3,
+        "ms": 35.96000000089407,
+        "maxAbsLogitError": 1.9073486328125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 4,
+        "ms": 49.99000000208616,
+        "maxAbsLogitError": 1.430511474609375e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 1,
+        "ms": 36.71999999880791,
+        "maxAbsLogitError": 4.76837158203125e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 2,
+        "ms": 41.66499999910593,
+        "maxAbsLogitError": 0,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 3,
+        "ms": 30.905000001192093,
+        "maxAbsLogitError": 0.04400813579559326,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 4,
+        "ms": 35.314999997615814,
+        "maxAbsLogitError": 0.32181240851059556,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "threads": 1,
+    "fp32Tested": true,
+    "externalRequests": []
+  },
+  "cleanup": {
+    "session_stopped": true,
+    "zero_active_sessions_verified": true
+  },
+  "challenge_browser": {
+    "date": "2026-11-11T11:29:48.294Z",
+    "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+    "loads": {
+      "model.onnx": 1067.1850000023842,
+      "model.int8.onnx": 164.2900000065565
+    },
+    "cases": [
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 232.55000000447035,
+        "maxAbsLogitError": 8.851289749145508e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 194.97500000149012,
+        "maxAbsLogitError": 4.291534423828125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 193.05499999970198,
+        "maxAbsLogitError": 4.5299530029296875e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 203.35999999940395,
+        "maxAbsLogitError": 1.0848045349121094e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 192.89999999850988,
+        "maxAbsLogitError": 3.0994415283203125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 188.41499999910593,
+        "maxAbsLogitError": 6.735324859619141e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 204.66499999910593,
+        "maxAbsLogitError": 3.933906555175781e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 191.9350000023842,
+        "maxAbsLogitError": 4.649162292480469e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 206.57000000029802,
+        "maxAbsLogitError": 8.344650268554688e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 199.8149999976158,
+        "maxAbsLogitError": 2.175569534301758e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 180.5849999934435,
+        "maxAbsLogitError": 8.046627044677734e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 203.25,
+        "maxAbsLogitError": 1.239776611328125e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 221.13499999791384,
+        "maxAbsLogitError": 3.0994415283203125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 219.25999999791384,
+        "maxAbsLogitError": 8.702278137207031e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 201.87000000476837,
+        "maxAbsLogitError": 5.4836273193359375e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 203.36500000208616,
+        "maxAbsLogitError": 5.245208740234375e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 179.45499999821186,
+        "maxAbsLogitError": 4.76837158203125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 218.35500000417233,
+        "maxAbsLogitError": 2.9861927032470703e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 203.5350000038743,
+        "maxAbsLogitError": 1.430511474609375e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 214.22500000149012,
+        "maxAbsLogitError": 5.4836273193359375e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 16,
+        "ms": 199.34000000357628,
+        "maxAbsLogitError": 2.8908252716064453e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 4,
+        "ms": 28.200000002980232,
+        "maxAbsLogitError": 1.1920928955078125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 105.6550000011921,
+        "maxAbsLogitError": 0.3240506201982498,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 96.45499999821186,
+        "maxAbsLogitError": 0.09403729438781738,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 91.07999999821186,
+        "maxAbsLogitError": 0.0860903263092041,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 95.88499999791384,
+        "maxAbsLogitError": 0.06084465980529785,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 99.52499999850988,
+        "maxAbsLogitError": 0.06187283992767334,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 93.28999999910593,
+        "maxAbsLogitError": 0.09835225343704224,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 94.82999999821186,
+        "maxAbsLogitError": 0.026905059814453125,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 93.20500000566244,
+        "maxAbsLogitError": 0.036500632762908936,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 95.55499999970198,
+        "maxAbsLogitError": 0.012547910213470459,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 96.50499999523163,
+        "maxAbsLogitError": 0.10170412063598633,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 91.82999999821186,
+        "maxAbsLogitError": 0.0916709303855896,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 92.15999999642372,
+        "maxAbsLogitError": 0.08458817005157471,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 101.82000000029802,
+        "maxAbsLogitError": 0.14301955699920654,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 96.30499999970198,
+        "maxAbsLogitError": 0.0071563720703125,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 93.44500000029802,
+        "maxAbsLogitError": 4.76837158203125e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 92.39999999850988,
+        "maxAbsLogitError": 0,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 82.81499999761581,
+        "maxAbsLogitError": 0.03154134750366211,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 95.3449999988079,
+        "maxAbsLogitError": 0.007898926734924316,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 92.57000000029802,
+        "maxAbsLogitError": 0.2002355307340622,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 96.01000000536442,
+        "maxAbsLogitError": 0.026944831013679504,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 16,
+        "ms": 90.02000000327826,
+        "maxAbsLogitError": 0.14250540733337402,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 4,
+        "ms": 14.065000005066395,
+        "maxAbsLogitError": 0.008533954620361328,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "threads": 1,
+    "fp32Tested": true,
+    "externalRequests": []
+  },
+  "representative_failures": [
+    {
+      "source": "selected compact classifier, challenge threshold 0.5",
+      "id": "challenge-0-partial-step",
+      "utterance": "הוספתי מים אבל עדיין לא ערבבתי את הבצק",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": true,
+            "evidence": "הוספתי מים"
+          },
+          {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "עדיין לא ערבבתי את הבצק"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": true
+          },
+          {
+            "actionId": "a2",
+            "done": true
+          },
+          {
+            "actionId": "a3",
+            "done": true
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 2
+    },
+    {
+      "source": "selected compact classifier, challenge threshold 0.5",
+      "id": "challenge-0-reverse-partial",
+      "utterance": "לא הוספתי קמח; הוספתי מים כבר כן",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "לא הוספתי קמח"
+          },
+          {
+            "actionId": "a1",
+            "done": true,
+            "evidence": "הוספתי מים"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true
+          },
+          {
+            "actionId": "a1",
+            "done": true
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "selected compact classifier, challenge threshold 0.5",
+      "id": "challenge-0-correction",
+      "utterance": "רגע, טעיתי. לא הוספתי קמח",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "לא הוספתי קמח"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    }
+  ],
+  "evidence_storage": "Committed summaries and bounded failure examples; full per-case reports, model files and recovery archives remain in ignored local runs."
+}

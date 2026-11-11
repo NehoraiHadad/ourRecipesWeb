@@ -1,0 +1,26 @@
+{
+  "date": "2026-11-11",
+  "decision": "Follow up failed pooled classification with evidence-supervised token classification; engineering pilot, not an acceptance claim",
+  "architecture": "BertForTokenClassification / 8 labels, intent at CLS and action polarity at current-report tokens",
+  "steps": 1000,
+  "batch_size": 8,
+  "seed": 42,
+  "encoder_lr": 3e-05,
+  "head_lr": 0.0003,
+  "outside_weight": 0.15,
+  "training_data": "Train-only augmented data; original validation/test bytes unchanged",
+  "selection": "Validation only; no observed false updates OR exact gold evidence mismatches, maximize grounded exact/recall",
+  "challenge_role": "Existing 68 cases are now a regression set after earlier diagnosis, not untouched acceptance",
+  "challenge": {
+    "sha256": "a3cc67cf0c2ffd66b62873ebc69cbaf27ebf3c7683e5c2849e325889478bf6df",
+    "examples": 68,
+    "recipes": 4,
+    "role": "Diagnostic challenge frozen before new runs; never training or model/threshold selection",
+    "human_reviewed": false
+  },
+  "source_sha256": "a7a55d76f8266d7318c4480d4f2168446eefacfc55fa85f53d8e201bcaafdf96",
+  "physical_device": false,
+  "cpu_mechanics_tested": true,
+  "max_job_seconds": 1200,
+  "max_training_and_export_seconds": 600
+}

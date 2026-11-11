@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-11T12:22:06.744Z",
+  "scope": "Actual cloud Chromium Python fast-tokenizer vs @huggingface/tokenizers 0.2.0; no physical-device claim",
+  "loadMs": 143.40000000596046,
+  "totalEncodeMs": 328,
+  "cases": 6712,
+  "mismatchCount": 0,
+  "mismatchExamples": [],
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "tokenizerJsonSha256": "4e520fd9025a2fd5f2dce1d04df5922954c8ff050cc3e67d4bc54a7347eccb32",
+  "externalRequests": []
+}

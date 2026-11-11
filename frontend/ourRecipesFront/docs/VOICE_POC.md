@@ -169,3 +169,8 @@ Fine-tuning an existing large model may improve correctness but does not inheren
 ## Prepared training kit (2026-11-11)
 
 [Hebrew beginner guide and runnable material](../training/voice-hebrew/README.he.md): 720 synthetic labeled conversations, recipe-disjoint train/validation/test, review CSV/importer, bounded DictaBERT-tiny training, local evaluation/ONNX export, explicit Modal launcher, Colab CLI runner and notebook. Subsequent authorized T4 pilots ran 200/1,000 steps, including Python 3.13 compatibility and trained-weight ONNX/browser graph checks. At threshold 0.5 the 1,000-step run had 63/120 exact validation proposals but 17 incorrect action updates; the conservative selected threshold abstained on all examples. **Not ready for integration.** No held-out test evaluation, human review or physical-device test was performed. All experiment VMs were released. See [results](../training/voice-hebrew/COLAB_RESULTS.he.md), the kit’s `VERIFICATION.md` and [parallel research prompt](../training/voice-hebrew/research-prompt.he.md). No user data was uploaded.
+
+
+## Follow-up training investigation and model comparison
+
+[Current measured results](../training/voice-hebrew/TRAINING_RESULTS.he.md) compare input/sampling changes, 2,272 synthetic training conversations, evidence extraction, a tiny learning curve and DictaBERT base. Base had 91.8% action precision/recall at 1,000 steps but regressed at 2,000. No model passed the joint precision/coverage/evidence gate; test was not scored. Actual browser tokenization was verified, while base INT8 accepted evidence differed from native on fixtures. All experiment VMs were released. This investigation changed training material only, with no app, timer or native-mobile integration.

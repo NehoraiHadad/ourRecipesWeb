@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-11",
+  "reason": "Tiny evidence model still makes 23 incorrect validation updates after 5000 steps; compare pretrained capacity on the same evidence objective/data.",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "steps": 2000,
+  "matched_checkpoint": 1000,
+  "comparison": "Same seed/data/batch/encoder+head LR/token loss; changes pretrained model capacity. Tiny has 1000/2500/5000 evidence points.",
+  "source_sha256": "1a1dd575baba1d30b2efb0f3f4f2eda23a416941c860491a7df399a825d4e8bc",
+  "max_job_seconds": 1200,
+  "max_training_evaluation_export_seconds": 600,
+  "acceptance": "Validation action precision >=0.99 and recall >=0.8, plus gold evidence and unseen evaluation; not sufficient for physical-device readiness.",
+  "test_evaluated": false,
+  "challenge": "Regression only; not selection",
+  "post_training_calibration": {
+    "selection": "Validation only, never challenge/test; original coarse policy preserved separately",
+    "fine_grid": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      0.99,
+      0.995,
+      0.999,
+      0.9995,
+      0.9999,
+      0.99995,
+      0.99999,
+      0.999999,
+      1.0
+    ],
+    "reason": "Avoid a forced jump from .99 to 1.0; require precision AND recall, exact evidence and native/WASM agreement; not a confidence guarantee."
+  }
+}

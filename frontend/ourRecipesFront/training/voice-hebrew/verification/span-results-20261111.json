@@ -1,0 +1,4760 @@
+{
+  "date": "2026-11-11",
+  "scope": "Real T4 evidence pilots on synthetic data; no production or physical-device acceptance",
+  "trials": [
+    {
+      "name": "v3",
+      "config": {
+        "model": "dicta-il/dictabert-tiny",
+        "revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "2+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "source_sha256": "a7a55d76f8266d7318c4480d4f2168446eefacfc55fa85f53d8e201bcaafdf96",
+        "human_reviewed": false,
+        "production_ready": false
+      },
+      "training": {
+        "scope": "Real evidence-supervised training, synthetic data; no production or physical-device claim",
+        "training_seconds": 43.62006637899998,
+        "total_seconds": 73.87186566600002,
+        "steps": 1000,
+        "last_loss": 0.006602585315704346,
+        "gpu_peak_allocated_bytes": 914533888,
+        "gpu": "Tesla T4",
+        "versions": {
+          "python": "3.13.16",
+          "torch": "2.6.0+cu124"
+        },
+        "validation": {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 53,
+          "exact_rate": 0.44166666666666665,
+          "false_updates": 58,
+          "proposed_updates": 116,
+          "expected_updates": 85,
+          "update_precision": 0.5,
+          "update_recall": 0.6823529411764706,
+          "clarifications": 57,
+          "exact_including_gold_evidence": 53,
+          "nonmatching_gold_evidence": 60
+        },
+        "challenge_selected": {
+          "threshold": 1.0,
+          "examples": 68,
+          "exact_proposals": 24,
+          "exact_rate": 0.35294117647058826,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 36,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 68,
+          "exact_including_gold_evidence": 24,
+          "nonmatching_gold_evidence": 0
+        },
+        "test_evaluated": false,
+        "production_ready": false,
+        "artifacts": {
+          "model.onnx": {
+            "bytes": 178759880,
+            "sha256": "9e65e907e539680a3772b59a380f54d07a9649fb3348ed32fc0f7e1211b80673"
+          },
+          "model.int8.onnx": {
+            "bytes": 44872552,
+            "sha256": "bce44b76dd3a83a8639230cb1ad7bed628bf2d523f8e65d1d7f7aa6d835f915c"
+          }
+        }
+      },
+      "native_validation_curve": {
+        "selection": "Validation only: no observed false updates or gold-evidence mismatches, then grounded exact/recall. Not a guarantee.",
+        "candidates": [
+          {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 53,
+            "exact_rate": 0.44166666666666665,
+            "false_updates": 58,
+            "proposed_updates": 116,
+            "expected_updates": 85,
+            "update_precision": 0.5,
+            "update_recall": 0.6823529411764706,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 53,
+            "nonmatching_gold_evidence": 60
+          },
+          {
+            "threshold": 0.6,
+            "examples": 120,
+            "exact_proposals": 52,
+            "exact_rate": 0.43333333333333335,
+            "false_updates": 55,
+            "proposed_updates": 112,
+            "expected_updates": 85,
+            "update_precision": 0.5089285714285714,
+            "update_recall": 0.6705882352941176,
+            "clarifications": 59,
+            "exact_including_gold_evidence": 52,
+            "nonmatching_gold_evidence": 56
+          },
+          {
+            "threshold": 0.7,
+            "examples": 120,
+            "exact_proposals": 56,
+            "exact_rate": 0.4666666666666667,
+            "false_updates": 48,
+            "proposed_updates": 105,
+            "expected_updates": 85,
+            "update_precision": 0.5428571428571428,
+            "update_recall": 0.6705882352941176,
+            "clarifications": 59,
+            "exact_including_gold_evidence": 56,
+            "nonmatching_gold_evidence": 49
+          },
+          {
+            "threshold": 0.8,
+            "examples": 120,
+            "exact_proposals": 57,
+            "exact_rate": 0.475,
+            "false_updates": 45,
+            "proposed_updates": 102,
+            "expected_updates": 85,
+            "update_precision": 0.5588235294117647,
+            "update_recall": 0.6705882352941176,
+            "clarifications": 59,
+            "exact_including_gold_evidence": 57,
+            "nonmatching_gold_evidence": 46
+          },
+          {
+            "threshold": 0.85,
+            "examples": 120,
+            "exact_proposals": 59,
+            "exact_rate": 0.49166666666666664,
+            "false_updates": 42,
+            "proposed_updates": 98,
+            "expected_updates": 85,
+            "update_precision": 0.5714285714285714,
+            "update_recall": 0.6588235294117647,
+            "clarifications": 60,
+            "exact_including_gold_evidence": 59,
+            "nonmatching_gold_evidence": 42
+          },
+          {
+            "threshold": 0.9,
+            "examples": 120,
+            "exact_proposals": 60,
+            "exact_rate": 0.5,
+            "false_updates": 38,
+            "proposed_updates": 93,
+            "expected_updates": 85,
+            "update_precision": 0.5913978494623656,
+            "update_recall": 0.6470588235294118,
+            "clarifications": 62,
+            "exact_including_gold_evidence": 60,
+            "nonmatching_gold_evidence": 38
+          },
+          {
+            "threshold": 0.95,
+            "examples": 120,
+            "exact_proposals": 55,
+            "exact_rate": 0.4583333333333333,
+            "false_updates": 32,
+            "proposed_updates": 86,
+            "expected_updates": 85,
+            "update_precision": 0.627906976744186,
+            "update_recall": 0.6352941176470588,
+            "clarifications": 67,
+            "exact_including_gold_evidence": 55,
+            "nonmatching_gold_evidence": 32
+          },
+          {
+            "threshold": 0.99,
+            "examples": 120,
+            "exact_proposals": 42,
+            "exact_rate": 0.35,
+            "false_updates": 3,
+            "proposed_updates": 19,
+            "expected_updates": 85,
+            "update_precision": 0.8421052631578947,
+            "update_recall": 0.18823529411764706,
+            "clarifications": 104,
+            "exact_including_gold_evidence": 42,
+            "nonmatching_gold_evidence": 3
+          },
+          {
+            "threshold": 1.0,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          }
+        ]
+      },
+      "export_repair": {
+        "reason": "Repair initial span pilot positional input order in ONNX; training weights and validation-selected threshold unchanged",
+        "repair_source_sha256": "2554f18bfa818e55b54d13d33be98920266e0819b425526c73e1ad390849acef",
+        "validation": {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "challenge_selected": {
+          "threshold": 1.0,
+          "examples": 68,
+          "exact_proposals": 24,
+          "exact_rate": 0.35294117647058826,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 36,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 68,
+          "by_scenario": {
+            "position-0": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-1": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-2": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-3": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial-step": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "reverse-partial": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "future": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "half": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "meta-negation": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "conditional": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "ambiguous": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "advice": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "old-recipe": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 24,
+          "nonmatching_gold_evidence": 0
+        },
+        "challenge_0_5": {
+          "threshold": 0.5,
+          "examples": 68,
+          "exact_proposals": 32,
+          "exact_rate": 0.47058823529411764,
+          "false_updates": 21,
+          "proposed_updates": 33,
+          "expected_updates": 36,
+          "update_precision": 0.36363636363636365,
+          "update_recall": 0.3333333333333333,
+          "clarifications": 42,
+          "by_scenario": {
+            "position-0": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-1": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-2": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "position-3": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial-step": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 6
+            },
+            "reverse-partial": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 2
+            },
+            "correction": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 4
+            },
+            "future": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "half": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 9
+            },
+            "meta-negation": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "conditional": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "ambiguous": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 4,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "advice": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            },
+            "old-recipe": {
+              "total": 4,
+              "exact": 4,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 21
+        },
+        "challenge_role": "Regression, not untouched acceptance",
+        "production_ready": false
+      },
+      "initial_onnx_semantics_excluded": "Initial input argument ordering was wrong. Training/PyTorch validation unaffected. Use repaired export and re-evaluation only.",
+      "current_export": {
+        "scope": "Native FP32 parity before quantization; browser/semantic checks separate",
+        "input_names": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "native_parity": [
+          {
+            "batch": 1,
+            "sequence": 26,
+            "max_abs_logit_error": 3.814697265625e-06
+          },
+          {
+            "batch": 4,
+            "sequence": 25,
+            "max_abs_logit_error": 9.059906005859375e-06
+          },
+          {
+            "batch": 16,
+            "sequence": 31,
+            "max_abs_logit_error": 2.9385089874267578e-05
+          }
+        ],
+        "files": {
+          "model.onnx": {
+            "bytes": 178759880,
+            "sha256": "8b8dc58f273abd7033912b1d74388ea5c3c2cecc39f1b043dec2bce258e1806c"
+          },
+          "model.int8.onnx": {
+            "bytes": 44872552,
+            "sha256": "d1ad46aab0b8045525d85aad86ef2bc5430a969c7041572313479c32bc341120"
+          }
+        }
+      },
+      "browser": {
+        "date": "2026-11-11T11:39:46.649Z",
+        "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+        "loads": {
+          "model.onnx": 1095.2449999973178,
+          "model.int8.onnx": 200.46000000089407
+        },
+        "cases": [
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 283.4050000011921,
+            "maxAbsLogitError": 2.6404857635498047e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 187.28999999910593,
+            "maxAbsLogitError": 1.8477439880371094e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 209.11500000208616,
+            "maxAbsLogitError": 4.0203332901000977e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 156.94500000029802,
+            "maxAbsLogitError": 1.4066696166992188e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 189.6550000011921,
+            "maxAbsLogitError": 1.1205673217773438e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 172.75,
+            "maxAbsLogitError": 6.124377250671387e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 209.72500000149012,
+            "maxAbsLogitError": 9.417533874511719e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 178.6849999949336,
+            "maxAbsLogitError": 7.033348083496094e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 211.39999999850988,
+            "maxAbsLogitError": 2.12937593460083e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 192.53999999910593,
+            "maxAbsLogitError": 2.944469451904297e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 222.97500000149012,
+            "maxAbsLogitError": 1.134723424911499e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 214.45499999821186,
+            "maxAbsLogitError": 1.0132789611816406e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 189.7449999973178,
+            "maxAbsLogitError": 1.5974044799804688e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 225.00499999523163,
+            "maxAbsLogitError": 1.049041748046875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 217.5600000023842,
+            "maxAbsLogitError": 3.8430094718933105e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 200.9050000011921,
+            "maxAbsLogitError": 1.3589859008789062e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 190.5949999988079,
+            "maxAbsLogitError": 3.600120544433594e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 218.0600000023842,
+            "maxAbsLogitError": 2.4557113647460938e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 161.71000000089407,
+            "maxAbsLogitError": 1.7702579498291016e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 197.9649999961257,
+            "maxAbsLogitError": 9.119510650634766e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 179.92999999970198,
+            "maxAbsLogitError": 1.996755599975586e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 228.57500000298023,
+            "maxAbsLogitError": 1.4543533325195312e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 168.125,
+            "maxAbsLogitError": 7.987022399902344e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 193.4349999949336,
+            "maxAbsLogitError": 3.647804260253906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 190.3800000026822,
+            "maxAbsLogitError": 1.52587890625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 217.9699999988079,
+            "maxAbsLogitError": 2.8014183044433594e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 212.1850000023842,
+            "maxAbsLogitError": 1.1444091796875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 196.10499999672174,
+            "maxAbsLogitError": 1.0013580322265625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 225.23499999940395,
+            "maxAbsLogitError": 1.2874603271484375e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 235.00999999791384,
+            "maxAbsLogitError": 1.3589859008789062e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 219.7199999988079,
+            "maxAbsLogitError": 1.0967254638671875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 185.29499999433756,
+            "maxAbsLogitError": 1.3470649719238281e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 235.3150000050664,
+            "maxAbsLogitError": 3.3855438232421875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 164.89999999850988,
+            "maxAbsLogitError": 1.0013580322265625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 201.96500000357628,
+            "maxAbsLogitError": 9.179115295410156e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 187.6600000038743,
+            "maxAbsLogitError": 1.4930963516235352e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 211.6899999976158,
+            "maxAbsLogitError": 1.1265277862548828e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 8,
+            "ms": 80.07499999552965,
+            "maxAbsLogitError": 1.2040138244628906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 155.15999999642372,
+            "maxAbsLogitError": 0.10314333438873291,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 135.61499999463558,
+            "maxAbsLogitError": 0.24430513381958008,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.56000000238419,
+            "maxAbsLogitError": 0.3407011032104492,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 80.38000000268221,
+            "maxAbsLogitError": 0.12027262151241302,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.0350000038743,
+            "maxAbsLogitError": 0.17689108848571777,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.03499999642372,
+            "maxAbsLogitError": 0.46534463763237,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 106.7850000038743,
+            "maxAbsLogitError": 0.09011387825012207,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 92.64500000327826,
+            "maxAbsLogitError": 0.25824272632598877,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 108.85999999940395,
+            "maxAbsLogitError": 0.18769562244415283,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.27500000596046,
+            "maxAbsLogitError": 0.1529218554496765,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 116.95499999821186,
+            "maxAbsLogitError": 0.6855735778808594,
+            "labelDisagreements": 6,
+            "decisionDisagreements": 6,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 105.45500000566244,
+            "maxAbsLogitError": 0.05589771270751953,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.25500000268221,
+            "maxAbsLogitError": 0.17621839046478271,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.69500000029802,
+            "maxAbsLogitError": 0.03248631954193115,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 112.75,
+            "maxAbsLogitError": 0.5820317268371582,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.95000000298023,
+            "maxAbsLogitError": 0.00485074520111084,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.39499999582767,
+            "maxAbsLogitError": 0.5251654237508774,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 112.4050000011921,
+            "maxAbsLogitError": 0.06063544750213623,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 84.16499999910593,
+            "maxAbsLogitError": 0.2307898998260498,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 105.42000000178814,
+            "maxAbsLogitError": 0.11108136177062988,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 92.06499999761581,
+            "maxAbsLogitError": 0.020906686782836914,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 114.41999999433756,
+            "maxAbsLogitError": 0.5269124507904053,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 85.74000000208616,
+            "maxAbsLogitError": 1.430511474609375e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 99.27499999850988,
+            "maxAbsLogitError": 0,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 110.4050000011921,
+            "maxAbsLogitError": 0.3767232894897461,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 111.56000000238419,
+            "maxAbsLogitError": 0.07711505889892578,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.43500000238419,
+            "maxAbsLogitError": 0.275998592376709,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 111.47499999403954,
+            "maxAbsLogitError": 0.217950701713562,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 107.2199999988079,
+            "maxAbsLogitError": 0.15648579597473145,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 121.0350000038743,
+            "maxAbsLogitError": 0.41985511779785156,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 111.08500000089407,
+            "maxAbsLogitError": 0.07549595832824707,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.80000000447035,
+            "maxAbsLogitError": 0.7559853941202164,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 113.50499999523163,
+            "maxAbsLogitError": 0.6129686385393143,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 81.01500000059605,
+            "maxAbsLogitError": 0.23924905061721802,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.07999999821186,
+            "maxAbsLogitError": 0.29878759384155273,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 91.79500000178814,
+            "maxAbsLogitError": 0.2667107731103897,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.88000000268221,
+            "maxAbsLogitError": 0.11443407833576202,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 8,
+            "ms": 39.41499999910593,
+            "maxAbsLogitError": 0.03305947780609131,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          }
+        ],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "threads": 1,
+        "fp32Tested": true,
+        "externalRequests": []
+      }
+    },
+    {
+      "name": "v4",
+      "config": {
+        "model": "dicta-il/dictabert-tiny",
+        "revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "2+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 5000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "source_sha256": "6f93e0b129dd473bd02f9d9e8684ea7945404d5b7297a87630686fb1f812ef68",
+        "human_reviewed": false,
+        "production_ready": false
+      },
+      "training": {
+        "scope": "Real evidence-supervised training, synthetic data; no production or physical-device claim",
+        "training_seconds": 178.841087657,
+        "total_seconds": 209.323119744,
+        "steps": 5000,
+        "last_loss": 9.728010627441108e-05,
+        "gpu_peak_allocated_bytes": 914533888,
+        "gpu": "Tesla T4",
+        "versions": {
+          "python": "3.13.16",
+          "torch": "2.6.0+cu124"
+        },
+        "validation": {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 70,
+          "exact_rate": 0.5833333333333334,
+          "false_updates": 23,
+          "proposed_updates": 92,
+          "expected_updates": 85,
+          "update_precision": 0.75,
+          "update_recall": 0.8117647058823529,
+          "clarifications": 57,
+          "exact_including_gold_evidence": 70,
+          "nonmatching_gold_evidence": 23
+        },
+        "challenge_selected": {
+          "threshold": 1.0,
+          "examples": 68,
+          "exact_proposals": 24,
+          "exact_rate": 0.35294117647058826,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 36,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 68,
+          "exact_including_gold_evidence": 24,
+          "nonmatching_gold_evidence": 0
+        },
+        "test_evaluated": false,
+        "production_ready": false,
+        "artifacts": {
+          "model.onnx": {
+            "bytes": 178759880,
+            "sha256": "7d41306b390b24b1b55e51764ee3b6aa4aae4dc381ea801533d2bb220562b790"
+          },
+          "model.int8.onnx": {
+            "bytes": 44872552,
+            "sha256": "7a2a886f39cc08a773130527dd6e51d317f1637e83a635b7463c887827f22337"
+          }
+        }
+      },
+      "native_validation_curve": {
+        "selection": "Validation only: no observed false updates or gold-evidence mismatches, then grounded exact/recall. Not a guarantee.",
+        "candidates": [
+          {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.6,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.7,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.8,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.85,
+            "examples": 120,
+            "exact_proposals": 67,
+            "exact_rate": 0.5583333333333333,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 60,
+            "exact_including_gold_evidence": 67,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.9,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 62,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.95,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 62,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.99,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 67,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 1.0,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          }
+        ]
+      },
+      "learning_curve": [
+        {
+          "step": 1000,
+          "seconds": 44.33834629099999,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 53,
+            "exact_rate": 0.44166666666666665,
+            "false_updates": 58,
+            "proposed_updates": 116,
+            "expected_updates": 85,
+            "update_precision": 0.5,
+            "update_recall": 0.6823529411764706,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 53,
+            "nonmatching_gold_evidence": 60
+          }
+        },
+        {
+          "step": 2500,
+          "seconds": 94.87399969499995,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 62,
+            "exact_rate": 0.5166666666666667,
+            "false_updates": 38,
+            "proposed_updates": 102,
+            "expected_updates": 85,
+            "update_precision": 0.6274509803921569,
+            "update_recall": 0.7529411764705882,
+            "clarifications": 56,
+            "exact_including_gold_evidence": 62,
+            "nonmatching_gold_evidence": 39
+          }
+        }
+      ],
+      "current_export": {
+        "scope": "Native FP32 parity before quantization; browser/semantic checks separate",
+        "input_names": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "native_parity": [
+          {
+            "batch": 1,
+            "sequence": 26,
+            "max_abs_logit_error": 6.4373016357421875e-06
+          },
+          {
+            "batch": 4,
+            "sequence": 25,
+            "max_abs_logit_error": 1.6689300537109375e-05
+          },
+          {
+            "batch": 16,
+            "sequence": 31,
+            "max_abs_logit_error": 3.445148468017578e-05
+          }
+        ],
+        "files": {
+          "model.onnx": {
+            "bytes": 178759880,
+            "sha256": "7d41306b390b24b1b55e51764ee3b6aa4aae4dc381ea801533d2bb220562b790"
+          },
+          "model.int8.onnx": {
+            "bytes": 44872552,
+            "sha256": "7a2a886f39cc08a773130527dd6e51d317f1637e83a635b7463c887827f22337"
+          }
+        }
+      },
+      "browser": {
+        "date": "2026-11-11T11:56:00.868Z",
+        "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+        "loads": {
+          "model.onnx": 1224.594999998808,
+          "model.int8.onnx": 231.54999999701977
+        },
+        "cases": [
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 246.46000000089407,
+            "maxAbsLogitError": 2.5987625122070312e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 181.52000000327826,
+            "maxAbsLogitError": 2.7179718017578125e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 198.02000000327826,
+            "maxAbsLogitError": 3.2067298889160156e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 170.78999999910593,
+            "maxAbsLogitError": 5.8650970458984375e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 204.4349999949336,
+            "maxAbsLogitError": 2.2530555725097656e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 189.54999999701977,
+            "maxAbsLogitError": 4.291534423828125e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 218.63500000536442,
+            "maxAbsLogitError": 4.7087669372558594e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 191.2800000011921,
+            "maxAbsLogitError": 3.707408905029297e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 225.125,
+            "maxAbsLogitError": 2.5033950805664062e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 211.64000000059605,
+            "maxAbsLogitError": 2.2798776626586914e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 245.58500000089407,
+            "maxAbsLogitError": 1.9073486328125e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 239.60000000149012,
+            "maxAbsLogitError": 2.2232532501220703e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 201.00999999791384,
+            "maxAbsLogitError": 1.7523765563964844e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 233.94500000029802,
+            "maxAbsLogitError": 2.0503997802734375e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 233.71500000357628,
+            "maxAbsLogitError": 2.09808349609375e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 214.88499999791384,
+            "maxAbsLogitError": 2.6702880859375e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 205.8699999973178,
+            "maxAbsLogitError": 1.7404556274414062e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 233.32999999821186,
+            "maxAbsLogitError": 6.070733070373535e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 175.28999999910593,
+            "maxAbsLogitError": 2.7179718017578125e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 216.28499999642372,
+            "maxAbsLogitError": 1.9669532775878906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 198.39999999850988,
+            "maxAbsLogitError": 3.212690353393555e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 257.804999999702,
+            "maxAbsLogitError": 1.6570091247558594e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 188.78999999910593,
+            "maxAbsLogitError": 2.1457672119140625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 202.07500000298023,
+            "maxAbsLogitError": 3.266334533691406e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 205.28499999642372,
+            "maxAbsLogitError": 1.5854835510253906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 219.49000000208616,
+            "maxAbsLogitError": 3.159046173095703e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 212.67000000178814,
+            "maxAbsLogitError": 4.57763671875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 186.3149999976158,
+            "maxAbsLogitError": 2.2113323211669922e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 224.61500000208616,
+            "maxAbsLogitError": 3.266334533691406e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 251.7200000062585,
+            "maxAbsLogitError": 2.3245811462402344e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 221.14500000327826,
+            "maxAbsLogitError": 3.4332275390625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 191.33500000089407,
+            "maxAbsLogitError": 2.968311309814453e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 237.28499999642372,
+            "maxAbsLogitError": 2.818182110786438e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 170.1900000050664,
+            "maxAbsLogitError": 3.886222839355469e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 207.09999999403954,
+            "maxAbsLogitError": 2.1457672119140625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 182.67499999701977,
+            "maxAbsLogitError": 3.1113624572753906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 16,
+            "ms": 204.98499999940395,
+            "maxAbsLogitError": 1.621246337890625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 8,
+            "ms": 80.52000000327826,
+            "maxAbsLogitError": 2.3603439331054688e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 124.09999999403954,
+            "maxAbsLogitError": 0.04182475805282593,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 94.16999999433756,
+            "maxAbsLogitError": 0.23677682876586914,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 105.22500000149012,
+            "maxAbsLogitError": 0.03334450721740723,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 82.21000000089407,
+            "maxAbsLogitError": 0.045444607734680176,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 98.60000000149012,
+            "maxAbsLogitError": 0.048427432775497437,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 88.19999999552965,
+            "maxAbsLogitError": 0.562006376683712,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.92500000447035,
+            "maxAbsLogitError": 0.18245649337768555,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 94.74000000208616,
+            "maxAbsLogitError": 0.1242222785949707,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 119.20500000566244,
+            "maxAbsLogitError": 0.07503628730773926,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.55499999970198,
+            "maxAbsLogitError": 1.1843518614768982,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 115.67000000178814,
+            "maxAbsLogitError": 0.1058875322341919,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 125.97499999403954,
+            "maxAbsLogitError": 0.7675668597221375,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.89499999582767,
+            "maxAbsLogitError": 0.03899109363555908,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.8150000050664,
+            "maxAbsLogitError": 0.09414005279541016,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 112.07000000029802,
+            "maxAbsLogitError": 3.814697265625e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 106.05000000447035,
+            "maxAbsLogitError": 0.295585036277771,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 102.81000000238419,
+            "maxAbsLogitError": 0.04791545867919922,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 110.67000000178814,
+            "maxAbsLogitError": 1.3116812705993652,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 82.27999999374151,
+            "maxAbsLogitError": 0.4559072256088257,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.17499999701977,
+            "maxAbsLogitError": 0.3056919574737549,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 93.28999999910593,
+            "maxAbsLogitError": 0.2079870104789734,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 115.55499999970198,
+            "maxAbsLogitError": 0.46020859479904175,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 84.01499999314547,
+            "maxAbsLogitError": 0.07066965103149414,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.46500000357628,
+            "maxAbsLogitError": 1.0173091292381287,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 3,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 97.21000000089407,
+            "maxAbsLogitError": 1.3273919820785522,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 104.43999999761581,
+            "maxAbsLogitError": 0.07468867301940918,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.09999999403954,
+            "maxAbsLogitError": 0.4588518440723419,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 92.67000000178814,
+            "maxAbsLogitError": 0.7681295871734619,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.52500000596046,
+            "maxAbsLogitError": 1.0481911897659302,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 116.97500000149012,
+            "maxAbsLogitError": 0.31066012382507324,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 110.4649999961257,
+            "maxAbsLogitError": 0.14114594459533691,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.67999999970198,
+            "maxAbsLogitError": 0.6208138465881348,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 115.68500000238419,
+            "maxAbsLogitError": 0.4698677062988281,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 80.31000000238419,
+            "maxAbsLogitError": 0.2912482023239136,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.39000000059605,
+            "maxAbsLogitError": 0.0873403549194336,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.38499999791384,
+            "maxAbsLogitError": 0.08434224128723145,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.68500000238419,
+            "maxAbsLogitError": 0.08675575256347656,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 8,
+            "ms": 40.6600000038743,
+            "maxAbsLogitError": 1.430511474609375e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          }
+        ],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "threads": 1,
+        "fp32Tested": true,
+        "externalRequests": [],
+        "memory": {
+          "peakChromiumProcessSumMiB": 1434.11328125,
+          "sampleIntervalMs": 200,
+          "scope": "This owned Chromium process tree during sequential FP32 and INT8 checks. Includes runtime/browser/retained allocations and may count shared pages repeatedly; not model-only or phone RAM."
+        }
+      },
+      "fine_calibration": {
+        "selection": "Validation-only fixed finer grid; single joint threshold; no model retraining or test selection. Zero observed errors is not a statistical guarantee.",
+        "grid": [
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          0.99,
+          0.995,
+          0.999,
+          0.9995,
+          0.9999,
+          0.99995,
+          0.99999,
+          0.999999,
+          1.0
+        ],
+        "candidates": [
+          {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.6,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.7,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.8,
+            "examples": 120,
+            "exact_proposals": 70,
+            "exact_rate": 0.5833333333333334,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 70,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.85,
+            "examples": 120,
+            "exact_proposals": 67,
+            "exact_rate": 0.5583333333333333,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 60,
+            "exact_including_gold_evidence": 67,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.9,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 62,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.95,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 62,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.99,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 23,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.75,
+            "update_recall": 0.8117647058823529,
+            "clarifications": 67,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 23
+          },
+          {
+            "threshold": 0.995,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 22,
+            "proposed_updates": 89,
+            "expected_updates": 85,
+            "update_precision": 0.7528089887640449,
+            "update_recall": 0.788235294117647,
+            "clarifications": 68,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 22
+          },
+          {
+            "threshold": 0.999,
+            "examples": 120,
+            "exact_proposals": 65,
+            "exact_rate": 0.5416666666666666,
+            "false_updates": 21,
+            "proposed_updates": 88,
+            "expected_updates": 85,
+            "update_precision": 0.7613636363636364,
+            "update_recall": 0.788235294117647,
+            "clarifications": 68,
+            "exact_including_gold_evidence": 65,
+            "nonmatching_gold_evidence": 21
+          },
+          {
+            "threshold": 0.9995,
+            "examples": 120,
+            "exact_proposals": 64,
+            "exact_rate": 0.5333333333333333,
+            "false_updates": 15,
+            "proposed_updates": 75,
+            "expected_updates": 85,
+            "update_precision": 0.8,
+            "update_recall": 0.7058823529411765,
+            "clarifications": 72,
+            "exact_including_gold_evidence": 64,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.9999,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 3,
+            "expected_updates": 85,
+            "update_precision": 1.0,
+            "update_recall": 0.03529411764705882,
+            "clarifications": 117,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 0.99995,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 0.99999,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 0.999999,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 1.0,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          }
+        ],
+        "fp32": {
+          "threshold": 0.9999,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 3,
+          "expected_updates": 85,
+          "update_precision": 1.0,
+          "update_recall": 0.03529411764705882,
+          "clarifications": 117,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "int8": {
+          "threshold": 0.9999,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "production_ready": false
+      },
+      "int8_only_browser": {
+        "date": "2026-11-11T12:14:23.191Z",
+        "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+        "loads": {
+          "model.int8.onnx": 582.3000000044703
+        },
+        "cases": [
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 184.22500000149012,
+            "maxAbsLogitError": 0.04182475805282593,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 93.12999999523163,
+            "maxAbsLogitError": 0.23677682876586914,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.06499999761581,
+            "maxAbsLogitError": 0.03334450721740723,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 81.47500000149012,
+            "maxAbsLogitError": 0.045444607734680176,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 99.28499999642372,
+            "maxAbsLogitError": 0.048427432775497437,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 94.63499999791384,
+            "maxAbsLogitError": 0.562006376683712,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 103.89000000059605,
+            "maxAbsLogitError": 0.18245649337768555,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 91.28999999910593,
+            "maxAbsLogitError": 0.1242222785949707,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 107.6600000038743,
+            "maxAbsLogitError": 0.07503628730773926,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 95.70000000298023,
+            "maxAbsLogitError": 1.1843518614768982,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 112.75500000268221,
+            "maxAbsLogitError": 0.1058875322341919,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 131.60499999672174,
+            "maxAbsLogitError": 0.7675668597221375,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 98.40999999642372,
+            "maxAbsLogitError": 0.03899109363555908,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.82500000298023,
+            "maxAbsLogitError": 0.09414005279541016,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 113.49000000208616,
+            "maxAbsLogitError": 3.814697265625e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 123.21500000357628,
+            "maxAbsLogitError": 0.295585036277771,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.43999999761581,
+            "maxAbsLogitError": 0.04791545867919922,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 110.44500000029802,
+            "maxAbsLogitError": 1.3116812705993652,
+            "labelDisagreements": 1,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 82.42500000447035,
+            "maxAbsLogitError": 0.4559072256088257,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 100.45499999821186,
+            "maxAbsLogitError": 0.3056919574737549,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 89.72500000149012,
+            "maxAbsLogitError": 0.2079870104789734,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 112.98999999463558,
+            "maxAbsLogitError": 0.46020859479904175,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 83.42499999701977,
+            "maxAbsLogitError": 0.07066965103149414,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.1550000011921,
+            "maxAbsLogitError": 1.0173091292381287,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 3,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 96.4349999949336,
+            "maxAbsLogitError": 1.3273919820785522,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 104.0300000011921,
+            "maxAbsLogitError": 0.07468867301940918,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.07500000298023,
+            "maxAbsLogitError": 0.4588518440723419,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.85499999672174,
+            "maxAbsLogitError": 0.7681295871734619,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.37000000476837,
+            "maxAbsLogitError": 1.0481911897659302,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 118.64499999582767,
+            "maxAbsLogitError": 0.31066012382507324,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 113.01999999582767,
+            "maxAbsLogitError": 0.14114594459533691,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.41499999910593,
+            "maxAbsLogitError": 0.6208138465881348,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 118.77000000327826,
+            "maxAbsLogitError": 0.4698677062988281,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 81.9100000038743,
+            "maxAbsLogitError": 0.2912482023239136,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.35000000149012,
+            "maxAbsLogitError": 0.0873403549194336,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 90.3449999988079,
+            "maxAbsLogitError": 0.08434224128723145,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 16,
+            "ms": 101.7149999961257,
+            "maxAbsLogitError": 0.08675575256347656,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 8,
+            "ms": 39.91499999910593,
+            "maxAbsLogitError": 1.430511474609375e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          }
+        ],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "threads": 1,
+        "fp32Tested": false,
+        "externalRequests": [],
+        "memory": {
+          "peakChromiumProcessSumMiB": 962.05859375,
+          "sampleIntervalMs": 200,
+          "scope": "INT8-only owned Chromium process tree; runtime/browser/retained allocations included; shared pages may be counted repeatedly; no STT/TTS or phone RAM guarantee.",
+          "metadata_correction": "Scope text corrected from fp32Tested=false; measurements unchanged."
+        }
+      }
+    },
+    {
+      "name": "base_2000",
+      "model": "dicta-il/dictabert",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "2+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 2000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "source_sha256": "1a1dd575baba1d30b2efb0f3f4f2eda23a416941c860491a7df399a825d4e8bc",
+        "human_reviewed": false,
+        "production_ready": false
+      },
+      "hardware": {
+        "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+        "python": "3.13.16",
+        "cpu_count": 2
+      },
+      "training_stage_completed": true,
+      "pipeline_status": "CPU validation deadline after native training/validation and export; local recovery/evaluation followed",
+      "steps": 2000,
+      "last_training_log_seconds": 352.10488212599995,
+      "gpu_peak_allocated_bytes": null,
+      "learning_curve": [
+        {
+          "step": 1000,
+          "seconds": 169.31518094300003,
+          "validation_at_0_5": {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 91,
+            "exact_rate": 0.7583333333333333,
+            "false_updates": 7,
+            "proposed_updates": 85,
+            "expected_updates": 85,
+            "update_precision": 0.9176470588235294,
+            "update_recall": 0.9176470588235294,
+            "clarifications": 50,
+            "exact_including_gold_evidence": 91,
+            "nonmatching_gold_evidence": 7
+          }
+        }
+      ],
+      "native_validation": {
+        "metrics": {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 35,
+          "nonmatching_gold_evidence": 0
+        },
+        "at_0_5": {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 85,
+          "exact_rate": 0.7083333333333334,
+          "false_updates": 15,
+          "proposed_updates": 93,
+          "expected_updates": 85,
+          "update_precision": 0.8387096774193549,
+          "update_recall": 0.9176470588235294,
+          "clarifications": 50,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 4,
+              "false_updates": 1
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 2,
+              "false_updates": 3
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 2,
+              "false_updates": 3
+            },
+            "negative": {
+              "total": 5,
+              "exact": 4,
+              "false_updates": 1
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 3,
+              "false_updates": 2
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 3,
+              "false_updates": 2
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 2,
+              "false_updates": 2
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 1,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 4,
+              "false_updates": 1
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 85,
+          "nonmatching_gold_evidence": 15
+        },
+        "threshold_selection": {
+          "selection": "Validation only: no observed false updates or gold-evidence mismatches, then grounded exact/recall. Not a guarantee.",
+          "candidates": [
+            {
+              "threshold": 0.5,
+              "examples": 120,
+              "exact_proposals": 85,
+              "exact_rate": 0.7083333333333334,
+              "false_updates": 15,
+              "proposed_updates": 93,
+              "expected_updates": 85,
+              "update_precision": 0.8387096774193549,
+              "update_recall": 0.9176470588235294,
+              "clarifications": 50,
+              "exact_including_gold_evidence": 85,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.6,
+              "examples": 120,
+              "exact_proposals": 85,
+              "exact_rate": 0.7083333333333334,
+              "false_updates": 15,
+              "proposed_updates": 93,
+              "expected_updates": 85,
+              "update_precision": 0.8387096774193549,
+              "update_recall": 0.9176470588235294,
+              "clarifications": 50,
+              "exact_including_gold_evidence": 85,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.7,
+              "examples": 120,
+              "exact_proposals": 84,
+              "exact_rate": 0.7,
+              "false_updates": 15,
+              "proposed_updates": 92,
+              "expected_updates": 85,
+              "update_precision": 0.8369565217391305,
+              "update_recall": 0.9058823529411765,
+              "clarifications": 52,
+              "exact_including_gold_evidence": 84,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.8,
+              "examples": 120,
+              "exact_proposals": 83,
+              "exact_rate": 0.6916666666666667,
+              "false_updates": 15,
+              "proposed_updates": 92,
+              "expected_updates": 85,
+              "update_precision": 0.8369565217391305,
+              "update_recall": 0.9058823529411765,
+              "clarifications": 55,
+              "exact_including_gold_evidence": 83,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.85,
+              "examples": 120,
+              "exact_proposals": 82,
+              "exact_rate": 0.6833333333333333,
+              "false_updates": 15,
+              "proposed_updates": 91,
+              "expected_updates": 85,
+              "update_precision": 0.8351648351648352,
+              "update_recall": 0.8941176470588236,
+              "clarifications": 57,
+              "exact_including_gold_evidence": 82,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.9,
+              "examples": 120,
+              "exact_proposals": 82,
+              "exact_rate": 0.6833333333333333,
+              "false_updates": 15,
+              "proposed_updates": 91,
+              "expected_updates": 85,
+              "update_precision": 0.8351648351648352,
+              "update_recall": 0.8941176470588236,
+              "clarifications": 57,
+              "exact_including_gold_evidence": 82,
+              "nonmatching_gold_evidence": 15
+            },
+            {
+              "threshold": 0.95,
+              "examples": 120,
+              "exact_proposals": 81,
+              "exact_rate": 0.675,
+              "false_updates": 14,
+              "proposed_updates": 88,
+              "expected_updates": 85,
+              "update_precision": 0.8409090909090909,
+              "update_recall": 0.8705882352941177,
+              "clarifications": 59,
+              "exact_including_gold_evidence": 81,
+              "nonmatching_gold_evidence": 14
+            },
+            {
+              "threshold": 0.99,
+              "examples": 120,
+              "exact_proposals": 80,
+              "exact_rate": 0.6666666666666666,
+              "false_updates": 14,
+              "proposed_updates": 87,
+              "expected_updates": 85,
+              "update_precision": 0.8390804597701149,
+              "update_recall": 0.8588235294117647,
+              "clarifications": 60,
+              "exact_including_gold_evidence": 80,
+              "nonmatching_gold_evidence": 14
+            },
+            {
+              "threshold": 1.0,
+              "examples": 120,
+              "exact_proposals": 35,
+              "exact_rate": 0.2916666666666667,
+              "false_updates": 0,
+              "proposed_updates": 0,
+              "expected_updates": 85,
+              "update_precision": null,
+              "update_recall": 0.0,
+              "clarifications": 120,
+              "exact_including_gold_evidence": 35,
+              "nonmatching_gold_evidence": 0
+            }
+          ]
+        }
+      },
+      "fine_calibration": {
+        "selection": "Validation-only fixed finer grid; single joint threshold; no model retraining or test selection. Zero observed errors is not a statistical guarantee.",
+        "fp32_engine": "native ORT",
+        "grid": [
+          0.5,
+          0.6,
+          0.7,
+          0.8,
+          0.85,
+          0.9,
+          0.95,
+          0.99,
+          0.995,
+          0.999,
+          0.9995,
+          0.9999,
+          0.99995,
+          0.99999,
+          0.999999,
+          1.0
+        ],
+        "candidates": [
+          {
+            "threshold": 0.5,
+            "examples": 120,
+            "exact_proposals": 85,
+            "exact_rate": 0.7083333333333334,
+            "false_updates": 15,
+            "proposed_updates": 93,
+            "expected_updates": 85,
+            "update_precision": 0.8387096774193549,
+            "update_recall": 0.9176470588235294,
+            "clarifications": 50,
+            "exact_including_gold_evidence": 85,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.6,
+            "examples": 120,
+            "exact_proposals": 85,
+            "exact_rate": 0.7083333333333334,
+            "false_updates": 15,
+            "proposed_updates": 93,
+            "expected_updates": 85,
+            "update_precision": 0.8387096774193549,
+            "update_recall": 0.9176470588235294,
+            "clarifications": 50,
+            "exact_including_gold_evidence": 85,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.7,
+            "examples": 120,
+            "exact_proposals": 84,
+            "exact_rate": 0.7,
+            "false_updates": 15,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.8369565217391305,
+            "update_recall": 0.9058823529411765,
+            "clarifications": 52,
+            "exact_including_gold_evidence": 84,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.8,
+            "examples": 120,
+            "exact_proposals": 83,
+            "exact_rate": 0.6916666666666667,
+            "false_updates": 15,
+            "proposed_updates": 92,
+            "expected_updates": 85,
+            "update_precision": 0.8369565217391305,
+            "update_recall": 0.9058823529411765,
+            "clarifications": 55,
+            "exact_including_gold_evidence": 83,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.85,
+            "examples": 120,
+            "exact_proposals": 82,
+            "exact_rate": 0.6833333333333333,
+            "false_updates": 15,
+            "proposed_updates": 91,
+            "expected_updates": 85,
+            "update_precision": 0.8351648351648352,
+            "update_recall": 0.8941176470588236,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 82,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.9,
+            "examples": 120,
+            "exact_proposals": 82,
+            "exact_rate": 0.6833333333333333,
+            "false_updates": 15,
+            "proposed_updates": 91,
+            "expected_updates": 85,
+            "update_precision": 0.8351648351648352,
+            "update_recall": 0.8941176470588236,
+            "clarifications": 57,
+            "exact_including_gold_evidence": 82,
+            "nonmatching_gold_evidence": 15
+          },
+          {
+            "threshold": 0.95,
+            "examples": 120,
+            "exact_proposals": 81,
+            "exact_rate": 0.675,
+            "false_updates": 14,
+            "proposed_updates": 88,
+            "expected_updates": 85,
+            "update_precision": 0.8409090909090909,
+            "update_recall": 0.8705882352941177,
+            "clarifications": 59,
+            "exact_including_gold_evidence": 81,
+            "nonmatching_gold_evidence": 14
+          },
+          {
+            "threshold": 0.99,
+            "examples": 120,
+            "exact_proposals": 80,
+            "exact_rate": 0.6666666666666666,
+            "false_updates": 14,
+            "proposed_updates": 87,
+            "expected_updates": 85,
+            "update_precision": 0.8390804597701149,
+            "update_recall": 0.8588235294117647,
+            "clarifications": 60,
+            "exact_including_gold_evidence": 80,
+            "nonmatching_gold_evidence": 14
+          },
+          {
+            "threshold": 0.995,
+            "examples": 120,
+            "exact_proposals": 81,
+            "exact_rate": 0.675,
+            "false_updates": 13,
+            "proposed_updates": 86,
+            "expected_updates": 85,
+            "update_precision": 0.8488372093023255,
+            "update_recall": 0.8588235294117647,
+            "clarifications": 60,
+            "exact_including_gold_evidence": 81,
+            "nonmatching_gold_evidence": 13
+          },
+          {
+            "threshold": 0.999,
+            "examples": 120,
+            "exact_proposals": 76,
+            "exact_rate": 0.6333333333333333,
+            "false_updates": 13,
+            "proposed_updates": 86,
+            "expected_updates": 85,
+            "update_precision": 0.8488372093023255,
+            "update_recall": 0.8588235294117647,
+            "clarifications": 65,
+            "exact_including_gold_evidence": 76,
+            "nonmatching_gold_evidence": 13
+          },
+          {
+            "threshold": 0.9995,
+            "examples": 120,
+            "exact_proposals": 77,
+            "exact_rate": 0.6416666666666667,
+            "false_updates": 12,
+            "proposed_updates": 85,
+            "expected_updates": 85,
+            "update_precision": 0.8588235294117647,
+            "update_recall": 0.8588235294117647,
+            "clarifications": 65,
+            "exact_including_gold_evidence": 77,
+            "nonmatching_gold_evidence": 12
+          },
+          {
+            "threshold": 0.9999,
+            "examples": 120,
+            "exact_proposals": 66,
+            "exact_rate": 0.55,
+            "false_updates": 9,
+            "proposed_updates": 66,
+            "expected_updates": 85,
+            "update_precision": 0.8636363636363636,
+            "update_recall": 0.6705882352941176,
+            "clarifications": 79,
+            "exact_including_gold_evidence": 66,
+            "nonmatching_gold_evidence": 9
+          },
+          {
+            "threshold": 0.99995,
+            "examples": 120,
+            "exact_proposals": 38,
+            "exact_rate": 0.31666666666666665,
+            "false_updates": 0,
+            "proposed_updates": 6,
+            "expected_updates": 85,
+            "update_precision": 1.0,
+            "update_recall": 0.07058823529411765,
+            "clarifications": 117,
+            "exact_including_gold_evidence": 38,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 0.99999,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 0.999999,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          },
+          {
+            "threshold": 1.0,
+            "examples": 120,
+            "exact_proposals": 35,
+            "exact_rate": 0.2916666666666667,
+            "false_updates": 0,
+            "proposed_updates": 0,
+            "expected_updates": 85,
+            "update_precision": null,
+            "update_recall": 0.0,
+            "clarifications": 120,
+            "exact_including_gold_evidence": 35,
+            "nonmatching_gold_evidence": 0
+          }
+        ],
+        "fp32": {
+          "threshold": 0.99995,
+          "examples": 120,
+          "exact_proposals": 38,
+          "exact_rate": 0.31666666666666665,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 85,
+          "update_precision": 1.0,
+          "update_recall": 0.07058823529411765,
+          "clarifications": 117,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 1,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 2,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 38,
+          "nonmatching_gold_evidence": 0
+        },
+        "int8": {
+          "threshold": 0.99995,
+          "examples": 120,
+          "exact_proposals": 37,
+          "exact_rate": 0.30833333333333335,
+          "false_updates": 0,
+          "proposed_updates": 4,
+          "expected_updates": 85,
+          "update_precision": 1.0,
+          "update_recall": 0.047058823529411764,
+          "clarifications": 118,
+          "by_scenario": {
+            "positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "later_action": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "two_positive": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "partial_step": {
+              "total": 5,
+              "exact": 2,
+              "false_updates": 0
+            },
+            "negative": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_undo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "correction_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "already_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "negative_then_done": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "both_pending": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "ambiguous_pronoun": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "ambiguous_object": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "next": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "missed": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "extra_advice": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "uncertain": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "future_only": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "partial_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "recipe_switch": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_progress": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            },
+            "report_then_question": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "last_clause_correction": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "synthetic_typo": {
+              "total": 5,
+              "exact": 0,
+              "false_updates": 0
+            },
+            "unknown_action": {
+              "total": 5,
+              "exact": 5,
+              "false_updates": 0
+            }
+          },
+          "exact_including_gold_evidence": 37,
+          "nonmatching_gold_evidence": 0
+        },
+        "corpus_sha256": "d05baa19b2eba55ac57ef7d10ecba7af13d4a316123f4eb495764661a506bc53",
+        "production_ready": false
+      },
+      "export": {
+        "scope": "Native FP32 parity before quantization; browser/semantic checks separate",
+        "input_names": [
+          "input_ids",
+          "attention_mask",
+          "token_type_ids"
+        ],
+        "native_parity": [
+          {
+            "batch": 1,
+            "sequence": 26,
+            "max_abs_logit_error": 5.125999450683594e-06
+          },
+          {
+            "batch": 4,
+            "sequence": 25,
+            "max_abs_logit_error": 3.528594970703125e-05
+          },
+          {
+            "batch": 16,
+            "sequence": 31,
+            "max_abs_logit_error": 0.0001227855682373047
+          }
+        ],
+        "files": {
+          "model.onnx": {
+            "bytes": 735288736,
+            "sha256": "bb8b99418453d3c6c5876a49093f3eb6ad8b82796f6416dd8c800716d8f3165c"
+          },
+          "model.int8.onnx": {
+            "bytes": 184564937,
+            "sha256": "00cdb836870359e83f156bf79335f5139a22fbb6b11c542119516d63c298c21e"
+          }
+        }
+      },
+      "browser": {
+        "date": "2026-11-11T12:12:45.524Z",
+        "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+        "loads": {
+          "model.onnx": 3893.795000001788,
+          "model.int8.onnx": 736.6150000020862
+        },
+        "cases": [
+          {
+            "file": "model.onnx",
+            "batch": 1,
+            "ms": 206.00999999791384,
+            "maxAbsLogitError": 4.5299530029296875e-06,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 2,
+            "ms": 335.28999999910593,
+            "maxAbsLogitError": 3.647804260253906e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 3,
+            "ms": 581.6899999976158,
+            "maxAbsLogitError": 5.7697296142578125e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 4,
+            "ms": 782.0750000029802,
+            "maxAbsLogitError": 1.33514404296875e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 5,
+            "ms": 984.7850000038743,
+            "maxAbsLogitError": 5.5789947509765625e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.onnx",
+            "batch": 5,
+            "ms": 1093.015000000596,
+            "maxAbsLogitError": 5.4955482482910156e-05,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 1,
+            "ms": 120.02500000596046,
+            "maxAbsLogitError": 0.7255153059959412,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 2,
+            "ms": 171.20499999821186,
+            "maxAbsLogitError": 2.751660943031311,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 3,
+            "ms": 274.59999999403954,
+            "maxAbsLogitError": 2.8520541191101074,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 1
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 4,
+            "ms": 357.00999999791384,
+            "maxAbsLogitError": 1.8229109048843384,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 5,
+            "ms": 448.429999999702,
+            "maxAbsLogitError": 4.617912292480469,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 1
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 5,
+            "ms": 632.0850000008941,
+            "maxAbsLogitError": 3.552579164505005,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          }
+        ],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "threads": 1,
+        "fp32Tested": true,
+        "externalRequests": [],
+        "memory": {
+          "peakChromiumProcessSumMiB": 3370.6015625,
+          "sampleIntervalMs": 200,
+          "scope": "This owned Chromium process tree during sequential FP32 and INT8 checks. Includes runtime/browser/retained allocations and may count shared pages repeatedly; not model-only or phone RAM."
+        }
+      },
+      "int8_only_browser": {
+        "date": "2026-11-11T12:14:18.372Z",
+        "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+        "loads": {
+          "model.int8.onnx": 1632.2999999970198
+        },
+        "cases": [
+          {
+            "file": "model.int8.onnx",
+            "batch": 1,
+            "ms": 222.4649999961257,
+            "maxAbsLogitError": 0.7255153059959412,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 2,
+            "ms": 172.5300000011921,
+            "maxAbsLogitError": 2.751660943031311,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 3,
+            "ms": 258.92500000447035,
+            "maxAbsLogitError": 2.8520541191101074,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 1
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 4,
+            "ms": 379.9750000014901,
+            "maxAbsLogitError": 1.8229109048843384,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 0,
+            "acceptedEvidenceDisagreements": 0
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 5,
+            "ms": 485.51500000059605,
+            "maxAbsLogitError": 4.617912292480469,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 1
+          },
+          {
+            "file": "model.int8.onnx",
+            "batch": 5,
+            "ms": 537.109999999404,
+            "maxAbsLogitError": 3.552579164505005,
+            "labelDisagreements": 0,
+            "decisionDisagreements": 1,
+            "acceptedEvidenceDisagreements": 0
+          }
+        ],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "threads": 1,
+        "fp32Tested": false,
+        "externalRequests": [],
+        "memory": {
+          "peakChromiumProcessSumMiB": 1269.28125,
+          "sampleIntervalMs": 200,
+          "scope": "INT8-only owned Chromium process tree; runtime/browser/retained allocations included; shared pages may be counted repeatedly; no STT/TTS or phone RAM guarantee.",
+          "metadata_correction": "Scope text corrected from fp32Tested=false; measurements unchanged."
+        }
+      },
+      "recovery": {
+        "reason": "T4 training and native validation finished. CPU INT8 evaluation reached its 600-second stage deadline. Slow archive recovery was stopped after recovering complete inference artifacts.",
+        "onnx_fp32_and_int8_recovered": true,
+        "onnx_files": "Both CRC32 and original export-report SHA256 verified before GPU release",
+        "native_pytorch_safetensors_recovered": false,
+        "retraining_checkpoint_recovered": false,
+        "tokenizer_metadata": "Rebuilt special-token metadata from the recovered original tokenizer JSON; JSON semantic equality checked. Publisher has no tokenizer metadata file at attempted pinned path.",
+        "selected_data": "Copied exact corpus from earlier run; corpus SHA matches base run config",
+        "gpu_session_stopped": true,
+        "zero_active_sessions_verified": true
+      },
+      "tokenizer_browser": {
+        "date": "2026-11-11T12:22:06.744Z",
+        "scope": "Actual cloud Chromium Python fast-tokenizer vs @huggingface/tokenizers 0.2.0; no physical-device claim",
+        "loadMs": 143.40000000596046,
+        "totalEncodeMs": 328,
+        "cases": 6712,
+        "mismatchCount": 0,
+        "mismatchExamples": [],
+        "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "tokenizerJsonSha256": "4e520fd9025a2fd5f2dce1d04df5922954c8ff050cc3e67d4bc54a7347eccb32",
+        "externalRequests": []
+      }
+    }
+  ],
+  "boundaries": {
+    "test_evaluated": false,
+    "human_reviewed": false,
+    "physical_device": false,
+    "app_integration": false,
+    "challenge": "Regression set after earlier failure diagnosis. Frozen before classification ablation; not untouched acceptance for later span pilots.",
+    "browser_offset_mapping": "Span browser fixtures use Python offsets; live browser text-to-evidence alignment remains untested."
+  },
+  "cleanup": {
+    "all_experiment_sessions_stopped": true,
+    "no_active_sessions_verified": true
+  },
+  "latest_code_changes_not_gpu_revalidated": [
+    "Preserve/restore best validation checkpoint",
+    "Train-only GPU stage, CPU export after release"
+  ],
+  "runtime_pair": {
+    "native_ort": "1.22.0",
+    "browser_ort_web": "1.30.0",
+    "interpretation": "Observed quantized discrepancies apply to this tested runtime/version pair; not proof that the architecture can never run correctly in a browser."
+  },
+  "representative_failures": [
+    {
+      "source": "tiny1000 PyTorch validation threshold 0.5",
+      "id": "r20-positive",
+      "utterance": "לעדכון: שטפתי קינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "tiny1000 PyTorch validation threshold 0.5",
+      "id": "r20-later_action",
+      "utterance": "לעדכון: חתכתי פלפל",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a1",
+            "done": true,
+            "evidence": "חתכתי פלפל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a1",
+            "done": true,
+            "evidence": "חתכתי פלפל"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "חתכתי פלפל"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "tiny1000 PyTorch validation threshold 0.5",
+      "id": "r20-two_positive",
+      "utterance": "לעדכון: שטפתי קינואה וגם בישלתי את הקינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "tiny5000 PyTorch validation threshold 0.5",
+      "id": "r20-positive",
+      "utterance": "לעדכון: שטפתי קינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "tiny5000 PyTorch validation threshold 0.5",
+      "id": "r20-two_positive",
+      "utterance": "לעדכון: שטפתי קינואה וגם בישלתי את הקינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "tiny5000 PyTorch validation threshold 0.5",
+      "id": "r20-negative",
+      "utterance": "לעדכון: עוד לא שטפתי קינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false,
+            "evidence": "עוד לא שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false,
+            "evidence": "עוד לא שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": false,
+            "evidence": "עוד לא שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "base2000 PyTorch validation threshold 0.5",
+      "id": "r20-two_positive",
+      "utterance": "לעדכון: שטפתי קינואה וגם בישלתי את הקינואה",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "base2000 PyTorch validation threshold 0.5",
+      "id": "r20-already_done",
+      "utterance": "לעדכון: שטפתי קינואה, זה כבר בוצע",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    },
+    {
+      "source": "base2000 PyTorch validation threshold 0.5",
+      "id": "r20-report_then_question",
+      "utterance": "לעדכון: שטפתי קינואה, איך ממשיכים מכאן?",
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          },
+          {
+            "actionId": "s2a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ],
+        "requiresReview": true
+      },
+      "exact": false,
+      "false_updates": 1
+    }
+  ],
+  "evidence_storage": "Committed summaries and bounded failure examples; full per-case reports, model files and recovery archives remain in ignored local runs."
+}

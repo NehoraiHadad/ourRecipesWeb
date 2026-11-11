@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-11",
+  "model": "dicta-il/dictabert-tiny",
+  "same_base_seed_lr_batch_steps": true,
+  "steps_per_variant": 1000,
+  "seed": 42,
+  "lr": 3e-05,
+  "batch_size": 8,
+  "variants": [
+    "compact-original-sampling-original-data",
+    "compact-balanced-sampling-original-data",
+    "compact-balanced-sampling-position-augmented-train-only"
+  ],
+  "baseline": "Previously completed 1000-step contract-1 run; changes preserve contract-1 encoding and original sampler order",
+  "selection": "Existing validation only: maximize conservative policy recall then raw exact rate. Challenge and test never used for selection.",
+  "challenge": {
+    "sha256": "a3cc67cf0c2ffd66b62873ebc69cbaf27ebf3c7683e5c2849e325889478bf6df",
+    "examples": 68,
+    "recipes": 4,
+    "role": "Diagnostic challenge frozen before new runs; never training or model/threshold selection",
+    "human_reviewed": false
+  },
+  "limits": {
+    "gpu": "T4",
+    "job_seconds": 1200,
+    "training_comparison_seconds": 600,
+    "local_watchdog_seconds": 1500
+  },
+  "acceptance": "No integration without useful precision AND recall on unseen Hebrew and actual device checks. No production claim from synthetic data.",
+  "source_files_sha256": {
+    "corpus.py": "a88cbcab622b7ad6eebb2ac431cfc7950b2e8944eb7f57b3f969911c606604fc",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "train.py": "dfb93c2ecf7e373cbb99275c9342fbfed0bdd5aefdbcc008b7732a9c78a0b1ed",
+    "ablation.py": "38836284c98b09446154f8bc43468345653804aae923b9c76391774ccb79dae3",
+    "challenge.py": "3418e28803f19cf544d914ae51abfe7101a9661a3bf24af8efa18996a20f2fa4"
+  }
+}

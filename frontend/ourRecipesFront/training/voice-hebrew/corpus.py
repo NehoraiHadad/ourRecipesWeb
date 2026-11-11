@@ -153,8 +153,10 @@ def validate(recs, rows):
     return {s:{"recipes":len(recipe_sets[s]),"examples":sum(r["split"]==s for r in rows)} for s in recipe_sets}
 
 
-def queries(recipe, row):
+def queries(recipe, row, contract=1):
     """Single shared contract for training, native evaluation, and browser fixtures."""
+    if contract not in (1, 2):
+        raise ValueError('Unknown query contract')
     state=row["state"]
     action_text={a["id"]:a["text"] for a in recipe["actions"]}
     completed="; ".join(action_text[a] for a in state["completed"]) or "אין"
@@ -162,8 +164,21 @@ def queries(recipe, row):
     previous_text=("אותו מתכון: " if previous["recipe_id"]==recipe["id"] else "מתכון אחר: ")+previous["utterance"] if previous else "אין"
     context=f'שלב נוכחי: {state["currentStep"]+1}\nהושלמו: {completed}\nדיווח קודם: {previous_text}\nמתכון: {recipe["title"]}\nרכיבים: {", ".join(recipe["ingredients"])}\nהוראות: '+"; ".join(a["text"] for a in recipe["actions"])
     base={"example_id":row["id"],"utterance":row["utterance"],"scenario":row["scenario"]}
-    yield {**base,"task":"intent","action_id":None,"context":"משימה: סיווג כוונת הדיווח\n"+context,"label":row["gold"]["intent"]}
+    intent_context = "משימה: סיווג כוונת הדיווח\n" + context
+    if contract == 2:
+        # Intent needs known actions to distinguish a report from an unrelated act.
+        # Action queries below isolate the candidate from the distractor list.
+        intent_context = 'כוונת הדיווח ביחס לפעולות: ' + '; '.join(a['text'] for a in recipe['actions'])
+    yield {**base,"task":"intent","action_id":None,"context":intent_context,"label":row["gold"]["intent"]}
     changes={c["actionId"]:c["done"] for c in row["gold"]["changes"]}
     for action in recipe["actions"]:
         status="done" if changes.get(action["id"]) is True else "not_done" if changes.get(action["id"]) is False else "not_mentioned"
-        yield {**base,"task":"action","action_id":action["id"],"context":f'משימה: סיווג פעולה\nפעולה נבדקת: {action["text"]}\n'+context,"label":status}
+        candidate_context = f'משימה: סיווג פעולה\nפעולה נבדקת: {action["text"]}\n' + context
+        utterance = row['utterance']
+        if contract == 2:
+            candidate_context = 'פעולה נבדקת: ' + action['text']
+            # IDs/positions are intentionally absent. Preserve explicit previous
+            # report boundaries and discard dialogue from a different recipe.
+            if previous and previous['recipe_id'] == recipe['id']:
+                utterance = 'דיווח קודם: ' + previous['utterance'] + '\nדיווח נוכחי: ' + utterance
+        yield {**base,"utterance":utterance,"task":"action","action_id":action["id"],"context":candidate_context,"label":status}

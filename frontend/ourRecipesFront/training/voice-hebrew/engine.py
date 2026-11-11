@@ -24,8 +24,24 @@ def encode(tokenizer, query, max_length):
     return encoded
 
 
-def expand(recs, rows, split):
-    return [q for r in rows if r["split"]==split for q in queries(recs[r["recipe_id"]],r)]
+def expand(recs, rows, split, contract=1):
+    return [q for r in rows if r["split"]==split for q in queries(recs[r["recipe_id"]],r,contract)]
+
+
+def training_order(items, rng, sampling='original'):
+    if sampling == 'original':
+        order = list(range(len(items))); rng.shuffle(order)
+        return order
+    if sampling != 'balanced-task':
+        raise ValueError('Unknown sampling method')
+    buckets = defaultdict(lambda: defaultdict(list))
+    for i, q in enumerate(items):
+        buckets[q['task']][q['label']].append(i)
+    # 50% action / 50% intent, then uniform over labels within each task.
+    # This replaces class weighting; applying both would double-compensate.
+    tasks = sorted(buckets)
+    return [rng.choice(buckets[task][rng.choice(sorted(buckets[task]))])
+            for task in (rng.choice(tasks) for _ in items)]
 
 
 def allowed(task):return list(range(3,8)) if task=="intent" else list(range(3))

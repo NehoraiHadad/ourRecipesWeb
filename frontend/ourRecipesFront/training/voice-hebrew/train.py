@@ -9,7 +9,7 @@ import time
 from collections import Counter
 from pathlib import Path
 from corpus import ROOT,LABELS,MODEL_ID,MODEL_REVISION,digest,load_data
-from engine import verify_manifest,expand,encode,allowed,infer,calibrate
+from engine import verify_manifest,expand,encode,allowed,infer,calibrate,training_order
 
 
 def train(args, on_checkpoint=None):
@@ -21,7 +21,7 @@ def train(args, on_checkpoint=None):
     device="cuda" if torch.cuda.is_available() else "cpu"
     if args.require_gpu and device!="cuda":raise RuntimeError("GPU requested but unavailable; no silent CPU training")
     manifest=verify_manifest(args.data);recs,rows=load_data(Path(args.data))
-    config={"model":MODEL_ID,"revision":MODEL_REVISION,"labels":LABELS,"seed":args.seed,"max_length":args.max_length,"batch_size":args.batch_size,"learning_rate":args.lr,"max_steps":args.max_steps,"corpus_sha256":manifest["corpus_sha256"],"input_contract":1,"source_sha256":digest({name:digest((ROOT/name).read_bytes()) for name in ["corpus.py","engine.py","train.py"]})}
+    config={"model":MODEL_ID,"revision":MODEL_REVISION,"labels":LABELS,"seed":args.seed,"max_length":args.max_length,"batch_size":args.batch_size,"learning_rate":args.lr,"max_steps":args.max_steps,"corpus_sha256":manifest["corpus_sha256"],"input_contract":args.input_contract,"sampling":args.sampling,"source_sha256":digest({name:digest((ROOT/name).read_bytes()) for name in ["corpus.py","engine.py","train.py"]})}
     output=Path(args.output);output.mkdir(parents=True,exist_ok=True)
     config_path=output/"run-config.json"
     previous=json.loads(config_path.read_text()) if config_path.exists() else None
@@ -31,10 +31,11 @@ def train(args, on_checkpoint=None):
     tokenizer=AutoTokenizer.from_pretrained(MODEL_ID,revision=MODEL_REVISION,trust_remote_code=False)
     model=AutoModelForSequenceClassification.from_pretrained(MODEL_ID,revision=MODEL_REVISION,num_labels=len(LABELS),id2label=dict(enumerate(LABELS)),label2id={l:i for i,l in enumerate(LABELS)},use_safetensors=True,trust_remote_code=False,attn_implementation="eager").to(device)
     optimizer=torch.optim.AdamW(model.parameters(),lr=args.lr,weight_decay=.01)
-    items=expand(recs,rows,"train");encoded=[encode(tokenizer,q,args.max_length) for q in items]
+    items=expand(recs,rows,"train",args.input_contract);encoded=[encode(tokenizer,q,args.max_length) for q in items]
     counts=Counter(q["label"] for q in items)
     weights=torch.tensor([1/(counts[l]**.5) for l in LABELS],device=device);weights/=weights.mean()
-    rng=random.Random(args.seed);order=list(range(len(items)));rng.shuffle(order);cursor=0;step=0;losses=[]
+    if args.sampling == 'balanced-task':weights=None
+    rng=random.Random(args.seed);order=training_order(items,rng,args.sampling);cursor=0;step=0;losses=[]
     checkpoint=output/"resume.pt"
     if args.resume:
         if not checkpoint.exists():raise ValueError("No checkpoint to resume")
@@ -49,7 +50,10 @@ def train(args, on_checkpoint=None):
     if device=="cuda":torch.cuda.reset_peak_memory_stats()
     try:
         while step<args.max_steps and time.monotonic()<deadline:
-            if cursor>=len(order):rng.shuffle(order);cursor=0
+            if cursor>=len(order):
+                if args.sampling == 'original':rng.shuffle(order)
+                else:order=training_order(items,rng,args.sampling)
+                cursor=0
             indices=order[cursor:cursor+args.batch_size]
             inputs={k:v.to(device) for k,v in tokenizer.pad([encoded[i] for i in indices],padding=True,return_tensors="pt").items()}
             targets=torch.tensor([LABELS.index(items[i]["label"]) for i in indices],device=device)
@@ -67,7 +71,7 @@ def train(args, on_checkpoint=None):
         if step==args.max_steps and time.monotonic()<deadline:
             valid=[r for r in rows if r["split"]=="validation"]
             try:
-                records,timing=infer(model,tokenizer,expand(recs,rows,"validation"),device,args.batch_size,args.max_length,deadline)
+                records,timing=infer(model,tokenizer,expand(recs,rows,"validation",args.input_contract),device,args.batch_size,args.max_length,deadline)
                 summary,search=calibrate(valid,records)
                 report["validation"]={k:v for k,v in summary.items() if k!="cases"};report["validation_timing"]=timing
                 (output/"validation.json").write_text(json.dumps({"metrics":summary,"threshold_selection":search},ensure_ascii=False,indent=2))
@@ -91,6 +95,8 @@ def parser():
     p.add_argument("--max-steps",type=int,default=200);p.add_argument("--max-seconds",type=int,default=600)
     p.add_argument("--batch-size",type=int,default=8);p.add_argument("--max-length",type=int,default=512)
     p.add_argument("--lr",type=float,default=3e-5);p.add_argument("--seed",type=int,default=42)
+    p.add_argument('--input-contract', type=int, choices=[1,2], default=1)
+    p.add_argument('--sampling', choices=['original','balanced-task'], default='original')
     p.add_argument("--save-every",type=int,default=50);p.add_argument("--resume",action="store_true");p.add_argument("--require-gpu",action="store_true")
     return p
 

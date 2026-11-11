@@ -1,0 +1,333 @@
+{
+  "input_contract": 1,
+  "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+  "test_evaluated": false,
+  "human_reviewed": false,
+  "splits": {
+    "train": {
+      "timing": {
+        "seconds": 11.83170033499482,
+        "queries": 2400,
+        "max_tokens": 74
+      },
+      "metrics_at_0_5": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 323,
+        "exact_rate": 0.6729166666666667,
+        "false_updates": 71,
+        "proposed_updates": 242,
+        "expected_updates": 340,
+        "update_precision": 0.7066115702479339,
+        "update_recall": 0.5029411764705882,
+        "clarifications": 202,
+        "by_scenario": {
+          "positive": {
+            "total": 20,
+            "exact": 12,
+            "false_updates": 3
+          },
+          "later_action": {
+            "total": 20,
+            "exact": 0,
+            "false_updates": 13
+          },
+          "two_positive": {
+            "total": 20,
+            "exact": 12,
+            "false_updates": 1
+          },
+          "partial_step": {
+            "total": 20,
+            "exact": 0,
+            "false_updates": 11
+          },
+          "negative": {
+            "total": 20,
+            "exact": 10,
+            "false_updates": 5
+          },
+          "correction_undo": {
+            "total": 20,
+            "exact": 9,
+            "false_updates": 0
+          },
+          "correction_done": {
+            "total": 20,
+            "exact": 11,
+            "false_updates": 0
+          },
+          "already_done": {
+            "total": 20,
+            "exact": 15,
+            "false_updates": 1
+          },
+          "negative_then_done": {
+            "total": 20,
+            "exact": 0,
+            "false_updates": 4
+          },
+          "both_pending": {
+            "total": 20,
+            "exact": 0,
+            "false_updates": 17
+          },
+          "ambiguous_pronoun": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "ambiguous_object": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "extra_advice": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "future_only": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "partial_action": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "recipe_switch": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "unknown_progress": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          },
+          "report_then_question": {
+            "total": 20,
+            "exact": 14,
+            "false_updates": 4
+          },
+          "last_clause_correction": {
+            "total": 20,
+            "exact": 9,
+            "false_updates": 11
+          },
+          "synthetic_typo": {
+            "total": 20,
+            "exact": 11,
+            "false_updates": 1
+          },
+          "unknown_action": {
+            "total": 20,
+            "exact": 20,
+            "false_updates": 0
+          }
+        }
+      },
+      "raw_confusion": {
+        "intent": {
+          "report -> report": 260,
+          "clarify -> clarify": 140,
+          "next -> next": 40,
+          "missed -> missed": 20,
+          "advice -> advice": 20
+        },
+        "action": {
+          "done -> not_mentioned": 86,
+          "not_mentioned -> not_mentioned": 1502,
+          "done -> done": 104,
+          "not_mentioned -> not_done": 50,
+          "not_done -> not_mentioned": 64,
+          "not_done -> not_done": 76,
+          "not_mentioned -> done": 28,
+          "done -> not_done": 10
+        }
+      },
+      "mixed_gold_conversations": 260,
+      "identical_action_predictions_on_mixed_gold": 51
+    },
+    "validation": {
+      "timing": {
+        "seconds": 2.858359088997531,
+        "queries": 600,
+        "max_tokens": 73
+      },
+      "metrics_at_0_5": {
+        "threshold": 0.5,
+        "examples": 120,
+        "exact_proposals": 63,
+        "exact_rate": 0.525,
+        "false_updates": 17,
+        "proposed_updates": 53,
+        "expected_updates": 85,
+        "update_precision": 0.6792452830188679,
+        "update_recall": 0.4235294117647059,
+        "clarifications": 61,
+        "by_scenario": {
+          "positive": {
+            "total": 5,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "later_action": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 2
+          },
+          "two_positive": {
+            "total": 5,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial_step": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 4
+          },
+          "negative": {
+            "total": 5,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "correction_undo": {
+            "total": 5,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "correction_done": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "already_done": {
+            "total": 5,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "negative_then_done": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "both_pending": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 4
+          },
+          "ambiguous_pronoun": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "ambiguous_object": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "extra_advice": {
+            "total": 5,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "future_only": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "partial_action": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "recipe_switch": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "unknown_progress": {
+            "total": 5,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "report_then_question": {
+            "total": 5,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "last_clause_correction": {
+            "total": 5,
+            "exact": 2,
+            "false_updates": 3
+          },
+          "synthetic_typo": {
+            "total": 5,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "unknown_action": {
+            "total": 5,
+            "exact": 1,
+            "false_updates": 4
+          }
+        }
+      },
+      "raw_confusion": {
+        "intent": {
+          "report -> report": 65,
+          "clarify -> clarify": 25,
+          "clarify -> report": 10,
+          "next -> next": 10,
+          "missed -> next": 5,
+          "advice -> next": 5
+        },
+        "action": {
+          "done -> done": 18,
+          "not_mentioned -> not_mentioned": 377,
+          "not_mentioned -> done": 6,
+          "done -> not_mentioned": 30,
+          "not_mentioned -> not_done": 12,
+          "not_done -> not_mentioned": 16,
+          "not_done -> not_done": 19,
+          "done -> not_done": 2
+        }
+      },
+      "mixed_gold_conversations": 65,
+      "identical_action_predictions_on_mixed_gold": 25
+    }
+  }
+}
