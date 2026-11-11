@@ -1,0 +1,9 @@
+# Python 3.13 compatibility profile. Install torch==2.6.0 separately.
+# Same training engine/model; newer numerical/export wheels support CPython 3.13.
+transformers==4.48.3
+huggingface-hub==0.28.1
+tokenizers==0.21.0
+safetensors==0.5.2
+numpy==2.2.6
+onnx==1.18.0
+onnxruntime==1.22.0

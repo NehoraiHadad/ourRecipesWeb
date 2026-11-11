@@ -2,7 +2,7 @@
   "date": "2026-11-11",
   "pythonUnitTests": {
     "command": "python3 -m unittest discover -s tests -v",
-    "passed": 10
+    "passed": 16
   },
   "actualCpuTraining": {
     "steps": 2,
@@ -43,18 +43,23 @@
   },
   "colab": {
     "notebookPythonCellsParsed": true,
-    "executedInColab": false,
+    "executedInColab": true,
     "cli": {
       "version": "0.8.0",
       "officialOperatorSkillRead": true,
       "oauthFlow": "completed; owner-only ADC outside repository",
       "accountVerified": true,
-      "vmAllocated": false,
+      "vmAllocated": true,
       "source": "https://github.com/googlecolab/google-colab-cli",
       "readOnlySessionsVerified": true,
       "readOnlyUsageVerified": true,
-      "gpuAvailabilityVerified": false
-    }
+      "gpuAvailabilityVerified": true,
+      "vmReleased": true
+    },
+    "cloudGpu": "T4",
+    "trainingEvidence": "colab-pilots-20261111.json",
+    "cpuPython": "3.13",
+    "productionReady": false
   },
   "corpus": {
     "conversations": 720,
@@ -65,5 +70,11 @@
     "privacy": "original synthetic fixtures, no user audio/app records"
   },
   "appIntegration": false,
-  "timersAndNativeFilesModified": false
+  "timersAndNativeFilesModified": false,
+  "python313Compatibility": {
+    "cpuTrainingResumeExport": true,
+    "gpuTrainingExport": true,
+    "browserPretokenizedFixtures": true,
+    "nativeTokenizerParityInBrowser": false
+  }
 }

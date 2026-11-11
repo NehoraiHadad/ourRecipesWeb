@@ -30,10 +30,10 @@ def prepare():
 
 def bundle(output, data=ROOT/"data"):
     output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
-    names=["corpus.py","engine.py","prepare.py","train.py","evaluate.py","export.py","review.py","plan.py","modal_train.py","make_notebook.py","browser-smoke.mjs","requirements.txt","requirements-modal.txt","OurRecipes-Hebrew-Training.ipynb","README.he.md","VERIFICATION.md"]
+    names=["corpus.py","engine.py","prepare.py","train.py","evaluate.py","export.py","review.py","plan.py","modal_train.py","colab_job.py","colab_pilot.py","make_notebook.py","browser-smoke.mjs","requirements.txt","requirements-py313.txt","requirements-modal.txt","OurRecipes-Hebrew-Training.ipynb","README.he.md","COLAB_RESULTS.he.md","research-prompt.he.md","VERIFICATION.md"]
     allowed=[ROOT/name for name in names if (ROOT/name).exists()]
-    allowed += [ROOT/"tests"/name for name in ["test_materials.py","ml_smoke.py"]]
-    allowed += [ROOT/"verification"/name for name in ["materials.json","cpu-resume.json","browser.json","export.json"] if (ROOT/"verification"/name).exists()]
+    allowed += [ROOT/"tests"/name for name in ["test_materials.py","test_colab_controls.py","ml_smoke.py"]]
+    allowed += [ROOT/"verification"/name for name in ["materials.json","cpu-resume.json","browser.json","export.json","colab-pilots-20261111.json","py313-cpu.json","py313-browser.json"] if (ROOT/"verification"/name).exists()]
     with zipfile.ZipFile(output,"w",zipfile.ZIP_DEFLATED) as z:
         for p in sorted(allowed):z.write(p,p.relative_to(ROOT))
         manifest=json.loads((Path(data)/"manifest.json").read_text())

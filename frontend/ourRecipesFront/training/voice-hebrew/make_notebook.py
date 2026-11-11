@@ -40,13 +40,19 @@ md('''## 2. סביבת Python נפרדת
 ההתקנה הראשונה מורידה ספריות ומשקולות ציבוריות בהמשך. היא יכולה להימשך כמה דקות.
 משתמשים בסביבה נפרדת כדי לא לשנות את ספריות Colab המובנות.
 ''')
-code('''assert (3, 10) <= sys.version_info[:2] <= (3, 12), "חבילה זו נבדקה עם Python 3.12; נדרשת גרסה 3.10–3.12"
-ENV = pathlib.Path("/content/ourrecipes-training-venv")
+code('''import shutil
+UV = shutil.which("uv")
+if not UV:
+    subprocess.run([sys.executable, "-m", "pip", "install", "uv==0.9.5"], check=True)
+    UV = shutil.which("uv")
+assert UV, "לא ניתן להפעיל את כלי הכנת Python"
+PYTHON_VERSION = "3.13"  # אפשר לבחור 3.12 לשחזור הניסוי המקורי
+ENV = pathlib.Path("/content/ourrecipes-training-venv-" + PYTHON_VERSION)
 if not (ENV / "bin/python").exists():
-    subprocess.run([sys.executable, "-m", "venv", str(ENV)], check=True)
+    subprocess.run([UV, "venv", "--python", PYTHON_VERSION, "--seed", str(ENV)], check=True)
 PY = str(ENV / "bin/python")
 subprocess.run([PY, "-m", "pip", "install", "torch==2.6.0", "--index-url", "https://download.pytorch.org/whl/cu124"], check=True)
-subprocess.run([PY, "-m", "pip", "install", "-r", str(WORK / "requirements.txt")], check=True)
+subprocess.run([PY, "-m", "pip", "install", "-r", str(WORK / ("requirements-py313.txt" if PYTHON_VERSION == "3.13" else "requirements.txt"))], check=True)
 subprocess.run([PY, "-c", "import torch; print(torch.__version__, torch.cuda.get_device_name() if torch.cuda.is_available() else 'No GPU'); assert torch.cuda.is_available(), 'בחרו GPU בסוג סביבת ההרצה'"], check=True)
 ''')
 md('''## 3. שמירת התוצאות

@@ -1,0 +1,78 @@
+{
+  "date": "2026-11-11T10:27:57.077Z",
+  "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+  "loads": {
+    "model.onnx": 1238.094999998808,
+    "model.int8.onnx": 135.47499999403954
+  },
+  "cases": [
+    {
+      "file": "model.onnx",
+      "batch": 1,
+      "ms": 79.98000000417233,
+      "maxAbsLogitError": 1.043081283569336e-7,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 2,
+      "ms": 48.96999999880791,
+      "maxAbsLogitError": 5.587935447692871e-8,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 3,
+      "ms": 81.15999999642372,
+      "maxAbsLogitError": 1.2293457984924316e-7,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 4,
+      "ms": 111.3099999949336,
+      "maxAbsLogitError": 8.940696716308594e-8,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 1,
+      "ms": 30.45499999821186,
+      "maxAbsLogitError": 2.2351741790771484e-8,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 2,
+      "ms": 27.479999996721745,
+      "maxAbsLogitError": 0.0039040856063365936,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 3,
+      "ms": 39.73499999940395,
+      "maxAbsLogitError": 4.470348358154297e-8,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 4,
+      "ms": 59.63000000268221,
+      "maxAbsLogitError": 1.4901161193847656e-8,
+      "labelDisagreements": 0,
+      "decisionDisagreements": 0
+    }
+  ],
+  "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "threads": 1,
+  "fp32Tested": true,
+  "externalRequests": []
+}

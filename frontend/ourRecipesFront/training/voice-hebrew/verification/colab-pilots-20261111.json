@@ -1,0 +1,915 @@
+{
+  "date": "2026-11-11",
+  "scope": "Real Colab T4 fine-tuning on synthetic corpus; validation only, no production-readiness claim",
+  "trials": [
+    {
+      "name": "python312_200",
+      "training": {
+        "device": "cuda",
+        "steps": 200,
+        "seconds": 29.6374071219999,
+        "gpu_peak_allocated_bytes": 922761216,
+        "gpu_name": "Tesla T4",
+        "last_loss": 1.29725980758667,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.12.15",
+          "transformers": "4.48.3"
+        },
+        "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+        "data_review": "pending",
+        "status": "pilot_complete"
+      },
+      "source_sha256": "ee03a66498996a65a7a05cf5e0b96c9bd6487cd29566f72fb0070d502533e986",
+      "selected_validation": {
+        "threshold": 0.5,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120
+      },
+      "confidence_tradeoff": [
+        {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.6,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.7,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.8,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.85,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.9,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.95,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.99,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        }
+      ]
+    },
+    {
+      "name": "python313_200",
+      "training": {
+        "device": "cuda",
+        "steps": 200,
+        "seconds": 33.520555409999986,
+        "gpu_peak_allocated_bytes": 922761216,
+        "gpu_name": "Tesla T4",
+        "last_loss": 1.29725980758667,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.13.16",
+          "transformers": "4.48.3"
+        },
+        "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+        "data_review": "pending",
+        "status": "pilot_complete"
+      },
+      "source_sha256": "ee03a66498996a65a7a05cf5e0b96c9bd6487cd29566f72fb0070d502533e986",
+      "selected_validation": {
+        "threshold": 0.5,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120
+      },
+      "confidence_tradeoff": [
+        {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.6,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.7,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.8,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.85,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.9,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.95,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.99,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        }
+      ]
+    },
+    {
+      "name": "python313_1000",
+      "training": {
+        "device": "cuda",
+        "steps": 1000,
+        "seconds": 99.41355760300002,
+        "gpu_peak_allocated_bytes": 922761216,
+        "gpu_name": "Tesla T4",
+        "last_loss": 0.6952452659606934,
+        "versions": {
+          "torch": "2.6.0+cu124",
+          "python": "3.13.16",
+          "transformers": "4.48.3"
+        },
+        "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+        "data_review": "pending",
+        "status": "pilot_complete"
+      },
+      "source_sha256": "ee03a66498996a65a7a05cf5e0b96c9bd6487cd29566f72fb0070d502533e986",
+      "selected_validation": {
+        "threshold": 0.8,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120
+      },
+      "confidence_tradeoff": [
+        {
+          "threshold": 0.5,
+          "examples": 120,
+          "exact_proposals": 63,
+          "exact_rate": 0.525,
+          "false_updates": 17,
+          "proposed_updates": 53,
+          "expected_updates": 85,
+          "update_precision": 0.6792452830188679,
+          "update_recall": 0.4235294117647059,
+          "clarifications": 61
+        },
+        {
+          "threshold": 0.6,
+          "examples": 120,
+          "exact_proposals": 57,
+          "exact_rate": 0.475,
+          "false_updates": 7,
+          "proposed_updates": 27,
+          "expected_updates": 85,
+          "update_precision": 0.7407407407407407,
+          "update_recall": 0.23529411764705882,
+          "clarifications": 86
+        },
+        {
+          "threshold": 0.7,
+          "examples": 120,
+          "exact_proposals": 36,
+          "exact_rate": 0.3,
+          "false_updates": 2,
+          "proposed_updates": 6,
+          "expected_updates": 85,
+          "update_precision": 0.6666666666666666,
+          "update_recall": 0.047058823529411764,
+          "clarifications": 114
+        },
+        {
+          "threshold": 0.8,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.85,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.9,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.95,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 0.99,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        },
+        {
+          "threshold": 1.0,
+          "examples": 120,
+          "exact_proposals": 35,
+          "exact_rate": 0.2916666666666667,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 85,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 120
+        }
+      ]
+    }
+  ],
+  "failed_attempt": {
+    "phase": "install_torch",
+    "reason": "Transient CLI status read timed out at 90 seconds; cleanup stopped the dedicated runtime. No training result for that attempt. Read-only polling now retries without restarting the job."
+  },
+  "trained_int8_validation": {
+    "threshold": 0.8,
+    "examples": 120,
+    "exact_proposals": 35,
+    "exact_rate": 0.2916666666666667,
+    "false_updates": 0,
+    "proposed_updates": 0,
+    "expected_updates": 85,
+    "update_precision": null,
+    "update_recall": 0.0,
+    "clarifications": 120
+  },
+  "trained_browser_fixture_check": {
+    "date": "2026-11-11T10:38:32.041Z",
+    "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+    "loads": {
+      "model.onnx": 2009.5900000035763,
+      "model.int8.onnx": 352.8999999985099
+    },
+    "cases": [
+      {
+        "file": "model.onnx",
+        "batch": 1,
+        "ms": 165.45000000298023,
+        "maxAbsLogitError": 4.172325134277344e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 2,
+        "ms": 52.00999999791384,
+        "maxAbsLogitError": 7.152557373046875e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 3,
+        "ms": 74.5650000050664,
+        "maxAbsLogitError": 7.152557373046875e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 4,
+        "ms": 121.42999999970198,
+        "maxAbsLogitError": 2.652406692504883e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 1,
+        "ms": 38.37000000476837,
+        "maxAbsLogitError": 0.010514438152313232,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 2,
+        "ms": 30.524999998509884,
+        "maxAbsLogitError": 2.384185791015625e-07,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 3,
+        "ms": 39.224999994039536,
+        "maxAbsLogitError": 0.011521339416503906,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 4,
+        "ms": 59.74000000208616,
+        "maxAbsLogitError": 0.0909777283668518,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "threads": 1,
+    "fp32Tested": true,
+    "externalRequests": []
+  },
+  "trained_artifact_files": {
+    "model.onnx": {
+      "bytes": 179151172,
+      "sha256": "4d5dd41c3b11e027ce8938d6cf8a655ea51314264582b84e1fad0a2f5ee45ae5"
+    },
+    "model.int8.onnx": {
+      "bytes": 44973125,
+      "sha256": "4f7112622d85b043f0b798c3defe024e4faa8eb2924804343a5bb30101c65583"
+    }
+  },
+  "validation_failure_examples_threshold_0_5": [
+    {
+      "id": "r20-later_action",
+      "utterance": "לעדכון: חתכתי פלפל",
+      "scenario": "later_action",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a1",
+            "done": true,
+            "evidence": "חתכתי פלפל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 1
+    },
+    {
+      "id": "r20-partial_step",
+      "utterance": "לעדכון: בישלתי את הקינואה אבל עוד לא חתכתי פלפל",
+      "scenario": "partial_step",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          },
+          {
+            "actionId": "s1a1",
+            "done": false,
+            "evidence": "עוד לא חתכתי פלפל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 1
+    },
+    {
+      "id": "r20-correction_done",
+      "utterance": "בסוף כן עשיתי את זה: שטפתי קינואה",
+      "scenario": "correction_done",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "שטפתי קינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r20-negative_then_done",
+      "utterance": "לעדכון: עוד לא שטפתי קינואה, ועכשיו בישלתי את הקינואה",
+      "scenario": "negative_then_done",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false,
+            "evidence": "עוד לא שטפתי קינואה"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "בישלתי את הקינואה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r20-both_pending",
+      "utterance": "לעדכון: עוד לא בישלתי את הקינואה וגם עוד לא חתכתי פלפל",
+      "scenario": "both_pending",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a0",
+            "done": false,
+            "evidence": "עוד לא בישלתי את הקינואה"
+          },
+          {
+            "actionId": "s1a1",
+            "done": false,
+            "evidence": "עוד לא חתכתי פלפל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 1
+    },
+    {
+      "id": "r20-missed",
+      "utterance": "איזו פעולה חסרה לפני השלב הנוכחי?",
+      "scenario": "missed",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "missed",
+        "changes": []
+      },
+      "actual": {
+        "intent": "next",
+        "changes": [],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r20-extra_advice",
+      "utterance": "האם כדאי להוסיף ג'ינג'ר שלא מופיע כאן?",
+      "scenario": "extra_advice",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "advice",
+        "changes": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r20-unknown_action",
+      "utterance": "הקצפתי שמנת בצד",
+      "scenario": "unknown_action",
+      "actions": [
+        "לשטוף קינואה",
+        "לבשל את הקינואה",
+        "לחתוך פלפל",
+        "לערבב קינואה ופלפל"
+      ],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 1
+    },
+    {
+      "id": "r21-later_action",
+      "utterance": "לעדכון: בישלתי את הדלעת והבצל",
+      "scenario": "later_action",
+      "actions": [
+        "לקלף דלעת",
+        "לחתוך בצל",
+        "לבשל את הדלעת והבצל",
+        "לטחון את המרק"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a1",
+            "done": true,
+            "evidence": "בישלתי את הדלעת והבצל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r21-partial_step",
+      "utterance": "לעדכון: חתכתי בצל אבל עוד לא בישלתי את הדלעת והבצל",
+      "scenario": "partial_step",
+      "actions": [
+        "לקלף דלעת",
+        "לחתוך בצל",
+        "לבשל את הדלעת והבצל",
+        "לטחון את המרק"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "חתכתי בצל"
+          },
+          {
+            "actionId": "s1a1",
+            "done": false,
+            "evidence": "עוד לא בישלתי את הדלעת והבצל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 1
+    },
+    {
+      "id": "r21-correction_done",
+      "utterance": "בסוף כן עשיתי את זה: קילפתי דלעת",
+      "scenario": "correction_done",
+      "actions": [
+        "לקלף דלעת",
+        "לחתוך בצל",
+        "לבשל את הדלעת והבצל",
+        "לטחון את המרק"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": true,
+            "evidence": "קילפתי דלעת"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    },
+    {
+      "id": "r21-negative_then_done",
+      "utterance": "לעדכון: עוד לא קילפתי דלעת, ועכשיו חתכתי בצל",
+      "scenario": "negative_then_done",
+      "actions": [
+        "לקלף דלעת",
+        "לחתוך בצל",
+        "לבשל את הדלעת והבצל",
+        "לטחון את המרק"
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false,
+            "evidence": "עוד לא קילפתי דלעת"
+          },
+          {
+            "actionId": "s1a0",
+            "done": true,
+            "evidence": "חתכתי בצל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "s0a0",
+            "done": false
+          }
+        ],
+        "requiresReview": true
+      },
+      "false_updates": 0
+    }
+  ],
+  "held_out_test_opened": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "app_integration": false,
+  "cleanup": {
+    "no_active_sessions_verified": true,
+    "usage_rate_zero_verified": true,
+    "observed_account_balance_drop_compute_units_approx": 0.26,
+    "note": "Observed during these experiments including setup, interrupted attempt and recovery; not a guaranteed per-run rate or invoice."
+  },
+  "conclusion": "Training adds signal at threshold 0.5, but incorrect action proposals remain. The zero-observed-false-update validation policy abstains on every example. Neither a usable assistant nor a general rejection of DictaBERT-tiny has been established."
+}
