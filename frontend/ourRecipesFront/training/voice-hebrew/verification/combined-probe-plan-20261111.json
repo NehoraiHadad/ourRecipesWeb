@@ -1,0 +1,9 @@
+{
+  "sha256": "a3653473f9cb707ce330b0133b92b0241bae9078296cd64b427c7341903325ce",
+  "examples": 16,
+  "role": "Frozen before any new primary test scoring; selected-checkpoint-only synthetic diagnostic, never training, threshold/checkpoint/model selection or natural-conversation acceptance",
+  "human_reviewed": false,
+  "source_sha256": "b047f43c1f6c78cfaec1eabbd5df6a053124d50206e66750603f85b40e0f2afd",
+  "frozen_utc": "2026-11-11T19:17:04.899401+00:00",
+  "stage": "First control training, before primary validation decision and before new test scoring"
+}
