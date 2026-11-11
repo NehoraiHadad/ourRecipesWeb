@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-11-11T20:07:40.658067+00:00",
+  "source_parent": "fea42ce",
+  "study": "focused-v9",
+  "steps": 1000,
+  "seeds": [
+    42,
+    17
+  ],
+  "eval_every": 250,
+  "checkpoint_objective": "f0.5",
+  "threshold": 0.5,
+  "selection": "Mean validation F0.5, then precision/state exact; retain fixed42 and supplemental17 of selected arm",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "comparison": "V8 training5774 vs V8+864=6638; same model/decoder/optimization, fresh validation306 + historical guardrail166; fresh test306 only after selection",
+  "gpu": "T4",
+  "remote_max_seconds": 2100,
+  "comparison_max_seconds": 1700,
+  "source_sha256": {
+    "focused_data.py": "953d86fd123217b22a5251679ef3bea26d475768a224efe5e02d7744511159b9",
+    "combined_data.py": "4e8ad54c0e3a45feb90a7b02160dabee5342574cc1a626454358b9683d6f65de",
+    "combined_sweep.py": "33699ef8df3edff0d9e69513ad240563fee7c562e2ffe6e39d39a5602a19165f",
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "span_pilot.py": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "colab_job.py": "9d41a6a7c74ab9c1969489475f21094dc58283deea0a0bde0f714de1db19bd21",
+    "colab_pilot.py": "0274b0421237b624d25774e289ec9d106f9e397742d240638aeba05582b2a335"
+  },
+  "corpora": {
+    "control": "a9c6dd6f27bf4a32e9d8a212bc70f96d5e7154b054b7233c71e615f484cba0ef",
+    "combined": "122d24ef43895e3ca164643ca01a4941b291f1303e0afd39866f07c1e4f8babf"
+  },
+  "original_test_scored": false,
+  "human_reviewed": false,
+  "physical_device_tested": false
+}

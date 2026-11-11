@@ -14,11 +14,14 @@ from span_pilot import run as train
 SEEDS=[42,17]
 
 
-def run(output,steps=1500,max_seconds=1700,device='cuda'):
+def run(output,steps=1500,max_seconds=1700,device='cuda',focused=False):
     import torch
     output=Path(output);output.mkdir(parents=True,exist_ok=True)
     deadline=time.monotonic()+max_seconds
-    control,combined,audit=build(output/'comparison-data');variants=[]
+    builder=build
+    if focused:
+        from focused_data import build as builder
+    control,combined,audit=builder(output/'comparison-data');variants=[]
     for seed in SEEDS:
         for arm,data in [('control',control),('combined',combined)]:
             left=int(deadline-time.monotonic())
@@ -50,8 +53,9 @@ def run(output,steps=1500,max_seconds=1700,device='cuda'):
     shutil.copytree(source/'run',output/'run',ignore=shutil.ignore_patterns('best-validation-model'))
     shutil.copytree(source/'selected-data',output/'selected-data')
     result={**frozen,'scope':'Four actual model-only trials' if device=='cuda' else 'Four two-step tiny CPU mechanics trials; no quality claim',
+        'study':'focused-v9' if focused else 'combined-v8',
         'variants':variants,'data_audit':audit,'human_reviewed':False,'production_ready':False,
-        'source_sha256':{n:digest((ROOT/n).read_bytes()) for n in ['combined_data.py','combined_sweep.py','span_pilot.py','corpus.py']}}
+        'source_sha256':{n:digest((ROOT/n).read_bytes()) for n in ['combined_data.py','combined_sweep.py','span_pilot.py','corpus.py']+(['focused_data.py'] if focused else [])}}
     (output/'combined-report.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     recs,rows=load_data(control);test=[r for r in rows if r['split']=='test'];reports=[]
     for v in variants:
@@ -67,6 +71,11 @@ def run(output,steps=1500,max_seconds=1700,device='cuda'):
     regressions=[('prior-semantic-test-v2',pr,[r for r in px if r['split']=='test']),
         ('regression16',*old16()),('regression68',*challenge()),
         ('historical-validation',original,[r for r in ox if r['split']=='validation'])]
+    if focused:
+        from combined_data import holdouts
+        from combined_probe import build as probe
+        vr,vx=holdouts()
+        regressions.extend([('prior-combined-test',vr,[r for r in vx if r['split']=='test']),('alias-probe16',*probe())])
     result['selected_regressions']={}
     for name,recs,rows in regressions:
         m=evaluate_path(output/'run',recs,rows,device,deadline)
@@ -80,6 +89,6 @@ def run(output,steps=1500,max_seconds=1700,device='cuda'):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1500);p.add_argument('--max-seconds',type=int,default=1700);p.add_argument('--cpu-smoke',action='store_true');a=p.parse_args()
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1500);p.add_argument('--max-seconds',type=int,default=1700);p.add_argument('--cpu-smoke',action='store_true');p.add_argument('--focused',action='store_true');a=p.parse_args()
     if not 1<=a.steps<=1500 or not 120<=a.max_seconds<=1800:raise SystemExit('Invalid combined study bounds')
-    run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda')
+    run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda',a.focused)

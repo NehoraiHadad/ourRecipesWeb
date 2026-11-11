@@ -1,0 +1,53 @@
+{
+  "scope": "Two-step tiny CPU mechanics only; no quality claim",
+  "report": {
+    "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+    "steps": 2,
+    "selected_step": 2,
+    "training_seconds": 11.354916873999173,
+    "gpu_peak_allocated_bytes": null,
+    "validation": {
+      "threshold": 0.5,
+      "examples": 472,
+      "exact_proposals": 188,
+      "exact_rate": 0.3983050847457627,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 296,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 472,
+      "exact_including_gold_evidence": 188,
+      "nonmatching_gold_evidence": 0
+    },
+    "validation_0_5": {
+      "threshold": 0.5,
+      "examples": 472,
+      "exact_proposals": 188,
+      "exact_rate": 0.3983050847457627,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 296,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 472,
+      "exact_including_gold_evidence": 188,
+      "nonmatching_gold_evidence": 0
+    },
+    "production_ready": false,
+    "final_step_validation_0_5": {
+      "threshold": 0.5,
+      "examples": 472,
+      "exact_proposals": 188,
+      "exact_rate": 0.3983050847457627,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 296,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 472,
+      "exact_including_gold_evidence": 188,
+      "nonmatching_gold_evidence": 0
+    }
+  }
+}

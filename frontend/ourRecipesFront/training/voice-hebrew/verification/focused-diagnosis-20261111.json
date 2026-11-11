@@ -1,0 +1,379 @@
+{
+  "scope": "Actual native CPU inference on previously consumed synthetic probe16; diagnosis, not fresh test",
+  "records": [
+    {
+      "role": "primary",
+      "id": "combined-probe-0-put-question",
+      "task": "intent",
+      "action": null,
+      "candidate": "report",
+      "decoded": "report",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a0",
+      "candidate": "done",
+      "decoded": "done",
+      "evidence": "שמתי קמח"
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a1",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-partial-step",
+      "task": "intent",
+      "action": null,
+      "candidate": "report",
+      "decoded": "report",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a0",
+      "candidate": "done",
+      "decoded": "done",
+      "evidence": "שמתי קמח"
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a1",
+      "candidate": "done",
+      "decoded": "not_mentioned",
+      "evidence": null,
+      "tokens": [
+        {
+          "text": "שמתי",
+          "label": "not_mentioned",
+          "confidence": 0.9996374669283036
+        },
+        {
+          "text": "קמח",
+          "label": "not_mentioned",
+          "confidence": 0.9994676371741831
+        },
+        {
+          "text": "וגם",
+          "label": "not_mentioned",
+          "confidence": 0.9987414675470032
+        },
+        {
+          "text": "מים",
+          "label": "done",
+          "confidence": 0.9702608433149007
+        },
+        {
+          "text": ",",
+          "label": "not_mentioned",
+          "confidence": 0.9989951220382528
+        },
+        {
+          "text": "אבל",
+          "label": "not_mentioned",
+          "confidence": 0.9995421054412005
+        },
+        {
+          "text": "עוד",
+          "label": "not_mentioned",
+          "confidence": 0.9984605143255
+        },
+        {
+          "text": "לא",
+          "label": "not_mentioned",
+          "confidence": 0.9994354604145881
+        },
+        {
+          "text": "ערב",
+          "label": "not_mentioned",
+          "confidence": 0.9993499419505274
+        },
+        {
+          "text": "בתי",
+          "label": "not_mentioned",
+          "confidence": 0.9995249053063793
+        }
+      ]
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_done",
+      "decoded": "not_done",
+      "evidence": "עוד לא ערבבתי"
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-1-inside",
+      "task": "intent",
+      "action": null,
+      "candidate": "report",
+      "decoded": "report",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a0",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a1",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "primary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-put-question",
+      "task": "intent",
+      "action": null,
+      "candidate": "next",
+      "decoded": "next",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a0",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a1",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-put-question",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-partial-step",
+      "task": "intent",
+      "action": null,
+      "candidate": "report",
+      "decoded": "report",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a0",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a1",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null,
+      "tokens": [
+        {
+          "text": "שמתי",
+          "label": "not_mentioned",
+          "confidence": 0.9992919294023181
+        },
+        {
+          "text": "קמח",
+          "label": "not_mentioned",
+          "confidence": 0.999138729937592
+        },
+        {
+          "text": "וגם",
+          "label": "not_mentioned",
+          "confidence": 0.999060997840856
+        },
+        {
+          "text": "מים",
+          "label": "not_mentioned",
+          "confidence": 0.9829321679581633
+        },
+        {
+          "text": ",",
+          "label": "not_mentioned",
+          "confidence": 0.9979259106862651
+        },
+        {
+          "text": "אבל",
+          "label": "not_mentioned",
+          "confidence": 0.9992044762794184
+        },
+        {
+          "text": "עוד",
+          "label": "not_mentioned",
+          "confidence": 0.9993565159582927
+        },
+        {
+          "text": "לא",
+          "label": "not_mentioned",
+          "confidence": 0.9993453480299945
+        },
+        {
+          "text": "ערב",
+          "label": "not_mentioned",
+          "confidence": 0.9993909733744587
+        },
+        {
+          "text": "בתי",
+          "label": "not_mentioned",
+          "confidence": 0.9993183613199457
+        }
+      ]
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_done",
+      "decoded": "not_done",
+      "evidence": "עוד לא ערבבתי"
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-1-inside",
+      "task": "intent",
+      "action": null,
+      "candidate": "report",
+      "decoded": "report",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a0",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a1",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a2",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    },
+    {
+      "role": "secondary",
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a3",
+      "candidate": "not_mentioned",
+      "decoded": "not_mentioned",
+      "evidence": null
+    }
+  ]
+}
