@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "origin": "original synthetic authored fixtures, not human-reviewed",
+  "human_review": "pending",
+  "model": "dicta-il/dictabert-tiny",
+  "model_revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+  "labels": [
+    "done",
+    "not_done",
+    "not_mentioned",
+    "report",
+    "next",
+    "missed",
+    "clarify",
+    "advice"
+  ],
+  "counts": {
+    "train": {
+      "recipes": 20,
+      "examples": 480
+    },
+    "validation": {
+      "recipes": 5,
+      "examples": 120
+    },
+    "test": {
+      "recipes": 5,
+      "examples": 120
+    }
+  },
+  "query_label_counts": {
+    "report": 390,
+    "done": 300,
+    "not_mentioned": 2370,
+    "not_done": 210,
+    "clarify": 210,
+    "next": 60,
+    "missed": 30,
+    "advice": 30
+  },
+  "files": {
+    "recipes.json": "f053155096e0bde05c85fecb570598737e4d976b5f5a9df61d83a05308be67f0",
+    "review.csv": "f2b0f5fbcf7b49eabbd90955744759a9868ceaff64558bd32fb32461b98727b1",
+    "test.jsonl": "8cad3595776c18aaf471f4350f2d204be64c101f1eafe0c8af632a005580e74c",
+    "train.jsonl": "85ff102b42c80ed13c7903e81be6a8393553c727a71316bde2b0e5a94bf0a892",
+    "validation.jsonl": "a42cd2d3c8f4d6cb76333f23054ab54a96bf90c41690cfcac13c0bf82caa00d2"
+  },
+  "corpus_sha256": "115356af7bbdccd7540423acfeed3100443ad3de631bb5807435f162257f603c",
+  "notes": "720 templated conversations are not 720 independently collected utterances. Recipes and exact utterances are held out. Controlled report templates are shared across splits; non-report wording families are held out. This is not a fully paraphrase-disjoint or natural-speech evaluation."
+}

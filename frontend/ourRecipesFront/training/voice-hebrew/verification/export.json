@@ -1,0 +1,91 @@
+{
+  "model": "dicta-il/dictabert-tiny",
+  "revision": "2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+  "input_contract": 1,
+  "labels": [
+    "done",
+    "not_done",
+    "not_mentioned",
+    "report",
+    "next",
+    "missed",
+    "clarify",
+    "advice"
+  ],
+  "max_length": 512,
+  "source_license": "CC-BY-4.0; Dicta. Fine-tuned classifier and ONNX/quantization are modifications.",
+  "source_url": "https://huggingface.co/dicta-il/dictabert-tiny/tree/2034285c0ae100faf8ccc4beb7314bc273f3cb05",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "files": {
+    "model.onnx": {
+      "bytes": 179151172,
+      "sha256": "fe03e45650bf7fe96da60b7132ea4ac1324382933af0e11361992d66867283c2"
+    },
+    "model.int8.onnx": {
+      "bytes": 44973125,
+      "sha256": "0ec3295c28a8e484f1b7f4770f9d14d249dcaa46b0cdd119f0b2994a5bcf927e"
+    }
+  },
+  "native_parity": [
+    {
+      "file": "model.onnx",
+      "batch": 1,
+      "sequence": 52,
+      "max_abs_logit_error": 6.146728992462158e-08,
+      "label_flips": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 1,
+      "sequence": 52,
+      "max_abs_logit_error": 0.028001584112644196,
+      "label_flips": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 2,
+      "sequence": 55,
+      "max_abs_logit_error": 6.332993507385254e-08,
+      "label_flips": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 2,
+      "sequence": 55,
+      "max_abs_logit_error": 0.029149051755666733,
+      "label_flips": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 3,
+      "sequence": 61,
+      "max_abs_logit_error": 1.3969838619232178e-07,
+      "label_flips": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 3,
+      "sequence": 61,
+      "max_abs_logit_error": 0.03582654893398285,
+      "label_flips": 0
+    },
+    {
+      "file": "model.onnx",
+      "batch": 4,
+      "sequence": 67,
+      "max_abs_logit_error": 1.1175870895385742e-07,
+      "label_flips": 0
+    },
+    {
+      "file": "model.int8.onnx",
+      "batch": 4,
+      "sequence": 67,
+      "max_abs_logit_error": 0.03971078246831894,
+      "label_flips": 0
+    }
+  ],
+  "production_ready": false,
+  "browser_tested": false,
+  "physical_device_tested": false,
+  "note": "INT8 parity checks cover only these tensor fixtures. Full semantic evaluation must be repeated for the quantized artifact. Browser fixtures use Python tokenization; browser tokenizer parity is untested."
+}

@@ -1,0 +1,58 @@
+{
+  "date": "2026-11-11",
+  "pythonUnitTests": {
+    "command": "python3 -m unittest discover -s tests -v",
+    "passed": 10
+  },
+  "actualCpuTraining": {
+    "steps": 2,
+    "scope": "mechanical verification only, not trained Hebrew capability",
+    "resumeEquivalent": true,
+    "proof": "cpu-resume.json"
+  },
+  "onnx": {
+    "fp32Bytes": 179151172,
+    "int8Bytes": 44973125,
+    "nativeParityFixtureBatches": 4,
+    "tensorQueries": 10,
+    "scope": "numerical/classification compatibility on pretokenized fixtures"
+  },
+  "actualBrowser": {
+    "engine": "Chromium 156 / ORT Web WASM 1.30.0",
+    "threads": 1,
+    "externalHttpRequests": 0,
+    "fixtureDecisionDisagreements": 0,
+    "physicalDevice": false,
+    "browserTokenizerTested": false,
+    "proof": "browser.json"
+  },
+  "heldOutTestUsedForSmoke": false,
+  "nativeInt8SemanticSmoke": {
+    "split": "validation",
+    "examples": 120,
+    "updatesProposed": 0,
+    "updateRecall": 0.0,
+    "note": "Two-step model abstains on every example. This confirms reporting does not mistake no updates for useful accuracy."
+  },
+  "modal": {
+    "sdk": "1.6.3",
+    "helpAndImportValidated": true,
+    "remoteRun": false,
+    "gpuUsed": false,
+    "accountCreditUsed": false
+  },
+  "colab": {
+    "notebookPythonCellsParsed": true,
+    "executedInColab": false
+  },
+  "corpus": {
+    "conversations": 720,
+    "train": 480,
+    "validation": 120,
+    "test": 120,
+    "humanReview": "pending",
+    "privacy": "original synthetic fixtures, no user audio/app records"
+  },
+  "appIntegration": false,
+  "timersAndNativeFilesModified": false
+}
