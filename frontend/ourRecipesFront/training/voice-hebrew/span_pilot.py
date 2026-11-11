@@ -163,13 +163,16 @@ def grounded(rows, records, threshold):
     return metrics
 
 
-def retain_best(model, tokenizer, folder, metrics, step, previous=None):
+def retain_best(model, tokenizer, folder, metrics, step, previous=None, objective='grounded-exact'):
     """Preserve the strongest validation checkpoint, independently of latest weights."""
-    key=(metrics['exact_including_gold_evidence'],metrics['update_precision'] or 0,metrics['update_recall'])
+    if objective not in ('grounded-exact','f0.5'):raise ValueError('Unknown checkpoint objective')
+    p=metrics['update_precision'] or 0;r=metrics['update_recall']
+    f=.0 if not p+r else 1.25*p*r/(.25*p+r)
+    key=(f,p,metrics['exact_rate'],metrics['exact_including_gold_evidence']) if objective=='f0.5' else (metrics['exact_including_gold_evidence'],p,r)
     if previous is not None and key<=tuple(previous['key']):return previous
     folder=Path(folder);model.save_pretrained(folder/'best-validation-model',safe_serialization=True)
     tokenizer.save_pretrained(folder/'best-validation-model')
-    result={'step':step,'key':key,'selection':'Validation only; grounded exact, then update precision/recall',
+    result={'step':step,'key':key,'selection':'Validation only; '+objective,
         'metrics':{k:v for k,v in metrics.items() if k not in ['cases','by_scenario']}}
     (folder/'best-validation.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
@@ -235,7 +238,7 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact'):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
@@ -265,6 +268,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     weights=torch.tensor([1.,1.,.15,1.,1.,1.,1.,1.],device=device)
     config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
     config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile in ('span-v1','context-span-v3') else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
+    config['checkpoint_objective']=checkpoint_objective
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
     if device=='cuda':torch.cuda.reset_peak_memory_stats()
@@ -288,7 +292,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         if (step%eval_every==0 or step==2500) and step<steps:
             valid=[r for r in rows if r['split']=='validation']
             measured=grounded(valid,infer(model,tokenizer,sets['validation'],device,deadline),.5)
-            best_checkpoint=retain_best(model,tokenizer,folder,measured,step,best_checkpoint)
+            best_checkpoint=retain_best(model,tokenizer,folder,measured,step,best_checkpoint,checkpoint_objective)
             learning_curve.append({'step':step,'seconds':time.monotonic()-started,
                 'validation_at_0_5':{k:v for k,v in measured.items() if k not in ['cases','by_scenario']}})
             (folder/'learning-curve.json').write_text(json.dumps(learning_curve,indent=2)+'\n')
@@ -298,7 +302,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     records=infer(model,tokenizer,sets['validation'],device,deadline)
     final_raw=grounded(selected,records,.5)
     (folder/'final-step-validation.json').write_text(json.dumps(final_raw,ensure_ascii=False,indent=2)+'\n')
-    best_checkpoint=retain_best(model,tokenizer,folder,final_raw,steps,best_checkpoint)
+    best_checkpoint=retain_best(model,tokenizer,folder,final_raw,steps,best_checkpoint,checkpoint_objective)
     if best_checkpoint['step']!=steps:
         from safetensors.torch import load_file
         model.load_state_dict(load_file(str(folder/'best-validation-model/model.safetensors'),device='cpu'))

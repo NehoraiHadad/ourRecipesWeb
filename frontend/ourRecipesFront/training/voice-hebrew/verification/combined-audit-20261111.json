@@ -1,0 +1,151 @@
+{
+  "tokenizer": "Actual pinned base tokenizer, all candidate training/validation/test queries; not model scoring",
+  "queries": 30540,
+  "max_tokens": 55,
+  "unknown_tokens": 0,
+  "gold_spans": 5123,
+  "unreachable_gold_spans": 0,
+  "data_audit": {
+    "new_holdout_counts": {
+      "validation": {
+        "recipes": 6,
+        "examples": 166
+      },
+      "test": {
+        "recipes": 6,
+        "examples": 168
+      }
+    },
+    "bridge_rows": 2030,
+    "bridge_unique_utterances": 1008,
+    "human_reviewed": false,
+    "prior_test_role": "Regression only, not checkpoint selection or this new test",
+    "scope": "Authored synthetic scenarios; six recipes per split, shared ingredients/verbs and language phenomena; not natural or independently collected speech",
+    "query_conflicts": {
+      "2": {
+        "conflicting_effective_inputs": 37,
+        "examples": [
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a0",
+              "semantic-train-0-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a2",
+              "semantic-train-0-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a0",
+              "semantic-train-0-different-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a2",
+              "semantic-train-0-different-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a0",
+              "semantic-train-1-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a2",
+              "semantic-train-1-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          }
+        ]
+      },
+      "3": {
+        "conflicting_effective_inputs": 0,
+        "examples": []
+      }
+    },
+    "source_sha256": "4e8ad54c0e3a45feb90a7b02160dabee5342574cc1a626454358b9683d6f65de"
+  },
+  "manifests": {
+    "control": {
+      "schema": 1,
+      "origin": "Combined study control: historical training and fresh broad-action holdouts",
+      "human_review": "pending",
+      "counts": {
+        "train": {
+          "recipes": 20,
+          "examples": 2272
+        },
+        "validation": {
+          "recipes": 6,
+          "examples": 166
+        },
+        "test": {
+          "recipes": 6,
+          "examples": 168
+        }
+      },
+      "files": {
+        "train.jsonl": "cc997d6e55ae96c3446bb6005c0a2bfd0c71ea91d57e89d6e1a8f4ba1456dcee",
+        "test.jsonl": "984d75f493b683f919dc27c2f94eb863d31e88472675cabd288be922b452b5cb",
+        "recipes.json": "fa25f11e841acedd23012d8f94d1c739b489ebd96499f6abf27745c60281b6fe",
+        "validation.jsonl": "e7279c15ca70851c09e35637fc7fef9866672b2480dc3fe2b74041843a7917c0"
+      },
+      "corpus_sha256": "24201491e000995668a98ebe88059a493b322d18ea112f487bbf631de899cb9a"
+    },
+    "combined": {
+      "schema": 1,
+      "origin": "Combined study: semantic training plus conversational bridges; fresh holdouts",
+      "human_review": "pending",
+      "counts": {
+        "train": {
+          "recipes": 36,
+          "examples": 5774
+        },
+        "validation": {
+          "recipes": 6,
+          "examples": 166
+        },
+        "test": {
+          "recipes": 6,
+          "examples": 168
+        }
+      },
+      "files": {
+        "train.jsonl": "b3cc37ea18b557e4567d53454ea342f3f06155c51bd54dcce0ad70780c4cd2b2",
+        "test.jsonl": "984d75f493b683f919dc27c2f94eb863d31e88472675cabd288be922b452b5cb",
+        "recipes.json": "d78e89dd329cbf6852ecfce597f6638ad2dfc529957654d303a43caa319f3c75",
+        "validation.jsonl": "e7279c15ca70851c09e35637fc7fef9866672b2480dc3fe2b74041843a7917c0"
+      },
+      "corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04"
+    }
+  }
+}

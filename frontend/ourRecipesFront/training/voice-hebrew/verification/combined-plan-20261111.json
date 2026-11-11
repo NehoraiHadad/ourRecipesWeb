@@ -1,0 +1,91 @@
+{
+  "date": "2026-11-11",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "seeds": [
+    42,
+    17
+  ],
+  "steps_per_trial": 1500,
+  "batch_size": 8,
+  "encoder_lr": 3e-05,
+  "head_lr": 0.0003,
+  "profile": "context-joint-v3",
+  "checkpoint_objective": "f0.5",
+  "eval_every": 250,
+  "threshold": 0.5,
+  "arms": [
+    "control",
+    "combined"
+  ],
+  "data": {
+    "control": {
+      "counts": {
+        "train": {
+          "recipes": 20,
+          "examples": 2272
+        },
+        "validation": {
+          "recipes": 6,
+          "examples": 166
+        },
+        "test": {
+          "recipes": 6,
+          "examples": 168
+        }
+      },
+      "files": {
+        "train.jsonl": "cc997d6e55ae96c3446bb6005c0a2bfd0c71ea91d57e89d6e1a8f4ba1456dcee",
+        "test.jsonl": "984d75f493b683f919dc27c2f94eb863d31e88472675cabd288be922b452b5cb",
+        "recipes.json": "fa25f11e841acedd23012d8f94d1c739b489ebd96499f6abf27745c60281b6fe",
+        "validation.jsonl": "e7279c15ca70851c09e35637fc7fef9866672b2480dc3fe2b74041843a7917c0"
+      },
+      "corpus_sha256": "24201491e000995668a98ebe88059a493b322d18ea112f487bbf631de899cb9a"
+    },
+    "combined": {
+      "counts": {
+        "train": {
+          "recipes": 36,
+          "examples": 5774
+        },
+        "validation": {
+          "recipes": 6,
+          "examples": 166
+        },
+        "test": {
+          "recipes": 6,
+          "examples": 168
+        }
+      },
+      "files": {
+        "train.jsonl": "b3cc37ea18b557e4567d53454ea342f3f06155c51bd54dcce0ad70780c4cd2b2",
+        "test.jsonl": "984d75f493b683f919dc27c2f94eb863d31e88472675cabd288be922b452b5cb",
+        "recipes.json": "d78e89dd329cbf6852ecfce597f6638ad2dfc529957654d303a43caa319f3c75",
+        "validation.jsonl": "e7279c15ca70851c09e35637fc7fef9866672b2480dc3fe2b74041843a7917c0"
+      },
+      "corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04"
+    }
+  },
+  "selection": "Mean validation F0.5 over both seeds, then precision and state exact. Retain fixed seed42. Freeze decision before new test, no reselection by test.",
+  "test_policy": "All four scored once on new168 synthetic test cases after validation decision. Prior semantic test v2 is regression only. Original120 test not scored.",
+  "resource_bounds": {
+    "gpu": "one T4",
+    "remote_seconds": 2100,
+    "comparison_seconds": 1700,
+    "trainer_seconds": 420,
+    "driver_watchdog_seconds": 2400
+  },
+  "scope": "Model-only combined corpus vs matched joint control. Shared fresh broad-action validation and F0.5 checkpoint rule differ from previous study; not direct causal comparison to its selected model.",
+  "human_reviewed": false,
+  "source_sha256": {
+    "combined_data.py": "4e8ad54c0e3a45feb90a7b02160dabee5342574cc1a626454358b9683d6f65de",
+    "combined_sweep.py": "4d9b1ee931d810a69d9030495368aa94d7a3186ea0feb575185a25351c3f58b2",
+    "span_pilot.py": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "colab_job.py": "e9b14116fa116eb0a3ce2e92d2017535e5f2cf2cb46402105a5e2ca82a9ae332",
+    "colab_pilot.py": "faf5f01158ed17bb697954d0c7968226e893791a3b20e2d1e618ba2a52096973",
+    "prepare.py": "3d5b51ae1bdf68178903bb2a5d7868eb76e2f0a17ccb33125b4ca79ddda2b447",
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "semantic_sweep.py": "30088686d54b690617f846fc1543a1e38dfc7c80aa7ff64c68fd3f6f7bccd74a"
+  }
+}

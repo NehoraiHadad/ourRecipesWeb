@@ -57,7 +57,7 @@ def run(args):
         launch=f'''import subprocess,sys,json
 from pathlib import Path
 log=Path({remote!r}+'.log').open('w')
-ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--combined'] if getattr(args,'combined',False) else ['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
 Path({remote!r}+'.pid').write_text(str(ourrecipes_process.pid))
 print('OURRECIPES_STATUS='+json.dumps({{'pid':ourrecipes_process.pid}}))
 '''
@@ -149,6 +149,7 @@ if __name__=='__main__':
     group.add_argument('--ablation',action='store_true',help='Compare predeclared input/sampling/training-data variants within the same budget')
     group.add_argument('--span',action='store_true',help='Evidence-supervised token classifier pilot')
     group.add_argument('--targeted',action='store_true',help='Bounded control vs joint grounding/contrastive comparison')
+    group.add_argument('--combined',action='store_true',help='Joint-supervision control vs combined conversational corpus, two seeds')
     group.add_argument('--semantic',action='store_true',help='Model-only data vs loss isolation, two seeds and a new frozen test')
     p.add_argument('--span-model',choices=['tiny','base'],default='tiny')
     p.add_argument('--span-train-only',action='store_true',help='Train/validate on GPU; export locally after releasing the VM')
@@ -156,5 +157,5 @@ if __name__=='__main__':
     p.add_argument('--reuse',action='store_true',help='Take ownership of this already-created dedicated pilot session, including cleanup')
     a=p.parse_args()
     if a.span_train_only and not a.span:p.error('--span-train-only requires --span')
-    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
+    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
     run(a)

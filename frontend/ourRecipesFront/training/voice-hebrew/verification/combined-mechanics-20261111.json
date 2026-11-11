@@ -1,0 +1,45 @@
+{
+  "stdlib_tests_passed": 37,
+  "full_cpu_mechanics": {
+    "role": "Actual tiny weights, four two-step trials, before the final576 intent paraphrase rows were added; no quality claim",
+    "variants": [
+      {
+        "arm": "control",
+        "seed": 42,
+        "steps": 2,
+        "checkpoint_objective": "f0.5"
+      },
+      {
+        "arm": "combined",
+        "seed": 42,
+        "steps": 2,
+        "checkpoint_objective": "f0.5"
+      },
+      {
+        "arm": "control",
+        "seed": 17,
+        "steps": 2,
+        "checkpoint_objective": "f0.5"
+      },
+      {
+        "arm": "combined",
+        "seed": 17,
+        "steps": 2,
+        "checkpoint_objective": "f0.5"
+      }
+    ],
+    "new_test_reports": 4
+  },
+  "current_candidate_cpu_two_step": {
+    "status": "passed",
+    "actual_tiny_weights": true,
+    "steps": 2,
+    "checkpoint_objective": "f0.5",
+    "current_corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04"
+  },
+  "tokenizer_audit_reference": "combined-audit-20261111.json",
+  "uses_mocks": [
+    "CLI cleanup/transport guards",
+    "checkpoint overwrite/objective guards"
+  ]
+}
