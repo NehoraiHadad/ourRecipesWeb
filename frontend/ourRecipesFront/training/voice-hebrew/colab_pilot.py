@@ -38,7 +38,11 @@ def run(args):
         return json.loads(line)
     try:
         verify_manifest(ROOT/'data')
-        material=output/'material.zip';bundle(material)
+        material=output/'material.zip'
+        if getattr(args,'bundle_path',None):
+            import shutil
+            shutil.copyfile(args.bundle_path,material)
+        else:bundle(material)
         with material.open('rb') as handle:
             sha=hashlib.file_digest(handle,'sha256').hexdigest()
         events.append({'phase':'before','usage':cli(['usage'],quiet=True)})
@@ -154,6 +158,7 @@ if __name__=='__main__':
     p.add_argument('--span-model',choices=['tiny','base'],default='tiny')
     p.add_argument('--span-train-only',action='store_true',help='Train/validate on GPU; export locally after releasing the VM')
     p.add_argument('--ssh-identity',help='Owner-only local SSH key for verified binary-stream archive recovery; never uploaded')
+    p.add_argument('--bundle-path',help='Explicit prebuilt synthetic material ZIP instead of rebuilding the default bundle')
     p.add_argument('--reuse',action='store_true',help='Take ownership of this already-created dedicated pilot session, including cleanup')
     a=p.parse_args()
     if a.span_train_only and not a.span:p.error('--span-train-only requires --span')

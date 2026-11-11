@@ -8,13 +8,14 @@ from pathlib import Path
 from semantic_sweep import fbeta
 
 
-def summarize(recovered):
-    root=Path(recovered);result=deepcopy(json.loads((root/'semantic-report.json').read_text()))
+def summarize(recovered,study='semantic'):
+    if study not in ['semantic','combined']:raise ValueError('Unknown study')
+    root=Path(recovered);result=deepcopy(json.loads((root/(study+'-report.json')).read_text()))
     result['remote_status']=json.loads((root/'status.json').read_text()) if (root/'status.json').exists() else {'scope':'CPU mechanics smoke'}
     result['primary_test_is_synthetic']=True
     result['paired_test_deltas']={}
     tests={(r['arm'],r['seed']):r['metrics'] for r in result['new_test_once']}
-    for arm in ['data_only','loss_only']:
+    for arm in dict.fromkeys(v['arm'] for v in result['variants'] if v['arm']!='control'):
         result['paired_test_deltas'][arm]=[{'seed':s,
             'f0_5_delta':fbeta(tests[arm,s])-fbeta(tests['control',s]),
             'precision_delta':(tests[arm,s]['update_precision'] or 0)-(tests['control',s]['update_precision'] or 0),
@@ -42,6 +43,6 @@ def summarize(recovered):
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('recovered');p.add_argument('output');a=p.parse_args()
-    result=summarize(a.recovered);Path(a.output).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('recovered');p.add_argument('output');p.add_argument('--study',choices=['semantic','combined'],default='semantic');a=p.parse_args()
+    result=summarize(a.recovered,a.study);Path(a.output).write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n')
     print(json.dumps({'selected_arm':result['selected_arm'],'paired_test_deltas':result['paired_test_deltas']},indent=2))

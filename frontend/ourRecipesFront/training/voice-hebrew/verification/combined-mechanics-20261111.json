@@ -41,5 +41,7 @@
   "uses_mocks": [
     "CLI cleanup/transport guards",
     "checkpoint overwrite/objective guards"
-  ]
+  ],
+  "final_stdlib_tests_passed": 39,
+  "post_trial_archive_retention_fix": "Selected-arm seed17 model/tokenizer/config now retained alongside primary42; guarded by two fixtures tests. Original experiments ran before this packaging fix."
 }

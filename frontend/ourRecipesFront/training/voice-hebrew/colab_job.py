@@ -17,6 +17,18 @@ import time
 import zipfile
 
 
+def supplemental_seed_files(output):
+    """Keep both seeds of the selected arm, without changing primary selection."""
+    output=Path(output);frozen=output/'selection-frozen.json'
+    if not frozen.exists():return []
+    arm=json.loads(frozen.read_text()).get('selected_arm')
+    if arm not in ('control','combined','data_only','loss_only'):return []
+    source=output/'ablations'/f'{arm}-17'/'run'
+    files=[p for p in (source/'model').rglob('*') if p.is_file()]
+    files += [p for p in [source/'run-config.json',source/'best-validation.json'] if p.exists()]
+    return [(p,Path('retained-checkpoints')/f'{arm}-17'/p.relative_to(source)) for p in files]
+
+
 def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_version="3.13", baseline_steps=0, ablation=False, span=False, span_model='tiny', span_train_only=False, targeted=False, semantic=False, combined=False):
     started=time.monotonic();deadline=started+max_seconds
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
@@ -114,6 +126,8 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
                     archive.write(item,item.relative_to(output))
             for item in (output/'selected-data').glob('*'):
                 if item.is_file():archive.write(item,item.relative_to(output))
+            if state.get('status')=='complete':
+                for item,relative in supplemental_seed_files(output):archive.write(item,relative)
         parts=[]
         with recovery.open('rb') as source:
             while chunk:=source.read(16*1024*1024):

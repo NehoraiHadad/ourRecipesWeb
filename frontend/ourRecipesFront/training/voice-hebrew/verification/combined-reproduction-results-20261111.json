@@ -1,0 +1,1050 @@
+{
+  "role": "Supplemental artifact recovery after original four-trial study; not a new independent quality result",
+  "original_primary_unchanged": true,
+  "original_new_test_not_rescored": true,
+  "seed": 17,
+  "requested_step": 750,
+  "selected_step": 750,
+  "validation_proposal_mismatches": 0,
+  "mismatch_ids": [],
+  "validation_examples": 166,
+  "original_report_sha256": "c7a35896173336c1091349a2aef338494610f598985bb7cd86715578294082a9",
+  "training": {
+    "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+    "steps": 750,
+    "selected_step": 750,
+    "training_seconds": 174.842228115,
+    "gpu_peak_allocated_bytes": 3710474240,
+    "validation": {
+      "threshold": 1.0,
+      "examples": 166,
+      "exact_proposals": 56,
+      "exact_rate": 0.3373493975903614,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 104,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 166,
+      "exact_including_gold_evidence": 56,
+      "nonmatching_gold_evidence": 0
+    },
+    "validation_0_5": {
+      "threshold": 0.5,
+      "examples": 166,
+      "exact_proposals": 163,
+      "exact_rate": 0.9819277108433735,
+      "false_updates": 2,
+      "proposed_updates": 105,
+      "expected_updates": 104,
+      "update_precision": 0.9809523809523809,
+      "update_recall": 0.9903846153846154,
+      "clarifications": 56,
+      "exact_including_gold_evidence": 158,
+      "nonmatching_gold_evidence": 7
+    },
+    "production_ready": false,
+    "final_step_validation_0_5": {
+      "threshold": 0.5,
+      "examples": 166,
+      "exact_proposals": 163,
+      "exact_rate": 0.9819277108433735,
+      "false_updates": 2,
+      "proposed_updates": 105,
+      "expected_updates": 104,
+      "update_precision": 0.9809523809523809,
+      "update_recall": 0.9903846153846154,
+      "clarifications": 56,
+      "exact_including_gold_evidence": 158,
+      "nonmatching_gold_evidence": 7
+    }
+  },
+  "config": {
+    "model": "dicta-il/dictabert",
+    "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+    "architecture": "BertForTokenClassification",
+    "input_contract": "3+current-evidence-spans",
+    "seed": 17,
+    "steps_requested": 750,
+    "batch_size": 8,
+    "encoder_lr": 3e-05,
+    "head_lr": 0.0003,
+    "sampling": "balanced-task",
+    "outside_token_weight": 0.15,
+    "corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04",
+    "source_sha256": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+    "human_reviewed": false,
+    "production_ready": false,
+    "span_profile": "context-joint-v3",
+    "eval_every": 250,
+    "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+    "checkpoint_objective": "f0.5",
+    "selected_step": 750
+  },
+  "target_sha256": "46b6673b4e08c26a76f36fe13446793db10de3e2f26b4641ad135d7748b6434a",
+  "artifact_parity": {
+    "role": "Frozen-output equivalence after fixed-seed artifact recovery; no accuracy labels, metric scoring, new model selection or tuning",
+    "cases": 168,
+    "proposal_mismatches": 0,
+    "mismatch_ids": [],
+    "source": "Original GPU combined-seed17 predictions",
+    "target": "Reproduced checkpoint on native CPU"
+  },
+  "archive": {
+    "bytes": 743697008,
+    "sha256": "6553c3a113c370399403d3f0fbb30c9016baa9deede07013650df10dffc637ac",
+    "crc_ok": true
+  },
+  "retained_weights": {
+    "bytes": 735066976,
+    "sha256": "870545c9e1adda4efa2b329d9c48e70d7e850f441881308da2e3ef6fa0a5591f"
+  },
+  "probe": {
+    "role": "reproduced-secondary-seed17",
+    "provenance": {
+      "sha256": "a3653473f9cb707ce330b0133b92b0241bae9078296cd64b427c7341903325ce",
+      "examples": 16,
+      "role": "Frozen before any new primary test scoring; selected-checkpoint-only synthetic diagnostic, never training, threshold/checkpoint/model selection or natural-conversation acceptance",
+      "human_reviewed": false
+    },
+    "engine": "Actual native CPU, no model or threshold selection",
+    "seconds_including_model_load": 17.220440231001703,
+    "weights_sha256": "870545c9e1adda4efa2b329d9c48e70d7e850f441881308da2e3ef6fa0a5591f",
+    "config": {
+      "model": "dicta-il/dictabert",
+      "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+      "architecture": "BertForTokenClassification",
+      "input_contract": "3+current-evidence-spans",
+      "seed": 17,
+      "steps_requested": 750,
+      "batch_size": 8,
+      "encoder_lr": 3e-05,
+      "head_lr": 0.0003,
+      "sampling": "balanced-task",
+      "outside_token_weight": 0.15,
+      "corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04",
+      "source_sha256": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+      "human_reviewed": false,
+      "production_ready": false,
+      "span_profile": "context-joint-v3",
+      "eval_every": 250,
+      "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+      "checkpoint_objective": "f0.5",
+      "selected_step": 750
+    },
+    "metrics": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 10,
+      "exact_rate": 0.625,
+      "false_updates": 0,
+      "proposed_updates": 6,
+      "expected_updates": 12,
+      "update_precision": 1.0,
+      "update_recall": 0.5,
+      "clarifications": 9,
+      "by_scenario": {
+        "put": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "put-question": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 2,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-quantity": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "meta": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "insert": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "inside": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "negative": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "two-actions": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "question": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "partial": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "unknown": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        }
+      },
+      "cases": [
+        {
+          "id": "combined-probe-0-put",
+          "utterance": "שמתי קמח",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי קמח"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי קמח"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-put-question",
+          "utterance": "שמתי קמח, מה עכשיו?",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי קמח"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "next",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-partial-step",
+          "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי קמח"
+              },
+              {
+                "actionId": "a1",
+                "done": true,
+                "evidence": "שמתי קמח וגם מים"
+              },
+              {
+                "actionId": "a2",
+                "done": false,
+                "evidence": "עוד לא ערבבתי"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a2",
+                "done": false,
+                "evidence": "עוד לא ערבבתי"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-correction",
+          "utterance": "תיקון: לא שמתי קמח",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": false,
+                "evidence": "לא שמתי קמח"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-uncertain",
+          "utterance": "אני לא זוכר אם שמתי קמח",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-partial-quantity",
+          "utterance": "שמתי רק חצי מכמות הקמח",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-future",
+          "utterance": "עוד מעט אשים קמח",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-0-meta",
+          "utterance": "לא אמרתי ששמתי קמח",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-insert",
+          "utterance": "הכנסתי דבש",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "הכנסתי דבש"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "הכנסתי דבש"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-inside",
+          "utterance": "הדבש כבר ברוטב",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "הדבש כבר ברוטב"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-negative",
+          "utterance": "את רוטב הסויה עוד לא שמתי",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a1",
+                "done": false,
+                "evidence": "את רוטב הסויה עוד לא שמתי"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-two-actions",
+          "utterance": "שמתי דבש, והרוטב כבר מעורבב",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי דבש"
+              },
+              {
+                "actionId": "a2",
+                "done": true,
+                "evidence": "הרוטב כבר מעורבב"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "שמתי דבש"
+              },
+              {
+                "actionId": "a2",
+                "done": true,
+                "evidence": "טב כבר מעורבב"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-correction",
+          "utterance": "בעצם טעיתי: לא הכנסתי דבש",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": false,
+                "evidence": "לא הכנסתי דבש"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": false,
+                "evidence": "לא הכנסתי דבש"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-question",
+          "utterance": "לשים כבר את הדבש?",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "next",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-partial",
+          "utterance": "ערבבתי רק קצת, עוד לא סיימתי",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        },
+        {
+          "id": "combined-probe-1-unknown",
+          "utterance": "שמתי את הדבר ההוא",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "exact": true,
+          "false_updates": 0
+        }
+      ],
+      "exact_including_gold_evidence": 9,
+      "nonmatching_gold_evidence": 1
+    }
+  },
+  "regressions": {
+    "prior-semantic-test-v2": {
+      "threshold": 0.5,
+      "examples": 104,
+      "exact_proposals": 79,
+      "exact_rate": 0.7596153846153846,
+      "false_updates": 6,
+      "proposed_updates": 55,
+      "expected_updates": 68,
+      "update_precision": 0.8909090909090909,
+      "update_recall": 0.7205882352941176,
+      "clarifications": 51,
+      "by_scenario": {
+        "test-finish-0": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-assertion-0": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-negative-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-partial-0": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-1": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-assertion-1": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-negative-1": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-partial-1": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-2": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-assertion-2": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-negative-2": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 1
+        },
+        "test-partial-2": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-3": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "test-assertion-3": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-negative-3": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-partial-3": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-coreference": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 2
+        },
+        "test-local-context": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 2
+        },
+        "test-foreign-context": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-two-objects": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "test-next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-missed": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-meta": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 74,
+      "nonmatching_gold_evidence": 13
+    },
+    "regression68": {
+      "threshold": 0.5,
+      "examples": 68,
+      "exact_proposals": 59,
+      "exact_rate": 0.8676470588235294,
+      "false_updates": 0,
+      "proposed_updates": 27,
+      "expected_updates": 36,
+      "update_precision": 1.0,
+      "update_recall": 0.75,
+      "clarifications": 33,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 48,
+      "nonmatching_gold_evidence": 11
+    },
+    "regression16": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 13,
+      "exact_rate": 0.8125,
+      "false_updates": 0,
+      "proposed_updates": 8,
+      "expected_updates": 12,
+      "update_precision": 1.0,
+      "update_recall": 0.6666666666666666,
+      "clarifications": 7,
+      "by_scenario": {
+        "partial-step": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "passive": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "single": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "belief-correction": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-action": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "object-report": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "known-question": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "last-action": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "recipe-switch": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 12,
+      "nonmatching_gold_evidence": 1
+    },
+    "historical-validation": {
+      "threshold": 0.5,
+      "examples": 120,
+      "exact_proposals": 117,
+      "exact_rate": 0.975,
+      "false_updates": 1,
+      "proposed_updates": 85,
+      "expected_updates": 85,
+      "update_precision": 0.9882352941176471,
+      "update_recall": 0.9882352941176471,
+      "clarifications": 36,
+      "by_scenario": {
+        "positive": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "later_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "two_positive": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "partial_step": {
+          "total": 5,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "negative": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_undo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "already_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "negative_then_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "both_pending": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "ambiguous_pronoun": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "ambiguous_object": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "extra_advice": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "future_only": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "partial_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "recipe_switch": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "unknown_progress": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "report_then_question": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "last_clause_correction": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "synthetic_typo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "unknown_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 112,
+      "nonmatching_gold_evidence": 6
+    }
+  },
+  "original_test_scored": false,
+  "training_loss_snapshot_parity": {
+    "snapshots": 15,
+    "exact_float_matches": true,
+    "role": "Recorded minibatch losses, not a claim of bit-identical original weight bytes"
+  }
+}

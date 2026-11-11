@@ -1,0 +1,12 @@
+{
+  "role": "Recover supplemental seed17 step750. Original primary42 selection/results unchanged. Archive originally retained only42; remote runtime already closed.",
+  "training_steps": 750,
+  "seed": 17,
+  "new_test_scoring": false,
+  "validation_parity_required_examples": 166,
+  "remote_budget_seconds": 900,
+  "material_zip_sha256": "79c27a0dd6c31222957e3014d5d2de42cc939a90db52b08f3868fed2c6940fa3",
+  "material_transform": "Original uploaded bundle, replacing combined_sweep.py with an explicit reproduction entrypoint; original core model/data sources unchanged; target contains original validation proposals only",
+  "source_sha256": "9c4a3535c41e95c1a35b5dfb62cad1ba9001ac7c923883fa25dd92ad0eeaed42",
+  "target_sha256": "46b6673b4e08c26a76f36fe13446793db10de3e2f26b4641ad135d7748b6434a"
+}

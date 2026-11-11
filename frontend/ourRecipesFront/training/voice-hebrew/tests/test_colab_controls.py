@@ -16,6 +16,23 @@ import colab_job
 import colab_pilot
 
 class ColabControlTests(unittest.TestCase):
+    def test_selected_arm_second_seed_weights_survive_successful_recovery(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'selection-frozen.json').write_text('{"selected_arm":"combined"}')
+            folder=root/'ablations/combined-17/run/model';folder.mkdir(parents=True)
+            (folder/'model.safetensors').write_bytes(b'fixture-weights')
+            (folder/'tokenizer.json').write_text('{}')
+            (folder.parent/'run-config.json').write_text('{}')
+            backup=folder.parent/'best-validation-model';backup.mkdir();(backup/'model.safetensors').write_bytes(b'duplicate')
+            recovered={str(target):source.read_bytes() for source,target in colab_job.supplemental_seed_files(root)}
+            self.assertEqual(recovered['retained-checkpoints/combined-17/model/model.safetensors'],b'fixture-weights')
+            self.assertFalse(any('best-validation-model' in name for name in recovered))
+
+    def test_unrecognized_selection_cannot_escape_recovery_root(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);(root/'selection-frozen.json').write_text('{"selected_arm":"../../foreign"}')
+            self.assertEqual(colab_job.supplemental_seed_files(root),[])
+
     def test_ssh_stream_recovers_verified_archive_without_uploading_private_key(self):
         packed=io.BytesIO()
         with zipfile.ZipFile(packed,'w') as z:z.writestr('run/proof.json','{"ok":true}')

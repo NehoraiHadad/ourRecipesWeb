@@ -1,0 +1,1475 @@
+{
+  "role": "Artifact recovery target, chosen from original validation; no new test data or scores used",
+  "config": {
+    "model": "dicta-il/dictabert",
+    "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+    "architecture": "BertForTokenClassification",
+    "input_contract": "3+current-evidence-spans",
+    "seed": 17,
+    "steps_requested": 1500,
+    "batch_size": 8,
+    "encoder_lr": 3e-05,
+    "head_lr": 0.0003,
+    "sampling": "balanced-task",
+    "outside_token_weight": 0.15,
+    "corpus_sha256": "cfe0f058ac24eb92993ebde85df2bf0e1d4f5a4ad7d04ae0346b2b8a03596a04",
+    "source_sha256": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+    "human_reviewed": false,
+    "production_ready": false,
+    "span_profile": "context-joint-v3",
+    "eval_every": 250,
+    "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+    "checkpoint_objective": "f0.5",
+    "selected_step": 750
+  },
+  "expected_validation_proposals": {
+    "combined-validation-0-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סחטתי לימון"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סחטתי לימון"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא סחטתי לימון"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את הוספת מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא הוספתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "ערבבתי את המשקה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את ערבוב המשקה"
+        },
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "סיימתי את ערבוב המשקה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא ערבבתי את המשקה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "מזגתי משקה לכוס"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-completion-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא מזגתי משקה לכוס"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סחטתי לימון"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סחטתי לימון"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא הוספתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא סחטתי לימון"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-0-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-0-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קצצתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סיימתי את קיצוץ שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא קצצתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי גבינה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את הוספת גבינה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא הוספתי גבינה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "ערבבתי את הממרח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את ערבוב הממרח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא ערבבתי את הממרח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "פיזרתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-completion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "פיזרתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא פיזרתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קצצתי שמיר"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי גבינה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קצצתי שמיר"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא הוספתי גבינה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא קצצתי שמיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-1-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-1-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קילפתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סיימתי את קילוף תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא קילפתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "חתכתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את חיתוך תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא חתכתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "שטפתי ענבים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את שטיפת ענבים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא שטפתי ענבים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "ערבבתי סלט פירות"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-completion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "סיימתי את ערבוב סלט פירות"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא ערבבתי סלט פירות"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קילפתי תפוח"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "בהמשך חתכתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "קילפתי תפוח"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא חתכתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא קילפתי תפוח"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-local-reference": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "חתכתי אותו"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-foreign-reference": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "חתכתי אותו"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-2-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-2-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "הרתחתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סיימתי את הרתחת מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא הרתחתי מים"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "שטפתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את שטיפת כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא שטפתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "הוספתי כוסמת לסיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את הוספת כוסמת לסיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא הוספתי כוסמת לסיר"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "בישלתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-completion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "סיימתי את בישול כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא בישלתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "הרתחתי מים"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "שטפתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "הרתחתי מים"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא שטפתי כוסמת"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא הרתחתי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-3-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-3-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שמתי קמח בקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סיימתי את הנחת קמח בקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא שמתי קמח בקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי מים לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את הוספת מים לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא הוספתי מים לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "הוספתי שמן לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את הוספת שמן לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא הוספתי שמן לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "ערבבתי בלילה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-completion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "סיימתי את ערבוב בלילה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא ערבבתי בלילה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שמתי קמח בקערה"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "הוספתי מים לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שמתי קמח בקערה"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא הוספתי מים לקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא שמתי קמח בקערה"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-4-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-4-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-assertion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שטפתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-completion-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "סיימתי את שטיפת ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-negative-0": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא שטפתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-question-0": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-assertion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "חתכתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-completion-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "סיימתי את חיתוך ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-negative-1": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "לא חתכתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-question-1": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-assertion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "שימנתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-completion-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": true,
+          "evidence": "סיימתי את שימון ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-negative-2": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a2",
+          "done": false,
+          "evidence": "לא שימנתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-question-2": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-assertion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "אפיתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-completion-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": true,
+          "evidence": "סיימתי את אפיית ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-negative-3": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a3",
+          "done": false,
+          "evidence": "לא אפיתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-question-3": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-two-reports": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שטפתי ברוקולי"
+        },
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "בהמשך חתכתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-partial-step": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": true,
+          "evidence": "שטפתי ברוקולי"
+        },
+        {
+          "actionId": "a1",
+          "done": false,
+          "evidence": "עדיין לא חתכתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-correction": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a0",
+          "done": false,
+          "evidence": "לא שטפתי ברוקולי"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-local-reference": {
+      "intent": "report",
+      "changes": [
+        {
+          "actionId": "a1",
+          "done": true,
+          "evidence": "חתכתי אותו"
+        }
+      ],
+      "requiresReview": true
+    },
+    "combined-validation-5-foreign-reference": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-next": {
+      "intent": "next",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-missed": {
+      "intent": "missed",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-advice": {
+      "intent": "advice",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-uncertain": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-partial-action": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-ambiguous": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-meta": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    },
+    "combined-validation-5-future": {
+      "intent": "clarify",
+      "changes": [],
+      "requiresReview": true
+    }
+  },
+  "original_report_sha256": "c7a35896173336c1091349a2aef338494610f598985bb7cd86715578294082a9"
+}
