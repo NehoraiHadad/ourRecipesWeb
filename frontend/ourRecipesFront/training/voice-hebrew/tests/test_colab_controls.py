@@ -16,6 +16,30 @@ import colab_job
 import colab_pilot
 
 class ColabControlTests(unittest.TestCase):
+    def test_ssh_stream_recovers_verified_archive_without_uploading_private_key(self):
+        packed=io.BytesIO()
+        with zipfile.ZipFile(packed,'w') as z:z.writestr('run/proof.json','{"ok":true}')
+        content=packed.getvalue();sha=hashlib.sha256(content).hexdigest();calls=[]
+        def fake(argv,**kwargs):
+            calls.append(argv);stdout='ok'
+            if 'ssh' in argv and 'cat' in argv:
+                kwargs['stdout'].write(content)
+                return subprocess.CompletedProcess(argv,0,None,b'')
+            if 'exec' in argv or ('ssh' in argv and '-c' in argv and 'OURRECIPES_STATUS=' in argv[-1]):
+                code=argv[-1] if 'ssh' in argv else Path(argv[argv.index('-f')+1]).read_text()
+                stdout='OURRECIPES_STATUS='+json.dumps({'pid':123} if 'subprocess.Popen' in code else {'status':'complete','process_exit':0,'archive_ready':True})
+            if 'download' in argv:
+                Path(argv[-1]).write_text(json.dumps({'sha256':sha,'bytes':len(content),'parts':[]}) if argv[-1].endswith('archive-manifest.json') else 'log')
+            return subprocess.CompletedProcess(argv,0,stdout,'')
+        with tempfile.TemporaryDirectory() as tmp,patch('colab_pilot.subprocess.run',side_effect=fake),redirect_stdout(io.StringIO()):
+            args=argparse.Namespace(session='ourrecipes-stream-test',output=str(Path(tmp)/'out'),reuse=False,cli='fake-colab',auth_provider=None,run_id='ourrecipes-test-run',steps=2,max_seconds=120,python_version='3.13',baseline_steps=0,ssh_identity='/private/key',targeted=True)
+            colab_pilot.run(args)
+            self.assertTrue((Path(args.output)/'recovered/run/proof.json').exists())
+            events=json.loads((Path(args.output)/'usage-private.json').read_text())
+            self.assertTrue(any(e.get('method')=='ssh-stream' for e in events))
+        self.assertFalse(any('/private/key' in call for call in calls if 'upload' in call))
+        self.assertTrue(any('stop' in call for call in calls))
+
     def test_reused_owned_session_is_stopped_when_upload_fails(self):
         calls=[]
         def fake(argv,**kwargs):

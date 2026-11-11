@@ -1,0 +1,754 @@
+{
+  "date": "2026-11-11",
+  "scope": "Actual cloud CPU/Chromium checks on selected targeted weights; not full voice flow or physical-device acceptance",
+  "python": "3.13.17",
+  "native_ort": "1.30.0",
+  "web_ort": "1.30.0",
+  "host_cpu_count": 5,
+  "export": {
+    "scope": "Native FP32 parity before quantization; browser/semantic checks separate",
+    "input_names": [
+      "input_ids",
+      "attention_mask",
+      "token_type_ids"
+    ],
+    "native_parity": [
+      {
+        "batch": 1,
+        "sequence": 26,
+        "max_abs_logit_error": 3.337860107421875e-06
+      },
+      {
+        "batch": 4,
+        "sequence": 25,
+        "max_abs_logit_error": 6.22868537902832e-06
+      },
+      {
+        "batch": 16,
+        "sequence": 31,
+        "max_abs_logit_error": 1.3589859008789062e-05
+      }
+    ],
+    "onnxruntime_version": "1.30.0",
+    "torch_version": "2.6.0+cpu",
+    "quantization": {
+      "method": "dynamic",
+      "weight_type": "QInt8",
+      "reduce_range": true,
+      "operators": [
+        "MatMul",
+        "Gemm",
+        "Gather"
+      ]
+    },
+    "files": {
+      "model.onnx": {
+        "bytes": 735288736,
+        "sha256": "d113c3cfeb23159281cf4c4318ede8b0966c34e35da92ed185e264294c004eab"
+      },
+      "model.int8.onnx": {
+        "bytes": 184564937,
+        "sha256": "aa141fcbeb1066425502314be8eb46f4dfbcfd37b4729f3d16ca95fb9d5165e3"
+      }
+    }
+  },
+  "validation": {
+    "fp32": {
+      "threshold": 0.99995,
+      "examples": 120,
+      "exact_proposals": 36,
+      "exact_rate": 0.3,
+      "false_updates": 0,
+      "proposed_updates": 10,
+      "expected_updates": 85,
+      "update_precision": 1.0,
+      "update_recall": 0.11764705882352941,
+      "clarifications": 110,
+      "exact_including_gold_evidence": 36,
+      "nonmatching_gold_evidence": 0
+    },
+    "int8": {
+      "threshold": 0.99995,
+      "examples": 120,
+      "exact_proposals": 35,
+      "exact_rate": 0.2916666666666667,
+      "false_updates": 0,
+      "proposed_updates": 0,
+      "expected_updates": 85,
+      "update_precision": null,
+      "update_recall": 0.0,
+      "clarifications": 120,
+      "exact_including_gold_evidence": 35,
+      "nonmatching_gold_evidence": 0
+    },
+    "grid": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.85,
+      0.9,
+      0.95,
+      0.99,
+      0.995,
+      0.999,
+      0.9995,
+      0.9999,
+      0.99995,
+      0.99999,
+      0.999999,
+      1.0
+    ],
+    "candidates_fp32": [
+      {
+        "threshold": 0.5,
+        "examples": 120,
+        "exact_proposals": 95,
+        "exact_rate": 0.7916666666666666,
+        "false_updates": 5,
+        "proposed_updates": 84,
+        "expected_updates": 85,
+        "update_precision": 0.9404761904761905,
+        "update_recall": 0.9294117647058824,
+        "clarifications": 49,
+        "exact_including_gold_evidence": 95,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.6,
+        "examples": 120,
+        "exact_proposals": 94,
+        "exact_rate": 0.7833333333333333,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 51,
+        "exact_including_gold_evidence": 94,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.7,
+        "examples": 120,
+        "exact_proposals": 94,
+        "exact_rate": 0.7833333333333333,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 53,
+        "exact_including_gold_evidence": 94,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.8,
+        "examples": 120,
+        "exact_proposals": 94,
+        "exact_rate": 0.7833333333333333,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 54,
+        "exact_including_gold_evidence": 94,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.85,
+        "examples": 120,
+        "exact_proposals": 93,
+        "exact_rate": 0.775,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 55,
+        "exact_including_gold_evidence": 93,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.9,
+        "examples": 120,
+        "exact_proposals": 93,
+        "exact_rate": 0.775,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 55,
+        "exact_including_gold_evidence": 93,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.95,
+        "examples": 120,
+        "exact_proposals": 93,
+        "exact_rate": 0.775,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 55,
+        "exact_including_gold_evidence": 93,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.99,
+        "examples": 120,
+        "exact_proposals": 93,
+        "exact_rate": 0.775,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 55,
+        "exact_including_gold_evidence": 93,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.995,
+        "examples": 120,
+        "exact_proposals": 92,
+        "exact_rate": 0.7666666666666667,
+        "false_updates": 5,
+        "proposed_updates": 83,
+        "expected_updates": 85,
+        "update_precision": 0.9397590361445783,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 56,
+        "exact_including_gold_evidence": 92,
+        "nonmatching_gold_evidence": 5
+      },
+      {
+        "threshold": 0.999,
+        "examples": 120,
+        "exact_proposals": 89,
+        "exact_rate": 0.7416666666666667,
+        "false_updates": 4,
+        "proposed_updates": 82,
+        "expected_updates": 85,
+        "update_precision": 0.9512195121951219,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 60,
+        "exact_including_gold_evidence": 89,
+        "nonmatching_gold_evidence": 4
+      },
+      {
+        "threshold": 0.9995,
+        "examples": 120,
+        "exact_proposals": 89,
+        "exact_rate": 0.7416666666666667,
+        "false_updates": 4,
+        "proposed_updates": 82,
+        "expected_updates": 85,
+        "update_precision": 0.9512195121951219,
+        "update_recall": 0.9176470588235294,
+        "clarifications": 60,
+        "exact_including_gold_evidence": 89,
+        "nonmatching_gold_evidence": 4
+      },
+      {
+        "threshold": 0.9999,
+        "examples": 120,
+        "exact_proposals": 73,
+        "exact_rate": 0.6083333333333333,
+        "false_updates": 3,
+        "proposed_updates": 64,
+        "expected_updates": 85,
+        "update_precision": 0.953125,
+        "update_recall": 0.7176470588235294,
+        "clarifications": 76,
+        "exact_including_gold_evidence": 73,
+        "nonmatching_gold_evidence": 3
+      },
+      {
+        "threshold": 0.99995,
+        "examples": 120,
+        "exact_proposals": 36,
+        "exact_rate": 0.3,
+        "false_updates": 0,
+        "proposed_updates": 10,
+        "expected_updates": 85,
+        "update_precision": 1.0,
+        "update_recall": 0.11764705882352941,
+        "clarifications": 110,
+        "exact_including_gold_evidence": 36,
+        "nonmatching_gold_evidence": 0
+      },
+      {
+        "threshold": 0.99999,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120,
+        "exact_including_gold_evidence": 35,
+        "nonmatching_gold_evidence": 0
+      },
+      {
+        "threshold": 0.999999,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120,
+        "exact_including_gold_evidence": 35,
+        "nonmatching_gold_evidence": 0
+      },
+      {
+        "threshold": 1.0,
+        "examples": 120,
+        "exact_proposals": 35,
+        "exact_rate": 0.2916666666666667,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 85,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 120,
+        "exact_including_gold_evidence": 35,
+        "nonmatching_gold_evidence": 0
+      }
+    ],
+    "fp32_engine": "native ORT"
+  },
+  "int8_regression_0_5": {
+    "threshold": 0.5,
+    "examples": 68,
+    "exact_proposals": 34,
+    "exact_rate": 0.5,
+    "false_updates": 8,
+    "proposed_updates": 24,
+    "expected_updates": 36,
+    "update_precision": 0.6666666666666666,
+    "update_recall": 0.4444444444444444,
+    "clarifications": 44,
+    "exact_including_gold_evidence": 34,
+    "nonmatching_gold_evidence": 8
+  },
+  "browser_calibrated": {
+    "date": "2026-11-11T15:21:11.974Z",
+    "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+    "loads": {
+      "model.onnx": 3553.2099999934435,
+      "model.int8.onnx": 710.3950000107288
+    },
+    "cases": [
+      {
+        "file": "model.onnx",
+        "batch": 1,
+        "ms": 209.10499998927116,
+        "maxAbsLogitError": 6.198883056640625e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 2,
+        "ms": 343.3049999922514,
+        "maxAbsLogitError": 4.76837158203125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 3,
+        "ms": 667.5049999952316,
+        "maxAbsLogitError": 3.445148468017578e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 4,
+        "ms": 853.3400000035763,
+        "maxAbsLogitError": 2.47955322265625e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 5,
+        "ms": 1148.5900000035763,
+        "maxAbsLogitError": 1.6689300537109375e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 5,
+        "ms": 867.6149999946356,
+        "maxAbsLogitError": 8.106231689453125e-06,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 5,
+        "ms": 1174.1749999970198,
+        "maxAbsLogitError": 0.0001237243413925171,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.onnx",
+        "batch": 5,
+        "ms": 1063.5600000023842,
+        "maxAbsLogitError": 2.47955322265625e-05,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 1,
+        "ms": 112.28499999642372,
+        "maxAbsLogitError": 1.0574238300323486,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 2,
+        "ms": 175.55500000715256,
+        "maxAbsLogitError": 0.5286970138549805,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 3,
+        "ms": 250.13500000536442,
+        "maxAbsLogitError": 1.4420441687107086,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 0,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 4,
+        "ms": 365.79500000178814,
+        "maxAbsLogitError": 0.9256227016448975,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 3,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 5,
+        "ms": 480.3349999934435,
+        "maxAbsLogitError": 3.898555874824524,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 2,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 5,
+        "ms": 364.71000000834465,
+        "maxAbsLogitError": 1.0516233444213867,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 1,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 5,
+        "ms": 458.3449999988079,
+        "maxAbsLogitError": 1.8842567205429077,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 3,
+        "acceptedEvidenceDisagreements": 0
+      },
+      {
+        "file": "model.int8.onnx",
+        "batch": 5,
+        "ms": 487.3400000035763,
+        "maxAbsLogitError": 1.2377405166625977,
+        "labelDisagreements": 0,
+        "decisionDisagreements": 2,
+        "acceptedEvidenceDisagreements": 0
+      }
+    ],
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "threads": 1,
+    "fp32Tested": true,
+    "externalRequests": [],
+    "memory": {
+      "peakChromiumProcessSumMiB": 3373.171875,
+      "sampleIntervalMs": 200,
+      "scope": "Owned Chromium process tree during sequential FP32 and INT8 checks. Includes runtime/browser/retained allocations and may count shared pages repeatedly; not model-only or phone RAM."
+    }
+  },
+  "browser_diagnostic": {
+    "provenance": {
+      "role": "Post-selection regression tensor portability probe at threshold 0.5; never deployment policy, calibration or quality certification",
+      "batches": 3,
+      "queries": 48,
+      "native_accepted_action_records": 6
+    },
+    "measurements": {
+      "date": "2026-11-11T15:21:42.591Z",
+      "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+      "loads": {
+        "model.onnx": 3395.8199999928474,
+        "model.int8.onnx": 688.5899999886751
+      },
+      "cases": [
+        {
+          "file": "model.onnx",
+          "batch": 16,
+          "ms": 2945.8200000077486,
+          "maxAbsLogitError": 1.1086463928222656e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 16,
+          "ms": 3127.5550000071526,
+          "maxAbsLogitError": 2.1219253540039062e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 16,
+          "ms": 2985.3850000053644,
+          "maxAbsLogitError": 1.6450881958007812e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 16,
+          "ms": 1262.5849999934435,
+          "maxAbsLogitError": 0.580539807677269,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 16,
+          "ms": 1390.765000000596,
+          "maxAbsLogitError": 1.617149829864502,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 16,
+          "ms": 1280.0700000077486,
+          "maxAbsLogitError": 1.0869610905647278,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        }
+      ],
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "threads": 1,
+      "fp32Tested": true,
+      "externalRequests": [],
+      "memory": {
+        "peakChromiumProcessSumMiB": 3303.86328125,
+        "sampleIntervalMs": 200,
+        "scope": "Owned Chromium process tree during sequential FP32 and INT8 checks. Includes runtime/browser/retained allocations and may count shared pages repeatedly; not model-only or phone RAM."
+      }
+    }
+  },
+  "unchanged_prior_base_graph_version_alignment_control": {
+    "scope": "Prior base2000 graph; references regenerated with native ORT1.30, Web1.30. Matching versions did not eliminate its prior accepted-record mismatch.",
+    "runtime": {
+      "native": "1.30.0",
+      "web": "1.30.0",
+      "purpose": "Runtime alignment check on unchanged earlier INT8 graph; fixed existing threshold"
+    },
+    "browser": {
+      "date": "2026-11-11T14:55:34.240Z",
+      "scope": "Actual cloud Chromium/ORT Web inference on tokenized tensor fixtures; no browser tokenizer, GPU, physical phone or semantic quality certification",
+      "loads": {
+        "model.onnx": 6355.590000003576,
+        "model.int8.onnx": 606.3200000077486
+      },
+      "cases": [
+        {
+          "file": "model.onnx",
+          "batch": 1,
+          "ms": 200.97499999403954,
+          "maxAbsLogitError": 3.5762786865234375e-06,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 2,
+          "ms": 324.72499999403954,
+          "maxAbsLogitError": 9.298324584960938e-06,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 3,
+          "ms": 578.7999999970198,
+          "maxAbsLogitError": 7.700920104980469e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 4,
+          "ms": 751.4700000137091,
+          "maxAbsLogitError": 1.52587890625e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 5,
+          "ms": 987.390000000596,
+          "maxAbsLogitError": 7.104873657226562e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.onnx",
+          "batch": 5,
+          "ms": 1174.6700000017881,
+          "maxAbsLogitError": 6.532669067382812e-05,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 1,
+          "ms": 105.77000001072884,
+          "maxAbsLogitError": 0.17068743705749512,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 2,
+          "ms": 158.01000000536442,
+          "maxAbsLogitError": 1.379185438156128,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 1,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 3,
+          "ms": 258.70499999821186,
+          "maxAbsLogitError": 0.21866369247436523,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 1,
+          "acceptedEvidenceDisagreements": 1
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 4,
+          "ms": 341.66499999165535,
+          "maxAbsLogitError": 0.9947824478149414,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 0,
+          "acceptedEvidenceDisagreements": 0
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 5,
+          "ms": 471.8799999952316,
+          "maxAbsLogitError": 2.5224320888519287,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 1,
+          "acceptedEvidenceDisagreements": 1
+        },
+        {
+          "file": "model.int8.onnx",
+          "batch": 5,
+          "ms": 530.6150000095367,
+          "maxAbsLogitError": 4.536806344985962,
+          "labelDisagreements": 0,
+          "decisionDisagreements": 1,
+          "acceptedEvidenceDisagreements": 0
+        }
+      ],
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+      "threads": 1,
+      "fp32Tested": true,
+      "externalRequests": [],
+      "memory": {
+        "peakChromiumProcessSumMiB": 3447.484375,
+        "sampleIntervalMs": 200,
+        "scope": "Owned Chromium process tree during sequential FP32 and INT8 checks. Includes runtime/browser/retained allocations and may count shared pages repeatedly; not model-only or phone RAM."
+      }
+    }
+  },
+  "mechanics": {
+    "stdlib_tests_passed": 29,
+    "uses_mocks": [
+      "Colab failure cleanup/control flow",
+      "best checkpoint overwrite guard",
+      "SSH archive/private-key controls"
+    ],
+    "actual_cpu_two_step_runs": [
+      "joint-contrast-v2 train-only/best restoration on tiny weights",
+      "paired sweep with tiny weights; no quality claim"
+    ],
+    "python_syntax": "passed",
+    "javascript_syntax": "passed"
+  },
+  "limitations": [
+    "Browser receives Python token IDs and character offsets, not live browser tokenizer offset mapping.",
+    "30 calibrated and 48 diagnostic query fixtures are not a complete browser semantic evaluation.",
+    "Calibrated INT8 policy accepts zero updates on validation. Diagnostic threshold0.5 is a portability probe, not deployment policy.",
+    "Browser RSS is owned-process sum during sequential FP32+INT8, may count shared pages twice; no INT8-only or phone memory claim.",
+    "No external HTTP requests were observed during browser checks. Local model load timing excludes internet download and tokenization.",
+    "Original120 test cases not scored because validation gate failed. No further selection using fresh diagnostic16.",
+    "No phone, Safari/Firefox, microphone, kitchen-noise, human listening or natural-conversation quality measurement."
+  ],
+  "source_sha256": {
+    "span_pilot.py": "9e2f167ae6ae4d6d1e52bbb183ef0a9d5d306b642d448aada36348659fb01f8d",
+    "span_evaluate.py": "2321b949a32f57906906765b59f8cf05f0e51aefc14fe3d07e9b75f5c97ecab1",
+    "browser-smoke.mjs": "b8bb26506e6b7da4663561bab2835382023eb099ad643c05e8776f27464e0f66",
+    "requirements-export.txt": "5243042807cde39f77a8de6224ae9a37fd1037f869c82344067be2924b23abc5"
+  },
+  "physical_device_tested": false,
+  "production_ready": false
+}

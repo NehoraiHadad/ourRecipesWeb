@@ -82,6 +82,8 @@ try {
           if(item.task==='intent'){
             const p=pick(0,[3,4,5,6,7]);return{label:p.confidence>=fixture.threshold?p.label:6};
           }
+          const pair=item.joint_gate?pick(0,[0,1,2]):null;
+          if(pair?.label===2)return{label:2};
           const chunks=[];let active=null;
           for(const i of item.positions){
             const p=pick(i,[0,1,2]);if(p.label===2){active=null;continue;}
@@ -91,6 +93,8 @@ try {
           }
           if(chunks.length===1){
             const c=chunks[0],text=Array.from(item.current_utterance).slice(c.begin-item.current_start,c.end-item.current_start).join('');
+            if(pair&&pair.label!==c.label)return{label:2};
+            if(pair)c.confidence=Math.min(c.confidence,pair.confidence);
             const words=text.split(/\s+/).filter(w=>/\p{L}/u.test(w));
             const generic=new Set(['תיקון','לא','כן','עוד','אבל','אני','זה','עשיתי','סיימתי','בעצם']);
             if(words.length>=2&&words.some(w=>!generic.has(w))&&c.confidence>=fixture.threshold)return{label:c.label,evidence:text};

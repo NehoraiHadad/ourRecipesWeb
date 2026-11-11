@@ -19,6 +19,13 @@ def logits(tags):
 
 
 class SpanTests(unittest.TestCase):
+    def test_candidate_decision_must_support_the_extracted_quote(self):
+        q=item('הוספתי מים',[(0,0),(0,6),(7,10)],positions=[1,2]);q['joint_gate']=True
+        self.assertEqual(decode(q,logits([2,0,0]))['prediction'],'not_mentioned')
+        self.assertEqual(decode(q,logits([1,0,0]))['prediction'],'not_mentioned')
+        accepted=decode(q,logits([0,0,0]))
+        self.assertEqual(accepted['prediction'],'done')
+        self.assertEqual(accepted['evidence'],'הוספתי מים')
     def test_later_worse_checkpoint_cannot_overwrite_best_validation_weights(self):
         class FakeModel:
             value='first'

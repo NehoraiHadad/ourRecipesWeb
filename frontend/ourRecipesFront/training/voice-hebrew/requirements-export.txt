@@ -1,0 +1,4 @@
+# Overlay on requirements-py313.txt for the measured native/Web 1.30 comparison.
+# Keep the training environment unchanged. Install into a separate target/venv.
+onnxruntime[quantization]==1.30.0
+ml_dtypes==0.5.4

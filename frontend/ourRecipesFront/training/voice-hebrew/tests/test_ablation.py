@@ -11,9 +11,28 @@ from ablation import augmented_data
 from challenge import challenge
 from corpus import ROOT, load_data, queries, validate
 from engine import expand, training_order, verify_manifest
+from targeted_data import build as targeted_data
+from fresh_diagnostic import build as fresh_data
 
 
 class AblationTests(unittest.TestCase):
+    def test_fresh_diagnostic_is_valid_and_not_training_text(self):
+        recs,rows=fresh_data();validate(list(recs.values()),rows)
+        with tempfile.TemporaryDirectory() as tmp:
+            p=targeted_data(Path(tmp)/'data');_,training=load_data(p)
+            self.assertFalse({r['utterance'] for r in rows}&{r['utterance'] for r in training})
+        self.assertEqual(len(rows),16)
+
+    def test_targeted_contrasts_preserve_heldout_recipes_and_rows(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            target=targeted_data(Path(tmp)/'data');manifest=verify_manifest(target)
+            recs,rows=load_data(target);original,_=load_data()
+            for key,recipe in original.items():
+                if recipe['split']!='train':self.assertEqual(recs[key],recipe)
+            for name in ['validation.jsonl','test.jsonl']:
+                self.assertEqual((target/name).read_bytes(),(ROOT/'data'/name).read_bytes())
+            self.assertEqual(manifest['counts']['train']['recipes'],28)
+            self.assertTrue(any(r['scenario']=='targeted_question' and r['gold']['intent']=='clarify' for r in rows))
     def test_augmented_train_covers_every_candidate_and_preserves_holdout_bytes(self):
         with tempfile.TemporaryDirectory() as tmp:
             target=augmented_data(Path(tmp)/'data')

@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-11",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "seed": 42,
+  "batch": 8,
+  "encoder_lr": 3e-05,
+  "head_lr": 0.0003,
+  "variants": [
+    {
+      "name": "control",
+      "profile": "span-v1",
+      "max_steps": 1000,
+      "data": "historical augmented training"
+    },
+    {
+      "name": "targeted",
+      "profile": "joint-contrast-v2",
+      "max_steps": 1500,
+      "data": "training-only minimal contrasts and assertion/question/partial variants"
+    }
+  ],
+  "evaluation_steps": 250,
+  "checkpoint_selection": "grounded exact, then precision/recall; restore best",
+  "variant_selection": "recall >=88% preferred, then action precision, grounded exact, recall; validation only",
+  "material_progress": "at least 3 fewer false updates than concurrent control, recall reduction <=4 percentage points, action precision >=95%",
+  "acceptance_gate": "Separate: action precision >=99%, recall >=80%, correct evidence and portable runtime. A high score on synthetic validation is not production acceptance.",
+  "matched_comparison_step": 1000,
+  "limitation": "Targeted package changes data, loss normalization and pair gate together; no isolated causal claim. Targeted has an optional bounded 500-step extension.",
+  "fresh_diagnostic": {
+    "sha256": "4d2f5ad218d921ec2ba08f70ab018659cfb9cb3f9d1b4fa0ea14cc4a9ba094f0",
+    "examples": 16,
+    "human_reviewed": false,
+    "role": "Post-selection synthetic diagnostic; never checkpoint, variant or threshold selection; not natural-conversation acceptance"
+  },
+  "old_68_cases_role": "Regression only; scored after model/checkpoint selection",
+  "test_policy": "Original 120 test conversations remain unscored unless the frozen candidate passes validation precision/recall/evidence gate",
+  "resource_bounds": {
+    "gpu": "T4",
+    "remote_job_seconds": 1200,
+    "training_comparison_seconds": 800,
+    "local_watchdog_seconds": 1500,
+    "sessions": 1
+  },
+  "recovery": "Selected FP32 safetensors only, no ONNX export on GPU. Prefer authenticated SSH byte stream with SHA256 verification; bounded verified-chunk fallback.",
+  "runtime_check": "Align native ORT 1.30.0 with existing browser ORT Web 1.30.0 in an isolated local export environment.",
+  "sources": [
+    "https://huggingface.co/docs/transformers/en/training",
+    "https://github.com/huggingface/transformers/blob/main/examples/pytorch/question-answering/run_qa_no_trainer.py",
+    "https://huggingface.co/docs/transformers/main_classes/callback#transformers.EarlyStoppingCallback"
+  ],
+  "source_sha256": {
+    "span_pilot.py": "0210679f4458b198676e9a5233b9941bea02bd96e4897af2f8b62fb9fc7a732b",
+    "targeted_data.py": "93b5245f7a8ef235421f0378d605364fb15d1ae40bd434f812d49022c81b5a79",
+    "targeted_sweep.py": "62691cf7e7eafd766986b7a179691871268a3328fa73fbb8752272b9acda947e",
+    "fresh_diagnostic.py": "53e7015733d9083e22f2da65b13aba95ad39482e77bbad0d773b6f71b339d855",
+    "colab_job.py": "55abdf7194d01303957fa24860cd101405ff208d550aedf7261066ecceac8f66",
+    "colab_pilot.py": "e336ba614cd1eaa47e24859058036e960a715556fbbe2f397c437aad570b37f6"
+  },
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "launch_recovery_update": "First allocation reached Ready, but Jupyter exec timed out before any job status existed. The named VM was stopped. SSH probe succeeded, so subsequent launch/poll and archive recovery prefer SSH; no model/data/loss change."
+}

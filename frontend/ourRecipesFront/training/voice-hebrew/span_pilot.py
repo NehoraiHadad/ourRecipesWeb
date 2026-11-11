@@ -13,7 +13,29 @@ from corpus import ROOT, LABELS, MODEL_ID, MODEL_REVISION, digest, load_data, qu
 from engine import allowed, records_from_logits, score, training_order, verify_manifest
 
 
-def encode(tokenizer, recipe, row):
+def training_loss(logits, targets, items, profile, legacy_weights):
+    import torch
+    if profile=='span-v1':
+        losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,weight=legacy_weights,ignore_index=-100,reduction='none')
+        return losses.sum()/(targets!=-100).sum()
+    losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,ignore_index=-100,reduction='none')
+    rows=[]
+    for j,item in enumerate(items):
+        if item['query']['task']=='intent':rows.append(losses[j,0]);continue
+        positions=item['positions']
+        if not positions:raise ValueError('No current-report tokens')
+        labels=targets[j,positions]
+        has_evidence=item['query']['label']!='not_mentioned'
+        # Downweight background only in supported spans. An unsupported action
+        # is a fully supervised negative, not a low-weight background example.
+        weights=torch.where(labels==2,.15,1.) if has_evidence else torch.ones_like(labels,dtype=logits.dtype)
+        token_loss=(losses[j,positions]*weights).mean()
+        rows.append(.5*losses[j,0]+.5*token_loss)
+    return torch.stack(rows).mean()
+
+
+def encode(tokenizer, recipe, row, profile='span-v1'):
+    if profile not in ('span-v1','joint-contrast-v2'):raise ValueError('Unknown span profile')
     result=[]
     for q in queries(recipe,row,2):
         encoded=tokenizer(q['context'],q['utterance'],return_offsets_mapping=True,truncation=False)
@@ -23,6 +45,7 @@ def encode(tokenizer, recipe, row):
         current_start=len(q['utterance'])-len(row['utterance'])
         if q['task']=='intent':labels[0]=LABELS.index(row['gold']['intent'])
         else:
+            if profile=='joint-contrast-v2':labels[0]=LABELS.index(q['label'])
             gold=next((c for c in row['gold']['changes'] if c['actionId']==q['action_id']),None)
             span=None
             if gold:
@@ -35,13 +58,17 @@ def encode(tokenizer, recipe, row):
                     if span and begin<span[1] and end>span[0]:labels[i]=0 if gold['done'] else 1
             if gold and not any(label in (0,1) for label in labels):raise ValueError('Evidence has no supervised tokens')
         result.append({'query':q,'inputs':dict(encoded),'targets':labels,'positions':positions,
-            'offsets':offsets,'current_start':current_start,'current_utterance':row['utterance']})
+            'offsets':offsets,'current_start':current_start,'current_utterance':row['utterance'],
+            'joint_gate':profile=='joint-contrast-v2','profile':profile})
     return result
 
 
 def decode(item, logits):
     q=item['query']
     if q['task']=='intent':return records_from_logits([q],[logits[0]])[0]
+    pair=records_from_logits([q],[logits[0]])[0] if item.get('joint_gate') else None
+    if pair and pair['prediction']=='not_mentioned':
+        return {**q,'prediction':'not_mentioned','confidence':pair['confidence'],'evidence':None}
     chunks=[];active=None
     for i in item['positions']:
         record=records_from_logits([{**q,'task':'action'}],[logits[i]])[0]
@@ -58,7 +85,9 @@ def decode(item, logits):
         words=[w for w in text.split() if any(c.isalpha() for c in w)]
         generic={'תיקון','לא','כן','עוד','אבל','אני','זה','עשיתי','סיימתי','בעצם'}
         if len(words)>=2 and any(w not in generic for w in words):
-            return {**q,'prediction':chunk['label'],'confidence':chunk['confidence'],'evidence':text}
+            if pair and pair['prediction']!=chunk['label']:
+                return {**q,'prediction':'not_mentioned','confidence':1.0,'evidence':None}
+            return {**q,'prediction':chunk['label'],'confidence':min(chunk['confidence'],pair['confidence']) if pair else chunk['confidence'],'evidence':text}
     return {**q,'prediction':'not_mentioned','confidence':1.0,'evidence':None}
 
 
@@ -82,12 +111,12 @@ def infer(model, tokenizer, items, device, deadline=None, onnx=None, fixture_out
             with torch.inference_mode():fp32=model(**{k:v.to(device) for k,v in inputs.items()}).logits.float().cpu().numpy()
             width=logits.shape[1];decisions=[]
             for j,item in enumerate(batch):
-                for i in ([0] if item['query']['task']=='intent' else item['positions']):
+                for i in ([0] if item['query']['task']=='intent' else ([0] if item.get('joint_gate') else [])+item['positions']):
                     decisions.append({'offset':(j*width+i)*8,'indices':allowed(item['query']['task'])})
             fixtures.append({'inputs':{k:{'dims':list(v.shape),'data':v.flatten().tolist()} for k,v in arrays.items()},
                 'expected':logits.tolist(),'fp32_expected':fp32.tolist(),'decisionRows':decisions,'threshold':threshold,
                 'spanItems':[{'task':x['query']['task'],'positions':x['positions'],'offsets':x['offsets'],
-                    'current_start':x['current_start'],'current_utterance':x['current_utterance']} for x in batch]})
+                    'current_start':x['current_start'],'current_utterance':x['current_utterance'],'joint_gate':x.get('joint_gate',False)} for x in batch]})
     if fixture_output:Path(fixture_output).write_text(json.dumps(fixtures)+'\n')
     return records
 
@@ -97,10 +126,11 @@ def add_browser_metadata(run):
     from transformers import AutoTokenizer
     import torch
     run=Path(run);tokenizer=AutoTokenizer.from_pretrained(run/'model',local_files_only=True)
+    profile=json.loads((run/'run-config.json').read_text()).get('span_profile','span-v1')
     recs,rows=load_data(run.parent/'selected-data');cr,crows=challenge()
     for target,rr,xx in [(run/'onnx/browser-fixtures.json',recs,[r for r in rows if r['split']=='validation']),
                          (run/'challenge-browser-fixtures.json',cr,crows)]:
-        items=[item for row in xx for item in encode(tokenizer,rr[row['recipe_id']],row)]
+        items=[item for row in xx for item in encode(tokenizer,rr[row['recipe_id']],row,profile)]
         fixtures=json.loads(target.read_text());cursor=0
         for fixture in fixtures:
             count=fixture['inputs']['input_ids']['dims'][0];batch=items[cursor:cursor+count];cursor+=count
@@ -109,7 +139,7 @@ def add_browser_metadata(run):
                 if fixture['inputs'][k] != {'dims':list(v.shape),'data':v.flatten().tolist()}:
                     raise ValueError('Browser metadata does not match reference tensors')
             fixture['spanItems']=[{'task':x['query']['task'],'positions':x['positions'],'offsets':x['offsets'],
-                'current_start':x['current_start'],'current_utterance':x['current_utterance']} for x in batch]
+                'current_start':x['current_start'],'current_utterance':x['current_utterance'],'joint_gate':x.get('joint_gate',False)} for x in batch]
         if cursor!=len(items):raise ValueError('Incomplete span fixture coverage')
         target.write_text(json.dumps(fixtures)+'\n')
 
@@ -169,6 +199,8 @@ def export_artifact(model, tokenizer, items, output):
         if not np.allclose(expected,actual,atol=1e-4,rtol=1e-3):raise ValueError('Span FP32 export mismatch; do not quantize or deploy')
     quantize_dynamic(str(output/'model.onnx'),str(output/'model.int8.onnx'),weight_type=QuantType.QInt8,reduce_range=True,op_types_to_quantize=['MatMul','Gemm','Gather'])
     report={'scope':'Native FP32 parity before quantization; browser/semantic checks separate','input_names':names,'native_parity':checks,
+        'onnxruntime_version':ort.__version__,'torch_version':torch.__version__,
+        'quantization':{'method':'dynamic','weight_type':'QInt8','reduce_range':True,'operators':['MatMul','Gemm','Gather']},
         'files':{name:{'bytes':(output/name).stat().st_size,'sha256':digest((output/name).read_bytes())} for name in ['model.onnx','model.int8.onnx']}}
     (output/'export-report.json').write_text(json.dumps(report,indent=2)+'\n')
     return ort.InferenceSession(str(output/'model.int8.onnx'),sess_options=options,providers=['CPUExecutionProvider'])
@@ -184,15 +216,16 @@ def reexport(run):
     model=AutoModelForTokenClassification.from_pretrained(run/'model',local_files_only=True,attn_implementation='eager').eval()
     tokenizer=AutoTokenizer.from_pretrained(run/'model',local_files_only=True)
     recs,rows=load_data(run.parent/'selected-data');selected=[r for r in rows if r['split']=='validation']
-    items=[x for row in selected for x in encode(tokenizer,recs[row['recipe_id']],row)]
+    profile=config.get('span_profile','span-v1')
+    items=[x for row in selected for x in encode(tokenizer,recs[row['recipe_id']],row,profile)]
     threshold=json.loads((run/'decision.json').read_text())['threshold']
     session=export_artifact(model,tokenizer,items,run/'onnx')
     (run/'onnx/ATTRIBUTION.txt').write_text('DictaBERT by Dicta, CC-BY-4.0: https://huggingface.co/'+config['model']+'/tree/'+config['revision']+'\nLicense: https://creativecommons.org/licenses/by/4.0/\nChanges: supervised cooking evidence token classifier, ONNX and INT8. Experimental.\n')
     records=infer(model,tokenizer,items,'cpu',onnx=session,fixture_output=run/'onnx/browser-fixtures.json',threshold=threshold)
     metrics=grounded(selected,records,threshold)
-    cr,crows=challenge();ci=[x for row in crows for x in encode(tokenizer,cr[row['recipe_id']],row)]
+    cr,crows=challenge();ci=[x for row in crows for x in encode(tokenizer,cr[row['recipe_id']],row,profile)]
     challenges=infer(model,tokenizer,ci,'cpu',onnx=session,fixture_output=run/'challenge-browser-fixtures.json',threshold=threshold)
-    result={'reason':'Repair initial span pilot positional input order in ONNX; training weights and validation-selected threshold unchanged',
+    result={'reason':'Export stored weights with explicit ONNX input names and native parity checks; training weights and validation-selected threshold unchanged',
         'repair_source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'validation':metrics,
         'challenge_selected':grounded(crows,challenges,threshold),'challenge_0_5':grounded(crows,challenges,.5),
         'challenge_role':'Regression, not untouched acceptance','production_ready':False}
@@ -201,7 +234,7 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
@@ -211,18 +244,23 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     started=time.monotonic();deadline=started+max_seconds;torch.set_num_threads(4)
     random.seed(42);torch.manual_seed(42)
     if device=='cuda':torch.cuda.manual_seed_all(42)
-    output=Path(output);data=augmented_data(output/'selected-data')
+    output=Path(output)
+    if profile=='joint-contrast-v2':
+        from targeted_data import build
+        data=build(output/'selected-data')
+    else:data=augmented_data(output/'selected-data')
     folder=output/'run';folder.mkdir(parents=True,exist_ok=False)
     tokenizer=AutoTokenizer.from_pretrained(model_id,revision=model_revision,trust_remote_code=False)
     model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=8,id2label=dict(enumerate(LABELS)),label2id={v:i for i,v in enumerate(LABELS)},attn_implementation='eager',trust_remote_code=False).to(device)
     recs,rows=load_data(data)
-    sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row)] for split in ['train','validation']}
+    sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row,profile)] for split in ['train','validation']}
     items=sets['train'];rng=random.Random(42);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
     head=[p for n,p in model.named_parameters() if n.startswith('classifier.')]
     body=[p for n,p in model.named_parameters() if not n.startswith('classifier.')]
     optimizer=torch.optim.AdamW([{'params':body,'lr':3e-5},{'params':head,'lr':3e-4}],weight_decay=.01)
     weights=torch.tensor([1.,1.,.15,1.,1.,1.,1.,1.],device=device)
     config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':'2+current-evidence-spans','seed':42,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
+    config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile=='span-v1' else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
     if device=='cuda':torch.cuda.reset_peak_memory_stats()
@@ -237,14 +275,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         for j,item in enumerate(chosen):mask[j,:,allowed(item['query']['task'])]=0
         model.train();optimizer.zero_grad(set_to_none=True)
         logits=model(**{k:v.to(device) for k,v in inputs.items()}).logits+mask
-        losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,weight=weights,ignore_index=-100,reduction='none')
-        loss=losses.sum()/(targets!=-100).sum()
+        loss=training_loss(logits,targets,chosen,profile,weights)
         if not torch.isfinite(loss):raise RuntimeError('Non-finite span loss')
         loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step()
         if step%50==0:print(json.dumps({'step':step,'loss':float(loss.detach()),'seconds':time.monotonic()-started}),flush=True)
         if step%250==0:
             model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
-        if step in (1000,2500) and step<steps:
+        if (step%eval_every==0 or step==2500) and step<steps:
             valid=[r for r in rows if r['split']=='validation']
             measured=grounded(valid,infer(model,tokenizer,sets['validation'],device,deadline),.5)
             best_checkpoint=retain_best(model,tokenizer,folder,measured,step,best_checkpoint)
@@ -256,6 +293,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     selected=[r for r in rows if r['split']=='validation']
     records=infer(model,tokenizer,sets['validation'],device,deadline)
     final_raw=grounded(selected,records,.5)
+    (folder/'final-step-validation.json').write_text(json.dumps(final_raw,ensure_ascii=False,indent=2)+'\n')
     best_checkpoint=retain_best(model,tokenizer,folder,final_raw,steps,best_checkpoint)
     if best_checkpoint['step']!=steps:
         from safetensors.torch import load_file
@@ -278,6 +316,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
             'gpu_peak_allocated_bytes':torch.cuda.max_memory_allocated() if device=='cuda' else None,
             'validation':{k:v for k,v in metrics.items() if k not in ['cases','by_scenario']},
             'validation_0_5':{k:v for k,v in raw.items() if k not in ['cases','by_scenario']},'production_ready':False}
+        report['final_step_validation_0_5']={k:v for k,v in final_raw.items() if k not in ['cases','by_scenario']}
         (folder/'training-report.json').write_text(json.dumps(report,indent=2)+'\n');return report
     onnx_dir=folder/'onnx'
     session=export_artifact(model,tokenizer,sets['validation'],onnx_dir)
@@ -287,7 +326,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     # Evaluate the already frozen challenge after validation selection. It was
     # used to diagnose the earlier classifier, so this is a regression set now,
     # not a fresh independent acceptance test for this new architecture.
-    cr,crows=challenge();ci=[item for row in crows for item in encode(tokenizer,cr[row['recipe_id']],row)]
+    cr,crows=challenge();ci=[item for row in crows for item in encode(tokenizer,cr[row['recipe_id']],row,profile)]
     challenge_records=infer(model,tokenizer,ci,'cpu',deadline,onnx=session,fixture_output=folder/'challenge-browser-fixtures.json',threshold=best['threshold'])
     challenge_metrics={'provenance':fingerprint(),'role':'Regression after earlier classifier diagnosis, not untouched acceptance',
         'selected':grounded(crows,challenge_records,best['threshold']),'at_0_5':grounded(crows,challenge_records,.5)}
@@ -299,9 +338,9 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1000);p.add_argument('--max-seconds',type=int,default=600);p.add_argument('--cpu-smoke',action='store_true');p.add_argument('--reexport',action='store_true');p.add_argument('--add-browser-metadata',action='store_true');p.add_argument('--model',choices=['tiny','base'],default='tiny');p.add_argument('--train-only',action='store_true')
+    p=argparse.ArgumentParser(description=__doc__);p.add_argument('output');p.add_argument('--steps',type=int,default=1000);p.add_argument('--max-seconds',type=int,default=600);p.add_argument('--cpu-smoke',action='store_true');p.add_argument('--reexport',action='store_true');p.add_argument('--add-browser-metadata',action='store_true');p.add_argument('--model',choices=['tiny','base'],default='tiny');p.add_argument('--train-only',action='store_true');p.add_argument('--profile',choices=['span-v1','joint-contrast-v2'],default='span-v1');p.add_argument('--eval-every',type=int,default=1000)
     a=p.parse_args()
-    if not 1<=a.steps<=5000 or not 60<=a.max_seconds<=900:raise SystemExit('Invalid span pilot budget')
+    if not 1<=a.steps<=5000 or not 60<=a.max_seconds<=900 or not 1<=a.eval_every<=2500:raise SystemExit('Invalid span pilot budget')
     if a.add_browser_metadata:add_browser_metadata(a.output)
     elif a.reexport:reexport(a.output)
-    else:run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda',a.model,a.train_only)
+    else:run(a.output,a.steps,a.max_seconds,'cpu' if a.cpu_smoke else 'cuda',a.model,a.train_only,a.profile,a.eval_every)
