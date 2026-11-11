@@ -1,0 +1,917 @@
+{
+  "role": "Post-training diagnostic on known probe and validation only; no fresh-test inference, no tuning or selection",
+  "records": [
+    {
+      "id": "combined-probe-0-partial-step",
+      "task": "intent",
+      "action": null,
+      "cls": "report",
+      "confidence": 0.9998576239054606,
+      "decoded": {
+        "example_id": "combined-probe-0-partial-step",
+        "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+        "scenario": "partial-step",
+        "task": "intent",
+        "action_id": null,
+        "context": "כוונת הדיווח ביחס לפעולות: להוסיף קמח; להוסיף מים; לערבב את הבלילה; להוסיף שמן\nדיווח קודם באותו מתכון: אין\nשלב נוכחי: 1\nהושלמו: אין",
+        "label": "report",
+        "prediction": "report",
+        "confidence": 0.9998576239054606
+      },
+      "tokens": []
+    },
+    {
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a0",
+      "cls": "done",
+      "confidence": 0.9997165656204536,
+      "decoded": {
+        "example_id": "combined-probe-0-partial-step",
+        "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+        "scenario": "partial-step",
+        "task": "action",
+        "action_id": "a0",
+        "context": "פעולה נבדקת: להוסיף קמח",
+        "label": "done",
+        "prediction": "done",
+        "confidence": 0.9996073184265374,
+        "evidence": "שמתי קמח"
+      },
+      "tokens": [
+        {
+          "text": "שמתי",
+          "prediction": "done",
+          "confidence": 0.9996073184265374
+        },
+        {
+          "text": "קמח",
+          "prediction": "done",
+          "confidence": 0.9996107412667804
+        },
+        {
+          "text": "וגם",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992173540438666
+        },
+        {
+          "text": "מים",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990044693755492
+        },
+        {
+          "text": ",",
+          "prediction": "not_mentioned",
+          "confidence": 0.9994342983513151
+        },
+        {
+          "text": "אבל",
+          "prediction": "not_mentioned",
+          "confidence": 0.9994837942760336
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991731795155557
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992126509894899
+        },
+        {
+          "text": "ערב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991414552883121
+        },
+        {
+          "text": "בתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991880484024585
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a1",
+      "cls": "done",
+      "confidence": 0.9991222877679652,
+      "decoded": {
+        "example_id": "combined-probe-0-partial-step",
+        "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+        "scenario": "partial-step",
+        "task": "action",
+        "action_id": "a1",
+        "context": "פעולה נבדקת: להוסיף מים",
+        "label": "done",
+        "prediction": "done",
+        "confidence": 0.9886854633811074,
+        "evidence": "שמתי קמח וגם מים"
+      },
+      "tokens": [
+        {
+          "text": "שמתי",
+          "prediction": "done",
+          "confidence": 0.9975254973550732
+        },
+        {
+          "text": "קמח",
+          "prediction": "done",
+          "confidence": 0.9969251169380233
+        },
+        {
+          "text": "וגם",
+          "prediction": "done",
+          "confidence": 0.9886854633811074
+        },
+        {
+          "text": "מים",
+          "prediction": "done",
+          "confidence": 0.9978851216956637
+        },
+        {
+          "text": ",",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992689155363373
+        },
+        {
+          "text": "אבל",
+          "prediction": "not_mentioned",
+          "confidence": 0.999401608308427
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991004379405634
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991341535090794
+        },
+        {
+          "text": "ערב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990514745069872
+        },
+        {
+          "text": "בתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991026142716032
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a2",
+      "cls": "not_done",
+      "confidence": 0.9987153247984992,
+      "decoded": {
+        "example_id": "combined-probe-0-partial-step",
+        "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+        "scenario": "partial-step",
+        "task": "action",
+        "action_id": "a2",
+        "context": "פעולה נבדקת: לערבב את הבלילה",
+        "label": "not_done",
+        "prediction": "not_done",
+        "confidence": 0.9963544719179435,
+        "evidence": "עוד לא ערבבתי"
+      },
+      "tokens": [
+        {
+          "text": "שמתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9974574785337568
+        },
+        {
+          "text": "קמח",
+          "prediction": "not_mentioned",
+          "confidence": 0.9963437390153381
+        },
+        {
+          "text": "וגם",
+          "prediction": "not_mentioned",
+          "confidence": 0.9987994466917136
+        },
+        {
+          "text": "מים",
+          "prediction": "not_mentioned",
+          "confidence": 0.9975330611424305
+        },
+        {
+          "text": ",",
+          "prediction": "not_mentioned",
+          "confidence": 0.9984577324776246
+        },
+        {
+          "text": "אבל",
+          "prediction": "not_mentioned",
+          "confidence": 0.9988101855165684
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_done",
+          "confidence": 0.9963544719179435
+        },
+        {
+          "text": "לא",
+          "prediction": "not_done",
+          "confidence": 0.9971408111911056
+        },
+        {
+          "text": "ערב",
+          "prediction": "not_done",
+          "confidence": 0.9985571371272531
+        },
+        {
+          "text": "בתי",
+          "prediction": "not_done",
+          "confidence": 0.9981646267634812
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-0-partial-step",
+      "task": "action",
+      "action": "a3",
+      "cls": "not_mentioned",
+      "confidence": 0.9990349847959005,
+      "decoded": {
+        "example_id": "combined-probe-0-partial-step",
+        "utterance": "שמתי קמח וגם מים, אבל עוד לא ערבבתי",
+        "scenario": "partial-step",
+        "task": "action",
+        "action_id": "a3",
+        "context": "פעולה נבדקת: להוסיף שמן",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9990349847959005,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "שמתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9976453485674388
+        },
+        {
+          "text": "קמח",
+          "prediction": "not_mentioned",
+          "confidence": 0.9971846555405448
+        },
+        {
+          "text": "וגם",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992810610519341
+        },
+        {
+          "text": "מים",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990282488535289
+        },
+        {
+          "text": ",",
+          "prediction": "not_mentioned",
+          "confidence": 0.999474152797553
+        },
+        {
+          "text": "אבל",
+          "prediction": "not_mentioned",
+          "confidence": 0.999516109779897
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992416586651115
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992926429083107
+        },
+        {
+          "text": "ערב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992142480092557
+        },
+        {
+          "text": "בתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992763623734056
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-inside",
+      "task": "intent",
+      "action": null,
+      "cls": "report",
+      "confidence": 0.999844591112809,
+      "decoded": {
+        "example_id": "combined-probe-1-inside",
+        "utterance": "הדבש כבר ברוטב",
+        "scenario": "inside",
+        "task": "intent",
+        "action_id": null,
+        "context": "כוונת הדיווח ביחס לפעולות: להוסיף דבש; להוסיף רוטב סויה; לערבב את הרוטב; להוסיף שמן\nדיווח קודם באותו מתכון: אין\nשלב נוכחי: 1\nהושלמו: אין",
+        "label": "report",
+        "prediction": "report",
+        "confidence": 0.999844591112809
+      },
+      "tokens": []
+    },
+    {
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a0",
+      "cls": "not_mentioned",
+      "confidence": 0.998738482774277,
+      "decoded": {
+        "example_id": "combined-probe-1-inside",
+        "utterance": "הדבש כבר ברוטב",
+        "scenario": "inside",
+        "task": "action",
+        "action_id": "a0",
+        "context": "פעולה נבדקת: להוסיף דבש",
+        "label": "done",
+        "prediction": "not_mentioned",
+        "confidence": 0.998738482774277,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "הדבש",
+          "prediction": "not_mentioned",
+          "confidence": 0.9961745928586468
+        },
+        {
+          "text": "כבר",
+          "prediction": "not_mentioned",
+          "confidence": 0.9983180643717953
+        },
+        {
+          "text": "ברוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9983946365031936
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a1",
+      "cls": "not_mentioned",
+      "confidence": 0.9988994446523214,
+      "decoded": {
+        "example_id": "combined-probe-1-inside",
+        "utterance": "הדבש כבר ברוטב",
+        "scenario": "inside",
+        "task": "action",
+        "action_id": "a1",
+        "context": "פעולה נבדקת: להוסיף רוטב סויה",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9988994446523214,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "הדבש",
+          "prediction": "not_mentioned",
+          "confidence": 0.9984283917924528
+        },
+        {
+          "text": "כבר",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990454585978649
+        },
+        {
+          "text": "ברוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9979507049477973
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a2",
+      "cls": "not_mentioned",
+      "confidence": 0.9987098393848729,
+      "decoded": {
+        "example_id": "combined-probe-1-inside",
+        "utterance": "הדבש כבר ברוטב",
+        "scenario": "inside",
+        "task": "action",
+        "action_id": "a2",
+        "context": "פעולה נבדקת: לערבב את הרוטב",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9987098393848729,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "הדבש",
+          "prediction": "not_mentioned",
+          "confidence": 0.9984849800931542
+        },
+        {
+          "text": "כבר",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990603067750901
+        },
+        {
+          "text": "ברוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9983456953187837
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-inside",
+      "task": "action",
+      "action": "a3",
+      "cls": "not_mentioned",
+      "confidence": 0.9990682646866049,
+      "decoded": {
+        "example_id": "combined-probe-1-inside",
+        "utterance": "הדבש כבר ברוטב",
+        "scenario": "inside",
+        "task": "action",
+        "action_id": "a3",
+        "context": "פעולה נבדקת: להוסיף שמן",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9990682646866049,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "הדבש",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991433977430992
+        },
+        {
+          "text": "כבר",
+          "prediction": "not_mentioned",
+          "confidence": 0.9993793783902198
+        },
+        {
+          "text": "ברוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9992909436926991
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-negative",
+      "task": "intent",
+      "action": null,
+      "cls": "report",
+      "confidence": 0.9997451548806017,
+      "decoded": {
+        "example_id": "combined-probe-1-negative",
+        "utterance": "את רוטב הסויה עוד לא שמתי",
+        "scenario": "negative",
+        "task": "intent",
+        "action_id": null,
+        "context": "כוונת הדיווח ביחס לפעולות: להוסיף דבש; להוסיף רוטב סויה; לערבב את הרוטב; להוסיף שמן\nדיווח קודם באותו מתכון: אין\nשלב נוכחי: 1\nהושלמו: אין",
+        "label": "report",
+        "prediction": "report",
+        "confidence": 0.9997451548806017
+      },
+      "tokens": []
+    },
+    {
+      "id": "combined-probe-1-negative",
+      "task": "action",
+      "action": "a0",
+      "cls": "not_mentioned",
+      "confidence": 0.9990476464137782,
+      "decoded": {
+        "example_id": "combined-probe-1-negative",
+        "utterance": "את רוטב הסויה עוד לא שמתי",
+        "scenario": "negative",
+        "task": "action",
+        "action_id": "a0",
+        "context": "פעולה נבדקת: להוסיף דבש",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9990476464137782,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9989627047181718
+        },
+        {
+          "text": "רוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9989981953398752
+        },
+        {
+          "text": "הסויה",
+          "prediction": "not_mentioned",
+          "confidence": 0.998957801576837
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.9988356241980108
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990824584341568
+        },
+        {
+          "text": "שמתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990330743956962
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-negative",
+      "task": "action",
+      "action": "a1",
+      "cls": "not_done",
+      "confidence": 0.9126148042550466,
+      "decoded": {
+        "example_id": "combined-probe-1-negative",
+        "utterance": "את רוטב הסויה עוד לא שמתי",
+        "scenario": "negative",
+        "task": "action",
+        "action_id": "a1",
+        "context": "פעולה נבדקת: להוסיף רוטב סויה",
+        "label": "not_done",
+        "prediction": "not_done",
+        "confidence": 0.46529010821179057,
+        "evidence": "את רוטב הסויה עוד לא שמתי"
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_done",
+          "confidence": 0.46529010821179057
+        },
+        {
+          "text": "רוטב",
+          "prediction": "not_done",
+          "confidence": 0.48741294203742197
+        },
+        {
+          "text": "הסויה",
+          "prediction": "not_done",
+          "confidence": 0.5014207926671368
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_done",
+          "confidence": 0.8624016253402753
+        },
+        {
+          "text": "לא",
+          "prediction": "not_done",
+          "confidence": 0.832863423920977
+        },
+        {
+          "text": "שמתי",
+          "prediction": "not_done",
+          "confidence": 0.8122829102684931
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-negative",
+      "task": "action",
+      "action": "a2",
+      "cls": "not_mentioned",
+      "confidence": 0.9984530674970045,
+      "decoded": {
+        "example_id": "combined-probe-1-negative",
+        "utterance": "את רוטב הסויה עוד לא שמתי",
+        "scenario": "negative",
+        "task": "action",
+        "action_id": "a2",
+        "context": "פעולה נבדקת: לערבב את הרוטב",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9984530674970045,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9802668409812847
+        },
+        {
+          "text": "רוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9825020769898178
+        },
+        {
+          "text": "הסויה",
+          "prediction": "not_mentioned",
+          "confidence": 0.9979081704997206
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.998899627042863
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991829082228734
+        },
+        {
+          "text": "שמתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991995337120674
+        }
+      ]
+    },
+    {
+      "id": "combined-probe-1-negative",
+      "task": "action",
+      "action": "a3",
+      "cls": "not_mentioned",
+      "confidence": 0.9990288542820596,
+      "decoded": {
+        "example_id": "combined-probe-1-negative",
+        "utterance": "את רוטב הסויה עוד לא שמתי",
+        "scenario": "negative",
+        "task": "action",
+        "action_id": "a3",
+        "context": "פעולה נבדקת: להוסיף שמן",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9990288542820596,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9989807724708571
+        },
+        {
+          "text": "רוטב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990924654290048
+        },
+        {
+          "text": "הסויה",
+          "prediction": "not_mentioned",
+          "confidence": 0.9990937733141836
+        },
+        {
+          "text": "עוד",
+          "prediction": "not_mentioned",
+          "confidence": 0.9989573796331171
+        },
+        {
+          "text": "לא",
+          "prediction": "not_mentioned",
+          "confidence": 0.9991793428710072
+        },
+        {
+          "text": "שמתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.999170274288472
+        }
+      ]
+    },
+    {
+      "id": "focused-validation-0-local-history",
+      "task": "intent",
+      "action": null,
+      "cls": "report",
+      "confidence": 0.9998167751901917,
+      "decoded": {
+        "example_id": "focused-validation-0-local-history",
+        "utterance": "את אותו מרכיב הכנסתי לקערה כעת",
+        "scenario": "local-history",
+        "task": "intent",
+        "action_id": null,
+        "context": "כוונת הדיווח ביחס לפעולות: להוסיף אבקת אפייה לקערה; להוסיף מיץ תפוזים לקערה; להוסיף וניל לקערה; לערבב את הבלילה\nדיווח קודם באותו מתכון: הכנסתי אבקת אפייה\nשלב נוכחי: 1\nהושלמו: אין",
+        "label": "report",
+        "prediction": "report",
+        "confidence": 0.9998167751901917
+      },
+      "tokens": []
+    },
+    {
+      "id": "focused-validation-0-local-history",
+      "task": "action",
+      "action": "a0",
+      "cls": "not_mentioned",
+      "confidence": 0.947508321858912,
+      "decoded": {
+        "example_id": "focused-validation-0-local-history",
+        "utterance": "דיווח קודם: הכנסתי אבקת אפייה\nדיווח נוכחי: את אותו מרכיב הכנסתי לקערה כעת",
+        "scenario": "local-history",
+        "task": "action",
+        "action_id": "a0",
+        "context": "פעולה נבדקת: להוסיף אבקת אפייה לקערה",
+        "label": "done",
+        "prediction": "not_mentioned",
+        "confidence": 0.947508321858912,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.914494194351385
+        },
+        {
+          "text": "אותו",
+          "prediction": "not_mentioned",
+          "confidence": 0.958107293196174
+        },
+        {
+          "text": "מרכיב",
+          "prediction": "not_mentioned",
+          "confidence": 0.8585891495276768
+        },
+        {
+          "text": "הכנסתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.7103840391934726
+        },
+        {
+          "text": "לקערה",
+          "prediction": "done",
+          "confidence": 0.780394610406807
+        },
+        {
+          "text": "כעת",
+          "prediction": "not_mentioned",
+          "confidence": 0.88252898196667
+        }
+      ]
+    },
+    {
+      "id": "focused-validation-0-local-history",
+      "task": "action",
+      "action": "a1",
+      "cls": "not_mentioned",
+      "confidence": 0.9952246254688002,
+      "decoded": {
+        "example_id": "focused-validation-0-local-history",
+        "utterance": "דיווח קודם: הכנסתי אבקת אפייה\nדיווח נוכחי: את אותו מרכיב הכנסתי לקערה כעת",
+        "scenario": "local-history",
+        "task": "action",
+        "action_id": "a1",
+        "context": "פעולה נבדקת: להוסיף מיץ תפוזים לקערה",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9952246254688002,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9871842754185071
+        },
+        {
+          "text": "אותו",
+          "prediction": "not_mentioned",
+          "confidence": 0.9898057987663271
+        },
+        {
+          "text": "מרכיב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9758311583300056
+        },
+        {
+          "text": "הכנסתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9269210613489928
+        },
+        {
+          "text": "לקערה",
+          "prediction": "not_mentioned",
+          "confidence": 0.694838076035554
+        },
+        {
+          "text": "כעת",
+          "prediction": "not_mentioned",
+          "confidence": 0.972036741276407
+        }
+      ]
+    },
+    {
+      "id": "focused-validation-0-local-history",
+      "task": "action",
+      "action": "a2",
+      "cls": "not_mentioned",
+      "confidence": 0.9950300851078949,
+      "decoded": {
+        "example_id": "focused-validation-0-local-history",
+        "utterance": "דיווח קודם: הכנסתי אבקת אפייה\nדיווח נוכחי: את אותו מרכיב הכנסתי לקערה כעת",
+        "scenario": "local-history",
+        "task": "action",
+        "action_id": "a2",
+        "context": "פעולה נבדקת: להוסיף וניל לקערה",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9950300851078949,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9829748666534012
+        },
+        {
+          "text": "אותו",
+          "prediction": "not_mentioned",
+          "confidence": 0.9849994056518498
+        },
+        {
+          "text": "מרכיב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9636827585198551
+        },
+        {
+          "text": "הכנסתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9227055459563002
+        },
+        {
+          "text": "לקערה",
+          "prediction": "not_mentioned",
+          "confidence": 0.6212345825800935
+        },
+        {
+          "text": "כעת",
+          "prediction": "not_mentioned",
+          "confidence": 0.9679133748616987
+        }
+      ]
+    },
+    {
+      "id": "focused-validation-0-local-history",
+      "task": "action",
+      "action": "a3",
+      "cls": "not_mentioned",
+      "confidence": 0.9989885138426844,
+      "decoded": {
+        "example_id": "focused-validation-0-local-history",
+        "utterance": "דיווח קודם: הכנסתי אבקת אפייה\nדיווח נוכחי: את אותו מרכיב הכנסתי לקערה כעת",
+        "scenario": "local-history",
+        "task": "action",
+        "action_id": "a3",
+        "context": "פעולה נבדקת: לערבב את הבלילה",
+        "label": "not_mentioned",
+        "prediction": "not_mentioned",
+        "confidence": 0.9989885138426844,
+        "evidence": null
+      },
+      "tokens": [
+        {
+          "text": "את",
+          "prediction": "not_mentioned",
+          "confidence": 0.9974947739339157
+        },
+        {
+          "text": "אותו",
+          "prediction": "not_mentioned",
+          "confidence": 0.9976959263793418
+        },
+        {
+          "text": "מרכיב",
+          "prediction": "not_mentioned",
+          "confidence": 0.9973826647885153
+        },
+        {
+          "text": "הכנסתי",
+          "prediction": "not_mentioned",
+          "confidence": 0.9976700474890713
+        },
+        {
+          "text": "לקערה",
+          "prediction": "not_mentioned",
+          "confidence": 0.9977609156322024
+        },
+        {
+          "text": "כעת",
+          "prediction": "not_mentioned",
+          "confidence": 0.9986229100434243
+        }
+      ]
+    }
+  ]
+}

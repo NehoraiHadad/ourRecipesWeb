@@ -34,7 +34,7 @@ def bundle(output, data=ROOT/"data"):
     names += ['span_pilot.py','span_evaluate.py','challenge_evaluate.py','tokenizer_fixtures.py','tokenizer-smoke.mjs','targeted_data.py','targeted_sweep.py','fresh_diagnostic.py','TARGETED_PLAN.he.md','TARGETED_RESULTS.he.md','requirements-export.txt','TRAINING_APPROACH.he.md','TRAINING_RESULTS.he.md']
     names += ['semantic_data.py','semantic_sweep.py','semantic_summary.py','SEMANTIC_PLAN.he.md','SEMANTIC_RESULTS.he.md']
     names += ['combined_data.py','combined_sweep.py','combined_probe.py','probe_evaluate.py','combined_reproduce.py','artifact_parity.py','COMBINED_PLAN.he.md','COMBINED_RESULTS.he.md']
-    names += ['focused_data.py','FOCUSED_PLAN.he.md','FOCUSED_RESULTS.he.md']
+    names += ['focused_data.py','focused_summary.py','confidence_probe.py','FOCUSED_PLAN.he.md','FOCUSED_RESULTS.he.md']
     allowed=[ROOT/name for name in names if (ROOT/name).exists()]
     allowed += [ROOT/"tests"/name for name in ["test_materials.py","test_colab_controls.py","test_ablation.py","test_spans.py","test_semantic.py","test_combined.py","test_focused.py","ml_smoke.py"] if (ROOT/"tests"/name).exists()]
     allowed += [ROOT/"verification"/name for name in ["materials.json","cpu-resume.json","browser.json","export.json","colab-pilots-20261111.json","py313-cpu.json","py313-browser.json"] if (ROOT/"verification"/name).exists()]
@@ -47,7 +47,10 @@ def bundle(output, data=ROOT/"data"):
         if (ROOT/'verification'/name).exists()]
     allowed += [ROOT/'verification'/name for name in ['semantic-plan-20261111.json','semantic-audit-20261111.json','semantic-results-20261111.json','semantic-mechanics-20261111.json'] if (ROOT/'verification'/name).exists()]
     allowed += [ROOT/'verification'/name for name in ['combined-plan-20261111.json','combined-audit-20261111.json','combined-mechanics-20261111.json','combined-results-20261111.json','combined-probe-plan-20261111.json','combined-reproduction-plan-20261111.json','combined-reproduction-target-20261111.json','combined-reproduction-results-20261111.json'] if (ROOT/'verification'/name).exists()]
-    allowed += sorted((ROOT/'verification').glob('focused-*.json'))
+    allowed += [ROOT/'verification'/name for name in ['focused-plan-20261111.json','focused-audit-20261111.json',
+        'focused-mechanics-20261111.json','focused-diagnosis-20261111.json','focused-token-targets-20261111.json',
+        'focused-results-20261111.json','focused-postdiagnosis-20261111.json',
+        'focused-confidence-plan-20261111.json','focused-confidence-20261111.json'] if (ROOT/'verification'/name).exists()]
     with zipfile.ZipFile(output,"w",zipfile.ZIP_DEFLATED) as z:
         for p in sorted(allowed):z.write(p,p.relative_to(ROOT))
         manifest=json.loads((Path(data)/"manifest.json").read_text())

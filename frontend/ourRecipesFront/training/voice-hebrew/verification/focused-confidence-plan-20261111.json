@@ -1,0 +1,8 @@
+{
+  "created_utc": "2026-11-11T20:38:46.930275+00:00",
+  "scope": "Post-test CPU validation and known-probe diagnostic; no new-test inference or tuning",
+  "candidate": "Cap candidate CLS confidence by geometric mean of evidence-token confidence instead of token minimum; polarity/chunk/evidence rules unchanged",
+  "threshold": 0.5,
+  "selection_gate": "No increase in false updates on validation or known probe, nondecreasing validation recall/state exact; do not change current decoder",
+  "source_sha256": "7843de82346fcf6467a41186e4643c27cee045f27eb9629ff9d86caecf0b45c9"
+}

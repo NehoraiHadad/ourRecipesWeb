@@ -1,0 +1,83 @@
+{
+  "scope": "Actual CPU, post-test validation/known-probe diagnosis only; no new-test inference or tuning",
+  "threshold": 0.5,
+  "eligibility": "No increase in false updates on validation or known probe; validation recall and state exact nondecreasing. Eligibility would still need a future independent test.",
+  "eligible_on_validation_and_known_probe": false,
+  "deployed_decoder_changed": false,
+  "seconds": 97.51605628599646,
+  "source_sha256": "7843de82346fcf6467a41186e4643c27cee045f27eb9629ff9d86caecf0b45c9",
+  "probe_fingerprint": {
+    "sha256": "a3653473f9cb707ce330b0133b92b0241bae9078296cd64b427c7341903325ce",
+    "examples": 16,
+    "role": "Frozen before any new primary test scoring; selected-checkpoint-only synthetic diagnostic, never training, threshold/checkpoint/model selection or natural-conversation acceptance",
+    "human_reviewed": false
+  },
+  "results": {
+    "validation": {
+      "minimum": {
+        "threshold": 0.5,
+        "examples": 472,
+        "exact_proposals": 396,
+        "exact_rate": 0.8389830508474576,
+        "false_updates": 50,
+        "proposed_updates": 285,
+        "expected_updates": 296,
+        "update_precision": 0.8245614035087719,
+        "update_recall": 0.793918918918919,
+        "clarifications": 216,
+        "exact_including_gold_evidence": 386,
+        "nonmatching_gold_evidence": 63
+      },
+      "geometric": {
+        "threshold": 0.5,
+        "examples": 472,
+        "exact_proposals": 396,
+        "exact_rate": 0.8389830508474576,
+        "false_updates": 51,
+        "proposed_updates": 286,
+        "expected_updates": 296,
+        "update_precision": 0.8216783216783217,
+        "update_recall": 0.793918918918919,
+        "clarifications": 216,
+        "exact_including_gold_evidence": 386,
+        "nonmatching_gold_evidence": 64
+      }
+    },
+    "known_probe16": {
+      "minimum": {
+        "threshold": 0.5,
+        "examples": 16,
+        "exact_proposals": 14,
+        "exact_rate": 0.875,
+        "false_updates": 0,
+        "proposed_updates": 10,
+        "expected_updates": 12,
+        "update_precision": 1.0,
+        "update_recall": 0.8333333333333334,
+        "clarifications": 9,
+        "exact_including_gold_evidence": 13,
+        "nonmatching_gold_evidence": 1
+      },
+      "geometric": {
+        "threshold": 0.5,
+        "examples": 16,
+        "exact_proposals": 15,
+        "exact_rate": 0.9375,
+        "false_updates": 0,
+        "proposed_updates": 11,
+        "expected_updates": 12,
+        "update_precision": 1.0,
+        "update_recall": 0.9166666666666666,
+        "clarifications": 8,
+        "exact_including_gold_evidence": 14,
+        "nonmatching_gold_evidence": 1
+      }
+    }
+  },
+  "native_cpu_validation_matches_gpu": {
+    "examples": 472,
+    "mismatched_proposals": 0,
+    "mismatch_ids": [],
+    "scope": "Existing CPU inference vs saved GPU validation decisions/evidence; no new-test inference"
+  }
+}

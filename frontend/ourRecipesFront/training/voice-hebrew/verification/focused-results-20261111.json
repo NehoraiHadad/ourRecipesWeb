@@ -1,0 +1,2896 @@
+{
+  "source_commit": "239530c",
+  "postprocessing_source_sha256": "f5c7bcd863ba059163dab038c78638fa7c828186aa6f926a76f4a4a4d3448edd",
+  "scope": "Four real T4 trials on synthetic authored data; no physical device or natural speech test",
+  "selection": {
+    "selected_arm": "combined",
+    "retained_seed": 42,
+    "aggregate_validation": {
+      "control": {
+        "mean_f0_5": 0.8268016793524223,
+        "mean_precision": 0.8740132837222241,
+        "mean_recall": 0.7043918918918919,
+        "mean_state_exact": 0.784957627118644
+      },
+      "combined": {
+        "mean_f0_5": 0.8651174606332783,
+        "mean_precision": 0.8619662363455809,
+        "mean_recall": 0.8800675675675675,
+        "mean_state_exact": 0.8771186440677966
+      }
+    },
+    "threshold": 0.5,
+    "selection": "Validation only: mean F0.5, then precision and state exact. Fixed seed42 retained. Shared F0.5 checkpoint objective.",
+    "new_test_used_for_selection": false
+  },
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 239,
+        "exact_rate": 0.7810457516339869,
+        "false_updates": 11,
+        "proposed_updates": 134,
+        "expected_updates": 192,
+        "update_precision": 0.917910447761194,
+        "update_recall": 0.640625,
+        "clarifications": 177,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 1
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 3
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 1
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 1
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 231,
+        "nonmatching_gold_evidence": 24
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 18,
+          "exact": 17,
+          "true_updates": 18,
+          "false_updates": 1,
+          "proposed_updates": 19,
+          "expected_updates": 18,
+          "precision": 0.9473684210526315,
+          "recall": 1.0
+        },
+        "report-question": {
+          "examples": 18,
+          "exact": 13,
+          "true_updates": 13,
+          "false_updates": 1,
+          "proposed_updates": 14,
+          "expected_updates": 18,
+          "precision": 0.9285714285714286,
+          "recall": 0.7222222222222222
+        },
+        "implicit": {
+          "examples": 36,
+          "exact": 15,
+          "true_updates": 18,
+          "false_updates": 4,
+          "proposed_updates": 22,
+          "expected_updates": 36,
+          "precision": 0.8181818181818182,
+          "recall": 0.5
+        },
+        "negative": {
+          "examples": 18,
+          "exact": 17,
+          "true_updates": 18,
+          "false_updates": 1,
+          "proposed_updates": 19,
+          "expected_updates": 18,
+          "precision": 0.9473684210526315,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 18,
+          "exact": 11,
+          "true_updates": 13,
+          "false_updates": 2,
+          "proposed_updates": 15,
+          "expected_updates": 18,
+          "precision": 0.8666666666666667,
+          "recall": 0.7222222222222222
+        },
+        "nonreport-elsewhere": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-uncertain": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-partial-amount": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-meta": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-future": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-wrong-operation": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 24,
+          "exact": 5,
+          "true_updates": 26,
+          "false_updates": 2,
+          "proposed_updates": 28,
+          "expected_updates": 54,
+          "precision": 0.9285714285714286,
+          "recall": 0.48148148148148145
+        },
+        "mixed-polarity": {
+          "examples": 6,
+          "exact": 5,
+          "true_updates": 11,
+          "false_updates": 0,
+          "proposed_updates": 11,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.9166666666666666
+        },
+        "uncertain-plus-confirmed": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "confirmed-plus-next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 6,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "local-history": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "foreign-history": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "combined",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 265,
+        "exact_rate": 0.8660130718954249,
+        "false_updates": 5,
+        "proposed_updates": 160,
+        "expected_updates": 192,
+        "update_precision": 0.96875,
+        "update_recall": 0.8072916666666666,
+        "clarifications": 153,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 230,
+        "nonmatching_gold_evidence": 40
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 18,
+          "false_updates": 0,
+          "proposed_updates": 18,
+          "expected_updates": 18,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "report-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 18,
+          "false_updates": 0,
+          "proposed_updates": 18,
+          "expected_updates": 18,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "implicit": {
+          "examples": 36,
+          "exact": 29,
+          "true_updates": 30,
+          "false_updates": 1,
+          "proposed_updates": 31,
+          "expected_updates": 36,
+          "precision": 0.967741935483871,
+          "recall": 0.8333333333333334
+        },
+        "negative": {
+          "examples": 18,
+          "exact": 14,
+          "true_updates": 15,
+          "false_updates": 1,
+          "proposed_updates": 16,
+          "expected_updates": 18,
+          "precision": 0.9375,
+          "recall": 0.8333333333333334
+        },
+        "correction": {
+          "examples": 18,
+          "exact": 14,
+          "true_updates": 16,
+          "false_updates": 2,
+          "proposed_updates": 18,
+          "expected_updates": 18,
+          "precision": 0.8888888888888888,
+          "recall": 0.8888888888888888
+        },
+        "nonreport-elsewhere": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-uncertain": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-partial-amount": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-meta": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-future": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-wrong-operation": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 24,
+          "exact": 10,
+          "true_updates": 40,
+          "false_updates": 1,
+          "proposed_updates": 41,
+          "expected_updates": 54,
+          "precision": 0.975609756097561,
+          "recall": 0.7407407407407407
+        },
+        "mixed-polarity": {
+          "examples": 6,
+          "exact": 4,
+          "true_updates": 10,
+          "false_updates": 0,
+          "proposed_updates": 10,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.8333333333333334
+        },
+        "uncertain-plus-confirmed": {
+          "examples": 6,
+          "exact": 2,
+          "true_updates": 2,
+          "false_updates": 0,
+          "proposed_updates": 2,
+          "expected_updates": 6,
+          "precision": 1.0,
+          "recall": 0.3333333333333333
+        },
+        "confirmed-plus-next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 6,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "local-history": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "foreign-history": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 230,
+        "exact_rate": 0.7516339869281046,
+        "false_updates": 2,
+        "proposed_updates": 118,
+        "expected_updates": 192,
+        "update_precision": 0.9830508474576272,
+        "update_recall": 0.6041666666666666,
+        "clarifications": 191,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 205,
+        "nonmatching_gold_evidence": 27
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 18,
+          "false_updates": 0,
+          "proposed_updates": 18,
+          "expected_updates": 18,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "report-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 18,
+          "false_updates": 0,
+          "proposed_updates": 18,
+          "expected_updates": 18,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "implicit": {
+          "examples": 36,
+          "exact": 15,
+          "true_updates": 15,
+          "false_updates": 0,
+          "proposed_updates": 15,
+          "expected_updates": 36,
+          "precision": 1.0,
+          "recall": 0.4166666666666667
+        },
+        "negative": {
+          "examples": 18,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 18,
+          "precision": null,
+          "recall": 0.0
+        },
+        "correction": {
+          "examples": 18,
+          "exact": 10,
+          "true_updates": 10,
+          "false_updates": 0,
+          "proposed_updates": 10,
+          "expected_updates": 18,
+          "precision": 1.0,
+          "recall": 0.5555555555555556
+        },
+        "nonreport-elsewhere": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-uncertain": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-partial-amount": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-meta": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-future": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-wrong-operation": {
+          "examples": 18,
+          "exact": 16,
+          "true_updates": 0,
+          "false_updates": 2,
+          "proposed_updates": 2,
+          "expected_updates": 0,
+          "precision": 0.0,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 24,
+          "exact": 13,
+          "true_updates": 43,
+          "false_updates": 0,
+          "proposed_updates": 43,
+          "expected_updates": 54,
+          "precision": 1.0,
+          "recall": 0.7962962962962963
+        },
+        "mixed-polarity": {
+          "examples": 6,
+          "exact": 2,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.5
+        },
+        "uncertain-plus-confirmed": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "confirmed-plus-next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 6,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "local-history": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "foreign-history": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "combined",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 269,
+        "exact_rate": 0.8790849673202614,
+        "false_updates": 31,
+        "proposed_updates": 213,
+        "expected_updates": 192,
+        "update_precision": 0.8544600938967136,
+        "update_recall": 0.9479166666666666,
+        "clarifications": 138,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 3
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 2
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 4
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 3
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 257,
+        "nonmatching_gold_evidence": 47
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 18,
+          "exact": 17,
+          "true_updates": 18,
+          "false_updates": 1,
+          "proposed_updates": 19,
+          "expected_updates": 18,
+          "precision": 0.9473684210526315,
+          "recall": 1.0
+        },
+        "report-question": {
+          "examples": 18,
+          "exact": 16,
+          "true_updates": 18,
+          "false_updates": 2,
+          "proposed_updates": 20,
+          "expected_updates": 18,
+          "precision": 0.9,
+          "recall": 1.0
+        },
+        "implicit": {
+          "examples": 36,
+          "exact": 24,
+          "true_updates": 36,
+          "false_updates": 14,
+          "proposed_updates": 50,
+          "expected_updates": 36,
+          "precision": 0.72,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 18,
+          "exact": 17,
+          "true_updates": 18,
+          "false_updates": 1,
+          "proposed_updates": 19,
+          "expected_updates": 18,
+          "precision": 0.9473684210526315,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 18,
+          "exact": 14,
+          "true_updates": 18,
+          "false_updates": 5,
+          "proposed_updates": 23,
+          "expected_updates": 18,
+          "precision": 0.782608695652174,
+          "recall": 1.0
+        },
+        "nonreport-elsewhere": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-uncertain": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-partial-amount": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-question": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-meta": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-future": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nonreport-wrong-operation": {
+          "examples": 18,
+          "exact": 18,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 24,
+          "exact": 17,
+          "true_updates": 51,
+          "false_updates": 4,
+          "proposed_updates": 55,
+          "expected_updates": 54,
+          "precision": 0.9272727272727272,
+          "recall": 0.9444444444444444
+        },
+        "mixed-polarity": {
+          "examples": 6,
+          "exact": 3,
+          "true_updates": 11,
+          "false_updates": 3,
+          "proposed_updates": 14,
+          "expected_updates": 12,
+          "precision": 0.7857142857142857,
+          "recall": 0.9166666666666666
+        },
+        "uncertain-plus-confirmed": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 6,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "confirmed-plus-next": {
+          "examples": 6,
+          "exact": 5,
+          "true_updates": 6,
+          "false_updates": 1,
+          "proposed_updates": 7,
+          "expected_updates": 6,
+          "precision": 0.8571428571428571,
+          "recall": 1.0
+        },
+        "local-history": {
+          "examples": 6,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 6,
+          "precision": null,
+          "recall": 0.0
+        },
+        "foreign-history": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 6,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    }
+  ],
+  "primary_regressions": {
+    "prior-semantic-test-v2": {
+      "threshold": 0.5,
+      "examples": 104,
+      "exact_proposals": 86,
+      "exact_rate": 0.8269230769230769,
+      "false_updates": 8,
+      "proposed_updates": 66,
+      "expected_updates": 68,
+      "update_precision": 0.8787878787878788,
+      "update_recall": 0.8529411764705882,
+      "clarifications": 40,
+      "by_scenario": {
+        "test-finish-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-assertion-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-negative-0": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "test-partial-0": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-1": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-assertion-1": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-negative-1": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 4
+        },
+        "test-partial-1": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-2": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-assertion-2": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-negative-2": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 2
+        },
+        "test-partial-2": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-finish-3": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "test-assertion-3": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-negative-3": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 1
+        },
+        "test-partial-3": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-coreference": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "test-local-context": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-foreign-context": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-two-objects": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-missed": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-meta": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "test-uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 82,
+      "nonmatching_gold_evidence": 14
+    },
+    "regression16": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 13,
+      "exact_rate": 0.8125,
+      "false_updates": 0,
+      "proposed_updates": 8,
+      "expected_updates": 12,
+      "update_precision": 1.0,
+      "update_recall": 0.6666666666666666,
+      "clarifications": 7,
+      "by_scenario": {
+        "partial-step": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "passive": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "single": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "belief-correction": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-action": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "object-report": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "known-question": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "last-action": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "recipe-switch": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 12,
+      "nonmatching_gold_evidence": 1
+    },
+    "regression68": {
+      "threshold": 0.5,
+      "examples": 68,
+      "exact_proposals": 56,
+      "exact_rate": 0.8235294117647058,
+      "false_updates": 0,
+      "proposed_updates": 24,
+      "expected_updates": 36,
+      "update_precision": 1.0,
+      "update_recall": 0.6666666666666666,
+      "clarifications": 35,
+      "by_scenario": {
+        "position-0": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "position-1": {
+          "total": 4,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "position-2": {
+          "total": 4,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "position-3": {
+          "total": 4,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "reverse-partial": {
+          "total": 4,
+          "exact": 3,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "half": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "meta-negation": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "conditional": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "old-recipe": {
+          "total": 4,
+          "exact": 4,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 51,
+      "nonmatching_gold_evidence": 5
+    },
+    "historical-validation": {
+      "threshold": 0.5,
+      "examples": 120,
+      "exact_proposals": 110,
+      "exact_rate": 0.9166666666666666,
+      "false_updates": 3,
+      "proposed_updates": 81,
+      "expected_updates": 85,
+      "update_precision": 0.9629629629629629,
+      "update_recall": 0.9176470588235294,
+      "clarifications": 40,
+      "by_scenario": {
+        "positive": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "later_action": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 1
+        },
+        "two_positive": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "partial_step": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 1
+        },
+        "negative": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_undo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "correction_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "already_done": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "negative_then_done": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 0
+        },
+        "both_pending": {
+          "total": 5,
+          "exact": 4,
+          "false_updates": 1
+        },
+        "ambiguous_pronoun": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "ambiguous_object": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "next": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "extra_advice": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "future_only": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "partial_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "recipe_switch": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "unknown_progress": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "report_then_question": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "last_clause_correction": {
+          "total": 5,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "synthetic_typo": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        },
+        "unknown_action": {
+          "total": 5,
+          "exact": 5,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 110,
+      "nonmatching_gold_evidence": 3
+    },
+    "prior-combined-test": {
+      "threshold": 0.5,
+      "examples": 168,
+      "exact_proposals": 147,
+      "exact_rate": 0.875,
+      "false_updates": 20,
+      "proposed_updates": 124,
+      "expected_updates": 105,
+      "update_precision": 0.8387096774193549,
+      "update_recall": 0.9904761904761905,
+      "clarifications": 58,
+      "by_scenario": {
+        "assertion-0": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "completion-0": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "negative-0": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "question-0": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "assertion-1": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "completion-1": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "negative-1": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "question-1": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "assertion-2": {
+          "total": 6,
+          "exact": 3,
+          "false_updates": 3
+        },
+        "completion-2": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "negative-2": {
+          "total": 6,
+          "exact": 2,
+          "false_updates": 4
+        },
+        "question-2": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "assertion-3": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "completion-3": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "negative-3": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "question-3": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "two-reports": {
+          "total": 6,
+          "exact": 4,
+          "false_updates": 2
+        },
+        "partial-step": {
+          "total": 6,
+          "exact": 4,
+          "false_updates": 2
+        },
+        "correction": {
+          "total": 6,
+          "exact": 5,
+          "false_updates": 1
+        },
+        "next": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "missed": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "advice": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "partial-action": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "ambiguous": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "meta": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 6,
+          "exact": 6,
+          "false_updates": 0
+        },
+        "local-reference": {
+          "total": 3,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "foreign-reference": {
+          "total": 3,
+          "exact": 3,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 145,
+      "nonmatching_gold_evidence": 22
+    },
+    "alias-probe16": {
+      "threshold": 0.5,
+      "examples": 16,
+      "exact_proposals": 14,
+      "exact_rate": 0.875,
+      "false_updates": 0,
+      "proposed_updates": 10,
+      "expected_updates": 12,
+      "update_precision": 1.0,
+      "update_recall": 0.8333333333333334,
+      "clarifications": 9,
+      "by_scenario": {
+        "put": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "put-question": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-step": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "correction": {
+          "total": 2,
+          "exact": 2,
+          "false_updates": 0
+        },
+        "uncertain": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial-quantity": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "meta": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "insert": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "inside": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "negative": {
+          "total": 1,
+          "exact": 0,
+          "false_updates": 0
+        },
+        "two-actions": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "question": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "partial": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        },
+        "unknown": {
+          "total": 1,
+          "exact": 1,
+          "false_updates": 0
+        }
+      },
+      "exact_including_gold_evidence": 13,
+      "nonmatching_gold_evidence": 1
+    }
+  },
+  "secondary_alias_regression": {
+    "threshold": 0.5,
+    "examples": 16,
+    "exact_proposals": 13,
+    "exact_rate": 0.8125,
+    "false_updates": 3,
+    "proposed_updates": 15,
+    "expected_updates": 12,
+    "update_precision": 0.8,
+    "update_recall": 1.0,
+    "clarifications": 5,
+    "by_scenario": {
+      "put": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "put-question": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "partial-step": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "correction": {
+        "total": 2,
+        "exact": 2,
+        "false_updates": 0
+      },
+      "uncertain": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "partial-quantity": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "future": {
+        "total": 1,
+        "exact": 0,
+        "false_updates": 1
+      },
+      "meta": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "insert": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "inside": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "negative": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "two-actions": {
+        "total": 1,
+        "exact": 0,
+        "false_updates": 1
+      },
+      "question": {
+        "total": 1,
+        "exact": 0,
+        "false_updates": 1
+      },
+      "partial": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      },
+      "unknown": {
+        "total": 1,
+        "exact": 1,
+        "false_updates": 0
+      }
+    },
+    "exact_including_gold_evidence": 13,
+    "nonmatching_gold_evidence": 4
+  },
+  "weights": {
+    "primary42": {
+      "bytes": 735066976,
+      "sha256": "87ea0ae387e5b2b4826490e2bd69b63039d1c001ef5d14896d2e0acb1dceebdf",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "122d24ef43895e3ca164643ca01a4941b291f1303e0afd39866f07c1e4f8babf",
+        "source_sha256": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "selected_step": 750
+      }
+    },
+    "supplemental17": {
+      "bytes": 735066976,
+      "sha256": "ef617be94a9deeed0edfcd80cd78c9718e34396d0ee9cb6c4d35a90f1b43c7ed",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "122d24ef43895e3ca164643ca01a4941b291f1303e0afd39866f07c1e4f8babf",
+        "source_sha256": "680156e4788d05e1e2b9bddd57f3012da03d578b8f819043e2123f7f0a8e5039",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "selected_step": 1000
+      }
+    }
+  },
+  "archive": {
+    "archive": "ourrecipes-focused-v9-results.zip",
+    "bytes": 1518420486,
+    "sha256": "2a73989e77c54ebd1d09043832fdd5a6a6271aa926942bc547ff29bd96f9d794"
+  },
+  "archive_parts": 91,
+  "uploaded_source_hashes_match_plan": true,
+  "archive_sha256_and_crc_verified": true,
+  "original_test_scored": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "production_ready": false,
+  "resources": {
+    "reported_balance_delta_compute_units": 0.51,
+    "window": "Allocation, installation, training, validation, test, recovery and cleanup; not isolated GPU compute",
+    "remote_job_seconds": 1369.4981880639998,
+    "driver_seconds": 1650.0313566719997,
+    "artifact_recovery_method": "ssh-stream",
+    "owned_session_stopped": true,
+    "active_sessions_confirmed_after": 0,
+    "private_usage_source_sha256": "402fabb35f10ea7172c959a27b27f70c3e81b7de2a447607ff8e83057f7618e9"
+  },
+  "training_runs": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "selected_step": 750,
+      "training_seconds": 211.87473918399996,
+      "gpu_peak_allocated_bytes": 3712398848
+    },
+    {
+      "arm": "combined",
+      "seed": 42,
+      "selected_step": 750,
+      "training_seconds": 273.76514735399996,
+      "gpu_peak_allocated_bytes": 3710454784
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "selected_step": 750,
+      "training_seconds": 265.7765374169999,
+      "gpu_peak_allocated_bytes": 3709511168
+    },
+    {
+      "arm": "combined",
+      "seed": 17,
+      "selected_step": 1000,
+      "training_seconds": 318.90302637700006,
+      "gpu_peak_allocated_bytes": 3710906368
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "role": "Post-launch data integrity audit only; no training/data/selection changes",
+  "created_utc": "2026-11-11T20:21:36.289325+00:00",
+  "queries": 37080,
+  "unique_tokenized_inputs": 32933,
+  "conflicting_targets": []
+}
