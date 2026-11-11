@@ -43,7 +43,15 @@
   },
   "colab": {
     "notebookPythonCellsParsed": true,
-    "executedInColab": false
+    "executedInColab": false,
+    "cli": {
+      "version": "0.8.0",
+      "officialOperatorSkillRead": true,
+      "oauthFlow": "awaiting user authorization",
+      "accountVerified": false,
+      "vmAllocated": false,
+      "source": "https://github.com/googlecolab/google-colab-cli"
+    }
   },
   "corpus": {
     "conversations": 720,
