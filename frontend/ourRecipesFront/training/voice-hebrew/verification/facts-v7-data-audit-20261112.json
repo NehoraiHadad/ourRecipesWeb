@@ -1,0 +1,98 @@
+{
+  "file_sha256": "65e4597fe4a7715e301d29b69d06c2a411e0d0d6daabcc08d5569f58dc30e9cc",
+  "synthetic": true,
+  "human_reviewed": false,
+  "no_model_inference": true,
+  "splits": {
+    "train": {
+      "texts": 696,
+      "new_root_groups": 12,
+      "prior_other_pool_texts": 120,
+      "joint_class_counts": {
+        "0": 24,
+        "1": 24,
+        "2": 24,
+        "3": 36,
+        "4": 36,
+        "5": 36,
+        "6": 24,
+        "7": 24,
+        "8": 24,
+        "9": 36,
+        "10": 36,
+        "11": 36,
+        "12": 108,
+        "13": 108,
+        "14": 120
+      }
+    },
+    "dev": {
+      "texts": 205,
+      "new_root_groups": 4,
+      "prior_other_pool_texts": 13,
+      "joint_class_counts": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 12,
+        "4": 12,
+        "5": 12,
+        "6": 8,
+        "7": 8,
+        "8": 8,
+        "9": 12,
+        "10": 12,
+        "11": 12,
+        "12": 36,
+        "13": 36,
+        "14": 13
+      }
+    },
+    "calibration": {
+      "texts": 205,
+      "new_root_groups": 4,
+      "prior_other_pool_texts": 13,
+      "joint_class_counts": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 12,
+        "4": 12,
+        "5": 12,
+        "6": 8,
+        "7": 8,
+        "8": 8,
+        "9": 12,
+        "10": 12,
+        "11": 12,
+        "12": 36,
+        "13": 36,
+        "14": 13
+      }
+    },
+    "test": {
+      "texts": 205,
+      "new_root_groups": 4,
+      "prior_other_pool_texts": 13,
+      "joint_class_counts": {
+        "0": 8,
+        "1": 8,
+        "2": 8,
+        "3": 12,
+        "4": 12,
+        "5": 12,
+        "6": 8,
+        "7": 8,
+        "8": 8,
+        "9": 12,
+        "10": 12,
+        "11": 12,
+        "12": 36,
+        "13": 36,
+        "14": 13
+      }
+    }
+  },
+  "counterfactual_scenarios_per_text": 4,
+  "note": "Repeated states are not independent language examples. Four held-out root families per dev/calibration/test; OTHER comes from previously seen training pool."
+}

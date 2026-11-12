@@ -23,6 +23,13 @@ class FactsTests(unittest.TestCase):
    for variant in ('unique-a','ambiguous','zero'):
     state=context(fact[0],variant);r=apply(fact,state,state['recipe_id'],'v1')
     if fact[1]!='asserted' or fact[2]=='partial' or variant!='unique-a':self.assertFalse(r['changes'])
+ def test_outside_step_does_not_change_reference_binding(self):
+  for ref in REFS[:2]:
+   state=context(ref,'unique-a');changed=copy.deepcopy(state)
+   changed['completed'].remove('bake');changed['remaining'].append('bake')
+   for status in STATUS[:3]:
+    fact=(ref,'asserted',status)
+    self.assertEqual(apply(fact,state,state['recipe_id'],'v1'),apply(fact,changed,changed['recipe_id'],'v1'))
  def test_stale_and_partition(self):
   s=context('marked','unique-a');f=('marked','asserted','incomplete')
   self.assertEqual(apply(f,s,'other','v1')['kind'],'reject')

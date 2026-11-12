@@ -1,0 +1,82 @@
+{
+  "study": "facts-v7-replay",
+  "created_utc": "2026-11-12T12:05:27.710494+00:00",
+  "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "source_sha256": {
+    "adapter_colab.py": "8e3819bcc698dd774db2bd019f90673f88cc94c4653e9f0109d13791a3c4446a",
+    "adapter_job.py": "69a104647f202da3896288747645f9d911149602304ac1c1e161e32f0feed415",
+    "adapter_study.py": "560c97049ab14171c0e5eefc759c4eb3da84e7870c7acd2e9024f98cd7ac6378",
+    "certainty_adapter.py": "d6f4b1277d005be3cf3facb47303756c6b8039085567134cdef2e2fb6a1cca92",
+    "certainty_contract.py": "ddc8309df05aa499587e25c8ee89c81578dcabd0a222118386fa84f44a407bea",
+    "certainty_data.py": "8d9c3ed18f3283b133c87017f2a621bd8f78dbc0c31358289027e391315419e3",
+    "certainty_position.py": "59cd8f38718435511488d077a834fccab31c298f48dfde2169192e45ac92d130",
+    "certainty_train.py": "0942eda5afcdb4f20ee69f99fa0bf268b08263ced9debee8e869c18c15de36be",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "facts_v7.py": "505d92a5fd946a992eb9781b6a078dffd754d42c105e301c3c80c065adbc7b57",
+    "facts_v7_colab.py": "aac7b76780aac0a0e49c3217128de18d46be5bdab365a4d11df269cbd3d7ac96",
+    "facts_v7_job.py": "1f399a90a1919917e428d34a9302d8d905f5375cdf0ea89e2da7ffc3adc52265",
+    "facts_v7_study.py": "ab5066e77d8174ee692b6d1a4a296f595435e5ff6b2e1db5c3a70bd2b88b5647",
+    "reference_contract.py": "27d8734e5eef5282624fd0a83a2598e26cbc94519f613012a7d497a8fea7862c",
+    "reference_train.py": "2e4250538372a8ac841bca5906946e4dfe51d4a8bebe15d3c7db88336cfbf5ee",
+    "span_pilot.py": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6",
+    "facts_v7_replay_job.py": "72d60b7b50fd7ad016e8baebd7c87bb9cb56e6a434b7160e44b8066874bdc906",
+    "facts_v7_replay.py": "cc94c6318bf4ac6176ef49565b879fa64d3963a1716bc550951f2f916924cd2f",
+    "facts_v7_replay_colab.py": "f2cc7f82a66491500d6b8325e3a51f257a7df016de5ad8307c97dcd8340fc12e",
+    "research_metric_audit.py": "911ce9b9d561dfb7ec7e0ed23d05fadb38a9ae28cf6b97342f17fd555cadc6ff",
+    "facts_v7_evaluate.py": "8c3844b4d2230fcd56e08e709e4e9f4c0a4dbb75df2070bbe6daa43b5e5b8d7f"
+  },
+  "data_sha256": "ec51e742048f6675c9de9b77646a4b7f158dfa67b6bcc17c96d5df4e2a87f1c3",
+  "arms": [
+    "flat-narrow"
+  ],
+  "pilot_seed": 42,
+  "seed_expansion": [
+    17,
+    73
+  ],
+  "steps": {
+    "minimum": 2000,
+    "maximum": 3000,
+    "checks": [
+      0,
+      100,
+      250,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+      2500,
+      3000
+    ],
+    "stop": "4 stale evaluations after minimum"
+  },
+  "head_lr": 0.0003,
+  "narrow_wide_adapter_lr": 5e-05,
+  "full_encoder_lr": 1e-05,
+  "batch": 8,
+  "sampler": "balanced 15 joint classes, same batches seed42",
+  "optimizer": "AdamW decay .01, clip1, FP32, base dropout off, head .1",
+  "selection": "Dev macro joint accuracy, then lower joint NLL; earlier exact ties. Calibration never selects checkpoint.",
+  "calibration": "Independent roots after frozen checkpoint; thresholds .5 .7 .85 .95 .99; zero false first, then correct effective+correct corrections-5*false, then higher threshold",
+  "gates": "calibration effective and correction recall >=.75, false proposals0; guard326 exact>=294 false<=3 recall>=.876551724137931",
+  "test_policy": "Still no test inference in trainer; three qualifying fixed seeds required before any fresh-test evaluation. New test not independent of overall adaptive development choices beyond held roots; synthetic/human pending.",
+  "scope": "One generic reference, including marked-complete DONE no-op class. Direct named actions / multiple facts not trained by this pilot.",
+  "resource": "T4 <=2400 study seconds; full best body saved, full optimizer omitted to limit archive/disk. Adapter last retains optimizer/RNG; exact resume not yet tested for V7.",
+  "synthetic": true,
+  "human_reviewed": false,
+  "prior_other_retention_pool_seen_in_previous_training": true,
+  "physical_device_tested": false,
+  "seeds": [
+    42,
+    17,
+    73
+  ],
+  "max_study_seconds": 900,
+  "reason": "Post-pilot data ablation after flat42 new calibration passed but consumed V5 validation effective4/32 and correction0/16 with9 wrong proposals. No prior test was opened.",
+  "replay_source": "Only V5 TRAIN explicit remaining/marked labels and generator kinds with recoverable semantic attributes. 556 added; train1252. Dev/calibration/test unchanged, including previously seen OTHER pool.",
+  "additional_transfer_gates": "Consumed old validation effective>=.75, corrections>=12/16, false proposals0; actual CPU/GPU route parity on15 known calibration samples, minimum2000 updates. Stop seeds if any fails. No threshold tuning on old validation."
+}
