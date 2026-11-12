@@ -1,0 +1,10 @@
+{
+  "purpose": "Exploratory diagnostic only, before inspecting combination outcomes; no promotion or test opening",
+  "inputs": "Already-frozen seed42 flat-wide/flat-narrow REAL T4 calibration predictions from V8",
+  "policy": "Wide proposes reference and fact; actionable assertion requires narrow agreement on commitment AND completion, allowing different reference. Narrow confidence gate and wide confidence gate independently calibrated.",
+  "grid": [0.5,0.7,0.85,0.95,0.99],
+  "selection": "Zero false proposals and zero unmeasured reference fallback first; then correct effective+correct correction-5*false; then higher wide threshold, higher narrow threshold",
+  "criteria": "Calibration effective/correction recall>=.75 and false0 and no unmeasured fallback. If not feasible, no further training for this policy. If feasible, still needs real old-transfer and ordinary-guard checks, full known-calibration CPU parity, and prospective17/73 replication.",
+  "priority": "Existing factor single-head study retains priority if all3 seeds qualify. This feasibility probe does not select a winner by any sealed test.",
+  "test_inference": false
+}
