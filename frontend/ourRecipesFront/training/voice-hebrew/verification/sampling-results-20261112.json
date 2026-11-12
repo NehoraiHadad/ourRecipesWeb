@@ -1,0 +1,4263 @@
+{
+  "source_commit": "06e1caf",
+  "source_plan": "verification/sampling-plan-20261112.json",
+  "postprocessing_source_sha256": "dd43ce0b6af6e51f0ca8805c2db73d5a9524fd74c98b9264e935efbdfb8fda80",
+  "selection": {
+    "selected_arm": "control",
+    "retained_seed": 42,
+    "aggregate_validation": {
+      "control": {
+        "mean_f0_5": 0.8775644167483545,
+        "minimum_seed_f0_5": 0.8581081081081081,
+        "mean_precision": 0.8701014403889803,
+        "mean_recall": 0.9092465753424658,
+        "mean_state_exact": 0.8687782805429864
+      },
+      "sample": {
+        "mean_f0_5": 0.9177969775795862,
+        "minimum_seed_f0_5": 0.9116809116809116,
+        "mean_precision": 0.929181654676259,
+        "mean_recall": 0.875,
+        "mean_state_exact": 0.8755656108597285
+      },
+      "contrast": {
+        "mean_f0_5": 0.9267316017316019,
+        "minimum_seed_f0_5": 0.9178571428571429,
+        "mean_precision": 0.9444436640492211,
+        "mean_recall": 0.863013698630137,
+        "mean_state_exact": 0.8766968325791855
+      }
+    },
+    "eligible_arms": [
+      "control"
+    ],
+    "threshold": 0.5,
+    "new_test_used_for_selection": false,
+    "selection": "Validation only: candidates must preserve each matched-control precision within1pp and recall within2pp, improve meanF0.5; maximize worst-seedF0.5 then meanF0.5/precision/state exact; fixed42 primary,17 supplemental"
+  },
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 230,
+        "exact_rate": 0.8333333333333334,
+        "false_updates": 20,
+        "proposed_updates": 179,
+        "expected_updates": 188,
+        "update_precision": 0.888268156424581,
+        "update_recall": 0.8457446808510638,
+        "clarifications": 120,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 5,
+            "false_updates": 3
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 4,
+            "false_updates": 6
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 5,
+            "false_updates": 3
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 5,
+            "false_updates": 4
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 4,
+            "false_updates": 3
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 220,
+        "nonmatching_gold_evidence": 33
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "proposed_updates": 33,
+          "expected_updates": 32,
+          "precision": 0.9696969696969697,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 32,
+          "false_updates": 0,
+          "proposed_updates": 32,
+          "expected_updates": 32,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 19,
+          "true_updates": 32,
+          "false_updates": 16,
+          "proposed_updates": 48,
+          "expected_updates": 32,
+          "precision": 0.6666666666666666,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 4,
+          "true_updates": 4,
+          "false_updates": 0,
+          "proposed_updates": 4,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.3333333333333333
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 20,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 8,
+          "true_updates": 27,
+          "false_updates": 3,
+          "proposed_updates": 30,
+          "expected_updates": 28,
+          "precision": 0.9,
+          "recall": 0.9642857142857143
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 4,
+          "precision": null,
+          "recall": 0.0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "sample",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 243,
+        "exact_rate": 0.8804347826086957,
+        "false_updates": 5,
+        "proposed_updates": 165,
+        "expected_updates": 188,
+        "update_precision": 0.9696969696969697,
+        "update_recall": 0.851063829787234,
+        "clarifications": 119,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 2
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 237,
+        "nonmatching_gold_evidence": 11
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "proposed_updates": 33,
+          "expected_updates": 32,
+          "precision": 0.9696969696969697,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "proposed_updates": 34,
+          "expected_updates": 32,
+          "precision": 0.9411764705882353,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 32,
+          "false_updates": 0,
+          "proposed_updates": 32,
+          "expected_updates": 32,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 3,
+          "true_updates": 3,
+          "false_updates": 0,
+          "proposed_updates": 3,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.25
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 20,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 10,
+          "true_updates": 28,
+          "false_updates": 2,
+          "proposed_updates": 30,
+          "expected_updates": 28,
+          "precision": 0.9333333333333333,
+          "recall": 1.0
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 4,
+          "precision": null,
+          "recall": 0.0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 2,
+          "true_updates": 2,
+          "false_updates": 0,
+          "proposed_updates": 2,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.25
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 3,
+          "true_updates": 7,
+          "false_updates": 0,
+          "proposed_updates": 7,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.875
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "contrast",
+      "seed": 42,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 242,
+        "exact_rate": 0.8768115942028986,
+        "false_updates": 6,
+        "proposed_updates": 166,
+        "expected_updates": 188,
+        "update_precision": 0.963855421686747,
+        "update_recall": 0.851063829787234,
+        "clarifications": 118,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 2
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 1
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 226,
+        "nonmatching_gold_evidence": 22
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "proposed_updates": 33,
+          "expected_updates": 32,
+          "precision": 0.9696969696969697,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "proposed_updates": 33,
+          "expected_updates": 32,
+          "precision": 0.9696969696969697,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 29,
+          "true_updates": 32,
+          "false_updates": 3,
+          "proposed_updates": 35,
+          "expected_updates": 32,
+          "precision": 0.9142857142857143,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.6666666666666666
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 20,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 28,
+          "false_updates": 0,
+          "proposed_updates": 28,
+          "expected_updates": 28,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 4,
+          "precision": null,
+          "recall": 0.0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 1,
+          "true_updates": 1,
+          "false_updates": 0,
+          "proposed_updates": 1,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.125
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 6,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 2,
+          "true_updates": 6,
+          "false_updates": 1,
+          "proposed_updates": 7,
+          "expected_updates": 8,
+          "precision": 0.8571428571428571,
+          "recall": 0.75
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 2,
+          "true_updates": 5,
+          "false_updates": 0,
+          "proposed_updates": 5,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.625
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 228,
+        "exact_rate": 0.8260869565217391,
+        "false_updates": 30,
+        "proposed_updates": 198,
+        "expected_updates": 188,
+        "update_precision": 0.8484848484848485,
+        "update_recall": 0.8936170212765957,
+        "clarifications": 102,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 3,
+            "false_updates": 5
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 4,
+            "false_updates": 6
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 2
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 2
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 4,
+            "false_updates": 4
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 4,
+            "false_updates": 4
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 3,
+            "false_updates": 3
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 212,
+        "nonmatching_gold_evidence": 50
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "proposed_updates": 34,
+          "expected_updates": 32,
+          "precision": 0.9411764705882353,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "proposed_updates": 33,
+          "expected_updates": 32,
+          "precision": 0.9696969696969697,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 19,
+          "true_updates": 32,
+          "false_updates": 15,
+          "proposed_updates": 47,
+          "expected_updates": 32,
+          "precision": 0.6808510638297872,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 12,
+          "false_updates": 0,
+          "proposed_updates": 12,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 8,
+          "proposed_updates": 8,
+          "expected_updates": 0,
+          "precision": 0.0,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 7,
+          "true_updates": 26,
+          "false_updates": 3,
+          "proposed_updates": 29,
+          "expected_updates": 28,
+          "precision": 0.896551724137931,
+          "recall": 0.9285714285714286
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 4,
+          "precision": null,
+          "recall": 0.0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 8,
+          "false_updates": 1,
+          "proposed_updates": 9,
+          "expected_updates": 8,
+          "precision": 0.8888888888888888,
+          "recall": 1.0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 2,
+          "true_updates": 2,
+          "false_updates": 0,
+          "proposed_updates": 2,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.25
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "sample",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 238,
+        "exact_rate": 0.8623188405797102,
+        "false_updates": 12,
+        "proposed_updates": 174,
+        "expected_updates": 188,
+        "update_precision": 0.9310344827586207,
+        "update_recall": 0.8617021276595744,
+        "clarifications": 114,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 2
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 3,
+            "false_updates": 3
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 226,
+        "nonmatching_gold_evidence": 27
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "proposed_updates": 34,
+          "expected_updates": 32,
+          "precision": 0.9411764705882353,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "proposed_updates": 34,
+          "expected_updates": 32,
+          "precision": 0.9411764705882353,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 28,
+          "true_updates": 32,
+          "false_updates": 4,
+          "proposed_updates": 36,
+          "expected_updates": 32,
+          "precision": 0.8888888888888888,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 9,
+          "true_updates": 9,
+          "false_updates": 0,
+          "proposed_updates": 9,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.75
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 20,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 7,
+          "true_updates": 26,
+          "false_updates": 3,
+          "proposed_updates": 29,
+          "expected_updates": 28,
+          "precision": 0.896551724137931,
+          "recall": 0.9285714285714286
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 1,
+          "true_updates": 1,
+          "false_updates": 0,
+          "proposed_updates": 1,
+          "expected_updates": 4,
+          "precision": 1.0,
+          "recall": 0.25
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 6,
+          "true_updates": 6,
+          "false_updates": 0,
+          "proposed_updates": 6,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 0.75
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 3,
+          "true_updates": 8,
+          "false_updates": 1,
+          "proposed_updates": 9,
+          "expected_updates": 8,
+          "precision": 0.8888888888888888,
+          "recall": 1.0
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    },
+    {
+      "arm": "contrast",
+      "seed": 17,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 276,
+        "exact_proposals": 249,
+        "exact_rate": 0.9021739130434783,
+        "false_updates": 4,
+        "proposed_updates": 170,
+        "expected_updates": 188,
+        "update_precision": 0.9764705882352941,
+        "update_recall": 0.8829787234042553,
+        "clarifications": 113,
+        "by_scenario": {
+          "direct-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "direct-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "negative-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "correction-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "uncertain-3": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "implicit-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-0": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "partial-1": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 1
+          },
+          "elsewhere-1": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "elsewhere-2": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 8,
+            "exact": 5,
+            "false_updates": 3
+          },
+          "shared-verb-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "object-contrast": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-confirmed": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "report-question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "history-local": {
+            "total": 8,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "history-foreign": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 8,
+            "exact": 7,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 8,
+            "exact": 8,
+            "false_updates": 0
+          },
+          "nominal-0": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "nominal-1": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "same-object-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "same-verb-object": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "other-operation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 244,
+        "nonmatching_gold_evidence": 9
+      },
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 32,
+          "false_updates": 0,
+          "proposed_updates": 32,
+          "expected_updates": 32,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 32,
+          "false_updates": 0,
+          "proposed_updates": 32,
+          "expected_updates": 32,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 32,
+          "false_updates": 0,
+          "proposed_updates": 32,
+          "expected_updates": 32,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 10,
+          "true_updates": 10,
+          "false_updates": 0,
+          "proposed_updates": 10,
+          "expected_updates": 12,
+          "precision": 1.0,
+          "recall": 0.8333333333333334
+        },
+        "partial": {
+          "examples": 20,
+          "exact": 19,
+          "true_updates": 0,
+          "false_updates": 1,
+          "proposed_updates": 1,
+          "expected_updates": 0,
+          "precision": 0.0,
+          "recall": null
+        },
+        "elsewhere": {
+          "examples": 12,
+          "exact": 12,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "shared-verb": {
+          "examples": 12,
+          "exact": 9,
+          "true_updates": 28,
+          "false_updates": 3,
+          "proposed_updates": 31,
+          "expected_updates": 28,
+          "precision": 0.9032258064516129,
+          "recall": 1.0
+        },
+        "object-contrast": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "uncertain-confirmed": {
+          "examples": 4,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 4,
+          "precision": null,
+          "recall": 0.0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "meta": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "future": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "next": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "question": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        },
+        "nominal": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 8,
+          "precision": null,
+          "recall": 0.0
+        },
+        "same-object-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "same-verb-object": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 8,
+          "false_updates": 0,
+          "proposed_updates": 8,
+          "expected_updates": 8,
+          "precision": 1.0,
+          "recall": 1.0
+        },
+        "other-operation": {
+          "examples": 4,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 0,
+          "precision": null,
+          "recall": null
+        }
+      }
+    }
+  ],
+  "selected_regressions": {
+    "42": {
+      "prior-focused-test": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 265,
+        "exact_rate": 0.8660130718954249,
+        "false_updates": 5,
+        "proposed_updates": 160,
+        "expected_updates": 192,
+        "update_precision": 0.96875,
+        "update_recall": 0.8072916666666666,
+        "clarifications": 153,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 230,
+        "nonmatching_gold_evidence": 40
+      },
+      "prior-combined-test": {
+        "threshold": 0.5,
+        "examples": 168,
+        "exact_proposals": 147,
+        "exact_rate": 0.875,
+        "false_updates": 20,
+        "proposed_updates": 124,
+        "expected_updates": 105,
+        "update_precision": 0.8387096774193549,
+        "update_recall": 0.9904761904761905,
+        "clarifications": 58,
+        "by_scenario": {
+          "assertion-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "completion-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "completion-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-2": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 3
+          },
+          "completion-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 2,
+            "false_updates": 4
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-3": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "completion-3": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "negative-3": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "question-3": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "two-reports": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "partial-step": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "correction": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-action": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "ambiguous": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-reference": {
+            "total": 3,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "foreign-reference": {
+            "total": 3,
+            "exact": 3,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 145,
+        "nonmatching_gold_evidence": 22
+      },
+      "known-probe16": {
+        "threshold": 0.5,
+        "examples": 16,
+        "exact_proposals": 14,
+        "exact_rate": 0.875,
+        "false_updates": 0,
+        "proposed_updates": 10,
+        "expected_updates": 12,
+        "update_precision": 1.0,
+        "update_recall": 0.8333333333333334,
+        "clarifications": 9,
+        "by_scenario": {
+          "put": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "put-question": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-step": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "correction": {
+            "total": 2,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-quantity": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "insert": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "inside": {
+            "total": 1,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "negative": {
+            "total": 1,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "two-actions": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "question": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "unknown": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 13,
+        "nonmatching_gold_evidence": 1
+      },
+      "regression68": {
+        "threshold": 0.5,
+        "examples": 68,
+        "exact_proposals": 56,
+        "exact_rate": 0.8235294117647058,
+        "false_updates": 0,
+        "proposed_updates": 24,
+        "expected_updates": 36,
+        "update_precision": 1.0,
+        "update_recall": 0.6666666666666666,
+        "clarifications": 35,
+        "by_scenario": {
+          "position-0": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "position-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "position-2": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "position-3": {
+            "total": 4,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "partial-step": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "reverse-partial": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 0
+          },
+          "correction": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "half": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "meta-negation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "conditional": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "old-recipe": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 51,
+        "nonmatching_gold_evidence": 5
+      }
+    },
+    "17": {
+      "prior-focused-test": {
+        "threshold": 0.5,
+        "examples": 306,
+        "exact_proposals": 269,
+        "exact_rate": 0.8790849673202614,
+        "false_updates": 31,
+        "proposed_updates": 213,
+        "expected_updates": 192,
+        "update_precision": 0.8544600938967136,
+        "update_recall": 0.9479166666666666,
+        "clarifications": 138,
+        "by_scenario": {
+          "direct-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "report-question-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-0-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 3
+          },
+          "implicit-0-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "elsewhere-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "implicit-1-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-1-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "correction-1": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 2
+          },
+          "elsewhere-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "direct-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "report-question-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "implicit-2-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "implicit-2-1": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 4
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "correction-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "elsewhere-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-amount-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "wrong-operation-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "shared-verb": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "shared-verb-partial-step": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "shared-verb-question": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "shared-verb-reverse": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 1
+          },
+          "mixed-polarity": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 3
+          },
+          "uncertain-plus-confirmed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "confirmed-plus-next": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "local-history": {
+            "total": 6,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "foreign-history": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 257,
+        "nonmatching_gold_evidence": 47
+      },
+      "prior-combined-test": {
+        "threshold": 0.5,
+        "examples": 168,
+        "exact_proposals": 144,
+        "exact_rate": 0.8571428571428571,
+        "false_updates": 21,
+        "proposed_updates": 122,
+        "expected_updates": 105,
+        "update_precision": 0.8278688524590164,
+        "update_recall": 0.9619047619047619,
+        "clarifications": 58,
+        "by_scenario": {
+          "assertion-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "completion-0": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 3
+          },
+          "negative-0": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "question-0": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "completion-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-1": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "question-1": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "completion-2": {
+            "total": 6,
+            "exact": 4,
+            "false_updates": 2
+          },
+          "negative-2": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "question-2": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "assertion-3": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "completion-3": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "negative-3": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "question-3": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "two-reports": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "partial-step": {
+            "total": 6,
+            "exact": 3,
+            "false_updates": 2
+          },
+          "correction": {
+            "total": 6,
+            "exact": 5,
+            "false_updates": 1
+          },
+          "next": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "partial-action": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "ambiguous": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "meta": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 6,
+            "exact": 6,
+            "false_updates": 0
+          },
+          "local-reference": {
+            "total": 3,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "foreign-reference": {
+            "total": 3,
+            "exact": 3,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 142,
+        "nonmatching_gold_evidence": 23
+      },
+      "known-probe16": {
+        "threshold": 0.5,
+        "examples": 16,
+        "exact_proposals": 13,
+        "exact_rate": 0.8125,
+        "false_updates": 3,
+        "proposed_updates": 15,
+        "expected_updates": 12,
+        "update_precision": 0.8,
+        "update_recall": 1.0,
+        "clarifications": 5,
+        "by_scenario": {
+          "put": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "put-question": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-step": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "correction": {
+            "total": 2,
+            "exact": 2,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "partial-quantity": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 1,
+            "exact": 0,
+            "false_updates": 1
+          },
+          "meta": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "insert": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "inside": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "negative": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "two-actions": {
+            "total": 1,
+            "exact": 0,
+            "false_updates": 1
+          },
+          "question": {
+            "total": 1,
+            "exact": 0,
+            "false_updates": 1
+          },
+          "partial": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "unknown": {
+            "total": 1,
+            "exact": 1,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 13,
+        "nonmatching_gold_evidence": 4
+      },
+      "regression68": {
+        "threshold": 0.5,
+        "examples": 68,
+        "exact_proposals": 51,
+        "exact_rate": 0.75,
+        "false_updates": 1,
+        "proposed_updates": 24,
+        "expected_updates": 36,
+        "update_precision": 0.9583333333333334,
+        "update_recall": 0.6388888888888888,
+        "clarifications": 34,
+        "by_scenario": {
+          "position-0": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "position-1": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "position-2": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "position-3": {
+            "total": 4,
+            "exact": 0,
+            "false_updates": 0
+          },
+          "partial-step": {
+            "total": 4,
+            "exact": 3,
+            "false_updates": 1
+          },
+          "reverse-partial": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "correction": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "future": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "half": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "meta-negation": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "conditional": {
+            "total": 4,
+            "exact": 1,
+            "false_updates": 0
+          },
+          "uncertain": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "ambiguous": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "next": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "missed": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "advice": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          },
+          "old-recipe": {
+            "total": 4,
+            "exact": 4,
+            "false_updates": 0
+          }
+        },
+        "exact_including_gold_evidence": 44,
+        "nonmatching_gold_evidence": 8
+      }
+    }
+  },
+  "weights": {
+    "42": {
+      "bytes": 735066976,
+      "sha256": "87ea0ae387e5b2b4826490e2bd69b63039d1c001ef5d14896d2e0acb1dceebdf",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.0,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "selected_step": 750
+      }
+    },
+    "17": {
+      "bytes": 735066976,
+      "sha256": "ef617be94a9deeed0edfcd80cd78c9718e34396d0ee9cb6c4d35a90f1b43c7ed",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "balanced-task",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.0,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "selected_step": 1000
+      }
+    }
+  },
+  "native_cpu_probe_parity": {
+    "42": {
+      "scope": "Native CPU known-probe output/evidence equivalence only; gold removed, no accuracy scoring or selection",
+      "examples": 16,
+      "mismatched_proposals": 0,
+      "mismatch_ids": [],
+      "seconds_including_load": 4.052930094999738
+    },
+    "17": {
+      "scope": "Native CPU known-probe output/evidence equivalence only; gold removed, no accuracy scoring or selection",
+      "examples": 16,
+      "mismatched_proposals": 0,
+      "mismatch_ids": [],
+      "seconds_including_load": 2.753393634999611
+    }
+  },
+  "training_runs": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "training_seconds": 182.15933727000004,
+      "gpu_peak_allocated_bytes": 3712534016,
+      "selected_step": 750
+    },
+    {
+      "arm": "sample",
+      "seed": 42,
+      "training_seconds": 188.657699783,
+      "gpu_peak_allocated_bytes": 3709859328,
+      "selected_step": 1000
+    },
+    {
+      "arm": "contrast",
+      "seed": 42,
+      "training_seconds": 193.18096484299997,
+      "gpu_peak_allocated_bytes": 3709859328,
+      "selected_step": 500
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "training_seconds": 203.72777320700015,
+      "gpu_peak_allocated_bytes": 3709273600,
+      "selected_step": 1000
+    },
+    {
+      "arm": "sample",
+      "seed": 17,
+      "training_seconds": 184.139983003,
+      "gpu_peak_allocated_bytes": 3707800576,
+      "selected_step": 750
+    },
+    {
+      "arm": "contrast",
+      "seed": 17,
+      "training_seconds": 207.9532961719999,
+      "gpu_peak_allocated_bytes": 3707800576,
+      "selected_step": 1000
+    }
+  ],
+  "archive": {
+    "archive": "ourrecipes-sampling-v10-results.zip",
+    "bytes": 1535045617,
+    "sha256": "98f972310542490de045d4bd9aedf7f14c4f72940c67fa1eb3928aa7e5efc308"
+  },
+  "archive_sha256_crc_verified": true,
+  "uploaded_source_hashes_match_plan": true,
+  "resources": {
+    "reported_balance_delta_compute_units": 0.44,
+    "window": "Allocation, setup, training, evaluation, artifact recovery and cleanup; not isolated GPU compute",
+    "remote_job_seconds": 1509.988373571,
+    "driver_seconds": 1643.2913672639997,
+    "artifact_recovery_method": "ssh-stream",
+    "cleanup_completed": true,
+    "private_usage_source_sha256": "3f8e17c97eafa65a0fed6f28b1bfac57f451c8a722375d2fdbd36eb431fefa5b"
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "python": "3.13.16",
+    "cpu_count": 2
+  },
+  "control_training_loss_parity": {
+    "scope": "Existing logged losses only: V10 control vs V9 combined training; validation sets differ. Not a claim about unsaved weight bytes or independent accuracy.",
+    "prior_log_sha256": "bdc710a27faf8645fd2c612163dca1cfd2a4ff2226f2f547ecc409030ebc6e40",
+    "current_log_sha256": "4d0e3f6edcd11401a360618d564fe9f0aa9630f447bb581f774a26bd8bc067e8",
+    "seeds": {
+      "42": {
+        "shared_logged_steps": 20,
+        "mismatched_losses": []
+      },
+      "17": {
+        "shared_logged_steps": 20,
+        "mismatched_losses": []
+      }
+    }
+  },
+  "scope": "Actual T4 training/inference on authored synthetic data; optional native CPU artifact parity. No user-device or natural-speech measurement.",
+  "original_test_scored": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "production_ready": false,
+  "retained_weights_identical_to_v9": {
+    "42": true,
+    "17": true
+  },
+  "prior_weight_reference_proof_sha256": "6cf915cf62782574a4b19ab33a6f5b051ceb4257d072f600c9fe7e31ff17d9b1",
+  "active_colab_sessions_confirmed_after_cleanup": 0
+}
