@@ -1,0 +1,41 @@
+{
+  "study": "scope-v15-native-hebrew-capacity-baseline",
+  "created_utc": "2026-11-12T19:51:13.987658+00:00",
+  "source_sha256": {
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "scope_v13_stance.py": "334fe57aa3e792b821232002e87a6f4cfaa6c5bee11a86b214db322ffa8caf58",
+    "scope_v15_teacher.py": "7fba175db77586f262549df9ec6d4076d4133896e9163d1d20ef262464c2fbf1",
+    "scope_v15_job.py": "d533645937d8ded4d957bd03dbff17aecfe8e8e3003262402db17833ef71b294",
+    "scope_v15_colab.py": "6536072a595ea75e611a3271262f8b86ddacc806b7cfc722544fe22a74dbd623",
+    "tests/test_scope_v15_teacher.py": "e60018b47ca505d441b4c9281b14224bab693d9b47fd4e4a8d51249f8468ec31"
+  },
+  "data_sha256": "33cb4af1be1b5da20b2359d0444c3fbf44c638e9d959633f20686e0ca24d0f02",
+  "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+  "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+  "license": "apache-2.0",
+  "gated": false,
+  "weight_bytes": 3441185576,
+  "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21",
+  "template_sha256": "00d3026f698ff7f844f9b489b1491b5423ed872b2e5bd7e68b0596c53f7ed784",
+  "task": "Only classify speaker commitment about single generic cooking-action claim. No recipe quantities/steps/actions generated. Capacity/teacher diagnostic, not a product choice or composed pipeline.",
+  "prompt": "Single fixed Hebrew system and eight balanced examples from TRAIN, selection specs in frozen code. Official chat_template.jinja, not generic Qwen template. No prompt search, reasoning generation, fine-tuning, or test-based changes.",
+  "scoring": "One next-token forward, forced-choice token1 vs token0 likelihood score. Retain raw probabilities and label mass; normalized score is NOT a calibrated probability of correctness or format-following test.",
+  "dtype": "FP16 cast from official BF16 checkpoint, T4 has no native BF16 acceleration; no quantization claim.",
+  "runtime": {
+    "python": "3.13",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1",
+    "huggingface_hub": "0.36.0",
+    "tokenizers": "0.22.1",
+    "safetensors": "0.6.2",
+    "batch": 4,
+    "max_prompt_tokens": 2048,
+    "padding": "left",
+    "trust_remote_code": false,
+    "use_cache": false
+  },
+  "calibration": "Same192 as small heads. Grid.50..99+.off2,zero unsafe and asserted recall>=.90. Calibrated threshold must pass both calibration and development192 before fresh. No all-deny promotion.",
+  "fresh_protocol": "New384/newnatural48 have never been inferred by V13/V14. Standalone commitment only (different research objective from prior composed-pipeline gate), no claim of passing composed recipe tests. If dev/cal pass, open384 once. If384 zero unsafe and asserted recall>=.90, open48 once,zero unsafe and recall>=.85. Stop at first failure, preserve raw scores. Once inferred sets are consumed,not future fresh proof.",
+  "scope_limits": "Synthetic authored and unreviewed. No real audio/users,CPU inference,browser,phone performance or distillation evidence. The1.7B model may help diagnostics even if too slow/large for deployment.",
+  "privacy": "Only synthetic data and public open weights on authorized named Colab. No audio,user records,keys or private account logs in material/results. Full3.44GB model remains ephemeral and is not recovered."
+}
