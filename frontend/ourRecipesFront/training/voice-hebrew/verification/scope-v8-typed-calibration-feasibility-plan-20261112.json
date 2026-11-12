@@ -1,0 +1,10 @@
+{
+ "purpose":"Exploratory feasibility on already-used calibration493; freeze before computing typed calibration, no tests or promotion",
+ "model":"Existing adapted-f053 factor-wide/product seed42 dev-selected best2000; no new training or weight changes",
+ "policy":"Independent thresholds for the4 asserted complete/incomplete x remaining/marked classes; all other class thresholds stay.99",
+ "grid":[null,0.5,0.7,0.85,0.95,0.99],
+ "selection_per_class":"Zero false proposals first, then correct effective+correct corrections, then correct proposals, then higher threshold (off counts as most conservative). Since proposals from distinct argmax classes are disjoint, their zero-false constraints and additive coverage goals separate. Every class can abstain entirely.",
+ "qualification":"Unchanged: aggregate calibration false0/effective>=.75/correction>=.75/unmeasured reference fallback0. If feasible still requires actual native old480 transfer and ordinary326 guard, CPU/T4 parity, and prospective17/73 passing all same gates. All-clarify cannot qualify.",
+ "priority":"Use a stable single-head typed-calibration method only after its prospective3-seed gates. No choosing by any sealed test. Existing uniform-threshold factor study remains separately reported.",
+ "test_inference":false
+}
