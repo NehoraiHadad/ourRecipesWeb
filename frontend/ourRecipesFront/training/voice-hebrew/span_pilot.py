@@ -40,10 +40,14 @@ def training_loss(logits, targets, items, profile, legacy_weights):
 
 
 def encode(tokenizer, recipe, row, profile='span-v1'):
-    if profile not in ('span-v1','joint-contrast-v2','context-span-v3','context-joint-v3','context-qa-v4'):raise ValueError('Unknown span profile')
-    joint=profile in ('joint-contrast-v2','context-joint-v3','context-qa-v4')
+    if profile not in ('span-v1','joint-contrast-v2','context-span-v3','context-joint-v3','context-qa-v4','context-state-v4'):raise ValueError('Unknown span profile')
+    joint=profile in ('joint-contrast-v2','context-joint-v3','context-qa-v4','context-state-v4')
     result=[]
-    for q in queries(recipe,row,3 if profile.startswith('context-') else 2):
+    if profile=='context-state-v4':
+        from state_input_probe import proposed_queries
+        qs=proposed_queries(recipe,row)
+    else:qs=queries(recipe,row,3 if profile.startswith('context-') else 2)
+    for q in qs:
         encoded=tokenizer(q['context'],q['utterance'],return_offsets_mapping=True,truncation=False)
         if len(encoded['input_ids'])>512:raise ValueError('Span input too long; no silent truncation')
         offsets=encoded.pop('offset_mapping');sequence=encoded.sequence_ids()
@@ -64,6 +68,7 @@ def encode(tokenizer, recipe, row, profile='span-v1'):
                     if span and begin<span[1] and end>span[0]:labels[i]=0 if gold['done'] else 1
             if gold and not any(label in (0,1) for label in labels):raise ValueError('Evidence has no supervised tokens')
         result.append({'query':q,'inputs':dict(encoded),'targets':labels,'positions':positions,
+            'sampling_context':('פעולה נבדקת: '+next(a['text'] for a in recipe['actions'] if a['id']==q['action_id'])) if profile=='context-state-v4' and q['task']=='action' else q['context'],
             'offsets':offsets,'current_start':current_start,'current_utterance':row['utterance'],
             'joint_gate':joint,'profile':profile})
     return result
@@ -139,7 +144,7 @@ def add_browser_metadata(run):
     import torch
     run=Path(run);tokenizer=AutoTokenizer.from_pretrained(run/'model',local_files_only=True)
     profile=json.loads((run/'run-config.json').read_text()).get('span_profile','span-v1')
-    if profile=='context-qa-v4':raise ValueError('Boundary browser export is not implemented')
+    if profile in ('context-qa-v4','context-state-v4'):raise ValueError('Research browser export is not implemented')
     recs,rows=load_data(run.parent/'selected-data');cr,crows=challenge()
     for target,rr,xx in [(run/'onnx/browser-fixtures.json',recs,[r for r in rows if r['split']=='validation']),
                          (run/'challenge-browser-fixtures.json',cr,crows)]:
@@ -231,7 +236,7 @@ def reexport(run):
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     torch.set_num_threads(4);run=Path(run)
     config=json.loads((run/'run-config.json').read_text())
-    if config.get('span_profile')=='context-qa-v4':raise ValueError('Boundary profile requires separate export/browser support')
+    if config.get('span_profile') in ('context-qa-v4','context-state-v4'):raise ValueError('Research profile requires separate export/browser support')
     if config['model'] not in ('dicta-il/dictabert-tiny','dicta-il/dictabert'):
         raise ValueError('Verify the source artifact license before re-exporting another model')
     model=AutoModelForTokenClassification.from_pretrained(run/'model',local_files_only=True,attn_implementation='eager').eval()
@@ -255,15 +260,17 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact', regime='balanced-task', contrast_weight=0., checkpoint_io='periodic', shared_head_init=False):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact', regime='balanced-task', contrast_weight=0., checkpoint_io='periodic', shared_head_init=False, warm_start=None, encoder_lr=3e-5, head_lr=3e-4):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
     if device=='cpu' and steps>2:raise ValueError('CPU mode is limited to a two-step mechanics smoke')
     if regime not in ('balanced-task','paired-family') or checkpoint_io not in ('periodic','best-only'):raise ValueError('Unknown training regime/checkpoint IO')
     if not 0<=contrast_weight<=1 or (contrast_weight and regime!='paired-family'):raise ValueError('Contrastive loss requires paired sampling')
-    if regime=='paired-family' and profile not in ('context-joint-v3','context-qa-v4'):raise ValueError('Paired regime requires joint context')
-    if profile=='context-qa-v4' and not train_only:raise ValueError('Boundary profile is native training research only')
+    if regime=='paired-family' and profile not in ('context-joint-v3','context-qa-v4','context-state-v4'):raise ValueError('Paired regime requires joint context')
+    if profile in ('context-qa-v4','context-state-v4') and not train_only:raise ValueError('Research profile is native training only')
+    if warm_start and shared_head_init:raise ValueError('Warm-start weights cannot be randomly reinitialized')
+    if not 0<encoder_lr<=3e-5 or not 0<head_lr<=3e-4:raise ValueError('Invalid bounded adaptation rates')
     models={'tiny':(MODEL_ID,MODEL_REVISION),'base':('dicta-il/dictabert','8884c6db002aba4002ee638fe4070c92e9ffbbf1')}
     model_id,model_revision=models[model_choice]
     started=time.monotonic();deadline=started+max_seconds;torch.set_num_threads(4)
@@ -278,9 +285,20 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         data=build(output/'selected-data')
     else:data=augmented_data(output/'selected-data')
     folder=output/'run';folder.mkdir(parents=True,exist_ok=False)
-    tokenizer=AutoTokenizer.from_pretrained(model_id,revision=model_revision,trust_remote_code=False)
     output_labels=LABELS+['evidence_start','evidence_end'] if profile=='context-qa-v4' else LABELS
-    model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=len(output_labels),id2label=dict(enumerate(output_labels)),label2id={v:i for i,v in enumerate(output_labels)},attn_implementation='eager',trust_remote_code=False)
+    warm_sha=None
+    if warm_start:
+        import hashlib
+        warm_start=Path(warm_start)
+        with (warm_start/'model.safetensors').open('rb') as handle:warm_sha=hashlib.file_digest(handle,'sha256').hexdigest()
+        tokenizer=AutoTokenizer.from_pretrained(warm_start,local_files_only=True,trust_remote_code=False)
+        model=AutoModelForTokenClassification.from_pretrained(warm_start,local_files_only=True,attn_implementation='eager',trust_remote_code=False)
+        if [model.config.id2label[i] for i in range(model.config.num_labels)]!=output_labels:raise ValueError('Warm model head contract mismatch')
+        torch.manual_seed(seed)
+        if device=='cuda':torch.cuda.manual_seed_all(seed)
+    else:
+        tokenizer=AutoTokenizer.from_pretrained(model_id,revision=model_revision,trust_remote_code=False)
+        model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=len(output_labels),id2label=dict(enumerate(output_labels)),label2id={v:i for i,v in enumerate(output_labels)},attn_implementation='eager',trust_remote_code=False)
     if shared_head_init:
         torch.manual_seed(seed+100)
         with torch.no_grad():
@@ -300,11 +318,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         rng=random.Random(seed);paired=PairedSampler(items,[r for r in rows if r['split']=='train'],rng)
     head=[p for n,p in model.named_parameters() if n.startswith('classifier.')]
     body=[p for n,p in model.named_parameters() if not n.startswith('classifier.')]
-    optimizer=torch.optim.AdamW([{'params':body,'lr':3e-5},{'params':head,'lr':3e-4}],weight_decay=.01)
+    optimizer=torch.optim.AdamW([{'params':body,'lr':encoder_lr},{'params':head,'lr':head_lr}],weight_decay=.01)
     weights=torch.tensor([1.,1.,.15,1.,1.,1.,1.,1.],device=device)
-    config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
+    config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':encoder_lr,'head_lr':head_lr,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
     config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile in ('span-v1','context-span-v3') else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
     if profile=='context-qa-v4':config['loss']='.5 candidate CLS + .25 start + .25 end; current-report/CLS null domain, paired row weights; intent CLS CE'
+    config.update(warm_start_sha256=warm_sha,optimizer_restored=False)
+    if profile=='context-state-v4':config['input_contract']='4-state-action+current-evidence-spans'
     config['checkpoint_objective']=checkpoint_objective
     config.update(sampling=regime,contrast_weight=contrast_weight,contrast_margin=1.,checkpoint_io=checkpoint_io)
     config.update(shared_head_init=shared_head_init,initial_shared_head_sha256=initial_head_sha,output_channels=len(output_labels))
@@ -312,6 +332,15 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
     if device=='cuda':torch.cuda.reset_peak_memory_stats()
+    if warm_start:
+        valid=[r for r in rows if r['split']=='validation']
+        initial_records=infer(model,tokenizer,sets['validation'],device,deadline)
+        if checkpoint_objective=='cost5':
+            from research_decision import calibrate as cost_calibrate
+            initial=cost_calibrate(valid,initial_records)
+        else:initial=grounded(valid,initial_records,.5)
+        best_checkpoint=retain_best(model,tokenizer,folder,initial,0,None,checkpoint_objective)
+        (folder/'initial-validation.json').write_text(json.dumps(initial,ensure_ascii=False,indent=2)+'\n')
     for step in range(1,steps+1):
         if time.monotonic()>deadline-40:raise TimeoutError('Span training stopped before validation/export reserve')
         if paired:chosen=paired.batch()

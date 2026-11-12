@@ -17,7 +17,37 @@ from prepare import bundle
 from engine import verify_manifest
 
 
+def upload_warm_weights(args,session,identity):
+    """Owner-authorized model bytes over noninteractive SSH stdin; key stays local."""
+    if not identity:raise ValueError('Warm upload requires the existing SSH identity')
+    path=Path(args.warm_weights)
+    code="""import sys,hashlib,json
+from pathlib import Path
+p=Path('/content/ourrecipes-warm-weights.safetensors');h=hashlib.sha256();size=0
+with p.open('wb') as f:
+ while chunk:=sys.stdin.buffer.read(16*1024*1024):
+  f.write(chunk);h.update(chunk);size+=len(chunk)
+print('OURRECIPES_WARM='+json.dumps({'bytes':size,'sha256':h.hexdigest()}))
+"""
+    prefix=[args.cli]+(['--auth='+args.auth_provider] if args.auth_provider else [])
+    with path.open('rb') as source:
+        result=subprocess.run([*prefix,'ssh','-s',session,'-i',identity,'--','python3','-c',code],stdin=source,capture_output=True,text=True,timeout=300)
+    if result.returncode:raise RuntimeError('Warm model stream failed: '+result.stderr[-500:])
+    line=next((l.split('=',1)[1] for l in result.stdout.splitlines() if l.startswith('OURRECIPES_WARM=')),None)
+    if line is None:raise ValueError('No warm upload digest')
+    actual=json.loads(line)
+    with path.open('rb') as f:expected=hashlib.file_digest(f,'sha256').hexdigest()
+    if actual!={'bytes':path.stat().st_size,'sha256':expected}:raise ValueError('Warm upload digest mismatch')
+    print(json.dumps({'warm_model_uploaded':actual}),flush=True)
+
+
 def run(args):
+    if getattr(args,'state_context',False):
+        p=Path(args.warm_weights or '')
+        if not p.is_file() or p.name!='model.safetensors':raise ValueError('Explicit saved model.safetensors required before allocation')
+        plan=json.loads((ROOT/'verification/state-v12-plan-20261112.json').read_text())
+        with p.open('rb') as f:sha=hashlib.file_digest(f,'sha256').hexdigest()
+        if sha!=plan['warm_checkpoint']['sha256']:raise ValueError('Warm-start differs from frozen checkpoint')
     session=args.session
     if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',session):raise ValueError('Use a dedicated ourrecipes-* session name')
     output=Path(args.output)
@@ -55,13 +85,14 @@ def run(args):
             try:cli(['ssh','-s',session,'-i',ssh_identity,'--','python3','-c',"print('OURRECIPES_SSH_READY')"],timeout=45,quiet=True)
             except (RuntimeError,subprocess.TimeoutExpired):
                 print('SSH stream unavailable; bounded chunk recovery remains available',flush=True);ssh_identity=None
+        if getattr(args,'state_context',False):upload_warm_weights(args,session,ssh_identity)
         cli(['upload','-s',session,str(material),'/content/ourrecipes-material.zip'])
         cli(['upload','-s',session,str(ROOT/'colab_job.py'),'/content/ourrecipes-job.py'])
         remote='/content/'+args.run_id
         launch=f'''import subprocess,sys,json
 from pathlib import Path
 log=Path({remote!r}+'.log').open('w')
-ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--grounding'] if getattr(args,'grounding',False) else ['--sampling'] if getattr(args,'sampling',False) else ['--combined'] if getattr(args,'combined',False) else ['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else [])+(['--focused'] if getattr(args,'focused',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--state-context'] if getattr(args,'state_context',False) else ['--grounding'] if getattr(args,'grounding',False) else ['--sampling'] if getattr(args,'sampling',False) else ['--combined'] if getattr(args,'combined',False) else ['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else [])+(['--focused'] if getattr(args,'focused',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
 Path({remote!r}+'.pid').write_text(str(ourrecipes_process.pid))
 print('OURRECIPES_STATUS='+json.dumps({{'pid':ourrecipes_process.pid}}))
 '''
@@ -154,6 +185,7 @@ if __name__=='__main__':
     group.add_argument('--span',action='store_true',help='Evidence-supervised token classifier pilot')
     group.add_argument('--targeted',action='store_true',help='Bounded control vs joint grounding/contrastive comparison')
     group.add_argument('--combined',action='store_true',help='Joint-supervision control vs combined conversational corpus, two seeds')
+    group.add_argument('--state-context',action='store_true',help='V12 matched warm-start state-input comparison')
     group.add_argument('--grounding',action='store_true',help='V11 token evidence vs start/end evidence, four trials')
     group.add_argument('--sampling',action='store_true',help='V10 family sampling and candidate margin, six trials')
     group.add_argument('--semantic',action='store_true',help='Model-only data vs loss isolation, two seeds and a new frozen test')
@@ -161,10 +193,11 @@ if __name__=='__main__':
     p.add_argument('--span-model',choices=['tiny','base'],default='tiny')
     p.add_argument('--span-train-only',action='store_true',help='Train/validate on GPU; export locally after releasing the VM')
     p.add_argument('--ssh-identity',help='Owner-only local SSH key for verified binary-stream archive recovery; never uploaded')
+    p.add_argument('--warm-weights',help='Explicit local saved research checkpoint for V12; streamed only after digest validation')
     p.add_argument('--bundle-path',help='Explicit prebuilt synthetic material ZIP instead of rebuilding the default bundle')
     p.add_argument('--reuse',action='store_true',help='Take ownership of this already-created dedicated pilot session, including cleanup')
     a=p.parse_args()
     if a.focused and not a.combined:p.error('--focused requires --combined')
     if a.span_train_only and not a.span:p.error('--span-train-only requires --span')
-    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
+    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding or a.state_context else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
     run(a)

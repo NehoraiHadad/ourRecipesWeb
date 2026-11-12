@@ -1,0 +1,41 @@
+{
+  "study": "state-v12",
+  "base_training_rows": 6638,
+  "base_training_sha256": "514ca775f7d43a86b41f4093709ca9397145ffcd5e46ace0abfffe37af816c12",
+  "new_counts": {
+    "train": {
+      "recipes": 16,
+      "examples": 1472
+    },
+    "validation": {
+      "recipes": 8,
+      "examples": 736
+    },
+    "test": {
+      "recipes": 8,
+      "examples": 736
+    }
+  },
+  "counterfactual_semantics": "same utterance changes target solely through explicit current/completed state; ambiguous multiple targets require clarification",
+  "corpus_sha256": "cf3eab981659bc897e8eb315ddc42198781c51a22f1baca81f4dab4a3bf3dd77",
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "original_test_scored": false,
+  "tokenizer": {
+    "context-joint-v3": {
+      "queries": 48740,
+      "max_tokens": 74,
+      "unknown_tokens": 0,
+      "conflicting_token_inputs": 612,
+      "unrepresentable_spans": []
+    },
+    "context-state-v4": {
+      "queries": 48740,
+      "max_tokens": 97,
+      "unknown_tokens": 0,
+      "conflicting_token_inputs": 0,
+      "unrepresentable_spans": []
+    }
+  },
+  "new_test_inference": false
+}

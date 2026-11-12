@@ -1,0 +1,72 @@
+{
+  "created_utc": "2026-11-12T06:12:20.128041+00:00",
+  "study": "state-v12",
+  "status": "Frozen before real quality training or new-test inference",
+  "arms": [
+    [
+      "control",
+      "context-joint-v3"
+    ],
+    [
+      "state",
+      "context-state-v4"
+    ]
+  ],
+  "seeds": [
+    42,
+    17,
+    73
+  ],
+  "steps": 750,
+  "checkpoints": [
+    0,
+    250,
+    500,
+    750
+  ],
+  "encoder_lr": 1e-05,
+  "head_lr": 0.0001,
+  "warm_checkpoint": {
+    "origin": "V10 contrast42 validation-selected500, research only",
+    "path": "runs/colab-ranking-recovery/recovered/run/model/model.safetensors",
+    "sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+    "bytes": 735066976
+  },
+  "corpus_sha256": "cf3eab981659bc897e8eb315ddc42198781c51a22f1baca81f4dab4a3bf3dd77",
+  "thresholds": [
+    0.3,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "minimum_recall": 0.75,
+  "selection": "Each seed improves state exact >=15pp, complete group >=25%, no guardrail added FP, guardrail recall loss <=2pp; mean cost improves and worst cost no worse. Otherwise control; fixed42 primary.",
+  "retain_all_six": true,
+  "gpu_max_seconds": 3000,
+  "comparison_max_seconds": 2700,
+  "unit_tests_passed": 67,
+  "source_sha256": {
+    "state_data.py": "7d089a1327b452a1643f96be5e6882db015e333b4527f3c4d25c76e95c5a30b1",
+    "state_sweep.py": "62ccb6f074ede0777b0e442087d154a752a10c7033b8de422b53e302526e3a8b",
+    "state_input_probe.py": "1a8c1e889366e4cfed53c7111bd005fb2ceca654c034325e97d121e09bf3c263",
+    "state_package.py": "1b0333040d04ec8cbd276ad910b07c9ae118a59d31b2d3368511a505bd946bf4",
+    "span_pilot.py": "a9249998590e4ba0f7757e863d314f365c8f5e5ffc80e50ec0d9ae20ddbc2ab2",
+    "paired_sampling.py": "b63b04823ab3f56a8476a5ac758b428aa73ff04e7772b97c9b00b42e18dc2111",
+    "research_decision.py": "91d022e42cd219a152e426b41e523063838bd1076ba68c43af0b69ed1b073f26",
+    "grounding_sweep.py": "6eba90e5c1d402db286959bbaf6f7e2ca7f2c6a5ce1cc80a2fa21eab22f4741f",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "combined_data.py": "4e8ad54c0e3a45feb90a7b02160dabee5342574cc1a626454358b9683d6f65de",
+    "focused_data.py": "953d86fd123217b22a5251679ef3bea26d475768a224efe5e02d7744511159b9",
+    "sampling_data.py": "6271ef4488072dbac35dcf565d6a453ada4ccbfdf63ff5aedde8d4625d9284e9",
+    "ablation.py": "38836284c98b09446154f8bc43468345653804aae923b9c76391774ccb79dae3",
+    "colab_job.py": "34e56e34750680e1e02e70c64cd22d8626ba673c6da9ccb1e6660719572fcd30",
+    "colab_pilot.py": "77c7f5fc6146cea7b6043f7f1b1b6531d1b2c72eb461f3164c8b23b962c483ed",
+    "prepare.py": "5190b40f43f9aaf5138fb501434f186c3b860e3cbc8badd8b4684bb308a26a34",
+    "STATE_PLAN.he.md": "4c38a72fc9d7de6967a024c07edf345adff65a9169be1285ba5fe965f9d064be"
+  },
+  "new_test_inference": false,
+  "human_reviewed": false,
+  "physical_device_tested": false
+}

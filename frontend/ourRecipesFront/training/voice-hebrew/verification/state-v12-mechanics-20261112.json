@@ -1,0 +1,56 @@
+{
+  "scope": "Six two-step Tiny CPU mechanics trials on a subset, no fresh-test rows or quality claim",
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-joint-v3"
+    },
+    {
+      "arm": "state",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-state-v4"
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-joint-v3"
+    },
+    {
+      "arm": "state",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-state-v4"
+    },
+    {
+      "arm": "control",
+      "seed": 73,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-joint-v3"
+    },
+    {
+      "arm": "state",
+      "seed": 73,
+      "steps": 2,
+      "selected_step": 0,
+      "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+      "profile": "context-state-v4"
+    }
+  ],
+  "fresh_test_rows_in_subset": 0,
+  "new_test_inference": false,
+  "warm_source_unchanged": true
+}

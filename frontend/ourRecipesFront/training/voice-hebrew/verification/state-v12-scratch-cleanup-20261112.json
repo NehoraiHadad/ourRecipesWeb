@@ -1,0 +1,191 @@
+{
+  "scope": "Reclaim generated /tmp two-step Tiny mechanics binary files only; all configurations/data/reports and all quality model weights under project runs preserved",
+  "files": [
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "44a1d2315e524c259b458af108da56cd6ba954f32fcbb88654d02e82917967cf"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/control-42/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "44a1d2315e524c259b458af108da56cd6ba954f32fcbb88654d02e82917967cf"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/control-42/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "44a1d2315e524c259b458af108da56cd6ba954f32fcbb88654d02e82917967cf"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/loss_only-17/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "dada79e2027f9dab41a582fa9400356fc5ee58a3c85b9bf27f2c892971b77f49"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/loss_only-17/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "dada79e2027f9dab41a582fa9400356fc5ee58a3c85b9bf27f2c892971b77f49"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/control-17/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "de9a65d54a2b1bd5d850f0a3cf9d565348137cab3c5e64bb3dbc5724e355bded"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/control-17/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "de9a65d54a2b1bd5d850f0a3cf9d565348137cab3c5e64bb3dbc5724e355bded"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/data_only-42/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f70debe641b7a6ee77ad5ed39337a221516701952080bcfed93418ba90fa410c"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/data_only-42/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f70debe641b7a6ee77ad5ed39337a221516701952080bcfed93418ba90fa410c"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/data_only-17/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "791f18e6184f704152e772c8cb549b69b82986b2cae467e997c976328f4cf2bb"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/data_only-17/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "791f18e6184f704152e772c8cb549b69b82986b2cae467e997c976328f4cf2bb"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/loss_only-42/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f1e96bb792894770f6b4ca77213961e581f5e918d28f5a16bf3f16e6f825e9c4"
+    },
+    {
+      "path": "/tmp/ourrecipes-semantic-cpu-smoke/ablations/loss_only-42/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f1e96bb792894770f6b4ca77213961e581f5e918d28f5a16bf3f16e6f825e9c4"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f1e96bb792894770f6b4ca77213961e581f5e918d28f5a16bf3f16e6f825e9c4"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/control-42/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f1e96bb792894770f6b4ca77213961e581f5e918d28f5a16bf3f16e6f825e9c4"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/control-42/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "f1e96bb792894770f6b4ca77213961e581f5e918d28f5a16bf3f16e6f825e9c4"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/combined-42/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "1e260e1a86246bdeeb6242da31b129c0f4034e1a3b1c80959eb3f47a45f58b23"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/combined-42/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "1e260e1a86246bdeeb6242da31b129c0f4034e1a3b1c80959eb3f47a45f58b23"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/control-17/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "dada79e2027f9dab41a582fa9400356fc5ee58a3c85b9bf27f2c892971b77f49"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/control-17/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "dada79e2027f9dab41a582fa9400356fc5ee58a3c85b9bf27f2c892971b77f49"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/combined-17/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "c8e25e93af9f3ee63b3aa615fb21b57257b43e234df6acdfd0a72c05c8975e73"
+    },
+    {
+      "path": "/tmp/ourrecipes-combined-v8-smoke/ablations/combined-17/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "c8e25e93af9f3ee63b3aa615fb21b57257b43e234df6acdfd0a72c05c8975e73"
+    },
+    {
+      "path": "/tmp/ourrecipes-ablation-cpu-smoke/resumed/resume.pt",
+      "bytes": 537291578,
+      "sha256": "c4305ffdbaf3a64fd46089c80d169c5e029e8b49703554595359055775e91a03"
+    },
+    {
+      "path": "/tmp/ourrecipes-ablation-cpu-smoke/full/resume.pt",
+      "bytes": 537291578,
+      "sha256": "0d8169c6682d1c6557d07767f8d9134e46289b5be72ddf4375b96e0d263d2c79"
+    },
+    {
+      "path": "/tmp/ourrecipes-ablation-cpu-smoke/resumed/model/model.safetensors",
+      "bytes": 179072000,
+      "sha256": "c0dddc9cf650d613f72d4aca99c4f94867f051d712492f1f092396f511b58d2f"
+    },
+    {
+      "path": "/tmp/ourrecipes-ablation-cpu-smoke/full/model/model.safetensors",
+      "bytes": 179072000,
+      "sha256": "c0dddc9cf650d613f72d4aca99c4f94867f051d712492f1f092396f511b58d2f"
+    },
+    {
+      "path": "/tmp/ourrecipes-paired-cpu-smoke/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "5016076bb2cfa1f14d8e9be4d83e5b85f923ceba7b76dabe4d9a156a62cbb9ef"
+    },
+    {
+      "path": "/tmp/ourrecipes-paired-cpu-smoke/ablations/control/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "5016076bb2cfa1f14d8e9be4d83e5b85f923ceba7b76dabe4d9a156a62cbb9ef"
+    },
+    {
+      "path": "/tmp/ourrecipes-paired-cpu-smoke/ablations/control/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "5016076bb2cfa1f14d8e9be4d83e5b85f923ceba7b76dabe4d9a156a62cbb9ef"
+    },
+    {
+      "path": "/tmp/ourrecipes-paired-cpu-smoke/ablations/targeted/run/model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "d5e8b91941a5d6346fb4005c1056ce14ab6e0cb83728fa5f04aac8dc3862dd6b"
+    },
+    {
+      "path": "/tmp/ourrecipes-paired-cpu-smoke/ablations/targeted/run/best-validation-model/model.safetensors",
+      "bytes": 178681184,
+      "sha256": "d5e8b91941a5d6346fb4005c1056ce14ab6e0cb83728fa5f04aac8dc3862dd6b"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/resumed/resume.pt",
+      "bytes": 537291578,
+      "sha256": "ba096da0570c9d50158e222541084bf4b6190954f73fc81561bcb702d09da72f"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/full/resume.pt",
+      "bytes": 537291578,
+      "sha256": "ed61657897f85c7f860ebd39988e5098daf032f70339e813f1bb2319746f1d96"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/resumed/model/model.safetensors",
+      "bytes": 179072000,
+      "sha256": "1ecae24528a05b92374cc8aed0f4918a4b6b7625a550197ab4f6a7d2700736fd"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/full/model/model.safetensors",
+      "bytes": 179072000,
+      "sha256": "1ecae24528a05b92374cc8aed0f4918a4b6b7625a550197ab4f6a7d2700736fd"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/full/onnx/model.onnx",
+      "bytes": 179151172,
+      "sha256": "fe03e45650bf7fe96da60b7132ea4ac1324382933af0e11361992d66867283c2"
+    },
+    {
+      "path": "/tmp/voice-py313-proof/full/onnx/model.int8.onnx",
+      "bytes": 44973125,
+      "sha256": "0ec3295c28a8e484f1b7f4770f9d14d249dcaa46b0cdd119f0b2994a5bcf927e"
+    }
+  ],
+  "freed_bytes": 7913970577
+}

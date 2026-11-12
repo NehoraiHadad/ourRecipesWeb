@@ -1,0 +1,7 @@
+{
+  "packet_sha256": "5933c587bdfd7b809bdc03fca79a8d81995aa85421a2c0f0b4a7bb6bd03a2f73",
+  "bytes": 1872798,
+  "extracted_factory_reproduces_frozen_corpus": true,
+  "frozen_sources_match": true,
+  "weight_bytes_streamed_separately": true
+}

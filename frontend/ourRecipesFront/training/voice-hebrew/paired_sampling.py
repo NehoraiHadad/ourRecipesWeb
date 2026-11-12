@@ -57,7 +57,7 @@ class PairedSampler:
             for i in group:
                 q=items[i]['query']
                 if q['label']=='not_mentioned' or not absent:continue
-                ranked=[(overlap(q['context'],items[j]['query']['context']),j) for j in absent]
+                ranked=[(overlap(items[i].get('sampling_context',q['context']),items[j].get('sampling_context',items[j]['query']['context'])),j) for j in absent]
                 # Include both same-verb/wrong-object and same-object/wrong-verb
                 # peers; always taking only the top score would neglect one.
                 self.opponents[i]=[j for s,j in ranked if s>0] or absent
