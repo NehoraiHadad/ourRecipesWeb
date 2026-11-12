@@ -1,0 +1,43 @@
+{
+  "study": "scope-v16-three-category-teacher",
+  "created_utc": "2026-11-12T20:06:53.925744+00:00",
+  "source_sha256": {
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "scope_v13_stance.py": "334fe57aa3e792b821232002e87a6f4cfaa6c5bee11a86b214db322ffa8caf58",
+    "scope_v16_teacher.py": "cd853aac84fa297e5aa912921e583114cec3643a0b4096e4dd4a8aa27061ef56",
+    "scope_v16_job.py": "02aad26d55f975402beeba573ee592db836b2f04e45700b3d13b37e5a698cf1e",
+    "scope_v16_colab.py": "28662b8308782f6d020d2b0ad3992c1bae765394711a6440660adc0254bb7aff",
+    "tests/test_scope_v16_teacher.py": "a6c3137ff040c06b3b7e8f94a763b9994ca92a9c9d3eaa23aa4c7aa5adf25424"
+  },
+  "data_sha256": "33cb4af1be1b5da20b2359d0444c3fbf44c638e9d959633f20686e0ca24d0f02",
+  "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+  "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+  "license": "apache-2.0",
+  "gated": false,
+  "weight_bytes": 3441185576,
+  "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21",
+  "template_sha256": "00d3026f698ff7f844f9b489b1491b5423ed872b2e5bd7e68b0596c53f7ed784",
+  "task": "Only classify speaker commitment about single generic cooking-action claim. No recipe quantities/steps/actions generated. Capacity/teacher diagnostic, not a product choice or composed pipeline.",
+  "prompt": "One development-informed prompt revision after V15 failed calibration. Three labels A assertive/U uncertain/N nonreport, twelve manual declared demonstrations balanced4/category. Includes known TRAIN-replayed guess failure, questions, quotes, conditionals, unrelated doubt and app-state corrections. Manual demos are not claimed all verbatim TRAIN rows. No new-test inspection or within-study prompt search.",
+  "scoring": "p(A)/(p(A)+p(U)+p(N)) single next-token forced choice. Raw probabilities and label mass retained. Not calibrated truth probability or generation validation.",
+  "dtype": "FP16 cast from official BF16 checkpoint, T4 has no native BF16 acceleration; no quantization claim.",
+  "runtime": {
+    "python": "3.13",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1",
+    "huggingface_hub": "0.36.0",
+    "tokenizers": "0.22.1",
+    "safetensors": "0.6.2",
+    "batch": 4,
+    "max_prompt_tokens": 2048,
+    "padding": "left",
+    "trust_remote_code": false,
+    "use_cache": false
+  },
+  "calibration": "Same192 as small heads. Grid.50..99+.off2,zero unsafe and asserted recall>=.90. Calibrated threshold must pass both calibration and development192 before fresh. No all-deny promotion.",
+  "fresh_protocol": "New384/newnatural48 have never been inferred by V13/V14. Standalone commitment only (different research objective from prior composed-pipeline gate), no claim of passing composed recipe tests. If dev/cal pass, open384 once. If384 zero unsafe and asserted recall>=.90, open48 once,zero unsafe and recall>=.85. Stop at first failure, preserve raw scores. Once inferred sets are consumed,not future fresh proof.",
+  "scope_limits": "Synthetic authored and unreviewed. No real audio/users,CPU inference,browser,phone performance or distillation evidence. The1.7B model may help diagnostics even if too slow/large for deployment.",
+  "privacy": "Only synthetic data and public open weights on authorized named Colab. No audio,user records,keys or private account logs in material/results. Full3.44GB model remains ephemeral and is not recovered.",
+  "parent_plan_sha256": "15a103b2b9bb0fa7b8267fc1d1e518f1e4c760c12d0439a27103d5b5cd757da2",
+  "change_hypothesis": "V15 examples omitted nonreport negatives and 0/1 may conflate physical completion with commitment. Explicit taxonomy and app-record semantics may help. Simultaneously changes labels/system/examples, so no single-cause conclusion."
+}
