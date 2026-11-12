@@ -10,6 +10,24 @@ from certainty_train import gates
 
 
 class CertaintyTests(unittest.TestCase):
+    def test_position_features_exclude_prompt_separator_and_padding(self):
+        import torch
+        from types import SimpleNamespace
+        from certainty_position import features
+        class Tokenizer:
+            sep_token_id=102
+            def __call__(self,*args,**kwargs):
+                return {'input_ids':torch.tensor([[101,7000,102,*range(10,30),102,0,0]]),
+                    'token_type_ids':torch.tensor([[0,0,0,*([1]*21),0,0]]),
+                    'attention_mask':torch.tensor([[*([1]*24),0,0]])}
+        class Model:
+            def eval(self):return self
+            def bert(self,**encoded):return SimpleNamespace(last_hidden_state=encoded['input_ids'].float().unsqueeze(-1).expand(-1,-1,768))
+        x=features(Model(),Tokenizer(),['דיווח בדיקה'])
+        self.assertEqual(tuple(x.shape),(1,3072))
+        for k,want in enumerate((101,19.5,13.5,25.5)):
+            self.assertTrue(torch.equal(x[:,k*768:(k+1)*768],torch.full((1,768),want)))
+
     def test_group_and_text_disjointness_and_minimal_contrasts(self):
         data=language_rows()
         for a,b in [('train','validation'),('train','test'),('validation','test')]:
