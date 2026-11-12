@@ -1,0 +1,8 @@
+{
+ "purpose":"Adaptive refinement of calibration only, after the preregistered coarse grid gave70/96 changes and34/48 corrections withzero false; required72 and36. Freeze before dense evaluation. No NN weight or held-test change.",
+ "model":"Existing adapted-f053 factor-wide/product seed42 best2000",
+ "grid":"Per-action-class thresholds .50..99 step.01 plus off; same separable zero-false then coverage/proposals criterion; all other classes.99",
+ "limits":"Same already-used calibration493, so no claim of independent statistical safety. If qualified, actual CPU full-calibration parity, consumed-transfer480 and guard326 required, then prospective17/73 with same algorithm. Tests stay closed until all3 pass.",
+ "quality_gates":"Unchanged false0, effective/correction recall>=.75; old transfer>=24/32 and12/16,false0; ordinary guard unchanged",
+ "test_inference":false
+}
