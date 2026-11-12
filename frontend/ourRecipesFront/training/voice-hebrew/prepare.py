@@ -35,8 +35,9 @@ def bundle(output, data=ROOT/"data"):
     names += ['semantic_data.py','semantic_sweep.py','semantic_summary.py','SEMANTIC_PLAN.he.md','SEMANTIC_RESULTS.he.md']
     names += ['combined_data.py','combined_sweep.py','combined_probe.py','probe_evaluate.py','combined_reproduce.py','artifact_parity.py','COMBINED_PLAN.he.md','COMBINED_RESULTS.he.md']
     names += ['focused_data.py','focused_summary.py','confidence_probe.py','FOCUSED_PLAN.he.md','FOCUSED_RESULTS.he.md']
+    names += ['paired_sampling.py','sampling_data.py','sampling_sweep.py','sampling_summary.py','SAMPLING_PLAN.he.md','SAMPLING_RESULTS.he.md']
     allowed=[ROOT/name for name in names if (ROOT/name).exists()]
-    allowed += [ROOT/"tests"/name for name in ["test_materials.py","test_colab_controls.py","test_ablation.py","test_spans.py","test_semantic.py","test_combined.py","test_focused.py","ml_smoke.py"] if (ROOT/"tests"/name).exists()]
+    allowed += [ROOT/"tests"/name for name in ["test_materials.py","test_colab_controls.py","test_ablation.py","test_spans.py","test_semantic.py","test_combined.py","test_focused.py","test_sampling.py","test_sampling_ml.py","ml_smoke.py"] if (ROOT/"tests"/name).exists()]
     allowed += [ROOT/"verification"/name for name in ["materials.json","cpu-resume.json","browser.json","export.json","colab-pilots-20261111.json","py313-cpu.json","py313-browser.json"] if (ROOT/"verification"/name).exists()]
     allowed += [ROOT/'verification'/name for name in ['ablation-plan-20261111.json','ablation-results-20261111.json',
         'baseline-diagnostic-20261111.json','encoder-options-20261111.json','span-plan-20261111.json',
@@ -51,6 +52,7 @@ def bundle(output, data=ROOT/"data"):
         'focused-mechanics-20261111.json','focused-diagnosis-20261111.json','focused-token-targets-20261111.json',
         'focused-results-20261111.json','focused-postdiagnosis-20261111.json',
         'focused-confidence-plan-20261111.json','focused-confidence-20261111.json'] if (ROOT/'verification'/name).exists()]
+    allowed += [ROOT/'verification'/name for name in ['sampling-plan-20261112.json','sampling-audit-20261112.json','sampling-mechanics-20261112.json','sampling-results-20261112.json'] if (ROOT/'verification'/name).exists()]
     with zipfile.ZipFile(output,"w",zipfile.ZIP_DEFLATED) as z:
         for p in sorted(allowed):z.write(p,p.relative_to(ROOT))
         manifest=json.loads((Path(data)/"manifest.json").read_text())

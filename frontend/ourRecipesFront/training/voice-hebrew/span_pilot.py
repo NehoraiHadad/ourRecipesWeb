@@ -30,7 +30,9 @@ def training_loss(logits, targets, items, profile, legacy_weights):
         # is a fully supervised negative, not a low-weight background example.
         weights=torch.where(labels==2,.15,1.) if has_evidence else torch.ones_like(labels,dtype=logits.dtype)
         token_loss=(losses[j,positions]*weights).mean()
-        rows.append(.5*losses[j,0]+.5*token_loss)
+        value=.5*losses[j,0]+.5*token_loss
+        if item.get('loss_weight',1.)!=1.:value=value*item['loss_weight']
+        rows.append(value)
     return torch.stack(rows).mean()
 
 
@@ -238,11 +240,14 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact'):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact', regime='balanced-task', contrast_weight=0., checkpoint_io='periodic'):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
     if device=='cpu' and steps>2:raise ValueError('CPU mode is limited to a two-step mechanics smoke')
+    if regime not in ('balanced-task','paired-family') or checkpoint_io not in ('periodic','best-only'):raise ValueError('Unknown training regime/checkpoint IO')
+    if not 0<=contrast_weight<=1 or (contrast_weight and regime!='paired-family'):raise ValueError('Contrastive loss requires paired sampling')
+    if regime=='paired-family' and profile!='context-joint-v3':raise ValueError('Paired regime requires joint context3')
     models={'tiny':(MODEL_ID,MODEL_REVISION),'base':('dicta-il/dictabert','8884c6db002aba4002ee638fe4070c92e9ffbbf1')}
     model_id,model_revision=models[model_choice]
     started=time.monotonic();deadline=started+max_seconds;torch.set_num_threads(4)
@@ -262,6 +267,10 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     recs,rows=load_data(data)
     sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row,profile)] for split in ['train','validation']}
     items=sets['train'];rng=random.Random(seed);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
+    paired=None
+    if regime=='paired-family':
+        from paired_sampling import PairedSampler
+        rng=random.Random(seed);paired=PairedSampler(items,[r for r in rows if r['split']=='train'],rng)
     head=[p for n,p in model.named_parameters() if n.startswith('classifier.')]
     body=[p for n,p in model.named_parameters() if not n.startswith('classifier.')]
     optimizer=torch.optim.AdamW([{'params':body,'lr':3e-5},{'params':head,'lr':3e-4}],weight_decay=.01)
@@ -269,13 +278,17 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
     config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile in ('span-v1','context-span-v3') else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
     config['checkpoint_objective']=checkpoint_objective
+    config.update(sampling=regime,contrast_weight=contrast_weight,contrast_margin=1.,checkpoint_io=checkpoint_io)
+    if paired:config['action_loss_weights']={'done':8/7,'not_done':8/7,'not_mentioned':.8}
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
     if device=='cuda':torch.cuda.reset_peak_memory_stats()
     for step in range(1,steps+1):
         if time.monotonic()>deadline-40:raise TimeoutError('Span training stopped before validation/export reserve')
-        if cursor>=len(order):order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
-        chosen=[items[i] for i in order[cursor:cursor+8]];cursor+=len(chosen)
+        if paired:chosen=paired.batch()
+        else:
+            if cursor>=len(order):order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
+            chosen=[items[i] for i in order[cursor:cursor+8]];cursor+=len(chosen)
         inputs=tokenizer.pad([x['inputs'] for x in chosen],padding=True,return_tensors='pt')
         length=inputs['input_ids'].shape[1]
         targets=torch.tensor([x['targets']+[-100]*(length-len(x['targets'])) for x in chosen],device=device)
@@ -284,10 +297,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         model.train();optimizer.zero_grad(set_to_none=True)
         logits=model(**{k:v.to(device) for k,v in inputs.items()}).logits+mask
         loss=training_loss(logits,targets,chosen,profile,weights)
+        if contrast_weight:
+            from paired_sampling import margin_loss
+            loss=loss+contrast_weight*margin_loss(logits,chosen)
         if not torch.isfinite(loss):raise RuntimeError('Non-finite span loss')
         loss.backward();torch.nn.utils.clip_grad_norm_(model.parameters(),1.0);optimizer.step()
         if step%50==0:print(json.dumps({'step':step,'loss':float(loss.detach()),'seconds':time.monotonic()-started}),flush=True)
-        if step%250==0:
+        if step%250==0 and checkpoint_io=='periodic':
             model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
         if (step%eval_every==0 or step==2500) and step<steps:
             valid=[r for r in rows if r['split']=='validation']
@@ -297,7 +313,8 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
                 'validation_at_0_5':{k:v for k,v in measured.items() if k not in ['cases','by_scenario']}})
             (folder/'learning-curve.json').write_text(json.dumps(learning_curve,indent=2)+'\n')
     training_seconds=time.monotonic()-started
-    model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
+    if checkpoint_io=='periodic':
+        model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
     selected=[r for r in rows if r['split']=='validation']
     records=infer(model,tokenizer,sets['validation'],device,deadline)
     final_raw=grounded(selected,records,.5)
@@ -306,8 +323,10 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     if best_checkpoint['step']!=steps:
         from safetensors.torch import load_file
         model.load_state_dict(load_file(str(folder/'best-validation-model/model.safetensors'),device='cpu'))
-        model.save_pretrained(folder/'model',safe_serialization=True)
+        if checkpoint_io=='periodic':model.save_pretrained(folder/'model',safe_serialization=True)
         records=infer(model,tokenizer,sets['validation'],device,deadline)
+    if checkpoint_io=='best-only':
+        model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
     config['selected_step']=best_checkpoint['step']
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     candidates=[grounded(selected,records,t) for t in [.5,.6,.7,.8,.85,.9,.95,.99,1.0]]

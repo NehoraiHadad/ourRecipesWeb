@@ -1,0 +1,67 @@
+{
+  "scope": "Six real tiny CPU two-step mechanics trials; zero new-test inference, no accuracy claim",
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "balanced-task",
+      "contrast_weight": 0.0,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    },
+    {
+      "arm": "sample",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "paired-family",
+      "contrast_weight": 0.0,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    },
+    {
+      "arm": "contrast",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "paired-family",
+      "contrast_weight": 0.2,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "balanced-task",
+      "contrast_weight": 0.0,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    },
+    {
+      "arm": "sample",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "paired-family",
+      "contrast_weight": 0.0,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    },
+    {
+      "arm": "contrast",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "sampling": "paired-family",
+      "contrast_weight": 0.2,
+      "checkpoint_io": "best-only",
+      "validation_examples": 442
+    }
+  ],
+  "new_test_evaluated": false,
+  "tensor_gradient_tests_passed": 2
+}

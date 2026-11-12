@@ -1,0 +1,72 @@
+{
+  "created_utc": "2026-11-12T03:59:54.991133+00:00",
+  "source_parent": "7a34e7b",
+  "study": "sampling-v10",
+  "model": "dicta-il/dictabert",
+  "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+  "profile": "context-joint-v3",
+  "seeds": [
+    42,
+    17
+  ],
+  "arms": [
+    {
+      "name": "control",
+      "sampling": "balanced-task",
+      "contrast_weight": 0
+    },
+    {
+      "name": "sample",
+      "sampling": "paired-family",
+      "contrast_weight": 0
+    },
+    {
+      "name": "contrast",
+      "sampling": "paired-family",
+      "contrast_weight": 0.2
+    }
+  ],
+  "steps": 1000,
+  "eval_every": 250,
+  "checkpoint_objective": "f0.5",
+  "checkpoint_io": "best-only",
+  "threshold": 0.5,
+  "selection": "Per-seed precision >=matched control-1pp, recall>=control-2pp, improved meanF0.5; best worst-seedF0.5 then meanF0.5/P/state exact. Fixed42 primary17 supplemental.",
+  "gpu": "T4",
+  "remote_max_seconds": 3000,
+  "comparison_max_seconds": 2400,
+  "individual_train_max_seconds": 420,
+  "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+  "split_counts": {
+    "train": {
+      "examples": 6638,
+      "expected_updates": 5474
+    },
+    "validation": {
+      "examples": 442,
+      "expected_updates": 292
+    },
+    "test": {
+      "examples": 276,
+      "expected_updates": 188
+    }
+  },
+  "source_sha256": {
+    "paired_sampling.py": "097db5e3c9765596c47e92a7664f85f5cbf0177525ca328bb12d705e724f916f",
+    "sampling_data.py": "6271ef4488072dbac35dcf565d6a453ada4ccbfdf63ff5aedde8d4625d9284e9",
+    "sampling_sweep.py": "573d930a6a7f650e73aa0963b24a1e8c8b7a301fb28772e762765c077a53f389",
+    "span_pilot.py": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "focused_data.py": "953d86fd123217b22a5251679ef3bea26d475768a224efe5e02d7744511159b9",
+    "combined_data.py": "4e8ad54c0e3a45feb90a7b02160dabee5342574cc1a626454358b9683d6f65de",
+    "semantic_data.py": "15220e09ef313ca0574183446230d4373ca0b2efcdfa38d1f12aa71d16cc6da0",
+    "ablation.py": "38836284c98b09446154f8bc43468345653804aae923b9c76391774ccb79dae3",
+    "colab_job.py": "fedbf6b302cd2fe7f7a8c466145cf96309ee4276de6c7ad8a95ec313502acb9a",
+    "colab_pilot.py": "141d9f49f7898908ca809eb8fab07a1967d33614bbf163d2062b63522d5e75b1"
+  },
+  "original_test_scored": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "cpu_mechanics_rule": "Two tiny steps per arm/seed; no new-test inference or quality claim"
+}
