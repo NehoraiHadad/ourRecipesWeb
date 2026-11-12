@@ -1,0 +1,474 @@
+{
+  "study": "scope-v11-ordinary-replay",
+  "source_commit": "a11c46f",
+  "qualified_for_test": false,
+  "study_seconds": 780.8610879390001,
+  "trials": [
+    {
+      "seed": 42,
+      "qualified": false,
+      "checks": {
+        "gpu_calibration": true,
+        "native_transfer_and_guard": false,
+        "fullcal_gpu_cpu_routes": true,
+        "component_delta": true,
+        "minimum_updates": true,
+        "original_backbone_invariant": true
+      },
+      "actual_updates": 8000,
+      "selected_step": 3000,
+      "checkpoint_sha256": "65e740541b22c6f4339128ce209c65014fd7677535db473dd154b415ba1e3cca",
+      "calibration": {
+        "cases": 1972,
+        "proposed": 174,
+        "true_proposals": 174,
+        "false_proposals": 0,
+        "expected_effective": 96,
+        "correct_effective": 82,
+        "false_effective": 0,
+        "expected_corrections": 48,
+        "correct_corrections": 46,
+        "noop_confirmations": 92,
+        "unsafe_changes": 0,
+        "ambiguous_clear": 624,
+        "effective_recall": 0.8541666666666666,
+        "correction_recall": 0.9583333333333334
+      },
+      "unmeasured_reference_fallback": 0,
+      "native": {
+        "old": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 453,
+          "exact_rate": 0.94375,
+          "false_updates": 4,
+          "proposed_updates": 44,
+          "expected_updates": 48,
+          "update_precision": 0.9090909090909091,
+          "update_recall": 0.8333333333333334,
+          "clarifications": 421,
+          "exact_including_gold_evidence": 453,
+          "nonmatching_gold_evidence": 4
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 40,
+          "wrong_proposals": 4,
+          "correct_idempotent_confirmations": 12,
+          "correct_effective_updates": 28,
+          "wrong_effective_updates": 2,
+          "resulting_state_exact": 474,
+          "effective_update_recall": 0.875,
+          "proposal_recall": 0.8333333333333334,
+          "examples": 480
+        },
+        "corrections_correct": 16,
+        "guard": {
+          "threshold": 0.5,
+          "examples": 326,
+          "exact_proposals": 294,
+          "exact_rate": 0.901840490797546,
+          "false_updates": 3,
+          "proposed_updates": 211,
+          "expected_updates": 232,
+          "update_precision": 0.985781990521327,
+          "update_recall": 0.896551724137931,
+          "clarifications": 100,
+          "exact_including_gold_evidence": 291,
+          "nonmatching_gold_evidence": 6
+        },
+        "checks": {
+          "old_effective": true,
+          "old_corrections": true,
+          "old_false": false,
+          "guard_false": true,
+          "guard_exact": true,
+          "guard_recall": true
+        },
+        "passed": false,
+        "actual_cpu_inference": true,
+        "old_false_cases": [
+          {
+            "id": "validation-certainty-20-1",
+            "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": true,
+                  "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          },
+          {
+            "id": "validation-certainty-21-1",
+            "utterance": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": true,
+                  "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          },
+          {
+            "id": "validation-certainty-60-1",
+            "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": false,
+                  "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          },
+          {
+            "id": "validation-certainty-61-1",
+            "utterance": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": false,
+                  "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          }
+        ]
+      },
+      "parity": {
+        "known_examples": 493,
+        "route_mismatches": [],
+        "max_joint_or_ordinary_delta": 4.947185516357422e-06,
+        "max_component_delta": 4.708766937255859e-06
+      },
+      "trial_seconds": 721.3549205070001,
+      "peak_cuda_allocated_bytes": 938161664,
+      "policy": {
+        "thresholds": [
+          0.84,
+          0.81,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.98,
+          0.67,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ],
+        "readonly_threshold": 0.85,
+        "component_floor": 0.95,
+        "ordinary_threshold": 0.5
+      }
+    }
+  ],
+  "paired_v9_controls": [
+    {
+      "seed": 42,
+      "qualified": true,
+      "calibration_effective": 80,
+      "calibration_corrections": 36,
+      "calibration_false": 0,
+      "unmeasured_reference_fallback": 0,
+      "native": {
+        "old": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 434,
+          "exact_rate": 0.9041666666666667,
+          "false_updates": 0,
+          "proposed_updates": 28,
+          "expected_updates": 48,
+          "update_precision": 1.0,
+          "update_recall": 0.5833333333333334,
+          "clarifications": 426,
+          "exact_including_gold_evidence": 434,
+          "nonmatching_gold_evidence": 0
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 28,
+          "wrong_proposals": 0,
+          "correct_idempotent_confirmations": 0,
+          "correct_effective_updates": 28,
+          "wrong_effective_updates": 0,
+          "resulting_state_exact": 476,
+          "effective_update_recall": 0.875,
+          "proposal_recall": 0.5833333333333334,
+          "examples": 480
+        },
+        "corrections_correct": 14,
+        "guard": {
+          "threshold": 0.5,
+          "examples": 326,
+          "exact_proposals": 294,
+          "exact_rate": 0.901840490797546,
+          "false_updates": 3,
+          "proposed_updates": 211,
+          "expected_updates": 232,
+          "update_precision": 0.985781990521327,
+          "update_recall": 0.896551724137931,
+          "clarifications": 100,
+          "exact_including_gold_evidence": 291,
+          "nonmatching_gold_evidence": 6
+        },
+        "checks": {
+          "old_effective": true,
+          "old_corrections": true,
+          "old_false": true,
+          "guard_false": true,
+          "guard_exact": true,
+          "guard_recall": true
+        },
+        "passed": true,
+        "actual_cpu_inference": true,
+        "old_false_cases": []
+      }
+    },
+    {
+      "seed": 17,
+      "qualified": false,
+      "calibration_effective": 90,
+      "calibration_corrections": 46,
+      "calibration_false": 0,
+      "unmeasured_reference_fallback": 0,
+      "native": {
+        "old": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 447,
+          "exact_rate": 0.93125,
+          "false_updates": 1,
+          "proposed_updates": 43,
+          "expected_updates": 48,
+          "update_precision": 0.9767441860465116,
+          "update_recall": 0.875,
+          "clarifications": 411,
+          "exact_including_gold_evidence": 447,
+          "nonmatching_gold_evidence": 1
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 42,
+          "wrong_proposals": 1,
+          "correct_idempotent_confirmations": 12,
+          "correct_effective_updates": 30,
+          "wrong_effective_updates": 1,
+          "resulting_state_exact": 477,
+          "effective_update_recall": 0.9375,
+          "proposal_recall": 0.875,
+          "examples": 480
+        },
+        "corrections_correct": 16,
+        "guard": {
+          "threshold": 0.5,
+          "examples": 326,
+          "exact_proposals": 281,
+          "exact_rate": 0.8619631901840491,
+          "false_updates": 3,
+          "proposed_updates": 204,
+          "expected_updates": 232,
+          "update_precision": 0.9852941176470589,
+          "update_recall": 0.8663793103448276,
+          "clarifications": 113,
+          "exact_including_gold_evidence": 279,
+          "nonmatching_gold_evidence": 5
+        },
+        "checks": {
+          "old_effective": true,
+          "old_corrections": true,
+          "old_false": false,
+          "guard_false": true,
+          "guard_exact": false,
+          "guard_recall": false
+        },
+        "passed": false,
+        "actual_cpu_inference": true,
+        "old_false_cases": [
+          {
+            "id": "validation-certainty-60-1",
+            "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": false,
+                  "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          }
+        ]
+      }
+    },
+    {
+      "seed": 73,
+      "qualified": false,
+      "calibration_effective": 76,
+      "calibration_corrections": 40,
+      "calibration_false": 0,
+      "unmeasured_reference_fallback": 1,
+      "native": {
+        "old": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 447,
+          "exact_rate": 0.93125,
+          "false_updates": 2,
+          "proposed_updates": 40,
+          "expected_updates": 48,
+          "update_precision": 0.95,
+          "update_recall": 0.7916666666666666,
+          "clarifications": 419,
+          "exact_including_gold_evidence": 447,
+          "nonmatching_gold_evidence": 2
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 38,
+          "wrong_proposals": 2,
+          "correct_idempotent_confirmations": 12,
+          "correct_effective_updates": 26,
+          "wrong_effective_updates": 2,
+          "resulting_state_exact": 472,
+          "effective_update_recall": 0.8125,
+          "proposal_recall": 0.7916666666666666,
+          "examples": 480
+        },
+        "corrections_correct": 14,
+        "guard": {
+          "threshold": 0.5,
+          "examples": 326,
+          "exact_proposals": 293,
+          "exact_rate": 0.8987730061349694,
+          "false_updates": 3,
+          "proposed_updates": 210,
+          "expected_updates": 232,
+          "update_precision": 0.9857142857142858,
+          "update_recall": 0.8922413793103449,
+          "clarifications": 101,
+          "exact_including_gold_evidence": 291,
+          "nonmatching_gold_evidence": 5
+        },
+        "checks": {
+          "old_effective": true,
+          "old_corrections": true,
+          "old_false": false,
+          "guard_false": true,
+          "guard_exact": false,
+          "guard_recall": true
+        },
+        "passed": false,
+        "actual_cpu_inference": true,
+        "old_false_cases": [
+          {
+            "id": "validation-certainty-60-1",
+            "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": false,
+                  "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          },
+          {
+            "id": "validation-certainty-61-1",
+            "utterance": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+            "gold": {
+              "intent": "clarify",
+              "changes": []
+            },
+            "actual": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_0",
+                  "done": false,
+                  "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+                }
+              ],
+              "requiresReview": true
+            },
+            "exact": false,
+            "false_updates": 1
+          }
+        ]
+      }
+    }
+  ],
+  "new_test_inference_by_summary": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "limits": "Synthetic and adaptively developed; same sampler rule but replay class-size change may alter RNG stream. Separate proof controls fresh test opening."
+}

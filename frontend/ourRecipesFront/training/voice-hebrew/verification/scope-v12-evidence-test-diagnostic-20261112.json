@@ -1,0 +1,43 @@
+{
+  "scope": "Read-only post-test trace from the already saved single test forward pass. No new inference, weights, threshold or decoder changes. Binary decision confidence1 in metric failures is NOT neural probability.",
+  "id": "test-2",
+  "text": "למיטב הניחוש שלי הפעולה שנותרה בוצעה לחלוטין",
+  "gold": [
+    "remaining",
+    "uncertain",
+    "complete"
+  ],
+  "raw_members": {
+    "42": {
+      "label": 0,
+      "joint_confidence": 0.9669415950775146,
+      "components": [
+        0.999842643737793,
+        0.9670937657356262,
+        1.0
+      ],
+      "ordinary_score": 1.810881006357518e-23
+    },
+    "17": {
+      "label": 0,
+      "joint_confidence": 0.9993411898612976,
+      "components": [
+        0.9999982118606567,
+        0.9993429780006409,
+        1.0
+      ],
+      "ordinary_score": 2.2218152411014805e-28
+    },
+    "73": {
+      "label": 0,
+      "joint_confidence": 0.9384230375289917,
+      "components": [
+        0.9658268690109253,
+        0.9716383814811707,
+        0.9999878406524658
+      ],
+      "ordinary_score": 4.310898674181096e-13
+    }
+  },
+  "test_now_consumed_regression_only": true
+}

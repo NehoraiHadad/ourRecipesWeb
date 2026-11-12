@@ -1,0 +1,8 @@
+{
+  "observed_utc": "2026-11-12T16:36:47.096605+00:00",
+  "server_sessions_command": "ourrecipes-colab sessions",
+  "exit_code": 0,
+  "no_active_colab_runtimes": true,
+  "all_dedicated_owners_stopped_after_recovery": true,
+  "private_usage_logs_in_packet": false
+}

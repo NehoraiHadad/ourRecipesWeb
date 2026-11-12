@@ -1,0 +1,14 @@
+{
+  "path": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-hebrew-model-research-scope-20261112.zip",
+  "bytes": 168109071,
+  "sha256": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add",
+  "members": 501,
+  "crc_verified": true,
+  "frozen_sources_verified": true,
+  "full_body_included": false,
+  "test_sets_opened": [
+    "scope-v8",
+    "retained-v7"
+  ],
+  "private_account_auth_usage_logs_audio_app_data_included": false
+}

@@ -1,0 +1,11 @@
+{
+  "every_member_sha_verified": true,
+  "all_test_files_included": true,
+  "archive_unit_exit_code": 0,
+  "archive_sha256": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add",
+  "unit_tests_passed": 139,
+  "hf_hub_offline": true,
+  "full_body_and_pt_weights_omitted_from_unit_replay": true,
+  "unit_log_sha256": "d3cf2364000274ceb1268cfdb94bcd6cb6bb62e634e39763f3835cd64afc655a",
+  "new_held_test_inference": false
+}

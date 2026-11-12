@@ -1,0 +1,66 @@
+{
+  "scope": "Literal word-boundary structural coverage audit of TRAIN only, not a full morphological annotation. Six past-neutral examples inspected show no inverted reference labels; not proof that all labels are correct.",
+  "data_sha256": "720a78e61e2686d813a3839cc3ed3f33f42d70e1cbeea10e3c447ecab5201fba",
+  "training_rows": 15538,
+  "counts": {
+    "neutral_past_copula": {
+      "count": 6,
+      "labels": {
+        "0": 4,
+        "7": 2
+      },
+      "train_examples": [
+        {
+          "text": "השלמתי את מה שהיה הפעולה היחידה שנותרה בשלב שלי",
+          "label": 0
+        },
+        {
+          "text": "עדכון מהמטבח: השלמתי את מה שהיה הפעולה היחידה שנותרה בשלב שלי",
+          "label": 0
+        },
+        {
+          "text": "מה שהיה הדבר היחיד שעוד לא בוצע בשלב הנוכחי כבר בוצע",
+          "label": 0
+        },
+        {
+          "text": "עדכון מהמטבח: מה שהיה הדבר היחיד שעוד לא בוצע בשלב הנוכחי כבר בוצע",
+          "label": 0
+        },
+        {
+          "text": "מה שהיה מסומן כגמור בחלק הזה של המתכון בעצם לא נעשה",
+          "label": 7
+        },
+        {
+          "text": "עדכון מהמטבח: מה שהיה מסומן כגמור בחלק הזה של המתכון בעצם לא נעשה",
+          "label": 7
+        }
+      ]
+    },
+    "past_missing": {
+      "count": 2,
+      "labels": {
+        "0": 2
+      },
+      "train_examples": [
+        {
+          "text": "הדבר היחיד שהיה חסר להשלמת השלב הנוכחי נעשה",
+          "label": 0
+        },
+        {
+          "text": "עדכון מהמטבח: הדבר היחיד שהיה חסר להשלמת השלב הנוכחי נעשה",
+          "label": 0
+        }
+      ]
+    },
+    "feminine_past_copula": {
+      "count": 0,
+      "labels": {},
+      "train_examples": []
+    }
+  },
+  "v9_generated_feminine_subject_compositions": 12942,
+  "interpretation": "Coverage gap is a hypothesis for failure to generalize masculine/elliptical/past references; no causal demonstration or new training. Recipe-evidence veto is a separate deterministic method.",
+  "model_inference": false,
+  "fresh_test_inference": false,
+  "human_reviewed": false
+}

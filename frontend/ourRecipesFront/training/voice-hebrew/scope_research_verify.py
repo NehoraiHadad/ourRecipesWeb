@@ -5,7 +5,7 @@ from corpus import ROOT,digest
 
 
 def run():
- plans=['scope-v8-plan','scope-v8-factor-plan','scope-v9-plan','scope-v9-guarded-plan','scope-v10-consensus-plan','scope-v10-prospective-plan','scope-v11-replay-plan']
+ plans=['scope-v8-plan','scope-v8-factor-plan','scope-v9-plan','scope-v9-guarded-plan','scope-v10-consensus-plan','scope-v10-prospective-plan','scope-v11-replay-plan','scope-v12-evidence-plan']
  sources=[]
  for name in plans:
   p=ROOT/'verification'/f'{name}-20261112.json'
@@ -32,6 +32,11 @@ def run():
  if outside:raise ValueError('Outside-scope changes require separate review: '+str(outside))
  log=Path('/tmp/ourrecipes-voice-full-tests.log').read_text();count=int(re.search(r'Ran (\d+) tests',log).group(1));assert log.rstrip().endswith('OK')
  proof={'frozen_sources':sources,'archives':archives,'original_body_sha256':sha,'body_bytes':body.stat().st_size,'tests':{'command':'/tmp/ourrecipes-voice-py313/bin/python -m unittest discover -s tests -v','passed':count,'log_sha256':digest(log.encode()),'mocked_cli_controls_are_not_quality_evidence':True},'new_test_inference_by_verifier':False,'physical_device_tested':False,'human_reviewed':False,'outside_training_changes':outside,'metadata_errata':'Old guarded steps metadata stale; actual frozen V9 source/curves min4000/max8000. Old V8/V8b dedicated GPU smoke empty and preserved; actual quality trials ran.'}
+ testpath=ROOT/'verification/scope-v12-evidence-test-20261112.json'
+ if testpath.exists():
+  test=json.loads(testpath.read_text());proof['final_test_outcome']={'sets':{n:{'texts':v['texts'],'passed':v['ensemble']['passed'],'false_proposals':v['ensemble']['metrics']['false_proposals'],'effective_correct':v['ensemble']['metrics']['correct_effective'],'corrections_correct':v['ensemble']['metrics']['correct_corrections']} for n,v in test['test_sets'].items()},'all_passed':test['all_opened_tests_passed'],'now_consumed_regression_only':True,'v5fresh480_inferred':test['v5_fresh480_inferred'],'original120_inferred':test['original120_inferred'],'proof_sha256':digest(testpath.read_bytes())}
+ cleanup=ROOT/'verification/scope-research-cleanup-20261112.json'
+ if cleanup.exists():proof['runtime_cleanup']=json.loads(cleanup.read_text())
  (ROOT/'verification/scope-research-verification-20261112.json').write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps(proof,indent=2));return proof
 
 

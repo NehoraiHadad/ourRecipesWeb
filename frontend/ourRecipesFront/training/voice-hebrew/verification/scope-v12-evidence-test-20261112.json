@@ -1,0 +1,189 @@
+{
+  "method": "One fixed3 ensemble plus explicit reference-evidence veto; not three independent quality repetitions",
+  "test_sets": {
+    "scope-v8": {
+      "texts": 288,
+      "states_per_text": 4,
+      "ensemble": {
+        "metrics": {
+          "cases": 1152,
+          "proposed": 118,
+          "true_proposals": 118,
+          "false_proposals": 0,
+          "expected_effective": 64,
+          "correct_effective": 62,
+          "false_effective": 0,
+          "expected_corrections": 32,
+          "correct_corrections": 30,
+          "noop_confirmations": 56,
+          "unsafe_changes": 0,
+          "ambiguous_clear": 384,
+          "effective_recall": 0.96875,
+          "correction_recall": 0.9375,
+          "failures": [
+            {
+              "id": "scope-test-120",
+              "text": "אני מאשר בלי ספק שהמשימה שכבר קיבלה תיעוד של ביצוע עדיין אינה מושלמת",
+              "variant": "unique-a",
+              "gold": [
+                "marked",
+                "asserted",
+                "incomplete"
+              ],
+              "pred": [
+                "other",
+                "other",
+                "unspecified"
+              ],
+              "confidence": 0.0,
+              "expected": {
+                "kind": "report",
+                "changes": [
+                  {
+                    "action_id": "mix",
+                    "completed": false
+                  }
+                ],
+                "effective_changes": 1,
+                "correction": 1
+              },
+              "actual": {
+                "kind": "clarify",
+                "changes": []
+              }
+            },
+            {
+              "id": "scope-test-120",
+              "text": "אני מאשר בלי ספק שהמשימה שכבר קיבלה תיעוד של ביצוע עדיין אינה מושלמת",
+              "variant": "unique-b",
+              "gold": [
+                "marked",
+                "asserted",
+                "incomplete"
+              ],
+              "pred": [
+                "other",
+                "other",
+                "unspecified"
+              ],
+              "confidence": 0.0,
+              "expected": {
+                "kind": "report",
+                "changes": [
+                  {
+                    "action_id": "mix",
+                    "completed": false
+                  }
+                ],
+                "effective_changes": 1,
+                "correction": 1
+              },
+              "actual": {
+                "kind": "clarify",
+                "changes": []
+              }
+            }
+          ]
+        },
+        "unmeasured_reference_fallback": 0,
+        "passed": true
+      }
+    },
+    "retained-v7": {
+      "texts": 205,
+      "states_per_text": 4,
+      "ensemble": {
+        "metrics": {
+          "cases": 820,
+          "proposed": 66,
+          "true_proposals": 64,
+          "false_proposals": 2,
+          "expected_effective": 32,
+          "correct_effective": 32,
+          "false_effective": 2,
+          "expected_corrections": 16,
+          "correct_corrections": 16,
+          "noop_confirmations": 32,
+          "unsafe_changes": 2,
+          "ambiguous_clear": 240,
+          "effective_recall": 1.0,
+          "correction_recall": 1.0,
+          "failures": [
+            {
+              "id": "test-2",
+              "text": "למיטב הניחוש שלי הפעולה שנותרה בוצעה לחלוטין",
+              "variant": "unique-a",
+              "gold": [
+                "remaining",
+                "uncertain",
+                "complete"
+              ],
+              "pred": [
+                "remaining",
+                "asserted",
+                "complete"
+              ],
+              "confidence": 1.0,
+              "expected": {
+                "kind": "clarify",
+                "changes": []
+              },
+              "actual": {
+                "kind": "report",
+                "changes": [
+                  {
+                    "action_id": "mix",
+                    "completed": true
+                  }
+                ],
+                "effective_changes": 1,
+                "correction": 0
+              }
+            },
+            {
+              "id": "test-2",
+              "text": "למיטב הניחוש שלי הפעולה שנותרה בוצעה לחלוטין",
+              "variant": "unique-b",
+              "gold": [
+                "remaining",
+                "uncertain",
+                "complete"
+              ],
+              "pred": [
+                "remaining",
+                "asserted",
+                "complete"
+              ],
+              "confidence": 1.0,
+              "expected": {
+                "kind": "clarify",
+                "changes": []
+              },
+              "actual": {
+                "kind": "report",
+                "changes": [
+                  {
+                    "action_id": "mix",
+                    "completed": true
+                  }
+                ],
+                "effective_changes": 1,
+                "correction": 0
+              }
+            }
+          ]
+        },
+        "unmeasured_reference_fallback": 0,
+        "passed": false
+      }
+    }
+  },
+  "real_cpu_inference": true,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "v5_fresh480_inferred": false,
+  "original120_inferred": false,
+  "scope": "Single generic reference/binding tests, synthetic authored and correlated. Ordinary reference deferral disqualifies; live legacy named-action extraction not measured by these tests. Consumed326 validates actual saved T4 legacy proposals plus ingredient/verb guard separately.",
+  "all_opened_tests_passed": false,
+  "seconds": 46.25335919400095
+}

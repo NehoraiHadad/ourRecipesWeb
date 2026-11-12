@@ -1,0 +1,266 @@
+{
+  "scope": "Post-selection diagnosis on consumed calibration/transfer only; alternative selectors reported but cannot replace the fixed primary method retroactively. No weights, thresholds or tests changed.",
+  "trials": [
+    {
+      "seed": 42,
+      "selected_step": 3000,
+      "checkpoint_sha256": "65e740541b22c6f4339128ce209c65014fd7677535db473dd154b415ba1e3cca",
+      "calibration_fallbacks": [],
+      "old_false": [
+        {
+          "id": "validation-certainty-20-1",
+          "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": true,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 1,
+          "actual_cpu_raw": {
+            "label": 6,
+            "joint_confidence": 0.99969482421875,
+            "components": [
+              0.9999939203262329,
+              0.9997058510780334,
+              0.9999949932098389
+            ],
+            "ordinary_score": 2.24000738345288e-14
+          },
+          "fixed_route": [
+            "reference",
+            6
+          ]
+        },
+        {
+          "id": "validation-certainty-21-1",
+          "utterance": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": true,
+                "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 1,
+          "actual_cpu_raw": {
+            "label": 6,
+            "joint_confidence": 0.9995050430297852,
+            "components": [
+              0.9995155334472656,
+              0.9999996423721313,
+              0.9999898672103882
+            ],
+            "ordinary_score": 3.906687722920992e-17
+          },
+          "fixed_route": [
+            "reference",
+            6
+          ]
+        },
+        {
+          "id": "validation-certainty-60-1",
+          "utterance": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 1,
+          "actual_cpu_raw": {
+            "label": 7,
+            "joint_confidence": 0.9999524354934692,
+            "components": [
+              0.9999797344207764,
+              0.9999750852584839,
+              0.999997615814209
+            ],
+            "ordinary_score": 1.216051966685959e-13
+          },
+          "fixed_route": [
+            "reference",
+            7
+          ]
+        },
+        {
+          "id": "validation-certainty-61-1",
+          "utterance": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "exact": false,
+          "false_updates": 1,
+          "actual_cpu_raw": {
+            "label": 7,
+            "joint_confidence": 0.9982848763465881,
+            "components": [
+              0.9982853531837463,
+              0.9999998807907104,
+              0.9999996423721313
+            ],
+            "ordinary_score": 8.158879655649959e-16
+          },
+          "fixed_route": [
+            "reference",
+            7
+          ]
+        }
+      ],
+      "diagnostic_alternatives": [
+        {
+          "name": "safety-typed",
+          "selected_step": 7000,
+          "qualified_by_original_noncomponent_gates": false,
+          "checks": {
+            "new_false": true,
+            "new_effective": true,
+            "new_corrections": true,
+            "no_unmeasured_fallback": true,
+            "old_false": false,
+            "old_effective": true,
+            "old_corrections": true,
+            "guard_false": true,
+            "guard_exact": true,
+            "guard_recall": true,
+            "native_parity": true,
+            "minimum_updates": true,
+            "backbone_invariant": true
+          },
+          "cal_effective": 90,
+          "cal_corrections": 48,
+          "cal_false": 0,
+          "old_effective": 28,
+          "old_corrections": 16,
+          "old_false": 1,
+          "guard_exact": 294
+        },
+        {
+          "name": "safety-global",
+          "selected_step": 7000,
+          "qualified_by_original_noncomponent_gates": false,
+          "checks": {
+            "new_false": false,
+            "new_effective": true,
+            "new_corrections": true,
+            "no_unmeasured_fallback": true,
+            "old_false": false,
+            "old_effective": true,
+            "old_corrections": true,
+            "guard_false": true,
+            "guard_exact": true,
+            "guard_recall": true,
+            "native_parity": true,
+            "minimum_updates": true,
+            "backbone_invariant": true
+          },
+          "cal_effective": 90,
+          "cal_corrections": 48,
+          "cal_false": 3,
+          "old_effective": 28,
+          "old_corrections": 16,
+          "old_false": 3,
+          "guard_exact": 294
+        },
+        {
+          "name": "semantic-typed",
+          "selected_step": 3000,
+          "qualified_by_original_noncomponent_gates": false,
+          "checks": {
+            "new_false": true,
+            "new_effective": true,
+            "new_corrections": true,
+            "no_unmeasured_fallback": true,
+            "old_false": false,
+            "old_effective": true,
+            "old_corrections": true,
+            "guard_false": true,
+            "guard_exact": false,
+            "guard_recall": true,
+            "native_parity": true,
+            "minimum_updates": true,
+            "backbone_invariant": true
+          },
+          "cal_effective": 90,
+          "cal_corrections": 48,
+          "cal_false": 0,
+          "old_effective": 28,
+          "old_corrections": 16,
+          "old_false": 4,
+          "guard_exact": 293
+        },
+        {
+          "name": "semantic-global",
+          "selected_step": 3000,
+          "qualified_by_original_noncomponent_gates": false,
+          "checks": {
+            "new_false": true,
+            "new_effective": true,
+            "new_corrections": true,
+            "no_unmeasured_fallback": true,
+            "old_false": false,
+            "old_effective": true,
+            "old_corrections": true,
+            "guard_false": true,
+            "guard_exact": false,
+            "guard_recall": true,
+            "native_parity": true,
+            "minimum_updates": true,
+            "backbone_invariant": true
+          },
+          "cal_effective": 86,
+          "cal_corrections": 46,
+          "cal_false": 0,
+          "old_effective": 28,
+          "old_corrections": 16,
+          "old_false": 4,
+          "guard_exact": 293
+        }
+      ]
+    }
+  ],
+  "fresh_test_inference": false,
+  "human_reviewed": false,
+  "physical_device_tested": false
+}

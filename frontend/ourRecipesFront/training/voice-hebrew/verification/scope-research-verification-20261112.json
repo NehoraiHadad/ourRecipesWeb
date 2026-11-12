@@ -34,6 +34,11 @@
       "plan": "verification/scope-v11-replay-plan-20261112.json",
       "files": 55,
       "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v12-evidence-plan-20261112.json",
+      "files": 55,
+      "all_equal": true
     }
   ],
   "archives": [
@@ -76,19 +81,58 @@
       "crc": true,
       "dedicated_gpu_mechanics_trials": 1,
       "empty_legacy_smoke_not_quality_evidence": false
+    },
+    {
+      "folder": "colab-scope-v11-replay",
+      "sha256": "b77ad2b713dfeddc969b5a56980e1bdd67f8e414bf213c0cb46b86fdfee9e089",
+      "bytes": 70592945,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 1,
+      "empty_legacy_smoke_not_quality_evidence": false
     }
   ],
   "original_body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
   "body_bytes": 735066976,
   "tests": {
     "command": "/tmp/ourrecipes-voice-py313/bin/python -m unittest discover -s tests -v",
-    "passed": 130,
-    "log_sha256": "05d46a865c5083f38c9c9be5ebc16bfcfa26176dd46274aff37920a94c620e2e",
+    "passed": 139,
+    "log_sha256": "496dfea05e8e4baa68c04aad2691f2c8c949ca28eccd46d518ea636beb72d408",
     "mocked_cli_controls_are_not_quality_evidence": true
   },
   "new_test_inference_by_verifier": false,
   "physical_device_tested": false,
   "human_reviewed": false,
   "outside_training_changes": [],
-  "metadata_errata": "Old guarded steps metadata stale; actual frozen V9 source/curves min4000/max8000. Old V8/V8b dedicated GPU smoke empty and preserved; actual quality trials ran."
+  "metadata_errata": "Old guarded steps metadata stale; actual frozen V9 source/curves min4000/max8000. Old V8/V8b dedicated GPU smoke empty and preserved; actual quality trials ran.",
+  "final_test_outcome": {
+    "sets": {
+      "scope-v8": {
+        "texts": 288,
+        "passed": true,
+        "false_proposals": 0,
+        "effective_correct": 62,
+        "corrections_correct": 30
+      },
+      "retained-v7": {
+        "texts": 205,
+        "passed": false,
+        "false_proposals": 2,
+        "effective_correct": 32,
+        "corrections_correct": 16
+      }
+    },
+    "all_passed": false,
+    "now_consumed_regression_only": true,
+    "v5fresh480_inferred": false,
+    "original120_inferred": false,
+    "proof_sha256": "fad564e3b69e4ed1e5e63e218e55fc2dec843616a6ac6d2e842b416b6d223606"
+  },
+  "runtime_cleanup": {
+    "observed_utc": "2026-11-12T16:36:47.096605+00:00",
+    "server_sessions_command": "ourrecipes-colab sessions",
+    "exit_code": 0,
+    "no_active_colab_runtimes": true,
+    "all_dedicated_owners_stopped_after_recovery": true,
+    "private_usage_logs_in_packet": false
+  }
 }
