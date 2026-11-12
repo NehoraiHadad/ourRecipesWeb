@@ -1,0 +1,10 @@
+{
+ "purpose":"Empirical attribute-wise confidence calibration, adapted factor-wide/product best2000 seed42 fixed; no new weights/test. Freeze before extracting component probabilities.",
+ "reason":"Unthresholded argmax can recover78/96 changes and40/48 corrections, but classwise safe calibration recovers70 and34. A product can hide whether uncertainty is reference, assertion or completion.",
+ "grid":[0.5,0.7,0.85,0.9,0.95,0.97,0.99,0.995,0.999],
+ "gate":"Actionable fact requires each chosen attribute probability>=its threshold and>0.5. Shared3 thresholds across action classes; nonaction/OTHER retain joint.99. Include all-action-abstain option.",
+ "selection":"Zero false and unmeasured-reference-fallback first; correct effective+correction, correct proposals, then higher reference/commitment/completion thresholds; exact same current-state binding and metrics.",
+ "verification":"Actual CPU raw components on493; validate argmax/joint confidence vs saved real T4. Vectorized selection counts must equal full4-state scorer. If calibration qualifies, run actual CPU old480/guard326; never choose thresholds by these transfer sets.",
+ "qualification":"Unchanged new false0/recalls>=.75; old>=24/32 effective,>=12/16 correction,false0; guard>=294/326,false<=3,recall>=.876551724. Before tests require actual component-gate GPU/CPU parity and prospective17/73 all pass. Same already-used calibration, no independent statistical guarantee.",
+ "test_inference":false
+}
