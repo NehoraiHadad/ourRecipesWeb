@@ -1,0 +1,70 @@
+{
+  "study": "adapter-v6",
+  "created_utc": "2026-11-12T08:03:27.265866+00:00",
+  "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "initial_head_sha256": "474c3a66362c0515afdb92e253fb65f6b39dc95ccffb4b159ed389877b4adcd0",
+  "source_sha256": {
+    "adapter_study.py": "560c97049ab14171c0e5eefc759c4eb3da84e7870c7acd2e9024f98cd7ac6378",
+    "adapter_job.py": "69a104647f202da3896288747645f9d911149602304ac1c1e161e32f0feed415",
+    "adapter_colab.py": "8e3819bcc698dd774db2bd019f90673f88cc94c4653e9f0109d13791a3c4446a",
+    "certainty_adapter.py": "d6f4b1277d005be3cf3facb47303756c6b8039085567134cdef2e2fb6a1cca92",
+    "certainty_position.py": "59cd8f38718435511488d077a834fccab31c298f48dfde2169192e45ac92d130",
+    "certainty_train.py": "0942eda5afcdb4f20ee69f99fa0bf268b08263ced9debee8e869c18c15de36be",
+    "certainty_contract.py": "ddc8309df05aa499587e25c8ee89c81578dcabd0a222118386fa84f44a407bea",
+    "reference_train.py": "2e4250538372a8ac841bca5906946e4dfe51d4a8bebe15d3c7db88336cfbf5ee",
+    "reference_contract.py": "27d8734e5eef5282624fd0a83a2598e26cbc94519f613012a7d497a8fea7862c",
+    "certainty_data.py": "8d9c3ed18f3283b133c87017f2a621bd8f78dbc0c31358289027e391315419e3",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "span_pilot.py": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6"
+  },
+  "data_files": {
+    "verification/certainty-v5-data-20261112/plan.json": "14edf27754546299ef8b36dfdf20a383312607c659a7b325b73cc23c422c04bb",
+    "verification/certainty-v5-data-20261112/language.json": "3766ec0262be335612866c4c8c6846a33e8e7f534b3dcae23be4e23ecf3b0b13",
+    "verification/certainty-v5-data-20261112/validation.json": "9bcf68d9cf8b5117d426b9a827fca8fc4e1ec52fa0a220d9f8502fb07cf6b753",
+    "verification/certainty-v5-data-20261112/test.json": "5836ae566b0e80524fe255f0b60ec2f2ede1401f5213b517910425c744ca36f1",
+    "runs/certainty-v5-r1/native-baseline.json": "106e55e569fff418b23cf174c64535c394d7881569fa1eecd3554e1b0c598c20",
+    "runs/colab-state-v12/recovered/ablations/control-42/run/validation-research-full.json": "072aa04937839ace96a7eaf8ca07e21461d1ea2b6744efeedc3e7b41b6de3d06",
+    "runs/state-v13-preflight/shared/manifest.json": "940d1621602c0cb7cc64b9a313075938be0428abb8e20116aef502a57cdfe8ad",
+    "runs/state-v13-preflight/shared/recipes.json": "bf6af11aa81ed38576ed44688b2a655f7ef9cb8b4d64c9715d18cfb4a9e1fd5b",
+    "runs/state-v13-preflight/shared/train.jsonl": "ee29d092e8e41208b07dab4225b301c4b0a3281f2685616cb41840160148c118",
+    "runs/state-v13-preflight/shared/validation.jsonl": "6c2c11773387c7c25fe04ea3bdbfa411af2d7ebfedc96a926cb8846bc9fee413",
+    "runs/state-v13-preflight/shared/test.jsonl": "2c3c12ec240b88e3108e85181e8dd19d514125ca7142dc88de0694f97005a6d0"
+  },
+  "steps": {
+    "minimum": 2000,
+    "maximum": 3000,
+    "evaluation": [
+      0,
+      100,
+      250,
+      500,
+      750,
+      1000,
+      1250,
+      1500,
+      1750,
+      2000,
+      2500,
+      3000
+    ],
+    "patience": 4
+  },
+  "batch": 8,
+  "sampling": "uniform labels in shuffled cycles; uniform examples within label; matched seeds",
+  "learning_rate_head": 0.0003,
+  "learning_rate_adapter": 5e-05,
+  "weight_decay": 0.01,
+  "precision": "FP32",
+  "seeds": [
+    42,
+    17,
+    73
+  ],
+  "pilot": "control42 and adapter42; expand adapters only if42 passes and min2000 completed",
+  "quality_wall_seconds": 2400,
+  "selection": "Predeclared V5 gates and cost5, validation only; no test duration tuning",
+  "unit": "minibatch optimizer steps, not runs or full-batch epochs",
+  "new_test_inference": false,
+  "physical_device_tested": false
+}

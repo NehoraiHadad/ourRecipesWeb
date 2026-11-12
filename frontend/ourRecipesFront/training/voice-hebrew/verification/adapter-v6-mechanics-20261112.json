@@ -1,0 +1,210 @@
+{
+  "scope": "Actual CPU full-body two-step subset mechanics; no quality, GPU or fresh test. Tiny checkpoint replay tested separately.",
+  "cpu": {
+    "study": "adapter-v6",
+    "trials": [
+      {
+        "arm": "control",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            0,
+            1.0,
+            8,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": true,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": false,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 0,
+            "uncertain_safe": 0
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 8,
+            "exact_proposals": 8,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 4,
+            "expected_updates": 4,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 4,
+            "exact_including_gold_evidence": 8,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 4,
+            "exact_proposals": 4,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 4,
+            "expected_updates": 4,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 0,
+            "exact_including_gold_evidence": 4,
+            "nonmatching_gold_evidence": 0
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 4,
+            "exact_proposals": 3,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 2,
+            "expected_updates": 3,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 2,
+            "exact_including_gold_evidence": 3,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 0,
+          "arm": "control",
+          "seed": 42
+        },
+        "actual_steps": 2,
+        "stop_reason": "max_steps",
+        "seconds": 1.91300450000017,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": null,
+        "head_parameters": 400133,
+        "device": "cpu",
+        "history_points": 2,
+        "mechanics_only": true,
+        "new_test_inference": false
+      },
+      {
+        "arm": "adapter",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            0,
+            1.0,
+            8,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": true,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": false,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 0,
+            "uncertain_safe": 0
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 8,
+            "exact_proposals": 8,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 4,
+            "expected_updates": 4,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 4,
+            "exact_including_gold_evidence": 8,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 4,
+            "exact_proposals": 4,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 4,
+            "expected_updates": 4,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 0,
+            "exact_including_gold_evidence": 4,
+            "nonmatching_gold_evidence": 0
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 4,
+            "exact_proposals": 3,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 2,
+            "expected_updates": 3,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 2,
+            "exact_including_gold_evidence": 3,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 0,
+          "arm": "adapter",
+          "seed": 42
+        },
+        "actual_steps": 2,
+        "stop_reason": "max_steps",
+        "seconds": 2.444376858000396,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": null,
+        "head_parameters": 400133,
+        "device": "cpu",
+        "history_points": 2,
+        "mechanics_only": true,
+        "new_test_inference": false
+      }
+    ],
+    "expanded": false,
+    "qualified_for_fresh_test": false,
+    "seconds": 6.426505800000086,
+    "test_policy": "No fresh-test inference in training; later native parity and all three fixed seeds required",
+    "new_test_inference": false,
+    "physical_device_tested": false,
+    "human_reviewed": false,
+    "mechanics_only": true
+  },
+  "tests": 85,
+  "early_local_setup_failures": "A system-Python import and validation subset indexing error were fixed before allocation; partial CPU folders retained. No GPU was allocated for those attempts."
+}
