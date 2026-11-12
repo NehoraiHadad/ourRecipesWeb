@@ -1,0 +1,464 @@
+{
+  "scope": "Known consumed validation only; no new training, threshold or selection. Exact metric reproduction checked.",
+  "threshold": 0.99,
+  "checkpoint_sha256": "becfe855a5dc3f98eebfaf11cf44b5fb3e7e16e31825477cb2feea8b81755b3c",
+  "effective": {
+    "gold_proposals": 48,
+    "gold_effective_updates": 32,
+    "gold_idempotent_confirmations": 16,
+    "correct_proposals": 40,
+    "wrong_proposals": 5,
+    "correct_idempotent_confirmations": 16,
+    "correct_effective_updates": 24,
+    "wrong_effective_updates": 2,
+    "resulting_state_exact": 470,
+    "effective_update_recall": 0.75,
+    "proposal_recall": 0.8333333333333334,
+    "examples": 480
+  },
+  "errors": [
+    {
+      "id": "validation-certainty-28-0",
+      "text": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "complete"
+      ],
+      "confidence": 0.9992449283599854,
+      "route": "reference-head",
+      "false": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": true,
+          "effective": true
+        }
+      ],
+      "missed": [],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": true,
+            "evidence": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+          }
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-28-2",
+      "text": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "complete"
+      ],
+      "confidence": 0.9992449283599854,
+      "route": "reference-head",
+      "false": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": true,
+          "effective": true
+        }
+      ],
+      "missed": [],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": true,
+            "evidence": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי כבר נעשה"
+          }
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-68-0",
+      "text": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.997626006603241,
+      "route": "reference-head",
+      "false": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": false,
+          "effective": false
+        }
+      ],
+      "missed": [],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": false,
+            "evidence": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+          }
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-68-2",
+      "text": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.997626006603241,
+      "route": "reference-head",
+      "false": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": false,
+          "effective": false
+        }
+      ],
+      "missed": [],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": false,
+            "evidence": "עוד לא סיימתי את העבודה, אז איני מאשר שמה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+          }
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-80-0",
+      "text": "המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל",
+      "predicted_fact": [
+        "marked",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9566896557807922,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": false,
+            "evidence": "המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-80-2",
+      "text": "המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל",
+      "predicted_fact": [
+        "marked",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9566896557807922,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": false,
+            "evidence": "המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-90-0",
+      "text": "הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9382870197296143,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": false,
+            "evidence": "הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-90-2",
+      "text": "הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9382870197296143,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": false,
+            "evidence": "הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-91-0",
+      "text": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9917196035385132,
+      "route": "reference-head",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": false,
+            "evidence": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-91-1",
+      "text": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9917196035385132,
+      "route": "reference-head",
+      "false": [
+        {
+          "action_id": "c_validation_x_0_0",
+          "value": false,
+          "effective": false
+        }
+      ],
+      "missed": [],
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "actual": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_0",
+            "done": false,
+            "evidence": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה"
+          }
+        ],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-91-2",
+      "text": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "predicted_fact": [
+        "remaining",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9917196035385132,
+      "route": "reference-head",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": false,
+            "evidence": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-111-0",
+      "text": "אני מעדכן: הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם",
+      "predicted_fact": [
+        "marked",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9702175855636597,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_x_0_2",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_x_0_2",
+            "done": false,
+            "evidence": "אני מעדכן: הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    },
+    {
+      "id": "validation-certainty-111-2",
+      "text": "אני מעדכן: הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם",
+      "predicted_fact": [
+        "marked",
+        "asserted",
+        "incomplete"
+      ],
+      "confidence": 0.9702175855636597,
+      "route": "abstain",
+      "false": [],
+      "missed": [
+        {
+          "action_id": "c_validation_y_1_3",
+          "value": false,
+          "effective": true
+        }
+      ],
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "c_validation_y_1_3",
+            "done": false,
+            "evidence": "אני מעדכן: הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם"
+          }
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "changes": [],
+        "requiresReview": true
+      }
+    }
+  ],
+  "new_test_inference": false
+}

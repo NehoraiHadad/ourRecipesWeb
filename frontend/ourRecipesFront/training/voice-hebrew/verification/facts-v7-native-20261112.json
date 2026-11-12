@@ -1,0 +1,1408 @@
+{
+  "study": "facts-v7",
+  "native_vs_gpu": [
+    {
+      "arm": "flat-narrow",
+      "examples": 19,
+      "labels_mismatch": [],
+      "threshold_decision_mismatch": [],
+      "max_confidence_abs_delta": 8.940696716308594e-07,
+      "checkpoint_sha256": "b545cc86c78eafd3f13d203a9af02c5d77bb75b8975f412e8fc07913a9484fa5",
+      "real_cpu_and_t4": true,
+      "prior_v5_validation": {
+        "scope": "Post-selection diagnostic on consumed V5 validation, same480 cases as V6; no threshold/weight/model selection. Not a fresh test.",
+        "metrics": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 425,
+          "exact_rate": 0.8854166666666666,
+          "false_updates": 9,
+          "proposed_updates": 29,
+          "expected_updates": 48,
+          "update_precision": 0.6896551724137931,
+          "update_recall": 0.4166666666666667,
+          "clarifications": 433,
+          "exact_including_gold_evidence": 425,
+          "nonmatching_gold_evidence": 9
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 20,
+          "wrong_proposals": 9,
+          "correct_idempotent_confirmations": 16,
+          "correct_effective_updates": 4,
+          "wrong_effective_updates": 0,
+          "resulting_state_exact": 452,
+          "effective_update_recall": 0.125,
+          "proposal_recall": 0.4166666666666667,
+          "examples": 480
+        },
+        "corrections_required": 16,
+        "corrections_correct": 0,
+        "reference_failures": [
+          {
+            "id": "validation-certainty-80-0",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-80-2",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-0",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-2",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-0",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-2",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-0",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-2",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "arm": "factor-narrow",
+      "examples": 19,
+      "labels_mismatch": [],
+      "threshold_decision_mismatch": [],
+      "max_confidence_abs_delta": 2.980232238769531e-07,
+      "checkpoint_sha256": "7ed94bd260e311c44037777edc016feec8c02c3c65e06de2eec9476fbff31341",
+      "real_cpu_and_t4": true,
+      "prior_v5_validation": {
+        "scope": "Post-selection diagnostic on consumed V5 validation, same480 cases as V6; no threshold/weight/model selection. Not a fresh test.",
+        "metrics": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 436,
+          "exact_rate": 0.9083333333333333,
+          "false_updates": 1,
+          "proposed_updates": 9,
+          "expected_updates": 48,
+          "update_precision": 0.8888888888888888,
+          "update_recall": 0.16666666666666666,
+          "clarifications": 468,
+          "exact_including_gold_evidence": 436,
+          "nonmatching_gold_evidence": 1
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 8,
+          "wrong_proposals": 1,
+          "correct_idempotent_confirmations": 8,
+          "correct_effective_updates": 0,
+          "wrong_effective_updates": 0,
+          "resulting_state_exact": 448,
+          "effective_update_recall": 0.0,
+          "proposal_recall": 0.16666666666666666,
+          "examples": 480
+        },
+        "corrections_required": 16,
+        "corrections_correct": 0,
+        "reference_failures": [
+          {
+            "id": "validation-certainty-80-0",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-80-2",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-0",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-2",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-0",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-2",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-0",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-2",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "arm": "factor-wide",
+      "examples": 17,
+      "labels_mismatch": [],
+      "threshold_decision_mismatch": [],
+      "max_confidence_abs_delta": 1.1920928955078125e-07,
+      "checkpoint_sha256": "87ea33650d15c89a27c8c66c8492dcefac485b1ede702ab27d2b24100d6f6d5a",
+      "real_cpu_and_t4": true,
+      "prior_v5_validation": {
+        "scope": "Post-selection diagnostic on consumed V5 validation, same480 cases as V6; no threshold/weight/model selection. Not a fresh test.",
+        "metrics": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 424,
+          "exact_rate": 0.8833333333333333,
+          "false_updates": 2,
+          "proposed_updates": 14,
+          "expected_updates": 48,
+          "update_precision": 0.8571428571428571,
+          "update_recall": 0.25,
+          "clarifications": 448,
+          "exact_including_gold_evidence": 424,
+          "nonmatching_gold_evidence": 2
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 12,
+          "wrong_proposals": 2,
+          "correct_idempotent_confirmations": 8,
+          "correct_effective_updates": 4,
+          "wrong_effective_updates": 0,
+          "resulting_state_exact": 452,
+          "effective_update_recall": 0.125,
+          "proposal_recall": 0.25,
+          "examples": 480
+        },
+        "corrections_required": 16,
+        "corrections_correct": 0,
+        "reference_failures": [
+          {
+            "id": "validation-certainty-80-0",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-80-2",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-0",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-2",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-0",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-2",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-0",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-2",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "arm": "factor-full",
+      "examples": 19,
+      "labels_mismatch": [],
+      "threshold_decision_mismatch": [],
+      "max_confidence_abs_delta": 1.1920928955078125e-07,
+      "checkpoint_sha256": "ddd387d83bc110778342749c10e1625db7bda1bb2ae617326f1d72da86eb391d",
+      "real_cpu_and_t4": true,
+      "prior_v5_validation": {
+        "scope": "Post-selection diagnostic on consumed V5 validation, same480 cases as V6; no threshold/weight/model selection. Not a fresh test.",
+        "metrics": {
+          "threshold": 0.5,
+          "examples": 480,
+          "exact_proposals": 413,
+          "exact_rate": 0.8604166666666667,
+          "false_updates": 1,
+          "proposed_updates": 1,
+          "expected_updates": 48,
+          "update_precision": 0.0,
+          "update_recall": 0.0,
+          "clarifications": 461,
+          "exact_including_gold_evidence": 413,
+          "nonmatching_gold_evidence": 1
+        },
+        "effective": {
+          "gold_proposals": 48,
+          "gold_effective_updates": 32,
+          "gold_idempotent_confirmations": 16,
+          "correct_proposals": 0,
+          "wrong_proposals": 1,
+          "correct_idempotent_confirmations": 0,
+          "correct_effective_updates": 0,
+          "wrong_effective_updates": 0,
+          "resulting_state_exact": 448,
+          "effective_update_recall": 0.0,
+          "proposal_recall": 0.0,
+          "examples": 480
+        },
+        "corrections_required": 16,
+        "corrections_correct": 0,
+        "reference_failures": [
+          {
+            "id": "validation-certainty-80-0",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-80-2",
+            "text": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-81-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05de\u05e9\u05d9\u05de\u05d4 \u05d4\u05d1\u05d5\u05d3\u05d3\u05ea \u05e9\u05de\u05d5\u05e4\u05d9\u05e2\u05d4 \u05d0\u05e6\u05dc\u05d9 \u05db\u05d2\u05de\u05d5\u05e8\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05e9\u05d1\u05d5 \u05d0\u05e0\u05d9 \u05e0\u05de\u05e6\u05d0 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05de\u05d4 \u05d1\u05e4\u05d5\u05e2\u05dc"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-0",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-90-2",
+            "text": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-91-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05e2\u05dd \u05d0\u05d9\u05e9\u05d5\u05e8 \u05d1\u05d9\u05e6\u05d5\u05e2 \u05d1\u05d7\u05dc\u05e7 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05d0\u05d9\u05e0\u05e0\u05d4 \u05de\u05d5\u05db\u05e0\u05d4"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-0",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-100-2",
+            "text": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-101-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05de\u05d4 \u05e9\u05e0\u05d7\u05e9\u05d1 \u05dc\u05e4\u05e2\u05d5\u05dc\u05d4 \u05d4\u05de\u05d5\u05e9\u05dc\u05de\u05ea \u05d4\u05d9\u05d7\u05d9\u05d3\u05d4 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05d0 \u05e0\u05e2\u05e9\u05d4 \u05d1\u05d0\u05de\u05ea"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-0",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-110-2",
+            "text": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-0",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_x_0_2",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          },
+          {
+            "id": "validation-certainty-111-2",
+            "text": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd",
+            "gold": {
+              "intent": "report",
+              "changes": [
+                {
+                  "actionId": "c_validation_y_1_3",
+                  "done": false,
+                  "evidence": "\u05d0\u05e0\u05d9 \u05de\u05e2\u05d3\u05db\u05df: \u05d4\u05d3\u05d1\u05e8 \u05d4\u05d9\u05d7\u05d9\u05d3 \u05e9\u05e1\u05d5\u05de\u05df \u05d2\u05de\u05d5\u05e8 \u05d1\u05e9\u05dc\u05d1 \u05d4\u05e0\u05d5\u05db\u05d7\u05d9 \u05dc\u05de\u05e2\u05e9\u05d4 \u05dc\u05d0 \u05d4\u05d5\u05e9\u05dc\u05dd"
+                }
+              ]
+            },
+            "actual": {
+              "intent": "clarify",
+              "changes": [],
+              "requiresReview": true
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "fallback_native": {
+    "rows": 6,
+    "queries": 30,
+    "unique_queries": 30,
+    "gold_removed": true,
+    "proposal_mismatches": 0
+  },
+  "seconds": 21.54040098800033,
+  "test_inference": false,
+  "physical_device_tested": false,
+  "human_reviewed": false
+}

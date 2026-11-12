@@ -1,0 +1,75 @@
+{
+  "suite": {
+    "tests": 98,
+    "passed": true,
+    "includes_mocked_colab_controls": true,
+    "not_a_language_accuracy_metric": true,
+    "execution": "97-test suite plus the subsequently added fresh-test gate case, separately passed"
+  },
+  "gpu_mechanics": {
+    "real_T4": true,
+    "trials": [
+      {
+        "arm": "flat-narrow",
+        "steps": 2,
+        "mechanics_only": true,
+        "legacy_disabled_equal": true
+      },
+      {
+        "arm": "factor-narrow",
+        "steps": 2,
+        "mechanics_only": true,
+        "legacy_disabled_equal": true
+      },
+      {
+        "arm": "factor-wide",
+        "steps": 2,
+        "mechanics_only": true,
+        "legacy_disabled_equal": true
+      },
+      {
+        "arm": "factor-full",
+        "steps": 2,
+        "mechanics_only": true,
+        "legacy_disabled_equal": false
+      }
+    ]
+  },
+  "quality": {
+    "real_T4": true,
+    "trials": 4,
+    "synthetic": true,
+    "human_reviewed": false
+  },
+  "full_body_sha_unchanged": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "recovery": {
+    "bytes": 647766996,
+    "sha256": "49b21b885f3b610f00d43acf26ceaf1e0f2e515a7fa92d02cee7fc9a56c20cb0"
+  },
+  "original_runtime_stopped": true,
+  "new_test_inference": false,
+  "physical_device_tested": false,
+  "early_vs_final_flat_checkpoint_equal": true,
+  "followup": {
+    "source_commit": "9b44175",
+    "actual_T4": true,
+    "quality_seeds": [
+      42
+    ],
+    "new_test_inference": false,
+    "cpu_gpu_known_calibration_samples": 15,
+    "cpu_gpu_decision_mismatches": 0,
+    "archive_manifest": {
+      "bytes": 13344805,
+      "sha256": "1c559b1b2fef911d6bb72c7e6bda8ddcc189242eaceef8ec8c9aabd1e0b8ec68"
+    },
+    "cpu_known_validation_error_analysis_exact_reproduction": true
+  },
+  "final_sessions_query": {
+    "utc": "2026-11-12T12:21:27.962975+00:00",
+    "active": 0,
+    "observed": "colab sessions: No active sessions found on server."
+  },
+  "final_original_body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "all_frozen_training_source_hashes_reverified": true
+}

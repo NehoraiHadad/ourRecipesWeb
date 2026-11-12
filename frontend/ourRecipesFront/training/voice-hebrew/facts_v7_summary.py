@@ -9,7 +9,9 @@ def run(root):
  data=json.loads(DATA.read_text())['splits']['calibration'];review=[];groups=[]
  import matplotlib;matplotlib.use('Agg')
  import matplotlib.pyplot as plt
- fig,axes=plt.subplots(1,3,figsize=(15,4));records=[];table=[]
+ fig,axes=plt.subplots(1,4,figsize=(19,4));records=[];table=[]
+ native_path=ROOT/'verification/facts-v7-native-20261112.json';native=json.loads(native_path.read_text()) if native_path.exists() else None
+ transfer={t['arm']:t['prior_v5_validation'] for t in native['native_vs_gpu']} if native else {}
  for t in result['trials']:
   points=[json.loads(l) for l in (study/f"{t['arm']}-42/curve.jsonl").read_text().splitlines()];x=[p['step'] for p in points]
   axes[0].plot(x,[p['macro_accuracy'] for p in points],marker='.',label=t['arm']);axes[1].plot(x,[p['policy_0_85']['effective_recall'] for p in points],marker='.')
@@ -23,7 +25,12 @@ def run(root):
   table.append({'arm':t['arm'],'best_step':t['best']['step'],'actual_steps':t['actual_steps'],'threshold':s['threshold'],'dev_macro':t['best']['dev']['macro_accuracy'],'calibration_semantic_accuracy':t['calibration']['accuracy'],
    'effective_correct':m.get('correct_effective',0),'effective_required':m['expected_effective'],'correction_correct':m.get('correct_corrections',0),'correction_required':m['expected_corrections'],'false_proposals':m.get('false_proposals',0),'noop_confirmations':m.get('noop_confirmations',0),
    'guard_exact':g['exact_proposals'],'guard_false':g['false_updates'],'guard_recall':g['update_recall'],'passed':t['passed'],'seconds':t['seconds'],'gpu_peak_bytes':t['memory_bytes'],'gates':t['gates']})
- for ax,title in zip(axes,['Dev joint macro accuracy','Dev effective recall, fixed threshold .85','Dev false proposals, fixed threshold .85']):
+ if transfer:
+  labels=['V6 control']+[t['arm'] for t in result['trials']];values=[.5]+[transfer[t['arm']]['effective']['effective_update_recall'] for t in result['trials']]
+  axes[3].bar(labels,values);axes[3].set_ylim(0,1);axes[3].tick_params(axis='x',labelrotation=60);axes[3].set_title('Consumed old validation: effective recall')
+  for t in table:
+   old=transfer[t['arm']];t['old_validation_effective_correct']=old['effective']['correct_effective_updates'];t['old_validation_corrections_correct']=old['corrections_correct'];t['old_validation_false_proposals']=old['metrics']['false_updates']
+ for ax,title in zip(axes[:3],['Dev joint macro accuracy','Dev effective recall, fixed threshold .85','Dev false proposals, fixed threshold .85']):
   ax.set(title=title,xlabel='Balanced minibatch updates');ax.grid(alpha=.25)
  axes[0].legend(fontsize=8);fig.tight_layout();fig.savefig(out/'learning-curves.png',dpi=160);fig.savefig(out/'learning-curves.svg');plt.close(fig)
  with (out/'curves.csv').open('w') as f:

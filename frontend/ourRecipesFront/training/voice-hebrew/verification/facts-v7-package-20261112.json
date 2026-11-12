@@ -1,0 +1,11 @@
+{
+  "path": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-hebrew-facts-v7-results-20261112.zip",
+  "bytes": 58088118,
+  "sha256": "0c23bc09a7916d7daa507b1de1459ad5cbcc2d271a03fb3c41b6b5aba307f914",
+  "members": 319,
+  "frozen_sources_and_data_verified": true,
+  "crc_verified": true,
+  "full_bodies_included": false,
+  "credentials_private_logs_audio_app_data_included": false,
+  "test_inference": false
+}
