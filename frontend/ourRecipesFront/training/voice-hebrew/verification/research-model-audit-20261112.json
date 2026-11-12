@@ -1,0 +1,544 @@
+{
+  "observed_utc": "2026-11-12T09:18:16.300683+00:00",
+  "scope": "Public API/config/card only, no weights, custom-code execution, inference, GPU allocation or app changes",
+  "models": [
+    {
+      "repo": "dicta-il/dictabert",
+      "url": "https://huggingface.co/dicta-il/dictabert",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+      "last_modified": "2023-12-28T07:39:07.000Z",
+      "gated": false,
+      "license": "cc-by-4.0",
+      "safetensors": {
+        "parameters": {
+          "I64": 512,
+          "F32": 184474880
+        },
+        "total": 184475392
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 737927424,
+          "lfs_sha256": "a1c1a5fcbd7e356083f19963397b27615e174d324a5e7a03b38e39c6bb28fbd8"
+        }
+      ],
+      "selected_weight_bytes": 737927424,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/dicta-il/dictabert/resolve/8884c6db002aba4002ee638fe4070c92e9ffbbf1/config.json",
+          "sha256": "ed6c2fc2ab6a367d5adcea728799dcca44f7e46a681d44da7ce1b7209709c4c2",
+          "bytes": 592
+        },
+        "README.md": {
+          "url": "https://huggingface.co/dicta-il/dictabert/resolve/8884c6db002aba4002ee638fe4070c92e9ffbbf1/README.md",
+          "sha256": "fad7e18a57814baea95e32b5c7fbd8af7aa3d58f2b967b72115c3859f299ff5c",
+          "bytes": 1933
+        }
+      },
+      "config": {
+        "architectures": [
+          "BertForMaskedLM"
+        ],
+        "attention_probs_dropout_prob": 0.1,
+        "gradient_checkpointing": false,
+        "hidden_act": "gelu",
+        "hidden_dropout_prob": 0.1,
+        "hidden_size": 768,
+        "initializer_range": 0.02,
+        "intermediate_size": 3072,
+        "layer_norm_eps": 1e-12,
+        "max_position_embeddings": 512,
+        "model_type": "bert",
+        "num_attention_heads": 12,
+        "num_hidden_layers": 12,
+        "pad_token_id": 0,
+        "position_embedding_type": "absolute",
+        "transformers_version": "4.6.0.dev0",
+        "type_vocab_size": 2,
+        "use_cache": true,
+        "vocab_size": 128000,
+        "newmodern": true
+      }
+    },
+    {
+      "repo": "dicta-il/neodictabert",
+      "url": "https://huggingface.co/dicta-il/neodictabert",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "9052b2e47fe3e615931563bb2a74b26df6e028a3",
+      "last_modified": "2025-10-27T00:20:03.000Z",
+      "gated": false,
+      "license": "cc-by-4.0",
+      "safetensors": {
+        "parameters": {
+          "BF16": 461020928
+        },
+        "total": 461020928
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 922061824,
+          "lfs_sha256": "8fd2d7b72b126e959f66dd694757bfb658d88823c171052581c307163127069c"
+        }
+      ],
+      "selected_weight_bytes": 922061824,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/dicta-il/neodictabert/resolve/9052b2e47fe3e615931563bb2a74b26df6e028a3/config.json",
+          "sha256": "f061a6c9a195fe8b2e02538884467ab1208b5a7d8a371b51beca86dfb1b4c220",
+          "bytes": 944
+        },
+        "README.md": {
+          "url": "https://huggingface.co/dicta-il/neodictabert/resolve/9052b2e47fe3e615931563bb2a74b26df6e028a3/README.md",
+          "sha256": "0f0f134273e32cefcbd6f7ebffe52e4910d8fb71dda1c4e0499c80890f48d42f",
+          "bytes": 2698
+        }
+      },
+      "config": {
+        "architectures": [
+          "NeoBERTLMHead"
+        ],
+        "auto_map": {
+          "AutoConfig": "modeling_neobert.NeoBERTConfig",
+          "AutoModel": "modeling_neobert.NeoBERT",
+          "AutoModelForMaskedLM": "modeling_neobert.NeoBERTLMHead",
+          "AutoModelForSequenceClassification": "modeling_neobert.NeoBERTForSequenceClassification",
+          "AutoModelForTokenClassification": "modeling_neobert.NeoBERTForTokenClassification",
+          "AutoModelForQuestionAnswering": "modeling_neobert.NeoBERTForQuestionAnswering"
+        },
+        "decoder_init_range": 0.02,
+        "dim_head": 64,
+        "embedding_init_range": 0.02,
+        "encoder_init_range": 0.02,
+        "hidden_size": 768,
+        "intermediate_size": 3072,
+        "kwargs": {
+          "decoder_init_range": 0.02
+        },
+        "max_length": 4096,
+        "model_type": "neobert",
+        "norm_eps": 1e-06,
+        "num_attention_heads": 12,
+        "num_hidden_layers": 28,
+        "pad_token_id": 3,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.53.0",
+        "vocab_size": 128000
+      }
+    },
+    {
+      "repo": "dicta-il/neodictabert-bilingual",
+      "url": "https://huggingface.co/dicta-il/neodictabert-bilingual",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "3367cca9df69104101175b563696463c6524f03d",
+      "last_modified": "2025-11-09T18:22:59.000Z",
+      "gated": false,
+      "license": "cc-by-4.0",
+      "safetensors": {
+        "parameters": {
+          "BF16": 461020928
+        },
+        "total": 461020928
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 922061824,
+          "lfs_sha256": "65364c0b5df91da558634abdcdbcc06cae6ef81d93246b250a5ba87246a6ce37"
+        }
+      ],
+      "selected_weight_bytes": 922061824,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/dicta-il/neodictabert-bilingual/resolve/3367cca9df69104101175b563696463c6524f03d/config.json",
+          "sha256": "f23082c92427d3e110b27f251b2e1fa23ae95195be8ac2571bda9ee0b4a1fa50",
+          "bytes": 975
+        },
+        "README.md": {
+          "url": "https://huggingface.co/dicta-il/neodictabert-bilingual/resolve/3367cca9df69104101175b563696463c6524f03d/README.md",
+          "sha256": "c81888e994c14f1e551a0f742167beaf5106eddfc0704126729ea4220b196c81",
+          "bytes": 2909
+        }
+      },
+      "config": {
+        "architectures": [
+          "NeoBERTLMHead"
+        ],
+        "auto_map": {
+          "AutoConfig": "modeling_neobert.NeoBERTConfig",
+          "AutoModel": "modeling_neobert.NeoBERT",
+          "AutoModelForMaskedLM": "modeling_neobert.NeoBERTLMHead",
+          "AutoModelForSequenceClassification": "modeling_neobert.NeoBERTForSequenceClassification",
+          "AutoModelForTokenClassification": "modeling_neobert.NeoBERTForTokenClassification",
+          "AutoModelForQuestionAnswering": "modeling_neobert.NeoBERTForQuestionAnswering"
+        },
+        "decoder_init_range": 0.02,
+        "dim_head": 64,
+        "embedding_init_range": 0.02,
+        "encoder_init_range": 0.02,
+        "hidden_size": 768,
+        "intermediate_size": 3072,
+        "kwargs": {
+          "decoder_init_range": 0.02
+        },
+        "max_length": 4096,
+        "model_type": "neobert",
+        "norm_eps": 1e-06,
+        "num_attention_heads": 12,
+        "num_hidden_layers": 28,
+        "pad_token_id": 3,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.53.0",
+        "vocab_size": 128000
+      }
+    },
+    {
+      "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+      "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+      "last_modified": "2025-12-01T23:49:29.000Z",
+      "gated": false,
+      "license": "apache-2.0",
+      "safetensors": {
+        "parameters": {
+          "BF16": 1720574976
+        },
+        "total": 1720574976
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 3441185576,
+          "lfs_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21"
+        }
+      ],
+      "selected_weight_bytes": 3441185576,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/config.json",
+          "sha256": "64e2e3f6508be6ee471c78648cec6b31635aea574c6daa7547066bbc243e865e",
+          "bytes": 1316
+        },
+        "README.md": {
+          "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/README.md",
+          "sha256": "cc6c7cb442bdce423d9fc14686439f2615f163793582d10a9c92adfa75fd8606",
+          "bytes": 4188
+        }
+      },
+      "config": {
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "head_dim": 128,
+        "hidden_act": "silu",
+        "hidden_size": 2048,
+        "initializer_range": 0.02,
+        "intermediate_size": 6144,
+        "layer_types": [
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention",
+          "full_attention"
+        ],
+        "max_position_embeddings": 62080,
+        "max_window_layers": 28,
+        "model_type": "qwen3",
+        "num_attention_heads": 16,
+        "num_hidden_layers": 28,
+        "num_key_value_heads": 8,
+        "rms_norm_eps": 1e-06,
+        "rope_scaling": null,
+        "rope_theta": 1000000.0,
+        "sliding_window": null,
+        "tie_word_embeddings": true,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.55.4",
+        "use_cache": true,
+        "use_sliding_window": false,
+        "vocab_size": 151936
+      }
+    },
+    {
+      "repo": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+      "url": "https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c",
+      "last_modified": "2024-01-08T12:37:16.000Z",
+      "gated": false,
+      "license": "mit",
+      "safetensors": {
+        "parameters": {
+          "I64": 512,
+          "F16": 278811651
+        },
+        "total": 278812163
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 557652046,
+          "lfs_sha256": "65af59b1ff4450b09ecbf13ca35c840dbf038b26ff8e10e5ea89ca724828ed1e"
+        }
+      ],
+      "selected_weight_bytes": 557652046,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli/resolve/8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c/config.json",
+          "sha256": "4e4430c95100d613df80fa01276f231931e1b535557cf62fbb3cc50323e50cca",
+          "bytes": 1066
+        },
+        "README.md": {
+          "url": "https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli/resolve/8adb042d524ecd5c26d3e3ba0e3fbcf7e2d0864c/README.md",
+          "sha256": "c6cc8ca44d55e6ff3dd75672c8fcc41c22ca18b551aa52fb5d611d720a5f966b",
+          "bytes": 6514
+        }
+      },
+      "config": {
+        "_name_or_path": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli",
+        "architectures": [
+          "DebertaV2ForSequenceClassification"
+        ],
+        "attention_probs_dropout_prob": 0.1,
+        "hidden_act": "gelu",
+        "hidden_dropout_prob": 0.1,
+        "hidden_size": 768,
+        "id2label": {
+          "0": "entailment",
+          "1": "neutral",
+          "2": "contradiction"
+        },
+        "initializer_range": 0.02,
+        "intermediate_size": 3072,
+        "label2id": {
+          "contradiction": 2,
+          "entailment": 0,
+          "neutral": 1
+        },
+        "layer_norm_eps": 1e-07,
+        "max_position_embeddings": 512,
+        "max_relative_positions": -1,
+        "model_type": "deberta-v2",
+        "norm_rel_ebd": "layer_norm",
+        "num_attention_heads": 12,
+        "num_hidden_layers": 12,
+        "pad_token_id": 0,
+        "pooler_dropout": 0,
+        "pooler_hidden_act": "gelu",
+        "pooler_hidden_size": 768,
+        "pos_att_type": [
+          "p2c",
+          "c2p"
+        ],
+        "position_biased_input": false,
+        "position_buckets": 256,
+        "relative_attention": true,
+        "share_att_key": true,
+        "torch_dtype": "float16",
+        "transformers_version": "4.19.0",
+        "type_vocab_size": 0,
+        "vocab_size": 251000
+      }
+    },
+    {
+      "repo": "HeNLP/HeRo",
+      "url": "https://huggingface.co/HeNLP/HeRo",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "8dc628f5e29a17aa73f924d8609421f3ec5bf763",
+      "last_modified": "2023-05-12T17:16:20.000Z",
+      "gated": false,
+      "license": null,
+      "safetensors": {
+        "parameters": {
+          "I64": 514,
+          "F32": 124697433
+        },
+        "total": 124697947
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 498818152,
+          "lfs_sha256": "9c50a79006a36126f481a310038bcc2e4d6f049af0ff8c08910f9d977af3679e"
+        }
+      ],
+      "selected_weight_bytes": 498818152,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/HeNLP/HeRo/resolve/8dc628f5e29a17aa73f924d8609421f3ec5bf763/config.json",
+          "sha256": "f0c45da0f12dd1c3c11f91ac85017655ddd5644fa0ce95a09fbc7ac1d9e6dac6",
+          "bytes": 799
+        },
+        "README.md": {
+          "url": "https://huggingface.co/HeNLP/HeRo/resolve/8dc628f5e29a17aa73f924d8609421f3ec5bf763/README.md",
+          "sha256": "e87aea0e7c9a2780d3e359395869344d2c7ecffc377e7a6f3597841cce1bb3a1",
+          "bytes": 883
+        }
+      },
+      "config": {
+        "_name_or_path": "RoBERTa-he",
+        "architectures": [
+          "RobertaForMaskedLM"
+        ],
+        "attention_probs_dropout_prob": 0.1,
+        "bos_token_id": 0,
+        "classifier_dropout": null,
+        "device_map": "dik",
+        "eos_token_id": 2,
+        "hidden_act": "gelu",
+        "hidden_dropout_prob": 0.1,
+        "hidden_size": 768,
+        "initializer_range": 0.02,
+        "intermediate_size": 3072,
+        "layer_norm_eps": 1e-05,
+        "max_position_embeddings": 514,
+        "model_type": "roberta",
+        "num_attention_heads": 12,
+        "num_hidden_layers": 12,
+        "offload_folder": "os.path.join(path.parent.parent.absolute(), 'results/RoBERTa/model_and_tokenizer')",
+        "pad_token_id": 1,
+        "position_embedding_type": "absolute",
+        "torch_dtype": "float32",
+        "transformers_version": "4.24.0",
+        "type_vocab_size": 1,
+        "use_cache": true,
+        "vocab_size": 50265
+      }
+    },
+    {
+      "repo": "google/functiongemma-270m-it",
+      "url": "https://huggingface.co/google/functiongemma-270m-it",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "39eccb091651513a5dfb56892d3714c1b5b8276c",
+      "last_modified": "2026-01-14T09:33:54.000Z",
+      "gated": "manual",
+      "license": "gemma",
+      "safetensors": {
+        "parameters": {
+          "BF16": 268098176
+        },
+        "total": 268098176
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 536223056,
+          "lfs_sha256": "af4f8a7c4c5eb82291759fd828720c7bcfcb92a5274556d13dde3caccf5f427b"
+        }
+      ],
+      "selected_weight_bytes": 536223056,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/google/functiongemma-270m-it/resolve/39eccb091651513a5dfb56892d3714c1b5b8276c/config.json",
+          "http_status": 401
+        },
+        "README.md": {
+          "url": "https://huggingface.co/google/functiongemma-270m-it/resolve/39eccb091651513a5dfb56892d3714c1b5b8276c/README.md",
+          "sha256": "83d5bc5eab2536cd4064fc502cc40e987388cc0ed7136067a423bafab1ece81d",
+          "bytes": 21177
+        }
+      }
+    },
+    {
+      "repo": "Qwen/Qwen3-0.6B",
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B",
+      "weights_downloaded": false,
+      "inference_run": false,
+      "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+      "last_modified": "2025-07-26T03:46:27.000Z",
+      "gated": false,
+      "license": "apache-2.0",
+      "safetensors": {
+        "parameters": {
+          "BF16": 751632384
+        },
+        "total": 751632384
+      },
+      "selected_weight_files": [
+        {
+          "name": "model.safetensors",
+          "bytes": 1503300328,
+          "lfs_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b"
+        }
+      ],
+      "selected_weight_bytes": 1503300328,
+      "metadata_files": {
+        "config.json": {
+          "url": "https://huggingface.co/Qwen/Qwen3-0.6B/resolve/c1899de289a04d12100db370d81485cdf75e47ca/config.json",
+          "sha256": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+          "bytes": 726
+        },
+        "README.md": {
+          "url": "https://huggingface.co/Qwen/Qwen3-0.6B/resolve/c1899de289a04d12100db370d81485cdf75e47ca/README.md",
+          "sha256": "1ab64a26fcb3b461423b89a433a8c858f1bf8d4086f979cbb3ff878d47cf20e9",
+          "bytes": 13965
+        }
+      },
+      "config": {
+        "architectures": [
+          "Qwen3ForCausalLM"
+        ],
+        "attention_bias": false,
+        "attention_dropout": 0.0,
+        "bos_token_id": 151643,
+        "eos_token_id": 151645,
+        "head_dim": 128,
+        "hidden_act": "silu",
+        "hidden_size": 1024,
+        "initializer_range": 0.02,
+        "intermediate_size": 3072,
+        "max_position_embeddings": 40960,
+        "max_window_layers": 28,
+        "model_type": "qwen3",
+        "num_attention_heads": 16,
+        "num_hidden_layers": 28,
+        "num_key_value_heads": 8,
+        "rms_norm_eps": 1e-06,
+        "rope_scaling": null,
+        "rope_theta": 1000000,
+        "sliding_window": null,
+        "tie_word_embeddings": true,
+        "torch_dtype": "bfloat16",
+        "transformers_version": "4.51.0",
+        "use_cache": true,
+        "use_sliding_window": false,
+        "vocab_size": 151936
+      }
+    }
+  ]
+}

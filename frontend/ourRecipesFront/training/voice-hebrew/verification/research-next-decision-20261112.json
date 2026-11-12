@@ -1,0 +1,113 @@
+{
+  "observed_utc": "2026-11-12T09:31:24.376073+00:00",
+  "question": "What should we research and do after V6?",
+  "sources": [
+    {
+      "title": "CheckList",
+      "url": "https://aclanthology.org/2020.acl-main.442/",
+      "type": "primary",
+      "used_for": "Behavioral invariance and contrast tests"
+    },
+    {
+      "title": "ScoNe",
+      "url": "https://aclanthology.org/2023.acl-short.154/",
+      "type": "primary",
+      "used_for": "Negation scope contrast groups; not Hebrew cooking evidence"
+    },
+    {
+      "title": "Annotation Artifacts",
+      "url": "https://aclanthology.org/N18-2017/",
+      "type": "primary",
+      "used_for": "Dataset label shortcuts"
+    },
+    {
+      "title": "Counterfactually-Augmented Data",
+      "url": "https://arxiv.org/abs/1909.12434",
+      "type": "primary",
+      "used_for": "Minimal semantic edits and combined training"
+    },
+    {
+      "title": "LLM-Elicited Data Biases",
+      "url": "https://aclanthology.org/2025.coling-main.389/",
+      "type": "primary",
+      "used_for": "Synthetic data is not automatically unbiased gold"
+    },
+    {
+      "title": "TripPy",
+      "url": "https://aclanthology.org/2020.sigdial-1.4/",
+      "type": "primary",
+      "used_for": "Text evidence and state/coreference; inspiration only"
+    },
+    {
+      "title": "LoRA Learns Less",
+      "url": "https://arxiv.org/abs/2405.09673",
+      "type": "primary",
+      "used_for": "Conditional comparison with full tuning, non-Hebrew domains"
+    },
+    {
+      "title": "LoRA Without Regret",
+      "url": "https://thinkingmachines.ai/blog/lora/",
+      "type": "primary",
+      "used_for": "2025 primary experiments, wider targets/MLP and hyperparameters"
+    },
+    {
+      "title": "Calibration",
+      "url": "https://proceedings.mlr.press/v70/guo17a.html",
+      "type": "primary",
+      "used_for": "Confidence calibration does not change argmax under scalar temperature"
+    },
+    {
+      "title": "Selective Classification",
+      "url": "https://papers.neurips.cc/paper_files/paper/2017/hash/4a8423d5e91fda00bb7e46540e2b0cf1-Abstract.html",
+      "type": "primary",
+      "used_for": "Risk-coverage, not a guarantee for correlated fixtures"
+    },
+    {
+      "title": "NeoDictaBERT paper",
+      "url": "https://arxiv.org/html/2510.20386v1",
+      "type": "primary",
+      "used_for": "Hebrew benchmarks, not correction benchmark; license wording discrepancy"
+    },
+    {
+      "title": "Multilingual negation",
+      "url": "https://aclanthology.org/2025.findings-emnlp.1391/",
+      "type": "primary",
+      "used_for": "Language dependence; four evaluated languages exclude Hebrew"
+    },
+    {
+      "title": "FunctionGemma card",
+      "url": "https://ai.google.dev/gemma/docs/functiongemma/model_card",
+      "type": "primary",
+      "used_for": "270M specialist, task tuning and32K, no tested Hebrew cooking result"
+    },
+    {
+      "title": "NVIDIA Ampere",
+      "url": "https://docs.nvidia.com/cuda/ampere-tuning-guide/",
+      "type": "primary",
+      "used_for": "BF16 tensor-core support differs from T4/Turing"
+    }
+  ],
+  "model_metadata_audit_sha256": "9a257b7723ad97e222f38fea5ffccfefffe985e9d54330db26b37fd54e9718cf",
+  "metric_audit_sha256": "ace43ce0bc6561fac7bfd18c0dcea8ecf1f1eb4b066c1af692d76091ce6e5f6a",
+  "design_examples_sha256": "0e320bd1f2cfe6139ace68ea6af5c0f774697f003a06c0c7ee82cb1a6fe9a58b",
+  "report_sha256": "33b437d7f0e9ff0b0c99ebbcdb89a3ec62b7499a6752b9d799c08ad712be85bf",
+  "key_findings": [
+    "V6 gain is4 idempotent confirmations, effective state changes remain16/32",
+    "Correction0/16 still blocks task, not merely training duration",
+    "Last2 query/value adapters do not test all-layer/MLP LoRA",
+    "Semantic facts and clarification policy should be evaluated separately"
+  ],
+  "recommendations_are_hypotheses": true,
+  "draft_examples": 19,
+  "draft_examples_human_reviewed": false,
+  "weights_downloaded": false,
+  "new_gpu_allocations": 0,
+  "fresh480_scored": false,
+  "original120_scored": false,
+  "app_timer_mobile_changes": false,
+  "physical_device_tested": false,
+  "new_quality_training": false,
+  "new_candidate_model_inference": false,
+  "unit_tests_include_real_tiny_mechanics": true,
+  "unit_tests_passed": 88
+}

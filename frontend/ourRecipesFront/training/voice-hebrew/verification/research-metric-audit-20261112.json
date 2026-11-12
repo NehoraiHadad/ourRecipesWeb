@@ -1,0 +1,38 @@
+{
+  "created_utc": "2026-11-12T09:26:19.679554+00:00",
+  "scope": "Recalculation of already-used V6 validation artifacts. No model, new test, GPU or new accuracy sample.",
+  "source_sha256": "911ce9b9d561dfb7ec7e0ed23d05fadb38a9ae28cf6b97342f17fd555cadc6ff",
+  "fixture_sha256": "9bcf68d9cf8b5117d426b9a827fca8fc4e1ec52fa0a220d9f8502fb07cf6b753",
+  "trials": {
+    "control": {
+      "gold_proposals": 48,
+      "gold_effective_updates": 32,
+      "gold_idempotent_confirmations": 16,
+      "correct_proposals": 26,
+      "wrong_proposals": 0,
+      "correct_idempotent_confirmations": 10,
+      "correct_effective_updates": 16,
+      "wrong_effective_updates": 0,
+      "resulting_state_exact": 464,
+      "effective_update_recall": 0.5,
+      "proposal_recall": 0.5416666666666666,
+      "examples": 480
+    },
+    "adapter": {
+      "gold_proposals": 48,
+      "gold_effective_updates": 32,
+      "gold_idempotent_confirmations": 16,
+      "correct_proposals": 30,
+      "wrong_proposals": 0,
+      "correct_idempotent_confirmations": 14,
+      "correct_effective_updates": 16,
+      "wrong_effective_updates": 0,
+      "resulting_state_exact": 464,
+      "effective_update_recall": 0.5,
+      "proposal_recall": 0.625,
+      "examples": 480
+    }
+  },
+  "finding": "V6 gain26->30 correct proposals is four confirmations of already-pending actions; effective state changes stay16/32, correction coverage remains0/16.",
+  "resulting_state_is_not_enough": "Always clarifying can preserve correct state on no-op cases while failing conversation/semantic intent; keep both metrics."
+}

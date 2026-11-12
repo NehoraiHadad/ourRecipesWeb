@@ -1,0 +1,706 @@
+{
+  "scope": "Draft semantic/policy examples for research. Human review pending; not training data, validation, fresh test or model output.",
+  "recipe": {
+    "id": "research-batter",
+    "actions": [
+      {
+        "id": "a_flour",
+        "step": 0,
+        "text": "להוסיף קמח"
+      },
+      {
+        "id": "a_water",
+        "step": 0,
+        "text": "להוסיף מים"
+      },
+      {
+        "id": "a_mix",
+        "step": 0,
+        "text": "לערבב את הבלילה"
+      }
+    ]
+  },
+  "cases": [
+    {
+      "id": "water",
+      "group": "water",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הוספתי מים",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_water"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הוספתי מים"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_water",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "explicit_negative_pending",
+      "group": "same_fact_different_prior_state",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "לא ערבבתי את הבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_water"
+        ],
+        "remaining": [
+          "a_flour",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "לא ערבבתי את הבלילה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "explicit_negative_correction",
+      "group": "same_fact_different_prior_state",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "לא ערבבתי את הבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_water",
+          "a_mix"
+        ],
+        "remaining": [
+          "a_flour"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "לא ערבבתי את הבלילה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_mix",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "marked_incomplete",
+      "group": "marked_polarity",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שסימנתי כמושלמת לא בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_mix"
+        ],
+        "remaining": [
+          "a_flour",
+          "a_water"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_MARKED_COMPLETE"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "הפעולה היחידה שסימנתי כמושלמת לא בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_mix",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "marked_incomplete_prefix",
+      "group": "marked_polarity",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "אני מעדכן: הפעולה היחידה שסימנתי כמושלמת לא בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_mix"
+        ],
+        "remaining": [
+          "a_flour",
+          "a_water"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_MARKED_COMPLETE"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "הפעולה היחידה שסימנתי כמושלמת לא בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_mix",
+          "done": false
+        }
+      ]
+    },
+    {
+      "id": "marked_complete",
+      "group": "marked_polarity",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שסימנתי כמושלמת אכן בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_mix"
+        ],
+        "remaining": [
+          "a_flour",
+          "a_water"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_MARKED_COMPLETE"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הפעולה היחידה שסימנתי כמושלמת אכן בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "remaining_complete",
+      "group": "remaining_polarity",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שנותרה בשלב הזה בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_flour",
+          "a_water"
+        ],
+        "remaining": [
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_REMAINING"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הפעולה היחידה שנותרה בשלב הזה בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_mix",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "remaining_incomplete",
+      "group": "remaining_polarity",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שנותרה בשלב הזה לא בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_flour",
+          "a_water"
+        ],
+        "remaining": [
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_REMAINING"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "הפעולה היחידה שנותרה בשלב הזה לא בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "uncertain",
+      "group": "scope_and_commitment",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "נדמה לי שערבבתי את הבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "UNCERTAIN",
+            "completion": "COMPLETE",
+            "evidence": "נדמה לי שערבבתי את הבלילה"
+          }
+        ]
+      },
+      "draft_policy": "clarify",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "metaneg",
+      "group": "scope_and_commitment",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "לא אמרתי שערבבתי את הבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "NONASSERTION",
+            "completion": "UNSPECIFIED",
+            "evidence": "לא אמרתי שערבבתי את הבלילה"
+          }
+        ]
+      },
+      "draft_policy": "clarify",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "future",
+      "group": "scope_and_commitment",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "אערבב את הבלילה בהמשך",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "NONASSERTION",
+            "completion": "UNSPECIFIED",
+            "evidence": "אערבב את הבלילה בהמשך"
+          }
+        ]
+      },
+      "draft_policy": "no_state_update",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "question",
+      "group": "scope_and_commitment",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "האם ערבבתי את הבלילה?",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "NONASSERTION",
+            "completion": "UNSPECIFIED",
+            "evidence": "האם ערבבתי את הבלילה?"
+          }
+        ]
+      },
+      "draft_policy": "no_state_update",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "partial_pending",
+      "group": "partial_context",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "ערבבתי רק מעט מהבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "ASSERTED",
+            "completion": "PARTIAL",
+            "evidence": "ערבבתי רק מעט מהבלילה"
+          }
+        ]
+      },
+      "draft_policy": "keep_pending_and_clarify_if_needed",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "partial_after_done",
+      "group": "partial_context",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "ערבבתי רק מעט מהבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_mix"
+        ],
+        "remaining": [
+          "a_flour",
+          "a_water"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "ASSERTED",
+            "completion": "PARTIAL",
+            "evidence": "ערבבתי רק מעט מהבלילה"
+          }
+        ]
+      },
+      "draft_policy": "clarify_no_automatic_retraction",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "two_claims",
+      "group": "two_claims",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הוספתי מים אבל עוד לא ערבבתי את הבלילה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_water"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הוספתי מים"
+          },
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_mix"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "עוד לא ערבבתי את הבלילה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_water",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "relative_negation_complete",
+      "group": "negation_scope",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שעוד לא בוצעה בשלב הזה בוצעה עכשיו",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_flour",
+          "a_water"
+        ],
+        "remaining": [
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_REMAINING"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הפעולה היחידה שעוד לא בוצעה בשלב הזה בוצעה עכשיו"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": [
+        {
+          "actionId": "a_mix",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "relative_negation_incomplete",
+      "group": "negation_scope",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הפעולה היחידה שעוד לא בוצעה בשלב הזה עדיין לא בוצעה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_flour",
+          "a_water"
+        ],
+        "remaining": [
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_REMAINING"
+            },
+            "commitment": "ASSERTED",
+            "completion": "INCOMPLETE",
+            "evidence": "הפעולה היחידה שעוד לא בוצעה בשלב הזה עדיין לא בוצעה"
+          }
+        ]
+      },
+      "draft_policy": "accept_fact",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "nonunique",
+      "group": "nonunique",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "סיימתי את הפעולה היחידה שנותרה",
+      "state": {
+        "recipe_id": "research-batter",
+        "currentStep": 0,
+        "completed": [
+          "a_flour"
+        ],
+        "remaining": [
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "CURRENT_REMAINING"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "סיימתי את הפעולה היחידה שנותרה"
+          }
+        ]
+      },
+      "draft_policy": "clarify",
+      "expected_effective_changes": []
+    },
+    {
+      "id": "stale_recipe",
+      "group": "stale_recipe",
+      "usage": "design_only_not_train_validation_or_test",
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "utterance": "הוספתי מים",
+      "state": {
+        "recipe_id": "old-recipe",
+        "currentStep": 0,
+        "completed": [],
+        "remaining": [
+          "a_flour",
+          "a_water",
+          "a_mix"
+        ]
+      },
+      "draft_semantics": {
+        "claims": [
+          {
+            "target": {
+              "kind": "ACTION",
+              "action_id": "a_water"
+            },
+            "commitment": "ASSERTED",
+            "completion": "COMPLETE",
+            "evidence": "הוספתי מים"
+          }
+        ]
+      },
+      "draft_policy": "reject_stale_state",
+      "expected_effective_changes": []
+    }
+  ],
+  "notes": [
+    "Completion is proposition content; only ASSERTED facts may update state.",
+    "Correction is derived from prior state, not a dedicated semantic class.",
+    "Partial does not specify an amount and never marks complete automatically.",
+    "Navigation/advice policy is outside this draft.",
+    "Draft evidence strings are local quotations, not proof of factual truth."
+  ]
+}

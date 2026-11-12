@@ -149,3 +149,11 @@ Evidence: CERTAINTY_PLAN.he.md, CERTAINTY_RESULTS.he.md, CERTAINTY_ADAPTER_PLAN.
 - Full body735066976B unchanged, head400133 parameters, adapter49152. Paired continuation seeds share pretrained body/head. No app, timer, mobile, STT/TTS, browser, phone, human-review or INT8/ONNX work. Full learning curves plotted as standalone PNG/SVG and CSV; fixed-threshold plots distinguished from calibrated selection.
 
 Evidence: ADAPTER_PLAN.he.md, ADAPTER_RESULTS.he.md, verification/adapter-v6-{plan,mechanics,results,native,corrections}-20261112.json. Small checkpoint packet excludes full backbone, keys, private usage/account logs, audio and app data.
+
+
+## Post-V6 research, no new training (2026-11-12)
+
+- Reanalysis of already-used V6 validation only:32 effective gold transitions plus16 idempotent confirmations. Both selected arms recover16/32 actual changes with0 wrong changes;26->30 proposal gain is10->14 correct confirmations. Normalized resulting-state exact464/480 in both. Keep semantic/proposal and effective-state metrics separate; no retroactive selection change. Three focused metric tests cover missing no-op confirmation, missed undo and wrong completion.
+- Public metadata/card/config audit8 models, revisions/file bytes and SHA recorded; no weights/custom-code execution/GPU/inference. FunctionGemma config401 noted, manual gate not bypassed. Main model table distinguishes selected file precision/size from RAM and flags Neo paper/card license wording, HeRo unclear license and unsupported Hebrew benchmark claims.
+- Primary-source research supports a proposed behavioral/contrastive-data study, wider LoRA/MLP vs full-tuning comparison and independent calibration. These are hypotheses, not new quality results.19 authored semantic-design examples in10 groups are labelleddesign-only/human-review-pending, not a benchmark or production contract. Old browser DictaLM Q4 3/6 result was consulted, not rerun or dismissed.
+- No fresh480/original120 inference, no new quality-model training or accuracy inference, no app/timer/mobile edits or physical-device claims. Evidence: RESEARCH_NEXT.he.md, verification/research-{metric-audit,model-audit,semantic-design,next-decision}-20261112.json.
