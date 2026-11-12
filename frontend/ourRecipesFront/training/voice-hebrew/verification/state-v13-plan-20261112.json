@@ -1,0 +1,52 @@
+{
+  "created_utc": "2026-11-12T06:41:09.508890+00:00",
+  "study": "state-v13-adaptive-pilot",
+  "status": "Frozen before quality pilot",
+  "warm_checkpoint": {
+    "path": "runs/colab-ranking-recovery/recovered/run/model/model.safetensors",
+    "sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+    "bytes": 735066976
+  },
+  "corpus_sha256": "184e81642330f2669dad5afe567c30c7ecb6a4f7b331f0a3338da320abcd68ef",
+  "maximum_seeds": [
+    42,
+    17,
+    73
+  ],
+  "stop_on_first_failed_gate": true,
+  "steps": 500,
+  "eval_every": 125,
+  "test_only_if_all_three_pass": true,
+  "gate": {
+    "state_recall_min": 0.75,
+    "state_exact_min": 0.6,
+    "complete_groups_min": 0.25,
+    "guardrail_false_max": 3,
+    "guardrail_recall_min": 0.876551724137931,
+    "stress_exact_min": 0.75,
+    "stress_false_max": 0
+  },
+  "unit_tests_passed": 69,
+  "gpu_max_seconds": 3000,
+  "new_test_scored": false,
+  "source_sha256": {
+    "state_sampling.py": "5677c67557541e5d25f35f562631dbc9c0463ebf547acacc3ba95a7c91cefc83",
+    "state_metrics.py": "4d7dc71d49ba2dc38f1949e87b67729c07af24c6b62348f9a97c518db1deb121",
+    "state_pilot.py": "222361b21792e480e3d407666c6828e3a80219fdcf6171033407831186499147",
+    "state_pilot_data.py": "f96e08493cd0f91884e2683fda1c3729d3d7991959d0569d5aaf37ef9bec211e",
+    "state_pilot_package.py": "2e6b238d5111fcb171cbd7f55abb8bc924b43dba6072b1abaa95bd94eebd58a9",
+    "span_pilot.py": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6",
+    "paired_sampling.py": "b63b04823ab3f56a8476a5ac758b428aa73ff04e7772b97c9b00b42e18dc2111",
+    "state_input_probe.py": "1a8c1e889366e4cfed53c7111bd005fb2ceca654c034325e97d121e09bf3c263",
+    "state_data.py": "7d089a1327b452a1643f96be5e6882db015e333b4527f3c4d25c76e95c5a30b1",
+    "state_sweep.py": "62ccb6f074ede0777b0e442087d154a752a10c7033b8de422b53e302526e3a8b",
+    "grounding_sweep.py": "6eba90e5c1d402db286959bbaf6f7e2ca7f2c6a5ce1cc80a2fa21eab22f4741f",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "research_decision.py": "91d022e42cd219a152e426b41e523063838bd1076ba68c43af0b69ed1b073f26",
+    "colab_job.py": "54ac04e05f2666e4d1ac79d66967fbee3d179c0778c955f709290205a625464e",
+    "colab_pilot.py": "1fc150f9441eac2a4a0eea738725969b793fe467168f229b1e65482c6caf913d",
+    "prepare.py": "5190b40f43f9aaf5138fb501434f186c3b860e3cbc8badd8b4684bb308a26a34",
+    "STATE_PILOT_PLAN.he.md": "9cb7eac9dac446e4c7183046b34265190493cee2688c6dcd7f034d9c27a8cab3"
+  }
+}

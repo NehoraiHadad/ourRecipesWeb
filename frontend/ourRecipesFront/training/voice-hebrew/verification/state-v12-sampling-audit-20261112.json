@@ -1,0 +1,109 @@
+{
+  "scope": "Exact replay of frozen training metadata sampler, not neural inference or quality scoring; both arms have identical sampling contexts and streams",
+  "steps": 750,
+  "seeds": {
+    "42": {
+      "sampled_queries": {
+        "prior/intent/advice": 565,
+        "prior/intent/missed": 536,
+        "prior/intent/clarify": 561,
+        "prior/intent/report": 544,
+        "prior/action/done": 772,
+        "prior/action/not_mentioned": 1049,
+        "prior/intent/next": 569,
+        "prior/action/not_done": 678,
+        "state/action/not_done": 168,
+        "guardrail/intent/clarify": 38,
+        "guardrail/intent/advice": 35,
+        "state/action/not_mentioned": 108,
+        "guardrail/intent/report": 45,
+        "state/intent/report": 39,
+        "guardrail/action/not_mentioned": 80,
+        "guardrail/action/done": 43,
+        "guardrail/intent/next": 21,
+        "state/intent/clarify": 21,
+        "guardrail/action/not_done": 60,
+        "guardrail/intent/missed": 26,
+        "state/action/done": 42
+      },
+      "state_supported_queries": {
+        "state-undo-1": 44,
+        "state-not_done-1": 38,
+        "state-not_done-0": 37,
+        "state-undo-0": 49,
+        "state-done-0": 24,
+        "state-done-1": 18
+      },
+      "unique_supported_state_queries": 182
+    },
+    "17": {
+      "sampled_queries": {
+        "prior/intent/report": 505,
+        "prior/intent/missed": 577,
+        "prior/intent/advice": 545,
+        "prior/action/not_done": 681,
+        "prior/action/not_mentioned": 1088,
+        "prior/intent/clarify": 549,
+        "guardrail/intent/missed": 42,
+        "prior/action/done": 798,
+        "state/action/not_mentioned": 93,
+        "guardrail/intent/report": 40,
+        "prior/intent/next": 578,
+        "guardrail/intent/advice": 48,
+        "guardrail/action/done": 41,
+        "guardrail/intent/next": 24,
+        "state/intent/report": 40,
+        "state/action/done": 50,
+        "guardrail/action/not_mentioned": 65,
+        "guardrail/action/not_done": 59,
+        "state/action/not_done": 125,
+        "state/intent/clarify": 26,
+        "guardrail/intent/clarify": 26
+      },
+      "state_supported_queries": {
+        "state-done-1": 31,
+        "state-undo-0": 42,
+        "state-undo-1": 33,
+        "state-done-0": 19,
+        "state-not_done-1": 31,
+        "state-not_done-0": 19
+      },
+      "unique_supported_state_queries": 151
+    },
+    "73": {
+      "sampled_queries": {
+        "prior/intent/missed": 584,
+        "prior/intent/next": 546,
+        "prior/action/done": 809,
+        "prior/action/not_mentioned": 1115,
+        "prior/intent/report": 497,
+        "prior/intent/advice": 575,
+        "guardrail/intent/next": 17,
+        "prior/action/not_done": 663,
+        "state/action/done": 43,
+        "guardrail/intent/clarify": 30,
+        "prior/intent/clarify": 576,
+        "guardrail/intent/missed": 37,
+        "state/action/not_mentioned": 82,
+        "state/intent/report": 43,
+        "state/action/not_done": 119,
+        "guardrail/intent/advice": 42,
+        "guardrail/intent/report": 35,
+        "guardrail/action/not_done": 64,
+        "guardrail/action/not_mentioned": 74,
+        "guardrail/action/done": 31,
+        "state/intent/clarify": 18
+      },
+      "state_supported_queries": {
+        "state-done-1": 21,
+        "state-done-0": 22,
+        "state-not_done-0": 29,
+        "state-undo-1": 31,
+        "state-not_done-1": 29,
+        "state-undo-0": 30
+      },
+      "unique_supported_state_queries": 144
+    }
+  },
+  "paired_sampler_sha256": "b63b04823ab3f56a8476a5ac758b428aa73ff04e7772b97c9b00b42e18dc2111"
+}

@@ -42,10 +42,10 @@ print('OURRECIPES_WARM='+json.dumps({'bytes':size,'sha256':h.hexdigest()}))
 
 
 def run(args):
-    if getattr(args,'state_context',False):
+    if getattr(args,'state_context',False) or getattr(args,'state_pilot',False):
         p=Path(args.warm_weights or '')
         if not p.is_file() or p.name!='model.safetensors':raise ValueError('Explicit saved model.safetensors required before allocation')
-        plan=json.loads((ROOT/'verification/state-v12-plan-20261112.json').read_text())
+        plan=json.loads((ROOT/('verification/state-v13-plan-20261112.json' if getattr(args,'state_pilot',False) else 'verification/state-v12-plan-20261112.json')).read_text())
         with p.open('rb') as f:sha=hashlib.file_digest(f,'sha256').hexdigest()
         if sha!=plan['warm_checkpoint']['sha256']:raise ValueError('Warm-start differs from frozen checkpoint')
     session=args.session
@@ -85,14 +85,14 @@ def run(args):
             try:cli(['ssh','-s',session,'-i',ssh_identity,'--','python3','-c',"print('OURRECIPES_SSH_READY')"],timeout=45,quiet=True)
             except (RuntimeError,subprocess.TimeoutExpired):
                 print('SSH stream unavailable; bounded chunk recovery remains available',flush=True);ssh_identity=None
-        if getattr(args,'state_context',False):upload_warm_weights(args,session,ssh_identity)
+        if getattr(args,'state_context',False) or getattr(args,'state_pilot',False):upload_warm_weights(args,session,ssh_identity)
         cli(['upload','-s',session,str(material),'/content/ourrecipes-material.zip'])
         cli(['upload','-s',session,str(ROOT/'colab_job.py'),'/content/ourrecipes-job.py'])
         remote='/content/'+args.run_id
         launch=f'''import subprocess,sys,json
 from pathlib import Path
 log=Path({remote!r}+'.log').open('w')
-ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--state-context'] if getattr(args,'state_context',False) else ['--grounding'] if getattr(args,'grounding',False) else ['--sampling'] if getattr(args,'sampling',False) else ['--combined'] if getattr(args,'combined',False) else ['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else [])+(['--focused'] if getattr(args,'focused',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+ourrecipes_process=subprocess.Popen([sys.executable,'-u','/content/ourrecipes-job.py','--bundle','/content/ourrecipes-material.zip','--output',{remote!r},'--sha256',{sha!r},'--steps',{str(args.steps)!r},'--max-seconds',{str(args.max_seconds)!r},'--python-version',{args.python_version!r},'--baseline-steps',{str(args.baseline_steps)!r},'--span-model',{getattr(args,'span_model','tiny')!r}]+{((['--state-pilot'] if getattr(args,'state_pilot',False) else ['--state-context'] if getattr(args,'state_context',False) else ['--grounding'] if getattr(args,'grounding',False) else ['--sampling'] if getattr(args,'sampling',False) else ['--combined'] if getattr(args,'combined',False) else ['--semantic'] if getattr(args,'semantic',False) else ['--targeted'] if getattr(args,'targeted',False) else ['--ablation'] if getattr(args,'ablation',False) else ['--span'] if getattr(args,'span',False) else [])+(['--span-train-only'] if getattr(args,'span_train_only',False) else [])+(['--focused'] if getattr(args,'focused',False) else []))!r},stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
 Path({remote!r}+'.pid').write_text(str(ourrecipes_process.pid))
 print('OURRECIPES_STATUS='+json.dumps({{'pid':ourrecipes_process.pid}}))
 '''
@@ -185,6 +185,7 @@ if __name__=='__main__':
     group.add_argument('--span',action='store_true',help='Evidence-supervised token classifier pilot')
     group.add_argument('--targeted',action='store_true',help='Bounded control vs joint grounding/contrastive comparison')
     group.add_argument('--combined',action='store_true',help='Joint-supervision control vs combined conversational corpus, two seeds')
+    group.add_argument('--state-pilot',action='store_true',help='Adaptive V13 focused state-learning pilot')
     group.add_argument('--state-context',action='store_true',help='V12 matched warm-start state-input comparison')
     group.add_argument('--grounding',action='store_true',help='V11 token evidence vs start/end evidence, four trials')
     group.add_argument('--sampling',action='store_true',help='V10 family sampling and candidate margin, six trials')
@@ -199,5 +200,5 @@ if __name__=='__main__':
     a=p.parse_args()
     if a.focused and not a.combined:p.error('--focused requires --combined')
     if a.span_train_only and not a.span:p.error('--span-train-only requires --span')
-    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding or a.state_context else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
+    if not re.fullmatch(r'ourrecipes-[a-z0-9-]{1,55}',a.run_id) or not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding or a.state_context or a.state_pilot else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:p.error('Invalid bounded pilot settings')
     run(a)

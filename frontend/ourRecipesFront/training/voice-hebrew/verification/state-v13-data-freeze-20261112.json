@@ -1,0 +1,16 @@
+{
+  "study": "state-v13-pilot",
+  "prior_corpus_sha256": "cf3eab981659bc897e8eb315ddc42198781c51a22f1baca81f4dab4a3bf3dd77",
+  "added_training_rows": 1152,
+  "training_rows": 9262,
+  "heldouts_unchanged_from_unscored_v12": true,
+  "corpus_sha256": "184e81642330f2669dad5afe567c30c7ecb6a4f7b331f0a3338da320abcd68ef",
+  "human_reviewed": false,
+  "new_test_inference": false,
+  "tokenizer": {
+    "queries": 54500,
+    "max_tokens": 97,
+    "unknown_tokens": 0,
+    "conflicting_token_inputs": 0
+  }
+}

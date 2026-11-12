@@ -24,7 +24,7 @@ def training_loss(logits, targets, items, profile, legacy_weights):
     losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,ignore_index=-100,reduction='none')
     rows=[]
     for j,item in enumerate(items):
-        if item['query']['task']=='intent':rows.append(losses[j,0]);continue
+        if item['query']['task']=='intent':rows.append(losses[j,0]*item.get('loss_weight',1.));continue
         positions=item['positions']
         if not positions:raise ValueError('No current-report tokens')
         labels=targets[j,positions]
@@ -265,9 +265,10 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
     if device=='cpu' and steps>2:raise ValueError('CPU mode is limited to a two-step mechanics smoke')
-    if regime not in ('balanced-task','paired-family') or checkpoint_io not in ('periodic','best-only'):raise ValueError('Unknown training regime/checkpoint IO')
-    if not 0<=contrast_weight<=1 or (contrast_weight and regime!='paired-family'):raise ValueError('Contrastive loss requires paired sampling')
-    if regime=='paired-family' and profile not in ('context-joint-v3','context-qa-v4','context-state-v4'):raise ValueError('Paired regime requires joint context')
+    if regime not in ('balanced-task','paired-family','state-balanced') or checkpoint_io not in ('periodic','best-only'):raise ValueError('Unknown training regime/checkpoint IO')
+    if not 0<=contrast_weight<=1 or (contrast_weight and regime not in ('paired-family','state-balanced')):raise ValueError('Contrastive loss requires paired sampling')
+    if regime in ('paired-family','state-balanced') and profile not in ('context-joint-v3','context-qa-v4','context-state-v4'):raise ValueError('Paired regime requires joint context')
+    if regime=='state-balanced' and profile!='context-state-v4':raise ValueError('State sampler requires the fixed eight-channel state-input profile')
     if profile in ('context-qa-v4','context-state-v4') and not train_only:raise ValueError('Research profile is native training only')
     if warm_start and shared_head_init:raise ValueError('Warm-start weights cannot be randomly reinitialized')
     if not 0<encoder_lr<=3e-5 or not 0<head_lr<=3e-4:raise ValueError('Invalid bounded adaptation rates')
@@ -313,9 +314,13 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row,profile)] for split in ['train','validation']}
     items=sets['train'];rng=random.Random(seed);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
     paired=None
-    if regime=='paired-family':
+    if regime in ('paired-family','state-balanced'):
         from paired_sampling import PairedSampler
-        rng=random.Random(seed);paired=PairedSampler(items,[r for r in rows if r['split']=='train'],rng)
+        if regime=='state-balanced':
+            from state_sampling import StateSampler
+            sampler_class=StateSampler
+        else:sampler_class=PairedSampler
+        rng=random.Random(seed);paired=sampler_class(items,[r for r in rows if r['split']=='train'],rng)
     head=[p for n,p in model.named_parameters() if n.startswith('classifier.')]
     body=[p for n,p in model.named_parameters() if not n.startswith('classifier.')]
     optimizer=torch.optim.AdamW([{'params':body,'lr':encoder_lr},{'params':head,'lr':head_lr}],weight_decay=.01)
@@ -328,6 +333,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     config['checkpoint_objective']=checkpoint_objective
     config.update(sampling=regime,contrast_weight=contrast_weight,contrast_margin=1.,checkpoint_io=checkpoint_io)
     config.update(shared_head_init=shared_head_init,initial_shared_head_sha256=initial_head_sha,output_channels=len(output_labels))
+    if regime=='state-balanced':config['intent_loss_weights']={'report':4/7,'clarify':4/7,'next':2.,'missed':2.,'advice':2.}
     if paired:config['action_loss_weights']={'done':8/7,'not_done':8/7,'not_mentioned':.8}
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None

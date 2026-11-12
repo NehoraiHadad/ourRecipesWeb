@@ -1,0 +1,323 @@
+{
+  "study": "state-v12-early-stop",
+  "status": "Intentional futility stop, not a completed six-trial comparison",
+  "early_stop": {
+    "status": "intentionally_stopped_for_futility_after_validation",
+    "completed_trials": 2,
+    "reason": "Required improvement fails in fixed seed42; exact sampler replay shows low new-task exposure; preserve test for a focused validation-only sampling pilot",
+    "new_test_inference": false,
+    "duplicate_best_weights_removed_only_after_sha_equality": [
+      {
+        "trial": "control-42",
+        "retained": "model/model.safetensors",
+        "redundant_removed": "best-validation-model",
+        "sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4"
+      },
+      {
+        "trial": "state-42",
+        "retained": "model/model.safetensors",
+        "redundant_removed": "best-validation-model",
+        "sha256": "5bcac9f4abd0bbafaaeca02e15f916e83734abafd2f5a66dbb3643753347d3f2"
+      }
+    ],
+    "timestamp": 1794465180.7263165
+  },
+  "completed_variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 750,
+        "batch_size": 8,
+        "encoder_lr": 1e-05,
+        "head_lr": 0.0001,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "cf3eab981659bc897e8eb315ddc42198781c51a22f1baca81f4dab4a3bf3dd77",
+        "source_sha256": "a9249998590e4ba0f7757e863d314f365c8f5e5ffc80e50ec0d9ae20ddbc2ab2",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "warm_start_sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+        "optimizer_restored": false,
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": false,
+        "initial_shared_head_sha256": null,
+        "output_channels": 8,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 750
+      },
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 750,
+        "selected_step": 750,
+        "training_seconds": 178.62475413800001,
+        "gpu_peak_allocated_bytes": 3711560192,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 902,
+          "exact_proposals": 264,
+          "exact_rate": 0.2926829268292683,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 616,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 902,
+          "exact_including_gold_evidence": 264,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 444,
+          "exact_rate": 0.49223946784922396,
+          "false_updates": 529,
+          "proposed_updates": 860,
+          "expected_updates": 616,
+          "update_precision": 0.38488372093023254,
+          "update_recall": 0.5373376623376623,
+          "clarifications": 442,
+          "exact_including_gold_evidence": 435,
+          "nonmatching_gold_evidence": 626
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 444,
+          "exact_rate": 0.49223946784922396,
+          "false_updates": 529,
+          "proposed_updates": 860,
+          "expected_updates": 616,
+          "update_precision": 0.38488372093023254,
+          "update_recall": 0.5373376623376623,
+          "clarifications": 442,
+          "exact_including_gold_evidence": 435,
+          "nonmatching_gold_evidence": 626
+        },
+        "validation_research": {
+          "threshold": 0.7,
+          "examples": 902,
+          "exact_proposals": 486,
+          "exact_rate": 0.5388026607538803,
+          "false_updates": 3,
+          "proposed_updates": 211,
+          "expected_updates": 616,
+          "update_precision": 0.985781990521327,
+          "update_recall": 0.33766233766233766,
+          "clarifications": 676,
+          "exact_including_gold_evidence": 483,
+          "nonmatching_gold_evidence": 6
+        }
+      },
+      "validation_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 192,
+          "exact_rate": 0.3333333333333333,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.0,
+          "precision": null,
+          "cost": 384
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 294,
+          "exact_rate": 0.901840490797546,
+          "true_updates": 208,
+          "false_updates": 3,
+          "expected_updates": 232,
+          "recall": 0.896551724137931,
+          "precision": 0.985781990521327,
+          "cost": 39
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 0,
+          "rate": 0.0
+        }
+      }
+    },
+    {
+      "arm": "state",
+      "seed": 42,
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "4-state-action+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 750,
+        "batch_size": 8,
+        "encoder_lr": 1e-05,
+        "head_lr": 0.0001,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "cf3eab981659bc897e8eb315ddc42198781c51a22f1baca81f4dab4a3bf3dd77",
+        "source_sha256": "a9249998590e4ba0f7757e863d314f365c8f5e5ffc80e50ec0d9ae20ddbc2ab2",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-state-v4",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "warm_start_sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+        "optimizer_restored": false,
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": false,
+        "initial_shared_head_sha256": null,
+        "output_channels": 8,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 750
+      },
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 750,
+        "selected_step": 750,
+        "training_seconds": 303.04150003099994,
+        "gpu_peak_allocated_bytes": 3712395776,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 902,
+          "exact_proposals": 264,
+          "exact_rate": 0.2926829268292683,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 616,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 902,
+          "exact_including_gold_evidence": 264,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 456,
+          "exact_rate": 0.5055432372505543,
+          "false_updates": 327,
+          "proposed_updates": 601,
+          "expected_updates": 616,
+          "update_precision": 0.4559068219633943,
+          "update_recall": 0.4448051948051948,
+          "clarifications": 498,
+          "exact_including_gold_evidence": 445,
+          "nonmatching_gold_evidence": 391
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 456,
+          "exact_rate": 0.5055432372505543,
+          "false_updates": 327,
+          "proposed_updates": 601,
+          "expected_updates": 616,
+          "update_precision": 0.4559068219633943,
+          "update_recall": 0.4448051948051948,
+          "clarifications": 498,
+          "exact_including_gold_evidence": 445,
+          "nonmatching_gold_evidence": 391
+        },
+        "validation_research": {
+          "threshold": 0.9,
+          "examples": 902,
+          "exact_proposals": 484,
+          "exact_rate": 0.5365853658536586,
+          "false_updates": 4,
+          "proposed_updates": 209,
+          "expected_updates": 616,
+          "update_precision": 0.9808612440191388,
+          "update_recall": 0.3327922077922078,
+          "clarifications": 671,
+          "exact_including_gold_evidence": 480,
+          "nonmatching_gold_evidence": 8
+        }
+      },
+      "validation_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 190,
+          "exact_rate": 0.3298611111111111,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.0,
+          "precision": null,
+          "cost": 384
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 294,
+          "exact_rate": 0.901840490797546,
+          "true_updates": 205,
+          "false_updates": 4,
+          "expected_updates": 232,
+          "recall": 0.8836206896551724,
+          "precision": 0.9808612440191388,
+          "cost": 47
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 0,
+          "rate": 0.0
+        }
+      }
+    }
+  ],
+  "retained_weights": {
+    "runs/colab-state-v12/recovered/ablations/control-42/run/model/model.safetensors": {
+      "bytes": 735066976,
+      "sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4"
+    },
+    "runs/colab-state-v12/recovered/ablations/control-17/run/model/model.safetensors": {
+      "bytes": 735066976,
+      "sha256": "3a9098f77f65fcafbf17692faf9c2b98558a76758ebafc29291ba17389771ed2"
+    },
+    "runs/colab-state-v12/recovered/ablations/state-42/run/model/model.safetensors": {
+      "bytes": 735066976,
+      "sha256": "5bcac9f4abd0bbafaaeca02e15f916e83734abafd2f5a66dbb3643753347d3f2"
+    }
+  },
+  "archive": {
+    "bytes": 2986127010,
+    "sha256": "ab0448fb8902e269382faf59750a1ff34a4b7c2b81b7ac989234b19bab696194"
+  },
+  "archive_sha256_crc_verified": true,
+  "new_test_inference": false,
+  "original_test_scored": false,
+  "resources": {
+    "reported_compute_unit_delta": 0.41,
+    "driver_seconds": 1489.6869626820007,
+    "cleanup_completed": true
+  },
+  "extracted_duplicate_removed": {
+    "path": "runs/colab-state-v12/recovered/ablations/control-17/run/best-validation-model/model.safetensors",
+    "retained_identical": "runs/colab-state-v12/recovered/ablations/control-17/run/model/model.safetensors",
+    "sha256": "3a9098f77f65fcafbf17692faf9c2b98558a76758ebafc29291ba17389771ed2",
+    "raw_archive_still_preserves_both": true
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "scope": "Actual two-step Tiny CPU validation-only pilot mechanics on subset with no test rows; no quality claim",
+  "steps": 2,
+  "sampling": "state-balanced",
+  "warm_sha256": "0d82f4fb39e8d9e54065cb32d7eaf30e86e75730f1b00449f40a7e79cc1e2d95",
+  "test_evaluated": false,
+  "declared_intent_weights": {
+    "report": 0.5714285714285714,
+    "clarify": 0.5714285714285714,
+    "next": 2.0,
+    "missed": 2.0,
+    "advice": 2.0
+  },
+  "gate_exercised": "CPU mechanics stop, no expansion/test"
+}

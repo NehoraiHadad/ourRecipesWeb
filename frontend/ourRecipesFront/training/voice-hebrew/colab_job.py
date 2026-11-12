@@ -37,7 +37,7 @@ def supplemental_seed_files(output):
     return result
 
 
-def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_version="3.13", baseline_steps=0, ablation=False, span=False, span_model='tiny', span_train_only=False, targeted=False, semantic=False, combined=False, focused=False, sampling=False, grounding=False, state_context=False):
+def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_version="3.13", baseline_steps=0, ablation=False, span=False, span_model='tiny', span_train_only=False, targeted=False, semantic=False, combined=False, focused=False, sampling=False, grounding=False, state_context=False, state_pilot=False):
     started=time.monotonic();deadline=started+max_seconds
     output=Path(output);output.mkdir(parents=True,exist_ok=False)
     state={"status":"running","phase":"verify_bundle","steps_requested":steps,"started_utc":__import__('datetime').datetime.now(__import__('datetime').timezone.utc).isoformat(),"production_ready":False}
@@ -70,8 +70,8 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
                 relative=Path(item.filename)
                 if relative.is_absolute() or '..' in relative.parts:raise ValueError("Unsafe bundle path")
             archive.extractall(material)
-        if state_context:
-            plan=json.loads((material/'verification/state-v12-plan-20261112.json').read_text())
+        if state_context or state_pilot:
+            plan=json.loads((material/('verification/state-v13-plan-20261112.json' if state_pilot else 'verification/state-v12-plan-20261112.json')).read_text())
             warm=Path('/content/ourrecipes-warm-weights.safetensors')
             with warm.open('rb') as f:actual=hashlib.file_digest(f,'sha256').hexdigest()
             if actual!=plan['warm_checkpoint']['sha256']:raise ValueError('Uploaded warm checkpoint differs from freeze')
@@ -95,9 +95,11 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
             if baseline_seconds<30:raise TimeoutError('Insufficient time for matched baseline and candidate')
             run([python,str(material/'train.py'),'--output',str(output/'baseline'),'--data',str(material/'data'),'--max-steps',str(baseline_steps),'--max-seconds',str(baseline_seconds),'--save-every','50','--require-gpu'],'matched_baseline',limit=baseline_seconds+20,env=environment)
         run_path=output/'run'
-        train_seconds=min(2700 if state_context else 2400 if grounding or sampling else 1700 if combined else 1600 if semantic else 800 if targeted else 600,int(deadline-time.monotonic()-90))
+        train_seconds=min(2700 if state_context or state_pilot else 2400 if grounding or sampling else 1700 if combined else 1600 if semantic else 800 if targeted else 600,int(deadline-time.monotonic()-90))
         if train_seconds<30:raise TimeoutError('Too little remaining pilot time to train/evaluate safely')
-        if state_context:
+        if state_pilot:
+            run([python,str(material/'state_pilot.py'),str(output),'--steps',str(steps),'--max-seconds',str(train_seconds)],'focused_state_pilot',limit=train_seconds+20,env=environment)
+        elif state_context:
             run([python,str(material/'state_sweep.py'),str(output),'--steps',str(steps),'--max-seconds',str(train_seconds)],'state_context_comparison',limit=train_seconds+20,env=environment)
         elif grounding:
             run([python,str(material/'grounding_sweep.py'),str(output),'--steps',str(steps),'--max-seconds',str(train_seconds)],'evidence_boundary_comparison',limit=train_seconds+20,env=environment)
@@ -117,7 +119,7 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
             run([python,str(material/'train.py'),'--output',str(run_path),'--data',str(material/'data'),'--max-steps',str(steps),'--max-seconds',str(train_seconds),'--save-every','50','--require-gpu'],'train_and_validate',limit=train_seconds+20,env=environment)
         if not (run_path/'decision.json').exists():raise RuntimeError('Training saved but did not finish validation; checkpoint recovery required')
         # Keep held-out test unopened until a candidate has been selected on validation.
-        if not span and not targeted and not semantic and not combined and not sampling and not grounding and not state_context:
+        if not span and not targeted and not semantic and not combined and not sampling and not grounding and not state_context and not state_pilot:
             evaluation_data=output/'selected-data' if ablation else material/'data'
             run([python,str(material/'export.py'),str(run_path),'--data',str(evaluation_data)],'export_onnx',limit=100,env=environment)
             run([python,str(material/'evaluate.py'),str(run_path),'--data',str(evaluation_data),'--split','validation','--onnx'],'validate_int8',limit=60,env=environment)
@@ -129,7 +131,7 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
         # Recover complete and partial results. Exclude environment and HF cache.
         recovery=Path(str(output)+'-results.zip')
         with zipfile.ZipFile(recovery,'w',zipfile.ZIP_STORED) as archive:
-            for name in ['status.json','hardware.json','ablation-report.json','targeted-report.json','targeted-progress.json','semantic-report.json','semantic-progress.json','combined-report.json','combined-progress.json','sampling-report.json','sampling-progress.json','grounding-report.json','grounding-progress.json','state-report.json','state-progress.json','selection-frozen.json','artifact-retention.json','data-audit.json']:
+            for name in ['status.json','hardware.json','ablation-report.json','targeted-report.json','targeted-progress.json','semantic-report.json','semantic-progress.json','combined-report.json','combined-progress.json','sampling-report.json','sampling-progress.json','grounding-report.json','grounding-progress.json','state-report.json','state-progress.json','state-pilot-report.json','state-pilot-progress.json','selection-frozen.json','artifact-retention.json','data-audit.json']:
                 if (output/name).exists():archive.write(output/name,name)
             for item in (output/'run').rglob('*'):
                 # Preserve weights/INT8; regenerate the large FP32 graph locally
@@ -161,12 +163,12 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
 
 if __name__=='__main__':
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--bundle',required=True);p.add_argument('--output',required=True);p.add_argument('--sha256',required=True);p.add_argument('--steps',type=int,default=200);p.add_argument('--max-seconds',type=int,default=900);p.add_argument('--python-version',choices=['3.12','3.13'],default='3.13');p.add_argument('--baseline-steps',type=int,default=0)
-    group=p.add_mutually_exclusive_group();group.add_argument('--ablation',action='store_true');group.add_argument('--span',action='store_true');group.add_argument('--targeted',action='store_true');group.add_argument('--semantic',action='store_true');group.add_argument('--combined',action='store_true');group.add_argument('--sampling',action='store_true');group.add_argument('--grounding',action='store_true');group.add_argument('--state-context',action='store_true')
+    group=p.add_mutually_exclusive_group();group.add_argument('--ablation',action='store_true');group.add_argument('--span',action='store_true');group.add_argument('--targeted',action='store_true');group.add_argument('--semantic',action='store_true');group.add_argument('--combined',action='store_true');group.add_argument('--sampling',action='store_true');group.add_argument('--grounding',action='store_true');group.add_argument('--state-context',action='store_true');group.add_argument('--state-pilot',action='store_true')
     p.add_argument('--focused',action='store_true')
     p.add_argument('--span-model',choices=['tiny','base'],default='tiny')
     p.add_argument('--span-train-only',action='store_true')
     a=p.parse_args()
-    if not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding or a.state_context else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:raise SystemExit('Invalid bounded pilot settings')
+    if not 1<=a.steps<=(1500 if a.targeted or a.combined else 5000 if a.span else 1000) or not 60<=a.max_seconds<=(3000 if a.sampling or a.grounding or a.state_context or a.state_pilot else 2100 if a.combined else 2000 if a.semantic else 1200) or not 0<=a.baseline_steps<a.steps:raise SystemExit('Invalid bounded pilot settings')
     if a.focused and not a.combined:raise SystemExit('--focused requires --combined')
     if a.span_train_only and not a.span:raise SystemExit('--span-train-only requires --span')
-    execute(a.bundle,a.output,a.sha256,a.steps,a.max_seconds,a.python_version,a.baseline_steps,a.ablation,a.span,a.span_model,a.span_train_only,a.targeted,a.semantic,a.combined,a.focused,a.sampling,a.grounding,a.state_context)
+    execute(a.bundle,a.output,a.sha256,a.steps,a.max_seconds,a.python_version,a.baseline_steps,a.ablation,a.span,a.span_model,a.span_train_only,a.targeted,a.semantic,a.combined,a.focused,a.sampling,a.grounding,a.state_context,a.state_pilot)
