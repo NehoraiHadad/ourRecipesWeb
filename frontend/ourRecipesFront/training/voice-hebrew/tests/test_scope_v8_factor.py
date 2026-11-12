@@ -19,4 +19,11 @@ class FactorTests(unittest.TestCase):
   self.assertGreater(float(x.grad.abs().sum()),0)
   self.assertTrue(bool(torch.isfinite(head.logprobs(x)).all()))
 
+ def test_qualification_filters_failed_other_foundation(self):
+  from scope_v8_factor_test import candidates
+  d={'selected_method':'factor-wide','selected_foundation':'public','qualified_for_test':True,'trials':[{'foundation':'adapted','arm':'factor-wide','seed':42,'qualified':False}]+[{'foundation':'public','arm':'factor-wide','seed':s,'qualified':True} for s in (42,17,73)]}
+  self.assertEqual(len(candidates(d)),3)
+  d['trials'][2]['qualified']=False
+  with self.assertRaisesRegex(ValueError,'Three-seed'):candidates(d)
+
 if __name__=='__main__':unittest.main()
