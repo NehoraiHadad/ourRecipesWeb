@@ -1,0 +1,9 @@
+{
+ "purpose":"Research-only independent validator for legacy named-action proposals; not changed inside active guarded training experiment",
+ "motivation":"3 known legacy false proposals confuse apple/pear ingredients or chop/scatter verbs. A blanket current-step filter would reject92/232 legitimate guard updates, so is rejected.",
+ "runtime_inputs":"Recipe ingredient strings and action.id/text, utterance and quoted evidence. Never action.report, gold, split, rowID or recipeID special rules.",
+ "policy":"Reject only nonlocal evidence, unknown IDs, or explicit disjoint ingredient/known-verb-family evidence. Longest ingredient mentions win; a full ingredient overlapping a truncated quote is considered. Cut/chop synonyms grouped. Unknown terms/anaphora not vetoed; cross-step reports allowed. Reject only, never rebind or invent actions/quantities.",
+ "coverage":"Partial hand-authored5 cooking verb families, not a general Hebrew parser or factuality proof. Evaluate all326 consumed guard proposals, before/after, report all rejections and any true-update loss. No independent accuracy claim or fresh tests.",
+ "criteria":"Prefer false reduction without violating original recall/exact floors; not used to change active model qualification or unblock tests retroactively.",
+ "fresh_test_inference":false
+}
