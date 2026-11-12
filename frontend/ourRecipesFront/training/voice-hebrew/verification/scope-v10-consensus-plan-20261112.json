@@ -1,0 +1,32 @@
+{
+  "study": "scope-v10-consensus",
+  "created_utc": "2026-11-12T15:29:06.892586+00:00",
+  "source_sha256": {
+    "scope_v10_consensus.py": "be6248f97f1990f2f93f90e17373a38f9e56428e3d75c9ceccdd69e11113a90a",
+    "tests/test_scope_v10_consensus.py": "cd6635bc144aa86098de7ed537092412fffff50a6b8e916a10856fe35a6d53fe",
+    "scope_v9_guarded.py": "2e25561c67b47e31326b0dd90302ffdac623ecfa040325e63260407b0156f584",
+    "scope_v9_hierarchy.py": "f941501e13323e53ac2be3c77bb15376c387a4825047b8390d0bb8bbbf79abac",
+    "scope_v9.py": "e3f60485b2150b7f8b408ab2edd3ff019610eb4f2f92593d64d45e47c4d88fd5",
+    "facts_v7.py": "505d92a5fd946a992eb9781b6a078dffd754d42c105e301c3c80c065adbc7b57"
+  },
+  "method": "ordinary if ANY member ordinary; reference or readonly only if ALL members same accepted route and label; otherwise clarify. Existing per-member calibration policies unchanged. No threshold grid, voting threshold, alternative selector or error-text rules. Evidence guard NOT applied to primary qualification.",
+  "existing_feasibility_members": [
+    42,
+    17
+  ],
+  "prospective_final_members": [
+    42,
+    17,
+    73
+  ],
+  "feasibility_only": true,
+  "consumed_sets": [
+    "calibration493",
+    "old480",
+    "guard326"
+  ],
+  "gates": "Same zero false new and old, calibration effective and correction>=.75, old effective>=.75/correction>=12/16; guard exact>=294,false<=3,recall>=.876551724137931; no unmeasured reference fallback.",
+  "test_inference_authorized_by_this_script": false,
+  "future": "Only if two-member feasibility passes: train73 using unchanged V9 recipe and semantic selector, preregister fixed ALL-three evaluation and tests before starting. No individual V9 failure reclassified. Consensus is different and costs multiple encoder passes.",
+  "limitations": "Adaptive synthetic development; three members are not three independent quality repetitions. Each member trained on same data. No physical-device or speech validation."
+}
