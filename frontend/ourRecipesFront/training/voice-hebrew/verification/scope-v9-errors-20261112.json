@@ -1,0 +1,1643 @@
+{
+  "scope": "Post-selection consumed validation/guard only; exact aggregate reproduction, no model/threshold/test change",
+  "trials": [
+    {
+      "method": "semantic-global",
+      "old_false": [
+        {
+          "id": "validation-certainty-60-1",
+          "text": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.8709169030189514,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        }
+      ],
+      "guard_changed_from_original_legacy": [
+        {
+          "id": "state12-validation-3-history-local",
+          "text": "המרכיב שהזכרתי קודם כבר בפנים",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.026224741712212563,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר בפנים"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר"
+              }
+            ],
+            "requiresReview": true
+          }
+        }
+      ]
+    },
+    {
+      "method": "semantic-typed",
+      "old_false": [
+        {
+          "id": "validation-certainty-60-1",
+          "text": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.8709169030189514,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        }
+      ],
+      "guard_changed_from_original_legacy": [
+        {
+          "id": "state12-validation-3-history-local",
+          "text": "המרכיב שהזכרתי קודם כבר בפנים",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.026224741712212563,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר בפנים"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-7-history-local",
+          "text": "המרכיב שדיברתי עליו גם נחתך",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9502705335617065,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-0-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-1-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-2-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-3-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-4-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-5-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9735957980155945,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        }
+      ]
+    },
+    {
+      "method": "safety-global",
+      "old_false": [
+        {
+          "id": "validation-certainty-60-1",
+          "text": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.986491322517395,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        },
+        {
+          "id": "validation-certainty-61-1",
+          "text": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.9929026961326599,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        }
+      ],
+      "guard_changed_from_original_legacy": [
+        {
+          "id": "state12-validation-3-history-local",
+          "text": "המרכיב שהזכרתי קודם כבר בפנים",
+          "fact": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.18135415017604828,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר בפנים"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-7-history-local",
+          "text": "המרכיב שדיברתי עליו גם נחתך",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.2944841980934143,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-0-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-1-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-2-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-3-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-4-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-5-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        }
+      ]
+    },
+    {
+      "method": "safety-typed",
+      "old_false": [
+        {
+          "id": "validation-certainty-60-1",
+          "text": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.986491322517395,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        },
+        {
+          "id": "validation-certainty-61-1",
+          "text": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+          "fact": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.9929026961326599,
+          "accepted": true,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "clarify",
+            "changes": []
+          },
+          "actual": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "c_validation_x_0_0",
+                "done": false,
+                "evidence": "אני מעדכן: מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה"
+              }
+            ],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "c_validation_x_0_0",
+              "c_validation_x_1_0"
+            ],
+            "remaining": [
+              "c_validation_x_0_1",
+              "c_validation_x_0_2",
+              "c_validation_x_1_1",
+              "c_validation_x_1_2"
+            ]
+          }
+        }
+      ],
+      "guard_changed_from_original_legacy": [
+        {
+          "id": "state12-validation-0-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-1-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a1",
+              "a2",
+              "a3",
+              "a0"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-2-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a2",
+              "a3",
+              "a0",
+              "a1"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-3-history-local",
+          "text": "המרכיב שהזכרתי קודם כבר בפנים",
+          "fact": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.18135415017604828,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר בפנים"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "המרכיב שהזכרתי קודם כבר"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-3-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-4-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-5-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a1",
+              "a2",
+              "a3",
+              "a0"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-6-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a2",
+              "a3",
+              "a0",
+              "a1"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-7-history-local",
+          "text": "המרכיב שדיברתי עליו גם נחתך",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.2944841980934143,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a0",
+                "done": true,
+                "evidence": "המרכיב שדיברתי עליו גם נחתך"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "state12-validation-7-advice",
+          "text": "הנה עדכון מההכנה כאן: איזה שינוי היית מציע מעבר להוראות?",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9676490426063538,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a3",
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-0-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-1-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-2-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-3-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-4-completion-3",
+          "text": "סיימתי את ערבוב בלילה",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9864944219589233,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "סיימתי את ערבוב בלילה"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": true,
+                "evidence": "סיימתי את ערבוב בלילה"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-4-negative-3",
+          "text": "בבדיקה נוספת התברר: לא ערבבתי בלילה",
+          "fact": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.9719184041023254,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": false,
+                "evidence": "לא ערבבתי בלילה"
+              }
+            ]
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [
+              "a3"
+            ],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2"
+            ]
+          },
+          "original_legacy": {
+            "intent": "report",
+            "changes": [
+              {
+                "actionId": "a3",
+                "done": false,
+                "evidence": "לא ערבבתי בלילה"
+              }
+            ],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-4-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        },
+        {
+          "id": "combined-validation-5-advice",
+          "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+          "fact": [
+            "remaining",
+            "nonassertion",
+            "unspecified"
+          ],
+          "confidence": 0.42868736386299133,
+          "accepted": false,
+          "route": "semantic-or-abstain",
+          "gold": {
+            "intent": "advice",
+            "changes": []
+          },
+          "actual": {
+            "intent": "clarify",
+            "changes": [],
+            "requiresReview": true
+          },
+          "state": {
+            "currentStep": 0,
+            "completed": [],
+            "remaining": [
+              "a0",
+              "a1",
+              "a2",
+              "a3"
+            ]
+          },
+          "original_legacy": {
+            "intent": "advice",
+            "changes": [],
+            "requiresReview": true
+          }
+        }
+      ]
+    }
+  ],
+  "new_test_inference": false
+}

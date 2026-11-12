@@ -1,0 +1,79 @@
+{
+  "scope": "Deterministic lexical contradiction guard on already-used326, applied to saved actual T4 f053 proposals. Not a new neural model or independent test. Runtime ingredients/action.text/evidence only; action.report/gold/split/currentStep not used by guard. No remapping.",
+  "before": {
+    "threshold": 0.5,
+    "examples": 326,
+    "exact_proposals": 294,
+    "exact_rate": 0.901840490797546,
+    "false_updates": 3,
+    "proposed_updates": 211,
+    "expected_updates": 232,
+    "update_precision": 0.985781990521327,
+    "update_recall": 0.896551724137931,
+    "clarifications": 100,
+    "exact_including_gold_evidence": 291,
+    "nonmatching_gold_evidence": 6
+  },
+  "after": {
+    "threshold": 0.5,
+    "examples": 326,
+    "exact_proposals": 296,
+    "exact_rate": 0.9079754601226994,
+    "false_updates": 0,
+    "proposed_updates": 208,
+    "expected_updates": 232,
+    "update_precision": 1.0,
+    "update_recall": 0.896551724137931,
+    "clarifications": 101,
+    "exact_including_gold_evidence": 293,
+    "nonmatching_gold_evidence": 3
+  },
+  "rejections": [
+    {
+      "id": "state12-validation-7-correction-1",
+      "text": "הנה עדכון מההכנה כאן: תיקון שלי: עדיין לא חתכתי תפוח פינק",
+      "rejected": [
+        {
+          "change": {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "עדיין לא חתכתי תפוח"
+          },
+          "reason": "contradictory_ingredient"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-7-partial-step",
+      "text": "הנה עדכון מההכנה כאן: שטפתי תפוח פינק; עדיין לא חתכתי תפוח פינק",
+      "rejected": [
+        {
+          "change": {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "עדיין לא חתכתי תפוח פינק"
+          },
+          "reason": "contradictory_ingredient"
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-1-assertion-0",
+      "text": "העדכון שלי כרגע: קצצתי שמיר",
+      "rejected": [
+        {
+          "change": {
+            "actionId": "a3",
+            "done": true,
+            "evidence": "קצצתי שמיר"
+          },
+          "reason": "contradictory_verb"
+        }
+      ]
+    }
+  ],
+  "source_sha256": "b948f6f0f6c7fe2502227fa25d543a2669c987733fac1579e2e58b47cd4ce3fe",
+  "fresh_test_inference": false,
+  "human_reviewed": false,
+  "physical_device_tested": false
+}

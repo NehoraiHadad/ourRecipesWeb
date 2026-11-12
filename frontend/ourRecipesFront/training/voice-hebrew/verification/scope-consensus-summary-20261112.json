@@ -1,0 +1,53 @@
+{
+  "method": "Fixed ALL-three consensus, single ensemble not three independent repetitions",
+  "third_member_training_source_commit": "23d6db0",
+  "members": [
+    {
+      "seed": 42,
+      "actual_updates": 8000,
+      "selected_step": 7000,
+      "selected_dev": {
+        "macro_accuracy": 0.9948412736256917,
+        "nll": 0.024794701486825943,
+        "accuracy": 0.9959431886672974
+      },
+      "stop_reason": "max_updates",
+      "seconds_including_native_cpu": 644.545076358,
+      "peak_cuda_allocated_bytes": 941905408,
+      "body_unchanged_when_adapters_disabled": true
+    },
+    {
+      "seed": 17,
+      "actual_updates": 8000,
+      "selected_step": 7000,
+      "selected_dev": {
+        "macro_accuracy": 0.9948412736256917,
+        "nll": 0.010028460063040257,
+        "accuracy": 0.9959431886672974
+      },
+      "stop_reason": "max_updates",
+      "seconds_including_native_cpu": 646.556176869,
+      "peak_cuda_allocated_bytes": 941073920,
+      "body_unchanged_when_adapters_disabled": true
+    },
+    {
+      "seed": 73,
+      "actual_updates": 6000,
+      "selected_step": 2000,
+      "selected_dev": {
+        "macro_accuracy": 0.9924603223800659,
+        "nll": 0.03201046213507652,
+        "accuracy": 0.993914783000946
+      },
+      "stop_reason": "both_selectors_plateau_after_min4000",
+      "seconds_including_native_cpu": 512.0115208999999,
+      "peak_cuda_allocated_bytes": 941905408,
+      "body_unchanged_when_adapters_disabled": true
+    }
+  ],
+  "development_proof_sha256": "07300fce71f41613dfcf4b39d6e62631ed998b44dc09c1ff477a7704f0049b6e",
+  "test_proof_sha256": null,
+  "new_test_inference_by_summary": false,
+  "human_reviewed": false,
+  "physical_device_tested": false
+}

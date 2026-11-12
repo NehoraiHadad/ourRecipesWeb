@@ -1,0 +1,1591 @@
+{
+  "scope": "Exploratory calibration on same already-used calibration493, weights/dev-selected checkpoint unchanged; no transfer inference yet and no test. Requires real native old/guard validation and prospective17/73 before any test.",
+  "model": "Adapted f053 factor-wide/product best2000, seed42",
+  "checkpoint_sha256": "83f99ee964c8be5e27312d7f022ba4fa2bbadd96ddd67d870a4986b0ec2c7f4b",
+  "selection": "Separate zero-false selective thresholds for4 actionable fact classes. Other classes retain.99. Same proposal/effective/correction metrics; no loosened qualification gates.",
+  "calibration": {
+    "thresholds": [
+      0.5,
+      0.85,
+      0.99,
+      0.99,
+      0.99,
+      0.99,
+      0.99,
+      0.95,
+      0.99,
+      0.99,
+      0.99,
+      0.99,
+      0.99,
+      0.99,
+      0.99
+    ],
+    "action_classes": {
+      "0": {
+        "fact": [
+          "remaining",
+          "asserted",
+          "complete"
+        ],
+        "choice": {
+          "threshold": 0.5,
+          "key": [
+            true,
+            36,
+            36,
+            0.5
+          ],
+          "metrics": {
+            "cases": 1972,
+            "proposed": 36,
+            "true_proposals": 36,
+            "false_proposals": 0,
+            "expected_effective": 96,
+            "correct_effective": 36,
+            "false_effective": 0,
+            "expected_corrections": 48,
+            "correct_corrections": 0,
+            "noop_confirmations": 0,
+            "unsafe_changes": 0,
+            "ambiguous_clear": 624,
+            "effective_recall": 0.375,
+            "correction_recall": 0.0
+          }
+        },
+        "grid": [
+          {
+            "threshold": null,
+            "key": [
+              true,
+              0,
+              0,
+              2.0
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 0,
+              "true_proposals": 0,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.5,
+            "key": [
+              true,
+              36,
+              36,
+              0.5
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 36,
+              "true_proposals": 36,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 36,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.375,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              true,
+              34,
+              34,
+              0.7
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 34,
+              "true_proposals": 34,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 34,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.3541666666666667,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              true,
+              34,
+              34,
+              0.85
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 34,
+              "true_proposals": 34,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 34,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.3541666666666667,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              true,
+              32,
+              32,
+              0.95
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 32,
+              "true_proposals": 32,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 32,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.3333333333333333,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              true,
+              26,
+              26,
+              0.99
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 26,
+              "true_proposals": 26,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 26,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.2708333333333333,
+              "correction_recall": 0.0
+            }
+          }
+        ]
+      },
+      "1": {
+        "fact": [
+          "remaining",
+          "asserted",
+          "incomplete"
+        ],
+        "choice": {
+          "threshold": 0.85,
+          "key": [
+            true,
+            0,
+            36,
+            0.85
+          ],
+          "metrics": {
+            "cases": 1972,
+            "proposed": 36,
+            "true_proposals": 36,
+            "false_proposals": 0,
+            "expected_effective": 96,
+            "correct_effective": 0,
+            "false_effective": 0,
+            "expected_corrections": 48,
+            "correct_corrections": 0,
+            "noop_confirmations": 36,
+            "unsafe_changes": 0,
+            "ambiguous_clear": 624,
+            "effective_recall": 0.0,
+            "correction_recall": 0.0
+          }
+        },
+        "grid": [
+          {
+            "threshold": null,
+            "key": [
+              true,
+              0,
+              0,
+              2.0
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 0,
+              "true_proposals": 0,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.5,
+            "key": [
+              true,
+              0,
+              36,
+              0.5
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 36,
+              "true_proposals": 36,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 36,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              true,
+              0,
+              36,
+              0.7
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 36,
+              "true_proposals": 36,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 36,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              true,
+              0,
+              36,
+              0.85
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 36,
+              "true_proposals": 36,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 36,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              true,
+              0,
+              32,
+              0.95
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 32,
+              "true_proposals": 32,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 32,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              true,
+              0,
+              28,
+              0.99
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 28,
+              "true_proposals": 28,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 28,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          }
+        ]
+      },
+      "6": {
+        "fact": [
+          "marked",
+          "asserted",
+          "complete"
+        ],
+        "choice": {
+          "threshold": 0.99,
+          "key": [
+            true,
+            0,
+            40,
+            0.99
+          ],
+          "metrics": {
+            "cases": 1972,
+            "proposed": 40,
+            "true_proposals": 40,
+            "false_proposals": 0,
+            "expected_effective": 96,
+            "correct_effective": 0,
+            "false_effective": 0,
+            "expected_corrections": 48,
+            "correct_corrections": 0,
+            "noop_confirmations": 40,
+            "unsafe_changes": 0,
+            "ambiguous_clear": 624,
+            "effective_recall": 0.0,
+            "correction_recall": 0.0
+          }
+        },
+        "grid": [
+          {
+            "threshold": null,
+            "key": [
+              true,
+              0,
+              0,
+              2.0
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 0,
+              "true_proposals": 0,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              0,
+              44,
+              0.5
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 46,
+              "true_proposals": 44,
+              "false_proposals": 2,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 44,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 622,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              0,
+              44,
+              0.7
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 46,
+              "true_proposals": 44,
+              "false_proposals": 2,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 44,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 622,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              0,
+              42,
+              0.85
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 44,
+              "true_proposals": 42,
+              "false_proposals": 2,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 42,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 622,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              false,
+              0,
+              40,
+              0.95
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 41,
+              "true_proposals": 40,
+              "false_proposals": 1,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 40,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 623,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              true,
+              0,
+              40,
+              0.99
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 40,
+              "true_proposals": 40,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 40,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          }
+        ]
+      },
+      "7": {
+        "fact": [
+          "marked",
+          "asserted",
+          "incomplete"
+        ],
+        "choice": {
+          "threshold": 0.95,
+          "key": [
+            true,
+            68,
+            34,
+            0.95
+          ],
+          "metrics": {
+            "cases": 1972,
+            "proposed": 34,
+            "true_proposals": 34,
+            "false_proposals": 0,
+            "expected_effective": 96,
+            "correct_effective": 34,
+            "false_effective": 0,
+            "expected_corrections": 48,
+            "correct_corrections": 34,
+            "noop_confirmations": 0,
+            "unsafe_changes": 0,
+            "ambiguous_clear": 624,
+            "effective_recall": 0.3541666666666667,
+            "correction_recall": 0.7083333333333334
+          }
+        },
+        "grid": [
+          {
+            "threshold": null,
+            "key": [
+              true,
+              0,
+              0,
+              2.0
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 0,
+              "true_proposals": 0,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 0,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 0,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.0,
+              "correction_recall": 0.0
+            }
+          },
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              80,
+              40,
+              0.5
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 43,
+              "true_proposals": 40,
+              "false_proposals": 3,
+              "expected_effective": 96,
+              "correct_effective": 40,
+              "false_effective": 3,
+              "expected_corrections": 48,
+              "correct_corrections": 40,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 623,
+              "effective_recall": 0.4166666666666667,
+              "correction_recall": 0.8333333333333334
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              76,
+              38,
+              0.7
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 41,
+              "true_proposals": 38,
+              "false_proposals": 3,
+              "expected_effective": 96,
+              "correct_effective": 38,
+              "false_effective": 3,
+              "expected_corrections": 48,
+              "correct_corrections": 38,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 623,
+              "effective_recall": 0.3958333333333333,
+              "correction_recall": 0.7916666666666666
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              72,
+              36,
+              0.85
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 39,
+              "true_proposals": 36,
+              "false_proposals": 3,
+              "expected_effective": 96,
+              "correct_effective": 36,
+              "false_effective": 3,
+              "expected_corrections": 48,
+              "correct_corrections": 36,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 623,
+              "effective_recall": 0.375,
+              "correction_recall": 0.75
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              true,
+              68,
+              34,
+              0.95
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 34,
+              "true_proposals": 34,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 34,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 34,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.3541666666666667,
+              "correction_recall": 0.7083333333333334
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              true,
+              64,
+              32,
+              0.99
+            ],
+            "metrics": {
+              "cases": 1972,
+              "proposed": 32,
+              "true_proposals": 32,
+              "false_proposals": 0,
+              "expected_effective": 96,
+              "correct_effective": 32,
+              "false_effective": 0,
+              "expected_corrections": 48,
+              "correct_corrections": 32,
+              "noop_confirmations": 0,
+              "unsafe_changes": 0,
+              "ambiguous_clear": 624,
+              "effective_recall": 0.3333333333333333,
+              "correction_recall": 0.6666666666666666
+            }
+          }
+        ]
+      }
+    },
+    "metrics": {
+      "cases": 1972,
+      "proposed": 146,
+      "true_proposals": 146,
+      "false_proposals": 0,
+      "expected_effective": 96,
+      "correct_effective": 70,
+      "false_effective": 0,
+      "expected_corrections": 48,
+      "correct_corrections": 34,
+      "noop_confirmations": 76,
+      "unsafe_changes": 0,
+      "ambiguous_clear": 624,
+      "effective_recall": 0.7291666666666666,
+      "correction_recall": 0.7083333333333334,
+      "failures": [
+        {
+          "id": "scope-calibration-206",
+          "text": "אני יכול לאשר שהפעולה שטרם נרשמה כמבוצעת בוצעה כולה",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-206",
+          "text": "אני יכול לאשר שהפעולה שטרם נרשמה כמבוצעת בוצעה כולה",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-254",
+          "text": "אני יכול לאשר שהפעולה שכבר נרשמה כמבוצעת בכלל לא בוצעה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-254",
+          "text": "אני יכול לאשר שהפעולה שכבר נרשמה כמבוצעת בכלל לא בוצעה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-278",
+          "text": "אני יכול לאשר שהמשימה שעוד אין לידה סימון ביצוע הושלמה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.9938507676124573,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-278",
+          "text": "אני יכול לאשר שהמשימה שעוד אין לידה סימון ביצוע הושלמה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.9938507676124573,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-326",
+          "text": "אני יכול לאשר שהמשימה שכבר יש לידה סימון ביצוע עוד לא הושלמה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.9999785423278809,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-326",
+          "text": "אני יכול לאשר שהמשימה שכבר יש לידה סימון ביצוע עוד לא הושלמה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.9999785423278809,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-349",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-349",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-350",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-350",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-351",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-351",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-397",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-397",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-398",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-398",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-399",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-399",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-400",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-400",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-422",
+          "text": "אני יכול לאשר שהעבודה שלא סימנתי כסגורה בשלב הזה נעשתה בשלמותה",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-422",
+          "text": "אני יכול לאשר שהעבודה שלא סימנתי כסגורה בשלב הזה נעשתה בשלמותה",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "remaining",
+            "uncertain",
+            "complete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-470",
+          "text": "אני יכול לאשר שהעבודה שסימנתי כסגורה בשלב הזה כלל לא נעשתה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-470",
+          "text": "אני יכול לאשר שהעבודה שסימנתי כסגורה בשלב הזה כלל לא נעשתה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "marked",
+            "uncertain",
+            "incomplete"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        }
+      ]
+    },
+    "unmeasured_reference_fallback": 0,
+    "passed": false
+  },
+  "new_test_inference": false,
+  "source_sha256": "3282309c01602f45976caeff9faf725fd1f7beae31ec08959c9ad59cfc704644"
+}

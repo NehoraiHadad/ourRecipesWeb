@@ -1,0 +1,17 @@
+{
+  "observed_utc": "2026-11-12T15:38:13.259570+00:00",
+  "papers": [
+    {
+      "url": "https://arxiv.org/abs/1612.01474",
+      "status": 200,
+      "title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles",
+      "scope": "Abstract/title checked only; not Hebrew cooking validation or evidence that our unanimity rule is calibrated."
+    },
+    {
+      "url": "https://arxiv.org/abs/1503.02531",
+      "status": 200,
+      "title": "Distilling the Knowledge in a Neural Network",
+      "scope": "Abstract/title checked only; not Hebrew cooking validation or evidence that our unanimity rule is calibrated."
+    }
+  ]
+}

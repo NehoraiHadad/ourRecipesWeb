@@ -1,0 +1,49 @@
+{
+  "scope": "Known consumed error texts, post-selection diagnostics only, no weights/policies/tests changed",
+  "cases": [
+    {
+      "text": "מה שהיה חסר בתור פעולה יחידה בשלב הנוכחי עדיין לא נעשה",
+      "attributes": [
+        {
+          "remaining": 0.12908242642879486,
+          "marked": 0.870917558670044,
+          "other": 2.2507008409777818e-11
+        },
+        {
+          "asserted": 1.0,
+          "uncertain": 3.1782274589886583e-09,
+          "nonassertion": 5.892916155048056e-10,
+          "other": 3.279738676822963e-14
+        },
+        {
+          "complete": 7.109982220754318e-07,
+          "incomplete": 0.9999992847442627,
+          "partial": 3.275802545887885e-11,
+          "unspecified": 1.9008334906089885e-09
+        }
+      ]
+    },
+    {
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "attributes": [
+        {
+          "remaining": 3.5563091360657495e-10,
+          "marked": 0.9671078324317932,
+          "other": 0.03289223089814186
+        },
+        {
+          "asserted": 0.1012817770242691,
+          "uncertain": 3.9467545320803765e-06,
+          "nonassertion": 3.3338621960865567e-06,
+          "other": 0.8987109065055847
+        },
+        {
+          "complete": 0.11177259683609009,
+          "incomplete": 5.312176654115319e-05,
+          "partial": 0.0010225505102425814,
+          "unspecified": 0.8871517777442932
+        }
+      ]
+    }
+  ]
+}

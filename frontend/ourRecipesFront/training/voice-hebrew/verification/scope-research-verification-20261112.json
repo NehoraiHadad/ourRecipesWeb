@@ -1,0 +1,94 @@
+{
+  "frozen_sources": [
+    {
+      "plan": "verification/scope-v8-plan-20261112.json",
+      "files": 26,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v8-factor-plan-20261112.json",
+      "files": 31,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v9-plan-20261112.json",
+      "files": 36,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v9-guarded-plan-20261112.json",
+      "files": 41,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v10-consensus-plan-20261112.json",
+      "files": 6,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v10-prospective-plan-20261112.json",
+      "files": 49,
+      "all_equal": true
+    },
+    {
+      "plan": "verification/scope-v11-replay-plan-20261112.json",
+      "files": 55,
+      "all_equal": true
+    }
+  ],
+  "archives": [
+    {
+      "folder": "colab-scope-v8",
+      "sha256": "f9527941b28965658955acdbb37952594a531ff38bd0411ed0a52db93de1e789",
+      "bytes": 32388226,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 0,
+      "empty_legacy_smoke_not_quality_evidence": true
+    },
+    {
+      "folder": "colab-scope-v8-factor",
+      "sha256": "822171dab876b8b3d307938f657353cc987cd02eeb6836fd572dc80028ed8221",
+      "bytes": 51407533,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 0,
+      "empty_legacy_smoke_not_quality_evidence": true
+    },
+    {
+      "folder": "colab-scope-v9",
+      "sha256": "bafc23958ce0c534eb73124ff41e7209dd7b3d7a70f44cf35136df96d8c457eb",
+      "bytes": 64119626,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 1,
+      "empty_legacy_smoke_not_quality_evidence": false
+    },
+    {
+      "folder": "colab-scope-v9-guarded",
+      "sha256": "dfe877ddf3c6e44a5078f107c642942af6a186e79d5d6f4c22776c8cea4c7328",
+      "bytes": 77069307,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 1,
+      "empty_legacy_smoke_not_quality_evidence": false
+    },
+    {
+      "folder": "colab-scope-v10-consensus",
+      "sha256": "d93026c775add4fdc202fa02a448442eec8d7267067f6126058c71b84c9a0e95",
+      "bytes": 70552212,
+      "crc": true,
+      "dedicated_gpu_mechanics_trials": 1,
+      "empty_legacy_smoke_not_quality_evidence": false
+    }
+  ],
+  "original_body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "body_bytes": 735066976,
+  "tests": {
+    "command": "/tmp/ourrecipes-voice-py313/bin/python -m unittest discover -s tests -v",
+    "passed": 130,
+    "log_sha256": "05d46a865c5083f38c9c9be5ebc16bfcfa26176dd46274aff37920a94c620e2e",
+    "mocked_cli_controls_are_not_quality_evidence": true
+  },
+  "new_test_inference_by_verifier": false,
+  "physical_device_tested": false,
+  "human_reviewed": false,
+  "outside_training_changes": [],
+  "metadata_errata": "Old guarded steps metadata stale; actual frozen V9 source/curves min4000/max8000. Old V8/V8b dedicated GPU smoke empty and preserved; actual quality trials ran."
+}

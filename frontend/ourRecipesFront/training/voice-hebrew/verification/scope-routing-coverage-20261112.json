@@ -1,0 +1,1652 @@
+{
+  "scope": "Post-outcome training-coverage/consumed routing diagnostic. Does not create labels, train weights, change decoder, or infer any sealed test.",
+  "data_sha256": "f01a9cc5701c852acd93f523e19dff78b2182722acc371fe0907dee9d16ffc76",
+  "real_cpu_cache_sha256": "70618594dfbee40d52614cfc15507a03fcd6db19198087e32763fde0dcec15c4",
+  "training_rows": 15058,
+  "class_counts": {
+    "0": 881,
+    "3": 844,
+    "12": 2540,
+    "1": 881,
+    "4": 844,
+    "2": 789,
+    "5": 804,
+    "6": 789,
+    "9": 804,
+    "13": 2476,
+    "7": 849,
+    "10": 844,
+    "8": 789,
+    "11": 804,
+    "14": 120
+  },
+  "ordinary_distinct_texts": 120,
+  "ordinary_fraction_of_unique_training_rows": 0.007969185814849249,
+  "sampler_expected_fraction_for_ordinary": 0.06666666666666667,
+  "important_distinction": "Balanced class sampling prevents simple frequency imbalance. Only120 ordinary text types still limit linguistic diversity; this is a hypothesis, not a demonstrated causal effect.",
+  "guard_route_disagreements": [
+    {
+      "id": "state12-validation-0-correction-3",
+      "text": "הנה עדכון מההכנה כאן: תיקון שלי: עדיין לא ערבבתי את התערובת",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          7
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.995951235294342,
+          "components": [
+            0.9999651908874512,
+            0.9968659281730652,
+            0.9991171956062317
+          ],
+          "ordinary_score": 0.9959858905516761
+        },
+        {
+          "label": 7,
+          "joint_confidence": 0.7761033177375793,
+          "components": [
+            0.9692506194114685,
+            0.9829073548316956,
+            0.8146496415138245
+          ],
+          "ordinary_score": 0.0031602389156423216
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-0-history-local",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-0-history-foreign",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-0-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-1-correction-3",
+      "text": "הנה עדכון מההכנה כאן: תיקון שלי: עדיין לא ערבבתי את התערובת",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          7
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.995951235294342,
+          "components": [
+            0.9999651908874512,
+            0.9968659281730652,
+            0.9991171956062317
+          ],
+          "ordinary_score": 0.9959858905516761
+        },
+        {
+          "label": 7,
+          "joint_confidence": 0.7761033177375793,
+          "components": [
+            0.9692506194114685,
+            0.9829073548316956,
+            0.8146496415138245
+          ],
+          "ordinary_score": 0.0031602389156423216
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-1-history-local",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-1-history-foreign",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-1-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-2-correction-3",
+      "text": "הנה עדכון מההכנה כאן: תיקון שלי: עדיין לא ערבבתי את התערובת",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          7
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.995951235294342,
+          "components": [
+            0.9999651908874512,
+            0.9968659281730652,
+            0.9991171956062317
+          ],
+          "ordinary_score": 0.9959858905516761
+        },
+        {
+          "label": 7,
+          "joint_confidence": 0.7761033177375793,
+          "components": [
+            0.9692506194114685,
+            0.9829073548316956,
+            0.8146496415138245
+          ],
+          "ordinary_score": 0.0031602389156423216
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-2-history-local",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-2-history-foreign",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-2-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-3-correction-3",
+      "text": "הנה עדכון מההכנה כאן: תיקון שלי: עדיין לא ערבבתי את התערובת",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          7
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.995951235294342,
+          "components": [
+            0.9999651908874512,
+            0.9968659281730652,
+            0.9991171956062317
+          ],
+          "ordinary_score": 0.9959858905516761
+        },
+        {
+          "label": 7,
+          "joint_confidence": 0.7761033177375793,
+          "components": [
+            0.9692506194114685,
+            0.9829073548316956,
+            0.8146496415138245
+          ],
+          "ordinary_score": 0.0031602389156423216
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-3-history-local",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-3-history-foreign",
+      "text": "המרכיב שהזכרתי קודם כבר בפנים",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          6
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.026224741712212563,
+          "components": [
+            0.03289223089814186,
+            0.8987107872962952,
+            0.8871516585350037
+          ],
+          "ordinary_score": 0.7972927654932072
+        },
+        {
+          "label": 6,
+          "joint_confidence": 0.7737554907798767,
+          "components": [
+            0.9983000159263611,
+            0.978698194026947,
+            0.7919429540634155
+          ],
+          "ordinary_score": 0.004252038689180226
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-3-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-4-history-local",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-4-history-foreign",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-4-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-5-history-local",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-5-history-foreign",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-5-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-6-history-local",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-6-history-foreign",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-6-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-7-history-local",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-7-history-foreign",
+      "text": "המרכיב שדיברתי עליו גם נחתך",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9502705335617065,
+          "components": [
+            0.9704312086105347,
+            0.999806821346283,
+            0.9794142842292786
+          ],
+          "ordinary_score": 0.9792250822964199
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.997215747833252,
+          "components": [
+            0.9998356103897095,
+            0.9973955154418945,
+            0.9999841451644897
+          ],
+          "ordinary_score": 2.0812188478408902e-08
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-7-uncertain",
+      "text": "הנה עדכון מההכנה כאן: אני לא בטוח מה בדיוק הושלם",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "clarify",
+          9
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.0022114368621259928,
+          "components": [
+            0.9999706745147705,
+            0.0399417020380497,
+            0.05536821857094765
+          ],
+          "ordinary_score": 0.0022115008885384008
+        },
+        {
+          "label": 9,
+          "joint_confidence": 0.046185463666915894,
+          "components": [
+            0.046215035021305084,
+            0.9999994039535522,
+            0.9993606209754944
+          ],
+          "ordinary_score": 4.394195201982877e-15
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-0-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-0-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-1-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-1-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-2-local-reference",
+      "text": "השלב הזה הושלם: חתכתי אותו",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9816623330116272,
+          "components": [
+            0.9854604601860046,
+            0.9962177872657776,
+            0.9999277591705322
+          ],
+          "ordinary_score": 0.996145819666495
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.9515609741210938,
+          "components": [
+            0.9998388290405273,
+            0.9982256293296814,
+            0.953406035900116
+          ],
+          "ordinary_score": 3.4510314347842644e-05
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-2-foreign-reference",
+      "text": "השלב הזה הושלם: חתכתי אותו",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9816623330116272,
+          "components": [
+            0.9854604601860046,
+            0.9962177872657776,
+            0.9999277591705322
+          ],
+          "ordinary_score": 0.996145819666495
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.9515609741210938,
+          "components": [
+            0.9998388290405273,
+            0.9982256293296814,
+            0.953406035900116
+          ],
+          "ordinary_score": 3.4510314347842644e-05
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-2-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-2-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-3-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-3-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-4-assertion-3",
+      "text": "העדכון שלי כרגע: ערבבתי בלילה",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9999659061431885,
+          "components": [
+            0.9999929666519165,
+            0.9999743700027466,
+            0.9999985694885254
+          ],
+          "ordinary_score": 0.999972939527936
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.06378123909235,
+          "components": [
+            0.9197126626968384,
+            0.8122194409370422,
+            0.08538220822811127
+          ],
+          "ordinary_score": 0.1633938291620627
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-4-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-4-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-5-local-reference",
+      "text": "השלב הזה הושלם: חתכתי אותו",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9816623330116272,
+          "components": [
+            0.9854604601860046,
+            0.9962177872657776,
+            0.9999277591705322
+          ],
+          "ordinary_score": 0.996145819666495
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.9515609741210938,
+          "components": [
+            0.9998388290405273,
+            0.9982256293296814,
+            0.953406035900116
+          ],
+          "ordinary_score": 3.4510314347842644e-05
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-5-foreign-reference",
+      "text": "השלב הזה הושלם: חתכתי אותו",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          8
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9816623330116272,
+          "components": [
+            0.9854604601860046,
+            0.9962177872657776,
+            0.9999277591705322
+          ],
+          "ordinary_score": 0.996145819666495
+        },
+        {
+          "label": 8,
+          "joint_confidence": 0.9515609741210938,
+          "components": [
+            0.9998388290405273,
+            0.9982256293296814,
+            0.953406035900116
+          ],
+          "ordinary_score": 3.4510314347842644e-05
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-5-advice",
+      "text": "יש הצעה שלך שאינה חלק מהמתכון?",
+      "votes": [
+        [
+          "legacy",
+          14
+        ],
+        [
+          "clarify",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.9735957980155945,
+          "components": [
+            0.9846075177192688,
+            0.9888161420822144,
+            1.0
+          ],
+          "ordinary_score": 0.9888161420822144
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.05434176325798035,
+          "components": [
+            0.992351233959198,
+            0.05476061627268791,
+            1.0
+          ],
+          "ordinary_score": 0.05476061627268791
+        }
+      ]
+    },
+    {
+      "id": "combined-validation-5-partial-action",
+      "text": "הפעולה באמצע, עוד נותר ממנה חלק",
+      "votes": [
+        [
+          "clarify",
+          14
+        ],
+        [
+          "legacy",
+          14
+        ]
+      ],
+      "raw": [
+        {
+          "label": 14,
+          "joint_confidence": 0.39343562722206116,
+          "components": [
+            0.915974497795105,
+            0.961875319480896,
+            0.44655144214630127
+          ],
+          "ordinary_score": 0.4295268110791284
+        },
+        {
+          "label": 14,
+          "joint_confidence": 0.8909229636192322,
+          "components": [
+            0.9761697053909302,
+            0.9811024069786072,
+            0.9302517175674438
+          ],
+          "ordinary_score": 0.9126721992014026
+        }
+      ]
+    }
+  ],
+  "future_data_intervention": "If retraining is needed, compare unchanged V9 vs train-only ordinary-route replay and independent reference minimal-pair augmentation as separate arms. Audit route labels first, freeze data/selector/budget before inference, and use a NEW independent evaluation set after any consumed test failure. Do not train on development or test failures then report those as independent quality.",
+  "test_inference": false,
+  "human_reviewed": false
+}

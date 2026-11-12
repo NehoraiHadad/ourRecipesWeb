@@ -1,0 +1,919 @@
+{
+  "method": "ALL-three fixed consensus",
+  "members": [
+    {
+      "seed": 42,
+      "checkpoint_sha256": "4982f0b35785f51c0494db52c53ba561b62f7bc6e9ed38092544fc84fe34fe8a",
+      "policy": {
+        "thresholds": [
+          0.53,
+          null,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.84,
+          0.7,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ],
+        "readonly_threshold": 0.5,
+        "component_floor": 0.95,
+        "ordinary_threshold": 0.5
+      }
+    },
+    {
+      "seed": 17,
+      "checkpoint_sha256": "ffb407a59425508439c61f74d9304f3c3293a1b31e6493ec2fd4b16b4b0ea597",
+      "policy": {
+        "thresholds": [
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.85,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ],
+        "readonly_threshold": 0.85,
+        "component_floor": 0.95,
+        "ordinary_threshold": 0.5
+      }
+    },
+    {
+      "seed": 73,
+      "checkpoint_sha256": "7781a1b7fa0220d99193f9d7053ae8c0e7b3b3eb90f7701a2eef5046195fe61d",
+      "policy": {
+        "thresholds": [
+          0.73,
+          0.53,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          null,
+          0.96,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99,
+          0.99
+        ],
+        "readonly_threshold": 0.5,
+        "component_floor": 0.95,
+        "ordinary_threshold": 0.5
+      }
+    }
+  ],
+  "calibration": {
+    "metrics": {
+      "cases": 1972,
+      "proposed": 70,
+      "true_proposals": 70,
+      "false_proposals": 0,
+      "expected_effective": 96,
+      "correct_effective": 70,
+      "false_effective": 0,
+      "expected_corrections": 48,
+      "correct_corrections": 34,
+      "noop_confirmations": 0,
+      "unsafe_changes": 0,
+      "ambiguous_clear": 624,
+      "effective_recall": 0.7291666666666666,
+      "correction_recall": 0.7083333333333334,
+      "failures": [
+        {
+          "id": "scope-calibration-206",
+          "text": "אני יכול לאשר שהפעולה שטרם נרשמה כמבוצעת בוצעה כולה",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-206",
+          "text": "אני יכול לאשר שהפעולה שטרם נרשמה כמבוצעת בוצעה כולה",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-254",
+          "text": "אני יכול לאשר שהפעולה שכבר נרשמה כמבוצעת בכלל לא בוצעה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-254",
+          "text": "אני יכול לאשר שהפעולה שכבר נרשמה כמבוצעת בכלל לא בוצעה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-326",
+          "text": "אני יכול לאשר שהמשימה שכבר יש לידה סימון ביצוע עוד לא הושלמה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-326",
+          "text": "אני יכול לאשר שהמשימה שכבר יש לידה סימון ביצוע עוד לא הושלמה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-349",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-349",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-350",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-350",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-351",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-351",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-352",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-352",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת הממתינות שלי גמורה לגמרי",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-397",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-397",
+          "text": "אחרי שבדקתי, אני מאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-398",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-398",
+          "text": "אני יכול לאשר שהמטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-399",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-399",
+          "text": "עדיין לא ניקיתי את השיש, אך המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-400",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-400",
+          "text": "גם אם לא סיימתי את שאר המתכון, המטלה שמשויכת לרשימת המושלמות שלי טרם נגמרה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-423",
+          "text": "עדיין לא ניקיתי את השיש, אך העבודה שלא סימנתי כסגורה בשלב הזה נעשתה בשלמותה",
+          "variant": "unique-a",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-423",
+          "text": "עדיין לא ניקיתי את השיש, אך העבודה שלא סימנתי כסגורה בשלב הזה נעשתה בשלמותה",
+          "variant": "unique-b",
+          "gold": [
+            "remaining",
+            "asserted",
+            "complete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": true
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 0
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-470",
+          "text": "אני יכול לאשר שהעבודה שסימנתי כסגורה בשלב הזה כלל לא נעשתה",
+          "variant": "unique-a",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        },
+        {
+          "id": "scope-calibration-470",
+          "text": "אני יכול לאשר שהעבודה שסימנתי כסגורה בשלב הזה כלל לא נעשתה",
+          "variant": "unique-b",
+          "gold": [
+            "marked",
+            "asserted",
+            "incomplete"
+          ],
+          "pred": [
+            "other",
+            "other",
+            "unspecified"
+          ],
+          "confidence": 0.0,
+          "expected": {
+            "kind": "report",
+            "changes": [
+              {
+                "action_id": "mix",
+                "completed": false
+              }
+            ],
+            "effective_changes": 1,
+            "correction": 1
+          },
+          "actual": {
+            "kind": "clarify",
+            "changes": []
+          }
+        }
+      ]
+    },
+    "unmeasured_reference_fallback": 1,
+    "passed": false
+  },
+  "calibration_route_mismatches": 0,
+  "native": null,
+  "qualified_for_test": false,
+  "fresh_test_inference": false,
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "independent_quality_repetitions": false,
+  "seconds": 1.0618168439978035
+}
