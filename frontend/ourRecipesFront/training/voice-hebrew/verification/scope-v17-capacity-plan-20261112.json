@@ -1,0 +1,63 @@
+{
+  "study": "scope-v17-larger-teacher-capacity",
+  "created_utc": "2026-11-12T20:31:30.387340+00:00",
+  "source_sha256": {
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "scope_v13_stance.py": "334fe57aa3e792b821232002e87a6f4cfaa6c5bee11a86b214db322ffa8caf58",
+    "scope_v16_teacher.py": "cd853aac84fa297e5aa912921e583114cec3643a0b4096e4dd4a8aa27061ef56",
+    "scope_v17_teacher.py": "791214895abd485dfadcdd637dcf1eeb4f3fe9e019e15296627a900e87a57c72",
+    "scope_v17_job.py": "91f1e569a244e0abb459f81a0fe07c5266b413a2616e45f0fab3c472bdab67d5",
+    "scope_v17_colab.py": "b5b1e5c81b86a300cc855d83b0e5894f4a08aafd5014060ba8d031a065246a74"
+  },
+  "data_sha256": "33cb4af1be1b5da20b2359d0444c3fbf44c638e9d959633f20686e0ca24d0f02",
+  "repo": "Qwen/Qwen3-4B-Instruct-2507",
+  "revision": "cdbee75f17c01a7cc42f958dc650907174af0554",
+  "license": "apache-2.0",
+  "gated": false,
+  "parameters": 4022468096,
+  "weights": [
+    {
+      "name": "model-00001-of-00003.safetensors",
+      "bytes": 3957900840,
+      "sha256": "75311d91bb08cf0b882913da464a1e722a31fb44db35208663487efb7a3d8ed6"
+    },
+    {
+      "name": "model-00002-of-00003.safetensors",
+      "bytes": 3987450520,
+      "sha256": "0b48adbb1f60e901153d91907ba11ce63bd4b8b584482e730f48808d055dfba1"
+    },
+    {
+      "name": "model-00003-of-00003.safetensors",
+      "bytes": 99630640,
+      "sha256": "7dd39ccca5e4de123c74c14af44c9bf2eb75df33b4614382af0134528e060d5d"
+    }
+  ],
+  "tokenizer_config_sha256": "a62ff0a2472a0fa1b8eaabcb57c59b58afa42a22831dc141400b6e0cf2b65ce3",
+  "template_sha256": "64f85b198065d0fba2a81f37e10ed68161ce2c19a754c7100e67e0ca2ee9c326",
+  "prompt": "Import exact frozen V16 system,12manual demos,messages and scorer. No prompt search. Only model/tokenizer/native official template change.",
+  "runtime": {
+    "python": "3.13",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.1",
+    "batch": 4,
+    "dtype": "FP16 cast of BF16 weights",
+    "max_prompt_tokens": 2048,
+    "quantized": false,
+    "use_cache": false,
+    "trust_remote_code": false
+  },
+  "primary_policy": "Same V16 .50..99 plus off2 calibration grid;zero observed unsafe and>=90% asserted coverage on calibration and same-cut dev. Development capacity only.",
+  "secondary_analysis": "Audit consumed development scores and continuous zero-FP calibration upper bound;never call this an independent test or retrospective promotion of old models.",
+  "sets_inferred": [
+    "dev",
+    "calibration"
+  ],
+  "never_infer": [
+    "new384",
+    "newnatural48",
+    "original120",
+    "V5fresh480"
+  ],
+  "scope": "Larger teacher diagnostic before deciding distillation/training. No teacher truth or product-model endorsement. Model+tokenizer+pretraining differ,not isolated proof of parameter-count effect.",
+  "privacy": "Only existing authored synthetic data and public weights on authorized dedicated T4.8.04GB model stays ephemeral. No user audio or private text."
+}
