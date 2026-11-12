@@ -1,0 +1,182 @@
+{
+  "retrieved_date": "2026-11-13",
+  "model_runtime_config_url": "https://github.com/mlc-ai/web-llm/blob/v0.2.88/src/config.ts",
+  "sources": [
+    {
+      "url": "https://arxiv.org/abs/2602.02104",
+      "type": "authors_research",
+      "supports": "DictaLM Hebrew specialization and1.7B Qwen ancestry;not a recipe-assistant or browser benchmark."
+    },
+    {
+      "url": "https://www.distillabs.ai/blog/we-benchmarked-12-small-language-models-across-8-tasks-to-find-the-best-base-model-for-fine-tuning/",
+      "type": "developer_experiment",
+      "supports": "Qwen3-4B-Instruct-2507 led this vendor's fine-tuned comparison of12models/8tasks.",
+      "limits": "December2025;task selection and teacher-generated labels;not Hebrew or WebGPU evidence. Found now,not asserted as original decision source."
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.5-2B",
+      "type": "official_model_card",
+      "supports": "Newer small multilingual candidate with public Apache2weights.",
+      "limits": "Broad multilingual claims do not establish Hebrew recipe-dialogue quality."
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/core/model_card_4",
+      "type": "official_model_card",
+      "supports": "Gemma4 small on-device variants,Apache2,native structured/tool-use support.",
+      "limits": "Language breadth not Hebrew benchmark;E2B is effective parameter count."
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/core",
+      "type": "official_docs",
+      "supports": "Memory planning distinguishes effective from total parameters and native mobile optimized runtime.",
+      "limits": "LiteRT-LM mobile memory must not be presented as browser memory."
+    },
+    {
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1uz6388/what_small_models_have_you_guys_been_using/",
+      "type": "firsthand_community_reports",
+      "supports": "Some developers recommend Gemma4E2B for language/document tasks and Qwen3.5-2B for small tasks.",
+      "limits": "Anecdotes,not Hebrew recipe or controlled browser comparisons. No community consensus claim."
+    },
+    {
+      "url": "https://github.com/nturl/sotto/blob/main/planning/BROWSER-TUTOR.md",
+      "type": "developer_project_report",
+      "supports": "Browser voice tutor documents Qwen3.5 migration,quantized weights and protocol/STT failure analysis.",
+      "limits": "Spanish fixture,small project-reported set,not our hardware or Hebrew. Reports include later corrections;not benchmark superiority."
+    },
+    {
+      "url": "https://github.com/mlc-ai/web-llm/releases",
+      "type": "runtime_maintainer",
+      "supports": "0.2.86 adds Gemma4E2B builds,0.2.87 fixes Qwen3.5JSON schema generation,0.2.88 updateslogprobs/runtime."
+    },
+    {
+      "url": "https://github.com/mlc-ai/web-llm/issues/868",
+      "type": "firsthand_bug_report",
+      "supports": "Structured-output failure under Qwen3.5 WebLLM was reported with a reproduction.",
+      "limits": "Issue closed via#876;not asserted as unfixed in current release."
+    },
+    {
+      "url": "https://huggingface.co/HuggingFaceTB/SmolLM3-3B",
+      "type": "official_model_card",
+      "supports": "Alternative considered but not prioritized without Hebrew evidence.",
+      "limits": "No claim incapable of Hebrew or never worth testing."
+    }
+  ],
+  "new_inference_performed": false,
+  "new_training_performed": false,
+  "browser_test_performed": false,
+  "physical_device_tested": false,
+  "no_weights_downloaded": true,
+  "runtime_catalog": [
+    {
+      "model_id": "gemma-4-E2B-it-q4f16_1-MLC",
+      "upstream_vram_required_MB": 3387.37,
+      "context_window_size": 4096,
+      "max_history_size": null,
+      "buffer_size_required_bytes": "201326592",
+      "catalog_explicit_shader_f16_requirement": true
+    },
+    {
+      "model_id": "Qwen3.5-0.8B-q4f16_1-MLC",
+      "upstream_vram_required_MB": 1629.49,
+      "context_window_size": 4096,
+      "max_history_size": 1,
+      "buffer_size_required_bytes": null,
+      "catalog_explicit_shader_f16_requirement": null
+    },
+    {
+      "model_id": "Qwen3.5-2B-q4f16_1-MLC",
+      "upstream_vram_required_MB": 2245.44,
+      "context_window_size": 4096,
+      "max_history_size": 1,
+      "buffer_size_required_bytes": null,
+      "catalog_explicit_shader_f16_requirement": null
+    }
+  ],
+  "ranking_is_proposed_test_order_not_quality_result": true,
+  "proposed_test_order": [
+    "Qwen/Qwen3.5-2B",
+    "dicta-il/DictaLM-3.0-1.7B-Instruct",
+    "google/gemma-4-E2B-it"
+  ],
+  "low_resource_control": "Qwen/Qwen3.5-0.8B",
+  "previous_Qwen3_4B_remains_comparison_only": true,
+  "research_gap": "No directly applicable controlled Hebrew recipe-dialogue WebGPU comparison found in the searched sources. This is a bounded search finding,not proof no such benchmark exists.",
+  "additional_candidates": [
+    {
+      "model": "ssdataanalysis/gemma-4-E2B-hebrew-first",
+      "status": "Search result found; live read returned401. Not accepted as inspected proof or downloadable candidate."
+    },
+    {
+      "model": "BrainboxAI/law-il-E2B",
+      "status": "Author card inspected;legal-domain fine-tune with no measured evaluation claimed by author. Not selected for cooking dialogue."
+    }
+  ],
+  "observed_utc": "2026-11-12T22:23:19.273995+00:00",
+  "model_metadata": {
+    "Qwen/Qwen3.5-2B": {
+      "revision": "15852e8c16360a2fea060d615a32b45270f8a8fc",
+      "declared_license": "apache-2.0",
+      "gated": false,
+      "parameter_counts_metadata": {
+        "parameters": {
+          "F32": 2592,
+          "BF16": 2274067232
+        },
+        "total": 2274069824
+      },
+      "weight_shards_bytes": 0
+    },
+    "Qwen/Qwen3.5-0.8B": {
+      "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+      "declared_license": "apache-2.0",
+      "gated": false,
+      "parameter_counts_metadata": {
+        "parameters": {
+          "F32": 2592,
+          "BF16": 873436192
+        },
+        "total": 873438784
+      },
+      "weight_shards_bytes": 0
+    },
+    "google/gemma-4-E2B-it": {
+      "revision": "4adf15748de9e1a0097b6274cee9c15836c41c37",
+      "declared_license": "apache-2.0",
+      "gated": false,
+      "parameter_counts_metadata": {
+        "parameters": {
+          "BF16": 5123178051
+        },
+        "total": 5123178051
+      },
+      "weight_shards_bytes": 0
+    },
+    "mlc-ai/Qwen3.5-2B-q4f16_1-MLC": {
+      "revision": "dd74e9c8a20c4546df85c844103bff87b6dcacad",
+      "declared_license": null,
+      "gated": false,
+      "parameter_counts_metadata": null,
+      "weight_shards_bytes": 1059315328
+    },
+    "mlc-ai/Qwen3.5-0.8B-q4f16_1-MLC": {
+      "revision": "0ec138972555613c1d7812a821778ad0398c8790",
+      "declared_license": null,
+      "gated": false,
+      "parameter_counts_metadata": null,
+      "weight_shards_bytes": 423937664
+    },
+    "mlc-ai/gemma-4-E2B-it-q4f16_1-MLC": {
+      "revision": "633df598b7a473759367855273c63912c9e2bc9a",
+      "declared_license": "apache-2.0",
+      "gated": false,
+      "parameter_counts_metadata": null,
+      "weight_shards_bytes": 2797577798
+    }
+  },
+  "search_scope": [
+    "Hebrew small language model Gemma Qwen3.5 DictaLM1.7B benchmark",
+    "LocalLLaMA small models and Hebrew recommendations",
+    "WebLLM Qwen3.5 Gemma4 support/releases/issues",
+    "Hebrew-specific small-model community adaptations and evaluation availability"
+  ]
+}
