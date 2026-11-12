@@ -1,0 +1,8 @@
+{
+ "purpose":"Compose already-calibrated per-action abstention with strict component validation; fixed semantic-best7000 checkpoint, no retraining/tests.",
+ "why":"Uniform component gating admitted a high-confidence incorrect pending-not-done no-op class that typed calibration had already disabled. Keep typed decisions; add95% floor for each critical role, not remove per-class abstention.",
+ "policy":"Ordinary deferral C_OTHER*S_UNSPEC>=.5; otherwise actionable tuple must pass parent independently-calibrated class threshold AND each chosen component>=.95. Nonaction readonly behavior uses parent independently-calibrated global threshold. No text/recipe-ID matching rules.",
+ "monotonicity":"Relative mutations are a subset of parent typed policy. Ordinary deferral may differ, so reference calibration delegated to unmeasured legacy still disqualifies; actual old/ordinary legacy outputs measured separately.",
+ "qualification":"Same false0/recalls.75 cal; old>=24/32,>=12/16,false0; guard>=294/326,false<=3/recallfloor. If feasible require actual full493 raw-component GPU parity and prospective17/73 same method before any sealed tests. No relaxed gates.",
+ "test_inference":false
+}
