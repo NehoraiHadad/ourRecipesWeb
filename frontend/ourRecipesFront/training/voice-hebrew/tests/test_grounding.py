@@ -1,14 +1,18 @@
 """Boundary semantics, gradients, validation policy and research retention."""
 from pathlib import Path
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
+import zipfile
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from boundary_head import decode,whole_word,loss
 from research_decision import cost,key
 from grounding_sweep import choose
 from colab_job import supplemental_seed_files
+from prepare import bundle
+from corpus import ROOT
 try:import torch
 except ImportError:torch=None
 
@@ -63,6 +67,16 @@ class BoundaryTests(unittest.TestCase):
 
 
 class PolicyTests(unittest.TestCase):
+    def test_uploaded_packet_factory_reproduces_frozen_dataset(self):
+        # The factory starts at ROOT/data; shipping its derived corpus there
+        # would add the augmentation twice. Exercise the actual upload layout.
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);packet=root/'material.zip';bundle(packet)
+            material=root/'material'
+            with zipfile.ZipFile(packet) as z:z.extractall(material)
+            script="from pathlib import Path;import json;from grounding_data import build;from engine import verify_manifest;from corpus import ROOT;d,a=build(Path('check'));f=json.loads((ROOT/'verification/grounding-data-freeze-20261112.json').read_text());assert verify_manifest(d)['corpus_sha256']==f['corpus_sha256'];assert a['training_rows_sha256']==f['training_rows_sha256']"
+            subprocess.run([sys.executable,'-c',script],cwd=material,check=True,capture_output=True,text=True,timeout=60)
+
     def test_false_updates_cost_five_and_floor_blocks_all_abstain(self):
         self.assertEqual(cost(metrics(fp=2,tp=80)),30)
         self.assertGreater(key(metrics(fp=20,tp=80)),key(metrics(fp=0,tp=0)))

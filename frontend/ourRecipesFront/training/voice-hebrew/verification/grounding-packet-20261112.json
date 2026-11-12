@@ -1,0 +1,26 @@
+{
+  "failure_before_any_training": true,
+  "failed_attempt_status": {
+    "status": "failed",
+    "phase": "failed",
+    "steps_requested": 1000,
+    "started_utc": "2026-11-12T05:02:25.151231+00:00",
+    "production_ready": false,
+    "elapsed_seconds": 157.341908624,
+    "error_type": "RuntimeError",
+    "error": "evidence_boundary_comparison exited with status 1"
+  },
+  "cause": "Derived V11 corpus was bundled at ROOT/data instead of original seed data; legacy factory duplicated augmentation",
+  "failed_packet_sha256": "dc5af71abc409f347e58e87216bfc5ba3b00aa1a166c4af19134b307bae31330",
+  "failed_window_compute_units": 0.04,
+  "failed_session_closed": true,
+  "fix": "Bundle original ROOT/data; execute factory from extracted upload layout before allocating GPU",
+  "corrected_packet_sha256": "8abef419355cb789f9564723b2444d410d5c32842dda757fa3e977f98bbf73d9",
+  "corrected_packet_bytes": 370933,
+  "derived_dataset": {
+    "corpus": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+    "training": "514ca775f7d43a86b41f4093709ca9397145ffcd5e46ace0abfffe37af816c12"
+  },
+  "all_frozen_math_sources_unchanged": true,
+  "new_test_inference": false
+}
