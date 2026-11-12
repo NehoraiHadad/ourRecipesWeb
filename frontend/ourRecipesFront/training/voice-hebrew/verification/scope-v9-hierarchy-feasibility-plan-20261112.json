@@ -1,0 +1,9 @@
+{
+ "purpose":"Diagnose hierarchical routing/mutation on fixed V9 semantic-best7000 seed42. No retraining or tests. Freeze before aggregate decoder evaluation.",
+ "observations":"Known error has confidence referenceMarked.871/asserted1/incomplete1; known lost ordinary guard has markedRef.967/C_OTHER.899/S_UNSPEC.887, but valid3-wayOTHER product.026. These are different issues: mutation certainty vs deferral to independent legacy extraction.",
+ "ordinary_route":"C_OTHER probability * S_UNSPEC probability>=.5 delegates to independent original f053 extractor; this route signal does not require R_OTHER. No lexical matching. Full proposal/guard metrics still checked; any reference calibration delegated to unmeasured legacy fails qualification.",
+ "mutation_gate":"Valid actionable triple must independently pass reference/commitment/completion thresholds, each>=.95; grid .95,.97,.99,.995,.999 plusoff. Ordinaryroute and high-certaintyasserted mutation are mutually exclusive. Other readonly behavior retains parent semantic-global calibrated threshold.",
+ "selection":"Calibration493 only: feasible false0/recalls>=.75/fallback0 first, zero false second, effective+correction coverage/proposals, then higher3 thresholds. No threshold selection by old480/guard326.",
+ "requirements":"Same cal/old/guard utility and safety floors. Actual CPU on allcal and old/guard. If feasible, actual fullcal raw-component GPU parity and prospective17/73 with same fixed method required before any tests. No lowering floors or adjusting sealed tests.",
+ "test_inference":false
+}
