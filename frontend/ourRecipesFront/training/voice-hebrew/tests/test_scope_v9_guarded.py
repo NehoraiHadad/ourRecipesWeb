@@ -16,4 +16,11 @@ class GuardedTests(unittest.TestCase):
   p=self.policy();p['thresholds'][1]=None;r={'label':1,'joint_confidence':1.,'components':[1.,1.,1.],'ordinary_score':0.}
   self.assertEqual(route(r,p)[0],'clarify')
 
+ def test_three_seed_guard_before_test(self):
+  from scope_v9_guarded_test import candidates
+  d={'qualified_for_test':True,'trials':[{'seed':s,'parent_actual_updates':8000,'qualified':True} for s in (42,17,73)]}
+  self.assertEqual(len(candidates(d)),3)
+  d['trials'][1]['qualified']=False
+  with self.assertRaisesRegex(ValueError,'Three-seed'):candidates(d)
+
 if __name__=='__main__':unittest.main()
