@@ -1,0 +1,225 @@
+{
+  "observed_utc": "2026-11-12T22:19:52.188134+00:00",
+  "browser_inference_performed": false,
+  "physical_device_tested": false,
+  "notes": "Documentation/API audit only; previous model benchmarks were native Python CPU/T4,not browser evidence. MLC Dicta conversion community-published,not independently validated.",
+  "models": {
+    "onnx-community/Qwen3-4B-Instruct-2507-ONNX": {
+      "revision": "2bdfea4417ee390519508a6bc7dfbc36f3572981",
+      "license_metadata": null,
+      "files": [
+        {
+          "file": "config.json",
+          "bytes": 1834,
+          "sha256": null
+        },
+        {
+          "file": "onnx/model_q4f16.onnx",
+          "bytes": 437655,
+          "sha256": "6e603b4d2324fa94a1c1fc927d1f985da78413afcffa27b02b008d909eccc4a8"
+        },
+        {
+          "file": "onnx/model_q4f16.onnx_data",
+          "bytes": 2094347264,
+          "sha256": "d2b17463255a120a6d4e88c60e24bb6be6607ab6e34dd89b62234879bfd6ce0d"
+        },
+        {
+          "file": "onnx/model_q4f16.onnx_data_1",
+          "bytes": 794787840,
+          "sha256": "6c0d3b7ee94fa08c2dc766dfa4c5b790e492077701847b40fa001f648f3ebded"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "bytes": 4047,
+          "sha256": null
+        }
+      ],
+      "weight_download_bytes": 2889572759,
+      "compatibility_claim": "Needs actual WebGPU load,generation,Hebrew and quantization parity tests. No product selection."
+    },
+    "sivelsguy/DictaLM-3.0-1.7B-Instruct-q4f16_1-MLC": {
+      "revision": "eb3a0c56b626e71a15bd2d09da88b5fd2984b994",
+      "license_metadata": "apache-2.0",
+      "files": [
+        {
+          "file": "mlc-chat-config.json",
+          "bytes": 2095,
+          "sha256": null
+        },
+        {
+          "file": "params_shard_0.bin",
+          "bytes": 155582464,
+          "sha256": "f07757b4d8dba5ee56a7f9e05bc95cf3b866af24332f1f1cb64d0f3d2a2c360c"
+        },
+        {
+          "file": "params_shard_1.bin",
+          "bytes": 26529792,
+          "sha256": "59fbd58e5caadf6c6ec81a4e248dc646b1107781bd925b66fe824739231a83dd"
+        },
+        {
+          "file": "params_shard_10.bin",
+          "bytes": 28320256,
+          "sha256": "d8f69dda5d8c411b8327273712117de66192330ed8cee79d437f3b6af7f2d63e"
+        },
+        {
+          "file": "params_shard_11.bin",
+          "bytes": 28320256,
+          "sha256": "b1735120efa8610f87fc72e865c3e208ecf35f7b057a2c05b3421d3809eaec4d"
+        },
+        {
+          "file": "params_shard_12.bin",
+          "bytes": 28320256,
+          "sha256": "34c0a0b8f36a4f0ff4302f380fda746d6c8413069e89db30548fd559ecd35fcb"
+        },
+        {
+          "file": "params_shard_13.bin",
+          "bytes": 28320256,
+          "sha256": "ca4f0338593a1ec732faf64a5192f79ff2eb219d3e28a09b5b111a8e28799bda"
+        },
+        {
+          "file": "params_shard_14.bin",
+          "bytes": 28320256,
+          "sha256": "6d173f28820be4b7bc1b0fb5d787f83507ad511ff157b3440192bd63dadb8bf4"
+        },
+        {
+          "file": "params_shard_15.bin",
+          "bytes": 28320256,
+          "sha256": "dff7ddad65c7ad274fbc15da74bbcb7f97830ecae7292c847daf78aeb292c104"
+        },
+        {
+          "file": "params_shard_16.bin",
+          "bytes": 28320256,
+          "sha256": "2312115fba3bc5149978cf153ed4f4ca4e618beec45fa75950c6ea076c3096de"
+        },
+        {
+          "file": "params_shard_17.bin",
+          "bytes": 28320256,
+          "sha256": "f5762cf4796c963b021d25412c2f160d0de7fa338d46096f5574a50f6bd2f0a9"
+        },
+        {
+          "file": "params_shard_18.bin",
+          "bytes": 28320256,
+          "sha256": "ca1bc521e94874a078e7b2102d85c798d144ebf4c9154dfff8246cf41fad3c4d"
+        },
+        {
+          "file": "params_shard_19.bin",
+          "bytes": 28320256,
+          "sha256": "00f6e8c69c99fbd94e493982fba812fee04c4784adbe272fc8a3c9f47b2d6d91"
+        },
+        {
+          "file": "params_shard_2.bin",
+          "bytes": 28320256,
+          "sha256": "1fa12d1f77c41a8fa43e5c4555a4d0c61d04571280309f3413634ca64eb26107"
+        },
+        {
+          "file": "params_shard_20.bin",
+          "bytes": 28320256,
+          "sha256": "01e7eab25d5dfe74355125b22ec2c54cebcc5fcb5e4011085f33fc32c17b14d9"
+        },
+        {
+          "file": "params_shard_21.bin",
+          "bytes": 28320256,
+          "sha256": "434f0dc1d5c8e25429149d438fbabe1633d5930471d4f14032f3a9202a308621"
+        },
+        {
+          "file": "params_shard_22.bin",
+          "bytes": 28320256,
+          "sha256": "f22accd1302f692c5e187bab3e49408969eb66eb7b76755c38ca6cd31d785e3c"
+        },
+        {
+          "file": "params_shard_23.bin",
+          "bytes": 28320256,
+          "sha256": "98f3637c6f1fa8b967900cbe72b5e13ee8facffd9b26ee2ea6f12f51da391833"
+        },
+        {
+          "file": "params_shard_24.bin",
+          "bytes": 28320256,
+          "sha256": "9446a5bed3e67893737e4f83f2c24e86c93b346b3e15c8a240e1113ab17c9e94"
+        },
+        {
+          "file": "params_shard_25.bin",
+          "bytes": 28320256,
+          "sha256": "982e6a8fd6306467683c8ce4a47aa8b2e0f095cab2a29b2e6aa1230d16902a7d"
+        },
+        {
+          "file": "params_shard_26.bin",
+          "bytes": 28320256,
+          "sha256": "da65cd99f19d7500d25a6fae5b92beac272f03432c75fd41ce12412d50c020f3"
+        },
+        {
+          "file": "params_shard_27.bin",
+          "bytes": 28320256,
+          "sha256": "7b9b58a251a038cd31936f13ee94444cbda9c62d8289a4ea115457ff63aff0cc"
+        },
+        {
+          "file": "params_shard_28.bin",
+          "bytes": 28320256,
+          "sha256": "8ac32e9e2556cbbd6c3d6df39812e03bef3706ab08f98b94f9bd6845f374f52f"
+        },
+        {
+          "file": "params_shard_29.bin",
+          "bytes": 21242368,
+          "sha256": "d752915a969a34c541468e19e0f9f062656c3092cb8a83e2c17d51e301cb9462"
+        },
+        {
+          "file": "params_shard_3.bin",
+          "bytes": 28320256,
+          "sha256": "578a822b605a626591f278afc2cabf5aceaae3d0c8fa4524c6fa122068ca5bfa"
+        },
+        {
+          "file": "params_shard_4.bin",
+          "bytes": 28320256,
+          "sha256": "269d286ddf161a413571590c0b2a46254543e8bc382842981c366cbe20ff74e1"
+        },
+        {
+          "file": "params_shard_5.bin",
+          "bytes": 28320256,
+          "sha256": "c0a8ec522155f9d80cd5a0785dc74af6557bb58718ffd0d60f969b5ddbc30800"
+        },
+        {
+          "file": "params_shard_6.bin",
+          "bytes": 28320256,
+          "sha256": "5de768ed5214ec5decf621ba98a45ba4e7cd6b36d4c6f5ae61f127b14a09f618"
+        },
+        {
+          "file": "params_shard_7.bin",
+          "bytes": 28320256,
+          "sha256": "0bb79032f4a20e17d286e2ac9caa84d53176bfd4031c7dfb0ca6aa38fa9f3f08"
+        },
+        {
+          "file": "params_shard_8.bin",
+          "bytes": 28320256,
+          "sha256": "bc819ff3d86f842057cdf3169f9a5e7a792d2e17e21b11c5d50ec91a1ae9a92c"
+        },
+        {
+          "file": "params_shard_9.bin",
+          "bytes": 28320256,
+          "sha256": "9612e0b641670db28172456263ad4474419ea19d3e2a313a02d91cb9d0b2a898"
+        },
+        {
+          "file": "tokenizer_config.json",
+          "bytes": 5439,
+          "sha256": null
+        }
+      ],
+      "weight_download_bytes": 968001536,
+      "compatibility_claim": "Needs actual WebGPU load,generation,Hebrew and quantization parity tests. No product selection.",
+      "README.md": {
+        "sha256": "ae914b00e12684621627e5659f609ab47d0f19d3349e3ef7e304b89e91e2cceb",
+        "content": "---\nlicense: apache-2.0\nlanguage:\n- he\nbase_model: dicta-il/DictaLM-3.0-1.7B-Instruct\nlibrary_name: mlc-llm\ntags:\n- web-llm\n- mlc-llm\n- hebrew\n---\n\n# DictaLM-3.0-1.7B-Instruct — q4f16_1 (MLC / WebLLM)\n\nConversion of [dicta-il/DictaLM-3.0-1.7B-Instruct](https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct)\n(by [Dicta](https://dicta.org.il), Apache-2.0) to the MLC `q4f16_1` format, so it runs in the browser with\n[WebLLM](https://github.com/mlc-ai/web-llm) on WebGPU.\n\nDictaLM 3.0 1.7B uses the Qwen3-1.7B architecture, so this conversion reuses WebLLM's prebuilt\n`Qwen3-1.7B-q4f16_1_cs1k-webgpu.wasm` model library. Weight layout and `mlc-chat-config.json` mirror\n`mlc-ai/Qwen3-1.7B-q4f16_1-MLC`; tokenizer files come from the original model.\n\n```js\nconst appConfig = {\n  model_list: [{\n    model: \"https://huggingface.co/sivelsguy/DictaLM-3.0-1.7B-Instruct-q4f16_1-MLC\",\n    model_id: \"DictaLM-3.0-1.7B-Instruct-q4f16_1-MLC\",\n    model_lib: \"https://raw.githubusercontent.com/mlc-ai/binary-mlc-llm-libs/main/web-llm-models/v0_2_86/base/Qwen3-1.7B-q4f16_1_cs1k-webgpu.wasm\",\n    overrides: { context_window_size: 4096 },\n  }],\n};\n```\n\nUsed by the open-source Hebrew learning app *Parle*. All credit for the model goes to Dicta.\n"
+      },
+      "mlc-chat-config.json": {
+        "sha256": "aa0a6b1c769bdff35f53dcc3638f194a5e056fd85b5237bf07c1dc81d1657e56",
+        "content": "{\n  \"version\": \"0.1.0\",\n  \"model_type\": \"qwen3\",\n  \"quantization\": \"q4f16_1\",\n  \"model_config\": {\n    \"hidden_act\": \"silu\",\n    \"hidden_size\": 2048,\n    \"intermediate_size\": 6144,\n    \"attention_bias\": false,\n    \"num_attention_heads\": 16,\n    \"num_hidden_layers\": 28,\n    \"num_key_value_heads\": 8,\n    \"rms_norm_eps\": 1e-06,\n    \"rope_theta\": 1000000,\n    \"vocab_size\": 151936,\n    \"tie_word_embeddings\": true,\n    \"context_window_size\": 40960,\n    \"prefill_chunk_size\": 2048,\n    \"tensor_parallel_shards\": 1,\n    \"head_dim\": 128,\n    \"dtype\": \"float32\",\n    \"max_batch_size\": 128\n  },\n  \"vocab_size\": 151936,\n  \"context_window_size\": 40960,\n  \"sliding_window_size\": -1,\n  \"prefill_chunk_size\": 2048,\n  \"attention_sink_size\": -1,\n  \"tensor_parallel_shards\": 1,\n  \"pipeline_parallel_stages\": 1,\n  \"temperature\": 0.6,\n  \"presence_penalty\": 0.0,\n  \"frequency_penalty\": 0.0,\n  \"repetition_penalty\": 1.0,\n  \"top_p\": 0.95,\n  \"tokenizer_files\": [\n    \"tokenizer.json\",\n    \"vocab.json\",\n    \"merges.txt\",\n    \"tokenizer_config.json\"\n  ],\n  \"tokenizer_info\": {\n    \"token_postproc_method\": \"byte_level\",\n    \"prepend_space_in_encode\": false,\n    \"strip_space_in_decode\": false\n  },\n  \"conv_template\": {\n    \"name\": \"dictalm3\",\n    \"system_template\": \"<|im_start|>system\\n{system_message}<|im_end|>\\n\",\n    \"system_message\": \"את/ה עוזר/ת שמדבר/ת עברית.\",\n    \"add_role_after_system_message\": true,\n    \"roles\": {\n      \"user\": \"<|im_start|>user\",\n      \"assistant\": \"<|im_start|>assistant\"\n    },\n    \"role_templates\": {\n      \"user\": \"{user_message}\",\n      \"assistant\": \"{assistant_message}\",\n      \"tool\": \"{tool_message}\"\n    },\n    \"messages\": [],\n    \"seps\": [\n      \"<|im_end|>\\n\"\n    ],\n    \"role_content_sep\": \"\\n\",\n    \"role_empty_sep\": \"\\n\",\n    \"stop_str\": [\n      \"<|endoftext|>\",\n      \"<|im_end|>\"\n    ],\n    \"stop_token_ids\": [\n      151643,\n      151645\n    ],\n    \"strip_reasoning_in_history\": true,\n    \"function_string\": \"\",\n    \"use_function_calling\": false\n  },\n  \"pad_token_id\": 151643,\n  \"bos_token_id\": 151643,\n  \"eos_token_id\": [\n    151645,\n    151643\n  ]\n}"
+      }
+    }
+  },
+  "webllm_reference": {
+    "url": "https://github.com/mlc-ai/web-llm/blob/main/src/config.ts",
+    "retrieved_sha256": "3308146bfcf19d18b8a7daafb8159bc493ca239b100bdf8152c26b7d9e3f849d",
+    "generic_Qwen3_1_7B_q4f16_vram_required_MB": 2036.66,
+    "generic_Qwen3_4B_q4f16_vram_required_MB": 3431.59,
+    "context_window_size": 4096,
+    "limit": "Upstream estimates for generic Qwen3 models,not measured memory for DictaLM or exact4B Instruct2507 ONNX variant."
+  }
+}
