@@ -19,9 +19,10 @@ import zipfile
 
 def supplemental_seed_files(output):
     """Keep both seeds of the selected arm, without changing primary selection."""
-    output=Path(output);frozen=output/'selection-frozen.json'
-    if not frozen.exists():return []
-    arm=json.loads(frozen.read_text()).get('selected_arm')
+    output=Path(output);frozen=output/'selection-frozen.json';retention=output/'artifact-retention.json'
+    if retention.exists():arm=json.loads(retention.read_text()).get('arm')
+    elif frozen.exists():arm=json.loads(frozen.read_text()).get('selected_arm')
+    else:return []
     if arm not in ('control','combined','data_only','loss_only','sample','contrast'):return []
     source=output/'ablations'/f'{arm}-17'/'run'
     files=[p for p in (source/'model').rglob('*') if p.is_file()]
@@ -111,7 +112,7 @@ def execute(bundle, output, expected_sha, steps=200, max_seconds=900, python_ver
         # Recover complete and partial results. Exclude environment and HF cache.
         recovery=Path(str(output)+'-results.zip')
         with zipfile.ZipFile(recovery,'w',zipfile.ZIP_STORED) as archive:
-            for name in ['status.json','hardware.json','ablation-report.json','targeted-report.json','targeted-progress.json','semantic-report.json','semantic-progress.json','combined-report.json','combined-progress.json','sampling-report.json','sampling-progress.json','selection-frozen.json','data-audit.json']:
+            for name in ['status.json','hardware.json','ablation-report.json','targeted-report.json','targeted-progress.json','semantic-report.json','semantic-progress.json','combined-report.json','combined-progress.json','sampling-report.json','sampling-progress.json','selection-frozen.json','artifact-retention.json','data-audit.json']:
                 if (output/name).exists():archive.write(output/name,name)
             for item in (output/'run').rglob('*'):
                 # Preserve weights/INT8; regenerate the large FP32 graph locally

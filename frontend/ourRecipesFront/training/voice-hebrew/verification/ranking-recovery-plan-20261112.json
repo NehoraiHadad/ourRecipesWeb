@@ -1,0 +1,36 @@
+{
+  "created_utc": "2026-11-12T04:42:31.277205+00:00",
+  "role": "Research artifact recovery plus validation/known-probe trace; not new accuracy experiment",
+  "original_selected_arm": "control",
+  "research_arm": "contrast",
+  "fixed_steps": {
+    "42": 500,
+    "17": 1000
+  },
+  "original_math_data_sources_match": {
+    "paired_sampling.py": true,
+    "sampling_data.py": true,
+    "span_pilot.py": true,
+    "engine.py": true,
+    "corpus.py": true,
+    "focused_data.py": true,
+    "combined_data.py": true,
+    "semantic_data.py": true,
+    "ablation.py": true,
+    "colab_job.py": true,
+    "colab_pilot.py": true
+  },
+  "wrapper_change": "sampling_sweep replaced with recovery entrypoint; original retained under v10_original_sweep.py",
+  "packet_bytes": 330635,
+  "packet_sha256": "3320d5cabcaa55c0afa3cd5183ddb58b56d22d3128f96b5e8e7ca2e50b2cb1de",
+  "target_sha256": "36b9e8421159015f4da12b80d772c8a69e388dd8acfd97ac1e8737f224ff7ea1",
+  "added_source_sha256": {
+    "head_trace.py": "6554cdb5e33bab402d941872234c62e9d0fca0bcedc845afabe429af642c72ee",
+    "ranking_recover.py": "70060399eeb596bfa532668322f607b76c0951c07fe2aa122a7afdf2e5b5e544",
+    "colab_job.py": "e4bc867b6a2bb09fbea958cd231f769218e2db9f8979b676f8f1d0c720a970d0"
+  },
+  "fresh_test_scored": false,
+  "original_frozen_outputs_only_for_parity": true,
+  "remote_max_seconds": 1500,
+  "gpu": "T4"
+}

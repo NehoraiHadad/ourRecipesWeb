@@ -28,6 +28,17 @@ class ColabControlTests(unittest.TestCase):
             self.assertEqual(recovered['retained-checkpoints/combined-17/model/model.safetensors'],b'fixture-weights')
             self.assertFalse(any('best-validation-model' in name for name in recovered))
 
+    def test_research_retention_does_not_replace_original_selection(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root=Path(tmp);original='{"selected_arm":"control"}'
+            (root/'selection-frozen.json').write_text(original)
+            (root/'artifact-retention.json').write_text('{"arm":"contrast","role":"research only"}')
+            folder=root/'ablations/contrast-17/run/model';folder.mkdir(parents=True)
+            (folder/'model.safetensors').write_bytes(b'research')
+            files=colab_job.supplemental_seed_files(root)
+            self.assertTrue(any(str(target)=='retained-checkpoints/contrast-17/model/model.safetensors' for source,target in files))
+            self.assertEqual((root/'selection-frozen.json').read_text(),original)
+
     def test_unrecognized_selection_cannot_escape_recovery_root(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp);(root/'selection-frozen.json').write_text('{"selected_arm":"../../foreign"}')

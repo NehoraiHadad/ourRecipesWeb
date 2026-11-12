@@ -1,0 +1,114 @@
+{
+  "role": "Fixed checkpoint recovery; V10 primary/control selection remains unchanged",
+  "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+  "original_selection": {
+    "selected_arm": "control",
+    "retained_seed": 42,
+    "aggregate_validation": {
+      "control": {
+        "mean_f0_5": 0.8775644167483545,
+        "minimum_seed_f0_5": 0.8581081081081081,
+        "mean_precision": 0.8701014403889803,
+        "mean_recall": 0.9092465753424658,
+        "mean_state_exact": 0.8687782805429864
+      },
+      "sample": {
+        "mean_f0_5": 0.9177969775795862,
+        "minimum_seed_f0_5": 0.9116809116809116,
+        "mean_precision": 0.929181654676259,
+        "mean_recall": 0.875,
+        "mean_state_exact": 0.8755656108597285
+      },
+      "contrast": {
+        "mean_f0_5": 0.9267316017316019,
+        "minimum_seed_f0_5": 0.9178571428571429,
+        "mean_precision": 0.9444436640492211,
+        "mean_recall": 0.863013698630137,
+        "mean_state_exact": 0.8766968325791855
+      }
+    },
+    "eligible_arms": [
+      "control"
+    ],
+    "threshold": 0.5,
+    "new_test_used_for_selection": false,
+    "selection": "Validation only: candidates must preserve each matched-control precision within1pp and recall within2pp, improve meanF0.5; maximize worst-seedF0.5 then meanF0.5/precision/state exact; fixed42 primary,17 supplemental"
+  },
+  "original_selection_sha256": "16d173e6b6b666605a169906fcb0ac530e61c95b6a2b280d01528a8e9abcabac",
+  "seeds": {
+    "42": {
+      "steps": 500,
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 500
+      },
+      "validation_examples": 442,
+      "validation_sha256": "287e078774e0250ea2186fff629a0ff48fa10eb65ce8143159c47a604f8cb94b",
+      "frozen_test_examples": 276,
+      "frozen_test_outputs_sha256": "99995f71c7dcb8c232a9df7e554e72de8b5e87ecce005a840f367f24f069277a"
+    },
+    "17": {
+      "steps": 1000,
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 1000
+      },
+      "validation_examples": 442,
+      "validation_sha256": "096249e4879c34a3a4586bed56c7056ecafd93b9fa8375176e0ce2d091cafe9f",
+      "frozen_test_examples": 276,
+      "frozen_test_outputs_sha256": "22bc6e923a9085781c0e483ed4f6bf054f257b0c924e1398ac4b3f0f231ec562"
+    }
+  }
+}
