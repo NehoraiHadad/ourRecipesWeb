@@ -1,0 +1,43 @@
+{
+  "study": "scope-v18-factorial-development-diagnosis",
+  "created_utc": "2026-11-12T20:34:18.166423+00:00",
+  "source_sha256": {
+    "scope_v18_probe.py": "0062f29940cd07bf31f635ad4e4f7deeb7b6457e0b82bacc495c6b2a8aa2df52",
+    "scope_v13_data.py": "485f83936a832f45189e45484a8d1872839cc97899cfc62ec6f89c105bab4273",
+    "scope_v13_features.py": "f14a2bf0dc381398f5f252a1874d1eddd5846b2e737461de2aee6b698a9dded1",
+    "scope_v13_stance.py": "334fe57aa3e792b821232002e87a6f4cfaa6c5bee11a86b214db322ffa8caf58",
+    "adapter_study.py": "560c97049ab14171c0e5eefc759c4eb3da84e7870c7acd2e9024f98cd7ac6378",
+    "certainty_adapter.py": "d6f4b1277d005be3cf3facb47303756c6b8039085567134cdef2e2fb6a1cca92",
+    "facts_v7.py": "505d92a5fd946a992eb9781b6a078dffd754d42c105e301c3c80c065adbc7b57",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82"
+  },
+  "input_sha256": {
+    "runs/scope-v13-stance/heads/linear-42/best.pt": "8cd237f6479af32bec461b84a86a7071d9b2c21520338104fcafb98e7e5b3fb5",
+    "runs/colab-scope-v14-stance/recovered/study/seed-42/best.pt": "9c8e98f0899c37b0f162b9634a0f655cdf7dee51401cea889e931b92286aacd7"
+  },
+  "data_sha256": "69da93c175021496b501451bb408f4d85168fa5b25be9476c2da9cfef07d3f14",
+  "models": [
+    {
+      "name": "v13-linear",
+      "checkpoint": "runs/scope-v13-stance/heads/linear-42/best.pt",
+      "head": "linear",
+      "original_cut": 2.0,
+      "retrospective_calibration_cut": 0.9992735981941224
+    },
+    {
+      "name": "v14-stance-lora",
+      "checkpoint": "runs/colab-scope-v14-stance/recovered/study/seed-42/best.pt",
+      "head": "mlp64",
+      "original_cut": 2.0,
+      "retrospective_calibration_cut": 0.9999148845672609
+    }
+  ],
+  "protocol": "384rows,4cells96 each. Four TRAIN operators/four consumed calibration operators crossed with two TRAIN predicates/two consumed calibration predicates,canonical remaining/marked,three completion statuses,two commitment labels. No head training,threshold fitting or held set inference. Score at fixed.5,original cut,and separately labelled retrospective calibration cut.",
+  "limits": "In-sample/consumed/crossed diagnostic,not independent quality. Seen means prior fine-tuning dataset,not whether language appeared in base pretraining. Only selected families and one subject pair. No causal universal claim or composed recipe test.",
+  "never_infer": [
+    "new384",
+    "newnatural48",
+    "original120",
+    "V5fresh480"
+  ]
+}
