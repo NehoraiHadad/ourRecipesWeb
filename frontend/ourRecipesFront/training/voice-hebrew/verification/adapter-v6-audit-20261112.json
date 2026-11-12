@@ -1,0 +1,46 @@
+{
+  "packet_sha256": "74edf4d499be7ce9a97e9000905ad3dc82684cbf8f595808003a9b324a536175",
+  "members": 280,
+  "zip_crc_and_every_member_sha256_verified": true,
+  "safe_unique_paths": true,
+  "frozen_uploaded_training_sources_and_local_sources_match": true,
+  "all_data_hashes_unchanged": true,
+  "original_body_hash_unchanged": true,
+  "checkpoints": [
+    {
+      "arm": "control",
+      "kind": "best",
+      "head_and_adapter_shapes_valid": true,
+      "optimizer_present": false
+    },
+    {
+      "arm": "control",
+      "kind": "last",
+      "head_and_adapter_shapes_valid": true,
+      "optimizer_present": true
+    },
+    {
+      "arm": "adapter",
+      "kind": "best",
+      "head_and_adapter_shapes_valid": true,
+      "optimizer_present": false
+    },
+    {
+      "arm": "adapter",
+      "kind": "last",
+      "head_and_adapter_shapes_valid": true,
+      "optimizer_present": true
+    }
+  ],
+  "control_optimized_parameters": 400133,
+  "adapter_optimized_parameters": 449285,
+  "full_body_included": false,
+  "new_test480_scored": false,
+  "original120_scored": false,
+  "native_parity_examples_per_arm": 16,
+  "native_parity_mismatches": 0,
+  "unit_tests": 85,
+  "new_gpu_sessions_still_active": 0,
+  "physical_device_tested": false,
+  "scope": "Archive/source/checkpoint audit and already-completed known-validation parity; no further accuracy inference"
+}

@@ -1,0 +1,56 @@
+{
+  "scope": "Diagnostic known validation only, after selection; not new test or independent accuracy. No thresholds/weights changed.",
+  "checkpoint_sha256": "a3f0c5ff8131c83f552de9a195f0415f8ad87e12619118d0840da58e39aa98b4",
+  "source_sha256": "2197b3e6776dc7bc78767e21dbf85c43bb23371f760359432d30e73c9e5c7eef",
+  "threshold": 0.99,
+  "cases": [
+    {
+      "text": "המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל",
+      "expected": "completed_not_done",
+      "prediction": "clarify",
+      "confidence": 0.9957370758056641
+    },
+    {
+      "text": "אני מעדכן: המשימה הבודדת שמופיעה אצלי כגמורה בשלב שבו אני נמצא לא הושלמה בפועל",
+      "expected": "completed_not_done",
+      "prediction": "completed_not_done",
+      "confidence": 0.5649676322937012
+    },
+    {
+      "text": "הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "expected": "completed_not_done",
+      "prediction": "clarify",
+      "confidence": 0.9445247054100037
+    },
+    {
+      "text": "אני מעדכן: הפעולה היחידה עם אישור ביצוע בחלק הנוכחי איננה מוכנה",
+      "expected": "completed_not_done",
+      "prediction": "remaining_not_done",
+      "confidence": 0.5173302888870239
+    },
+    {
+      "text": "מה שנחשב לפעולה המושלמת היחידה בשלב הנוכחי לא נעשה באמת",
+      "expected": "completed_not_done",
+      "prediction": "clarify",
+      "confidence": 0.9939315319061279
+    },
+    {
+      "text": "אני מעדכן: מה שנחשב לפעולה המושלמת היחידה בשלב הנוכחי לא נעשה באמת",
+      "expected": "completed_not_done",
+      "prediction": "completed_not_done",
+      "confidence": 0.6579980850219727
+    },
+    {
+      "text": "הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם",
+      "expected": "completed_not_done",
+      "prediction": "completed_not_done",
+      "confidence": 0.803767740726471
+    },
+    {
+      "text": "אני מעדכן: הדבר היחיד שסומן גמור בשלב הנוכחי למעשה לא הושלם",
+      "expected": "completed_not_done",
+      "prediction": "completed_not_done",
+      "confidence": 0.8254202604293823
+    }
+  ]
+}

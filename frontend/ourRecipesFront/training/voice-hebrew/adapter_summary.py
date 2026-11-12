@@ -25,6 +25,7 @@ def run(root):
   assert trial['best']['step']==best['step']
   table.append({'arm':trial['arm'],'seed':trial['seed'],'steps':trial['actual_steps'],'stop_reason':trial['stop_reason'],
    'best_up_to1000_step':prefix['step'],'best_overall_step':best['step'],'improved_selection_after1000':tuple(best['current']['key'])>tuple(prefix['current']['key']),
+   'improved_functional_metrics_after1000':tuple(best['current']['key'][:-1])>tuple(prefix['current']['key'][:-1]),
    'at1000':next((p for p in points if p['step']==1000),None),'final':points[-1],
    'minimum_validation_nll_step':min(points,key=lambda p:p['validation_language']['nll'])['step'],
    'interpretation':'Validation trajectories only; not proof of universal optimal duration or independent generalization.'})
@@ -47,6 +48,8 @@ def run(root):
  for a,title in zip(ax.flat,['Cross entropy: validation solid / train dotted','Required-update recall (fixed threshold .85)','Wrong updates (fixed threshold .85)','Current validation cost (grid-calibrated threshold)']):
   a.set_title(title,fontsize=10);a.set_xlabel('Minibatch optimizer updates, batch=8');a.grid(alpha=.2);a.axvline(1000,color='gray',ls='--',alpha=.5);a.legend(fontsize=8)
  ax[0,1].set_ylim(0,1.05)
+ ax[1,0].set_ylim(bottom=0)
+ for trial,_ in curves:ax[1,1].scatter([trial['best']['step']],[-trial['best']['key'][1]],marker='*',s=120,zorder=5,color='black')
  fig.suptitle('V6 duration study — actual current checkpoints, synthetic validation',fontsize=12)
  fig.savefig(artifact/'learning-curves.png',dpi=160);fig.savefig(artifact/'learning-curves.svg');plt.close(fig)
  private=json.loads((root/'usage-private.json').read_text());balances={e['phase']:Decimal(re.search(r'Current balance:\s*([0-9.]+)',e['usage']).group(1)) for e in private if 'usage' in e}

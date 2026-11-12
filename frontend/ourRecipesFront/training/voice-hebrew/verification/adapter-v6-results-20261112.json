@@ -1,0 +1,2266 @@
+{
+  "study": {
+    "study": "adapter-v6",
+    "trials": [
+      {
+        "arm": "control",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -61,
+            0.5416666666666666,
+            458,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 384
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 0,
+            "proposed_updates": 26,
+            "expected_updates": 48,
+            "update_precision": 1.0,
+            "update_recall": 0.5416666666666666,
+            "clarifications": 454,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 0,
+          "arm": "control",
+          "seed": 42
+        },
+        "actual_steps": 2000,
+        "stop_reason": "validation_plateau_after_min2000",
+        "seconds": 8.025796101000026,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": 799159808,
+        "head_parameters": 400133,
+        "device": "cuda",
+        "history_points": 10,
+        "mechanics_only": false,
+        "new_test_inference": false
+      },
+      {
+        "arm": "adapter",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -57,
+            0.625,
+            462,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 384
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 462,
+            "exact_rate": 0.9625,
+            "false_updates": 0,
+            "proposed_updates": 30,
+            "expected_updates": 48,
+            "update_precision": 1.0,
+            "update_recall": 0.625,
+            "clarifications": 450,
+            "exact_including_gold_evidence": 462,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 1500,
+          "arm": "adapter",
+          "seed": 42
+        },
+        "actual_steps": 3000,
+        "stop_reason": "validation_plateau_after_min2000",
+        "seconds": 89.36878224700001,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": 809024512,
+        "head_parameters": 400133,
+        "device": "cuda",
+        "history_points": 12,
+        "mechanics_only": false,
+        "new_test_inference": false
+      }
+    ],
+    "expanded": false,
+    "qualified_for_fresh_test": false,
+    "seconds": 102.54853540699997,
+    "test_policy": "No fresh-test inference in training; later native parity and all three fixed seeds required",
+    "new_test_inference": false,
+    "physical_device_tested": false,
+    "human_reviewed": false,
+    "mechanics_only": false
+  },
+  "curves": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "steps": 2000,
+      "stop_reason": "validation_plateau_after_min2000",
+      "best_up_to1000_step": 0,
+      "best_overall_step": 0,
+      "improved_selection_after1000": false,
+      "improved_functional_metrics_after1000": false,
+      "at1000": {
+        "step": 1000,
+        "arm": "control",
+        "seed": 42,
+        "elapsed_seconds": 5.654977449,
+        "examples_seen": 8000,
+        "equivalent_uniform_passes": 9.580838323353293,
+        "unit_note": "Balanced sampling, not literal uniform epochs; warm head already trained previously",
+        "batch_loss_since_check": 0.013744659618834703,
+        "train": {
+          "nll": 0.015203949064016342,
+          "macro_nll": 0.006632466468545317,
+          "accuracy": 0.9928143620491028,
+          "examples": 835
+        },
+        "validation_language": {
+          "nll": 0.7584187984466553,
+          "macro_nll": 0.7111540056903323,
+          "accuracy": 0.7916666865348816,
+          "examples": 120
+        },
+        "current": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -105,
+            0.6666666666666666,
+            454,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 374
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 454,
+            "exact_rate": 0.9458333333333333,
+            "false_updates": 10,
+            "proposed_updates": 42,
+            "expected_updates": 48,
+            "update_precision": 0.7619047619047619,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 438,
+            "exact_including_gold_evidence": 454,
+            "nonmatching_gold_evidence": 10
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "fixed_0_85": {
+          "threshold": 0.85,
+          "key": [
+            false,
+            -163,
+            0.7083333333333334,
+            442,
+            0.85
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 360
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 442,
+            "exact_rate": 0.9208333333333333,
+            "false_updates": 22,
+            "proposed_updates": 56,
+            "expected_updates": 48,
+            "update_precision": 0.6071428571428571,
+            "update_recall": 0.7083333333333334,
+            "clarifications": 422,
+            "exact_including_gold_evidence": 442,
+            "nonmatching_gold_evidence": 22
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 32,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 24,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 8,
+            "exact_including_gold_evidence": 32,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "threshold_grid": [
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              -219,
+              0.7916666666666666,
+              434,
+              0.5
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 350
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 434,
+              "exact_rate": 0.9041666666666667,
+              "false_updates": 34,
+              "proposed_updates": 72,
+              "expected_updates": 48,
+              "update_precision": 0.5277777777777778,
+              "update_recall": 0.7916666666666666,
+              "clarifications": 406,
+              "exact_including_gold_evidence": 434,
+              "nonmatching_gold_evidence": 34
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              -204,
+              0.7916666666666666,
+              437,
+              0.7
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 352
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 437,
+              "exact_rate": 0.9104166666666667,
+              "false_updates": 31,
+              "proposed_updates": 69,
+              "expected_updates": 48,
+              "update_precision": 0.5507246376811594,
+              "update_recall": 0.7916666666666666,
+              "clarifications": 409,
+              "exact_including_gold_evidence": 437,
+              "nonmatching_gold_evidence": 31
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              -163,
+              0.7083333333333334,
+              442,
+              0.85
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 360
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 442,
+              "exact_rate": 0.9208333333333333,
+              "false_updates": 22,
+              "proposed_updates": 56,
+              "expected_updates": 48,
+              "update_precision": 0.6071428571428571,
+              "update_recall": 0.7083333333333334,
+              "clarifications": 422,
+              "exact_including_gold_evidence": 442,
+              "nonmatching_gold_evidence": 22
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              false,
+              -143,
+              0.7083333333333334,
+              448,
+              0.95
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 366
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 448,
+              "exact_rate": 0.9333333333333333,
+              "false_updates": 18,
+              "proposed_updates": 52,
+              "expected_updates": 48,
+              "update_precision": 0.6538461538461539,
+              "update_recall": 0.7083333333333334,
+              "clarifications": 428,
+              "exact_including_gold_evidence": 448,
+              "nonmatching_gold_evidence": 18
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              false,
+              -105,
+              0.6666666666666666,
+              454,
+              0.99
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 374
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 454,
+              "exact_rate": 0.9458333333333333,
+              "false_updates": 10,
+              "proposed_updates": 42,
+              "expected_updates": 48,
+              "update_precision": 0.7619047619047619,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 438,
+              "exact_including_gold_evidence": 454,
+              "nonmatching_gold_evidence": 10
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          }
+        ],
+        "best_step_so_far": 0,
+        "stale_evaluations": 5
+      },
+      "final": {
+        "step": 2000,
+        "arm": "control",
+        "seed": 42,
+        "elapsed_seconds": 7.9872108900000285,
+        "examples_seen": 16000,
+        "equivalent_uniform_passes": 19.161676646706585,
+        "unit_note": "Balanced sampling, not literal uniform epochs; warm head already trained previously",
+        "batch_loss_since_check": 0.005961495869317787,
+        "train": {
+          "nll": 0.0048113176599144936,
+          "macro_nll": 0.0026041845325380565,
+          "accuracy": 0.9988024234771729,
+          "examples": 835
+        },
+        "validation_language": {
+          "nll": 0.40265318751335144,
+          "macro_nll": 0.5804939248082519,
+          "accuracy": 0.9000000357627869,
+          "examples": 120
+        },
+        "current": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -77,
+            0.625,
+            458,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 380
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 4,
+            "proposed_updates": 34,
+            "expected_updates": 48,
+            "update_precision": 0.8823529411764706,
+            "update_recall": 0.625,
+            "clarifications": 446,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 4
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "fixed_0_85": {
+          "threshold": 0.85,
+          "key": [
+            false,
+            -109,
+            0.7916666666666666,
+            458,
+            0.85
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": true,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 372
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 12,
+            "proposed_updates": 50,
+            "expected_updates": 48,
+            "update_precision": 0.76,
+            "update_recall": 0.7916666666666666,
+            "clarifications": 430,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 12
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "threshold_grid": [
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              -117,
+              0.8333333333333334,
+              458,
+              0.5
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 370
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 14,
+              "proposed_updates": 54,
+              "expected_updates": 48,
+              "update_precision": 0.7407407407407407,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 426,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 14
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              -117,
+              0.8333333333333334,
+              458,
+              0.7
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 370
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 14,
+              "proposed_updates": 54,
+              "expected_updates": 48,
+              "update_precision": 0.7407407407407407,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 426,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 14
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              -109,
+              0.7916666666666666,
+              458,
+              0.85
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 372
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 12,
+              "proposed_updates": 50,
+              "expected_updates": 48,
+              "update_precision": 0.76,
+              "update_recall": 0.7916666666666666,
+              "clarifications": 430,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 12
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              false,
+              -99,
+              0.7916666666666666,
+              460,
+              0.95
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 374
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 460,
+              "exact_rate": 0.9583333333333334,
+              "false_updates": 10,
+              "proposed_updates": 48,
+              "expected_updates": 48,
+              "update_precision": 0.7916666666666666,
+              "update_recall": 0.7916666666666666,
+              "clarifications": 432,
+              "exact_including_gold_evidence": 460,
+              "nonmatching_gold_evidence": 10
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              false,
+              -77,
+              0.625,
+              458,
+              0.99
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 380
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 4,
+              "proposed_updates": 34,
+              "expected_updates": 48,
+              "update_precision": 0.8823529411764706,
+              "update_recall": 0.625,
+              "clarifications": 446,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 4
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          }
+        ],
+        "best_step_so_far": 0,
+        "stale_evaluations": 9
+      },
+      "minimum_validation_nll_step": 500,
+      "interpretation": "Validation trajectories only; not proof of universal optimal duration or independent generalization."
+    },
+    {
+      "arm": "adapter",
+      "seed": 42,
+      "steps": 3000,
+      "stop_reason": "validation_plateau_after_min2000",
+      "best_up_to1000_step": 0,
+      "best_overall_step": 1500,
+      "improved_selection_after1000": true,
+      "improved_functional_metrics_after1000": true,
+      "at1000": {
+        "step": 1000,
+        "arm": "adapter",
+        "seed": 42,
+        "elapsed_seconds": 34.06587073700001,
+        "examples_seen": 8000,
+        "equivalent_uniform_passes": 9.580838323353293,
+        "unit_note": "Balanced sampling, not literal uniform epochs; warm head already trained previously",
+        "batch_loss_since_check": 0.009007526125362347,
+        "train": {
+          "nll": 0.01031523197889328,
+          "macro_nll": 0.005288855810067617,
+          "accuracy": 0.9952095746994019,
+          "examples": 835
+        },
+        "validation_language": {
+          "nll": 0.4436088800430298,
+          "macro_nll": 0.43013720120188736,
+          "accuracy": 0.8583333492279053,
+          "examples": 120
+        },
+        "current": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -97,
+            0.625,
+            454,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 376
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 454,
+            "exact_rate": 0.9458333333333333,
+            "false_updates": 8,
+            "proposed_updates": 38,
+            "expected_updates": 48,
+            "update_precision": 0.7894736842105263,
+            "update_recall": 0.625,
+            "clarifications": 442,
+            "exact_including_gold_evidence": 454,
+            "nonmatching_gold_evidence": 8
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "fixed_0_85": {
+          "threshold": 0.85,
+          "key": [
+            false,
+            -117,
+            0.8333333333333334,
+            458,
+            0.85
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": true,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 370
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 14,
+            "proposed_updates": 54,
+            "expected_updates": 48,
+            "update_precision": 0.7407407407407407,
+            "update_recall": 0.8333333333333334,
+            "clarifications": 426,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 14
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "threshold_grid": [
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              -185,
+              0.875,
+              446,
+              0.5
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 357
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 446,
+              "exact_rate": 0.9291666666666667,
+              "false_updates": 28,
+              "proposed_updates": 70,
+              "expected_updates": 48,
+              "update_precision": 0.6,
+              "update_recall": 0.875,
+              "clarifications": 410,
+              "exact_including_gold_evidence": 446,
+              "nonmatching_gold_evidence": 28
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              -140,
+              0.875,
+              455,
+              0.7
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 365
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 455,
+              "exact_rate": 0.9479166666666666,
+              "false_updates": 19,
+              "proposed_updates": 61,
+              "expected_updates": 48,
+              "update_precision": 0.6885245901639344,
+              "update_recall": 0.875,
+              "clarifications": 419,
+              "exact_including_gold_evidence": 455,
+              "nonmatching_gold_evidence": 19
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              -117,
+              0.8333333333333334,
+              458,
+              0.85
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 370
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 14,
+              "proposed_updates": 54,
+              "expected_updates": 48,
+              "update_precision": 0.7407407407407407,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 426,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 14
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              false,
+              -113,
+              0.7083333333333334,
+              454,
+              0.95
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 372
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 454,
+              "exact_rate": 0.9458333333333333,
+              "false_updates": 12,
+              "proposed_updates": 46,
+              "expected_updates": 48,
+              "update_precision": 0.7391304347826086,
+              "update_recall": 0.7083333333333334,
+              "clarifications": 434,
+              "exact_including_gold_evidence": 454,
+              "nonmatching_gold_evidence": 12
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              false,
+              -97,
+              0.625,
+              454,
+              0.99
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 376
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 454,
+              "exact_rate": 0.9458333333333333,
+              "false_updates": 8,
+              "proposed_updates": 38,
+              "expected_updates": 48,
+              "update_precision": 0.7894736842105263,
+              "update_recall": 0.625,
+              "clarifications": 442,
+              "exact_including_gold_evidence": 454,
+              "nonmatching_gold_evidence": 8
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          }
+        ],
+        "best_step_so_far": 0,
+        "stale_evaluations": 5
+      },
+      "final": {
+        "step": 3000,
+        "arm": "adapter",
+        "seed": 42,
+        "elapsed_seconds": 89.33178351700002,
+        "examples_seen": 24000,
+        "equivalent_uniform_passes": 28.74251497005988,
+        "unit_note": "Balanced sampling, not literal uniform epochs; warm head already trained previously",
+        "batch_loss_since_check": 0.0003077287669815973,
+        "train": {
+          "nll": 7.379824091913179e-05,
+          "macro_nll": 0.0001425964233931154,
+          "accuracy": 1.0,
+          "examples": 835
+        },
+        "validation_language": {
+          "nll": 0.42669251561164856,
+          "macro_nll": 0.6217215642374185,
+          "accuracy": 0.8916667103767395,
+          "examples": 120
+        },
+        "current": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -85,
+            0.6666666666666666,
+            458,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 378
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 6,
+            "proposed_updates": 38,
+            "expected_updates": 48,
+            "update_precision": 0.8421052631578947,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 442,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 6
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "fixed_0_85": {
+          "threshold": 0.85,
+          "key": [
+            false,
+            -107,
+            0.8333333333333334,
+            460,
+            0.85
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": true,
+              "new_no_false_updates": false,
+              "new_uncertain_all_clarify": false,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 372
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 460,
+            "exact_rate": 0.9583333333333334,
+            "false_updates": 12,
+            "proposed_updates": 52,
+            "expected_updates": 48,
+            "update_precision": 0.7692307692307693,
+            "update_recall": 0.8333333333333334,
+            "clarifications": 428,
+            "exact_including_gold_evidence": 460,
+            "nonmatching_gold_evidence": 12
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 32,
+            "exact_rate": 1.0,
+            "false_updates": 0,
+            "proposed_updates": 24,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 1.0,
+            "clarifications": 8,
+            "exact_including_gold_evidence": 32,
+            "nonmatching_gold_evidence": 0
+          }
+        },
+        "threshold_grid": [
+          {
+            "threshold": 0.5,
+            "key": [
+              false,
+              -132,
+              0.8333333333333334,
+              455,
+              0.5
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 368
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 455,
+              "exact_rate": 0.9479166666666666,
+              "false_updates": 17,
+              "proposed_updates": 57,
+              "expected_updates": 48,
+              "update_precision": 0.7017543859649122,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 423,
+              "exact_including_gold_evidence": 455,
+              "nonmatching_gold_evidence": 17
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.7,
+            "key": [
+              false,
+              -132,
+              0.8333333333333334,
+              455,
+              0.7
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 368
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 455,
+              "exact_rate": 0.9479166666666666,
+              "false_updates": 17,
+              "proposed_updates": 57,
+              "expected_updates": 48,
+              "update_precision": 0.7017543859649122,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 423,
+              "exact_including_gold_evidence": 455,
+              "nonmatching_gold_evidence": 17
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.85,
+            "key": [
+              false,
+              -107,
+              0.8333333333333334,
+              460,
+              0.85
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": true,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 372
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 460,
+              "exact_rate": 0.9583333333333334,
+              "false_updates": 12,
+              "proposed_updates": 52,
+              "expected_updates": 48,
+              "update_precision": 0.7692307692307693,
+              "update_recall": 0.8333333333333334,
+              "clarifications": 428,
+              "exact_including_gold_evidence": 460,
+              "nonmatching_gold_evidence": 12
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 32,
+              "exact_rate": 1.0,
+              "false_updates": 0,
+              "proposed_updates": 24,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 1.0,
+              "clarifications": 8,
+              "exact_including_gold_evidence": 32,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.95,
+            "key": [
+              false,
+              -93,
+              0.7083333333333334,
+              458,
+              0.95
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 376
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 8,
+              "proposed_updates": 42,
+              "expected_updates": 48,
+              "update_precision": 0.8095238095238095,
+              "update_recall": 0.7083333333333334,
+              "clarifications": 438,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 8
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          },
+          {
+            "threshold": 0.99,
+            "key": [
+              false,
+              -85,
+              0.6666666666666666,
+              458,
+              0.99
+            ],
+            "gate": {
+              "passed": false,
+              "checks": {
+                "new_reference_recall": false,
+                "new_no_false_updates": false,
+                "new_uncertain_all_clarify": false,
+                "guard_no_extra_false": true,
+                "guard_recall_floor": true,
+                "guard_exact_floor": true,
+                "outside_invariance": true
+              },
+              "uncertain_examples": 384,
+              "uncertain_safe": 378
+            },
+            "new": {
+              "threshold": 0.5,
+              "examples": 480,
+              "exact_proposals": 458,
+              "exact_rate": 0.9541666666666667,
+              "false_updates": 6,
+              "proposed_updates": 38,
+              "expected_updates": 48,
+              "update_precision": 0.8421052631578947,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 442,
+              "exact_including_gold_evidence": 458,
+              "nonmatching_gold_evidence": 6
+            },
+            "guard": {
+              "threshold": 0.5,
+              "examples": 326,
+              "exact_proposals": 294,
+              "exact_rate": 0.901840490797546,
+              "false_updates": 3,
+              "proposed_updates": 211,
+              "expected_updates": 232,
+              "update_precision": 0.985781990521327,
+              "update_recall": 0.896551724137931,
+              "clarifications": 100,
+              "exact_including_gold_evidence": 291,
+              "nonmatching_gold_evidence": 6
+            },
+            "stress": {
+              "threshold": 0.5,
+              "examples": 32,
+              "exact_proposals": 24,
+              "exact_rate": 0.75,
+              "false_updates": 0,
+              "proposed_updates": 16,
+              "expected_updates": 24,
+              "update_precision": 1.0,
+              "update_recall": 0.6666666666666666,
+              "clarifications": 16,
+              "exact_including_gold_evidence": 24,
+              "nonmatching_gold_evidence": 0
+            }
+          }
+        ],
+        "best_step_so_far": 1500,
+        "stale_evaluations": 4
+      },
+      "minimum_validation_nll_step": 0,
+      "interpretation": "Validation trajectories only; not proof of universal optimal duration or independent generalization."
+    }
+  ],
+  "archive_sha256_crc_verified": true,
+  "uploaded_source_matches_freeze": true,
+  "initial_plan": {
+    "study": "adapter-v6",
+    "created_utc": "2026-11-12T08:03:27.265866+00:00",
+    "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+    "initial_head_sha256": "474c3a66362c0515afdb92e253fb65f6b39dc95ccffb4b159ed389877b4adcd0",
+    "source_sha256": {
+      "adapter_study.py": "560c97049ab14171c0e5eefc759c4eb3da84e7870c7acd2e9024f98cd7ac6378",
+      "adapter_job.py": "69a104647f202da3896288747645f9d911149602304ac1c1e161e32f0feed415",
+      "adapter_colab.py": "8e3819bcc698dd774db2bd019f90673f88cc94c4653e9f0109d13791a3c4446a",
+      "certainty_adapter.py": "d6f4b1277d005be3cf3facb47303756c6b8039085567134cdef2e2fb6a1cca92",
+      "certainty_position.py": "59cd8f38718435511488d077a834fccab31c298f48dfde2169192e45ac92d130",
+      "certainty_train.py": "0942eda5afcdb4f20ee69f99fa0bf268b08263ced9debee8e869c18c15de36be",
+      "certainty_contract.py": "ddc8309df05aa499587e25c8ee89c81578dcabd0a222118386fa84f44a407bea",
+      "reference_train.py": "2e4250538372a8ac841bca5906946e4dfe51d4a8bebe15d3c7db88336cfbf5ee",
+      "reference_contract.py": "27d8734e5eef5282624fd0a83a2598e26cbc94519f613012a7d497a8fea7862c",
+      "certainty_data.py": "8d9c3ed18f3283b133c87017f2a621bd8f78dbc0c31358289027e391315419e3",
+      "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+      "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+      "span_pilot.py": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6"
+    },
+    "data_files": {
+      "verification/certainty-v5-data-20261112/plan.json": "14edf27754546299ef8b36dfdf20a383312607c659a7b325b73cc23c422c04bb",
+      "verification/certainty-v5-data-20261112/language.json": "3766ec0262be335612866c4c8c6846a33e8e7f534b3dcae23be4e23ecf3b0b13",
+      "verification/certainty-v5-data-20261112/validation.json": "9bcf68d9cf8b5117d426b9a827fca8fc4e1ec52fa0a220d9f8502fb07cf6b753",
+      "verification/certainty-v5-data-20261112/test.json": "5836ae566b0e80524fe255f0b60ec2f2ede1401f5213b517910425c744ca36f1",
+      "runs/certainty-v5-r1/native-baseline.json": "106e55e569fff418b23cf174c64535c394d7881569fa1eecd3554e1b0c598c20",
+      "runs/colab-state-v12/recovered/ablations/control-42/run/validation-research-full.json": "072aa04937839ace96a7eaf8ca07e21461d1ea2b6744efeedc3e7b41b6de3d06",
+      "runs/state-v13-preflight/shared/manifest.json": "940d1621602c0cb7cc64b9a313075938be0428abb8e20116aef502a57cdfe8ad",
+      "runs/state-v13-preflight/shared/recipes.json": "bf6af11aa81ed38576ed44688b2a655f7ef9cb8b4d64c9715d18cfb4a9e1fd5b",
+      "runs/state-v13-preflight/shared/train.jsonl": "ee29d092e8e41208b07dab4225b301c4b0a3281f2685616cb41840160148c118",
+      "runs/state-v13-preflight/shared/validation.jsonl": "6c2c11773387c7c25fe04ea3bdbfa411af2d7ebfedc96a926cb8846bc9fee413",
+      "runs/state-v13-preflight/shared/test.jsonl": "2c3c12ec240b88e3108e85181e8dd19d514125ca7142dc88de0694f97005a6d0"
+    },
+    "steps": {
+      "minimum": 2000,
+      "maximum": 3000,
+      "evaluation": [
+        0,
+        100,
+        250,
+        500,
+        750,
+        1000,
+        1250,
+        1500,
+        1750,
+        2000,
+        2500,
+        3000
+      ],
+      "patience": 4
+    },
+    "batch": 8,
+    "sampling": "uniform labels in shuffled cycles; uniform examples within label; matched seeds",
+    "learning_rate_head": 0.0003,
+    "learning_rate_adapter": 5e-05,
+    "weight_decay": 0.01,
+    "precision": "FP32",
+    "seeds": [
+      42,
+      17,
+      73
+    ],
+    "pilot": "control42 and adapter42; expand adapters only if42 passes and min2000 completed",
+    "quality_wall_seconds": 2400,
+    "selection": "Predeclared V5 gates and cost5, validation only; no test duration tuning",
+    "unit": "minibatch optimizer steps, not runs or full-batch epochs",
+    "new_test_inference": false,
+    "physical_device_tested": false
+  },
+  "resources": {
+    "reported_compute_unit_delta": 0.08,
+    "driver_seconds": 384.55805564100046
+  },
+  "figure": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/adapter-v6-learning-curves-20261112/learning-curves.png",
+  "csv": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/adapter-v6-learning-curves-20261112/curves.csv",
+  "physical_device_tested": false,
+  "human_reviewed": false,
+  "new_test_inference": false
+}

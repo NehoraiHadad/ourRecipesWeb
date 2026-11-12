@@ -1,0 +1,229 @@
+{
+  "selection": {
+    "created_utc": "2026-11-12T08:11:21.159395+00:00",
+    "qualified_for_fresh_test": false,
+    "evaluator_sha256": "83556ade2cfac9e79c52dfb29fa5e8d43f0539a7ddba9eb6e316ac2f102c2f16",
+    "trials": [
+      {
+        "arm": "control",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -61,
+            0.5416666666666666,
+            458,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 384
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 458,
+            "exact_rate": 0.9541666666666667,
+            "false_updates": 0,
+            "proposed_updates": 26,
+            "expected_updates": 48,
+            "update_precision": 1.0,
+            "update_recall": 0.5416666666666666,
+            "clarifications": 454,
+            "exact_including_gold_evidence": 458,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 0,
+          "arm": "control",
+          "seed": 42
+        },
+        "actual_steps": 2000,
+        "stop_reason": "validation_plateau_after_min2000",
+        "seconds": 8.025796101000026,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": 799159808,
+        "head_parameters": 400133,
+        "device": "cuda",
+        "history_points": 10,
+        "mechanics_only": false,
+        "new_test_inference": false,
+        "best_sha256": "2627a4dea749325be2a729023b7c2e30b20295190c0408fb177b68bf1c80c9ce"
+      },
+      {
+        "arm": "adapter",
+        "seed": 42,
+        "best": {
+          "threshold": 0.99,
+          "key": [
+            false,
+            -57,
+            0.625,
+            462,
+            0.99
+          ],
+          "gate": {
+            "passed": false,
+            "checks": {
+              "new_reference_recall": false,
+              "new_no_false_updates": true,
+              "new_uncertain_all_clarify": true,
+              "guard_no_extra_false": true,
+              "guard_recall_floor": true,
+              "guard_exact_floor": true,
+              "outside_invariance": true
+            },
+            "uncertain_examples": 384,
+            "uncertain_safe": 384
+          },
+          "new": {
+            "threshold": 0.5,
+            "examples": 480,
+            "exact_proposals": 462,
+            "exact_rate": 0.9625,
+            "false_updates": 0,
+            "proposed_updates": 30,
+            "expected_updates": 48,
+            "update_precision": 1.0,
+            "update_recall": 0.625,
+            "clarifications": 450,
+            "exact_including_gold_evidence": 462,
+            "nonmatching_gold_evidence": 0
+          },
+          "guard": {
+            "threshold": 0.5,
+            "examples": 326,
+            "exact_proposals": 294,
+            "exact_rate": 0.901840490797546,
+            "false_updates": 3,
+            "proposed_updates": 211,
+            "expected_updates": 232,
+            "update_precision": 0.985781990521327,
+            "update_recall": 0.896551724137931,
+            "clarifications": 100,
+            "exact_including_gold_evidence": 291,
+            "nonmatching_gold_evidence": 6
+          },
+          "stress": {
+            "threshold": 0.5,
+            "examples": 32,
+            "exact_proposals": 24,
+            "exact_rate": 0.75,
+            "false_updates": 0,
+            "proposed_updates": 16,
+            "expected_updates": 24,
+            "update_precision": 1.0,
+            "update_recall": 0.6666666666666666,
+            "clarifications": 16,
+            "exact_including_gold_evidence": 24,
+            "nonmatching_gold_evidence": 0
+          },
+          "step": 1500,
+          "arm": "adapter",
+          "seed": 42
+        },
+        "actual_steps": 3000,
+        "stop_reason": "validation_plateau_after_min2000",
+        "seconds": 89.36878224700001,
+        "legacy_disabled_logits_bitwise_equal": true,
+        "legacy_known_queries": 5,
+        "adapter_info": {
+          "target_modules": [
+            "bert.encoder.layer.10.attention.self.query",
+            "bert.encoder.layer.10.attention.self.value",
+            "bert.encoder.layer.11.attention.self.query",
+            "bert.encoder.layer.11.attention.self.value"
+          ],
+          "rank": 8,
+          "last_layers": 2,
+          "trainable_parameters": 49152,
+          "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+        },
+        "peak_cuda_allocated_bytes": 809024512,
+        "head_parameters": 400133,
+        "device": "cuda",
+        "history_points": 12,
+        "mechanics_only": false,
+        "new_test_inference": false,
+        "best_sha256": "a3f0c5ff8131c83f552de9a195f0415f8ad87e12619118d0840da58e39aa98b4"
+      }
+    ]
+  },
+  "native_parity": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "examples": 16,
+      "mismatches": [],
+      "median_ms": 311.0925094997583,
+      "p95_ms": 526.2912970010802,
+      "scope": "Known validation, actual native text path and adapter toggle,CPU2 threads,no warmup/repeats; not physical device/audio/browser"
+    },
+    {
+      "arm": "adapter",
+      "seed": 42,
+      "examples": 16,
+      "mismatches": [],
+      "median_ms": 276.88486899933196,
+      "p95_ms": 404.727229000855,
+      "scope": "Known validation, actual native text path and adapter toggle,CPU2 threads,no warmup/repeats; not physical device/audio/browser"
+    }
+  ],
+  "fresh_scored": false,
+  "fresh": [],
+  "physical_device_tested": false,
+  "human_reviewed": false,
+  "original120_scored": false,
+  "scope": "Actual CPU and deterministic state code; authored correlated fixtures, not real speech"
+}

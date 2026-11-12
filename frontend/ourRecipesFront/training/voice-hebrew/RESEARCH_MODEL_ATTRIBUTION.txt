@@ -17,7 +17,14 @@ follow the base model license terms. The small heads alone are not a model
 that can understand Hebrew without the exact adapted encoder.
 
 V5 research variants use an explicit abstention class (200453 parameters)
-and positional pooling (400133 parameters). A separate rank8 query/value
-adapter module for the last two BERT layers is prepared and mechanics-tested;
-its Hebrew quality has not been trained or measured. Full encoder weights
+and positional pooling (400133 parameters). At the V5 stage, a separate rank8 query/value
+adapter module for the last two BERT layers was prepared and mechanics-tested;
+its Hebrew quality had not yet been trained or measured. Full encoder weights
 are excluded; small research heads are explicitly included in the V5 packet.
+
+V6 trains rank8 query/value adapters on the last two BERT layers while
+retaining the adapted backbone unchanged, together with the400133-parameter
+semantic head. The prepared adapter from V5 is now quality-trained in a
+matched seed42 duration pilot; validation gates still fail. Small best/last
+research checkpoints are included, full backbone excluded. No endorsement
+by Dicta or production-readiness claim.

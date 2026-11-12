@@ -1,0 +1,12 @@
+{
+  "path": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-hebrew-adapter-v6-results-20261112.zip",
+  "bytes": 23637519,
+  "sha256": "74edf4d499be7ce9a97e9000905ad3dc82684cbf8f595808003a9b324a536175",
+  "members": 280,
+  "crc_verified": true,
+  "frozen_training_sources_match": true,
+  "full_body_included": false,
+  "small_best_and_last_checkpoints_included": true,
+  "fresh480_inferred": false,
+  "privacy": "Only allowlisted synthetic source/data/checkpoints/aggregate proofs; no account, key, usage-private, audio or app files."
+}
