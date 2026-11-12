@@ -1,0 +1,381 @@
+{
+  "source_commit": "813cf3f",
+  "source_plan": "verification/state-v13-plan-20261112.json",
+  "postprocessing_source_sha256": "9fb2fe332c67b95d10b1f4168165ef81706f8799e9f3c5fa8c5fd3ad04f06cce",
+  "selection": {
+    "selected_arm": "state",
+    "retained_seed": 42,
+    "seeds": [
+      42
+    ],
+    "qualified_for_new_test": false,
+    "reasons": [
+      "state update recall <75%",
+      "complete groups <25%",
+      "state exact <60%",
+      "guardrail false updates > frozen control42 count3",
+      "guardrail recall loss >2pp vs frozen control42",
+      "outside-step validation stress exact <75%"
+    ],
+    "role": "Adaptive validation pilot; expand/score fresh test only after predeclared gates pass"
+  },
+  "variants": [
+    {
+      "seed": 42,
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "4-state-action+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 500,
+        "batch_size": 8,
+        "encoder_lr": 1e-05,
+        "head_lr": 0.0001,
+        "sampling": "state-balanced",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "184e81642330f2669dad5afe567c30c7ecb6a4f7b331f0a3338da320abcd68ef",
+        "source_sha256": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-state-v4",
+        "eval_every": 125,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "warm_start_sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+        "optimizer_restored": false,
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": false,
+        "initial_shared_head_sha256": null,
+        "output_channels": 8,
+        "intent_loss_weights": {
+          "report": 0.5714285714285714,
+          "clarify": 0.5714285714285714,
+          "next": 2.0,
+          "missed": 2.0,
+          "advice": 2.0
+        },
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 500
+      },
+      "report": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 500,
+        "selected_step": 500,
+        "training_seconds": 254.83944712700003,
+        "gpu_peak_allocated_bytes": 3717161472,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 902,
+          "exact_proposals": 264,
+          "exact_rate": 0.2926829268292683,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 616,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 902,
+          "exact_including_gold_evidence": 264,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 499,
+          "exact_rate": 0.5532150776053215,
+          "false_updates": 157,
+          "proposed_updates": 467,
+          "expected_updates": 616,
+          "update_precision": 0.6638115631691649,
+          "update_recall": 0.5032467532467533,
+          "clarifications": 477,
+          "exact_including_gold_evidence": 436,
+          "nonmatching_gold_evidence": 223
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 902,
+          "exact_proposals": 499,
+          "exact_rate": 0.5532150776053215,
+          "false_updates": 157,
+          "proposed_updates": 467,
+          "expected_updates": 616,
+          "update_precision": 0.6638115631691649,
+          "update_recall": 0.5032467532467533,
+          "clarifications": 477,
+          "exact_including_gold_evidence": 436,
+          "nonmatching_gold_evidence": 223
+        },
+        "validation_research": {
+          "threshold": 0.9,
+          "examples": 902,
+          "exact_proposals": 374,
+          "exact_rate": 0.4146341463414634,
+          "false_updates": 4,
+          "proposed_updates": 101,
+          "expected_updates": 616,
+          "update_precision": 0.9603960396039604,
+          "update_recall": 0.15746753246753248,
+          "clarifications": 780,
+          "exact_including_gold_evidence": 370,
+          "nonmatching_gold_evidence": 10
+        }
+      },
+      "validation_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 193,
+          "exact_rate": 0.3350694444444444,
+          "true_updates": 1,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.0026041666666666665,
+          "precision": 1.0,
+          "cost": 383
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 181,
+          "exact_rate": 0.5552147239263804,
+          "true_updates": 96,
+          "false_updates": 4,
+          "expected_updates": 232,
+          "recall": 0.41379310344827586,
+          "precision": 0.96,
+          "cost": 156
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 0,
+          "rate": 0.0
+        }
+      },
+      "stress": {
+        "threshold": 0.9,
+        "examples": 32,
+        "exact_proposals": 8,
+        "exact_rate": 0.25,
+        "false_updates": 0,
+        "proposed_updates": 0,
+        "expected_updates": 24,
+        "update_precision": null,
+        "update_recall": 0.0,
+        "clarifications": 32,
+        "exact_including_gold_evidence": 8,
+        "nonmatching_gold_evidence": 0
+      },
+      "gate": {
+        "passed": false,
+        "reasons": [
+          "state update recall <75%",
+          "complete groups <25%",
+          "state exact <60%",
+          "guardrail false updates > frozen control42 count3",
+          "guardrail recall loss >2pp vs frozen control42",
+          "outside-step validation stress exact <75%"
+        ]
+      },
+      "initial_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 150,
+          "exact_rate": 0.2604166666666667,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.0,
+          "precision": null,
+          "cost": 384
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 124,
+          "exact_rate": 0.3803680981595092,
+          "true_updates": 182,
+          "false_updates": 381,
+          "expected_updates": 232,
+          "recall": 0.7844827586206896,
+          "precision": 0.32326820603907636,
+          "cost": 1955
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 0,
+          "rate": 0.0
+        }
+      },
+      "final_step_diagnostic_at_0_5": {
+        "state": {
+          "examples": 576,
+          "exact": 231,
+          "exact_rate": 0.4010416666666667,
+          "true_updates": 126,
+          "false_updates": 148,
+          "expected_updates": 384,
+          "recall": 0.328125,
+          "precision": 0.45985401459854014,
+          "cost": 998
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 268,
+          "exact_rate": 0.8220858895705522,
+          "true_updates": 184,
+          "false_updates": 9,
+          "expected_updates": 232,
+          "recall": 0.7931034482758621,
+          "precision": 0.9533678756476683,
+          "cost": 93
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 0,
+          "rate": 0.0
+        }
+      },
+      "final_step_diagnostic_role": "Already-recorded final-step validation at fixed.5; diagnostic only, not selected checkpoint/threshold or new-test result"
+    }
+  ],
+  "weights": {
+    "42": {
+      "path": "runs/colab-state-v13/recovered/run/model/model.safetensors",
+      "bytes": 735066976,
+      "sha256": "5dc251e8c8d2aa705440698a8d053f230d505e131c517d4218a2181a7df3f5ef",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "4-state-action+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 500,
+        "batch_size": 8,
+        "encoder_lr": 1e-05,
+        "head_lr": 0.0001,
+        "sampling": "state-balanced",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "184e81642330f2669dad5afe567c30c7ecb6a4f7b331f0a3338da320abcd68ef",
+        "source_sha256": "c4dfd59dde0a21a2938aba89db0737a95d4b5040ed3c57bc653939159545ccf6",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-state-v4",
+        "eval_every": 125,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "warm_start_sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1",
+        "optimizer_restored": false,
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": false,
+        "initial_shared_head_sha256": null,
+        "output_channels": 8,
+        "intent_loss_weights": {
+          "report": 0.5714285714285714,
+          "clarify": 0.5714285714285714,
+          "next": 2.0,
+          "missed": 2.0,
+          "advice": 2.0
+        },
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 500
+      }
+    }
+  },
+  "new_test_evaluated": false,
+  "new_test_once": [],
+  "archive": {
+    "bytes": 759621855,
+    "sha256": "2f8d367197f9167b44ccf45ab2de34e83f7200ae60d2d756b3adaef4186c41a7"
+  },
+  "archive_sha256_crc_verified": true,
+  "uploaded_source_hashes_match_plan": true,
+  "local_frozen_sources_still_match": true,
+  "resources": {
+    "reported_compute_unit_delta": 0.13,
+    "remote_seconds": 494.18685507899994,
+    "driver_seconds": 655.7492255050001,
+    "cleanup_completed": true
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "python": "3.13.16",
+    "cpu_count": 2
+  },
+  "native_cpu_runtime": {
+    "runtime-state-42": {
+      "scope": "Real native CPU in cloud workspace; known validation-output parity and turn latency only, no gold accuracy scoring, browser or physical user-device claim",
+      "arm_profile": "context-state-v4",
+      "seed": 42,
+      "threads": 2,
+      "logical_cpus": 5,
+      "affinity_cpus": 5,
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "python": "3.13.17",
+      "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+      "cgroup_cpu_max": "400000 100000",
+      "torch": "2.6.0+cpu",
+      "threshold": 0.9,
+      "load_seconds_excluding_imports": 0.21222617400053423,
+      "first_turn_ms": 445.56000199918344,
+      "warm_repeats": 3,
+      "turns_per_repeat": 16,
+      "queries_per_turn": [
+        5
+      ],
+      "warm_median_ms": 432.6654164997308,
+      "warm_p95_ms": 511.56919400091283,
+      "warm_min_ms": 375.78978199962876,
+      "warm_max_ms": 540.2802530006738,
+      "process_peak_rss_bytes": 759799808,
+      "parity_examples": 16,
+      "proposal_mismatches": 0,
+      "mismatch_ids": [],
+      "timing_includes": "Tokenization, all candidate/intent BERT queries as one turn batch, evidence decoder and composition; model already resident",
+      "new_test_scored": false,
+      "physical_device_tested": false
+    }
+  },
+  "stress_gpu_cpu_parity": {
+    "42": {
+      "cases": 32,
+      "proposal_mismatches": 0,
+      "scope": "CPU repeat of already-used validation guard; not independent acceptance"
+    }
+  },
+  "native_head_diagnostics": {
+    "heads-state-42": {
+      "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+      "examples": 32,
+      "threshold": 0.9,
+      "gold_analysis": true,
+      "expected_updates": 24,
+      "correct_updates": 0,
+      "missed_updates": 24,
+      "miss_reasons": {
+        "intent_gate": 2,
+        "wrong_polarity": 7,
+        "candidate_absent": 4,
+        "candidate_confidence": 7,
+        "fragmented_evidence": 3,
+        "evidence_confidence": 1
+      },
+      "false_reasons": {}
+    }
+  },
+  "scope": "Actual T4 adaptive pilot, synthetic authored templates, CPU parity/diagnostics separately recorded. Validation stress reused as a pilot gate, not independent quality.",
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "production_ready": false,
+  "original_test_scored": false
+}

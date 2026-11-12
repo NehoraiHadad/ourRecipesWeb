@@ -105,6 +105,22 @@ def training(heldout_rows):
     for label,forms in TRAIN.items():
         for text in forms:
             for prefix in ('','עדכון מהמטבח: '):add(label,prefix+text)
+    # Controlled2x2: negation in a relative clause vs in the main predicate.
+    # Added after the first consumed holdout; that holdout is regression-only.
+    pairs=[
+      ('הפעולה היחידה שנותרה בשלב הנוכחי','הפעולה היחידה שעוד לא הושלמה בשלב הנוכחי','בוצעה עכשיו','עדיין לא בוצעה'),
+      ('המשימה היחידה שנותרה בחלק הנוכחי','המשימה היחידה שעדיין לא בוצעה בחלק הנוכחי','הושלמה כעת','טרם הושלמה'),
+      ('הדבר היחיד שנותר בשלב הזה','הדבר היחיד שעוד לא נעשה בשלב הזה','נעשה כעת','עדיין לא נעשה'),
+      ('הפעולה האחת הפתוחה בשלב שבו אני נמצא','הפעולה האחת שעוד לא היתה גמורה בשלב שבו אני נמצא','כבר גמורה','עדיין לא גמורה'),
+      ('המשימה היחידה שנשארה בשלב שלי','המשימה היחידה שעוד לא עשיתי בשלב שלי','כבר בוצעה','לא בוצעה גם עכשיו'),
+      ('הדבר היחיד שנותר בחלק הזה של המתכון','הדבר היחיד שלא הושלם בחלק הזה של המתכון','הסתיים','עדיין לא הסתיים'),
+      ('הפעולה היחידה שעוד חסרה להשלמת השלב','הפעולה היחידה שטרם בוצעה בשלב הנוכחי','בוצעה בהצלחה','לא בוצעה לבסוף'),
+      ('המשימה האחת הפתוחה בשלב הנוכחי','המשימה האחת שלא היתה מוכנה בשלב הנוכחי','הושלמה לבסוף','עדיין לא הושלמה לבסוף')]
+    for plain,relative,positive,negative in pairs:
+        for subject in (plain,relative):
+            for prefix in ('','עדכון מהמטבח: '):
+                add('remaining_done',prefix+subject+' '+positive)
+                add('remaining_not_done',prefix+subject+' '+negative)
     for text in HARD_OTHER:
         for prefix in ('','עדכון מהמטבח: '):add('other',prefix+text)
     recs,rows=load_data()

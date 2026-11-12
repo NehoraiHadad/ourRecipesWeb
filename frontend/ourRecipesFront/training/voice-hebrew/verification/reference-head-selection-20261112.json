@@ -1,0 +1,122 @@
+{
+  "scope": "Frozen after validation, before new-test inference;42 primary17 secondary",
+  "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "variants": [
+    {
+      "key": [
+        true,
+        -103,
+        0.8333333333333334,
+        0.8333333333333334,
+        0.85
+      ],
+      "step": 500,
+      "seed": 42,
+      "threshold": 0.85,
+      "qualified": true,
+      "validation_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 512,
+          "exact_rate": 0.8888888888888888,
+          "true_updates": 320,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.8333333333333334,
+          "precision": 1.0,
+          "cost": 64
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 294,
+          "exact_rate": 0.901840490797546,
+          "true_updates": 208,
+          "false_updates": 3,
+          "expected_updates": 232,
+          "recall": 0.896551724137931,
+          "precision": 0.985781990521327,
+          "cost": 39
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 40,
+          "rate": 0.8333333333333334
+        }
+      },
+      "stress": {
+        "threshold": 0.5,
+        "examples": 32,
+        "exact_proposals": 32,
+        "exact_rate": 1.0,
+        "false_updates": 0,
+        "proposed_updates": 24,
+        "expected_updates": 24,
+        "update_precision": 1.0,
+        "update_recall": 1.0,
+        "clarifications": 8,
+        "exact_including_gold_evidence": 32,
+        "nonmatching_gold_evidence": 0
+      },
+      "loss": 0.00032023736275732517,
+      "head_sha256": "b50682cb136c86398a3958d6a9a3012029adf4531d9bcaffde3ead71d6d22831"
+    },
+    {
+      "key": [
+        true,
+        -103,
+        0.8333333333333334,
+        0.8333333333333334,
+        0.7
+      ],
+      "step": 150,
+      "seed": 17,
+      "threshold": 0.7,
+      "qualified": true,
+      "validation_breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 512,
+          "exact_rate": 0.8888888888888888,
+          "true_updates": 320,
+          "false_updates": 0,
+          "expected_updates": 384,
+          "recall": 0.8333333333333334,
+          "precision": 1.0,
+          "cost": 64
+        },
+        "guardrail": {
+          "examples": 326,
+          "exact": 294,
+          "exact_rate": 0.901840490797546,
+          "true_updates": 208,
+          "false_updates": 3,
+          "expected_updates": 232,
+          "recall": 0.896551724137931,
+          "precision": 0.985781990521327,
+          "cost": 39
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 40,
+          "rate": 0.8333333333333334
+        }
+      },
+      "stress": {
+        "threshold": 0.5,
+        "examples": 32,
+        "exact_proposals": 32,
+        "exact_rate": 1.0,
+        "false_updates": 0,
+        "proposed_updates": 24,
+        "expected_updates": 24,
+        "update_precision": 1.0,
+        "update_recall": 1.0,
+        "clarifications": 8,
+        "exact_including_gold_evidence": 32,
+        "nonmatching_gold_evidence": 0
+      },
+      "loss": 0.002704201266169548,
+      "head_sha256": "711e6cc9d8941a0d17b5fde083c520edb9a1d55fe10486a5aee4e910c94570fe"
+    }
+  ]
+}

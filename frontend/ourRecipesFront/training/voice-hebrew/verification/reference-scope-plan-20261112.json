@@ -1,0 +1,11 @@
+{
+  "created_utc": "2026-11-12T07:16:39.554243+00:00",
+  "role": "New96-case holdout authored after one consumed wording failed;24 distinct utterances, four contexts each; not natural speech",
+  "fixtures_sha256": "ee6321d2f3ee00c24233488d25cf01610357629e57da151817a7bfc1eb617f8b",
+  "source_sha256": "b90edc522b21d018e81b0b19424e6726a8b4353b3489088ba2cfe488ca670fe6",
+  "utterances": 24,
+  "examples": 96,
+  "recipe_shapes": "Two steps with3 or4 actions each; unique/ambiguous/zero target and partial completion outside current step",
+  "new_model_test_inference": false,
+  "human_reviewed": false
+}

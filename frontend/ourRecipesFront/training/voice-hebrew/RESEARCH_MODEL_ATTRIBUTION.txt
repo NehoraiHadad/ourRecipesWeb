@@ -6,7 +6,12 @@ https://creativecommons.org/licenses/by/4.0/
 
 Changes: supervised Hebrew cooking action/intent classification and evidence
 extraction. V10 research variants add same-report candidate ranking; V11
-research variants add start/end evidence heads. These are experimental
-adaptations and are not endorsed by Dicta. Model weights are kept locally
-outside this source/material package. Preserve this attribution when sharing
-adapted weights, and follow the base model license terms.
+research variants add start/end evidence heads. V12/V13 investigate explicit
+cooking state. The reference-language pilot adds a trained 200324-parameter
+semantic head to a frozen, already adapted V12 control encoder; deterministic
+code resolves state references. These are experimental adaptations and are
+not endorsed by Dicta. Full encoder weights are kept locally outside the
+material package; the reference package explicitly includes small semantic
+head weights. Preserve this attribution when sharing adapted weights, and
+follow the base model license terms. The small heads alone are not a model
+that can understand Hebrew without the exact adapted encoder.

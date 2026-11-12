@@ -7,7 +7,7 @@ from pathlib import Path
 import time
 from corpus import ROOT,load_data,digest
 from reference_data import LABELS,training
-from reference_contract import resolve
+from reference_contract import resolve,reference_branch
 from state_metrics import breakdown
 from span_pilot import grounded,encode,infer
 
@@ -35,9 +35,9 @@ def actuals(rows,recs,predictions,baseline,threshold):
     output={}
     for row in rows:
         mode,p=predictions[row['utterance']]
-        if mode=='other' or p<threshold:output[row['id']]=baseline[row['id']];continue
         state={'recipe_id':row['recipe_id'],**row['state']}
-        output[row['id']]=resolve(recs[row['recipe_id']],state,{'mode':mode,'confidence':p,'evidence':row['utterance']},row['utterance'],threshold)
+        proposal=reference_branch(recs[row['recipe_id']],state,mode,p,row['utterance'],threshold)
+        output[row['id']]=baseline[row['id']] if proposal is None else proposal
     return output
 
 

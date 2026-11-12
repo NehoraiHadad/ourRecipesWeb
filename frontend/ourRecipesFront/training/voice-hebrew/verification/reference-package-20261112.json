@@ -1,0 +1,13 @@
+{
+  "path": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-hebrew-reference-material-20261112.zip",
+  "bytes": 3444001,
+  "sha256": "5c6223ae611976e192141bdd856f83fac50c1cc83e2c0ce7da5632bff7034e6c",
+  "members": 202,
+  "crc_verified": true,
+  "full_encoder_included": false,
+  "small_semantic_heads_included": [
+    42,
+    17
+  ],
+  "privacy": "Explicit source/fixture/small-head allowlist; no app data, credentials, usage-private logs or full encoder."
+}

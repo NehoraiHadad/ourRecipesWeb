@@ -1,0 +1,463 @@
+{
+  "scope": "Actual native CPU frozen-encoder/head inference, code binding and actual native baseline; shared feature/baseline computation for the two fixed heads. Synthetic authored holdout, not voice or phone.",
+  "training": {
+    "study": "reference-language-head",
+    "plan": {
+      "study": "reference-language-head",
+      "scope": "Frozen encoder; only a small CPU MLP learns semantic reference mode. Deterministic code binds state.",
+      "created_utc": "2026-11-12T07:02:03.731001+00:00",
+      "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+      "training_examples": 315,
+      "training_classes": {
+        "remaining_done": 36,
+        "remaining_not_done": 36,
+        "completed_not_done": 36,
+        "other": 207
+      },
+      "train_sha256": "ca68cba335a2dab10dffd71d97e941d49797e9fecb9e6739821da2c6d2066c38",
+      "seeds": [
+        42,
+        17
+      ],
+      "steps": 500,
+      "thresholds": [
+        0.5,
+        0.7,
+        0.85,
+        0.95,
+        0.99
+      ],
+      "test_inference": false,
+      "source_sha256": {
+        "reference_contract.py": "71be364e27492997e345a563225f8659c87a7e3c4d6f9ea60c393c894b90825b",
+        "reference_data.py": "e412851b790c4059fbe1160a4466b2ff52d2ff23d3f70afea65731ca7513429b",
+        "reference_train.py": "28933f2fc1c2566b753751769e0568152b64dc609af1a4a6fde86735e7e04bfa"
+      }
+    },
+    "variants": [
+      {
+        "key": [
+          true,
+          -103,
+          0.8333333333333334,
+          0.8333333333333334,
+          0.85
+        ],
+        "step": 500,
+        "seed": 42,
+        "threshold": 0.85,
+        "qualified": true,
+        "validation_breakdown": {
+          "state": {
+            "examples": 576,
+            "exact": 512,
+            "exact_rate": 0.8888888888888888,
+            "true_updates": 320,
+            "false_updates": 0,
+            "expected_updates": 384,
+            "recall": 0.8333333333333334,
+            "precision": 1.0,
+            "cost": 64
+          },
+          "guardrail": {
+            "examples": 326,
+            "exact": 294,
+            "exact_rate": 0.901840490797546,
+            "true_updates": 208,
+            "false_updates": 3,
+            "expected_updates": 232,
+            "recall": 0.896551724137931,
+            "precision": 0.985781990521327,
+            "cost": 39
+          },
+          "groups": {
+            "count": 48,
+            "all_correct": 40,
+            "rate": 0.8333333333333334
+          }
+        },
+        "stress": {
+          "threshold": 0.5,
+          "examples": 32,
+          "exact_proposals": 32,
+          "exact_rate": 1.0,
+          "false_updates": 0,
+          "proposed_updates": 24,
+          "expected_updates": 24,
+          "update_precision": 1.0,
+          "update_recall": 1.0,
+          "clarifications": 8,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "loss": 0.00032023736275732517
+      },
+      {
+        "key": [
+          true,
+          -103,
+          0.8333333333333334,
+          0.8333333333333334,
+          0.7
+        ],
+        "step": 150,
+        "seed": 17,
+        "threshold": 0.7,
+        "qualified": true,
+        "validation_breakdown": {
+          "state": {
+            "examples": 576,
+            "exact": 512,
+            "exact_rate": 0.8888888888888888,
+            "true_updates": 320,
+            "false_updates": 0,
+            "expected_updates": 384,
+            "recall": 0.8333333333333334,
+            "precision": 1.0,
+            "cost": 64
+          },
+          "guardrail": {
+            "examples": 326,
+            "exact": 294,
+            "exact_rate": 0.901840490797546,
+            "true_updates": 208,
+            "false_updates": 3,
+            "expected_updates": 232,
+            "recall": 0.896551724137931,
+            "precision": 0.985781990521327,
+            "cost": 39
+          },
+          "groups": {
+            "count": 48,
+            "all_correct": 40,
+            "rate": 0.8333333333333334
+          }
+        },
+        "stress": {
+          "threshold": 0.5,
+          "examples": 32,
+          "exact_proposals": 32,
+          "exact_rate": 1.0,
+          "false_updates": 0,
+          "proposed_updates": 24,
+          "expected_updates": 24,
+          "update_precision": 1.0,
+          "update_recall": 1.0,
+          "clarifications": 8,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "loss": 0.002704201266169548
+      }
+    ],
+    "all_qualified": true,
+    "validation_fallback": "Saved actual T4 outputs from the exact frozen baseline; stress fallback is actual native CPU. Deterministic composition is scored, not full live end-to-end voice.",
+    "new_test_inference": false,
+    "physical_device_tested": false,
+    "human_reviewed": false,
+    "seconds": 30.38877068200054
+  },
+  "selection": {
+    "scope": "Frozen after validation, before new-test inference;42 primary17 secondary",
+    "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+    "variants": [
+      {
+        "key": [
+          true,
+          -103,
+          0.8333333333333334,
+          0.8333333333333334,
+          0.85
+        ],
+        "step": 500,
+        "seed": 42,
+        "threshold": 0.85,
+        "qualified": true,
+        "validation_breakdown": {
+          "state": {
+            "examples": 576,
+            "exact": 512,
+            "exact_rate": 0.8888888888888888,
+            "true_updates": 320,
+            "false_updates": 0,
+            "expected_updates": 384,
+            "recall": 0.8333333333333334,
+            "precision": 1.0,
+            "cost": 64
+          },
+          "guardrail": {
+            "examples": 326,
+            "exact": 294,
+            "exact_rate": 0.901840490797546,
+            "true_updates": 208,
+            "false_updates": 3,
+            "expected_updates": 232,
+            "recall": 0.896551724137931,
+            "precision": 0.985781990521327,
+            "cost": 39
+          },
+          "groups": {
+            "count": 48,
+            "all_correct": 40,
+            "rate": 0.8333333333333334
+          }
+        },
+        "stress": {
+          "threshold": 0.5,
+          "examples": 32,
+          "exact_proposals": 32,
+          "exact_rate": 1.0,
+          "false_updates": 0,
+          "proposed_updates": 24,
+          "expected_updates": 24,
+          "update_precision": 1.0,
+          "update_recall": 1.0,
+          "clarifications": 8,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "loss": 0.00032023736275732517,
+        "head_sha256": "b50682cb136c86398a3958d6a9a3012029adf4531d9bcaffde3ead71d6d22831"
+      },
+      {
+        "key": [
+          true,
+          -103,
+          0.8333333333333334,
+          0.8333333333333334,
+          0.7
+        ],
+        "step": 150,
+        "seed": 17,
+        "threshold": 0.7,
+        "qualified": true,
+        "validation_breakdown": {
+          "state": {
+            "examples": 576,
+            "exact": 512,
+            "exact_rate": 0.8888888888888888,
+            "true_updates": 320,
+            "false_updates": 0,
+            "expected_updates": 384,
+            "recall": 0.8333333333333334,
+            "precision": 1.0,
+            "cost": 64
+          },
+          "guardrail": {
+            "examples": 326,
+            "exact": 294,
+            "exact_rate": 0.901840490797546,
+            "true_updates": 208,
+            "false_updates": 3,
+            "expected_updates": 232,
+            "recall": 0.896551724137931,
+            "precision": 0.985781990521327,
+            "cost": 39
+          },
+          "groups": {
+            "count": 48,
+            "all_correct": 40,
+            "rate": 0.8333333333333334
+          }
+        },
+        "stress": {
+          "threshold": 0.5,
+          "examples": 32,
+          "exact_proposals": 32,
+          "exact_rate": 1.0,
+          "false_updates": 0,
+          "proposed_updates": 24,
+          "expected_updates": 24,
+          "update_precision": 1.0,
+          "update_recall": 1.0,
+          "clarifications": 8,
+          "exact_including_gold_evidence": 32,
+          "nonmatching_gold_evidence": 0
+        },
+        "loss": 0.002704201266169548,
+        "head_sha256": "711e6cc9d8941a0d17b5fde083c520edb9a1d55fe10486a5aee4e910c94570fe"
+      }
+    ]
+  },
+  "native_parity": [
+    {
+      "seed": 42,
+      "examples": 16,
+      "mismatches": [],
+      "scope": "Actual live native hybrid turns vs validation composition; gold removed, no new accuracy scoring"
+    },
+    {
+      "seed": 17,
+      "examples": 16,
+      "mismatches": [],
+      "scope": "Actual live native hybrid turns vs validation composition; gold removed, no new accuracy scoring"
+    }
+  ],
+  "native_timing": {
+    "42": {
+      "median_ms": 74.90142999995442,
+      "p95_ms": 384.480362999966,
+      "scope": "16 mixed native text turns on cloud CPU2 threads; no warmup or repeats, conditional1 reference/6 fallback queries; no phone/audio/download claim"
+    },
+    "17": {
+      "median_ms": 70.73812799990264,
+      "p95_ms": 397.15350400001626,
+      "scope": "16 mixed native text turns on cloud CPU2 threads; no warmup or repeats, conditional1 reference/6 fallback queries; no phone/audio/download claim"
+    }
+  },
+  "baseline_test": {
+    "threshold": 0.7,
+    "examples": 736,
+    "exact_proposals": 333,
+    "exact_rate": 0.452445652173913,
+    "false_updates": 49,
+    "proposed_updates": 173,
+    "expected_updates": 512,
+    "update_precision": 0.7167630057803468,
+    "update_recall": 0.2421875,
+    "clarifications": 568,
+    "exact_including_gold_evidence": 333,
+    "nonmatching_gold_evidence": 49
+  },
+  "baseline_breakdown": {
+    "state": {
+      "examples": 576,
+      "exact": 190,
+      "exact_rate": 0.3298611111111111,
+      "true_updates": 12,
+      "false_updates": 48,
+      "expected_updates": 384,
+      "recall": 0.03125,
+      "precision": 0.2,
+      "cost": 612
+    },
+    "guardrail": {
+      "examples": 160,
+      "exact": 143,
+      "exact_rate": 0.89375,
+      "true_updates": 112,
+      "false_updates": 1,
+      "expected_updates": 128,
+      "recall": 0.875,
+      "precision": 0.9911504424778761,
+      "cost": 21
+    },
+    "groups": {
+      "count": 48,
+      "all_correct": 0,
+      "rate": 0.0
+    }
+  },
+  "new_test_once": [
+    {
+      "seed": 42,
+      "threshold": 0.85,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 736,
+        "exact_proposals": 655,
+        "exact_rate": 0.8899456521739131,
+        "false_updates": 65,
+        "proposed_updates": 497,
+        "expected_updates": 512,
+        "update_precision": 0.869215291750503,
+        "update_recall": 0.84375,
+        "clarifications": 224,
+        "exact_including_gold_evidence": 655,
+        "nonmatching_gold_evidence": 1
+      },
+      "breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 512,
+          "exact_rate": 0.8888888888888888,
+          "true_updates": 320,
+          "false_updates": 64,
+          "expected_updates": 384,
+          "recall": 0.8333333333333334,
+          "precision": 0.8333333333333334,
+          "cost": 384
+        },
+        "guardrail": {
+          "examples": 160,
+          "exact": 143,
+          "exact_rate": 0.89375,
+          "true_updates": 112,
+          "false_updates": 1,
+          "expected_updates": 128,
+          "recall": 0.875,
+          "precision": 0.9911504424778761,
+          "cost": 21
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 40,
+          "rate": 0.8333333333333334
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "threshold": 0.7,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 736,
+        "exact_proposals": 655,
+        "exact_rate": 0.8899456521739131,
+        "false_updates": 65,
+        "proposed_updates": 497,
+        "expected_updates": 512,
+        "update_precision": 0.869215291750503,
+        "update_recall": 0.84375,
+        "clarifications": 224,
+        "exact_including_gold_evidence": 655,
+        "nonmatching_gold_evidence": 1
+      },
+      "breakdown": {
+        "state": {
+          "examples": 576,
+          "exact": 512,
+          "exact_rate": 0.8888888888888888,
+          "true_updates": 320,
+          "false_updates": 64,
+          "expected_updates": 384,
+          "recall": 0.8333333333333334,
+          "precision": 0.8333333333333334,
+          "cost": 384
+        },
+        "guardrail": {
+          "examples": 160,
+          "exact": 143,
+          "exact_rate": 0.89375,
+          "true_updates": 112,
+          "false_updates": 1,
+          "expected_updates": 128,
+          "recall": 0.875,
+          "precision": 0.9911504424778761,
+          "cost": 21
+        },
+        "groups": {
+          "count": 48,
+          "all_correct": 40,
+          "rate": 0.8333333333333334
+        }
+      }
+    }
+  ],
+  "head_parameters": 200324,
+  "head_artifacts": {
+    "42": {
+      "bytes": 803592,
+      "sha256": "b50682cb136c86398a3958d6a9a3012029adf4531d9bcaffde3ead71d6d22831"
+    },
+    "17": {
+      "bytes": 803592,
+      "sha256": "711e6cc9d8941a0d17b5fde083c520edb9a1d55fe10486a5aee4e910c94570fe"
+    }
+  },
+  "new_test_evaluated": true,
+  "physical_device_tested": false,
+  "human_reviewed": false,
+  "original120_test_scored": false,
+  "production_ready": false
+}

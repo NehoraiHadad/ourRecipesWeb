@@ -1,0 +1,31 @@
+{
+  "scope": "Exact metadata replay of the frozen V13 sampler, not NN inference or an accuracy score",
+  "seed": 42,
+  "steps": 500,
+  "counts": {
+    "state/intent/clarify": 516,
+    "state/intent/report": 484,
+    "retention/intent/clarify": 228,
+    "retention/intent/report": 195,
+    "state/action/done": 251,
+    "state/action/not_mentioned": 500,
+    "retention/action/not_mentioned": 305,
+    "retention/action/done": 331,
+    "retention/intent/next": 195,
+    "retention/action/not_done": 364,
+    "state/action/not_done": 249,
+    "retention/intent/advice": 203,
+    "retention/intent/missed": 179
+  },
+  "weighted_label_mass": {
+    "intent/clarify": 425.1428571428547,
+    "intent/report": 387.99999999999864,
+    "action/done": 665.1428571428576,
+    "action/not_mentioned": 643.9999999999976,
+    "intent/next": 390.0,
+    "action/not_done": 700.571428571428,
+    "intent/advice": 406.0,
+    "intent/missed": 358.0
+  },
+  "source_sha256": "5677c67557541e5d25f35f562631dbc9c0463ebf547acacc3ba95a7c91cefc83"
+}

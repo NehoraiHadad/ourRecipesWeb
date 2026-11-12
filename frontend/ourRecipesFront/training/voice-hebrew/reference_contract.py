@@ -7,6 +7,13 @@ import math
 MODES=('remaining_done','remaining_not_done','completed_not_done')
 
 
+def reference_branch(recipe,state,mode,confidence,utterance,threshold):
+    """None means confidently ordinary; uncertain reference must not fall through."""
+    if mode=='other' and isinstance(confidence,(int,float)) and not isinstance(confidence,bool) and math.isfinite(confidence) and .5<=confidence<=1:return None
+    result=resolve(recipe,state,{'mode':mode,'confidence':confidence,'evidence':utterance},utterance,threshold)
+    return {'intent':result['intent'],'changes':result['changes'],'requiresReview':True}
+
+
 def resolve(recipe,state,proposal,utterance,threshold):
     def clarify(reason):return {'intent':'clarify','changes':[],'reason':reason}
     if not isinstance(proposal,dict) or set(proposal)!={'mode','evidence','confidence'}:return clarify('invalid_proposal_fields')
