@@ -1,0 +1,19 @@
+{
+  "parent_training_unchanged": true,
+  "all_held_splits_identical": true,
+  "ordinary_before": 120,
+  "ordinary_after": 600,
+  "added_train": 480,
+  "scenarios": 199,
+  "train_only": true,
+  "data_sha256": "720a78e61e2686d813a3839cc3ed3f33f42d70e1cbeea10e3c447ecab5201fba",
+  "test_inference": false,
+  "actual_tokenizer_audit": {
+    "train_rows": 15538,
+    "maximum_tokens": 30,
+    "unknown_tokens": 0,
+    "truncation": false,
+    "exact_production_pair_prefix": true,
+    "test_tokenization": false
+  }
+}
