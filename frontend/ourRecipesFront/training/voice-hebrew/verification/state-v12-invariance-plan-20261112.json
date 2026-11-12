@@ -1,0 +1,12 @@
+{
+  "created_utc": "2026-11-12T06:14:27.136175+00:00",
+  "role": "Separate validation robustness diagnostic, never used to select checkpoint/threshold/family; authored before observing V12 quality outputs",
+  "cases": 32,
+  "recipes": 8,
+  "fixtures_sha256": "786791d698a46d280273cb12affb7fb1de9da7cad5410f44b77b52ddb36110c8",
+  "source_sha256": "4fb3c0fcf0268003e0ce17db02caf5181b31b185f9f95743bde8dbef0fcf2d9e",
+  "held_fixed": "Current-step action states, utterance, previous report and expected interpretation",
+  "changed": "Exactly one action outside the current step is completed instead of zero/two; breaks global parity shortcut",
+  "new_test_inference": false,
+  "quality_results_observed": false
+}

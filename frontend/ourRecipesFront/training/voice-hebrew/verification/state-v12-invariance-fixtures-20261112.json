@@ -1,0 +1,1330 @@
+{
+  "recipes": [
+    {
+      "id": "state12-validation-0",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם פתיתי כוסמין ומי גזר",
+      "ingredients": [
+        "פתיתי כוסמין",
+        "מי גזר",
+        "מלח דק"
+      ],
+      "actions": [
+        {
+          "id": "a0",
+          "step": 0,
+          "text": "להוסיף פתיתי כוסמין",
+          "report": "הוספתי פתיתי כוסמין"
+        },
+        {
+          "id": "a1",
+          "step": 0,
+          "text": "להוסיף מי גזר",
+          "report": "הוספתי מי גזר"
+        },
+        {
+          "id": "a2",
+          "step": 1,
+          "text": "להוסיף מלח דק",
+          "report": "הוספתי מלח דק"
+        },
+        {
+          "id": "a3",
+          "step": 1,
+          "text": "לערבב את התערובת",
+          "report": "ערבבתי את התערובת"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-1",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם שעועית לבנה ומיץ רימונים",
+      "ingredients": [
+        "שעועית לבנה",
+        "מיץ רימונים",
+        "מלח דק"
+      ],
+      "actions": [
+        {
+          "id": "a1",
+          "step": 0,
+          "text": "להוסיף שעועית לבנה",
+          "report": "הוספתי שעועית לבנה"
+        },
+        {
+          "id": "a2",
+          "step": 0,
+          "text": "להוסיף מיץ רימונים",
+          "report": "הוספתי מיץ רימונים"
+        },
+        {
+          "id": "a3",
+          "step": 1,
+          "text": "להוסיף מלח דק",
+          "report": "הוספתי מלח דק"
+        },
+        {
+          "id": "a0",
+          "step": 1,
+          "text": "לערבב את התערובת",
+          "report": "ערבבתי את התערובת"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-2",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם ממרח פיסטוק ומשקה אורז",
+      "ingredients": [
+        "ממרח פיסטוק",
+        "משקה אורז",
+        "מלח דק"
+      ],
+      "actions": [
+        {
+          "id": "a2",
+          "step": 0,
+          "text": "להוסיף ממרח פיסטוק",
+          "report": "הוספתי ממרח פיסטוק"
+        },
+        {
+          "id": "a3",
+          "step": 0,
+          "text": "להוסיף משקה אורז",
+          "report": "הוספתי משקה אורז"
+        },
+        {
+          "id": "a0",
+          "step": 1,
+          "text": "להוסיף מלח דק",
+          "report": "הוספתי מלח דק"
+        },
+        {
+          "id": "a1",
+          "step": 1,
+          "text": "לערבב את התערובת",
+          "report": "ערבבתי את התערובת"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-3",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם בורגול דק וציר בצל",
+      "ingredients": [
+        "בורגול דק",
+        "ציר בצל",
+        "מלח דק"
+      ],
+      "actions": [
+        {
+          "id": "a3",
+          "step": 0,
+          "text": "להוסיף בורגול דק",
+          "report": "הוספתי בורגול דק"
+        },
+        {
+          "id": "a0",
+          "step": 0,
+          "text": "להוסיף ציר בצל",
+          "report": "הוספתי ציר בצל"
+        },
+        {
+          "id": "a1",
+          "step": 1,
+          "text": "להוסיף מלח דק",
+          "report": "הוספתי מלח דק"
+        },
+        {
+          "id": "a2",
+          "step": 1,
+          "text": "לערבב את התערובת",
+          "report": "ערבבתי את התערובת"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-4",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם לפת סגולה וגזר צהוב",
+      "ingredients": [
+        "לפת סגולה",
+        "גזר צהוב"
+      ],
+      "actions": [
+        {
+          "id": "a0",
+          "step": 0,
+          "text": "לשטוף לפת סגולה",
+          "report": "שטפתי לפת סגולה"
+        },
+        {
+          "id": "a1",
+          "step": 0,
+          "text": "לחתוך לפת סגולה",
+          "report": "חתכתי לפת סגולה"
+        },
+        {
+          "id": "a2",
+          "step": 1,
+          "text": "לשטוף גזר צהוב",
+          "report": "שטפתי גזר צהוב"
+        },
+        {
+          "id": "a3",
+          "step": 1,
+          "text": "לחתוך גזר צהוב",
+          "report": "חתכתי גזר צהוב"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-5",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם דלורית קטנה ופלפל שושקה",
+      "ingredients": [
+        "דלורית קטנה",
+        "פלפל שושקה"
+      ],
+      "actions": [
+        {
+          "id": "a1",
+          "step": 0,
+          "text": "לשטוף דלורית קטנה",
+          "report": "שטפתי דלורית קטנה"
+        },
+        {
+          "id": "a2",
+          "step": 0,
+          "text": "לחתוך דלורית קטנה",
+          "report": "חתכתי דלורית קטנה"
+        },
+        {
+          "id": "a3",
+          "step": 1,
+          "text": "לשטוף פלפל שושקה",
+          "report": "שטפתי פלפל שושקה"
+        },
+        {
+          "id": "a0",
+          "step": 1,
+          "text": "לחתוך פלפל שושקה",
+          "report": "חתכתי פלפל שושקה"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-6",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם קולרבי ירוק וצנון אדום",
+      "ingredients": [
+        "קולרבי ירוק",
+        "צנון אדום"
+      ],
+      "actions": [
+        {
+          "id": "a2",
+          "step": 0,
+          "text": "לשטוף קולרבי ירוק",
+          "report": "שטפתי קולרבי ירוק"
+        },
+        {
+          "id": "a3",
+          "step": 0,
+          "text": "לחתוך קולרבי ירוק",
+          "report": "חתכתי קולרבי ירוק"
+        },
+        {
+          "id": "a0",
+          "step": 1,
+          "text": "לשטוף צנון אדום",
+          "report": "שטפתי צנון אדום"
+        },
+        {
+          "id": "a1",
+          "step": 1,
+          "text": "לחתוך צנון אדום",
+          "report": "חתכתי צנון אדום"
+        }
+      ]
+    },
+    {
+      "id": "state12-validation-7",
+      "split": "validation",
+      "title": "תרגיל התקדמות עם תפוח פינק ואגס קיץ",
+      "ingredients": [
+        "תפוח פינק",
+        "אגס קיץ"
+      ],
+      "actions": [
+        {
+          "id": "a3",
+          "step": 0,
+          "text": "לשטוף תפוח פינק",
+          "report": "שטפתי תפוח פינק"
+        },
+        {
+          "id": "a0",
+          "step": 0,
+          "text": "לחתוך תפוח פינק",
+          "report": "חתכתי תפוח פינק"
+        },
+        {
+          "id": "a1",
+          "step": 1,
+          "text": "לשטוף אגס קיץ",
+          "report": "שטפתי אגס קיץ"
+        },
+        {
+          "id": "a2",
+          "step": 1,
+          "text": "לחתוך אגס קיץ",
+          "report": "חתכתי אגס קיץ"
+        }
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "state12-validation-0-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-0",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a1",
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-0-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-0",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a3",
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a2"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-0-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-0",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-0-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-0",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-1-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-1",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-1-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-1",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-1-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-1",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a1",
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-1-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-1",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a2",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-2-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-2",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a3",
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-2-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-2",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a1",
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a0"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-2-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-2",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-2-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-2",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-3-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-3",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-3-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-3",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-3-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-3",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a3",
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-3-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-3",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a0",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-4-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-4",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a1",
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-4-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-4",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a3",
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a2"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-4-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-4",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-4-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-4",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-5-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-5",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-5-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-5",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a1",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-5-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-5",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a1",
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-5-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-5",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0"
+        ],
+        "remaining": [
+          "a1",
+          "a2",
+          "a3"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-6-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-6",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a3",
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-6-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-6",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a1",
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a0"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a0",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-6-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-6",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a2",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-6-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-6",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0"
+        ],
+        "remaining": [
+          "a2",
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-7-state-done-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-7",
+      "split": "validation",
+      "scenario": "state-done-0/0-0",
+      "family": "validation:state12-invariance:state-done-0/0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a0",
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": true,
+            "evidence": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-7-state-not_done-0/2-0-outside-partial",
+      "recipe_id": "state12-validation-7",
+      "split": "validation",
+      "scenario": "state-not_done-0/2-0",
+      "family": "validation:state12-invariance:state-not_done-0/2-0",
+      "utterance": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין",
+      "previous": null,
+      "state": {
+        "currentStep": 1,
+        "completed": [
+          "a2",
+          "a0"
+        ],
+        "remaining": [
+          "a3",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a1",
+            "done": false,
+            "evidence": "הדבר היחיד שעוד נותר לבצע בשלב הנוכחי עדיין ממתין"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-7-state-undo-0/0-0-outside-partial",
+      "recipe_id": "state12-validation-7",
+      "split": "validation",
+      "scenario": "state-undo-0/0-0",
+      "family": "validation:state12-invariance:state-undo-0/0-0",
+      "utterance": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a3",
+          "a2"
+        ],
+        "remaining": [
+          "a0",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "report",
+        "changes": [
+          {
+            "actionId": "a3",
+            "done": false,
+            "evidence": "תיקון דיווח: המשימה היחידה שמסומנת אצלי כהושלמה בשלב הנוכחי בעצם לא הושלמה"
+          }
+        ]
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    },
+    {
+      "id": "state12-validation-7-state-done-0/ambiguous-0-0-outside-partial",
+      "recipe_id": "state12-validation-7",
+      "split": "validation",
+      "scenario": "state-done-0/ambiguous-0-0",
+      "family": "validation:state12-invariance:state-done-0/ambiguous-0-0",
+      "utterance": "הפעולה היחידה שעוד חיכתה בשלב הזה כבר מאחוריי",
+      "previous": null,
+      "state": {
+        "currentStep": 0,
+        "completed": [
+          "a2"
+        ],
+        "remaining": [
+          "a3",
+          "a0",
+          "a1"
+        ]
+      },
+      "gold": {
+        "intent": "clarify",
+        "changes": []
+      },
+      "provenance": "synthetic_authored",
+      "human_review": "pending",
+      "evaluation_kind": "state",
+      "counterfactual_group": null
+    }
+  ]
+}
