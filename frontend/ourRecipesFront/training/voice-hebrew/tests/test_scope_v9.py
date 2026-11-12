@@ -24,4 +24,11 @@ class CompositionTests(unittest.TestCase):
   self.assertTrue(can_start_trial(.01,120,True));self.assertFalse(can_start_trial(.01,120,False))
   self.assertTrue(can_start_trial(.01,2100,False));self.assertFalse(can_start_trial(1900,2100,False))
 
+ def test_opening_requires_same_qualified_method_all_seeds(self):
+  from scope_v9_test import candidates
+  d={'qualified_for_test':True,'selected_method':'safety-typed','trials':[{'seed':s,'actual_steps':4000,'variants':{'safety-typed':{'qualified':True}}} for s in (42,17,73)]}
+  self.assertEqual(candidates(d)[0],'safety-typed')
+  d['trials'][1]['variants']['safety-typed']['qualified']=False
+  with self.assertRaisesRegex(ValueError,'Three-seed'):candidates(d)
+
 if __name__=='__main__':unittest.main()
