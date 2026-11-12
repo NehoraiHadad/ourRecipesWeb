@@ -1,0 +1,342 @@
+{
+  "scope": "New validation, post-selection comparison to fixed prior R4; current study changes data, class structure and routing jointly, not a causal ablation.",
+  "prior_fixed_r4": [
+    {
+      "seed": 42,
+      "threshold": 0.7,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 402,
+        "exact_rate": 0.8375,
+        "false_updates": 44,
+        "proposed_updates": 84,
+        "expected_updates": 48,
+        "update_precision": 0.47619047619047616,
+        "update_recall": 0.8333333333333334,
+        "clarifications": 370,
+        "exact_including_gold_evidence": 402,
+        "nonmatching_gold_evidence": 44
+      },
+      "by_scenario": {
+        "assertion": {
+          "total": 96,
+          "exact": 88,
+          "false_updates": 0
+        },
+        "hedge": {
+          "total": 48,
+          "exact": 37,
+          "false_updates": 11
+        },
+        "memory": {
+          "total": 48,
+          "exact": 40,
+          "false_updates": 8
+        },
+        "metaneg": {
+          "total": 48,
+          "exact": 39,
+          "false_updates": 9
+        },
+        "question": {
+          "total": 48,
+          "exact": 33,
+          "false_updates": 0
+        },
+        "hypothesis": {
+          "total": 48,
+          "exact": 37,
+          "false_updates": 0
+        },
+        "quote": {
+          "total": 48,
+          "exact": 43,
+          "false_updates": 5
+        },
+        "partial": {
+          "total": 48,
+          "exact": 38,
+          "false_updates": 10
+        },
+        "future": {
+          "total": 48,
+          "exact": 47,
+          "false_updates": 1
+        }
+      }
+    },
+    {
+      "seed": 17,
+      "threshold": 0.7,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 387,
+        "exact_rate": 0.80625,
+        "false_updates": 63,
+        "proposed_updates": 105,
+        "expected_updates": 48,
+        "update_precision": 0.4,
+        "update_recall": 0.875,
+        "clarifications": 351,
+        "exact_including_gold_evidence": 387,
+        "nonmatching_gold_evidence": 63
+      },
+      "by_scenario": {
+        "assertion": {
+          "total": 96,
+          "exact": 90,
+          "false_updates": 0
+        },
+        "hedge": {
+          "total": 48,
+          "exact": 33,
+          "false_updates": 15
+        },
+        "memory": {
+          "total": 48,
+          "exact": 41,
+          "false_updates": 7
+        },
+        "metaneg": {
+          "total": 48,
+          "exact": 35,
+          "false_updates": 13
+        },
+        "question": {
+          "total": 48,
+          "exact": 33,
+          "false_updates": 0
+        },
+        "hypothesis": {
+          "total": 48,
+          "exact": 39,
+          "false_updates": 0
+        },
+        "quote": {
+          "total": 48,
+          "exact": 39,
+          "false_updates": 9
+        },
+        "partial": {
+          "total": 48,
+          "exact": 31,
+          "false_updates": 17
+        },
+        "future": {
+          "total": 48,
+          "exact": 46,
+          "false_updates": 2
+        }
+      }
+    }
+  ],
+  "selected_v5": [
+    {
+      "seed": 42,
+      "threshold": 0.99,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 458,
+        "exact_rate": 0.9541666666666667,
+        "false_updates": 0,
+        "proposed_updates": 26,
+        "expected_updates": 48,
+        "update_precision": 1.0,
+        "update_recall": 0.5416666666666666,
+        "clarifications": 454,
+        "exact_including_gold_evidence": 458,
+        "nonmatching_gold_evidence": 0
+      },
+      "by_scenario": {
+        "assertion": {
+          "total": 96,
+          "exact": 74,
+          "false_updates": 0
+        },
+        "hedge": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "memory": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "metaneg": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "question": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "hypothesis": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "quote": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "partial": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        }
+      },
+      "raw_semantic_labels_correct": 104,
+      "unique_language_texts": 120,
+      "role": "Diagnostic pre-threshold label accuracy only; not independent holdout or selection objective"
+    },
+    {
+      "seed": 17,
+      "threshold": 0.99,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 452,
+        "exact_rate": 0.9416666666666667,
+        "false_updates": 0,
+        "proposed_updates": 20,
+        "expected_updates": 48,
+        "update_precision": 1.0,
+        "update_recall": 0.4166666666666667,
+        "clarifications": 460,
+        "exact_including_gold_evidence": 452,
+        "nonmatching_gold_evidence": 0
+      },
+      "by_scenario": {
+        "assertion": {
+          "total": 96,
+          "exact": 68,
+          "false_updates": 0
+        },
+        "hedge": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "memory": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "metaneg": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "question": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "hypothesis": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "quote": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "partial": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        }
+      },
+      "raw_semantic_labels_correct": 106,
+      "unique_language_texts": 120,
+      "role": "Diagnostic pre-threshold label accuracy only; not independent holdout or selection objective"
+    },
+    {
+      "seed": 73,
+      "threshold": 0.99,
+      "metrics": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 452,
+        "exact_rate": 0.9416666666666667,
+        "false_updates": 0,
+        "proposed_updates": 20,
+        "expected_updates": 48,
+        "update_precision": 1.0,
+        "update_recall": 0.4166666666666667,
+        "clarifications": 460,
+        "exact_including_gold_evidence": 452,
+        "nonmatching_gold_evidence": 0
+      },
+      "by_scenario": {
+        "assertion": {
+          "total": 96,
+          "exact": 68,
+          "false_updates": 0
+        },
+        "hedge": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "memory": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "metaneg": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "question": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "hypothesis": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "quote": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "partial": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        },
+        "future": {
+          "total": 48,
+          "exact": 48,
+          "false_updates": 0
+        }
+      },
+      "raw_semantic_labels_correct": 106,
+      "unique_language_texts": 120,
+      "role": "Diagnostic pre-threshold label accuracy only; not independent holdout or selection objective"
+    }
+  ],
+  "new_test_inference": false
+}

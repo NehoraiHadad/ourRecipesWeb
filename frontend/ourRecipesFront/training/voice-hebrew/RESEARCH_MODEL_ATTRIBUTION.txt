@@ -15,3 +15,9 @@ material package; the reference package explicitly includes small semantic
 head weights. Preserve this attribution when sharing adapted weights, and
 follow the base model license terms. The small heads alone are not a model
 that can understand Hebrew without the exact adapted encoder.
+
+V5 research variants use an explicit abstention class (200453 parameters)
+and positional pooling (400133 parameters). A separate rank8 query/value
+adapter module for the last two BERT layers is prepared and mechanics-tested;
+its Hebrew quality has not been trained or measured. Full encoder weights
+are excluded; small research heads are explicitly included in the V5 packet.

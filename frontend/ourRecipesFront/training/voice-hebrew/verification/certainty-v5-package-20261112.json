@@ -1,0 +1,14 @@
+{
+  "path": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-hebrew-certainty-material-20261112.zip",
+  "bytes": 10473829,
+  "sha256": "b68d3b29a7ef1477972d4f7b8a8aa4be48a62e3dd8bbc2660c9029bcee2ecdb0",
+  "members": 248,
+  "crc_verified": true,
+  "small_heads_included": [
+    42,
+    17,
+    73
+  ],
+  "full_encoder_included": false,
+  "privacy": "Explicit source/synthetic-fixture/small-head allowlist; no credentials, private usage, audio or app data."
+}

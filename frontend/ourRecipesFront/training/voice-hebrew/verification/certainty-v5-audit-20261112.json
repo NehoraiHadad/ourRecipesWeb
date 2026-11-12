@@ -1,0 +1,32 @@
+{
+  "packet_sha256": "b68d3b29a7ef1477972d4f7b8a8aa4be48a62e3dd8bbc2660c9029bcee2ecdb0",
+  "members": 248,
+  "all_member_sha256_and_crc_verified": true,
+  "unique_safe_paths": true,
+  "small_weight_members": [
+    "runs/reference-head-cpu-r4/head-42.pt",
+    "runs/reference-head-cpu-r4/head-17.pt",
+    "certainty-artifact/head-42.pt",
+    "certainty-artifact/head-17.pt",
+    "certainty-artifact/head-73.pt",
+    "certainty-r1-artifact/head-42.pt",
+    "certainty-r1-artifact/head-17.pt",
+    "certainty-r1-artifact/head-73.pt"
+  ],
+  "heads_load_with_correct_architecture": true,
+  "full_encoder_included": false,
+  "extracted_data_factory_matches_frozen": true,
+  "training_sources_still_match_both_plans": true,
+  "r2_guard_proposal_changes_vs_frozen_baseline": {
+    "42": 0,
+    "17": 0,
+    "73": 0
+  },
+  "fresh480_inferred": false,
+  "fresh480_directory_absent_both_studies": true,
+  "original120_scored": false,
+  "unit_tests": 80,
+  "unit_scope": "ML environment; actual Tiny gradients and full-BERT mechanics separate from Hebrew quality; CLI controls include mocks",
+  "new_gpu_sessions_allocated": 0,
+  "physical_device_tested": false
+}

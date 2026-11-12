@@ -1,0 +1,25 @@
+{
+  "scope": "Actual adapted185M BERT CPU mechanics only; no semantic quality, labels, fresh test or adapter training",
+  "full_model": {
+    "target_modules": [
+      "bert.encoder.layer.10.attention.self.query",
+      "bert.encoder.layer.10.attention.self.value",
+      "bert.encoder.layer.11.attention.self.query",
+      "bert.encoder.layer.11.attention.self.value"
+    ],
+    "rank": 8,
+    "last_layers": 2,
+    "trainable_parameters": 49152,
+    "scope": "Only query/value low-rank adapters; existing body and legacy token head remain frozen"
+  },
+  "known_validation_queries": 5,
+  "gold_removed": true,
+  "zero_initialized_logits_bitwise_equal": true,
+  "disabled_logits_bitwise_equal": true,
+  "adapter_quality_trained": false,
+  "tiny_tests": "Two-step real Tiny BERT gradients through differentiable pooling, isolated legacy path and payload roundtrip; not Hebrew quality",
+  "source_sha256": "d6f4b1277d005be3cf3facb47303756c6b8039085567134cdef2e2fb6a1cca92",
+  "physical_device_tested": false,
+  "probe_source_sha256": "2997ef4f4bca79691dd91f59ad248e79ebf82b3e00243f396384f1bb21105b85",
+  "probe_provenance": "Exact bytes copied from the executed /tmp proof script; same model calls, no quality inference"
+}

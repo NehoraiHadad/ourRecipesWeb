@@ -1,0 +1,221 @@
+{
+  "created_utc": "2026-11-12T07:39:38.574217+00:00",
+  "primary_seed": 42,
+  "all_qualified": false,
+  "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+  "variants": [
+    {
+      "seed": 42,
+      "step": 50,
+      "threshold": 0.95,
+      "gate": {
+        "passed": false,
+        "checks": {
+          "new_reference_recall": false,
+          "new_no_false_updates": true,
+          "new_uncertain_all_clarify": true,
+          "guard_no_extra_false": true,
+          "guard_recall_floor": true,
+          "guard_exact_floor": true,
+          "outside_invariance": true
+        },
+        "uncertain_examples": 384,
+        "uncertain_safe": 384
+      },
+      "key": [
+        false,
+        -67,
+        0.4166666666666667,
+        452,
+        0.95
+      ],
+      "validation": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 452,
+        "exact_rate": 0.9416666666666667,
+        "false_updates": 0,
+        "proposed_updates": 20,
+        "expected_updates": 48,
+        "update_precision": 1.0,
+        "update_recall": 0.4166666666666667,
+        "clarifications": 460,
+        "exact_including_gold_evidence": 452,
+        "nonmatching_gold_evidence": 0
+      },
+      "guard": {
+        "threshold": 0.5,
+        "examples": 326,
+        "exact_proposals": 294,
+        "exact_rate": 0.901840490797546,
+        "false_updates": 3,
+        "proposed_updates": 211,
+        "expected_updates": 232,
+        "update_precision": 0.985781990521327,
+        "update_recall": 0.896551724137931,
+        "clarifications": 100,
+        "exact_including_gold_evidence": 291,
+        "nonmatching_gold_evidence": 6
+      },
+      "stress": {
+        "threshold": 0.5,
+        "examples": 32,
+        "exact_proposals": 24,
+        "exact_rate": 0.75,
+        "false_updates": 0,
+        "proposed_updates": 16,
+        "expected_updates": 24,
+        "update_precision": 1.0,
+        "update_recall": 0.6666666666666666,
+        "clarifications": 16,
+        "exact_including_gold_evidence": 24,
+        "nonmatching_gold_evidence": 0
+      },
+      "loss": 0.13263484835624695,
+      "head_sha256": "4465abfa5c440bcde430bf5d7f88bb7745b8d74c6f9da8555d0149b5c13a1f45"
+    },
+    {
+      "seed": 17,
+      "step": 50,
+      "threshold": 0.85,
+      "gate": {
+        "passed": false,
+        "checks": {
+          "new_reference_recall": false,
+          "new_no_false_updates": false,
+          "new_uncertain_all_clarify": false,
+          "guard_no_extra_false": true,
+          "guard_recall_floor": true,
+          "guard_exact_floor": true,
+          "outside_invariance": true
+        },
+        "uncertain_examples": 384,
+        "uncertain_safe": 382
+      },
+      "key": [
+        false,
+        -67,
+        0.625,
+        460,
+        0.85
+      ],
+      "validation": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 460,
+        "exact_rate": 0.9583333333333334,
+        "false_updates": 2,
+        "proposed_updates": 32,
+        "expected_updates": 48,
+        "update_precision": 0.9375,
+        "update_recall": 0.625,
+        "clarifications": 448,
+        "exact_including_gold_evidence": 460,
+        "nonmatching_gold_evidence": 2
+      },
+      "guard": {
+        "threshold": 0.5,
+        "examples": 326,
+        "exact_proposals": 294,
+        "exact_rate": 0.901840490797546,
+        "false_updates": 3,
+        "proposed_updates": 211,
+        "expected_updates": 232,
+        "update_precision": 0.985781990521327,
+        "update_recall": 0.896551724137931,
+        "clarifications": 100,
+        "exact_including_gold_evidence": 291,
+        "nonmatching_gold_evidence": 6
+      },
+      "stress": {
+        "threshold": 0.5,
+        "examples": 32,
+        "exact_proposals": 24,
+        "exact_rate": 0.75,
+        "false_updates": 0,
+        "proposed_updates": 16,
+        "expected_updates": 24,
+        "update_precision": 1.0,
+        "update_recall": 0.6666666666666666,
+        "clarifications": 16,
+        "exact_including_gold_evidence": 24,
+        "nonmatching_gold_evidence": 0
+      },
+      "loss": 0.10509694367647171,
+      "head_sha256": "eebc1f56494e3450593c8820832a3a334398d5b5126ccea6b4af3f858361065c"
+    },
+    {
+      "seed": 73,
+      "step": 50,
+      "threshold": 0.95,
+      "gate": {
+        "passed": false,
+        "checks": {
+          "new_reference_recall": false,
+          "new_no_false_updates": true,
+          "new_uncertain_all_clarify": true,
+          "guard_no_extra_false": true,
+          "guard_recall_floor": true,
+          "guard_exact_floor": false,
+          "outside_invariance": true
+        },
+        "uncertain_examples": 384,
+        "uncertain_safe": 384
+      },
+      "key": [
+        false,
+        -65,
+        0.4583333333333333,
+        454,
+        0.95
+      ],
+      "validation": {
+        "threshold": 0.5,
+        "examples": 480,
+        "exact_proposals": 454,
+        "exact_rate": 0.9458333333333333,
+        "false_updates": 0,
+        "proposed_updates": 22,
+        "expected_updates": 48,
+        "update_precision": 1.0,
+        "update_recall": 0.4583333333333333,
+        "clarifications": 458,
+        "exact_including_gold_evidence": 454,
+        "nonmatching_gold_evidence": 0
+      },
+      "guard": {
+        "threshold": 0.5,
+        "examples": 326,
+        "exact_proposals": 286,
+        "exact_rate": 0.8773006134969326,
+        "false_updates": 3,
+        "proposed_updates": 211,
+        "expected_updates": 232,
+        "update_precision": 0.985781990521327,
+        "update_recall": 0.896551724137931,
+        "clarifications": 108,
+        "exact_including_gold_evidence": 283,
+        "nonmatching_gold_evidence": 6
+      },
+      "stress": {
+        "threshold": 0.5,
+        "examples": 32,
+        "exact_proposals": 24,
+        "exact_rate": 0.75,
+        "false_updates": 0,
+        "proposed_updates": 16,
+        "expected_updates": 24,
+        "update_precision": 1.0,
+        "update_recall": 0.6666666666666666,
+        "clarifications": 16,
+        "exact_including_gold_evidence": 24,
+        "nonmatching_gold_evidence": 0
+      },
+      "loss": 0.1293991059064865,
+      "head_sha256": "dfb99bd408580917e5e7b2c1b9531664fe719b53cb40bd5887ddc70e23215ccb"
+    }
+  ],
+  "role": "Frozen before any consumed-regression or new-test inference; no seed switching",
+  "evaluator_sha256": "d6da6171deb37a0b8004dd6cf7e5b9db908f0f9cc836bad97d4785d702cfd042",
+  "fresh_test_gate": "All three validation gates pass, native parity exact; each fresh seed requires zero false, recall>=.75 and all no-update rows clarify."
+}

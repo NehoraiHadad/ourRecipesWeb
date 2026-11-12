@@ -33,7 +33,7 @@ def run(folder):
             'role':'Diagnostic pre-threshold label accuracy only; not independent holdout or selection objective'})
     proof={'scope':'New validation, post-selection comparison to fixed prior R4; current study changes data, class structure and routing jointly, not a causal ablation.',
         'prior_fixed_r4':trials,'selected_v5':current,'new_test_inference':False}
-    (ROOT/'verification/certainty-v5-comparison-20261112.json').write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n');print(json.dumps(proof));return proof
+    (ROOT/f"verification/{json.loads((folder/'result.json').read_text())['plan']['study']}-comparison-20261112.json").write_text(json.dumps(proof,ensure_ascii=False,indent=2)+'\n');print(json.dumps(proof));return proof
 
 
 if __name__=='__main__':
