@@ -1,0 +1,2139 @@
+{
+  "observed_utc": "2026-11-12T20:16:02.521647+00:00",
+  "v13": {
+    "trials": [
+      {
+        "arm": "linear",
+        "seed": 42,
+        "actual_updates": 1600,
+        "best": {
+          "step": 800,
+          "key": [
+            false,
+            true,
+            0,
+            0.890625,
+            -0.46453988552093506
+          ],
+          "dev_nll": 0.46453988552093506,
+          "dev_accuracy": 0.890625,
+          "dev_safe": {
+            "threshold": 2.0,
+            "metrics": {
+              "examples": 192,
+              "asserted_examples": 96,
+              "not_asserted_examples": 96,
+              "asserted_allowed": 0,
+              "unsafe_allowed": 0,
+              "asserted_recall": 0.0,
+              "not_asserted_recall": 1.0,
+              "passed": false
+            },
+            "key": [
+              false,
+              true,
+              0,
+              2.0
+            ]
+          }
+        },
+        "calibration": {
+          "threshold": 2.0,
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 0,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.0,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "key": [
+            false,
+            true,
+            0,
+            2.0
+          ]
+        },
+        "calibration_nll": 0.5517789721488953,
+        "qualified_classifier": false,
+        "checkpoint_sha256": "8cd237f6479af32bec461b84a86a7071d9b2c21520338104fcafb98e7e5b3fb5",
+        "checkpoint_bytes": 51192,
+        "head_parameters": 12290,
+        "seconds": 2.2866565829972387,
+        "encoder_updated": false,
+        "fresh_test_inference": false,
+        "exact_resume_tested": false
+      },
+      {
+        "arm": "mlp64",
+        "seed": 42,
+        "actual_updates": 400,
+        "best": {
+          "step": 0,
+          "key": [
+            false,
+            true,
+            13,
+            0.6041666865348816,
+            -0.6687073111534119
+          ],
+          "dev_nll": 0.6687073111534119,
+          "dev_accuracy": 0.6041666865348816,
+          "dev_safe": {
+            "threshold": 0.53,
+            "metrics": {
+              "examples": 192,
+              "asserted_examples": 96,
+              "not_asserted_examples": 96,
+              "asserted_allowed": 13,
+              "unsafe_allowed": 0,
+              "asserted_recall": 0.13541666666666666,
+              "not_asserted_recall": 1.0,
+              "passed": false
+            },
+            "key": [
+              false,
+              true,
+              13,
+              0.53
+            ]
+          }
+        },
+        "calibration": {
+          "threshold": 0.54,
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 1,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.010416666666666666,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "key": [
+            false,
+            true,
+            1,
+            0.54
+          ]
+        },
+        "calibration_nll": 0.7085480690002441,
+        "qualified_classifier": false,
+        "checkpoint_sha256": "3dd498259159e3a817ee50699947e7add7bd74bd02928bc09fe23d821b88d9d8",
+        "checkpoint_bytes": 814250,
+        "head_parameters": 202946,
+        "seconds": 1.0981234290011344,
+        "encoder_updated": false,
+        "fresh_test_inference": false,
+        "exact_resume_tested": false
+      }
+    ],
+    "selected_arm": null,
+    "fresh_test_inferred": false,
+    "feature_preparation": {
+      "splits": {
+        "train": {
+          "rows": 2391,
+          "shape": [
+            2391,
+            3072
+          ],
+          "seconds": 63.166499897000904,
+          "bytes": 29621906,
+          "sha256": "1d5004dc7aba403494c3b95d061afff2b1a5cc754c09e38d9ca2b3c7a65025df",
+          "maximum_tokens": 28,
+          "unknown_tokens": 0,
+          "truncation": false
+        },
+        "dev": {
+          "rows": 192,
+          "shape": [
+            192,
+            3072
+          ],
+          "seconds": 5.408574309003598,
+          "bytes": 2378440,
+          "sha256": "a14e929e35f56bd4a7e12294b9cd6a78bd00fc884a97a8b5737ffec7fd4c1e0e",
+          "maximum_tokens": 25,
+          "unknown_tokens": 0,
+          "truncation": false
+        },
+        "calibration": {
+          "rows": 192,
+          "shape": [
+            192,
+            3072
+          ],
+          "seconds": 5.598222591004742,
+          "bytes": 2380080,
+          "sha256": "dacab304a92add76a81ca6138dad2f91a78c2a1bc5c09470c0198aad82c8c48b",
+          "maximum_tokens": 26,
+          "unknown_tokens": 0,
+          "truncation": false
+        }
+      },
+      "body_sha256": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+      "checkpoint_sha256": "4982f0b35785f51c0494db52c53ba561b62f7bc6e9ed38092544fc84fe34fe8a",
+      "data_sha256": "33cb4af1be1b5da20b2359d0444c3fbf44c638e9d959633f20686e0ca24d0f02",
+      "parity_examples": 493,
+      "parity_route_mismatches": 0,
+      "parity_max_joint_delta": 0.0,
+      "real_cpu_inference": true,
+      "encoder_parameters_updated": false,
+      "fresh_test_inference": false,
+      "seconds": 91.10338695399696,
+      "environment": {
+        "python": "3.13.17 (main, Oct 21 2026, 17:49:22) [Clang 23.1.3 ]",
+        "torch": "2.6.0+cpu",
+        "transformers": "4.48.3",
+        "numpy": "2.2.6",
+        "machine": "x86_64",
+        "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+        "torch_threads": 2,
+        "git_commit": "759591ef82d68dda8289ab159460fec41fca642e"
+      }
+    }
+  },
+  "v14": {
+    "study": "scope-v14-stance-lora",
+    "trials": [
+      {
+        "arm": "mlp64-stance-lora",
+        "seed": 42,
+        "actual_updates": 2000,
+        "best": {
+          "step": 500,
+          "key": [
+            0.9166666865348816,
+            -0.3247373402118683
+          ],
+          "accuracy": 0.9166666865348816,
+          "nll": 0.3247373402118683
+        },
+        "calibration": {
+          "threshold": 2.0,
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 0,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.0,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "key": [
+            false,
+            true,
+            0,
+            2.0
+          ]
+        },
+        "gpu_calibration_probabilities": [
+          0.4914730489253998,
+          6.787025768062449e-07,
+          0.6019452810287476,
+          8.83780467120232e-06,
+          0.7559414505958557,
+          2.042640971922083e-06,
+          0.9536246657371521,
+          3.3726479387041763e-07,
+          0.9884164929389954,
+          6.058259259589249e-06,
+          0.12142034620046616,
+          1.9340370727150002e-06,
+          0.9404337406158447,
+          5.726073482037464e-07,
+          0.9730255603790283,
+          4.1111370592261665e-06,
+          0.6158270835876465,
+          2.4566090814914787e-06,
+          0.9831462502479553,
+          3.2704286923035397e-07,
+          0.923721432685852,
+          1.932263558046543e-06,
+          0.2986624240875244,
+          6.969969490455696e-07,
+          0.8327616453170776,
+          1.6092132000267156e-06,
+          0.9034145474433899,
+          1.5097670257091522e-05,
+          0.7820496559143066,
+          3.147339157294482e-06,
+          0.9648458361625671,
+          6.948737336642807e-07,
+          0.9866001009941101,
+          6.077517809899291e-06,
+          0.3989584147930145,
+          1.5621383226971375e-06,
+          0.782271146774292,
+          8.791082564130193e-07,
+          0.8316957354545593,
+          3.8738016883144155e-06,
+          0.9632742404937744,
+          6.186714927025605e-06,
+          0.936161994934082,
+          8.137341751535132e-07,
+          0.8609516024589539,
+          2.843387392204022e-06,
+          0.5111868381500244,
+          1.5261988437487162e-06,
+          0.999998927116394,
+          0.998325765132904,
+          0.9999971389770508,
+          0.9941322207450867,
+          0.9999994039535522,
+          0.9223341345787048,
+          0.999998927116394,
+          0.9976544976234436,
+          0.9999991655349731,
+          0.9908301830291748,
+          0.9999992847442627,
+          0.9740279316902161,
+          0.9999988079071045,
+          0.9980975985527039,
+          0.999997615814209,
+          0.9988349080085754,
+          0.9999995231628418,
+          0.9987019300460815,
+          0.9999986886978149,
+          0.999041736125946,
+          0.9999983310699463,
+          0.9946762323379517,
+          0.9999994039535522,
+          0.9906812310218811,
+          0.9999990463256836,
+          0.9917154908180237,
+          0.9999977350234985,
+          0.9979057312011719,
+          0.9999994039535522,
+          0.9796403050422668,
+          0.9999994039535522,
+          0.998083233833313,
+          0.9999994039535522,
+          0.9980663657188416,
+          0.9999995231628418,
+          0.9952654838562012,
+          0.999997615814209,
+          0.9946962594985962,
+          0.9999984502792358,
+          0.9997376799583435,
+          0.9999996423721313,
+          0.9999148845672607,
+          0.9999982118606567,
+          0.9987233281135559,
+          0.9999994039535522,
+          0.9996349811553955,
+          0.9999996423721313,
+          0.9977756142616272,
+          0.9999796152114868,
+          0.9994878768920898,
+          0.9999169111251831,
+          0.997433602809906,
+          0.9983249306678772,
+          0.986770749092102,
+          0.9999768733978271,
+          0.9995397329330444,
+          0.9999728202819824,
+          0.9982385635375977,
+          0.9986836314201355,
+          0.9679358005523682,
+          0.9999123811721802,
+          0.9992263317108154,
+          0.9995480179786682,
+          0.9969049096107483,
+          0.9990266561508179,
+          0.9955659508705139,
+          0.9998747110366821,
+          0.9993594288825989,
+          0.999824583530426,
+          0.9978795051574707,
+          0.9922509789466858,
+          0.9643065929412842,
+          0.9999715089797974,
+          0.999756395816803,
+          0.9997929930686951,
+          0.9981524348258972,
+          0.9991284012794495,
+          0.9911068081855774,
+          0.9999704360961914,
+          0.9997946619987488,
+          0.9999442100524902,
+          0.9990352392196655,
+          0.9988252520561218,
+          0.9844580292701721,
+          0.9997064471244812,
+          0.9989086389541626,
+          0.9990177154541016,
+          0.9981934428215027,
+          0.999143123626709,
+          0.9976450800895691,
+          0.9997240900993347,
+          0.9991707801818848,
+          0.9998249411582947,
+          0.999503493309021,
+          0.9963018894195557,
+          0.9955440163612366,
+          0.9999949932098389,
+          1.3775566003459971e-05,
+          0.9999896287918091,
+          8.752770372666419e-05,
+          0.9999905824661255,
+          0.0002636633289512247,
+          0.9999914169311523,
+          2.089224653900601e-05,
+          0.9999939203262329,
+          4.480536881601438e-05,
+          0.9999909400939941,
+          3.0249773772084154e-05,
+          0.9999922513961792,
+          4.942744999425486e-05,
+          0.9999966621398926,
+          0.00032830119016580284,
+          0.9999912977218628,
+          0.000331601535435766,
+          0.9999891519546509,
+          3.1805160688236356e-05,
+          0.9999972581863403,
+          0.00013773629325442016,
+          0.9999955892562866,
+          3.616403409978375e-05,
+          0.9999514818191528,
+          2.886460606532637e-05,
+          0.9999685287475586,
+          7.594030466862023e-05,
+          0.9999638795852661,
+          0.00018711785378400236,
+          0.999975323677063,
+          2.6126606826437637e-05,
+          0.9999390840530396,
+          6.662452506134287e-05,
+          0.9999889135360718,
+          6.525608478114009e-05,
+          0.9999866485595703,
+          3.9216647564899176e-05,
+          0.999997615814209,
+          0.00016187067376449704,
+          0.9999936819076538,
+          0.0003255761112086475,
+          0.9999840259552002,
+          3.6407640436664224e-05,
+          0.999997615814209,
+          0.00012384404544718564,
+          0.9999970197677612,
+          3.795637167058885e-05
+        ],
+        "cpu_calibration_probabilities": [
+          0.4914720952510834,
+          6.7870581688112e-07,
+          0.6019499897956848,
+          8.837771019898355e-06,
+          0.755938708782196,
+          2.0426352875801967e-06,
+          0.9536252021789551,
+          3.37263827532297e-07,
+          0.9884164929389954,
+          6.058247890905477e-06,
+          0.12142175436019897,
+          1.9340373000886757e-06,
+          0.9404338598251343,
+          5.726068366129766e-07,
+          0.9730256795883179,
+          4.111125235795043e-06,
+          0.6158265471458435,
+          2.4566068077547243e-06,
+          0.9831461310386658,
+          3.2704352292967087e-07,
+          0.9237220287322998,
+          1.932259920067736e-06,
+          0.2986562252044678,
+          6.969962669245433e-07,
+          0.8327600955963135,
+          1.6092162695713341e-06,
+          0.9034131765365601,
+          1.5097713003342506e-05,
+          0.7820538282394409,
+          3.1473541639570612e-06,
+          0.9648462533950806,
+          6.948711188670131e-07,
+          0.9865999817848206,
+          6.0775237216148525e-06,
+          0.3989642560482025,
+          1.5621338889104663e-06,
+          0.7822727560997009,
+          8.791099617155851e-07,
+          0.8316940069198608,
+          3.873802143061766e-06,
+          0.9632742404937744,
+          6.186673545016674e-06,
+          0.9361622333526611,
+          8.137357099258224e-07,
+          0.8609542846679688,
+          2.843387392204022e-06,
+          0.5111876726150513,
+          1.5262016859196592e-06,
+          0.999998927116394,
+          0.998325765132904,
+          0.9999971389770508,
+          0.9941322207450867,
+          0.9999994039535522,
+          0.9223333597183228,
+          0.999998927116394,
+          0.9976544976234436,
+          0.9999991655349731,
+          0.9908303022384644,
+          0.9999992847442627,
+          0.974027693271637,
+          0.9999988079071045,
+          0.9980975985527039,
+          0.999997615814209,
+          0.9988349080085754,
+          0.9999995231628418,
+          0.9987019300460815,
+          0.9999986886978149,
+          0.999041736125946,
+          0.9999983310699463,
+          0.9946762323379517,
+          0.9999994039535522,
+          0.9906813502311707,
+          0.9999990463256836,
+          0.9917154908180237,
+          0.9999977350234985,
+          0.9979057312011719,
+          0.9999994039535522,
+          0.9796403050422668,
+          0.9999994039535522,
+          0.998083233833313,
+          0.9999994039535522,
+          0.9980663657188416,
+          0.9999995231628418,
+          0.9952654838562012,
+          0.999997615814209,
+          0.9946962594985962,
+          0.9999984502792358,
+          0.9997376799583435,
+          0.9999996423721313,
+          0.9999148845672607,
+          0.9999982118606567,
+          0.9987233281135559,
+          0.9999994039535522,
+          0.9996349811553955,
+          0.9999996423721313,
+          0.9977756142616272,
+          0.9999796152114868,
+          0.9994878768920898,
+          0.9999169111251831,
+          0.997433602809906,
+          0.9983249306678772,
+          0.986770749092102,
+          0.9999768733978271,
+          0.9995397329330444,
+          0.9999728202819824,
+          0.9982385635375977,
+          0.998683750629425,
+          0.9679358005523682,
+          0.9999123811721802,
+          0.9992263317108154,
+          0.9995480179786682,
+          0.9969049096107483,
+          0.9990266561508179,
+          0.9955659508705139,
+          0.9998747110366821,
+          0.9993594288825989,
+          0.999824583530426,
+          0.9978795051574707,
+          0.9922510981559753,
+          0.9643067717552185,
+          0.9999715089797974,
+          0.999756395816803,
+          0.9997929930686951,
+          0.9981524348258972,
+          0.9991284012794495,
+          0.9911068081855774,
+          0.9999704360961914,
+          0.9997946619987488,
+          0.9999442100524902,
+          0.9990352392196655,
+          0.9988252520561218,
+          0.9844581484794617,
+          0.9997064471244812,
+          0.9989086389541626,
+          0.9990177154541016,
+          0.9981933236122131,
+          0.999143123626709,
+          0.9976450800895691,
+          0.9997240900993347,
+          0.9991707801818848,
+          0.9998249411582947,
+          0.999503493309021,
+          0.9963018894195557,
+          0.9955440163612366,
+          0.9999949932098389,
+          1.37755805553752e-05,
+          0.9999896287918091,
+          8.752769645070657e-05,
+          0.9999905824661255,
+          0.0002636653371155262,
+          0.9999914169311523,
+          2.089224653900601e-05,
+          0.9999939203262329,
+          4.480519419303164e-05,
+          0.9999909400939941,
+          3.0249686460592784e-05,
+          0.9999922513961792,
+          4.942754458170384e-05,
+          0.9999966621398926,
+          0.00032830212148837745,
+          0.9999912977218628,
+          0.00033160310704261065,
+          0.9999891519546509,
+          3.1805098842596635e-05,
+          0.9999972581863403,
+          0.00013773681712336838,
+          0.9999955892562866,
+          3.616413596319035e-05,
+          0.9999514818191528,
+          2.886476977437269e-05,
+          0.9999685287475586,
+          7.594002090627328e-05,
+          0.9999638795852661,
+          0.00018711856682784855,
+          0.999975323677063,
+          2.6126605007448234e-05,
+          0.9999390840530396,
+          6.662477971985936e-05,
+          0.9999889135360718,
+          6.525602657347918e-05,
+          0.9999866485595703,
+          3.9216538425534964e-05,
+          0.999997615814209,
+          0.00016187052824534476,
+          0.9999936819076538,
+          0.0003255755000282079,
+          0.9999840259552002,
+          3.6407640436664224e-05,
+          0.999997615814209,
+          0.00012384381261654198,
+          0.9999970197677612,
+          3.795644443016499e-05
+        ],
+        "parity": {
+          "examples": 192,
+          "decision_mismatches": 0,
+          "max_probability_delta": 6.198883056640625e-06
+        },
+        "regression": null,
+        "qualified": false,
+        "body_unchanged_when_disabled": true,
+        "checkpoint_sha256": "9c8e98f0899c37b0f162b9634a0f655cdf7dee51401cea889e931b92286aacd7",
+        "checkpoint_bytes": 6156216,
+        "peak_gpu_allocated_bytes": 914861568,
+        "seconds": 136.03863331699995,
+        "mechanics_only": false,
+        "fresh_test_inference": false
+      }
+    ],
+    "qualified_for_fresh_test": false,
+    "seconds": 137.69396470700008,
+    "mechanics_only": false,
+    "fresh_test_inference": false
+  },
+  "v14_fresh": null,
+  "training_hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07"
+  },
+  "archive_verified": {
+    "bytes": 45721988,
+    "sha256": "deebd3b26bdd7ff3b2e74d47e248ef1951a64a792791f3ebcf5584f95a447f00"
+  },
+  "actual_gpu_smoke_updates": 2,
+  "parent_packet_unchanged_sha256": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add",
+  "new_tests_inferred": [],
+  "new_tests_uninferred_if_no_fresh": true,
+  "original120_and_v5fresh480_inferred": false,
+  "human_reviewed": false,
+  "recorded_speech": false,
+  "physical_device_tested": false,
+  "old_v7_training_replay_not_independent_quality": true,
+  "teachers": {
+    "15": {
+      "result": {
+        "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+        "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+        "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21",
+        "weight_bytes": 3441185576,
+        "download_and_verify_seconds": 32.17698454599997,
+        "license": "apache-2.0",
+        "training_performed": false,
+        "device": "actual Colab T4",
+        "dtype": "torch.float16",
+        "transformers": "4.57.1",
+        "torch": "2.6.0+cu124",
+        "shots": [
+          {
+            "id": "stance-train-0",
+            "text": "בדקתי בעצמי: הפעולה שנותרה בוצעה",
+            "allow": 1,
+            "label": 0,
+            "semantics": [
+              "remaining",
+              "asserted",
+              "complete"
+            ],
+            "operator_family": "checked_guess",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-1",
+            "text": "זו השערה בלבד: הפעולה שנותרה בוצעה",
+            "allow": 0,
+            "label": 3,
+            "semantics": [
+              "remaining",
+              "uncertain",
+              "complete"
+            ],
+            "operator_family": "checked_guess",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-96",
+            "text": "זה לא ניחוש שלי; הפעולה שנותרה בוצעה",
+            "allow": 1,
+            "label": 0,
+            "semantics": [
+              "remaining",
+              "asserted",
+              "complete"
+            ],
+            "operator_family": "guess_denial",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-97",
+            "text": "למיטב הניחוש שלי הפעולה שנותרה בוצעה",
+            "allow": 0,
+            "label": 3,
+            "semantics": [
+              "remaining",
+              "uncertain",
+              "complete"
+            ],
+            "operator_family": "guess_denial",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-962",
+            "text": "אולי השיש רטוב, אבל הפעולה שנותרה לא בוצעה",
+            "allow": 1,
+            "label": 1,
+            "semantics": [
+              "remaining",
+              "asserted",
+              "incomplete"
+            ],
+            "operator_family": "unrelated_prefix",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-963",
+            "text": "השיש נקי, אבל ייתכן שהפעולה שנותרה לא בוצעה",
+            "allow": 0,
+            "label": 4,
+            "semantics": [
+              "remaining",
+              "uncertain",
+              "incomplete"
+            ],
+            "operator_family": "unrelated_prefix",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-1156",
+            "text": "הפעולה שנותרה בוצעה רק בחלקה, ואני מאשר את זה",
+            "allow": 1,
+            "label": 2,
+            "semantics": [
+              "remaining",
+              "asserted",
+              "partial"
+            ],
+            "operator_family": "suffix",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          },
+          {
+            "id": "stance-train-1157",
+            "text": "הפעולה שנותרה בוצעה רק בחלקה, אבל אני לא משוכנע בזה",
+            "allow": 0,
+            "label": 5,
+            "semantics": [
+              "remaining",
+              "uncertain",
+              "partial"
+            ],
+            "operator_family": "suffix",
+            "subject_pair": 0,
+            "predicate_family": 0,
+            "source": "new_authored_contrast"
+          }
+        ],
+        "sets": {},
+        "fresh_test_inferred": false,
+        "natural_test_inferred": false,
+        "human_reviewed": false,
+        "recorded_speech": false,
+        "physical_device_tested": false,
+        "original120_and_v5fresh480_inferred": false,
+        "scope": "Standalone commitment classifier capacity diagnostic, not a composed recipe assistant,deployable device model,teacher truth or distillation result.",
+        "calibration": {
+          "threshold": 0.85,
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 49,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.5104166666666666,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "key": [
+            false,
+            true,
+            49,
+            0.85
+          ]
+        },
+        "dev_at_calibrated_threshold": {
+          "examples": 192,
+          "asserted_examples": 96,
+          "not_asserted_examples": 96,
+          "asserted_allowed": 79,
+          "unsafe_allowed": 0,
+          "asserted_recall": 0.8229166666666666,
+          "not_asserted_recall": 1.0,
+          "passed": false
+        },
+        "all_required_sets_passed": false,
+        "peak_cuda_allocated_bytes": 3580128768,
+        "seconds": 79.10071555299999
+      },
+      "archive_verified": {
+        "sha256": "6cb1065af4421d312d5f045964b002b1ec84d4586377e00db0ad8ae338a92885",
+        "bytes": 23466
+      },
+      "hardware": {
+        "gpu": "Tesla T4, 15360 MiB, 580.82.07"
+      },
+      "development_error_analysis": {
+        "dev": {
+          "groups": {
+            "inspection_result": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 12,
+              "unsafe_allowed": 0
+            },
+            "verified_report": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 22,
+              "unsafe_allowed": 0
+            },
+            "suffix_fact": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 23,
+              "unsafe_allowed": 0
+            },
+            "not_confirmed": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 22,
+              "unsafe_allowed": 0
+            }
+          },
+          "errors_at_calibrated_threshold": [
+            {
+              "id": "stance-dev-2",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5234203934669495,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-4",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.7371581792831421,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-8",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה עדיין לא הושלמה",
+              "expected_asserted": true,
+              "allow_score": 0.5467381477355957,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-10",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.8354835510253906,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-14",
+              "text": "בדיקת המצב הראתה שהפעולה שסומנה כמושלמת עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7772998809814453,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-20",
+              "text": "בדיקת המצב הראתה שהפעולה שסומנה כמושלמת עדיין לא הושלמה",
+              "expected_asserted": true,
+              "allow_score": 0.8175744414329529,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-26",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.622459352016449,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-28",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.672331690788269,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-32",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה עדיין לא הושלמה",
+              "expected_asserted": true,
+              "allow_score": 0.7122321724891663,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-34",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.7662936449050903,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-38",
+              "text": "בדיקת המצב הראתה שהמשימה שכבר סומנה כמושלמת עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.8479677438735962,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-40",
+              "text": "בדיקת המצב הראתה שהמשימה שכבר סומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.8311430811882019,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-50",
+              "text": "הדיווח מאומת: הפעולה שנותרה עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6926419734954834,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-56",
+              "text": "הדיווח מאומת: הפעולה שנותרה עדיין לא הושלמה",
+              "expected_asserted": true,
+              "allow_score": 0.6513549089431763,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-104",
+              "text": "הפעולה שנותרה עדיין לא הושלמה; זו עובדה שבדקתי",
+              "expected_asserted": true,
+              "allow_score": 0.8354835510253906,
+              "operator_family": "suffix_fact"
+            },
+            {
+              "id": "stance-dev-146",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שנותרה עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.8128673434257507,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-152",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שנותרה עדיין לא הושלמה",
+              "expected_asserted": true,
+              "allow_score": 0.8080672025680542,
+              "operator_family": "not_confirmed"
+            }
+          ],
+          "seconds": 20.54930830400002,
+          "rows": 192,
+          "seconds_per_row_batch_amortized": 0.10702764741666677,
+          "latency_limit": "Includes Python/tokenization and GPU batch4; not isolated-request latency or device benchmark."
+        },
+        "calibration": {
+          "groups": {
+            "commit": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 14,
+              "unsafe_allowed": 0
+            },
+            "imaginary": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 10,
+              "unsafe_allowed": 0
+            },
+            "suffix_verify": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 24,
+              "unsafe_allowed": 0
+            },
+            "weather_scope": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 1,
+              "unsafe_allowed": 0
+            }
+          },
+          "errors_at_calibrated_threshold": [
+            {
+              "id": "stance-calibration-2",
+              "text": "אני יכול להתחייב שהפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.4455295503139496,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-8",
+              "text": "אני יכול להתחייב שהפעולה שנותרה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.7057850360870361,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-14",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7310585379600525,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-20",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.672331690788269,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-22",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.7122321724891663,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-26",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.8267117738723755,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-34",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.8479677438735962,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-38",
+              "text": "אני יכול להתחייב שהמשימה שכבר סומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.8031737804412842,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-44",
+              "text": "אני יכול להתחייב שהמשימה שכבר סומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.7718434929847717,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-46",
+              "text": "אני יכול להתחייב שהמשימה שכבר סומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.8397339582443237,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-50",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.4148988127708435,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-52",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7662936449050903,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-56",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6150878667831421,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-62",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6442250609397888,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-68",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6513549089431763,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-70",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.837619960308075,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-72",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.531209409236908,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-74",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3849121630191803,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-76",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5544704794883728,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-80",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6076632142066956,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-84",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.8031737804412842,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-86",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6076632142066956,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-88",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7826625108718872,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-92",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6791787147521973,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-144",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7185943722724915,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-146",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.43782350420951843,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-148",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6297746300697327,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-152",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6370307803153992,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-154",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.7490872144699097,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-156",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.7057850360870361,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-158",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.4148988127708435,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-160",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6076632142066956,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-162",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.8080672025680542,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-164",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.5234203934669495,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-166",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.637030839920044,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-168",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3849121630191803,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-170",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3208213150501251,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-172",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.46101680397987366,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-174",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.6584175229072571,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-176",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.49218812584877014,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-178",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.7122321724891663,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-180",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6076632142066956,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-182",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3775406777858734,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-184",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5851011276245117,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-186",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.7248703241348267,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-188",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.4843800961971283,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-190",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.6992543935775757,
+              "operator_family": "weather_scope"
+            }
+          ],
+          "seconds": 20.631356203999985,
+          "rows": 192,
+          "seconds_per_row_batch_amortized": 0.1074549802291666,
+          "latency_limit": "Includes Python/tokenization and GPU batch4; not isolated-request latency or device benchmark."
+        }
+      },
+      "cleanup": {
+        "dedicated_stop_command_completed": true,
+        "owner_log_observed_session_terminated": true,
+        "source": "Dedicated owner finally cleanup and console stop receipt; private account usage deliberately omitted."
+      }
+    },
+    "16": {
+      "result": {
+        "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+        "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+        "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21",
+        "weight_bytes": 3441185576,
+        "download_and_verify_seconds": 31.58775117900001,
+        "license": "apache-2.0",
+        "training_performed": false,
+        "device": "actual Colab T4",
+        "dtype": "torch.float16",
+        "transformers": "4.57.1",
+        "torch": "2.6.0+cu124",
+        "shots": [
+          {
+            "text": "הפעולה שנותרה בוצעה",
+            "category": "A",
+            "allow": 1,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "זה לא ניחוש: הפעולה שסומנה כמושלמת עדיין לא בוצעה",
+            "category": "A",
+            "allow": 1,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "הפעולה שנותרה נעשתה רק בחלקה",
+            "category": "A",
+            "allow": 1,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "אולי השיש רטוב, אבל הפעולה שנותרה כבר נעשתה",
+            "category": "A",
+            "allow": 1,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "למיטב הניחוש שלי הפעולה שנותרה בוצעה לחלוטין",
+            "category": "U",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "הפעולה שסומנה כמושלמת טרם בוצעה, אבל אני לא משוכנע",
+            "category": "U",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "אני לא זוכר אם הפעולה שנותרה בוצעה",
+            "category": "U",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "השיש נקי, אבל ייתכן שהפעולה שנותרה בוצעה",
+            "category": "U",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "האם הפעולה שנותרה בוצעה?",
+            "category": "N",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "לא אמרתי שהפעולה שנותרה בוצעה",
+            "category": "N",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "אני רק מצטט מישהו שאמר שהפעולה שסומנה כמושלמת לא בוצעה",
+            "category": "N",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          },
+          {
+            "text": "אם יתברר שהפעולה שנותרה בוצעה, נמשיך אחר כך",
+            "category": "N",
+            "allow": 0,
+            "source": "declared_manual_prompt_example"
+          }
+        ],
+        "sets": {},
+        "fresh_test_inferred": false,
+        "natural_test_inferred": false,
+        "human_reviewed": false,
+        "recorded_speech": false,
+        "physical_device_tested": false,
+        "original120_and_v5fresh480_inferred": false,
+        "scope": "Standalone commitment classifier capacity diagnostic, not a composed recipe assistant,deployable device model,teacher truth or distillation result.",
+        "calibration": {
+          "threshold": 0.61,
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 45,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.46875,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "key": [
+            false,
+            true,
+            45,
+            0.61
+          ]
+        },
+        "dev_at_calibrated_threshold": {
+          "examples": 192,
+          "asserted_examples": 96,
+          "not_asserted_examples": 96,
+          "asserted_allowed": 69,
+          "unsafe_allowed": 0,
+          "asserted_recall": 0.71875,
+          "not_asserted_recall": 1.0,
+          "passed": false
+        },
+        "all_required_sets_passed": false,
+        "peak_cuda_allocated_bytes": 3621662720,
+        "seconds": 101.21683730400002
+      },
+      "archive_verified": {
+        "sha256": "054b78410cca59417624502c49ce4ac726f73fed226432922096a4ca636a6942",
+        "bytes": 29632
+      },
+      "hardware": {
+        "gpu": "Tesla T4, 15360 MiB, 580.82.07"
+      },
+      "development_error_analysis": {
+        "dev": {
+          "groups": {
+            "inspection_result": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 15,
+              "unsafe_allowed": 0
+            },
+            "verified_report": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 15,
+              "unsafe_allowed": 0
+            },
+            "suffix_fact": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 24,
+              "unsafe_allowed": 0
+            },
+            "not_confirmed": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 15,
+              "unsafe_allowed": 0
+            }
+          },
+          "errors_at_calibrated_threshold": [
+            {
+              "id": "stance-dev-4",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.48102426528930664,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-10",
+              "text": "בדיקת המצב הראתה שהפעולה שנותרה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.488830029964447,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-16",
+              "text": "בדיקת המצב הראתה שהפעולה שסומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.514289379119873,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-22",
+              "text": "בדיקת המצב הראתה שהפעולה שסומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.5486600399017334,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-26",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5936338901519775,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-28",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.4629450738430023,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-34",
+              "text": "בדיקת המצב הראתה שהמשימה שעדיין ממתינה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.46259668469429016,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-40",
+              "text": "בדיקת המצב הראתה שהמשימה שכבר סומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.5072602033615112,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-46",
+              "text": "בדיקת המצב הראתה שהמשימה שכבר סומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.5462545156478882,
+              "operator_family": "inspection_result"
+            },
+            {
+              "id": "stance-dev-52",
+              "text": "הדיווח מאומת: הפעולה שנותרה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.24543030560016632,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-58",
+              "text": "הדיווח מאומת: הפעולה שנותרה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.38357600569725037,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-60",
+              "text": "הדיווח מאומת: הפעולה שסומנה כמושלמת גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.48187416791915894,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-64",
+              "text": "הדיווח מאומת: הפעולה שסומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.26441946625709534,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-70",
+              "text": "הדיווח מאומת: הפעולה שסומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.3435823619365692,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-76",
+              "text": "הדיווח מאומת: המשימה שעדיין ממתינה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.45174187421798706,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-82",
+              "text": "הדיווח מאומת: המשימה שעדיין ממתינה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.458524227142334,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-88",
+              "text": "הדיווח מאומת: המשימה שכבר סומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.3660837411880493,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-94",
+              "text": "הדיווח מאומת: המשימה שכבר סומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.44401440024375916,
+              "operator_family": "verified_report"
+            },
+            {
+              "id": "stance-dev-148",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שנותרה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.43952974677085876,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-154",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שנותרה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.4259266257286072,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-158",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שסומנה כמושלמת עדיין לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.6065372228622437,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-160",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שסומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.3784831166267395,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-166",
+              "text": "לא לגבי משהו אחר; אני מאשר שהפעולה שסומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.42196619510650635,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-172",
+              "text": "לא לגבי משהו אחר; אני מאשר שהמשימה שעדיין ממתינה גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.46303674578666687,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-178",
+              "text": "לא לגבי משהו אחר; אני מאשר שהמשימה שעדיין ממתינה הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.47309088706970215,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-184",
+              "text": "לא לגבי משהו אחר; אני מאשר שהמשימה שכבר סומנה כמושלמת גמורה רק בחלקה",
+              "expected_asserted": true,
+              "allow_score": 0.49440762400627136,
+              "operator_family": "not_confirmed"
+            },
+            {
+              "id": "stance-dev-190",
+              "text": "לא לגבי משהו אחר; אני מאשר שהמשימה שכבר סומנה כמושלמת הושלמה רק עד מחציתה",
+              "expected_asserted": true,
+              "allow_score": 0.5023115873336792,
+              "operator_family": "not_confirmed"
+            }
+          ],
+          "seconds": 27.94091869500005,
+          "rows": 192,
+          "seconds_per_row_batch_amortized": 0.14552561820312526,
+          "latency_limit": "Includes Python/tokenization and GPU batch4; not isolated-request latency or device benchmark."
+        },
+        "calibration": {
+          "groups": {
+            "commit": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 10,
+              "unsafe_allowed": 0
+            },
+            "imaginary": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 10,
+              "unsafe_allowed": 0
+            },
+            "suffix_verify": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 24,
+              "unsafe_allowed": 0
+            },
+            "weather_scope": {
+              "asserted": 24,
+              "not_asserted": 24,
+              "asserted_allowed": 1,
+              "unsafe_allowed": 0
+            }
+          },
+          "errors_at_calibrated_threshold": [
+            {
+              "id": "stance-calibration-2",
+              "text": "אני יכול להתחייב שהפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.49554890394210815,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-4",
+              "text": "אני יכול להתחייב שהפעולה שנותרה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.36777782440185547,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-10",
+              "text": "אני יכול להתחייב שהפעולה שנותרה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.2991499602794647,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-12",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5355049967765808,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-14",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5019394755363464,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-16",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.24095502495765686,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-18",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.5839610695838928,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-22",
+              "text": "אני יכול להתחייב שהפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.1836407333612442,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-24",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.49085673689842224,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-26",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.592200756072998,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-28",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.38767528533935547,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-34",
+              "text": "אני יכול להתחייב שהמשימה שעדיין ממתינה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.20303170382976532,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-40",
+              "text": "אני יכול להתחייב שהמשימה שכבר סומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.28534093499183655,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-46",
+              "text": "אני יכול להתחייב שהמשימה שכבר סומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.2079390585422516,
+              "operator_family": "commit"
+            },
+            {
+              "id": "stance-calibration-50",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5665552616119385,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-52",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.33678728342056274,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-58",
+              "text": "המצב במציאות הוא כך: הפעולה שנותרה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.4488533139228821,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-62",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5137218236923218,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-64",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3543699383735657,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-70",
+              "text": "המצב במציאות הוא כך: הפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.46322396397590637,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-72",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.4123493432998657,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-74",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.38823434710502625,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-76",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3082119822502136,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-82",
+              "text": "המצב במציאות הוא כך: המשימה שעדיין ממתינה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.4210083484649658,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-86",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.5102750062942505,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-88",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.3332248330116272,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-92",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.5988324880599976,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-94",
+              "text": "המצב במציאות הוא כך: המשימה שכבר סומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.4325648546218872,
+              "operator_family": "imaginary"
+            },
+            {
+              "id": "stance-calibration-144",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.4196108877658844,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-146",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.13117800652980804,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-148",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.20150265097618103,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-152",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.32424452900886536,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-154",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שנותרה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.3787037432193756,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-156",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.2583155333995819,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-158",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.16338087618350983,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-160",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.20975326001644135,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-162",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.4149231016635895,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-164",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.28613975644111633,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-166",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, הפעולה שסומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.3179847300052643,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-168",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.12190429866313934,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-170",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.07711638510227203,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-172",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.12240488082170486,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-174",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.27550193667411804,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-176",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.18780270218849182,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-178",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שעדיין ממתינה נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.303202360868454,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-180",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת כבר גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.25210943818092346,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-182",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת עוד לא גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.17098112404346466,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-184",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת רק חצי גמורה",
+              "expected_asserted": true,
+              "allow_score": 0.22236640751361847,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-186",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת כבר נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.3920743763446808,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-188",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת טרם נעשתה",
+              "expected_asserted": true,
+              "allow_score": 0.3344928026199341,
+              "operator_family": "weather_scope"
+            },
+            {
+              "id": "stance-calibration-190",
+              "text": "אולי בחוץ יורד גשם. לגבי המתכון, המשימה שכבר סומנה כמושלמת נעשתה רק באופן חלקי",
+              "expected_asserted": true,
+              "allow_score": 0.3233662545681,
+              "operator_family": "weather_scope"
+            }
+          ],
+          "seconds": 28.04922219300005,
+          "rows": 192,
+          "seconds_per_row_batch_amortized": 0.14608969892187526,
+          "latency_limit": "Includes Python/tokenization and GPU batch4; not isolated-request latency or device benchmark."
+        }
+      },
+      "cleanup": {
+        "dedicated_stop_command_completed": true,
+        "owner_log_observed_session_terminated": true,
+        "source": "Dedicated owner finally cleanup and console stop receipt; private account usage deliberately omitted."
+      }
+    }
+  },
+  "original_models_verified_unchanged": {
+    "runs/colab-state-v12/recovered/ablations/control-42/run/model/model.safetensors": "f053074f0118ebdd8157906ef862001135c6b9d6b3e15810e5aca25f6dc30bb4",
+    "runs/colab-scope-v9-guarded/recovered/study/seed-42/model.pt": "4982f0b35785f51c0494db52c53ba561b62f7bc6e9ed38092544fc84fe34fe8a",
+    "runs/colab-scope-v9-guarded/recovered/study/seed-17/model.pt": "ffb407a59425508439c61f74d9304f3c3293a1b31e6493ec2fd4b16b4b0ea597",
+    "runs/colab-scope-v10-consensus/recovered/study/seed-73/model.pt": "7781a1b7fa0220d99193f9d7053ae8c0e7b3b3eb90f7701a2eef5046195fe61d"
+  },
+  "unit_tests": {
+    "count": 150,
+    "passed": true,
+    "log_sha256": "27cbe54a19bb9a43e395418428d19eed92abedd408c6fc19ec93c65b421a190a",
+    "scope": "Includes simulated CLI controls and tiny gradient tests, separate from real CPU/T4 quality trials."
+  }
+}

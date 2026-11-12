@@ -1,0 +1,9 @@
+{
+  "supplement_members_sha256_verified": 122,
+  "crc_verified": true,
+  "offline_parent_plus_supplement_tests": 150,
+  "test_returncode": 0,
+  "weights_present_in_test_extraction": false,
+  "inference_quality_verified_by_this_check": false,
+  "credentials_audio_private_usage_included": false
+}

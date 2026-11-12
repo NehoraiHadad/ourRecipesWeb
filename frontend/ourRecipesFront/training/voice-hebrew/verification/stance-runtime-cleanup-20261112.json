@@ -1,0 +1,20 @@
+{
+  "observed_utc": "2026-11-12T20:12:57.213399+00:00",
+  "sessions": {
+    "14": {
+      "dedicated_stop_command_completed": true,
+      "owner_log_observed_session_terminated": true,
+      "source": "Dedicated owner finally cleanup and console stop receipt; private account usage deliberately omitted."
+    },
+    "15": {
+      "dedicated_stop_command_completed": true,
+      "owner_log_observed_session_terminated": true,
+      "source": "Dedicated owner finally cleanup and console stop receipt; private account usage deliberately omitted."
+    },
+    "16": {
+      "dedicated_stop_command_completed": true,
+      "owner_log_observed_session_terminated": true,
+      "source": "Dedicated owner finally cleanup and console stop receipt; private account usage deliberately omitted."
+    }
+  }
+}

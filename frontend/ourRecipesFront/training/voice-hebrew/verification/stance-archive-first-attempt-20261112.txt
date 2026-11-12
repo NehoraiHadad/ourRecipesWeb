@@ -1,0 +1,307 @@
+test_augmented_train_covers_every_candidate_and_preserves_holdout_bytes (test_ablation.AblationTests.test_augmented_train_covers_every_candidate_and_preserves_holdout_bytes) ... ok
+test_balanced_order_is_reproducible_and_balances_tasks_and_rare_labels (test_ablation.AblationTests.test_balanced_order_is_reproducible_and_balances_tasks_and_rare_labels) ... ok
+test_challenge_is_disjoint_and_labels_have_local_evidence (test_ablation.AblationTests.test_challenge_is_disjoint_and_labels_have_local_evidence) ... ok
+test_compact_action_queries_have_no_action_position_or_other_recipe_history (test_ablation.AblationTests.test_compact_action_queries_have_no_action_position_or_other_recipe_history) ... ok
+test_fresh_diagnostic_is_valid_and_not_training_text (test_ablation.AblationTests.test_fresh_diagnostic_is_valid_and_not_training_text) ... ok
+test_targeted_contrasts_preserve_heldout_recipes_and_rows (test_ablation.AblationTests.test_targeted_contrasts_preserve_heldout_recipes_and_rows) ... ok
+test_allocation_failure_still_unwinds_through_named_cleanup (test_adapter_colab.AdapterColabTests.test_allocation_failure_still_unwinds_through_named_cleanup) ... mock balanceunavailable
+mock balance
+ok
+test_bad_bundle_is_rejected_before_allocation (test_adapter_colab.AdapterColabTests.test_bad_bundle_is_rejected_before_allocation) ... ok
+test_no_automatic_stop_at1000 (test_adapter_study.AdapterStudyTests.test_no_automatic_stop_at1000) ... ok
+test_optimizer_sampler_and_dropout_rng_resume_exactly (test_adapter_study.AdapterStudyTests.test_optimizer_sampler_and_dropout_rng_resume_exactly) ... ok
+test_paired_sampler_is_balanced_and_resumes_exactly (test_adapter_study.AdapterStudyTests.test_paired_sampler_is_balanced_and_resumes_exactly) ... ok
+test_five_way_routing_is_fail_closed_without_state_mutation (test_certainty.CertaintyTests.test_five_way_routing_is_fail_closed_without_state_mutation) ... ok
+test_group_and_text_disjointness_and_minimal_contrasts (test_certainty.CertaintyTests.test_group_and_text_disjointness_and_minimal_contrasts) ... ok
+test_position_features_exclude_prompt_separator_and_padding (test_certainty.CertaintyTests.test_position_features_exclude_prompt_separator_and_padding) ... ok
+test_quality_gate_rejects_confident_unsafe_update_and_silent_other_intent (test_certainty.CertaintyTests.test_quality_gate_rejects_confident_unsafe_update_and_silent_other_intent) ... ok
+test_invalid_payload_does_not_partially_mutate_weights (test_certainty_adapter.AdapterTests.test_invalid_payload_does_not_partially_mutate_weights) ... ok
+test_real_gradients_disable_and_checkpoint_roundtrip_preserve_legacy (test_certainty_adapter.AdapterTests.test_real_gradients_disable_and_checkpoint_roundtrip_preserve_legacy) ... ok
+test_allocation_error_still_attempts_named_session_cleanup (test_colab_controls.ColabControlTests.test_allocation_error_still_attempts_named_session_cleanup) ... ERROR
+test_bad_uploaded_hash_saves_diagnostic_archive_before_any_subprocess (test_colab_controls.ColabControlTests.test_bad_uploaded_hash_saves_diagnostic_archive_before_any_subprocess) ... ok
+test_research_retention_does_not_replace_original_selection (test_colab_controls.ColabControlTests.test_research_retention_does_not_replace_original_selection) ... ok
+test_reused_owned_session_is_stopped_when_upload_fails (test_colab_controls.ColabControlTests.test_reused_owned_session_is_stopped_when_upload_fails) ... ERROR
+test_selected_arm_second_seed_weights_survive_successful_recovery (test_colab_controls.ColabControlTests.test_selected_arm_second_seed_weights_survive_successful_recovery) ... ok
+test_ssh_stream_recovers_verified_archive_without_uploading_private_key (test_colab_controls.ColabControlTests.test_ssh_stream_recovers_verified_archive_without_uploading_private_key) ... ERROR
+test_status_timeout_retries_read_only_poll_without_restarting_training (test_colab_controls.ColabControlTests.test_status_timeout_retries_read_only_poll_without_restarting_training) ... ERROR
+test_unrecognized_selection_cannot_escape_recovery_root (test_colab_controls.ColabControlTests.test_unrecognized_selection_cannot_escape_recovery_root) ... ok
+test_unrelated_session_name_is_rejected_before_cloud_access (test_colab_controls.ColabControlTests.test_unrelated_session_name_is_rejected_before_cloud_access) ... ok
+test_zip_traversal_is_rejected_before_install_or_training (test_colab_controls.ColabControlTests.test_zip_traversal_is_rejected_before_install_or_training) ... ok
+test_f0_5_checkpoint_does_not_reward_all_abstain_state_accuracy (test_combined.CombinedTests.test_f0_5_checkpoint_does_not_reward_all_abstain_state_accuracy) ... ok
+test_matched_holdouts_and_training_only_bridges (test_combined.CombinedTests.test_matched_holdouts_and_training_only_bridges) ... ok
+test_reference_context_and_nonreports_have_explicit_policy (test_combined.CombinedTests.test_reference_context_and_nonreports_have_explicit_policy) ... ok
+test_anaphora_unknown_verb_and_input_not_mutated (test_evidence_guard.EvidenceTests.test_anaphora_unknown_verb_and_input_not_mutated) ... ok
+test_cross_step_literal_report_is_preserved (test_evidence_guard.EvidenceTests.test_cross_step_literal_report_is_preserved) ... ok
+test_distinct_verb_is_rejected_but_chop_cut_synonyms_allowed (test_evidence_guard.EvidenceTests.test_distinct_verb_is_rejected_but_chop_cut_synonyms_allowed) ... ok
+test_expands_partial_quote_overlap_to_full_ingredient (test_evidence_guard.EvidenceTests.test_expands_partial_quote_overlap_to_full_ingredient) ... ok
+test_actual_tiny_gradients (test_facts_v7.FactsTests.test_actual_tiny_gradients) ... ok
+test_complete_cross_product_and_no_mutation (test_facts_v7.FactsTests.test_complete_cross_product_and_no_mutation) ... ok
+test_noop_does_not_inflate_transition (test_facts_v7.FactsTests.test_noop_does_not_inflate_transition) ... ok
+test_outside_step_does_not_change_reference_binding (test_facts_v7.FactsTests.test_outside_step_does_not_change_reference_binding) ... ok
+test_partial_uncertain_meta_and_ambiguous (test_facts_v7.FactsTests.test_partial_uncertain_meta_and_ambiguous) ... ok
+test_split_groups_and_polarity (test_facts_v7.FactsTests.test_split_groups_and_polarity) ... ok
+test_stale_and_partition (test_facts_v7.FactsTests.test_stale_and_partition) ... ok
+test_fresh_test_stays_closed_without_all_three_transfer_gates (test_facts_v7_replay.ReplayTests.test_fresh_test_stays_closed_without_all_three_transfer_gates) ... ok
+test_no_unrecoverable_clarify_relabelled_as_partial (test_facts_v7_replay.ReplayTests.test_no_unrecoverable_clarify_relabelled_as_partial) ... ok
+test_replay_only_extends_training (test_facts_v7_replay.ReplayTests.test_replay_only_extends_training) ... ok
+test_holdouts_match_and_new_training_is_additive (test_focused.FocusedTests.test_holdouts_match_and_new_training_is_additive) ... ok
+test_presence_elsewhere_is_not_a_negative_completion (test_focused.FocusedTests.test_presence_elsewhere_is_not_a_negative_completion) ... ok
+test_current_report_negative_span_ignores_history (test_grounding.BoundaryTests.test_current_report_negative_span_ignores_history) ... ok
+test_null_and_candidate_absence_both_prevent_updates (test_grounding.BoundaryTests.test_null_and_candidate_absence_both_prevent_updates) ... ok
+test_start_end_and_negative_candidate_gradients_no_history_gradient (test_grounding.BoundaryTests.test_start_end_and_negative_candidate_gradients_no_history_gradient) ... ok
+test_subword_and_hebrew_acronym_fragments_rejected (test_grounding.BoundaryTests.test_subword_and_hebrew_acronym_fragments_rejected) ... ok
+test_all_four_checkpoint_retention_has_no_primary_duplicate (test_grounding.PolicyTests.test_all_four_checkpoint_retention_has_no_primary_duplicate) ... ok
+test_false_updates_cost_five_and_floor_blocks_all_abstain (test_grounding.PolicyTests.test_false_updates_cost_five_and_floor_blocks_all_abstain) ... ok
+test_uploaded_packet_factory_reproduces_frozen_dataset (test_grounding.PolicyTests.test_uploaded_packet_factory_reproduces_frozen_dataset) ... ERROR
+test_worst_seed_and_recall_floor_prevent_mean_only_selection (test_grounding.PolicyTests.test_worst_seed_and_recall_floor_prevent_mean_only_selection) ... ok
+test_candidate_absence_and_short_quote_are_distinct (test_head_trace.TraceTests.test_candidate_absence_and_short_quote_are_distinct) ... ok
+test_correct_polarity_can_be_blocked_only_by_quote_confidence (test_head_trace.TraceTests.test_correct_polarity_can_be_blocked_only_by_quote_confidence) ... ok
+test_no_action_evidence_and_polarity_disagreement_are_distinct (test_head_trace.TraceTests.test_no_action_evidence_and_polarity_disagreement_are_distinct) ... ok
+test_ambiguous_and_other_recipe_context_never_mutate_by_gold (test_materials.MaterialsTests.test_ambiguous_and_other_recipe_context_never_mutate_by_gold) ... ok
+test_cross_split_recipe_and_exact_utterance_leaks_are_rejected (test_materials.MaterialsTests.test_cross_split_recipe_and_exact_utterance_leaks_are_rejected) ... ok
+test_low_confidence_abstains_even_when_action_is_confident (test_materials.MaterialsTests.test_low_confidence_abstains_even_when_action_is_confident) ... ok
+test_metrics_penalize_over_completion_and_no_update_shortcut (test_materials.MaterialsTests.test_metrics_penalize_over_completion_and_no_update_shortcut) ... ok
+test_notebook_cells_are_valid_python_and_have_no_saved_executions (test_materials.MaterialsTests.test_notebook_cells_are_valid_python_and_have_no_saved_executions) ... ERROR
+test_partial_and_correction_use_explicit_negative_labels (test_materials.MaterialsTests.test_partial_and_correction_use_explicit_negative_labels) ... ok
+test_recipe_isolation_and_synthetic_provenance (test_materials.MaterialsTests.test_recipe_isolation_and_synthetic_provenance) ... ERROR
+test_review_import_records_human_changes_without_editing_seed (test_materials.MaterialsTests.test_review_import_records_human_changes_without_editing_seed) ... ERROR
+test_task_masks_prevent_cross_task_label_predictions (test_materials.MaterialsTests.test_task_masks_prevent_cross_task_label_predictions) ... ok
+test_wrong_action_or_evidence_or_state_cannot_enter_corpus (test_materials.MaterialsTests.test_wrong_action_or_evidence_or_state_cannot_enter_corpus) ... ok
+test_arbitrary_recipe_sizes_outside_progress_and_id_names_invariant (test_reference_contract.ReferenceContractTests.test_arbitrary_recipe_sizes_outside_progress_and_id_names_invariant) ... ok
+test_oracle_semantics_bind_current_state_without_mutation (test_reference_contract.ReferenceContractTests.test_oracle_semantics_bind_current_state_without_mutation) ... ok
+test_partial_outside_step_does_not_change_oracle_result (test_reference_contract.ReferenceContractTests.test_partial_outside_step_does_not_change_oracle_result) ... ok
+test_stale_invalid_zero_candidate_and_nonlocal_evidence_clarify (test_reference_contract.ReferenceContractTests.test_stale_invalid_zero_candidate_and_nonlocal_evidence_clarify) ... ok
+test_uncertain_reference_clarifies_instead_of_ordinary_fallback (test_reference_contract.ReferenceContractTests.test_uncertain_reference_clarifies_instead_of_ordinary_fallback) ... ok
+test_list_and_mark_states (test_reference_evidence.ReferenceEvidenceTests.test_list_and_mark_states) ... ok
+test_marked_negation_is_local_to_descriptor (test_reference_evidence.ReferenceEvidenceTests.test_marked_negation_is_local_to_descriptor) ... ok
+test_no_automatic_rebinding_and_no_legacy_mutation (test_reference_evidence.ReferenceEvidenceTests.test_no_automatic_rebinding_and_no_legacy_mutation) ... ok
+test_ordinary_report_and_unknown_descriptor_gain_no_cue (test_reference_evidence.ReferenceEvidenceTests.test_ordinary_report_and_unknown_descriptor_gain_no_cue) ... ok
+test_relative_pending_property_is_not_completed_group (test_reference_evidence.ReferenceEvidenceTests.test_relative_pending_property_is_not_completed_group) ... ok
+test_two_explicit_references_need_multiple_fact_extraction (test_reference_evidence.ReferenceEvidenceTests.test_two_explicit_references_need_multiple_fact_extraction) ... ok
+test_missing_idempotent_confirmation_preserves_state_but_not_semantic_recall (test_research_metrics.ResearchMetricTests.test_missing_idempotent_confirmation_preserves_state_but_not_semantic_recall) ... ok
+test_undo_is_a_real_required_transition (test_research_metrics.ResearchMetricTests.test_undo_is_a_real_required_transition) ... ok
+test_wrong_completion_changes_state_and_is_counted_as_false (test_research_metrics.ResearchMetricTests.test_wrong_completion_changes_state_and_is_counted_as_false) ... ok
+test_balanced_tasks_weighted_labels_and_matched_hard_pair (test_sampling.SamplingTests.test_balanced_tasks_weighted_labels_and_matched_hard_pair) ... ok
+test_sampler_is_reproducible (test_sampling.SamplingTests.test_sampler_is_reproducible) ... ok
+test_selection_rejects_a_good_mean_hiding_one_bad_seed (test_sampling.SamplingTests.test_selection_rejects_a_good_mean_hiding_one_bad_seed) ... ok
+test_training_unchanged_and_holdout_state_valid (test_sampling.SamplingTests.test_training_unchanged_and_holdout_state_valid) ... ok
+test_different_reports_and_intents_are_never_contrasted (test_sampling_ml.MarginTests.test_different_reports_and_intents_are_never_contrasted) ... ok
+test_gradient_separates_supported_from_absent_for_both_polarities (test_sampling_ml.MarginTests.test_gradient_separates_supported_from_absent_for_both_polarities) ... ok
+test_alignment_required (test_scope_v10_consensus.ConsensusTests.test_alignment_required) ... ok
+test_disabled_member_vetoes_reference (test_scope_v10_consensus.ConsensusTests.test_disabled_member_vetoes_reference) ... ok
+test_disagreement_cannot_mutate (test_scope_v10_consensus.ConsensusTests.test_disagreement_cannot_mutate) ... ok
+test_ordinary_route_defers_to_separate_extractor (test_scope_v10_consensus.ConsensusTests.test_ordinary_route_defers_to_separate_extractor) ... ok
+test_unanimous_assertion_can_bind (test_scope_v10_consensus.ConsensusTests.test_unanimous_assertion_can_bind) ... ok
+test_ambiguous_state_cannot_be_resolved_by_consensus (test_scope_v10_prospective.ProspectiveTests.test_ambiguous_state_cannot_be_resolved_by_consensus) ... ok
+test_three_member_qualification_is_required_for_test (test_scope_v10_prospective.ProspectiveTests.test_three_member_qualification_is_required_for_test) ... ok
+test_deterministic_generation (test_scope_v11_replay.ReplayDataTests.test_deterministic_generation) ... ok
+test_fixed_diverse_nonduplicated_replay (test_scope_v11_replay.ReplayDataTests.test_fixed_diverse_nonduplicated_replay) ... ok
+test_only_training_changes (test_scope_v11_replay.ReplayDataTests.test_only_training_changes) ... ok
+test_failed_development_cannot_open_fresh_test (test_scope_v12_evidence.VoteTests.test_failed_development_cannot_open_fresh_test) ... ok
+test_majority_requires_two_accepted_labels (test_scope_v12_evidence.VoteTests.test_majority_requires_two_accepted_labels) ... ok
+test_two_confident_wrong_references_are_vetoed_without_rebinding (test_scope_v12_evidence.VoteTests.test_two_confident_wrong_references_are_vetoed_without_rebinding) ... ok
+test_head_gradients_and_shared_reference_parity (test_scope_v13_stance.StanceTests.test_head_gradients_and_shared_reference_parity) ... ok
+test_new_operator_families_and_text_are_held_out (test_scope_v13_stance.StanceTests.test_new_operator_families_and_text_are_held_out) ... ok
+test_partial_assertion_is_not_uncertainty (test_scope_v13_stance.StanceTests.test_partial_assertion_is_not_uncertainty) ... ok
+test_rejecting_everything_does_not_qualify (test_scope_v13_stance.StanceTests.test_rejecting_everything_does_not_qualify) ... ok
+test_veto_cannot_introduce_or_rebind_a_report (test_scope_v13_stance.StanceTests.test_veto_cannot_introduce_or_rebind_a_report) ... ok
+test_adapter_test_requires_all_three_gates (test_scope_v14_stance.StanceAdapterTests.test_adapter_test_requires_all_three_gates) ... ok
+test_separate_adapter_gradients_preserve_disabled_body (test_scope_v14_stance.StanceAdapterTests.test_separate_adapter_gradients_preserve_disabled_body) ... ok
+test_current_example_has_no_expected_label_in_prompt (test_scope_v15_teacher.TeacherPromptTests.test_current_example_has_no_expected_label_in_prompt) ... ok
+test_few_shots_are_balanced_train_only_and_include_partial (test_scope_v15_teacher.TeacherPromptTests.test_few_shots_are_balanced_train_only_and_include_partial) ... ok
+test_demo_categories_balanced_and_new_tests_not_copied (test_scope_v16_teacher.TaxonomyPromptTests.test_demo_categories_balanced_and_new_tests_not_copied) ... ok
+test_prompt_includes_explicit_nonreport_examples (test_scope_v16_teacher.TaxonomyPromptTests.test_prompt_includes_explicit_nonreport_examples) ... ok
+test_test_remains_closed_without_three_selected_qualified_seeds (test_scope_v8.QualificationTests.test_test_remains_closed_without_three_selected_qualified_seeds) ... ok
+test_unmeasured_fallback_cannot_be_called_safe (test_scope_v8.QualificationTests.test_unmeasured_fallback_cannot_be_called_safe) ... ok
+test_negation_in_side_clause_does_not_veto_assertion (test_scope_v8.ScopeTests.test_negation_in_side_clause_does_not_veto_assertion) ... ok
+test_nonassertion_never_claims_completion (test_scope_v8.ScopeTests.test_nonassertion_never_claims_completion) ... ok
+test_retention_unchanged_and_no_split_leakage (test_scope_v8.ScopeTests.test_retention_unchanged_and_no_split_leakage) ... ok
+test_same_claim_has_all_speech_acts (test_scope_v8.ScopeTests.test_same_claim_has_all_speech_acts) ... ok
+test_actual_factor_loss_gradients (test_scope_v8_factor.FactorTests.test_actual_factor_loss_gradients) ... ok
+test_invalid_mass_is_not_redistributed (test_scope_v8_factor.FactorTests.test_invalid_mass_is_not_redistributed) ... ok
+test_qualification_filters_failed_other_foundation (test_scope_v8_factor.FactorTests.test_qualification_filters_failed_other_foundation) ... ok
+test_actual_routing_mask_not_probability_change (test_scope_v9.CompositionTests.test_actual_routing_mask_not_probability_change) ... ok
+test_composes_predicates_for_each_subject (test_scope_v9.CompositionTests.test_composes_predicates_for_each_subject) ... ok
+test_held_sets_and_original_training_unchanged (test_scope_v9.CompositionTests.test_held_sets_and_original_training_unchanged) ... ok
+test_opening_requires_same_qualified_method_all_seeds (test_scope_v9.CompositionTests.test_opening_requires_same_qualified_method_all_seeds) ... ok
+test_short_mechanics_budget_cannot_silently_skip_trial (test_scope_v9.CompositionTests.test_short_mechanics_budget_cannot_silently_skip_trial) ... ok
+test_disabled_action_class_stays_disabled (test_scope_v9_guarded.GuardedTests.test_disabled_action_class_stays_disabled) ... ok
+test_route_signal_does_not_require_forced_reference_agreement (test_scope_v9_guarded.GuardedTests.test_route_signal_does_not_require_forced_reference_agreement) ... ok
+test_three_seed_guard_before_test (test_scope_v9_guarded.GuardedTests.test_three_seed_guard_before_test) ... ok
+test_uncertain_reference_is_not_a_certain_mutation (test_scope_v9_guarded.GuardedTests.test_uncertain_reference_is_not_a_certain_mutation) ... ok
+test_arms_share_holdout_bytes_and_preserve_original_test (test_semantic.SemanticTests.test_arms_share_holdout_bytes_and_preserve_original_test) ... ok
+test_effective_input_audit_detects_and_removes_unlearnable_conflicts (test_semantic.SemanticTests.test_effective_input_audit_detects_and_removes_unlearnable_conflicts) ... ok
+test_opt_in_word_alignment_preserves_all_actions_and_frozen_v1 (test_semantic.SemanticTests.test_opt_in_word_alignment_preserves_all_actions_and_frozen_v1) ... ok
+test_same_text_requires_local_antecedent_and_context_retains_it (test_semantic.SemanticTests.test_same_text_requires_local_antecedent_and_context_retains_it) ... ok
+test_uncertainty_meta_partial_and_foreign_reference_do_not_assert_completion (test_semantic.SemanticTests.test_uncertainty_meta_partial_and_foreign_reference_do_not_assert_completion) ... ok
+test_candidate_decision_must_support_the_extracted_quote (test_spans.SpanTests.test_candidate_decision_must_support_the_extracted_quote) ... ok
+test_conflicting_clauses_and_generic_correction_are_rejected (test_spans.SpanTests.test_conflicting_clauses_and_generic_correction_are_rejected) ... ok
+test_exact_current_evidence_and_polarity_are_preserved (test_spans.SpanTests.test_exact_current_evidence_and_polarity_are_preserved) ... ok
+test_finer_validation_grid_does_not_mistake_coarse_all_abstain_for_best_policy (test_spans.SpanTests.test_finer_validation_grid_does_not_mistake_coarse_all_abstain_for_best_policy) ... ok
+test_later_worse_checkpoint_cannot_overwrite_best_validation_weights (test_spans.SpanTests.test_later_worse_checkpoint_cannot_overwrite_best_validation_weights) ... ok
+test_prior_report_tokens_cannot_serve_as_current_evidence (test_spans.SpanTests.test_prior_report_tokens_cannot_serve_as_current_evidence) ... ok
+test_foreign_history_does_not_enter_action_query (test_state_input.StateInputTests.test_foreign_history_does_not_enter_action_query) ... ok
+test_invalid_state_partition_and_boolean_step_rejected (test_state_input.StateInputTests.test_invalid_state_partition_and_boolean_step_rejected) ... ok
+test_state_changes_input_but_gold_does_not_and_sources_not_mutated (test_state_input.StateInputTests.test_state_changes_input_but_gold_does_not_and_sources_not_mutated) ... ok
+test_every_batch_has_half_state_and_both_tasks_balanced (test_state_sampling.FocusedSamplingTests.test_every_batch_has_half_state_and_both_tasks_balanced) ... ok
+test_intent_loss_honors_declared_stratum_weight (test_state_sampling.FocusedSamplingTests.test_intent_loss_honors_declared_stratum_weight) ... ok
+test_binary_warm_upload_streams_only_model_not_key (test_state_study.StateStudyTests.test_binary_warm_upload_streams_only_model_not_key) ... {"warm_model_uploaded": {"bytes": 13, "sha256": "21249a290a4255a0f3ee6685ff7933bffa241c3e35bb13a52dc0c7a679bed3b2"}}
+ok
+test_each_counterfactual_group_has_eight_reports_four_clarifications (test_state_study.StateStudyTests.test_each_counterfactual_group_has_eight_reports_four_clarifications) ... ok
+test_group_score_requires_all_states_correct (test_state_study.StateStudyTests.test_group_score_requires_all_states_correct) ... ok
+test_reference_truth_tracks_unique_current_target_or_clarifies (test_state_study.StateStudyTests.test_reference_truth_tracks_unique_current_target_or_clarifies) ... ok
+test_sampling_opponents_ignore_added_state_context (test_state_study.StateStudyTests.test_sampling_opponents_ignore_added_state_context) ... ok
+
+======================================================================
+ERROR: test_allocation_error_still_attempts_named_session_cleanup (test_colab_controls.ColabControlTests.test_allocation_error_still_attempts_named_session_cleanup)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_colab_controls.py", line 88, in test_allocation_error_still_attempts_named_session_cleanup
+    with self.assertRaisesRegex(RuntimeError,'new failed'):colab_pilot.run(args)
+                                                           ~~~~~~~~~~~~~~~^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/colab_pilot.py", line 70, in run
+    verify_manifest(ROOT/'data')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/engine.py", line 14, in verify_manifest
+    if Path(name).name!=name or digest((data_dir/name).read_bytes())!=sha:
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_reused_owned_session_is_stopped_when_upload_fails (test_colab_controls.ColabControlTests.test_reused_owned_session_is_stopped_when_upload_fails)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_colab_controls.py", line 78, in test_reused_owned_session_is_stopped_when_upload_fails
+    with self.assertRaisesRegex(RuntimeError,'upload failed'):colab_pilot.run(args)
+                                                              ~~~~~~~~~~~~~~~^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/colab_pilot.py", line 70, in run
+    verify_manifest(ROOT/'data')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/engine.py", line 14, in verify_manifest
+    if Path(name).name!=name or digest((data_dir/name).read_bytes())!=sha:
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_ssh_stream_recovers_verified_archive_without_uploading_private_key (test_colab_controls.ColabControlTests.test_ssh_stream_recovers_verified_archive_without_uploading_private_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_colab_controls.py", line 64, in test_ssh_stream_recovers_verified_archive_without_uploading_private_key
+    colab_pilot.run(args)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/colab_pilot.py", line 70, in run
+    verify_manifest(ROOT/'data')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/engine.py", line 14, in verify_manifest
+    if Path(name).name!=name or digest((data_dir/name).read_bytes())!=sha:
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_status_timeout_retries_read_only_poll_without_restarting_training (test_colab_controls.ColabControlTests.test_status_timeout_retries_read_only_poll_without_restarting_training)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_colab_controls.py", line 133, in test_status_timeout_retries_read_only_poll_without_restarting_training
+    colab_pilot.run(args)
+    ~~~~~~~~~~~~~~~^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/colab_pilot.py", line 70, in run
+    verify_manifest(ROOT/'data')
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/engine.py", line 14, in verify_manifest
+    if Path(name).name!=name or digest((data_dir/name).read_bytes())!=sha:
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_uploaded_packet_factory_reproduces_frozen_dataset (test_grounding.PolicyTests.test_uploaded_packet_factory_reproduces_frozen_dataset)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_grounding.py", line 74, in test_uploaded_packet_factory_reproduces_frozen_dataset
+    root=Path(tmp);packet=root/'material.zip';bundle(packet)
+                                              ~~~~~~^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/prepare.py", line 63, in bundle
+    z.write(Path(data)/name,"data/"+name)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/zipfile/__init__.py", line 1943, in write
+    zinfo = ZipInfo.from_file(filename, arcname,
+                              strict_timestamps=self._strict_timestamps)
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/zipfile/__init__.py", line 601, in from_file
+    st = os.stat(filename)
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_notebook_cells_are_valid_python_and_have_no_saved_executions (test_materials.MaterialsTests.test_notebook_cells_are_valid_python_and_have_no_saved_executions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_materials.py", line 73, in test_notebook_cells_are_valid_python_and_have_no_saved_executions
+    notebook=json.loads((ROOT/"OurRecipes-Hebrew-Training.ipynb").read_text())
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 546, in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 632, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/OurRecipes-Hebrew-Training.ipynb'
+
+======================================================================
+ERROR: test_recipe_isolation_and_synthetic_provenance (test_materials.MaterialsTests.test_recipe_isolation_and_synthetic_provenance)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_materials.py", line 21, in test_recipe_isolation_and_synthetic_provenance
+    verify_manifest(ROOT/"data")
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/engine.py", line 14, in verify_manifest
+    if Path(name).name!=name or digest((data_dir/name).read_bytes())!=sha:
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+======================================================================
+ERROR: test_review_import_records_human_changes_without_editing_seed (test_materials.MaterialsTests.test_review_import_records_human_changes_without_editing_seed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/tmp/ourrecipes-stance-archive-3u5n_eb9/tests/test_materials.py", line 63, in test_review_import_records_human_changes_without_editing_seed
+    with (ROOT/"data/review.csv").open(encoding="utf-8-sig",newline="") as f:rows=list(csv.DictReader(f))
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/agent/.local/share/uv/python/cpython-3.13.17-linux-x86_64-gnu/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ourrecipes-stance-archive-3u5n_eb9/data/review.csv'
+
+----------------------------------------------------------------------
+Ran 150 tests in 15.033s
+
+FAILED (errors=8)
