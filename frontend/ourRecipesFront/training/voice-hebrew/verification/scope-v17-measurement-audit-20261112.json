@@ -8,7 +8,10 @@
     "runs/colab-scope-v15-teacher/recovered/study/calibration-raw.json": "9e9b6f9281d7b9627f5efd057624398be2ca65077f0415868d07c4ada8e92670",
     "runs/colab-scope-v16-teacher/recovered/study/result.json": "128f6fce8a0ef0006e8b34148c85f0bdef250d0a58b651573b3ec4bbc92e8e3c",
     "runs/colab-scope-v16-teacher/recovered/study/dev-raw.json": "bc6e0ecb9be6de2ced74b4cfaae53b7762d61cf011e31d6aca9098254ac0bf1d",
-    "runs/colab-scope-v16-teacher/recovered/study/calibration-raw.json": "7da7abaceb9180641d8218bb311e6d407d3e2473f08bb4ba54abf79a64cd9dd0"
+    "runs/colab-scope-v16-teacher/recovered/study/calibration-raw.json": "7da7abaceb9180641d8218bb311e6d407d3e2473f08bb4ba54abf79a64cd9dd0",
+    "runs/colab-scope-v17-capacity/recovered/study/result.json": "c9d29bf6d98f360c7780389ed47a41be6c0b8dfd2f9718a620dd6b8d003451d3",
+    "runs/colab-scope-v17-capacity/recovered/study/dev-raw.json": "9280721bf4ff4dbbd453de05fe3b3944472a9d50659aa38f2e6fa30d8f8fe862",
+    "runs/colab-scope-v17-capacity/recovered/study/calibration-raw.json": "06a6ca770f798bcbbce165e729bdefc383f4633e8c29013c6f0c5f96035c768b"
   },
   "fresh_sets_inferred": false,
   "human_reviewed": false,
@@ -1324,6 +1327,363 @@
               "asserted_recall": 0.4791666666666667,
               "not_asserted_recall": 1.0,
               "passed": false
+            },
+            "scope": "Optimistic in-sample calibration-only coverage with zero observed false allowances. No numerical margin,device stability,independence or universal safety claim."
+          }
+        }
+      }
+    },
+    "v17": {
+      "original_policy": {
+        "threshold": 0.84,
+        "metrics": {
+          "examples": 192,
+          "asserted_examples": 96,
+          "not_asserted_examples": 96,
+          "asserted_allowed": 62,
+          "unsafe_allowed": 0,
+          "asserted_recall": 0.6458333333333334,
+          "not_asserted_recall": 1.0,
+          "passed": false
+        },
+        "key": [
+          false,
+          true,
+          62,
+          0.84
+        ]
+      },
+      "sets": {
+        "dev": {
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 93,
+            "unsafe_allowed": 1,
+            "asserted_recall": 0.96875,
+            "not_asserted_recall": 0.9895833333333334,
+            "passed": false
+          },
+          "groups": {
+            "operator_family": {
+              "inspection_result": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 0,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "verified_report": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 0,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "suffix_fact": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 1,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 0.9583333333333334,
+                "passed": false
+              },
+              "not_confirmed": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 21,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.875,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            },
+            "status": {
+              "complete": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 30,
+                "unsafe_allowed": 1,
+                "asserted_recall": 0.9375,
+                "not_asserted_recall": 0.9583333333333334,
+                "passed": false
+              },
+              "incomplete": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 31,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.96875,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "partial": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 32,
+                "unsafe_allowed": 0,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "unspecified": {
+                "examples": 24,
+                "asserted_examples": 0,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            },
+            "reference": {
+              "remaining": {
+                "examples": 96,
+                "asserted_examples": 48,
+                "not_asserted_examples": 48,
+                "asserted_allowed": 46,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.9583333333333334,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "marked": {
+                "examples": 96,
+                "asserted_examples": 48,
+                "not_asserted_examples": 48,
+                "asserted_allowed": 47,
+                "unsafe_allowed": 1,
+                "asserted_recall": 0.9791666666666666,
+                "not_asserted_recall": 0.9791666666666666,
+                "passed": false
+              }
+            },
+            "commitment": {
+              "asserted": {
+                "examples": 96,
+                "asserted_examples": 96,
+                "not_asserted_examples": 0,
+                "asserted_allowed": 93,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.96875,
+                "not_asserted_recall": 0.0,
+                "passed": true
+              },
+              "uncertain": {
+                "examples": 72,
+                "asserted_examples": 0,
+                "not_asserted_examples": 72,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 1,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 0.9861111111111112,
+                "passed": false
+              },
+              "nonassertion": {
+                "examples": 24,
+                "asserted_examples": 0,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            }
+          },
+          "continuous_in_sample_bound": {
+            "threshold_float64": 0.9998875856399537,
+            "max_negative_score": 0.9998875856399536,
+            "metrics": {
+              "examples": 192,
+              "asserted_examples": 96,
+              "not_asserted_examples": 96,
+              "asserted_allowed": 86,
+              "unsafe_allowed": 0,
+              "asserted_recall": 0.8958333333333334,
+              "not_asserted_recall": 1.0,
+              "passed": false
+            },
+            "scope": "Optimistic in-sample calibration-only coverage with zero observed false allowances. No numerical margin,device stability,independence or universal safety claim."
+          }
+        },
+        "calibration": {
+          "metrics": {
+            "examples": 192,
+            "asserted_examples": 96,
+            "not_asserted_examples": 96,
+            "asserted_allowed": 62,
+            "unsafe_allowed": 0,
+            "asserted_recall": 0.6458333333333334,
+            "not_asserted_recall": 1.0,
+            "passed": false
+          },
+          "groups": {
+            "operator_family": {
+              "commit": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 5,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.20833333333333334,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "imaginary": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 0,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "suffix_verify": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 0,
+                "asserted_recall": 1.0,
+                "not_asserted_recall": 1.0,
+                "passed": true
+              },
+              "weather_scope": {
+                "examples": 48,
+                "asserted_examples": 24,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 9,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.375,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            },
+            "status": {
+              "complete": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 21,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.65625,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "incomplete": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 17,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.53125,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "partial": {
+                "examples": 56,
+                "asserted_examples": 32,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 24,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.75,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "unspecified": {
+                "examples": 24,
+                "asserted_examples": 0,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            },
+            "reference": {
+              "remaining": {
+                "examples": 96,
+                "asserted_examples": 48,
+                "not_asserted_examples": 48,
+                "asserted_allowed": 31,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.6458333333333334,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "marked": {
+                "examples": 96,
+                "asserted_examples": 48,
+                "not_asserted_examples": 48,
+                "asserted_allowed": 31,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.6458333333333334,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            },
+            "commitment": {
+              "asserted": {
+                "examples": 96,
+                "asserted_examples": 96,
+                "not_asserted_examples": 0,
+                "asserted_allowed": 62,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.6458333333333334,
+                "not_asserted_recall": 0.0,
+                "passed": false
+              },
+              "uncertain": {
+                "examples": 72,
+                "asserted_examples": 0,
+                "not_asserted_examples": 72,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              },
+              "nonassertion": {
+                "examples": 24,
+                "asserted_examples": 0,
+                "not_asserted_examples": 24,
+                "asserted_allowed": 0,
+                "unsafe_allowed": 0,
+                "asserted_recall": 0.0,
+                "not_asserted_recall": 1.0,
+                "passed": false
+              }
+            }
+          },
+          "continuous_in_sample_bound": {
+            "threshold_float64": 5.609468618772429e-12,
+            "max_negative_score": 5.6094686187724285e-12,
+            "metrics": {
+              "examples": 192,
+              "asserted_examples": 96,
+              "not_asserted_examples": 96,
+              "asserted_allowed": 93,
+              "unsafe_allowed": 0,
+              "asserted_recall": 0.96875,
+              "not_asserted_recall": 1.0,
+              "passed": true
             },
             "scope": "Optimistic in-sample calibration-only coverage with zero observed false allowances. No numerical margin,device stability,independence or universal safety claim."
           }

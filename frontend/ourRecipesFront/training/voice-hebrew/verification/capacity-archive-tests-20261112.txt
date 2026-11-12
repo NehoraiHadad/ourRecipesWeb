@@ -1,0 +1,9 @@
+test_factorial_crossing_and_partial_reporting_labels (test_scope_v17_audit.MeasurementAuditTests.test_factorial_crossing_and_partial_reporting_labels) ... ok
+test_invalid_scores_cannot_become_calibration_evidence (test_scope_v17_audit.MeasurementAuditTests.test_invalid_scores_cannot_become_calibration_evidence) ... ok
+test_real_weight_bytes_are_checked_before_loading (test_scope_v17_audit.MeasurementAuditTests.test_real_weight_bytes_are_checked_before_loading) ... ok
+test_upper_tail_is_not_misreported_as_no_safe_separation (test_scope_v17_audit.MeasurementAuditTests.test_upper_tail_is_not_misreported_as_no_safe_separation) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.024s
+
+OK

@@ -1,0 +1,7 @@
+{
+  "observed_utc": "2026-11-12T20:42:58.534874+00:00",
+  "session": "ourrecipes-scope-v17-capacity-20261112",
+  "dedicated_stop_completed": true,
+  "termination_receipt_observed": true,
+  "source": "Dedicated owner finally cleanup and observed CLI session termination. Private usage/account logs excluded."
+}

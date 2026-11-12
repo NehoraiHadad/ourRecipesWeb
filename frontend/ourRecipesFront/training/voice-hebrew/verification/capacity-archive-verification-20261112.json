@@ -1,0 +1,12 @@
+{
+  "crc_verified": true,
+  "member_sha256_verified": 35,
+  "parent_archives_sha256_verified": {
+    "ourRecipes-hebrew-model-research-scope-20261112.zip": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add",
+    "ourRecipes-hebrew-stance-continuation-20261112.zip": "e193c37bd7f092c02a766f5e2a2a983595e43e4c0f5691f7a5d297eec4412ea6"
+  },
+  "offline_archive_tests_passed": 4,
+  "weights_present_in_extraction": false,
+  "inference_quality_claim": false,
+  "packet_sha256": "15469009c3efdbc5f3dd116eef1c3b19f18ab302fedf1b2633150b62a1594857"
+}
