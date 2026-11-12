@@ -1,0 +1,11 @@
+{
+  "package_path": "dist/ourrecipes-hebrew-training-v11.zip",
+  "bytes": 398663,
+  "sha256": "880e44ea3a64f00a97a9503ecd0a313f6c271b3f07c28a53fb07cad2aeaf12ba",
+  "files": 152,
+  "frozen_training_sources_match": true,
+  "contains_weights_or_credentials": false,
+  "extracted_factory_matches_frozen_corpus": true,
+  "unit_tests_ml_environment": 62,
+  "includes_measured_results_and_separate_untrained_state_input_proposal": true
+}

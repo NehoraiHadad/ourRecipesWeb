@@ -32,6 +32,30 @@ def groups(metrics,rows):
             'expected_updates':expected,'cost':5*false+expected-true}
     if sum(v['false_updates'] for v in result.values())!=metrics['false_updates']:raise ValueError('Subgroup false count mismatch')
     if sum(v['expected_updates'] for v in result.values())!=metrics['expected_updates']:raise ValueError('Subgroup expected count mismatch')
+    if sum(v['true_updates'] for v in result.values())!=metrics['proposed_updates']-metrics['false_updates']:raise ValueError('Subgroup true count mismatch')
+    if sum(v['exact'] for v in result.values())!=metrics['exact_proposals']:raise ValueError('Subgroup exact count mismatch')
+    return result
+
+
+def validation_repairs(out,rows):
+    """Matched gold actions: identify repairs and regressions, without tuning."""
+    result={}
+    for seed in (42,17):
+        traces={arm:json.loads((out/'ablations'/f'{arm}-{seed}'/'run/head-trace-validation.json').read_text()) for arm in ('control','boundary')}
+        cases={arm:{c['id']:c for c in tr['cases']} for arm,tr in traces.items()}
+        repaired=lost=0;reasons=defaultdict(int)
+        for row in rows:
+            if row['split']!='validation':continue
+            a,b=[cases[arm][row['id']] for arm in ('control','boundary')]
+            predictions=[{c['actionId']:c['done'] for c in case['actual']['changes']} for case in (a,b)]
+            misses={c['actionId']:c['reason'] for c in a['missed']}
+            for gold in row['gold']['changes']:
+                aid,done=gold['actionId'],gold['done'];old=aid in predictions[0] and predictions[0][aid]==done;new=aid in predictions[1] and predictions[1][aid]==done
+                if new and not old:repaired+=1;reasons[misses[aid]]+=1
+                if old and not new:lost+=1
+        result[str(seed)]={'repaired_gold_updates':repaired,'lost_previously_correct_updates':lost,
+            'repaired_by_control_blocking_reason':dict(reasons),'scope':'Matched validation diagnostics at preselected thresholds; no tuning or independent acceptance claim'}
+        if repaired-lost!=traces['boundary']['correct_updates']-traces['control']['correct_updates']:raise ValueError('Repair/global count mismatch')
     return result
 
 
@@ -59,12 +83,14 @@ def summarize(root):
     for v in report['variants']:
         arm,seed=v['arm'],v['seed'];cfg=v['config']
         for k,val in [('seed',seed),('steps_requested',1000),('corpus_sha256',plan['data_corpus_sha256']),
+                ('model','dicta-il/dictabert'),('revision','8884c6db002aba4002ee638fe4070c92e9ffbbf1'),
                 ('sampling','paired-family'),('contrast_weight',.2),('checkpoint_objective','cost5'),('shared_head_init',True),
                 ('span_profile','context-qa-v4' if arm=='boundary' else 'context-joint-v3'),('output_channels',10 if arm=='boundary' else 8)]:
             if cfg[k]!=val:raise ValueError('Trial configuration mismatch: '+k)
         trial=out/'ablations'/f'{arm}-{seed}'/'run'
         decision=json.loads((trial/'research-decision.json').read_text());metrics=json.loads((trial/'new-test-once.json').read_text())
         if decision['threshold']!=metrics['threshold']:raise ValueError('Test threshold differs from validation choice')
+        if metrics['examples']!=252 or metrics['expected_updates']!=192 or {c['id'] for c in metrics['cases']}!={r['id'] for r in test}:raise ValueError('Test case coverage mismatch')
         retained=out/'run' if arm==selection['selected_arm'] and seed==42 else out/'retained-checkpoints'/f'{arm}-{seed}'
         if json.loads((retained/'run-config.json').read_text())!=cfg:raise ValueError('Retained checkpoint identity mismatch')
         p=retained/'model/model.safetensors'
@@ -84,11 +110,14 @@ def summarize(root):
     runtime={p.stem:json.loads(p.read_text()) for p in root.glob('runtime-*.json')}
     return {'source_commit':'226f412','source_plan':'verification/grounding-plan-20261112.json',
         'postprocessing_source_sha256':digest((ROOT/'grounding_summary.py').read_bytes()),'selection':selection,'variants':variants,
-        'validation_heads':report['validation_heads'],'selected_regressions':report['selected_regressions'],'all_four_weights':weights,
+        'validation_heads':report['validation_heads'],'validation_repairs':validation_repairs(out,rows),
+        'selected_regressions':report['selected_regressions'],'all_four_weights':weights,
         'training_runs':[{'arm':v['arm'],'seed':v['seed'],'selected_step':v['config']['selected_step'],
             'training_seconds':v['report']['training_seconds'],'peak_allocated_bytes':v['report']['gpu_peak_allocated_bytes']} for v in report['variants']],
         'archive':{k:manifest[k] for k in ('bytes','sha256')},'archive_sha256_crc_verified':True,
-        'uploaded_source_hashes_match_plan':True,'resources':resources,'hardware':json.loads((out/'hardware.json').read_text()),
+        'uploaded_source_hashes_match_plan':True,
+        'local_frozen_sources_still_match':all(digest((ROOT/n).read_bytes())==sha for n,sha in plan['source_sha256'].items()),
+        'resources':resources,'hardware':json.loads((out/'hardware.json').read_text()),
         'native_cpu_runtime':runtime,'scope':'Real T4 training/inference on authored synthetic recipes and text; CPU runtime measured separately in cloud workspace',
         'human_reviewed':False,'physical_device_tested':False,'original_test_scored':False,'production_ready':False,
         'state_information_limitation':'Action input unchanged:32 separate counterfactual information probes remain conflicting. Excluded from primary metrics; boundary head does not solve missing state.'}

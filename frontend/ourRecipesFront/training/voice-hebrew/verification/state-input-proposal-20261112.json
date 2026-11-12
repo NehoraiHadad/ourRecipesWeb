@@ -1,0 +1,15 @@
+{
+  "role": "Prospective state-input structural/tokenizer audit only; no model inference, training or quality score",
+  "proposal_source_sha256": "1a8c1e889366e4cfed53c7111bd005fb2ceca654c034325e97d121e09bf3c263",
+  "queries": 36540,
+  "max_tokens": 97,
+  "unknown_tokens": 0,
+  "within_512_without_truncation": true,
+  "state_probes": 32,
+  "legacy_conflicting_token_inputs": 32,
+  "proposed_conflicting_token_inputs": 0,
+  "proposed_main_dataset_conflicts": 0,
+  "new_test_inference": false,
+  "included_in_v11_training_or_selection": false,
+  "physical_device_tested": false
+}

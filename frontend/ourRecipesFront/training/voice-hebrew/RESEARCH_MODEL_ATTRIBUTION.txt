@@ -1,0 +1,12 @@
+DictaBERT by Dicta (https://dicta.org.il/).
+Base model: https://huggingface.co/dicta-il/dictabert
+Pinned revision: 8884c6db002aba4002ee638fe4070c92e9ffbbf1
+License: Creative Commons Attribution 4.0 International (CC BY 4.0)
+https://creativecommons.org/licenses/by/4.0/
+
+Changes: supervised Hebrew cooking action/intent classification and evidence
+extraction. V10 research variants add same-report candidate ranking; V11
+research variants add start/end evidence heads. These are experimental
+adaptations and are not endorsed by Dicta. Model weights are kept locally
+outside this source/material package. Preserve this attribution when sharing
+adapted weights, and follow the base model license terms.

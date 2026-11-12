@@ -1,0 +1,1280 @@
+{
+  "source_commit": "226f412",
+  "source_plan": "verification/grounding-plan-20261112.json",
+  "postprocessing_source_sha256": "667c4bf63f9c119aabc6fcb414798bcc20ccfce31f4e54b26c78bd8f5d1d497c",
+  "selection": {
+    "selected_arm": "boundary",
+    "retained_seed": 42,
+    "aggregate_validation": {
+      "control": {
+        "mean_cost": 749.5,
+        "worst_cost": 1409,
+        "mean_precision": 0.7051549982584465,
+        "minimum_recall": 0.7668918918918919
+      },
+      "boundary": {
+        "mean_cost": 130,
+        "worst_cost": 135,
+        "mean_precision": 0.9271742003700767,
+        "minimum_recall": 0.9155405405405406
+      }
+    },
+    "boundary_eligible": true,
+    "new_test_used_for_selection": false,
+    "selection": "Validation only: boundary must have recall>=.75 in both seeds, lower mean cost and no higher worst-seed cost than control; otherwise control. Cost=5*false+missed. Fixed42 primary,17 supplemental."
+  },
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "validation": {
+        "threshold": 0.9,
+        "examples": 418,
+        "exact_proposals": 384,
+        "exact_rate": 0.9186602870813397,
+        "false_updates": 14,
+        "proposed_updates": 290,
+        "expected_updates": 296,
+        "update_precision": 0.9517241379310345,
+        "update_recall": 0.9324324324324325,
+        "clarifications": 133,
+        "exact_including_gold_evidence": 306,
+        "nonmatching_gold_evidence": 97
+      },
+      "test": {
+        "threshold": 0.9,
+        "examples": 252,
+        "exact_proposals": 212,
+        "exact_rate": 0.8412698412698413,
+        "false_updates": 13,
+        "proposed_updates": 175,
+        "expected_updates": 192,
+        "update_precision": 0.9257142857142857,
+        "update_recall": 0.84375,
+        "clarifications": 84,
+        "exact_including_gold_evidence": 140,
+        "nonmatching_gold_evidence": 95
+      },
+      "test_cost": 95,
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "expected_updates": 32,
+          "cost": 10
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "expected_updates": 32,
+          "cost": 5
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 21,
+          "true_updates": 23,
+          "false_updates": 3,
+          "expected_updates": 32,
+          "cost": 24
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 9,
+          "true_updates": 11,
+          "false_updates": 2,
+          "expected_updates": 12,
+          "cost": 11
+        },
+        "shared-predicate": {
+          "examples": 8,
+          "exact": 5,
+          "true_updates": 16,
+          "false_updates": 3,
+          "expected_updates": 16,
+          "cost": 15
+        },
+        "partial-step": {
+          "examples": 8,
+          "exact": 4,
+          "true_updates": 14,
+          "false_updates": 0,
+          "expected_updates": 20,
+          "cost": 6
+        },
+        "object-contrast": {
+          "examples": 8,
+          "exact": 5,
+          "true_updates": 13,
+          "false_updates": 0,
+          "expected_updates": 16,
+          "cost": 3
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 5,
+          "true_updates": 5,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 3
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 8,
+          "false_updates": 1,
+          "expected_updates": 8,
+          "cost": 5
+        },
+        "uncertain-confirmed": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 8,
+          "false_updates": 1,
+          "expected_updates": 8,
+          "cost": 5
+        },
+        "partial": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "meta": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "future": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "completion": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 8
+        }
+      }
+    },
+    {
+      "arm": "boundary",
+      "seed": 42,
+      "validation": {
+        "threshold": 0.3,
+        "examples": 418,
+        "exact_proposals": 375,
+        "exact_rate": 0.8971291866028708,
+        "false_updates": 20,
+        "proposed_updates": 291,
+        "expected_updates": 296,
+        "update_precision": 0.9312714776632303,
+        "update_recall": 0.9155405405405406,
+        "clarifications": 145,
+        "exact_including_gold_evidence": 323,
+        "nonmatching_gold_evidence": 81
+      },
+      "test": {
+        "threshold": 0.3,
+        "examples": 252,
+        "exact_proposals": 203,
+        "exact_rate": 0.8055555555555556,
+        "false_updates": 23,
+        "proposed_updates": 183,
+        "expected_updates": 192,
+        "update_precision": 0.8743169398907104,
+        "update_recall": 0.8333333333333334,
+        "clarifications": 84,
+        "exact_including_gold_evidence": 135,
+        "nonmatching_gold_evidence": 110
+      },
+      "test_cost": 147,
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 31,
+          "true_updates": 32,
+          "false_updates": 1,
+          "expected_updates": 32,
+          "cost": 5
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "expected_updates": 32,
+          "cost": 10
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 19,
+          "true_updates": 32,
+          "false_updates": 18,
+          "expected_updates": 32,
+          "cost": 90
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 11,
+          "true_updates": 11,
+          "false_updates": 0,
+          "expected_updates": 12,
+          "cost": 1
+        },
+        "shared-predicate": {
+          "examples": 8,
+          "exact": 1,
+          "true_updates": 9,
+          "false_updates": 0,
+          "expected_updates": 16,
+          "cost": 7
+        },
+        "partial-step": {
+          "examples": 8,
+          "exact": 4,
+          "true_updates": 16,
+          "false_updates": 0,
+          "expected_updates": 20,
+          "cost": 4
+        },
+        "object-contrast": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 15,
+          "false_updates": 1,
+          "expected_updates": 16,
+          "cost": 6
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 8
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 8,
+          "false_updates": 1,
+          "expected_updates": 8,
+          "cost": 5
+        },
+        "uncertain-confirmed": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 8
+        },
+        "partial": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "meta": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "future": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "completion": {
+          "examples": 8,
+          "exact": 5,
+          "true_updates": 5,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 3
+        }
+      }
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "validation": {
+        "threshold": 0.7,
+        "examples": 418,
+        "exact_proposals": 225,
+        "exact_rate": 0.5382775119617225,
+        "false_updates": 268,
+        "proposed_updates": 495,
+        "expected_updates": 296,
+        "update_precision": 0.4585858585858586,
+        "update_recall": 0.7668918918918919,
+        "clarifications": 129,
+        "exact_including_gold_evidence": 161,
+        "nonmatching_gold_evidence": 406
+      },
+      "test": {
+        "threshold": 0.7,
+        "examples": 252,
+        "exact_proposals": 96,
+        "exact_rate": 0.38095238095238093,
+        "false_updates": 220,
+        "proposed_updates": 364,
+        "expected_updates": 192,
+        "update_precision": 0.3956043956043956,
+        "update_recall": 0.75,
+        "clarifications": 58,
+        "exact_including_gold_evidence": 66,
+        "nonmatching_gold_evidence": 301
+      },
+      "test_cost": 1148,
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 10,
+          "true_updates": 26,
+          "false_updates": 21,
+          "expected_updates": 32,
+          "cost": 111
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 14,
+          "true_updates": 32,
+          "false_updates": 36,
+          "expected_updates": 32,
+          "cost": 180
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 12,
+          "true_updates": 30,
+          "false_updates": 30,
+          "expected_updates": 32,
+          "cost": 152
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 19,
+          "true_updates": 0,
+          "false_updates": 20,
+          "expected_updates": 0,
+          "cost": 100
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 1,
+          "true_updates": 12,
+          "false_updates": 11,
+          "expected_updates": 12,
+          "cost": 55
+        },
+        "shared-predicate": {
+          "examples": 8,
+          "exact": 3,
+          "true_updates": 11,
+          "false_updates": 11,
+          "expected_updates": 16,
+          "cost": 60
+        },
+        "partial-step": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 7,
+          "false_updates": 18,
+          "expected_updates": 20,
+          "cost": 103
+        },
+        "object-contrast": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 8,
+          "false_updates": 17,
+          "expected_updates": 16,
+          "cost": 93
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 11,
+          "expected_updates": 8,
+          "cost": 63
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 16,
+          "expected_updates": 0,
+          "cost": 80
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 3,
+          "true_updates": 4,
+          "false_updates": 1,
+          "expected_updates": 8,
+          "cost": 9
+        },
+        "uncertain-confirmed": {
+          "examples": 8,
+          "exact": 2,
+          "true_updates": 6,
+          "false_updates": 10,
+          "expected_updates": 8,
+          "cost": 52
+        },
+        "partial": {
+          "examples": 8,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "meta": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "future": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "completion": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 8,
+          "false_updates": 18,
+          "expected_updates": 8,
+          "cost": 90
+        }
+      }
+    },
+    {
+      "arm": "boundary",
+      "seed": 17,
+      "validation": {
+        "threshold": 0.7,
+        "examples": 418,
+        "exact_proposals": 365,
+        "exact_rate": 0.8732057416267942,
+        "false_updates": 23,
+        "proposed_updates": 299,
+        "expected_updates": 296,
+        "update_precision": 0.9230769230769231,
+        "update_recall": 0.9324324324324325,
+        "clarifications": 145,
+        "exact_including_gold_evidence": 290,
+        "nonmatching_gold_evidence": 106
+      },
+      "test": {
+        "threshold": 0.7,
+        "examples": 252,
+        "exact_proposals": 216,
+        "exact_rate": 0.8571428571428571,
+        "false_updates": 23,
+        "proposed_updates": 206,
+        "expected_updates": 192,
+        "update_precision": 0.8883495145631068,
+        "update_recall": 0.953125,
+        "clarifications": 77,
+        "exact_including_gold_evidence": 144,
+        "nonmatching_gold_evidence": 114
+      },
+      "test_cost": 124,
+      "phenomena": {
+        "direct": {
+          "examples": 32,
+          "exact": 30,
+          "true_updates": 32,
+          "false_updates": 2,
+          "expected_updates": 32,
+          "cost": 10
+        },
+        "negative": {
+          "examples": 32,
+          "exact": 27,
+          "true_updates": 32,
+          "false_updates": 5,
+          "expected_updates": 32,
+          "cost": 25
+        },
+        "correction": {
+          "examples": 32,
+          "exact": 18,
+          "true_updates": 32,
+          "false_updates": 14,
+          "expected_updates": 32,
+          "cost": 70
+        },
+        "uncertain": {
+          "examples": 32,
+          "exact": 32,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "implicit": {
+          "examples": 12,
+          "exact": 11,
+          "true_updates": 11,
+          "false_updates": 0,
+          "expected_updates": 12,
+          "cost": 1
+        },
+        "shared-predicate": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 16,
+          "false_updates": 0,
+          "expected_updates": 16,
+          "cost": 0
+        },
+        "partial-step": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 20,
+          "false_updates": 1,
+          "expected_updates": 20,
+          "cost": 5
+        },
+        "object-contrast": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 16,
+          "false_updates": 0,
+          "expected_updates": 16,
+          "cost": 0
+        },
+        "history-local": {
+          "examples": 8,
+          "exact": 0,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 8
+        },
+        "history-foreign": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "report-question": {
+          "examples": 8,
+          "exact": 7,
+          "true_updates": 8,
+          "false_updates": 1,
+          "expected_updates": 8,
+          "cost": 5
+        },
+        "uncertain-confirmed": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 0
+        },
+        "partial": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "meta": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "future": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "next": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "missed": {
+          "examples": 8,
+          "exact": 4,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "advice": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 0,
+          "false_updates": 0,
+          "expected_updates": 0,
+          "cost": 0
+        },
+        "completion": {
+          "examples": 8,
+          "exact": 8,
+          "true_updates": 8,
+          "false_updates": 0,
+          "expected_updates": 8,
+          "cost": 0
+        }
+      }
+    }
+  ],
+  "validation_heads": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+      "examples": 418,
+      "threshold": 0.9,
+      "gold_analysis": true,
+      "expected_updates": 296,
+      "correct_updates": 276,
+      "missed_updates": 20,
+      "miss_reasons": {
+        "candidate_absent": 10,
+        "evidence_confidence": 8,
+        "fragmented_evidence": 2
+      },
+      "false_reasons": {
+        "unsupported_action": 14
+      }
+    },
+    {
+      "arm": "boundary",
+      "seed": 42,
+      "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+      "examples": 418,
+      "threshold": 0.3,
+      "gold_analysis": true,
+      "expected_updates": 296,
+      "correct_updates": 271,
+      "missed_updates": 25,
+      "miss_reasons": {
+        "candidate_absent": 15,
+        "intent_gate": 8,
+        "evidence_confidence": 2
+      },
+      "false_reasons": {
+        "unsupported_action": 20
+      }
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+      "examples": 418,
+      "threshold": 0.7,
+      "gold_analysis": true,
+      "expected_updates": 296,
+      "correct_updates": 227,
+      "missed_updates": 69,
+      "miss_reasons": {
+        "candidate_absent": 18,
+        "wrong_polarity": 47,
+        "candidate_confidence": 4
+      },
+      "false_reasons": {
+        "unsupported_action": 228,
+        "wrong_polarity": 40
+      }
+    },
+    {
+      "arm": "boundary",
+      "seed": 17,
+      "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+      "examples": 418,
+      "threshold": 0.7,
+      "gold_analysis": true,
+      "expected_updates": 296,
+      "correct_updates": 276,
+      "missed_updates": 20,
+      "miss_reasons": {
+        "evidence_confidence": 9,
+        "intent_gate": 5,
+        "candidate_absent": 4,
+        "no_evidence": 2
+      },
+      "false_reasons": {
+        "unsupported_action": 23
+      }
+    }
+  ],
+  "validation_repairs": {
+    "42": {
+      "repaired_gold_updates": 9,
+      "lost_previously_correct_updates": 14,
+      "repaired_by_control_blocking_reason": {
+        "evidence_confidence": 6,
+        "candidate_absent": 1,
+        "fragmented_evidence": 2
+      },
+      "scope": "Matched validation diagnostics at preselected thresholds; no tuning or independent acceptance claim"
+    },
+    "17": {
+      "repaired_gold_updates": 61,
+      "lost_previously_correct_updates": 12,
+      "repaired_by_control_blocking_reason": {
+        "candidate_absent": 16,
+        "wrong_polarity": 41,
+        "candidate_confidence": 4
+      },
+      "scope": "Matched validation diagnostics at preselected thresholds; no tuning or independent acceptance claim"
+    }
+  },
+  "selected_regressions": {
+    "42": {
+      "known-probe16": {
+        "threshold": 0.3,
+        "examples": 16,
+        "exact_proposals": 14,
+        "exact_rate": 0.875,
+        "false_updates": 1,
+        "proposed_updates": 12,
+        "expected_updates": 12,
+        "update_precision": 0.9166666666666666,
+        "update_recall": 0.9166666666666666,
+        "clarifications": 7,
+        "exact_including_gold_evidence": 12,
+        "nonmatching_gold_evidence": 3
+      },
+      "consumed-v10-test": {
+        "threshold": 0.3,
+        "examples": 276,
+        "exact_proposals": 243,
+        "exact_rate": 0.8804347826086957,
+        "false_updates": 9,
+        "proposed_updates": 173,
+        "expected_updates": 188,
+        "update_precision": 0.9479768786127167,
+        "update_recall": 0.8723404255319149,
+        "clarifications": 107,
+        "exact_including_gold_evidence": 235,
+        "nonmatching_gold_evidence": 19
+      }
+    },
+    "17": {
+      "known-probe16": {
+        "threshold": 0.7,
+        "examples": 16,
+        "exact_proposals": 12,
+        "exact_rate": 0.75,
+        "false_updates": 2,
+        "proposed_updates": 12,
+        "expected_updates": 12,
+        "update_precision": 0.8333333333333334,
+        "update_recall": 0.8333333333333334,
+        "clarifications": 7,
+        "exact_including_gold_evidence": 11,
+        "nonmatching_gold_evidence": 3
+      },
+      "consumed-v10-test": {
+        "threshold": 0.7,
+        "examples": 276,
+        "exact_proposals": 235,
+        "exact_rate": 0.8514492753623188,
+        "false_updates": 20,
+        "proposed_updates": 186,
+        "expected_updates": 188,
+        "update_precision": 0.8924731182795699,
+        "update_recall": 0.8829787234042553,
+        "clarifications": 111,
+        "exact_including_gold_evidence": 229,
+        "nonmatching_gold_evidence": 26
+      }
+    }
+  },
+  "all_four_weights": {
+    "control-42": {
+      "path": "runs/colab-grounding-v11-r2/recovered/retained-checkpoints/control-42/model/model.safetensors",
+      "bytes": 735066976,
+      "sha256": "73778f1255ab4df787d64b11557729742e5d6f683aea56b57986da133854a1e8",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+        "source_sha256": "5f9acaff6ce953a1588a4b429946d3333d2816e851f93a3cff730df5441d7b04",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": true,
+        "initial_shared_head_sha256": "de2690e244bcaa635c40cf3fe973ef10e94322a4841b66f0367f9e9203e8b3e8",
+        "output_channels": 8,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 1000
+      }
+    },
+    "boundary-42": {
+      "path": "runs/colab-grounding-v11-r2/recovered/run/model/model.safetensors",
+      "bytes": 735073128,
+      "sha256": "4da3f8d434e0a3f5bc916cc205129c7e7fdf24bdf9689ff9d261320afab39884",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+        "source_sha256": "5f9acaff6ce953a1588a4b429946d3333d2816e851f93a3cff730df5441d7b04",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-qa-v4",
+        "eval_every": 250,
+        "loss": ".5 candidate CLS + .25 start + .25 end; current-report/CLS null domain, paired row weights; intent CLS CE",
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": true,
+        "initial_shared_head_sha256": "de2690e244bcaa635c40cf3fe973ef10e94322a4841b66f0367f9e9203e8b3e8",
+        "output_channels": 10,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 750
+      }
+    },
+    "control-17": {
+      "path": "runs/colab-grounding-v11-r2/recovered/retained-checkpoints/control-17/model/model.safetensors",
+      "bytes": 735066976,
+      "sha256": "f59ba9c1c96b552d8d2b333be01f0604988f7d6e7fd3a3dc0ed76158e77721f7",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+        "source_sha256": "5f9acaff6ce953a1588a4b429946d3333d2816e851f93a3cff730df5441d7b04",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": true,
+        "initial_shared_head_sha256": "a16674cf746d2887ddffcf364a709e664501d17e50040473a830f60677698709",
+        "output_channels": 8,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 1000
+      }
+    },
+    "boundary-17": {
+      "path": "runs/colab-grounding-v11-r2/recovered/retained-checkpoints/boundary-17/model/model.safetensors",
+      "bytes": 735073128,
+      "sha256": "c4167f10c8671a740c2b322b5654af2c9ae7a3494b5bd2a345a778d47be408a4",
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+        "source_sha256": "5f9acaff6ce953a1588a4b429946d3333d2816e851f93a3cff730df5441d7b04",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-qa-v4",
+        "eval_every": 250,
+        "loss": ".5 candidate CLS + .25 start + .25 end; current-report/CLS null domain, paired row weights; intent CLS CE",
+        "checkpoint_objective": "cost5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "shared_head_init": true,
+        "initial_shared_head_sha256": "a16674cf746d2887ddffcf364a709e664501d17e50040473a830f60677698709",
+        "output_channels": 10,
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 1000
+      }
+    }
+  },
+  "training_runs": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "selected_step": 1000,
+      "training_seconds": 236.52822938599996,
+      "peak_allocated_bytes": 3711830528
+    },
+    {
+      "arm": "boundary",
+      "seed": 42,
+      "selected_step": 750,
+      "training_seconds": 205.10114003800004,
+      "peak_allocated_bytes": 3709891072
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "selected_step": 1000,
+      "training_seconds": 206.63820015600004,
+      "peak_allocated_bytes": 3707800576
+    },
+    {
+      "arm": "boundary",
+      "seed": 17,
+      "selected_step": 1000,
+      "training_seconds": 184.25121129199988,
+      "peak_allocated_bytes": 3707830272
+    }
+  ],
+  "archive": {
+    "bytes": 3004611959,
+    "sha256": "a27a7bfa5817c31650d5cb7886d2eff8e74ebf3762f4571a044f67df0866c08d"
+  },
+  "archive_sha256_crc_verified": true,
+  "uploaded_source_hashes_match_plan": true,
+  "local_frozen_sources_still_match": true,
+  "resources": {
+    "reported_compute_unit_delta": 0.43,
+    "window": "Allocation/setup/training/inference/recovery/cleanup, not isolated GPU compute",
+    "remote_job_seconds": 1156.00930044,
+    "driver_seconds": 1390.872767463,
+    "artifact_recovery_method": "ssh-stream",
+    "cleanup_completed": true
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "python": "3.13.16",
+    "cpu_count": 2
+  },
+  "native_cpu_runtime": {
+    "runtime-boundary-17": {
+      "scope": "Real native CPU in cloud workspace; known validation-output parity and turn latency only, no gold accuracy scoring, browser or physical user-device claim",
+      "arm_profile": "context-qa-v4",
+      "seed": 17,
+      "threads": 2,
+      "logical_cpus": 5,
+      "affinity_cpus": 5,
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "python": "3.13.17",
+      "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+      "cgroup_cpu_max": "400000 100000",
+      "torch": "2.6.0+cpu",
+      "threshold": 0.7,
+      "load_seconds_excluding_imports": 0.24113815000055183,
+      "first_turn_ms": 297.3034770002414,
+      "warm_repeats": 3,
+      "turns_per_repeat": 16,
+      "queries_per_turn": [
+        5
+      ],
+      "warm_median_ms": 249.50347899994085,
+      "warm_p95_ms": 312.31541900069715,
+      "warm_min_ms": 209.7486000002391,
+      "warm_max_ms": 395.10115700068127,
+      "process_peak_rss_bytes": 765378560,
+      "parity_examples": 16,
+      "proposal_mismatches": 0,
+      "mismatch_ids": [],
+      "timing_includes": "Tokenization, all candidate/intent BERT queries as one turn batch, evidence decoder and composition; model already resident",
+      "new_test_scored": false,
+      "physical_device_tested": false
+    },
+    "runtime-control-42": {
+      "scope": "Real native CPU in cloud workspace; known validation-output parity and turn latency only, no gold accuracy scoring, browser or physical user-device claim",
+      "arm_profile": "context-joint-v3",
+      "seed": 42,
+      "threads": 2,
+      "logical_cpus": 5,
+      "affinity_cpus": 5,
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "python": "3.13.17",
+      "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+      "cgroup_cpu_max": "400000 100000",
+      "torch": "2.6.0+cpu",
+      "threshold": 0.9,
+      "load_seconds_excluding_imports": 0.19988454200029082,
+      "first_turn_ms": 324.3788459994903,
+      "warm_repeats": 3,
+      "turns_per_repeat": 16,
+      "queries_per_turn": [
+        5
+      ],
+      "warm_median_ms": 246.19147099974725,
+      "warm_p95_ms": 353.10933100026887,
+      "warm_min_ms": 207.8781150003124,
+      "warm_max_ms": 445.49301999995805,
+      "process_peak_rss_bytes": 761528320,
+      "parity_examples": 16,
+      "proposal_mismatches": 0,
+      "mismatch_ids": [],
+      "timing_includes": "Tokenization, all candidate/intent BERT queries as one turn batch, evidence decoder and composition; model already resident",
+      "new_test_scored": false,
+      "physical_device_tested": false
+    },
+    "runtime-boundary-42": {
+      "scope": "Real native CPU in cloud workspace; known validation-output parity and turn latency only, no gold accuracy scoring, browser or physical user-device claim",
+      "arm_profile": "context-qa-v4",
+      "seed": 42,
+      "threads": 2,
+      "logical_cpus": 5,
+      "affinity_cpus": 5,
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "python": "3.13.17",
+      "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+      "cgroup_cpu_max": "400000 100000",
+      "torch": "2.6.0+cpu",
+      "threshold": 0.3,
+      "load_seconds_excluding_imports": 0.23453644599976542,
+      "first_turn_ms": 272.71337999991374,
+      "warm_repeats": 3,
+      "turns_per_repeat": 16,
+      "queries_per_turn": [
+        5
+      ],
+      "warm_median_ms": 242.32343550011137,
+      "warm_p95_ms": 309.95531900043716,
+      "warm_min_ms": 204.0508480004064,
+      "warm_max_ms": 340.94939999977214,
+      "process_peak_rss_bytes": 760586240,
+      "parity_examples": 16,
+      "proposal_mismatches": 0,
+      "mismatch_ids": [],
+      "timing_includes": "Tokenization, all candidate/intent BERT queries as one turn batch, evidence decoder and composition; model already resident",
+      "new_test_scored": false,
+      "physical_device_tested": false
+    },
+    "runtime-control-17": {
+      "scope": "Real native CPU in cloud workspace; known validation-output parity and turn latency only, no gold accuracy scoring, browser or physical user-device claim",
+      "arm_profile": "context-joint-v3",
+      "seed": 17,
+      "threads": 2,
+      "logical_cpus": 5,
+      "affinity_cpus": 5,
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+      "python": "3.13.17",
+      "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+      "cgroup_cpu_max": "400000 100000",
+      "torch": "2.6.0+cpu",
+      "threshold": 0.7,
+      "load_seconds_excluding_imports": 0.2035493769999448,
+      "first_turn_ms": 319.44898900019325,
+      "warm_repeats": 3,
+      "turns_per_repeat": 16,
+      "queries_per_turn": [
+        5
+      ],
+      "warm_median_ms": 256.448889499552,
+      "warm_p95_ms": 347.78404899952875,
+      "warm_min_ms": 219.42478900018614,
+      "warm_max_ms": 383.03843199992116,
+      "process_peak_rss_bytes": 759402496,
+      "parity_examples": 16,
+      "proposal_mismatches": 0,
+      "mismatch_ids": [],
+      "timing_includes": "Tokenization, all candidate/intent BERT queries as one turn batch, evidence decoder and composition; model already resident",
+      "new_test_scored": false,
+      "physical_device_tested": false
+    }
+  },
+  "scope": "Real T4 training/inference on authored synthetic recipes and text; CPU runtime measured separately in cloud workspace",
+  "human_reviewed": false,
+  "physical_device_tested": false,
+  "original_test_scored": false,
+  "production_ready": false,
+  "state_information_limitation": "Action input unchanged:32 separate counterfactual information probes remain conflicting. Excluded from primary metrics; boundary head does not solve missing state."
+}
