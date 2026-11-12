@@ -1,0 +1,11 @@
+{
+  "actual_tokenizer": true,
+  "split_max_tokens": {
+    "train": 30,
+    "dev": 27,
+    "calibration": 26
+  },
+  "test_inferred": false,
+  "test_tokenized": false,
+  "source_sha256": "a46f816c0b05cffcd5bc32070d674af5dc7a5a2d33bea9c16563908c9fe8223c"
+}
