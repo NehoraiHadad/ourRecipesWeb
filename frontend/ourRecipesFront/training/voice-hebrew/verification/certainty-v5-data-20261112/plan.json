@@ -1,0 +1,46 @@
+{
+  "created_utc": "2026-11-12T07:33:33.087257+00:00",
+  "study": "certainty-v5",
+  "labels": [
+    "remaining_done",
+    "remaining_not_done",
+    "completed_not_done",
+    "clarify",
+    "other"
+  ],
+  "counts": {
+    "train": {
+      "remaining_done": 92,
+      "clarify": 432,
+      "remaining_not_done": 92,
+      "completed_not_done": 60,
+      "other": 159
+    },
+    "validation": {
+      "remaining_done": 8,
+      "clarify": 96,
+      "remaining_not_done": 8,
+      "completed_not_done": 8
+    },
+    "test": {
+      "remaining_done": 8,
+      "clarify": 96,
+      "remaining_not_done": 8,
+      "completed_not_done": 8
+    }
+  },
+  "distinct_root_groups": {
+    "train": 265,
+    "validation": 12,
+    "test": 12
+  },
+  "files": {
+    "validation.json": "9bcf68d9cf8b5117d426b9a827fca8fc4e1ec52fa0a220d9f8502fb07cf6b753",
+    "test.json": "5836ae566b0e80524fe255f0b60ec2f2ede1401f5213b517910425c744ca36f1",
+    "language.json": "3766ec0262be335612866c4c8c6846a33e8e7f534b3dcae23be4e23ecf3b0b13"
+  },
+  "source_sha256": "8d9c3ed18f3283b133c87017f2a621bd8f78dbc0c31358289027e391315419e3",
+  "limitations": "Authored synthetic; correlated operator/body combinations; surface roots/wrappers separated, semantic categories shared; no human review or speech.",
+  "new_test_inference": false,
+  "consumed_tests_role": "736 and96 are post-selection regression only; original120 untouched"
+}
