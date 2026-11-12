@@ -1,0 +1,102 @@
+{
+  "study": "grounding-v11",
+  "training_examples": 6638,
+  "training_rows_sha256": "514ca775f7d43a86b41f4093709ca9397145ffcd5e46ace0abfffe37af816c12",
+  "fresh_counts": {
+    "validation": {
+      "recipes": 8,
+      "examples": 252
+    },
+    "test": {
+      "recipes": 8,
+      "examples": 252
+    }
+  },
+  "query_conflicts": {
+    "2": {
+      "conflicting_effective_inputs": 66,
+      "examples": [
+        {
+          "examples": [
+            "semantic-train-0-same-verb-history-local-a0",
+            "semantic-train-0-same-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-same-verb-history-local-a2",
+            "semantic-train-0-same-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-different-verb-history-local-a0",
+            "semantic-train-0-different-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-0-different-verb-history-local-a2",
+            "semantic-train-0-different-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-1-same-verb-history-local-a0",
+            "semantic-train-1-same-verb-history-foreign-a0"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        },
+        {
+          "examples": [
+            "semantic-train-1-same-verb-history-local-a2",
+            "semantic-train-1-same-verb-history-foreign-a2"
+          ],
+          "labels": [
+            "clarify",
+            "report"
+          ]
+        }
+      ]
+    },
+    "3": {
+      "conflicting_effective_inputs": 0,
+      "examples": []
+    }
+  },
+  "state_probes": 32,
+  "legacy_state_probe_conflicts": 32,
+  "state_probe_role": "Information diagnostic only, excluded from primary metrics",
+  "human_reviewed": false,
+  "source_sha256": "988605931ad2d05933b25440ae8614689ed660a5e01f47287b73af1a41cf35b9",
+  "scope": "Authored text and recipe holdouts; shared phenomena, not natural conversation or independent human annotation",
+  "tokenizer": {
+    "queries": 36540,
+    "gold_spans": 5962,
+    "max_tokens": 62,
+    "unknown_tokens": 0,
+    "unrepresentable_gold_spans": [],
+    "conflicting_token_targets": []
+  },
+  "corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+  "new_test_scored": false
+}

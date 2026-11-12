@@ -1,0 +1,365 @@
+{
+  "study": "ranking-artifact-recovery",
+  "role": "Recover fixed validation-selected V10 contrast42/17 for research; not a new quality comparison",
+  "original_primary_unchanged": true,
+  "original_selected_arm": "control",
+  "retained_research_arm": "contrast",
+  "new_test_accuracy_scored": false,
+  "variants": [
+    {
+      "seed": 42,
+      "steps": 500,
+      "validation_proposal_mismatches": 0,
+      "validation_examples": 442,
+      "frozen_output_parity_mismatches": 0,
+      "frozen_output_examples": 276,
+      "validation_trace": {
+        "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+        "examples": 442,
+        "gold_analysis": true,
+        "expected_updates": 292,
+        "correct_updates": 247,
+        "missed_updates": 45,
+        "miss_reasons": {
+          "candidate_absent": 20,
+          "intent_gate": 4,
+          "no_evidence": 5,
+          "conflicting_evidence": 3,
+          "wrong_polarity": 2,
+          "short_or_generic_evidence": 10,
+          "fragmented_evidence": 1
+        },
+        "false_reasons": {
+          "unsupported_action": 10
+        }
+      },
+      "known_trace": {
+        "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+        "examples": 16,
+        "gold_analysis": true,
+        "expected_updates": 12,
+        "correct_updates": 10,
+        "missed_updates": 2,
+        "miss_reasons": {
+          "candidate_absent": 1,
+          "fragmented_evidence": 1
+        },
+        "false_reasons": {
+          "unsupported_action": 3
+        }
+      },
+      "training": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 500,
+        "selected_step": 500,
+        "training_seconds": 124.258535042,
+        "gpu_peak_allocated_bytes": 3708144640,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 442,
+          "exact_proposals": 148,
+          "exact_rate": 0.334841628959276,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 292,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 442,
+          "exact_including_gold_evidence": 148,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 442,
+          "exact_proposals": 388,
+          "exact_rate": 0.8778280542986425,
+          "false_updates": 10,
+          "proposed_updates": 257,
+          "expected_updates": 292,
+          "update_precision": 0.9610894941634242,
+          "update_recall": 0.8458904109589042,
+          "clarifications": 176,
+          "exact_including_gold_evidence": 373,
+          "nonmatching_gold_evidence": 29
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 442,
+          "exact_proposals": 388,
+          "exact_rate": 0.8778280542986425,
+          "false_updates": 10,
+          "proposed_updates": 257,
+          "expected_updates": 292,
+          "update_precision": 0.9610894941634242,
+          "update_recall": 0.8458904109589042,
+          "clarifications": 176,
+          "exact_including_gold_evidence": 373,
+          "nonmatching_gold_evidence": 29
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 42,
+        "steps_requested": 500,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 500,
+        "artifact_role": "V10 contrast research recovery; original selected reference remains control"
+      }
+    },
+    {
+      "seed": 17,
+      "steps": 1000,
+      "validation_proposal_mismatches": 0,
+      "validation_examples": 442,
+      "frozen_output_parity_mismatches": 0,
+      "frozen_output_examples": 276,
+      "validation_trace": {
+        "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+        "examples": 442,
+        "gold_analysis": true,
+        "expected_updates": 292,
+        "correct_updates": 257,
+        "missed_updates": 35,
+        "miss_reasons": {
+          "fragmented_evidence": 17,
+          "intent_gate": 14,
+          "wrong_polarity": 1,
+          "candidate_absent": 1,
+          "no_evidence": 1,
+          "conflicting_evidence": 1
+        },
+        "false_reasons": {
+          "unsupported_action": 20
+        }
+      },
+      "known_trace": {
+        "scope": "Actual native model trace; diagnostic, not new independent acceptance",
+        "examples": 16,
+        "gold_analysis": true,
+        "expected_updates": 12,
+        "correct_updates": 12,
+        "missed_updates": 0,
+        "miss_reasons": {},
+        "false_reasons": {
+          "unsupported_action": 1
+        }
+      },
+      "training": {
+        "scope": "GPU training/native validation only. Export and CPU/browser evaluation must run after GPU release.",
+        "steps": 1000,
+        "selected_step": 1000,
+        "training_seconds": 190.720740696,
+        "gpu_peak_allocated_bytes": 3707800576,
+        "validation": {
+          "threshold": 1.0,
+          "examples": 442,
+          "exact_proposals": 148,
+          "exact_rate": 0.334841628959276,
+          "false_updates": 0,
+          "proposed_updates": 0,
+          "expected_updates": 292,
+          "update_precision": null,
+          "update_recall": 0.0,
+          "clarifications": 442,
+          "exact_including_gold_evidence": 148,
+          "nonmatching_gold_evidence": 0
+        },
+        "validation_0_5": {
+          "threshold": 0.5,
+          "examples": 442,
+          "exact_proposals": 387,
+          "exact_rate": 0.8755656108597285,
+          "false_updates": 20,
+          "proposed_updates": 277,
+          "expected_updates": 292,
+          "update_precision": 0.927797833935018,
+          "update_recall": 0.8801369863013698,
+          "clarifications": 181,
+          "exact_including_gold_evidence": 380,
+          "nonmatching_gold_evidence": 28
+        },
+        "production_ready": false,
+        "final_step_validation_0_5": {
+          "threshold": 0.5,
+          "examples": 442,
+          "exact_proposals": 387,
+          "exact_rate": 0.8755656108597285,
+          "false_updates": 20,
+          "proposed_updates": 277,
+          "expected_updates": 292,
+          "update_precision": 0.927797833935018,
+          "update_recall": 0.8801369863013698,
+          "clarifications": 181,
+          "exact_including_gold_evidence": 380,
+          "nonmatching_gold_evidence": 28
+        }
+      },
+      "config": {
+        "model": "dicta-il/dictabert",
+        "revision": "8884c6db002aba4002ee638fe4070c92e9ffbbf1",
+        "architecture": "BertForTokenClassification",
+        "input_contract": "3+current-evidence-spans",
+        "seed": 17,
+        "steps_requested": 1000,
+        "batch_size": 8,
+        "encoder_lr": 3e-05,
+        "head_lr": 0.0003,
+        "sampling": "paired-family",
+        "outside_token_weight": 0.15,
+        "corpus_sha256": "af7d521c6c03bccf598e108cb27f686723defea38ba6edeff2304a16ed23188d",
+        "source_sha256": "c1f12531edb3b39f47ff460ec16eb14ac00c20e393626d4fb4dffd478f3c88cd",
+        "human_reviewed": false,
+        "production_ready": false,
+        "span_profile": "context-joint-v3",
+        "eval_every": 250,
+        "loss": "query-balanced token loss + candidate CLS decision; full weight for absent-action tokens",
+        "checkpoint_objective": "f0.5",
+        "contrast_weight": 0.2,
+        "contrast_margin": 1.0,
+        "checkpoint_io": "best-only",
+        "action_loss_weights": {
+          "done": 1.1428571428571428,
+          "not_done": 1.1428571428571428,
+          "not_mentioned": 0.8
+        },
+        "selected_step": 1000,
+        "artifact_role": "V10 contrast research recovery; original selected reference remains control"
+      }
+    }
+  ],
+  "data_audit": {
+    "study": "sampling-v10",
+    "training_examples": 6638,
+    "new_counts": {
+      "validation": {
+        "recipes": 8,
+        "examples": 276
+      },
+      "test": {
+        "recipes": 8,
+        "examples": 276
+      }
+    },
+    "training_rows_sha256": "514ca775f7d43a86b41f4093709ca9397145ffcd5e46ace0abfffe37af816c12",
+    "historical_validation_guardrail": 166,
+    "query_conflicts": {
+      "2": {
+        "conflicting_effective_inputs": 66,
+        "examples": [
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a0",
+              "semantic-train-0-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-same-verb-history-local-a2",
+              "semantic-train-0-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a0",
+              "semantic-train-0-different-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-0-different-verb-history-local-a2",
+              "semantic-train-0-different-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a0",
+              "semantic-train-1-same-verb-history-foreign-a0"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          },
+          {
+            "examples": [
+              "semantic-train-1-same-verb-history-local-a2",
+              "semantic-train-1-same-verb-history-foreign-a2"
+            ],
+            "labels": [
+              "clarify",
+              "report"
+            ]
+          }
+        ]
+      },
+      "3": {
+        "conflicting_effective_inputs": 0,
+        "examples": []
+      }
+    },
+    "source_sha256": "6271ef4488072dbac35dcf565d6a453ada4ccbfdf63ff5aedde8d4625d9284e9",
+    "scope": "Authored synthetic recipes and split-specific wording; shared language phenomena/ingredients, not independently collected or human reviewed",
+    "prior_test_role": "V9 and older tests are known regressions only; original120 test unscored"
+  },
+  "production_ready": false,
+  "archive": {
+    "bytes": 1506873256,
+    "sha256": "98241e84ea47eb369045028a77da2df044e393ee7fddc4597380f38adfd3df6a"
+  },
+  "archive_crc_ok": true,
+  "retained_research_weights": {
+    "contrast-42": {
+      "path": "runs/colab-ranking-recovery/recovered/run/model/model.safetensors",
+      "bytes": 735066976,
+      "sha256": "d83a299d8389685fb385ed2cd1af85223cc1e367ee0933834e4d6f07d2a4b2f1"
+    },
+    "contrast-17": {
+      "path": "runs/colab-ranking-recovery/recovered/retained-checkpoints/contrast-17/model/model.safetensors",
+      "bytes": 735066976,
+      "sha256": "5699d83fb701167f005c40de476853bc4f00b587b148a98cdab93f805cd8e1af"
+    }
+  },
+  "owned_session_closed": true,
+  "compute_units_consumed": 0.22,
+  "driver_seconds": 837.8391094669996
+}

@@ -1,0 +1,48 @@
+{
+  "scope": "Four real two-step Tiny CPU mechanics trials; no fresh-test inference and no quality claim",
+  "variants": [
+    {
+      "arm": "control",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-joint-v3",
+      "output_channels": 8,
+      "shared_head_sha256": "c33133eefcc61d476793b0a88f02426a75d4ca696614c7e7bf6b3623574c71d3",
+      "validation_examples": 418
+    },
+    {
+      "arm": "boundary",
+      "seed": 42,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-qa-v4",
+      "output_channels": 10,
+      "shared_head_sha256": "c33133eefcc61d476793b0a88f02426a75d4ca696614c7e7bf6b3623574c71d3",
+      "validation_examples": 418
+    },
+    {
+      "arm": "control",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-joint-v3",
+      "output_channels": 8,
+      "shared_head_sha256": "96c274adec0e528df46d07ef156924d338d6e427c7aac9aed2261be920d1e00e",
+      "validation_examples": 418
+    },
+    {
+      "arm": "boundary",
+      "seed": 17,
+      "steps": 2,
+      "selected_step": 2,
+      "profile": "context-qa-v4",
+      "output_channels": 10,
+      "shared_head_sha256": "96c274adec0e528df46d07ef156924d338d6e427c7aac9aed2261be920d1e00e",
+      "validation_examples": 418
+    }
+  ],
+  "new_test_evaluated": false,
+  "unit_tests_passed": 58,
+  "identical_validation_encoded_queries": 2090
+}

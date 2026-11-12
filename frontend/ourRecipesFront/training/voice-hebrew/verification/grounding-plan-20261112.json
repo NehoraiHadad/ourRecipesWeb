@@ -1,0 +1,57 @@
+{
+  "created_utc": "2026-11-12T05:01:51.666610+00:00",
+  "study": "grounding-v11",
+  "status": "Frozen before real quality training and fresh-test inference",
+  "arms": [
+    [
+      "control",
+      "context-joint-v3"
+    ],
+    [
+      "boundary",
+      "context-qa-v4"
+    ]
+  ],
+  "seeds": [
+    42,
+    17
+  ],
+  "training_rows": 6638,
+  "data_corpus_sha256": "1077cfb2081a81b2d7250532245d9d866cda047bf80f75666b221407f793b2d6",
+  "steps": 1000,
+  "eval_every": 250,
+  "batch_size": 8,
+  "sampling": "paired-family",
+  "margin_weight": 0.2,
+  "shared_head_init": true,
+  "thresholds": [
+    0.3,
+    0.5,
+    0.7,
+    0.9
+  ],
+  "recall_floor": 0.75,
+  "cost": "5*false_updates + missed_updates",
+  "selection": "boundary needs recall>=.75 for both seeds, improves mean cost and preserves worst cost; fixed42 primary; validation only",
+  "retain_all_four_weights": true,
+  "remote_max_seconds": 2700,
+  "comparison_max_seconds": 2400,
+  "physical_device_tested": false,
+  "human_reviewed": false,
+  "new_test_scored": false,
+  "source_sha256": {
+    "boundary_head.py": "23bebd2e5ad3ef04a8c42eea4ef35ffe2b2d39df2eb9e3e2f18499dcf53b0eca",
+    "research_decision.py": "91d022e42cd219a152e426b41e523063838bd1076ba68c43af0b69ed1b073f26",
+    "grounding_sweep.py": "6eba90e5c1d402db286959bbaf6f7e2ca7f2c6a5ce1cc80a2fa21eab22f4741f",
+    "grounding_data.py": "988605931ad2d05933b25440ae8614689ed660a5e01f47287b73af1a41cf35b9",
+    "head_trace.py": "d22d9ca04f77ff5a32acb7e2e72c77d573993d848ab3c29db572f3e86f322c29",
+    "span_pilot.py": "5f9acaff6ce953a1588a4b429946d3333d2816e851f93a3cff730df5441d7b04",
+    "paired_sampling.py": "097db5e3c9765596c47e92a7664f85f5cbf0177525ca328bb12d705e724f916f",
+    "colab_job.py": "5494d19f91a39f93ffb3294f074a7d91870e0195ef85914036da553391ca8c62",
+    "colab_pilot.py": "b09c308b742d2c93023ca35fea0da4025f2990f447d6dd9cc76a17950c619073",
+    "corpus.py": "26b63289dca729bafdf9c36678cb5b4c162cd41b89b83bb6ef93decaa621ec82",
+    "engine.py": "b1559c2e9efd84e920f1bbc09ed7fbcbbc0efecea2204ecd8ea2b20d855177b8",
+    "prepare.py": "5190b40f43f9aaf5138fb501434f186c3b860e3cbc8badd8b4684bb308a26a34",
+    "GROUNDING_PLAN.he.md": "03ef044d99a4a3150ab4f78b70b986a34394760bba633f4ecb59903b20c77467"
+  }
+}

@@ -15,6 +15,9 @@ from engine import allowed, records_from_logits, score, training_order, verify_m
 
 def training_loss(logits, targets, items, profile, legacy_weights):
     import torch
+    if profile=='context-qa-v4':
+        from boundary_head import loss
+        return loss(logits,items)
     if profile in ('span-v1','context-span-v3'):
         losses=torch.nn.functional.cross_entropy(logits.transpose(1,2),targets,weight=legacy_weights,ignore_index=-100,reduction='none')
         return losses.sum()/(targets!=-100).sum()
@@ -37,8 +40,8 @@ def training_loss(logits, targets, items, profile, legacy_weights):
 
 
 def encode(tokenizer, recipe, row, profile='span-v1'):
-    if profile not in ('span-v1','joint-contrast-v2','context-span-v3','context-joint-v3'):raise ValueError('Unknown span profile')
-    joint=profile in ('joint-contrast-v2','context-joint-v3')
+    if profile not in ('span-v1','joint-contrast-v2','context-span-v3','context-joint-v3','context-qa-v4'):raise ValueError('Unknown span profile')
+    joint=profile in ('joint-contrast-v2','context-joint-v3','context-qa-v4')
     result=[]
     for q in queries(recipe,row,3 if profile.startswith('context-') else 2):
         encoded=tokenizer(q['context'],q['utterance'],return_offsets_mapping=True,truncation=False)
@@ -67,6 +70,9 @@ def encode(tokenizer, recipe, row, profile='span-v1'):
 
 
 def decode(item, logits):
+    if item.get('profile')=='context-qa-v4':
+        from boundary_head import decode as decode_boundary
+        return decode_boundary(item,logits)
     q=item['query']
     if q['task']=='intent':return records_from_logits([q],[logits[0]])[0]
     pair=records_from_logits([q],[logits[0]])[0] if item.get('joint_gate') else None
@@ -98,6 +104,7 @@ def infer(model, tokenizer, items, device, deadline=None, onnx=None, fixture_out
     import numpy as np
     import torch
     records=[];fixtures=[]
+    if fixture_output and any(i.get('profile')=='context-qa-v4' for i in items):raise ValueError('Boundary profile is native research only; browser export not implemented')
     if model is not None:model.eval()
     elif onnx is None:raise ValueError('A model or ONNX session is required')
     for offset in range(0,len(items),16):
@@ -108,6 +115,8 @@ def infer(model, tokenizer, items, device, deadline=None, onnx=None, fixture_out
             arrays={k:v.numpy().astype(np.int64) for k,v in inputs.items()};logits=onnx.run(None,arrays)[0]
         else:
             with torch.inference_mode():logits=model(**{k:v.to(device) for k,v in inputs.items()}).logits.float().cpu().numpy()
+        expected=10 if batch[0].get('profile')=='context-qa-v4' else 8
+        if logits.shape[-1]!=expected:raise ValueError('Model output channels do not match decoder profile')
         records.extend(decode(item,values.tolist()) for item,values in zip(batch,logits))
         if fixture_output:
             arrays={k:v.numpy().astype(np.int64) for k,v in inputs.items()}
@@ -130,6 +139,7 @@ def add_browser_metadata(run):
     import torch
     run=Path(run);tokenizer=AutoTokenizer.from_pretrained(run/'model',local_files_only=True)
     profile=json.loads((run/'run-config.json').read_text()).get('span_profile','span-v1')
+    if profile=='context-qa-v4':raise ValueError('Boundary browser export is not implemented')
     recs,rows=load_data(run.parent/'selected-data');cr,crows=challenge()
     for target,rr,xx in [(run/'onnx/browser-fixtures.json',recs,[r for r in rows if r['split']=='validation']),
                          (run/'challenge-browser-fixtures.json',cr,crows)]:
@@ -167,14 +177,18 @@ def grounded(rows, records, threshold):
 
 def retain_best(model, tokenizer, folder, metrics, step, previous=None, objective='grounded-exact'):
     """Preserve the strongest validation checkpoint, independently of latest weights."""
-    if objective not in ('grounded-exact','f0.5'):raise ValueError('Unknown checkpoint objective')
+    if objective not in ('grounded-exact','f0.5','cost5'):raise ValueError('Unknown checkpoint objective')
     p=metrics['update_precision'] or 0;r=metrics['update_recall']
     f=.0 if not p+r else 1.25*p*r/(.25*p+r)
     key=(f,p,metrics['exact_rate'],metrics['exact_including_gold_evidence']) if objective=='f0.5' else (metrics['exact_including_gold_evidence'],p,r)
+    if objective=='cost5':
+        from research_decision import key as decision_key
+        key=decision_key(metrics)
     if previous is not None and key<=tuple(previous['key']):return previous
     folder=Path(folder);model.save_pretrained(folder/'best-validation-model',safe_serialization=True)
     tokenizer.save_pretrained(folder/'best-validation-model')
     result={'step':step,'key':key,'selection':'Validation only; '+objective,
+        'threshold':metrics.get('threshold',.5),
         'metrics':{k:v for k,v in metrics.items() if k not in ['cases','by_scenario']}}
     (folder/'best-validation.json').write_text(json.dumps(result,indent=2)+'\n')
     return result
@@ -217,6 +231,7 @@ def reexport(run):
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     torch.set_num_threads(4);run=Path(run)
     config=json.loads((run/'run-config.json').read_text())
+    if config.get('span_profile')=='context-qa-v4':raise ValueError('Boundary profile requires separate export/browser support')
     if config['model'] not in ('dicta-il/dictabert-tiny','dicta-il/dictabert'):
         raise ValueError('Verify the source artifact license before re-exporting another model')
     model=AutoModelForTokenClassification.from_pretrained(run/'model',local_files_only=True,attn_implementation='eager').eval()
@@ -240,14 +255,15 @@ def reexport(run):
     return result
 
 
-def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact', regime='balanced-task', contrast_weight=0., checkpoint_io='periodic'):
+def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny', train_only=False, profile='span-v1', eval_every=1000, data_source=None, seed=42, checkpoint_objective='grounded-exact', regime='balanced-task', contrast_weight=0., checkpoint_io='periodic', shared_head_init=False):
     import torch
     from transformers import AutoTokenizer,AutoModelForTokenClassification
     if device=='cuda' and not torch.cuda.is_available():raise RuntimeError('Explicit GPU required for the bounded span pilot')
     if device=='cpu' and steps>2:raise ValueError('CPU mode is limited to a two-step mechanics smoke')
     if regime not in ('balanced-task','paired-family') or checkpoint_io not in ('periodic','best-only'):raise ValueError('Unknown training regime/checkpoint IO')
     if not 0<=contrast_weight<=1 or (contrast_weight and regime!='paired-family'):raise ValueError('Contrastive loss requires paired sampling')
-    if regime=='paired-family' and profile!='context-joint-v3':raise ValueError('Paired regime requires joint context3')
+    if regime=='paired-family' and profile not in ('context-joint-v3','context-qa-v4'):raise ValueError('Paired regime requires joint context')
+    if profile=='context-qa-v4' and not train_only:raise ValueError('Boundary profile is native training research only')
     models={'tiny':(MODEL_ID,MODEL_REVISION),'base':('dicta-il/dictabert','8884c6db002aba4002ee638fe4070c92e9ffbbf1')}
     model_id,model_revision=models[model_choice]
     started=time.monotonic();deadline=started+max_seconds;torch.set_num_threads(4)
@@ -263,7 +279,18 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     else:data=augmented_data(output/'selected-data')
     folder=output/'run';folder.mkdir(parents=True,exist_ok=False)
     tokenizer=AutoTokenizer.from_pretrained(model_id,revision=model_revision,trust_remote_code=False)
-    model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=8,id2label=dict(enumerate(LABELS)),label2id={v:i for i,v in enumerate(LABELS)},attn_implementation='eager',trust_remote_code=False).to(device)
+    output_labels=LABELS+['evidence_start','evidence_end'] if profile=='context-qa-v4' else LABELS
+    model=AutoModelForTokenClassification.from_pretrained(model_id,revision=model_revision,num_labels=len(output_labels),id2label=dict(enumerate(output_labels)),label2id={v:i for i,v in enumerate(output_labels)},attn_implementation='eager',trust_remote_code=False)
+    if shared_head_init:
+        torch.manual_seed(seed+100)
+        with torch.no_grad():
+            model.classifier.weight[:8].normal_(mean=0,std=model.config.initializer_range);model.classifier.bias.zero_()
+            if len(output_labels)>8:
+                torch.manual_seed(seed+101);model.classifier.weight[8:].normal_(mean=0,std=model.config.initializer_range)
+        torch.manual_seed(seed+102)
+        if device=='cuda':torch.cuda.manual_seed_all(seed+102)
+    initial_head_sha=digest(model.classifier.weight[:8].detach().cpu().numpy().tobytes()+model.classifier.bias[:8].detach().cpu().numpy().tobytes()) if shared_head_init else None
+    model=model.to(device)
     recs,rows=load_data(data)
     sets={split:[item for row in rows if row['split']==split for item in encode(tokenizer,recs[row['recipe_id']],row,profile)] for split in ['train','validation']}
     items=sets['train'];rng=random.Random(seed);order=training_order([x['query'] for x in items],rng,'balanced-task');cursor=0
@@ -277,8 +304,10 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     weights=torch.tensor([1.,1.,.15,1.,1.,1.,1.,1.],device=device)
     config={'model':model_id,'revision':model_revision,'architecture':'BertForTokenClassification','input_contract':('3' if profile.startswith('context-') else '2')+'+current-evidence-spans','seed':seed,'steps_requested':steps,'batch_size':8,'encoder_lr':3e-5,'head_lr':3e-4,'sampling':'balanced-task','outside_token_weight':.15,'corpus_sha256':verify_manifest(data)['corpus_sha256'],'source_sha256':digest((ROOT/'span_pilot.py').read_bytes()),'human_reviewed':False,'production_ready':False}
     config.update(span_profile=profile,eval_every=eval_every,loss='historical weighted token mean' if profile in ('span-v1','context-span-v3') else 'query-balanced token loss + candidate CLS decision; full weight for absent-action tokens')
+    if profile=='context-qa-v4':config['loss']='.5 candidate CLS + .25 start + .25 end; current-report/CLS null domain, paired row weights; intent CLS CE'
     config['checkpoint_objective']=checkpoint_objective
     config.update(sampling=regime,contrast_weight=contrast_weight,contrast_margin=1.,checkpoint_io=checkpoint_io)
+    config.update(shared_head_init=shared_head_init,initial_shared_head_sha256=initial_head_sha,output_channels=len(output_labels))
     if paired:config['action_loss_weights']={'done':8/7,'not_done':8/7,'not_mentioned':.8}
     (folder/'run-config.json').write_text(json.dumps(config,indent=2)+'\n')
     learning_curve=[];best_checkpoint=None
@@ -292,8 +321,9 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
         inputs=tokenizer.pad([x['inputs'] for x in chosen],padding=True,return_tensors='pt')
         length=inputs['input_ids'].shape[1]
         targets=torch.tensor([x['targets']+[-100]*(length-len(x['targets'])) for x in chosen],device=device)
-        mask=torch.full((len(chosen),length,8),-1e9,device=device)
-        for j,item in enumerate(chosen):mask[j,:,allowed(item['query']['task'])]=0
+        mask=torch.zeros((len(chosen),length,len(output_labels)),device=device) if profile=='context-qa-v4' else torch.full((len(chosen),length,8),-1e9,device=device)
+        if profile!='context-qa-v4':
+            for j,item in enumerate(chosen):mask[j,:,allowed(item['query']['task'])]=0
         model.train();optimizer.zero_grad(set_to_none=True)
         logits=model(**{k:v.to(device) for k,v in inputs.items()}).logits+mask
         loss=training_loss(logits,targets,chosen,profile,weights)
@@ -307,10 +337,16 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
             model.save_pretrained(folder/'model',safe_serialization=True);tokenizer.save_pretrained(folder/'model')
         if (step%eval_every==0 or step==2500) and step<steps:
             valid=[r for r in rows if r['split']=='validation']
-            measured=grounded(valid,infer(model,tokenizer,sets['validation'],device,deadline),.5)
+            validation_records=infer(model,tokenizer,sets['validation'],device,deadline)
+            measured=grounded(valid,validation_records,.5)
+            raw_validation=measured
+            if checkpoint_objective=='cost5':
+                from research_decision import calibrate as cost_calibrate
+                measured=cost_calibrate(valid,validation_records)
             best_checkpoint=retain_best(model,tokenizer,folder,measured,step,best_checkpoint,checkpoint_objective)
             learning_curve.append({'step':step,'seconds':time.monotonic()-started,
-                'validation_at_0_5':{k:v for k,v in measured.items() if k not in ['cases','by_scenario']}})
+                'validation_at_0_5':{k:v for k,v in raw_validation.items() if k not in ['cases','by_scenario']},
+                'checkpoint_selection_metrics':{k:v for k,v in measured.items() if k not in ['cases','by_scenario']}})
             (folder/'learning-curve.json').write_text(json.dumps(learning_curve,indent=2)+'\n')
     training_seconds=time.monotonic()-started
     if checkpoint_io=='periodic':
@@ -319,7 +355,11 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     records=infer(model,tokenizer,sets['validation'],device,deadline)
     final_raw=grounded(selected,records,.5)
     (folder/'final-step-validation.json').write_text(json.dumps(final_raw,ensure_ascii=False,indent=2)+'\n')
-    best_checkpoint=retain_best(model,tokenizer,folder,final_raw,steps,best_checkpoint,checkpoint_objective)
+    final_selection=final_raw
+    if checkpoint_objective=='cost5':
+        from research_decision import calibrate as cost_calibrate
+        final_selection=cost_calibrate(selected,records)
+    best_checkpoint=retain_best(model,tokenizer,folder,final_selection,steps,best_checkpoint,checkpoint_objective)
     if best_checkpoint['step']!=steps:
         from safetensors.torch import load_file
         model.load_state_dict(load_file(str(folder/'best-validation-model/model.safetensors'),device='cpu'))
@@ -335,6 +375,10 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
     search={'selection':'Validation only: no observed false updates or gold-evidence mismatches, then grounded exact/recall. Not a guarantee.',
         'candidates':[{k:v for k,v in m.items() if k not in ['cases','by_scenario']} for m in candidates]}
     metrics=grounded(selected,records,best['threshold']);raw=grounded(selected,records,.5)
+    research=None
+    if checkpoint_objective=='cost5':
+        research=cost_calibrate(selected,records)
+        (folder/'research-decision.json').write_text(json.dumps({'threshold':research['threshold'],'objective':'5*false_updates + missed_updates','minimum_recall':.75,'selected_on':'validation','production_ready':False},indent=2)+'\n')
     (folder/'validation.json').write_text(json.dumps({'metrics':metrics,'at_0_5':raw,'threshold_selection':search},ensure_ascii=False,indent=2)+'\n')
     (folder/'decision.json').write_text(json.dumps({'threshold':best['threshold'],'selected_on':'validation','corpus_sha256':config['corpus_sha256'],'production_ready':False},indent=2)+'\n')
     if train_only:
@@ -344,6 +388,7 @@ def run(output, steps=1000, max_seconds=600, device='cuda', model_choice='tiny',
             'validation':{k:v for k,v in metrics.items() if k not in ['cases','by_scenario']},
             'validation_0_5':{k:v for k,v in raw.items() if k not in ['cases','by_scenario']},'production_ready':False}
         report['final_step_validation_0_5']={k:v for k,v in final_raw.items() if k not in ['cases','by_scenario']}
+        if research is not None:report['validation_research']={k:v for k,v in research.items() if k not in ['cases','by_scenario']}
         (folder/'training-report.json').write_text(json.dumps(report,indent=2)+'\n');return report
     onnx_dir=folder/'onnx'
     session=export_artifact(model,tokenizer,sets['validation'],onnx_dir)
