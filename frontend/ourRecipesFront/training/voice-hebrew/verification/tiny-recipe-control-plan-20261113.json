@@ -1,0 +1,66 @@
+{
+  "study": "tiny-recipe-browser-v20-language-controls",
+  "created_utc": "2026-11-13T08:18:27.027564+00:00",
+  "source_sha256": {
+    "tiny_recipe_control_browser.mjs": "425cfffee79f19ef6c244703d05abb1f050fe552f8036d484d266775dea9989c",
+    "tiny_recipe_controls.mjs": "4f0f2674465131c9415c20f3c6f2754ec94f6717e139e40bcfc7afe81b065408",
+    "tiny_recipe_worker.mjs": "f31697987a11b6c64ac866504390fd7f873a7d43d02165034407fb542617f136",
+    "tiny_recipe_cases.mjs": "e015c504beb423969a7e0c21e29df70bc3d8e98730f552f8e11d4114cadf9eb0"
+  },
+  "runtime_sha256": {
+    "wllama.js": "18d96d4abe1a858a6f107527583dffc7daff1b1798c569f6a6a1c7884267067a",
+    "wllama.wasm": "79ac5be917b71d50571a4f584436a9f6baf6b6e57719d094ed8bd950e9a65780"
+  },
+  "runtime": "Existing Wllama3.13.0,actual Chromium156,WASM CPU4threads,no compatibility fallback service",
+  "models": {
+    "qwen35-08": {
+      "repo": "unsloth/Qwen3.5-0.8B-GGUF",
+      "revision": "6ab461498e2023f6e3c1baea90a8f0fe38ab64d0",
+      "file": "Qwen3.5-0.8B-Q4_K_M.gguf",
+      "bytes": 532517120,
+      "sha256": "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+      "license": "Apache-2.0",
+      "local_path": "/tmp/voice-models/llm/Qwen3.5-0.8B-Q4_K_M.gguf"
+    },
+    "qwen3-06": {
+      "repo": "unsloth/Qwen3-0.6B-GGUF",
+      "revision": "50968a4468ef4233ed78cd7c3de230dd1d61a56b",
+      "file": "Qwen3-0.6B-Q4_K_M.gguf",
+      "bytes": 396705472,
+      "sha256": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a",
+      "license": "Apache-2.0",
+      "url": "https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/50968a4468ef4233ed78cd7c3de230dd1d61a56b/Qwen3-0.6B-Q4_K_M.gguf"
+    }
+  },
+  "protocol": {
+    "cases": 4,
+    "arms": [
+      "basic English/Hebrew instruction and minimal recipe controls"
+    ],
+    "n_ctx": 1536,
+    "n_batch": 128,
+    "n_ubatch": 64,
+    "threads": 4,
+    "sampling_temperature": 0,
+    "seed": 42,
+    "thinking": false,
+    "template": "Embedded official GGUF template via native chat API;record actual template SHA. No raw ChatML override.",
+    "output_limits": {
+      "chat_tokens": 80,
+      "structured_tokens": 160
+    },
+    "case_timeout_seconds": 90,
+    "load_timeout_seconds": 180,
+    "prompt_tuning": "One frozen instruction perarm,no adaptive prompt search;all are development examples."
+  },
+  "comparison_limits": "Follow-up development diagnostic after0.8B recipe pilot failed. Removes JSON state and uses English instruction to separate basic runtime/instruction from Hebrew/complex context effects. Not independent quality proof or single-variable causal attribution.",
+  "checks": "Record raw reply,finish reason,first-content and full completion time. Structural validation separate from semantic exact-fact/final-state evaluation;free response judged against frozen rubric by assistant,not human review. Never commit real app state.",
+  "old_pilot_sha256": {
+    "../../docs/voice-evidence/qwen35-small-hebrew.json": "7b7f6f92056dd14deeda50a617d6847fa564ade6d4ae98dc455f3a4945dba7cf"
+  },
+  "privacy": "Only authored synthetic recipe/text. Browser requests restricted tolocalfixture origin;server can stream only pinned public weights. No user audio/text toremote inference service.",
+  "held_tests": "Never infer original120,V5fresh480,V13new384/natural48.",
+  "actual_environment": "Cloud Chromium/CPU. WebGPU adapter probe found Google SwiftShader software,not a physical GPU or phone.",
+  "budget_note": "GGUF0.8B532.5MB is larger than MLC424MB and exceeds draft500MBdownload goal;used because it is already cached for diagnostic. This is not selection of final shipping format.",
+  "training_performed": false
+}
