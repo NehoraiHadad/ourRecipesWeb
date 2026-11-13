@@ -1,0 +1,8 @@
+{
+  "packet_sha256": "7f11f4ca1b0626e79d9839d2665cb5e95522f55da60c323d0104e73035013768",
+  "members_sha256_verified": 29,
+  "crc_verified": true,
+  "archive_node_unit_tests_passed": 4,
+  "node_exit_code": 0,
+  "new_model_inference_by_this_check": false
+}

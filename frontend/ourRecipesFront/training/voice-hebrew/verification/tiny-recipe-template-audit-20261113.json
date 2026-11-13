@@ -1,0 +1,264 @@
+{
+  "qwen35-08": {
+    "official_repo": "Qwen/Qwen3.5-0.8B",
+    "official_revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "embedded_template_sha256": "7f0e529032c25183bcd66c7f238da2d377f43be754a94e2725a58c4e16d2ed67",
+    "official_template_sha256": "273d8e0e683b885071fb17e08d71e5f2a5ddfb5309756181681de4f5a1822d80",
+    "source_string_match": false,
+    "render_checks": [
+      {
+        "id": "chat:flour-next",
+        "match": true,
+        "rendered_sha256": "4270968904adedfd2c4862d4ad52be808b4b7a72fa9c3da2abce7c09e20c697e"
+      },
+      {
+        "id": "chat:water-not-mixed",
+        "match": true,
+        "rendered_sha256": "e073d5c4b4055f989638c529d862c0fc0a35f65f74a6825da7a9b1922a06d9c1"
+      },
+      {
+        "id": "chat:correction",
+        "match": true,
+        "rendered_sha256": "f6bde43356659cf456eb1d959239dd72eb8c06a06b9fc040b72d4eed2e597607"
+      },
+      {
+        "id": "chat:uncertain",
+        "match": true,
+        "rendered_sha256": "7cff88f65c1b62c57195ebe302325f3d6d9b265f5a167b6ba2331ad9d2e22564"
+      },
+      {
+        "id": "chat:unrelated-doubt",
+        "match": true,
+        "rendered_sha256": "828d20a92438ee553a296b46f54d2f17b40b21e3763ef6caf929b91a24e91842"
+      },
+      {
+        "id": "chat:partial-water",
+        "match": true,
+        "rendered_sha256": "57497caa8d0368fc92cad00c28b00be27013cbcbeaf65f61e1dfc529f1e10162"
+      },
+      {
+        "id": "chat:skipped",
+        "match": true,
+        "rendered_sha256": "6719bd17a3a8be7801981c9cd42d847a5e62245e0e0e341d29e0cecc37ae8853"
+      },
+      {
+        "id": "chat:missing-quantity",
+        "match": true,
+        "rendered_sha256": "c570233a3a106418badf033038b06d2297f08c1c0d8c3b198ab58aef9fed7cbf"
+      },
+      {
+        "id": "chat:recipe-switch",
+        "match": true,
+        "rendered_sha256": "b15fef5e489ab0bfe89c4962e895b06babe57df19b6f8e730c9a87fce5d4ba69"
+      },
+      {
+        "id": "chat:recipe-order",
+        "match": true,
+        "rendered_sha256": "98619462ee3bea8a9a76db3d80b983bc8e9429f4561dd2246fe9fd253bf03435"
+      },
+      {
+        "id": "structured:flour-next",
+        "match": true,
+        "rendered_sha256": "b363a2e445cdc3c4768818adb6b40e34c6cfcf3db87cb7161eabd1f89bd15bfe"
+      },
+      {
+        "id": "structured:water-not-mixed",
+        "match": true,
+        "rendered_sha256": "fa827d30ddaf0ad08cbf7de51a6b7a852d5ab9fb36cca5b125903a37b15e8213"
+      },
+      {
+        "id": "structured:correction",
+        "match": true,
+        "rendered_sha256": "e86588e2ba1de766d0d6665615e8cba7a82abfb4303c80efb4ba08ced2307981"
+      },
+      {
+        "id": "structured:uncertain",
+        "match": true,
+        "rendered_sha256": "28570506229eb2d47c366e42afce4ef84a25bac58a5b78f247511973dd0eb158"
+      },
+      {
+        "id": "structured:unrelated-doubt",
+        "match": true,
+        "rendered_sha256": "606656faa1a66d39eb175084803615444f6ab73168ac100db49d29ea02e24342"
+      },
+      {
+        "id": "structured:partial-water",
+        "match": true,
+        "rendered_sha256": "94d5d4a7ed05bea0492f794540a441774748af92465b6ce2b2afb56a7ede1f77"
+      },
+      {
+        "id": "structured:skipped",
+        "match": true,
+        "rendered_sha256": "74b45acbceb6bdb36bc228e463a4d1253a00391cfb1fd59382f96e327b8ce22a"
+      },
+      {
+        "id": "structured:missing-quantity",
+        "match": true,
+        "rendered_sha256": "1434484a1c3d56568d00356007ed43cc46ff01907cb463b57cc474c8901bc672"
+      },
+      {
+        "id": "structured:recipe-switch",
+        "match": true,
+        "rendered_sha256": "b26f4d954caba8e388daa47977f695eae0f42fcf332bf71af851d1779770a695"
+      },
+      {
+        "id": "structured:recipe-order",
+        "match": true,
+        "rendered_sha256": "229f5cb9cb55ead548eb7b552049b50b7454d9d7f2c3d6bf0a957bcba42b68dd"
+      },
+      {
+        "id": "control:english-instruction",
+        "match": true,
+        "rendered_sha256": "999cdffeb9105b3263f8bb2e9a41b43918f38136bb99af8f5a402db37596aefe"
+      },
+      {
+        "id": "control:hebrew-instruction",
+        "match": true,
+        "rendered_sha256": "98731713eaba558b2fc4b04f2e02752714c954f26a990a59909031782911afca"
+      },
+      {
+        "id": "control:english-recipe",
+        "match": true,
+        "rendered_sha256": "b9363e3aeca469344f6940743d969e2b390e76ce6fd74062837f8a7ee16b7ce3"
+      },
+      {
+        "id": "control:hebrew-recipe",
+        "match": true,
+        "rendered_sha256": "5988351b4af1a8bd9373137d6f5d2191bdf6f820e0baa97b13e3a764be170779"
+      }
+    ],
+    "all_frozen_text_prompts_render_identically": true,
+    "method": "transformers4.48 Python Jinja renderer,24frozen text message arrays,no tools/images. No native C++ rendering,tokenizer,logit or physical-device parity claim."
+  },
+  "qwen3-06": {
+    "official_repo": "Qwen/Qwen3-0.6B",
+    "official_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "embedded_template_sha256": "5da44855ab7e0641774d5ed0ff0b4f89671d01df7d316e54d06557a962211cb4",
+    "official_template_sha256": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "source_string_match": false,
+    "render_checks": [
+      {
+        "id": "chat:flour-next",
+        "match": true,
+        "rendered_sha256": "4270968904adedfd2c4862d4ad52be808b4b7a72fa9c3da2abce7c09e20c697e"
+      },
+      {
+        "id": "chat:water-not-mixed",
+        "match": true,
+        "rendered_sha256": "e073d5c4b4055f989638c529d862c0fc0a35f65f74a6825da7a9b1922a06d9c1"
+      },
+      {
+        "id": "chat:correction",
+        "match": true,
+        "rendered_sha256": "f6bde43356659cf456eb1d959239dd72eb8c06a06b9fc040b72d4eed2e597607"
+      },
+      {
+        "id": "chat:uncertain",
+        "match": true,
+        "rendered_sha256": "7cff88f65c1b62c57195ebe302325f3d6d9b265f5a167b6ba2331ad9d2e22564"
+      },
+      {
+        "id": "chat:unrelated-doubt",
+        "match": true,
+        "rendered_sha256": "828d20a92438ee553a296b46f54d2f17b40b21e3763ef6caf929b91a24e91842"
+      },
+      {
+        "id": "chat:partial-water",
+        "match": true,
+        "rendered_sha256": "57497caa8d0368fc92cad00c28b00be27013cbcbeaf65f61e1dfc529f1e10162"
+      },
+      {
+        "id": "chat:skipped",
+        "match": true,
+        "rendered_sha256": "6719bd17a3a8be7801981c9cd42d847a5e62245e0e0e341d29e0cecc37ae8853"
+      },
+      {
+        "id": "chat:missing-quantity",
+        "match": true,
+        "rendered_sha256": "c570233a3a106418badf033038b06d2297f08c1c0d8c3b198ab58aef9fed7cbf"
+      },
+      {
+        "id": "chat:recipe-switch",
+        "match": true,
+        "rendered_sha256": "b15fef5e489ab0bfe89c4962e895b06babe57df19b6f8e730c9a87fce5d4ba69"
+      },
+      {
+        "id": "chat:recipe-order",
+        "match": true,
+        "rendered_sha256": "98619462ee3bea8a9a76db3d80b983bc8e9429f4561dd2246fe9fd253bf03435"
+      },
+      {
+        "id": "structured:flour-next",
+        "match": true,
+        "rendered_sha256": "b363a2e445cdc3c4768818adb6b40e34c6cfcf3db87cb7161eabd1f89bd15bfe"
+      },
+      {
+        "id": "structured:water-not-mixed",
+        "match": true,
+        "rendered_sha256": "fa827d30ddaf0ad08cbf7de51a6b7a852d5ab9fb36cca5b125903a37b15e8213"
+      },
+      {
+        "id": "structured:correction",
+        "match": true,
+        "rendered_sha256": "e86588e2ba1de766d0d6665615e8cba7a82abfb4303c80efb4ba08ced2307981"
+      },
+      {
+        "id": "structured:uncertain",
+        "match": true,
+        "rendered_sha256": "28570506229eb2d47c366e42afce4ef84a25bac58a5b78f247511973dd0eb158"
+      },
+      {
+        "id": "structured:unrelated-doubt",
+        "match": true,
+        "rendered_sha256": "606656faa1a66d39eb175084803615444f6ab73168ac100db49d29ea02e24342"
+      },
+      {
+        "id": "structured:partial-water",
+        "match": true,
+        "rendered_sha256": "94d5d4a7ed05bea0492f794540a441774748af92465b6ce2b2afb56a7ede1f77"
+      },
+      {
+        "id": "structured:skipped",
+        "match": true,
+        "rendered_sha256": "74b45acbceb6bdb36bc228e463a4d1253a00391cfb1fd59382f96e327b8ce22a"
+      },
+      {
+        "id": "structured:missing-quantity",
+        "match": true,
+        "rendered_sha256": "1434484a1c3d56568d00356007ed43cc46ff01907cb463b57cc474c8901bc672"
+      },
+      {
+        "id": "structured:recipe-switch",
+        "match": true,
+        "rendered_sha256": "b26f4d954caba8e388daa47977f695eae0f42fcf332bf71af851d1779770a695"
+      },
+      {
+        "id": "structured:recipe-order",
+        "match": true,
+        "rendered_sha256": "229f5cb9cb55ead548eb7b552049b50b7454d9d7f2c3d6bf0a957bcba42b68dd"
+      },
+      {
+        "id": "control:english-instruction",
+        "match": true,
+        "rendered_sha256": "999cdffeb9105b3263f8bb2e9a41b43918f38136bb99af8f5a402db37596aefe"
+      },
+      {
+        "id": "control:hebrew-instruction",
+        "match": true,
+        "rendered_sha256": "98731713eaba558b2fc4b04f2e02752714c954f26a990a59909031782911afca"
+      },
+      {
+        "id": "control:english-recipe",
+        "match": true,
+        "rendered_sha256": "b9363e3aeca469344f6940743d969e2b390e76ce6fd74062837f8a7ee16b7ce3"
+      },
+      {
+        "id": "control:hebrew-recipe",
+        "match": true,
+        "rendered_sha256": "5988351b4af1a8bd9373137d6f5d2191bdf6f820e0baa97b13e3a764be170779"
+      }
+    ],
+    "all_frozen_text_prompts_render_identically": true,
+    "method": "transformers4.48 Python Jinja renderer,24frozen text message arrays,no tools/images. No native C++ rendering,tokenizer,logit or physical-device parity claim."
+  }
+}

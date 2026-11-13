@@ -1,0 +1,7 @@
+{
+  "command": "node --test tiny_recipe_cases.test.mjs",
+  "observed_tests": 4,
+  "passed": 4,
+  "failed": 0,
+  "scope": "Actual structural-validator tests,not conversation accuracy or phone evidence."
+}

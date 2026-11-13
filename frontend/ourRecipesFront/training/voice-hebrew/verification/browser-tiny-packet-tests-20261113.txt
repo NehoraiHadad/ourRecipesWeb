@@ -1,0 +1,12 @@
+✔ reject cross-recipe ids and duplicate updates (1.042214ms)
+✔ partial is separate from done and source state stays unchanged (0.232544ms)
+✔ valid JSON is not evidence of semantic correctness (3.846298ms)
+✔ question and recipe switch fixtures require no progress mutation (1.279155ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 66.504041

@@ -1,0 +1,82 @@
+{
+  "observed_utc": "2026-11-13T08:29:27.217902+00:00",
+  "scope": "Latest-candidate documentation and metadata audit only;candidate performance not independently reproduced.",
+  "candidates": {
+    "LiquidAI/LFM2.5-350M": {
+      "revision": "9921cd4d82c0e3986887aa4b376f9446729ef8a3",
+      "declared_license_metadata": "other",
+      "language_tags": [
+        "en",
+        "ar",
+        "zh",
+        "fr",
+        "de",
+        "ja",
+        "ko",
+        "es",
+        "pt"
+      ],
+      "task": "text-generation",
+      "source": "https://huggingface.co/LiquidAI/LFM2.5-350M",
+      "selection": "Smaller chat model with browser demo,custom LFM license;Hebrew absent from9 declared languages. Not assumed incapable,but no evidence justifies preferring it for first Hebrew conversation pilot."
+    },
+    "foolish-bandit/cadence-0.8b-browser": {
+      "revision": "17705d964a94b323a3eab04a01e345c7446d6e54",
+      "declared_license_metadata": "apache-2.0",
+      "language_tags": [
+        "en"
+      ],
+      "task": null,
+      "source": "https://huggingface.co/foolish-bandit/cadence-0.8b-browser",
+      "selection": "Author explicitly says typed decision model,not chat generation;custom loader. Not a replacement for conversational LLM."
+    },
+    "Wissotsky/TamiLM-Hebrew-Nano": {
+      "revision": "12048f2283c9e0437504e0fccf4d9ff6339d135d",
+      "declared_license_metadata": "agpl-3.0",
+      "language_tags": [
+        "he"
+      ],
+      "task": "text-generation",
+      "source": "https://huggingface.co/Wissotsky/TamiLM-Hebrew-Nano",
+      "selection": "Hebrew RWKVv6 base model,512 training context,custom runtime andAGPL3;older release,no verified ready browser dialogue path."
+    },
+    "RoeiG/Laya-Hebrew-V2.1": {
+      "revision": "355317fad60c02f6550a631c9696638446552dcb",
+      "declared_license_metadata": "cc-by-nc-sa-4.0",
+      "language_tags": [
+        "he",
+        "en"
+      ],
+      "task": "zero-shot-classification",
+      "source": "https://huggingface.co/RoeiG/Laya-Hebrew-V2.1",
+      "selection": "New Hebrew/English decision model,not generation;CC-BY-NC-SA4.0 noncommercial. Author benchmarks not replicated;not browser-qualified."
+    },
+    "yoavipo/nativ-he-decision": {
+      "revision": "0e78cb9df435213e84c4d0617a363c8ebe183f31",
+      "declared_license_metadata": "cc-by-4.0",
+      "language_tags": "he",
+      "task": "multiple-choice",
+      "source": "https://huggingface.co/yoavipo/nativ-he-decision",
+      "selection": "New Hebrew decision model,CC-BY4commercial-use attribution license. Could be studied as a decision component,not a full chat model. Author benchmarks not replicated;not browser-qualified."
+    }
+  },
+  "sources": [
+    {
+      "url": "https://developer.chrome.com/docs/ai/prompt-api",
+      "type": "official browser docs",
+      "finding": "Current foundation-model Prompt API documentation excludes Chrome Android/iOS;not a broad mobile-browser solution."
+    },
+    {
+      "url": "https://www.reddit.com/r/LocalLLaMA/comments/1rizodv/running_qwen_35_08b_locally_in_the_browser_on/",
+      "type": "firsthand developer demo",
+      "finding": "Developer reports actual Qwen3.5-0.8B WebGPU demo,not Hebrew recipe quality."
+    },
+    {
+      "url": "https://github.com/vishalmysore/webSLM",
+      "type": "developer implementation",
+      "finding": "Domain-specific model compilation/LoRA merge example for browser deployment,not Hebrew performance evidence."
+    }
+  ],
+  "browser_inference_evidence": "tiny-recipe-browser-results-20261113.json",
+  "bounded_search_conclusion": "No clearly superior ready-to-use sub1B Hebrew conversational browser model established in the searched primary sources. Decision-only models are a different capability,not equivalent chat replacements."
+}
