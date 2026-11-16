@@ -65,13 +65,13 @@ try {
  for(const job of jobs){const r=await page.evaluate(body=>window.call({type:'chat',body}),job.body);result.browser.push({id:job.id,kind:job.kind,request:job.body,...r,...summarize(r.response)});await save();await event({phase:'browser-case',id:job.id,ms:r.ms,text:summarize(r.response).text});}
  // Predeclared diagnostic: at most four control divergences, one forced-prefix
  // token each. Both backends receive identical integer prompt IDs.
- for(const job of jobs.filter(j=>j.kind==='control')){
+ for(const job of jobs.filter(j=>j.kind==='control'||frozen.structured_diagnostic_ids?.includes(j.id))){
   const n=result.native.find(r=>r.id===job.id),b=result.browser.find(r=>r.id===job.id);
   if(JSON.stringify(n.tokens)===JSON.stringify(b.tokens))continue;
   let at=0;while(at<Math.min(n.tokens?.length??0,b.tokens?.length??0)&&n.tokens[at]===b.tokens[at])at++;
   if(at>32){result.diagnostics.push({id:job.id,skipped:'First divergence after frozen 32-token bound',at});continue;}
   const promptIds=n.tokenized.tokens.concat((n.tokens??[]).slice(0,at));
-  const body={prompt:promptIds,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,logprobs:5};
+  const body={prompt:promptIds,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,logprobs:frozen.raw_diagnostic_logprobs===false?null:5};
   const nr=await post('/v1/completions',body),br=await page.evaluate(body=>window.call({type:'raw',body}),body);
   result.diagnostics.push({id:job.id,divergenceAt:at,promptIds,native:nr,browser:br});await save();await event({phase:'forced-prefix',id:job.id,at});
  }
