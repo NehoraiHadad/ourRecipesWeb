@@ -1,10 +1,10 @@
 {
-  "study": "browser-native-parity-stage1-v10-error-observation",
-  "created_utc": "2026-11-16T11:18:04.409352+00:00",
+  "study": "browser-native-parity-stage1-v11-text-prefix",
+  "created_utc": "2026-11-16T11:19:17.532919+00:00",
   "source_sha256": {
     "parity_protocol.mjs": "acb73113ddda1094b75c180218473b2c787f0d8cc5365029d3704afb4bc13586",
     "parity_worker.mjs": "4193732364a1b65b75b241c7b22127f3915ae3a429b2f14dbe7cad80ac9c8d97",
-    "parity_runner.mjs": "e0ddcca30e3dd150963260fe1b655b9d8d55d08789299a416865d7505cedb36d",
+    "parity_runner.mjs": "97a308fc80a4af1dd280285362746caa21c089916a2c5eb75ea833c4fcd19c8c",
     "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
     "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
     "tiny_recipe_cases.mjs": "e015c504beb423969a7e0c21e29df70bc3d8e98730f552f8e11d4114cadf9eb0",
@@ -65,13 +65,13 @@
     "logprobs_top_k": 0
   },
   "hypothesis": "Locate prompt/rendering/decoding or numerics differences between CPU native and WASM before attributing poor Hebrew quality solely to model capacity. No tuning or training.",
-  "diagnostic_bound": "Exactly one structured fixture and one raw next-token call per backend, common prefix through first divergence <=32. No additional prompt search or inference after this diagnosis in stage1.",
+  "diagnostic_bound": "One raw next-token pair using public text input, native tokenization validated408 IDs; reuse prior chat observations. No new chat requests, training, prompts or held cases.",
   "decision_rule": "Compare actual detokenized prompt, count, generated tokenIDs, text and structural/semantic fixture outcomes. Exact output not universally required across CPU architectures; any substantial divergence needs diagnosis. Same tokenized text with matching counts is not direct observation of WASM input IDs. No full-logit parity claim from top5 probabilities.",
   "legacy_comparison_limits": "Cache disabled and flash attention explicitly disabled here; these runs are not isolated causal comparisons against the Nov13 cached/auto flash runs. New contract is NOT passed to the model in this parity experiment; old prompts/schema are kept.",
   "scope": "Synthetic authored development only; loopback native server and local browser fixtures; no audio/user data to external inference. Public pinned weights/source downloaded for local CPU use. No physical phone/GPU.",
   "training_performed": false,
   "held_tests_inferred": false,
-  "setup_correction": "v9 raw integer request still raised GLUE-length error without logprobs. Capture original C++ error log on exactly the same single raw request, preserving native success already recorded. No change to inputs/model/sampling and no further case search. This is observability reproduction, not model selection.",
+  "setup_correction": "Original C++ log in v10: type must be string, but is array. Our raw diagnostic used integer IDs beyond declared Wllama prompt:string API. This is a harness misuse, not an OOM or proof of a model failure. Correct to identical actual text+common generated prefix; verify native token IDs match the planned prefix before one next-token call per backend. Do not claim direct WASM input-ID observation. No further diagnostic expansion in stage1.",
   "request_overrides": {
     "logprobs": false,
     "top_logprobs": null
@@ -84,5 +84,6 @@
   ],
   "raw_diagnostic_logprobs": false,
   "reuse_native_result": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
-  "reuse_browser_result": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v8-branch-probe/result.json"
+  "reuse_browser_result": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v8-branch-probe/result.json",
+  "raw_prompt_text": true
 }

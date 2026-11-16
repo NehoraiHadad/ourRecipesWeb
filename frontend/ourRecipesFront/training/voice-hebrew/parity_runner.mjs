@@ -76,8 +76,15 @@ try {
   let at=0;while(at<Math.min(n.tokens?.length??0,b.tokens?.length??0)&&n.tokens[at]===b.tokens[at])at++;
   if(at>32){result.diagnostics.push({id:job.id,skipped:'First divergence after frozen 32-token bound',at});continue;}
   const promptIds=n.tokenized.tokens.concat((n.tokens??[]).slice(0,at));
-  const body={prompt:promptIds,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,...(frozen.raw_diagnostic_logprobs===false?{}:{logprobs:5})};
-  const diagnostic={id:job.id,divergenceAt:at,promptIds,request:body};result.diagnostics.push(diagnostic);await save();
+  let rawPrompt=promptIds;
+  if(frozen.raw_prompt_text){
+   const prefix=await post('/detokenize',{tokens:(n.tokens??[]).slice(0,at)});
+   rawPrompt=n.prompt+prefix.response.content;
+   const tokenized=await post('/tokenize',{content:rawPrompt,add_special:true,parse_special:true});
+   if(JSON.stringify(tokenized.response.tokens)!==JSON.stringify(promptIds))throw Error('Text prefix changed native token IDs');
+  }
+  const body={prompt:rawPrompt,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,...(frozen.raw_diagnostic_logprobs===false?{}:{logprobs:5})};
+  const diagnostic={id:job.id,divergenceAt:at,nativeInputTokenIds:promptIds,wasmInputTokenIdsDirectlyObserved:false,request:body};result.diagnostics.push(diagnostic);await save();
   diagnostic.native=await post('/v1/completions',body);await save();
   diagnostic.browser=await page.evaluate(body=>window.call({type:'raw',body}),body);await save();await event({phase:'forced-prefix',id:job.id,at});
  }
