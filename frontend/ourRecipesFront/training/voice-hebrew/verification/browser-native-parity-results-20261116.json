@@ -1,0 +1,99 @@
+{
+  "result_file": "runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
+  "result_sha256": "1d00d3dae68061f387032ad9c14afbdd3f44d5cbc03b3e64da7d6df1d63ddc7a",
+  "completed": true,
+  "error": null,
+  "compared_cases": 14,
+  "promptExact": 14,
+  "nativeRenderedMatchesActual": 14,
+  "promptCountMatches": 14,
+  "generatedTokensExact": 9,
+  "textExact": 10,
+  "metrics": {
+    "native": {
+      "structured_cases": 10,
+      "structurally_valid": 10,
+      "correct_final_state": 4,
+      "exact_reported_facts": 2,
+      "median_structured_ms": 2263.3541600000017,
+      "max_structured_ms": 3493.661792000001,
+      "required_changes_correct": 3,
+      "required_change_cases": 5,
+      "readonly_final_states_correct": 1,
+      "readonly_cases": 5
+    },
+    "browser": {
+      "structured_cases": 10,
+      "structurally_valid": 10,
+      "correct_final_state": 4,
+      "exact_reported_facts": 2,
+      "median_structured_ms": 15689.417499999981,
+      "max_structured_ms": 18759.93499999959,
+      "required_changes_correct": 3,
+      "required_change_cases": 5,
+      "readonly_final_states_correct": 1,
+      "readonly_cases": 5
+    }
+  },
+  "structured_update_arrays_equal": 9,
+  "generated_sequence_differences": [
+    {
+      "id": "water-not-mixed",
+      "first_differing_generated_index": 21,
+      "native_text": "{\n  \"reply\": \"הוספתי מים אבל עוד לא ערבבתי.\",\n  \"updates\": [\n    {\n      \"id\": \"water\",\n      \"status\": \"done\"\n    },\n    {\n      \"id\": \"mix\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"cook\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "browser_text": "{\n  \"reply\": \"הוספתי מים אבל עוד לא ערבבתי\",\n  \"updates\": [\n    {\n      \"id\": \"water\",\n      \"status\": \"done\"\n    },\n    {\n      \"id\": \"mix\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"cook\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "parsed_updates_equal": true,
+      "native_first_divergence_probabilities": null,
+      "browser_first_divergence_probabilities": null
+    },
+    {
+      "id": "unrelated-doubt",
+      "first_differing_generated_index": 15,
+      "native_text": "{\n  \"reply\": \"כף בכיור, שמתי קמח\",\n  \"updates\": [\n    {\n      \"id\": \"flour\",\n      \"status\": \"done\"\n    },\n    {\n      \"id\": \"water\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"mix\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"cook\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "browser_text": "{\n  \"reply\": \"כף בכיור, אך שמתי קמח\",\n  \"updates\": [\n    {\n      \"id\": \"flour\",\n      \"status\": \"done\"\n    },\n    {\n      \"id\": \"water\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"mix\",\n      \"status\": \"pending\"\n    },\n    {\n      \"id\": \"cook\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "parsed_updates_equal": true,
+      "native_first_divergence_probabilities": null,
+      "browser_first_divergence_probabilities": null
+    },
+    {
+      "id": "partial-water",
+      "first_differing_generated_index": 17,
+      "native_text": "{\n  \"reply\": \"הוספתי רק חלק מהמים.\",\n  \"updates\": [\n    {\n      \"id\": \"water\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "browser_text": "{\n  \"reply\": \"הוספתי רק חלק מהמים\",\n  \"updates\": [\n    {\n      \"id\": \"water\",\n      \"status\": \"pending\"\n    }\n  ]\n}",
+      "parsed_updates_equal": true,
+      "native_first_divergence_probabilities": null,
+      "browser_first_divergence_probabilities": null
+    },
+    {
+      "id": "recipe-switch",
+      "first_differing_generated_index": 4,
+      "native_text": "{\"reply\": \"לערבב את הסלט.\", \"updates\": [{\"id\": \"toss\", \"status\": \"done\"}]}",
+      "browser_text": "{\"reply\": \"הוספתי קמח במתכון הקודם.\", \"updates\": [{\"id\": \"lemon\", \"status\": \"done\"}]}",
+      "parsed_updates_equal": false,
+      "native_first_divergence_probabilities": null,
+      "browser_first_divergence_probabilities": null
+    },
+    {
+      "id": "recipe-order",
+      "first_differing_generated_index": 21,
+      "native_text": "{\"reply\": \"לא\", \"updates\": [{\"id\": \"mix\", \"status\": \"done\"}]}",
+      "browser_text": "{\"reply\": \"לא\", \"updates\": [{\"id\": \"mix\", \"status\": \"done\"}]}",
+      "parsed_updates_equal": true,
+      "native_first_divergence_probabilities": null,
+      "browser_first_divergence_probabilities": null
+    }
+  ],
+  "forced_prefix_diagnostics": 0,
+  "blocked_external_browser_requests": 0,
+  "physical_device_tested": false,
+  "training_performed": false,
+  "held_tests_inferred": false,
+  "notes": [
+    "Two backends see the same 14 authored development requests, not 28 independent quality cases.",
+    "Native data may be reused from the retained v2 run after browser transport-only fixes.",
+    "Actual prompt strings, counts and generated IDs are observed. WASM input IDs are not directly exposed.",
+    "Native and WASM use different CPU kernels. Equality on these cases is not universal numerical parity.",
+    "Times are local diagnostics, not controlled speed or physical-phone benchmarks.",
+    "Model inference uses the old V19 contract, not the new 80-case contract dataset."
+  ]
+}

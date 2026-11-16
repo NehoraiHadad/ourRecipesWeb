@@ -1,0 +1,22 @@
+{
+  "ourRecipes-hebrew-model-research-scope-20261112.zip": {
+    "sha256": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add",
+    "bytes": 168109071,
+    "unchanged": true
+  },
+  "ourRecipes-hebrew-stance-continuation-20261112.zip": {
+    "sha256": "e193c37bd7f092c02a766f5e2a2a983595e43e4c0f5691f7a5d297eec4412ea6",
+    "bytes": 81656350,
+    "unchanged": true
+  },
+  "ourRecipes-hebrew-capacity-diagnosis-20261112.zip": {
+    "sha256": "15469009c3efdbc5f3dd116eef1c3b19f18ab302fedf1b2633150b62a1594857",
+    "bytes": 201261,
+    "unchanged": true
+  },
+  "ourRecipes-tiny-browser-recipe-20261113.zip": {
+    "sha256": "7f11f4ca1b0626e79d9839d2665cb5e95522f55da60c323d0104e73035013768",
+    "bytes": 114500,
+    "unchanged": true
+  }
+}

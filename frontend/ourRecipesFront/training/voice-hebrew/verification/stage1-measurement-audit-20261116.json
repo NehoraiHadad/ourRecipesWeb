@@ -1,0 +1,238 @@
+{
+  "created_utc": "2026-11-16T11:22:24.349438+00:00",
+  "main_run": "20261116-qwen06-v7-no-logprobs",
+  "main_summary": "browser-native-parity-results-20261116.json",
+  "actual_generation_settings_audit": [
+    {
+      "id": "english-instruction",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "hebrew-instruction",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "english-recipe",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "hebrew-recipe",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "flour-next",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "water-not-mixed",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "correction",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "uncertain",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "unrelated-doubt",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "partial-water",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "skipped",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "missing-quantity",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "recipe-switch",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    },
+    {
+      "id": "recipe-order",
+      "non_grammar_differences": [],
+      "grammar_equal_after_generated_until_rule_symbol_renaming": true
+    }
+  ],
+  "raw_prefix_observation": {
+    "run": "20261116-qwen06-v11-text-prefix",
+    "native_prefix_token_ids": 408,
+    "wasm_input_token_ids_directly_observed": false,
+    "raw": {
+      "native": {
+        "text": "ה",
+        "tokens": [
+          45971
+        ],
+        "prompt_tokens": 408,
+        "completion_tokens": 1,
+        "actual_prompt_sha256": "ff1e84bc76c3e960fc72f9fb831795f7bae98574dd3d3c963216a7ea088c0088"
+      },
+      "browser": {
+        "text": "ה",
+        "tokens": [
+          45971
+        ],
+        "prompt_tokens": 408,
+        "completion_tokens": 1,
+        "actual_prompt_sha256": "ff1e84bc76c3e960fc72f9fb831795f7bae98574dd3d3c963216a7ea088c0088"
+      }
+    },
+    "both_text_next_tokens_equal": true,
+    "limits": "One bulk-prefill raw continuation is not the same computation/grammar state as four incremental constrained chat decode steps; it does not resolve the structured recipe-switch branch cause."
+  },
+  "runs": [
+    {
+      "run": "20261116-qwen06-v1",
+      "result_sha256": "e5b4daec66d4037ee570230975f1f9db80006c695c4783e9acff519aa5def3cf",
+      "completed": false,
+      "native_chat_rows": 0,
+      "native_chat_reused_from": null,
+      "browser_chat_rows": 0,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: Native server exited"
+    },
+    {
+      "run": "20261116-qwen06-v10-error-observation",
+      "result_sha256": "8450e013a44d68fc1d1aa48b7ac9c0e6e734b19c9deb85d674cf0a17ff8d5041",
+      "completed": false,
+      "native_chat_rows": 1,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
+      "browser_chat_rows": 1,
+      "browser_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v8-branch-probe/result.json",
+      "diagnostics_recorded": 1,
+      "error": "Error: page.evaluate: Error: RuntimeError: Invalid typed array length: 1163217991\nRangeError: Invalid typed array length: 1163217991\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:371:5)\n    at async onmessage (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:548:5)\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:371:5)\n    at async onmessage (blob:http://127.0.0.1:36571/6841c2c1-fdbb-482c-ba60-a880af2bcccb:548:5)\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v11-text-prefix",
+      "result_sha256": "1a5ae48f2b71e9e4e66a4e1e1952e2dd87f4fbd975d33fe174e11b922da839f1",
+      "completed": true,
+      "native_chat_rows": 1,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
+      "browser_chat_rows": 1,
+      "browser_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v8-branch-probe/result.json",
+      "diagnostics_recorded": 1,
+      "error": null
+    },
+    {
+      "run": "20261116-qwen06-v2",
+      "result_sha256": "368b21486ea3a4e42d553a841c33c6073fc56c31cea715387f2c3c154cc98ed6",
+      "completed": false,
+      "native_chat_rows": 14,
+      "native_chat_reused_from": null,
+      "browser_chat_rows": 0,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: TypeError: Failed to fetch\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v3",
+      "result_sha256": "2805e82603f9bd9efae59243a3abad4616e6a14f5dc0e6d122d1957f7ca6bf4f",
+      "completed": false,
+      "native_chat_rows": 14,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json",
+      "browser_chat_rows": 0,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: TypeError: Failed to fetch\nTypeError: Failed to fetch\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v4",
+      "result_sha256": "8c4d4403ae606b6825056f2d0d7d8a16fe06536b0b9c4c015ef0fcbcf9948f9f",
+      "completed": false,
+      "native_chat_rows": 14,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json",
+      "browser_chat_rows": 0,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: TypeError: Failed to fetch\nTypeError: Failed to fetch\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v5",
+      "result_sha256": "7b80c3425ba7e4440256bbb71e5bcf8604874e2fd3bbf5280959f2b7a38a51ce",
+      "completed": false,
+      "native_chat_rows": 14,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json",
+      "browser_chat_rows": 12,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: RuntimeError: Invalid typed array length: 1163217991\nRangeError: Invalid typed array length: 1163217991\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:371:5)\n    at async onmessage (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:548:5)\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:371:5)\n    at async onmessage (blob:http://127.0.0.1:34623/fff3514f-c45d-4593-b4af-8da4a97b9835:548:5)\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v6-fresh-two",
+      "result_sha256": "7fef558d5b0801f486b9dc97dd118dca54e79fe950e24d6ff55ef2155541c262",
+      "completed": false,
+      "native_chat_rows": 2,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json",
+      "browser_chat_rows": 0,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: RuntimeError: Invalid typed array length: 1163217991\nRangeError: Invalid typed array length: 1163217991\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:371:5)\n    at async onmessage (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:548:5)\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:371:5)\n    at async onmessage (blob:http://127.0.0.1:41811/d1b2e701-45ae-4266-ab46-aac8631d577d:548:5)\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v7-no-logprobs",
+      "result_sha256": "1d00d3dae68061f387032ad9c14afbdd3f44d5cbc03b3e64da7d6df1d63ddc7a",
+      "completed": true,
+      "native_chat_rows": 14,
+      "native_chat_reused_from": null,
+      "browser_chat_rows": 14,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": null
+    },
+    {
+      "run": "20261116-qwen06-v8-branch-probe",
+      "result_sha256": "72bf7683e893526eebdcf0efb922fd329c325a8da739f1cffca49c387e55cfcd",
+      "completed": false,
+      "native_chat_rows": 1,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
+      "browser_chat_rows": 1,
+      "browser_chat_reused_from": null,
+      "diagnostics_recorded": 0,
+      "error": "Error: page.evaluate: Error: RuntimeError: Invalid typed array length: 1163217991\nRangeError: Invalid typed array length: 1163217991\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:371:5)\n    at async onmessage (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:548:5)\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:371:5)\n    at async onmessage (blob:http://127.0.0.1:33885/8794e512-023c-4902-8f3c-bb657f2a0685:548:5)\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    },
+    {
+      "run": "20261116-qwen06-v9-raw-transport",
+      "result_sha256": "a452187aa2fbda5cb9b6802538a70a870a1a062ffdbf2f2ee35c90dfa79233f3",
+      "completed": false,
+      "native_chat_rows": 1,
+      "native_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v7-no-logprobs/result.json",
+      "browser_chat_rows": 1,
+      "browser_chat_reused_from": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v8-branch-probe/result.json",
+      "diagnostics_recorded": 1,
+      "error": "Error: page.evaluate: Error: RuntimeError: Invalid typed array length: 1163217991\nRangeError: Invalid typed array length: 1163217991\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:371:5)\n    at async onmessage (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:548:5)\n    at new Uint8Array (<anonymous>)\n    at runAction (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:406:27)\n    at async runWasmCall (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:371:5)\n    at async onmessage (blob:http://127.0.0.1:35877/d51212c5-af43-49c8-b2ad-7668ffec3872:548:5)\n    at window.worker.onmessage (eval at evaluate (:370:30), <anonymous>:1:253)"
+    }
+  ],
+  "readiness": {
+    "state_contract": "frozen with16 code/data tests passed",
+    "development80": "authored and validated, no inference/training",
+    "normal_native_browser_comparison": "completed14 requests each; actual prompt/count match14; output-token equality9; updates equality9of10",
+    "full_backend_equivalence": "not established; structured switch differs semantically and both fail expected state",
+    "model_promoted": false,
+    "physical_phone_tested": false,
+    "training_performed": false,
+    "held_tests_inferred": false
+  },
+  "decision": "Close bounded stage1 diagnostic with explicit failed backend-equivalence claim. Retain all errors; evaluate quality independently on each target backend. Next research arm Nativ must have its own export/tokenization/quality check, not assume Python or Wllama parity. No further prompt/kernel search or training on this baseline in this round."
+}
