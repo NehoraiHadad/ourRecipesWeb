@@ -1,0 +1,15 @@
+test_actual_wrong_change_is_counted_and_valid_change_is_not (test_sparse_recipe_report.MutationAuditTests.test_actual_wrong_change_is_counted_and_valid_change_is_not) ... ok
+test_omission_does_not_become_an_incorrect_mutation (test_sparse_recipe_report.MutationAuditTests.test_omission_does_not_become_an_incorrect_mutation) ... ok
+test_unexpected_confirmation_of_existing_state_does_not_become_mutation (test_sparse_recipe_report.MutationAuditTests.test_unexpected_confirmation_of_existing_state_does_not_become_mutation) ... ok
+test_correct_outputs_score_without_mutating_explicit_state (test_sparse_recipe_v3.SparseContractTests.test_correct_outputs_score_without_mutating_explicit_state) ... ok
+test_duplicate_keys_unknown_actions_and_conflicting_clarifications_fail (test_sparse_recipe_v3.SparseContractTests.test_duplicate_keys_unknown_actions_and_conflicting_clarifications_fail) ... ok
+test_invalid_outputs_never_become_successful_noops (test_sparse_recipe_v3.SparseContractTests.test_invalid_outputs_never_become_successful_noops) ... ok
+test_new_partitions_are_disjoint_and_balanced (test_sparse_recipe_v3.SparseContractTests.test_new_partitions_are_disjoint_and_balanced) ... ok
+test_noop_cannot_hide_missing_explicit_pending_report (test_sparse_recipe_v3.SparseContractTests.test_noop_cannot_hide_missing_explicit_pending_report) ... ok
+test_partial_corrections_and_mixed_scope_remain_sparse (test_sparse_recipe_v3.SparseContractTests.test_partial_corrections_and_mixed_scope_remain_sparse) ... ok
+test_prompt_uses_only_request_and_current_recipe (test_sparse_recipe_v3.SparseContractTests.test_prompt_uses_only_request_and_current_recipe) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.038s
+
+OK

@@ -1,0 +1,14 @@
+{
+  "file": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-sparse-qwen-pilot-20261116.zip",
+  "bytes": 51373877,
+  "sha256": "e63ce07f933f65fc48f2f4750e7b47b0b5747a1d3abda7f5fcef42264b22c54f",
+  "members": 35,
+  "manifest_entries": 34,
+  "crc_verified": true,
+  "all_manifest_members_verified": true,
+  "extracted_small_source_tests_passed": 10,
+  "nested_original_results_archive_preserved": true,
+  "model_base_weights_bundled": false,
+  "adapter_and_optimizer_checkpoints_bundled": true,
+  "private_account_files_bundled": false
+}

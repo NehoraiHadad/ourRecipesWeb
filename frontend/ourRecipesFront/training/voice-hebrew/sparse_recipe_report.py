@@ -55,6 +55,10 @@ def audit(run):
             changed_incorrectly = [row['id'] for row, record in zip(rows, records) if incorrect_mutations(row, record['text'])]
             summaries.append({'step': step, 'source_sha256': manifest[name]['sha256'], 'metrics': metrics,
                               'by_family': validation['by_family'],
+                              'raw_output_diagnostics': {
+                                  'starts_with_markdown_fence': sum(r['text'].lstrip().startswith('```') for r in records),
+                                  'generation_capped_without_eos': sum(151645 not in r['tokens'] and len(r['tokens']) == plan['evaluation']['max_new_tokens'] for r in records),
+                                  'scope': 'Descriptive only; no fence stripping, extra generation or rescoring repaired text.'},
                               'posthoc_incorrect_actual_mutation_cases': changed_incorrectly,
                               'posthoc_incorrect_actual_mutation_count': len(changed_incorrectly)})
         if result:

@@ -1,0 +1,1652 @@
+{
+  "created_utc": "2026-11-16T14:14:48.928234+00:00",
+  "scope": "Posthoc descriptive error review, not additional model inference, training or checkpoint selection",
+  "step": 160,
+  "source_validation_sha256": "786e6bf0a5b9a5a2d0cd666d4f3d49b3ed424e56f445c73e90e12553250a0314",
+  "exact_fact_pairs": {
+    "true_positive": 60,
+    "false_positive": 15,
+    "false_negative": 30,
+    "note": "Pair counts, not independent conversations"
+  },
+  "per_recipe": {
+    "sparse-recipe-6": {
+      "name": "רוטב עגבניות",
+      "cases": 60,
+      "exact": 39
+    },
+    "sparse-recipe-7": {
+      "name": "דייסת סולת",
+      "cases": 60,
+      "exact": 43
+    }
+  },
+  "wrong_id_proposals_matching_navigation": {
+    "matches": 3,
+    "wrong_target_count": 8,
+    "note": "Correlation only; no claim navigation caused an error"
+  },
+  "curve": {
+    "updates": 160,
+    "first_loss": 1.362023115158081,
+    "last_loss": 0.0019485119264572859,
+    "effective_examples": 640,
+    "first80_mean_loss": 0.1619980219489662,
+    "last80_mean_loss": 0.022493944808957167
+  },
+  "findings": [
+    "Clear12/12, negation11/12 and uncertainty11/12; multiple-clause reports3/12, partial3/12.",
+    "All four partial-status correction probes fail; eight done/pending corrections pass.",
+    "Train uses one main partial sentence frame across recipes; validation changes both frame and recipe. Failure cannot be uniquely attributed to recipe vocabulary or partial syntax from this experiment.",
+    "Five no-report cases propose facts: two unanchored pronouns, two text-editing quotes, one uncertain report.",
+    "Unanchored-pronoun labels assume currentStep is navigation, not a last-spoken instruction. This is not explicit in the frozen prompt; keep as a documented label ambiguity, not a silent relabeling.",
+    "Format learning and compliance with the96-token budget are a substantial part of the improvement: all baseline responses start with fences and97 reach the cap without EOS.",
+    "Full frozen-base parameter hash unchanged; improvements are from this one adapter/pilot, not base-weight editing."
+  ],
+  "next_hypothesis": "One bounded data-diversity intervention covering partial/uncertain/pending contrasts and preserving both clauses, with same model/prompt/hyperparameters and a newly frozen development partition. Current120 are exposed regression, not fresh test. Explicitly document navigation vs spoken anchor before a derived protocol. Do not increase update count as the only change.",
+  "errors": [
+    {
+      "id": "validation-r6-negation-1",
+      "family": "negation",
+      "utterance": "אצלי טרם הוספתי את העגבניות",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "partial",
+        "a8": "done",
+        "a3": "partial"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "pending"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-0",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לקצוץ את הבצל, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "partial",
+        "a8": "partial",
+        "a3": "pending"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a4",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a4"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a4",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-1",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל להוסיף את העגבניות, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "done",
+        "a8": "partial",
+        "a3": "done"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-2",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לערבב את הרוטב, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "pending",
+        "a8": "done",
+        "a3": "partial"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a8"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a8",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-3",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לבשל את הרוטב, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "pending",
+        "a8": "done",
+        "a3": "pending"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a3",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-4",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לקצוץ את הבצל, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "done",
+        "a8": "done",
+        "a3": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a4",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a4",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-partial-5",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל להוסיף את העגבניות, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "pending",
+        "a8": "partial",
+        "a3": "done"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-correction-2",
+      "family": "correction",
+      "utterance": "אני חוזר בי ממה שאמרתי, הספקתי רק להתחיל לערבב את הרוטב, נשאר להשלים",
+      "history": [
+        {
+          "role": "assistant",
+          "content": "סימנתי את הפעולה לערבב את הרוטב במצב done."
+        }
+      ],
+      "progress": {
+        "a4": "pending",
+        "a5": "done",
+        "a8": "done",
+        "a3": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a8",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a8",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a8"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-correction-5",
+      "family": "correction",
+      "utterance": "אני חוזר בי ממה שאמרתי, הספקתי רק להתחיל להוסיף את העגבניות, נשאר להשלים",
+      "history": [
+        {
+          "role": "assistant",
+          "content": "סימנתי את הפעולה להוסיף את העגבניות במצב done."
+        }
+      ],
+      "progress": {
+        "a4": "done",
+        "a5": "done",
+        "a8": "partial",
+        "a3": "done"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          null
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-side-doubt-1",
+      "family": "side-doubt",
+      "utterance": "ייתכן שמישהו בדלת; כבר הוספתי את העגבניות",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "partial",
+        "a8": "partial",
+        "a3": "done"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-side-doubt-2",
+      "family": "side-doubt",
+      "utterance": "נדמה לי שהשקית נקרעה, ובכל זאת כבר ערבבתי את הרוטב",
+      "history": [],
+      "progress": {
+        "a4": "partial",
+        "a5": "done",
+        "a8": "pending",
+        "a3": "partial"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a3",
+          "done"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a8",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a3"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-multiple-1",
+      "family": "multiple",
+      "utterance": "הספקתי רק להתחיל להוסיף את העגבניות, נשאר להשלים; לעומת זאת טרם ערבבתי את הרוטב",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "pending",
+        "a8": "partial",
+        "a3": "pending"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          },
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          },
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a5"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-multiple-2",
+      "family": "multiple",
+      "utterance": "כבר ערבבתי את הרוטב; ייתכן שבישלתי את הרוטב",
+      "history": [],
+      "progress": {
+        "a4": "partial",
+        "a5": "partial",
+        "a8": "partial",
+        "a3": "partial"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-multiple-3",
+      "family": "multiple",
+      "utterance": "כבר בישלתי את הרוטב; לעומת זאת טרם קצצתי את הבצל",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "pending",
+        "a8": "pending",
+        "a3": "partial"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "done"
+          },
+          {
+            "action": "a4",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a4",
+          "pending"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-multiple-5",
+      "family": "multiple",
+      "utterance": "כבר הוספתי את העגבניות; ייתכן שערבבתי את הרוטב",
+      "history": [],
+      "progress": {
+        "a4": "partial",
+        "a5": "pending",
+        "a8": "pending",
+        "a3": "pending"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          }
+        ],
+        "clarify": [
+          "a8"
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-reference-2",
+      "family": "reference",
+      "utterance": "זה בוצע רק בחלקו",
+      "history": [
+        {
+          "role": "assistant",
+          "content": "עכשיו הפעולה היא לערבב את הרוטב."
+        }
+      ],
+      "progress": {
+        "a4": "done",
+        "a5": "partial",
+        "a8": "done",
+        "a3": "done"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a8",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a8",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a8"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-reference-3",
+      "family": "reference",
+      "utterance": "עם זה סיימתי",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "done",
+        "a8": "partial",
+        "a3": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          null
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a3",
+          "done"
+        ]
+      ],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [
+        "a3"
+      ],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r6-question-0",
+      "family": "question",
+      "utterance": "במתכון רוטב עגבניות, מה עושים מכאן?",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "pending",
+        "a8": "pending",
+        "a3": "done"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "next",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "explain",
+        "facts": [],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r6-nonreport-and-next-1",
+      "family": "nonreport-and-next",
+      "utterance": "כבר הוספתי את העגבניות; איך ממשיכים מכאן?",
+      "history": [],
+      "progress": {
+        "a4": "done",
+        "a5": "pending",
+        "a8": "partial",
+        "a3": "pending"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "next",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "explain",
+        "facts": [],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r6-nonreport-and-next-4",
+      "family": "nonreport-and-next",
+      "utterance": "אני רק מצטט מישהו שאמר \"קצצתי את הבצל\"; לא אמרתי שביצעתי זאת.",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "done",
+        "a8": "partial",
+        "a3": "done"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a4"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r6-nonreport-and-next-5",
+      "family": "nonreport-and-next",
+      "utterance": "זה טקסט לעריכה בלבד: \"הוספתי את העגבניות\". אל תראה בו עדכון בישול.",
+      "history": [],
+      "progress": {
+        "a4": "pending",
+        "a5": "partial",
+        "a8": "pending",
+        "a3": "partial"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [
+        "a5"
+      ],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r7-partial-2",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לבשל את הדייסה, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a5": "partial",
+        "a8": "pending",
+        "a7": "done",
+        "a0": "pending"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a7",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a7",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a7"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-partial-3",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לערבב את הדייסה, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "partial",
+        "a7": "pending",
+        "a0": "pending"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a0",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a0"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a0",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-partial-4",
+      "family": "partial",
+      "utterance": "הספקתי רק להתחיל לחמם את החלב, נשאר להשלים",
+      "history": [],
+      "progress": {
+        "a5": "done",
+        "a8": "partial",
+        "a7": "partial",
+        "a0": "pending"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-correction-2",
+      "family": "correction",
+      "utterance": "אני חוזר בי ממה שאמרתי, הספקתי רק להתחיל לבשל את הדייסה, נשאר להשלים",
+      "history": [
+        {
+          "role": "assistant",
+          "content": "סימנתי את הפעולה לבשל את הדייסה במצב done."
+        }
+      ],
+      "progress": {
+        "a5": "partial",
+        "a8": "pending",
+        "a7": "done",
+        "a0": "partial"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a7",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a7",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a7"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-correction-5",
+      "family": "correction",
+      "utterance": "אני חוזר בי ממה שאמרתי, הספקתי רק להתחיל להוסיף את הסולת, נשאר להשלים",
+      "history": [
+        {
+          "role": "assistant",
+          "content": "סימנתי את הפעולה להוסיף את הסולת במצב done."
+        }
+      ],
+      "progress": {
+        "a5": "partial",
+        "a8": "done",
+        "a7": "partial",
+        "a0": "partial"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a8",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a8",
+          "partial"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a8"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-uncertainty-0",
+      "family": "uncertainty",
+      "utterance": "נדמה לי שחיממתי את החלב",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "done",
+        "a7": "done",
+        "a0": "done"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a5",
+          "pending"
+        ]
+      ],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r7-multiple-1",
+      "family": "multiple",
+      "utterance": "הספקתי רק להתחיל להוסיף את הסולת, נשאר להשלים; לעומת זאת טרם בישלתי את הדייסה",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "partial",
+        "a7": "done",
+        "a0": "partial"
+      },
+      "currentStep": 2,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          },
+          {
+            "action": "a7",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a7",
+          "pending"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-multiple-2",
+      "family": "multiple",
+      "utterance": "כבר בישלתי את הדייסה; ייתכן שערבבתי את הדייסה",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "pending",
+        "a7": "pending",
+        "a0": "done"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "done"
+          }
+        ],
+        "clarify": [
+          "a0"
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a0"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a7",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-multiple-3",
+      "family": "multiple",
+      "utterance": "כבר ערבבתי את הדייסה; לעומת זאת טרם חיממתי את החלב",
+      "history": [],
+      "progress": {
+        "a5": "done",
+        "a8": "partial",
+        "a7": "partial",
+        "a0": "partial"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a0",
+            "status": "done"
+          },
+          {
+            "action": "a5",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a7",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a7",
+          "done"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a0",
+          "done"
+        ],
+        [
+          "a5",
+          "pending"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a7"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-multiple-4",
+      "family": "multiple",
+      "utterance": "הספקתי רק להתחיל לחמם את החלב, נשאר להשלים; לעומת זאת טרם הוספתי את הסולת",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "pending",
+        "a7": "pending",
+        "a0": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "partial"
+          },
+          {
+            "action": "a8",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          },
+          {
+            "action": "a7",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a5",
+          "done"
+        ],
+        [
+          "a7",
+          "pending"
+        ]
+      ],
+      "missing_facts": [
+        [
+          "a5",
+          "partial"
+        ],
+        [
+          "a8",
+          "pending"
+        ]
+      ],
+      "incorrect_actual_mutations": [
+        "a5"
+      ],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-multiple-5",
+      "family": "multiple",
+      "utterance": "כבר הוספתי את הסולת; ייתכן שבישלתי את הדייסה",
+      "history": [],
+      "progress": {
+        "a5": "done",
+        "a8": "done",
+        "a7": "partial",
+        "a0": "partial"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": [
+          "a7"
+        ]
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a7"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a8",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-reference-3",
+      "family": "reference",
+      "utterance": "עם זה סיימתי",
+      "history": [],
+      "progress": {
+        "a5": "partial",
+        "a8": "pending",
+        "a7": "pending",
+        "a0": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          null
+        ]
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a0",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a0",
+          "done"
+        ]
+      ],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [
+        "a0"
+      ],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r7-question-0",
+      "family": "question",
+      "utterance": "במתכון דייסת סולת, מה עושים מכאן?",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "partial",
+        "a7": "pending",
+        "a0": "pending"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "next",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r7-nonreport-and-next-0",
+      "family": "nonreport-and-next",
+      "utterance": "כבר חיממתי את החלב; איך ממשיכים מכאן?",
+      "history": [],
+      "progress": {
+        "a5": "done",
+        "a8": "pending",
+        "a7": "pending",
+        "a0": "pending"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "next",
+        "facts": [
+          {
+            "action": "a5",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "explain",
+        "facts": [],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a5",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-nonreport-and-next-1",
+      "family": "nonreport-and-next",
+      "utterance": "כבר הוספתי את הסולת; איך ממשיכים מכאן?",
+      "history": [],
+      "progress": {
+        "a5": "partial",
+        "a8": "partial",
+        "a7": "partial",
+        "a0": "done"
+      },
+      "currentStep": 1,
+      "expected": {
+        "intent": "next",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "explain",
+        "facts": [],
+        "clarify": []
+      },
+      "unexpected_facts": [],
+      "missing_facts": [
+        [
+          "a8",
+          "done"
+        ]
+      ],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": false
+    },
+    {
+      "id": "validation-r7-nonreport-and-next-4",
+      "family": "nonreport-and-next",
+      "utterance": "אני רק מצטט מישהו שאמר \"חיממתי את החלב\"; לא אמרתי שביצעתי זאת.",
+      "history": [],
+      "progress": {
+        "a5": "pending",
+        "a8": "pending",
+        "a7": "partial",
+        "a0": "done"
+      },
+      "currentStep": 3,
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a5"
+        ]
+      },
+      "unexpected_facts": [],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [],
+      "critical_no_facts": true
+    },
+    {
+      "id": "validation-r7-nonreport-and-next-5",
+      "family": "nonreport-and-next",
+      "utterance": "זה טקסט לעריכה בלבד: \"הוספתי את הסולת\". אל תראה בו עדכון בישול.",
+      "history": [],
+      "progress": {
+        "a5": "done",
+        "a8": "pending",
+        "a7": "pending",
+        "a0": "partial"
+      },
+      "currentStep": 0,
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "actual": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a8",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "unexpected_facts": [
+        [
+          "a8",
+          "done"
+        ]
+      ],
+      "missing_facts": [],
+      "incorrect_actual_mutations": [
+        "a8"
+      ],
+      "critical_no_facts": true
+    }
+  ]
+}
