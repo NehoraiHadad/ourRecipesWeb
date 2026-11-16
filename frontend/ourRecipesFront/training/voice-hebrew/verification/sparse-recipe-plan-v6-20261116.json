@@ -1,0 +1,76 @@
+{
+  "study": "sparse-recipe-v6-structured-hebrew-reference",
+  "created_utc": "2026-11-16T21:09:20.189836+00:00",
+  "source_sha256": {
+    "sparse_recipe_reference_v6.py": "92fad4f3af3289e34783db565e46a1bb2a66b87e38df65ad3254466627649f4a",
+    "sparse_recipe_freeze_v6.py": "39cd89a91321ac18374450afcad46845c053df9227dd5fb0c0cf5de861b5d2e5",
+    "sparse_recipe_job_v6.py": "a9e984bb86341e4e965bf44d676043cc309086ca79a0651616ecdede0e816ab1",
+    "sparse_recipe_colab_v6.py": "5f835ce076bd83d8228c9153b128b7180c0c103ed836820768083887d5001249",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "tests/test_sparse_recipe_v6.py": "92c695a42c3a959530b9148d6d047d604c971a2ea8c69144240f33adb3e5fd8d",
+    "SPARSE_RECIPE_V6_PLAN.he.md": "e56e6d1a69cffb253181b1f8f9fbac13498b4d57d169c47582bd56fe0285047e"
+  },
+  "artifact_sha256": {
+    "verification/sparse-recipe-data-v6-20261116.json": "41f9eb67c29902064b80d32f349135e814767963bd9a1977876def48124ece1c",
+    "adapter/adapter_config.json": "32828f518a33f6f7543a3aad993db93ad9fe37e8bdc6b758bea0bc00f08cdff7",
+    "adapter/adapter_model.safetensors": "429013d61159c80debdb781601ab4cfef283bfba63c7b1afa797f0eeadfeaee7",
+    "verification/sparse-recipe-research-v6-20261116.json": "ca69a60b22c044c9c53b2fb4c84d574a74b882b5caf5b35ba3dbc9bb8b28aeed"
+  },
+  "data_file": "verification/sparse-recipe-data-v6-20261116.json",
+  "adapter_origin_archive_sha256": "3870ee8f6b909eb38e1696ddc8863b656264ed47487ced1cbefdae1b2a21b4b0",
+  "routes": [
+    "tiny-free",
+    "tiny-json",
+    "teacher-json"
+  ],
+  "models": {
+    "tiny": {
+      "repo": "Qwen/Qwen3-0.6B",
+      "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+      "license": "apache-2.0",
+      "weight_bytes": 1503300328,
+      "weight_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+      "small_file_sha256": {
+        "config.json": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+        "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+        "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+      },
+      "dtype": "FP16 base, FP32 trainable adapters; measure actual parameter count rather than infer from checkpoint tensor inventory"
+    },
+    "teacher": {
+      "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+      "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+      "license": "apache-2.0",
+      "weight_bytes": 3441185576,
+      "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21"
+    }
+  },
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1",
+    "lm-format-enforcer==0.11.3",
+    "interegular==0.3.3",
+    "pydantic==2.12.4",
+    "PyYAML==6.0.3"
+  ],
+  "batch_size": 1,
+  "max_new_tokens": 96,
+  "max_sequence_tokens": 1024,
+  "max_study_seconds": 2400,
+  "max_owner_seconds": 3600,
+  "reference_utility": {
+    "hard_exact_min": 32,
+    "hard_changes_min": 19,
+    "hard_critical_wrong_max": 0,
+    "regression_exact_min": 90,
+    "regression_critical_wrong_max": 5
+  },
+  "scope": "Inference only; exposed synthetic hard40 plus regression120, repeated three times. Actual T4, no physical phone/browser/quantization, no product promotion. Grammar versus free is matched; teacher comparison also changes pretraining/tokenizer/size."
+}

@@ -1,0 +1,23 @@
+[
+  {
+    "package": "lm-format-enforcer",
+    "version": "0.11.3",
+    "url": "https://files.pythonhosted.org/packages/a0/ef/11292bb0b85cf4c93447cab5a29f64576ed14d3ab4280e35ddd23486594a/lm_format_enforcer-0.11.3-py3-none-any.whl",
+    "sha256": "cf586350875def1ae7a8fba84fcbbfc8371424b6c9d05c1fcba70aa233fbf06f",
+    "bytes": 45418,
+    "license": "MIT"
+  },
+  {
+    "package": "interegular",
+    "version": "0.3.3",
+    "url": "https://files.pythonhosted.org/packages/c4/01/72d6472f80651673716d1deda2a5bbb633e563ecf94f4479da5519d69d25/interegular-0.3.3-py37-none-any.whl",
+    "sha256": "b0c07007d48c89d6d19f7204972d369b2a77222722e126b6aa63aa721dc3b19c",
+    "bytes": 23635,
+    "license": "MIT"
+  },
+  {
+    "model_card_url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/raw/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/README.md",
+    "sha256": "cc6c7cb442bdce423d9fc14686439f2615f163793582d10a9c92adfa75fd8606",
+    "bytes": 4188
+  }
+]

@@ -1,0 +1,80 @@
+{
+  "created_utc": "2026-11-16T20:44:08.809325+00:00",
+  "before_free_bytes": 123097088,
+  "after_free_bytes": 126296064,
+  "libraries": [
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libtorchbind_test.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libtorchbind_test.so",
+      "bytes": 943272,
+      "sha256": "efe4c98ed20256a8e91ea5f66a667f4c449234be2bac7af971d7b35bd9d3247e",
+      "prior_source_mtime_ns": 1794384597922766591,
+      "prior_duplicate_mtime_ns": 1794392804055343220,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libtorch.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libtorch.so",
+      "bytes": 7192,
+      "sha256": "11b9b3eb1fcad27da8c92b4d3b5811e0b02ff3f726764e153e7ae4246f80dd8e",
+      "prior_source_mtime_ns": 1794384596437699142,
+      "prior_duplicate_mtime_ns": 1794392802651085562,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libtorch_global_deps.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libtorch_global_deps.so",
+      "bytes": 8769,
+      "sha256": "89a9e7da4aa9b29c6b8d6adb3d0e1228d0435068d4252760c390828360e6c9af",
+      "prior_source_mtime_ns": 1794384597846112375,
+      "prior_duplicate_mtime_ns": 1794392803955065486,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libshm.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libshm.so",
+      "bytes": 42713,
+      "sha256": "1480211f1e8f9d34d9e7bfe80d79b76d85e1b00b01209a4013ba5eb3c2d5dbb4",
+      "prior_source_mtime_ns": 1794384596437396043,
+      "prior_duplicate_mtime_ns": 1794392802650943962,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libjitbackend_test.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libjitbackend_test.so",
+      "bytes": 226880,
+      "sha256": "47e3c53aba8b75e0ac168ad4f532b2ce47a8233e3d0073bdaf464610291f5ce3",
+      "prior_source_mtime_ns": 1794384596436526404,
+      "prior_duplicate_mtime_ns": 1794392802650693011,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libbackend_with_compiler.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libbackend_with_compiler.so",
+      "bytes": 273856,
+      "sha256": "b07799fbdb9b0276352eb8ace869459ccf01750cb25cb18184c2a0fb037bb4bc",
+      "prior_source_mtime_ns": 1794384596428623796,
+      "prior_duplicate_mtime_ns": 1794392802645118071,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libaoti_custom_ops.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libaoti_custom_ops.so",
+      "bytes": 313208,
+      "sha256": "d57af55f2d267ffe4628d7f4c5e9c9f7aa9c6b1b0ba62f38090d1785fb34f1fc",
+      "prior_source_mtime_ns": 1794384596427341876,
+      "prior_duplicate_mtime_ns": 1794392802643339954,
+      "both_paths_exist_and_bytes_unchanged": true
+    },
+    {
+      "source": "/tmp/ourrecipes-voice-training-venv/lib/python3.12/site-packages/torch/lib/libc10.so",
+      "duplicate_path_preserved": "/tmp/ourrecipes-voice-py313/lib/python3.13/site-packages/torch/lib/libc10.so",
+      "bytes": 1366448,
+      "sha256": "f3fcfd84d783a45a34fd4e48e2ee9fc14367f6955d6d79537d481f40c8cf1fbc",
+      "prior_source_mtime_ns": 1794384596432591614,
+      "prior_duplicate_mtime_ns": 1794392802647339964,
+      "both_paths_exist_and_bytes_unchanged": true
+    }
+  ],
+  "scope": "Only byte-identical shared libraries in two rebuildable CPU Torch installations hardlinked atomically. No source, model, checkpoint or research archive changed/deleted."
+}

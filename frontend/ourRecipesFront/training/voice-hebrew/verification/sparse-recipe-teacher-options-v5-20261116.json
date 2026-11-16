@@ -1,0 +1,47 @@
+[
+  {
+    "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+    "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+    "license": "apache-2.0",
+    "gated": false,
+    "architecture": [
+      "Qwen3ForCausalLM"
+    ],
+    "model_type": "qwen3",
+    "weight_bytes": 3441185576,
+    "weights": [
+      {
+        "name": "model.safetensors",
+        "bytes": 3441185576,
+        "sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21"
+      }
+    ],
+    "config_sha256": "64e2e3f6508be6ee471c78648cec6b31635aea574c6daa7547066bbc243e865e",
+    "purpose": "Possible offline teacher/reference only; not selected, downloaded or inferred, and not a new phone requirement."
+  },
+  {
+    "repo": "Qwen/Qwen3-1.7B",
+    "revision": "70d244cc86ccca08cf5af4e1e306ecf908b1ad5e",
+    "license": "apache-2.0",
+    "gated": false,
+    "architecture": [
+      "Qwen3ForCausalLM"
+    ],
+    "model_type": "qwen3",
+    "weight_bytes": 4063515592,
+    "weights": [
+      {
+        "name": "model-00001-of-00002.safetensors",
+        "bytes": 3441185608,
+        "sha256": "169ad53ec313c3a34b06c0809216e4fc072cce444a5d4ff2b59690d064130ed5"
+      },
+      {
+        "name": "model-00002-of-00002.safetensors",
+        "bytes": 622329984,
+        "sha256": "912becff8d60672aa8628ef08c05898d9adf17c2ad4ae3caf99b065622fdeff9"
+      }
+    ],
+    "config_sha256": "1ddb5b89ebc90dcb417a45c213d818577e65976454d29385c8f6140771d95197",
+    "purpose": "Possible offline teacher/reference only; not selected, downloaded or inferred, and not a new phone requirement."
+  }
+]
