@@ -1,0 +1,124 @@
+{
+  "study": "single-recipe-decision-v2-compact",
+  "created_utc": "2026-11-16T13:09:17.317731+00:00",
+  "data_file": "verification/single-recipe-compact-data-20261116.json",
+  "source_sha256": {
+    "recipe_single_v2.mjs": "ed3fb6109f65698cf9352b148d453ec4154800e14f4c6ab92c400ee513c0538c",
+    "decision_protocol_v2.mjs": "d7b4f563d4dd1d93d1e8ac5de47c197c7cbaf697fae8812d908ba67032eca85c",
+    "decision_protocol_v2.test.mjs": "8653e91c6a65770ce52bb5ce4511c688ae9b967daba18fef2511a99d35ddbb16",
+    "single_recipe_study.py": "d503f5eb5bdaad3d29ee49a501f73dcffd2d593db51162a6f3a240dbef97603c",
+    "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
+    "recipe_development_v1.mjs": "6853658bd344d439cb5d1c9e2cc86ad0e96c23d0d1ea8133f1ef246064287481",
+    "recipe_compact_context_v2.mjs": "b4184b5e6ab24bd50b3180bdd20bcdb2a9b0c8543802f7ec6df9699332e12e30"
+  },
+  "artifact_sha256": {
+    "nativ": {
+      "/tmp/voice-nativ/model.safetensors": "2a3dd16c1d7bd024df775e023ac6b357b14b7d1cf07d3de9938d61d589312a30",
+      "/tmp/voice-nativ/decider.py": "66f30e72b81c34a750b5987ad893024ece8be28a9b4068ed17950b73324f9634",
+      "/tmp/voice-nativ/base-modeling_neobert.py": "0615ec39c95c41dcc499710e623f3f53bd27f77fbe36b29d8466610723a7f5c5",
+      "/tmp/voice-nativ/base-config.json": "f061a6c9a195fe8b2e02538884467ab1208b5a7d8a371b51beca86dfb1b4c220",
+      "/tmp/voice-nativ/config.json": "c53cb1fdf5dcab78b6f73fa5cdf8c6479f22eb6b098b40ba46791941d8357546",
+      "/tmp/voice-nativ/tokenizer.json": "94b6b870ce6336d1cd1497b680332c00cb84100594ac726e097d95792822e7e3",
+      "/tmp/voice-nativ/tokenizer_config.json": "6ed9055f43f7ddd0b2991796b2e8f41fd21e99327b4e23035d466472ff61e60d"
+    },
+    "qwen": {
+      "/tmp/voice-models/llm/Qwen3-0.6B-Q4_K_M.gguf": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a",
+      "/tmp/voice-parity-native/build/bin/llama-server": "36729123d07e9c1a732374920d95558e54d0de1568303630fcc4d5f8f9e2f336",
+      "/tmp/voice-parity-native/build/bin/libggml-base.so.0.29.0": "19a65f734ec142c7c05b2a705ff2f12116031176be076020e3fc13548b307076",
+      "/tmp/voice-parity-native/build/bin/libggml-cpu.so.0.29.0": "4cd4d9e09417569c35994f51b76a6d7fc7d48dd4a44bf38b4ab98bd2fbb6648f",
+      "/tmp/voice-parity-native/build/bin/libggml.so.0.29.0": "4b4e09ab52fe3dd4706009e1f657fdba7eb22172517c876702a3604c32ac0ab0",
+      "/tmp/voice-parity-native/build/bin/libllama-common.so.0.9.0": "4e4ac292f073abc14303b386adfd2acb9c36bccf89a89271c5fa46b2732247fa",
+      "/tmp/voice-parity-native/build/bin/libllama-server-impl.so": "7c682d86835a8b9b44a57762e0dfb40d8eca6357afb438eabfbaedd3033551ea",
+      "/tmp/voice-parity-native/build/bin/libllama.so.0.9.0": "153547c838c0fac9988e7ec76114aa9c91cc2b280244784e90df622de0425d2d",
+      "/tmp/voice-parity-native/build/bin/libmtmd.so.0.9.0": "31a9e9276218d7a4665ad1f7d5fc115e8e095fb45a6cfa879daf46cfec2ca75b"
+    }
+  },
+  "data_sha256": "89e9fa26c87fa843454d86214cd68b1d6254000a1786b4454eb075fed55f7b1f",
+  "nativ_directory": "/tmp/voice-nativ",
+  "nativ_revision": "0e78cb9df435213e84c4d0617a363c8ebe183f31",
+  "nativ_license": "CC-BY-4.0; yoavipo, encoder dicta-il/neodictabert",
+  "encoder_revision": "9052b2e47fe3e615931563bb2a74b26df6e028a3",
+  "qwen_binary": "/tmp/voice-parity-native/build/bin/llama-server",
+  "qwen_model": "/tmp/voice-models/llm/Qwen3-0.6B-Q4_K_M.gguf",
+  "intent_labels": [
+    "report",
+    "next",
+    "missed",
+    "quantity",
+    "explain",
+    "clarify",
+    "other"
+  ],
+  "status_labels": [
+    "done",
+    "pending",
+    "partial",
+    "uncertain",
+    "unmentioned",
+    "ambiguous"
+  ],
+  "nativ_controls": [
+    {
+      "state": "הוספתי את המים.",
+      "question": "האם הוספת המים בוצעה?",
+      "options": [
+        "כן, הוספת המים בוצעה",
+        "לא, לא נוספו מים"
+      ]
+    },
+    {
+      "state": "עוד לא הוספתי מים.",
+      "question": "האם הוספת המים בוצעה?",
+      "options": [
+        "כן, הוספת המים בוצעה",
+        "לא, לא נוספו מים"
+      ]
+    },
+    {
+      "state": "המשלוח עדיין לא הגיע.",
+      "question": "לאיזו מחלקה לפנות?",
+      "options": [
+        "מחלקת משלוחים",
+        "מחלקת חיובים"
+      ]
+    }
+  ],
+  "nativ_control_expected": [
+    0,
+    1,
+    0
+  ],
+  "protocol": {
+    "primary_cases": 80,
+    "nativ_encoded_questions": 392,
+    "nativ_forward_passes_per_case": 1,
+    "nativ_batch": "All4/5 questions for one case, no cross-case batching",
+    "qwen_generations_per_case": 1,
+    "qwen_max_tokens": 96,
+    "qwen_context": 1536,
+    "threads": 4,
+    "seed": 42,
+    "temperature": 0,
+    "history": "Current recipe only; same-recipe references retained; previous recipe history excluded",
+    "option_order": "One frozen status/intent ordering; no permutations or prompt search",
+    "confidence": "Argmax without tuned thresholds. Probabilities recorded, no domain-calibration claim",
+    "truncation": "Reject case if Nativ state would truncate or Qwen prompt+output exceeds1536"
+  },
+  "comparison_limits": "Comparison of two candidate understanding pipelines, not an identical-compute model leaderboard. Nativ is392 decision questions batched across80 forward passes; Qwen jointly generates80 interpretations. No free-form conversational or audio quality claim. Evidence is the full current utterance, attached by code and not semantically verified.",
+  "metrics": [
+    "state correctness",
+    "exact reported action-status facts",
+    "intent correctness",
+    "clarification target correctness",
+    "joint interpretation exactness",
+    "wrong state actions",
+    "required changes correct",
+    "read-only state correctness",
+    "latency and per-family failures"
+  ],
+  "decision": "One frozen run each, no training/prompt search. Record failures; no promotion unless gates and independent browser export validation pass. Cross-recipe robustness excluded by user instruction, not deleted or rescored as clean-context evidence.",
+  "scope": "Local CPU; no external inference, user data, held tests, browser or physical phone in this experiment. Source/weights public downloads only.",
+  "training_performed": false,
+  "runner_maintenance": "Only add --plan argument for follow-up files. Baseline dataset/model/request hashes unchanged. Original Nativ v1 already running from the frozen original source.",
+  "hypothesis": "Controls succeed but first32 detailed-JSON cases have poor state/fact/intent results. Test one bounded Hebrew compact context change; keep questions, options, gold cases, models and settings unchanged. This jointly changes language/serialization/length, not isolated proof which causes any change. No third prompt variant this round."
+}

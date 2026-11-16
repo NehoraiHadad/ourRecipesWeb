@@ -1,6 +1,7 @@
 import test from 'node:test';import assert from 'node:assert/strict';
 import {cases,robustnessCases,manifest} from './recipe_single_v2.mjs';
 import {contextFor,decisionsFor,qwenRequest,score,proposalFor} from './decision_protocol_v2.mjs';
+import {compactContextFor} from './recipe_compact_context_v2.mjs';
 test('primary contexts are clean per recipe; old cross-recipe probes remain separate',()=>{
  assert.equal(cases.length,80);assert.equal(robustnessCases.length,8);assert.equal(manifest.robustnessInPrimaryScore,false);
  for(const c of cases.filter(c=>c.family==='single-recipe-salad')){assert.deepEqual(c.history,[]);assert.ok(!/הקודם|עברתי/.test(c.text));assert.ok(!/flour|bread-dev|קמח/.test(contextFor(c)));}
@@ -32,4 +33,8 @@ test('uncertainty and unanchored reference produce clarification without invente
 test('malformed output is rejected rather than replaced with an apparently correct no-op',()=>{
  assert.throws(()=>proposalFor(cases[0],{intent:'report',actions:[]}));
  assert.throws(()=>proposalFor(cases[0],{intent:'report',actions:['invented','done','done','done']}));
+});
+test('compact context preserves current actions, prior state, same-recipe history and utterance without gold labels',()=>{
+ for(const c of cases){const text=compactContextFor(c);assert.ok(text.endsWith(c.text));for(const a of c.recipe.actions)assert.ok(text.includes(a.source));for(const h of c.history)assert.ok(text.includes(h.content));assert.ok(!text.includes('expectedProposal'));}
+ const salad=cases.find(c=>c.family==='single-recipe-salad');assert.ok(!/flour|קמח|bread-dev/.test(compactContextFor(salad)));
 });

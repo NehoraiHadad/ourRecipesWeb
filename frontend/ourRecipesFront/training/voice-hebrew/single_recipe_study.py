@@ -62,10 +62,11 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--arm', choices=['nativ', 'qwen'], required=True)
     parser.add_argument('--tag', default='v1')
+    parser.add_argument('--plan', default='verification/single-recipe-plan-20261116.json')
     args = parser.parse_args()
     if not args.tag.replace('-', '').isalnum():
         raise ValueError('Invalid run tag')
-    plan = json.loads((ROOT / 'verification/single-recipe-plan-20261116.json').read_text())
+    plan = json.loads((ROOT / args.plan).read_text())
     for name, sha in plan['source_sha256'].items():
         if digest(ROOT / name) != sha:
             raise ValueError('Source changed: ' + name)
