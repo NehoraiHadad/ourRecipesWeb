@@ -1,0 +1,75 @@
+{
+  "study": "browser-native-parity-stage1-v3",
+  "created_utc": "2026-11-16T10:58:41.542101+00:00",
+  "source_sha256": {
+    "parity_protocol.mjs": "acb73113ddda1094b75c180218473b2c787f0d8cc5365029d3704afb4bc13586",
+    "parity_worker.mjs": "4532df64f7b6dff41f9d9a3ef6c3cbed8620f92cfce7143f77f2c9c24f51fc5c",
+    "parity_runner.mjs": "2a975ea2d7936ab102581f4f4eff17ac9eb747bda3e8e6e3b60d24eba5c327a8",
+    "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
+    "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
+    "tiny_recipe_cases.mjs": "e015c504beb423969a7e0c21e29df70bc3d8e98730f552f8e11d4114cadf9eb0",
+    "tiny_recipe_controls.mjs": "4f0f2674465131c9415c20f3c6f2754ec94f6717e139e40bcfc7afe81b065408"
+  },
+  "artifact_sha256": {
+    "/tmp/voice-models/llm/Qwen3-0.6B-Q4_K_M.gguf": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a",
+    "/tmp/voice-parity-native/build/bin/llama-server": "36729123d07e9c1a732374920d95558e54d0de1568303630fcc4d5f8f9e2f336",
+    "/tmp/voice-parity-native/build/bin/libggml-base.so.0.29.0": "19a65f734ec142c7c05b2a705ff2f12116031176be076020e3fc13548b307076",
+    "/tmp/voice-parity-native/build/bin/libggml-cpu.so.0.29.0": "4cd4d9e09417569c35994f51b76a6d7fc7d48dd4a44bf38b4ab98bd2fbb6648f",
+    "/tmp/voice-parity-native/build/bin/libggml.so.0.29.0": "4b4e09ab52fe3dd4706009e1f657fdba7eb22172517c876702a3604c32ac0ab0",
+    "/tmp/voice-parity-native/build/bin/libllama-common.so.0.9.0": "4e4ac292f073abc14303b386adfd2acb9c36bccf89a89271c5fa46b2732247fa",
+    "/tmp/voice-parity-native/build/bin/libllama-server-impl.so": "7c682d86835a8b9b44a57762e0dfb40d8eca6357afb438eabfbaedd3033551ea",
+    "/tmp/voice-parity-native/build/bin/libllama.so.0.9.0": "153547c838c0fac9988e7ec76114aa9c91cc2b280244784e90df622de0425d2d",
+    "/tmp/voice-parity-native/build/bin/libmtmd.so.0.9.0": "31a9e9276218d7a4665ad1f7d5fc115e8e095fb45a6cfa879daf46cfec2ca75b",
+    "/workspace/ourRecipesWeb/frontend/ourRecipesFront/public/voice/runtime/llm/wllama.js": "18d96d4abe1a858a6f107527583dffc7daff1b1798c569f6a6a1c7884267067a",
+    "/workspace/ourRecipesWeb/frontend/ourRecipesFront/public/voice/runtime/llm/wllama.wasm": "79ac5be917b71d50571a4f584436a9f6baf6b6e57719d094ed8bd950e9a65780",
+    "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json": "368b21486ea3a4e42d553a841c33c6073fc56c31cea715387f2c3c154cc98ed6"
+  },
+  "model": {
+    "repo": "unsloth/Qwen3-0.6B-GGUF",
+    "revision": "50968a4468ef4233ed78cd7c3de230dd1d61a56b",
+    "file": "Qwen3-0.6B-Q4_K_M.gguf",
+    "bytes": 396705472,
+    "sha256": "ac2d97712095a558e31573f62f466a3f9d93990898b0ec79d7c974c1780d524a",
+    "license": "Apache-2.0",
+    "url": "https://huggingface.co/unsloth/Qwen3-0.6B-GGUF/resolve/50968a4468ef4233ed78cd7c3de230dd1d61a56b/Qwen3-0.6B-Q4_K_M.gguf"
+  },
+  "native_source": {
+    "source_url": "https://github.com/ggml-org/llama.cpp/archive/7d7f0287530bc8981690f361d8c1627dbae1c99a.tar.gz",
+    "source_sha256": "2f15b173875f53cb2a3d099b65875a24824859b0b9a7ede276d58ec2881ae085",
+    "source_bytes": 39142448,
+    "llama_commit": "7d7f0287530bc8981690f361d8c1627dbae1c99a"
+  },
+  "wllama_version": "3.13.0",
+  "wllama_tag_tree": "6647c1ea3837b2f0205a300c3bf5ff644aaa06bf",
+  "wllama_submodule_source": "https://api.github.com/repos/ngxson/wllama/git/trees/3.13.0",
+  "native_build": "cmake3.31.6; Release; GGML_NATIVE=OFF; GGML_OPENMP=OFF; llama-server CPU target; source commit matches wllama3.13.0 submodule",
+  "cases": {
+    "controls": 4,
+    "old_development_structured": 10,
+    "new_held_tests": 0
+  },
+  "parameters": {
+    "context": 1536,
+    "batch": 128,
+    "ubatch": 64,
+    "threads": 4,
+    "parallel": 1,
+    "temperature": 0,
+    "seed": 42,
+    "thinking": false,
+    "flash_attention": false,
+    "cache_prompt": false,
+    "chat_max_tokens": 80,
+    "structured_max_tokens": 160,
+    "logprobs_top_k": 5
+  },
+  "hypothesis": "Locate prompt/rendering/decoding or numerics differences between CPU native and WASM before attributing poor Hebrew quality solely to model capacity. No tuning or training.",
+  "diagnostic_bound": "For at most4 divergent controls, sample1 raw token on both backends at first divergence <=32 under identical integer prompt+native prefix. No adaptive prompt search.",
+  "decision_rule": "Compare actual detokenized prompt, count, generated tokenIDs, text and structural/semantic fixture outcomes. Exact output not universally required across CPU architectures; any substantial divergence needs diagnosis. Same tokenized text with matching counts is not direct observation of WASM input IDs. No full-logit parity claim from top5 probabilities.",
+  "legacy_comparison_limits": "Cache disabled and flash attention explicitly disabled here; these runs are not isolated causal comparisons against the Nov13 cached/auto flash runs. New contract is NOT passed to the model in this parity experiment; old prompts/schema are kept.",
+  "scope": "Synthetic authored development only; loopback native server and local browser fixtures; no audio/user data to external inference. Public pinned weights/source downloaded for local CPU use. No physical phone/GPU.",
+  "training_performed": false,
+  "held_tests_inferred": false,
+  "setup_correction": "v2 completed native14, browser failed during load. Add bounded network/console/stack diagnostics and reuse exact native requests. Free rebuildable compiler cache and extracted source; preserve source archive/binaries. Root cause not yet established.",
+  "reuse_native_result": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json"
+}

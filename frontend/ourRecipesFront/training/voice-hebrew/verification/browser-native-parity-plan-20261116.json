@@ -1,10 +1,10 @@
 {
-  "study": "browser-native-parity-stage1-v3",
-  "created_utc": "2026-11-16T10:58:41.542101+00:00",
+  "study": "browser-native-parity-stage1-v4",
+  "created_utc": "2026-11-16T11:00:55.125872+00:00",
   "source_sha256": {
     "parity_protocol.mjs": "acb73113ddda1094b75c180218473b2c787f0d8cc5365029d3704afb4bc13586",
     "parity_worker.mjs": "4532df64f7b6dff41f9d9a3ef6c3cbed8620f92cfce7143f77f2c9c24f51fc5c",
-    "parity_runner.mjs": "2a975ea2d7936ab102581f4f4eff17ac9eb747bda3e8e6e3b60d24eba5c327a8",
+    "parity_runner.mjs": "19de1e00d82440338605e83b526b120fa8a142aff55adfcb97a3a37d2f9e0101",
     "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
     "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
     "tiny_recipe_cases.mjs": "e015c504beb423969a7e0c21e29df70bc3d8e98730f552f8e11d4114cadf9eb0",
@@ -70,6 +70,6 @@
   "scope": "Synthetic authored development only; loopback native server and local browser fixtures; no audio/user data to external inference. Public pinned weights/source downloaded for local CPU use. No physical phone/GPU.",
   "training_performed": false,
   "held_tests_inferred": false,
-  "setup_correction": "v2 completed native14, browser failed during load. Add bounded network/console/stack diagnostics and reuse exact native requests. Free rebuildable compiler cache and extracted source; preserve source archive/binaries. Root cause not yet established.",
+  "setup_correction": "v3 repeated /model ERR_FAILED despite freed cache space. Independent fetch stream/blob probes completed396705472B with/without routing. Restrict routing to external origins; record response headers. Reuse native v2, no model/prompt/decision change; root cause unproven.",
   "reuse_native_result": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/runs/browser-native-parity/20261116-qwen06-v2/result.json"
 }

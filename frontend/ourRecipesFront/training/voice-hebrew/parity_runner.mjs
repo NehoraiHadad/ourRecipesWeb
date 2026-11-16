@@ -53,10 +53,11 @@ try {
  });
  await new Promise(r=>server.listen(0,'127.0.0.1',r));const origin=`http://127.0.0.1:${server.address().port}`;
  profile=await mkdtemp('/tmp/voice-parity-browser-');browser=await chromium.launchPersistentContext(profile,{executablePath:'/usr/bin/chromium',headless:true,args:['--no-sandbox']});
- result.browserFailedRequests=[];result.browserConsole=[];
+ result.browserFailedRequests=[];result.browserConsole=[];result.browserNetwork=[];
  browser.on('requestfailed',r=>result.browserFailedRequests.push({url:r.url(),failure:r.failure()}));
  browser.on('console',m=>result.browserConsole.push({type:m.type(),text:m.text()}));
- const page=await browser.newPage();await page.route('**/*',async route=>{const u=route.request().url();if(/^https?:/.test(u)&&new URL(u).origin!==origin){external.push(u);await route.abort();}else await route.continue();});
+ browser.on('response',r=>result.browserNetwork.push({url:r.url(),status:r.status(),headers:r.headers()}));
+ const page=await browser.newPage();await page.route(url=>/^https?:/.test(url.href)&&url.origin!==origin,async route=>{external.push(route.request().url());await route.abort();});
  await page.goto(origin);result.browserEnvironment=await page.evaluate(()=>({userAgent:navigator.userAgent,crossOriginIsolated:self.crossOriginIsolated,hardwareConcurrency:navigator.hardwareConcurrency}));
  await page.evaluate(()=>{window.worker=new Worker('/worker.mjs',{type:'module'});window.call=(data)=>new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('Worker timeout')),120000);window.worker.onmessage=({data:r})=>{clearTimeout(t);r.type==='error'?reject(Error(r.error+'\n'+r.stack)):resolve(r);};window.worker.postMessage(data);});});
  result.browserLoad=await page.evaluate(({settings,bytes})=>window.call({type:'load',settings,bytes}),{settings,bytes:frozen.model.bytes});await event({phase:'browser-ready',ms:result.browserLoad.ms});
