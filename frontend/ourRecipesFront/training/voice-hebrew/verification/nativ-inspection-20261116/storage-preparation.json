@@ -1,0 +1,12 @@
+{
+  "removed_only_rebuildable_native_objects": [
+    "/tmp/voice-parity-native/build/common",
+    "/tmp/voice-parity-native/build/ggml",
+    "/tmp/voice-parity-native/build/src",
+    "/tmp/voice-parity-native/build/tools",
+    "/tmp/voice-parity-native/build/vendor",
+    "/tmp/voice-parity-native/build/CMakeFiles"
+  ],
+  "native_binaries_unchanged": true,
+  "models_checkpoints_archives_deleted": false
+}

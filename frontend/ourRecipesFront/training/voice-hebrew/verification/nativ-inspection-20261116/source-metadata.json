@@ -1,0 +1,128 @@
+{
+  "_id": "6ac2841ba37e93de1bb62985",
+  "id": "yoavipo/nativ-he-decision",
+  "private": false,
+  "pipeline_tag": "multiple-choice",
+  "library_name": "pytorch",
+  "tags": [
+    "pytorch",
+    "safetensors",
+    "hebrew",
+    "decision",
+    "multiple-choice",
+    "classification",
+    "calibration",
+    "distillation",
+    "he",
+    "dataset:AmazonScience/massive",
+    "dataset:allenai/cosmos_qa",
+    "dataset:clinc/clinc_oos",
+    "dataset:PolyAI/banking77",
+    "dataset:google-research-datasets/go_emotions",
+    "dataset:nyu-mll/multi_nli",
+    "dataset:google/boolq",
+    "dataset:Davlan/sib200",
+    "dataset:yoavipo/hebrew-intent-emotion",
+    "base_model:dicta-il/neodictabert",
+    "base_model:finetune:dicta-il/neodictabert",
+    "license:cc-by-4.0",
+    "region:us"
+  ],
+  "downloads": 39,
+  "likes": 3,
+  "modelId": "yoavipo/nativ-he-decision",
+  "author": "yoavipo",
+  "sha": "0e78cb9df435213e84c4d0617a363c8ebe183f31",
+  "lastModified": "2026-10-10T18:02:21.000Z",
+  "gated": false,
+  "disabled": false,
+  "mask_token": "[MASK]",
+  "model-index": null,
+  "config": {
+    "tokenizer_config": {
+      "bos_token": "[CLS]",
+      "eos_token": "[SEP]",
+      "unk_token": "[UNK]",
+      "sep_token": "[SEP]",
+      "pad_token": "[PAD]",
+      "cls_token": "[CLS]",
+      "mask_token": "[MASK]"
+    }
+  },
+  "cardData": {
+    "language": "he",
+    "license": "cc-by-4.0",
+    "base_model": "dicta-il/neodictabert",
+    "library_name": "pytorch",
+    "tags": [
+      "hebrew",
+      "decision",
+      "multiple-choice",
+      "classification",
+      "calibration",
+      "distillation"
+    ],
+    "datasets": [
+      "AmazonScience/massive",
+      "allenai/cosmos_qa",
+      "clinc/clinc_oos",
+      "PolyAI/banking77",
+      "google-research-datasets/go_emotions",
+      "nyu-mll/multi_nli",
+      "google/boolq",
+      "Davlan/sib200",
+      "yoavipo/hebrew-intent-emotion"
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "a6344aac8c09253b3b630fb776ae94478aa0275b",
+      "size": 1519
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "467182071b22d7c7b93f2f5503671763c40fd519",
+      "size": 12315
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "5799394b6624c60865b1fb2c15c31e07d6e66358",
+      "size": 144
+    },
+    {
+      "rfilename": "decider.py",
+      "blobId": "cabec3840627f5971623243d91e46a61bacc3d2c",
+      "size": 6082
+    },
+    {
+      "rfilename": "model.safetensors",
+      "blobId": "c44f1a4da0a4da4cadb194addcda62e5c4ce0fdc",
+      "size": 727560706,
+      "lfs": {
+        "sha256": "2a3dd16c1d7bd024df775e023ac6b357b14b7d1cf07d3de9938d61d589312a30",
+        "size": 727560706,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "26ca9835063bdd33c29716d686c356f0a0c9745a",
+      "size": 3569565
+    },
+    {
+      "rfilename": "tokenizer_config.json",
+      "blobId": "ea4b9205beb2846e7ad2500fbd3cdea03d237321",
+      "size": 440
+    }
+  ],
+  "spaces": [],
+  "createdAt": "2026-10-04T16:51:39.000Z",
+  "safetensors": {
+    "parameters": {
+      "BF16": 363770113
+    },
+    "total": 363770113
+  },
+  "usedStorage": 1455121412
+}

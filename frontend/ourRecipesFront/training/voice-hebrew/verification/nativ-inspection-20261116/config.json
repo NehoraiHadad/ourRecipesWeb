@@ -1,0 +1,7 @@
+{
+  "encoder": "dicta-il/neodictabert",
+  "version": "v2",
+  "training_run": "nativ-v7",
+  "max_input_tokens": 1024,
+  "max_option_tokens": 64
+}
