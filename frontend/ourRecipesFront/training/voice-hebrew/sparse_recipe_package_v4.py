@@ -26,11 +26,12 @@ def package(run):
     plan_name = 'verification/sparse-recipe-plan-v4-20261116.json'
     plan = json.loads((ROOT / plan_name).read_text())
     names = [*plan['source_sha256'], *plan['artifact_sha256'], plan_name,
-             'sparse_recipe_audit_v4.py', 'sparse_recipe_package_v4.py', 'sparse_recipe_report.py',
+             'sparse_recipe_audit_v4.py', 'sparse_recipe_package_v4.py', 'sparse_recipe_plot_v4.py', 'sparse_recipe_report.py',
              'tests/test_sparse_recipe_v3.py', 'tests/test_sparse_recipe_report.py',
              'SPARSE_RECIPE_DATA_V4_REPRODUCTION.he.md', 'SPARSE_RECIPE_DATA_V4_RESULTS.he.md',
              'PROJECT_WORK_PLAN.he.md', 'README.he.md', 'RESEARCH_LOG.he.md',
-             'verification/sparse-recipe-results-v4-20261116.json']
+             'verification/sparse-recipe-legacy-integrity-v4-20261116.json',
+             'verification/sparse-recipe-results-v4-20261116.json', 'verification/sparse-recipe-curves-v4-20261116.png']
     names += [str(p.relative_to(ROOT)) for p in sorted((ROOT / 'verification/qwen-sparse-source-20261116').rglob('*')) if p.is_file()]
     names += [str((run / n).relative_to(ROOT)) for n in ['results.zip', 'archive-manifest.json', 'recovery.json', 'remote-status.json', 'remote.log', 'material.zip']]
     files = {name: (ROOT / name).read_bytes() for name in sorted(set(names))}

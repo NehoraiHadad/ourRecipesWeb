@@ -1,0 +1,13 @@
+{
+  "file": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-sparse-data-comparison-20261116.zip",
+  "bytes": 103084292,
+  "sha256": "d08b0d0c8e8c5c380f7a6ac240c4be88c8ab9d2e2d04ec81bca6c5cdc0b36911",
+  "members": 47,
+  "manifest_entries": 46,
+  "crc_verified": true,
+  "all_manifest_members_verified": true,
+  "extracted_source_tests_passed": 17,
+  "original_results_archive_and_four_adapter_optimizer_checkpoints_bundled": true,
+  "base_weights_bundled": false,
+  "account_state_bundled": false
+}
