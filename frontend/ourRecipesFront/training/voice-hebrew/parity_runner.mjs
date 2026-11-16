@@ -62,7 +62,12 @@ try {
  await page.goto(origin);result.browserEnvironment=await page.evaluate(()=>({userAgent:navigator.userAgent,crossOriginIsolated:self.crossOriginIsolated,hardwareConcurrency:navigator.hardwareConcurrency}));
  await page.evaluate(()=>{window.worker=new Worker('/worker.mjs',{type:'module'});window.call=(data)=>new Promise((resolve,reject)=>{const t=setTimeout(()=>reject(Error('Worker timeout')),120000);window.worker.onmessage=({data:r})=>{clearTimeout(t);r.type==='error'?reject(Error(r.error+'\n'+r.stack)):resolve(r);};window.worker.postMessage(data);});});
  result.browserLoad=await page.evaluate(({settings,bytes})=>window.call({type:'load',settings,bytes}),{settings,bytes:frozen.model.bytes});await event({phase:'browser-ready',ms:result.browserLoad.ms});
- for(const job of jobs){const r=await page.evaluate(body=>window.call({type:'chat',body}),job.body);result.browser.push({id:job.id,kind:job.kind,request:job.body,...r,...summarize(r.response)});await save();await event({phase:'browser-case',id:job.id,ms:r.ms,text:summarize(r.response).text});}
+ if(frozen.reuse_browser_result){
+  const prior=JSON.parse(await readFile(frozen.reuse_browser_result,'utf8'));
+  if(jobs.some(j=>JSON.stringify(j.body)!==JSON.stringify(prior.browser.find(r=>r.id===j.id)?.request)))throw Error('Reused browser requests differ');
+  result.browser=prior.browser.filter(r=>jobs.some(j=>j.id===r.id));result.browserReusedFrom=frozen.reuse_browser_result;await save();
+ }
+ for(const job of (frozen.reuse_browser_result?[]:jobs)){const r=await page.evaluate(body=>window.call({type:'chat',body}),job.body);result.browser.push({id:job.id,kind:job.kind,request:job.body,...r,...summarize(r.response)});await save();await event({phase:'browser-case',id:job.id,ms:r.ms,text:summarize(r.response).text});}
  // Predeclared diagnostic: at most four control divergences, one forced-prefix
  // token each. Both backends receive identical integer prompt IDs.
  for(const job of jobs.filter(j=>j.kind==='control'||frozen.structured_diagnostic_ids?.includes(j.id))){
@@ -71,9 +76,10 @@ try {
   let at=0;while(at<Math.min(n.tokens?.length??0,b.tokens?.length??0)&&n.tokens[at]===b.tokens[at])at++;
   if(at>32){result.diagnostics.push({id:job.id,skipped:'First divergence after frozen 32-token bound',at});continue;}
   const promptIds=n.tokenized.tokens.concat((n.tokens??[]).slice(0,at));
-  const body={prompt:promptIds,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,logprobs:frozen.raw_diagnostic_logprobs===false?null:5};
-  const nr=await post('/v1/completions',body),br=await page.evaluate(body=>window.call({type:'raw',body}),body);
-  result.diagnostics.push({id:job.id,divergenceAt:at,promptIds,native:nr,browser:br});await save();await event({phase:'forced-prefix',id:job.id,at});
+  const body={prompt:promptIds,max_tokens:1,temperature:0,seed:42,cache_prompt:false,stream:false,verbose:true,return_tokens:true,...(frozen.raw_diagnostic_logprobs===false?{}:{logprobs:5})};
+  const diagnostic={id:job.id,divergenceAt:at,promptIds,request:body};result.diagnostics.push(diagnostic);await save();
+  diagnostic.native=await post('/v1/completions',body);await save();
+  diagnostic.browser=await page.evaluate(body=>window.call({type:'raw',body}),body);await save();await event({phase:'forced-prefix',id:job.id,at});
  }
  result.comparison=jobs.map(job=>{const n=result.native.find(r=>r.id===job.id),b=result.browser.find(r=>r.id===job.id),item=cases.find(c=>c.id===job.id);return{id:job.id,kind:job.kind,promptExact:n.prompt!==null&&n.prompt===b.prompt,nativeRenderedMatchesActual:n.rendered.prompt===n.prompt,promptCountMatches:n.usage?.prompt_tokens===b.usage?.prompt_tokens,generatedTokensExact:n.tokens!==null&&JSON.stringify(n.tokens)===JSON.stringify(b.tokens),textExact:n.text===b.text,...(item?{nativeEvaluation:evaluateStructure(n.text,item),browserEvaluation:evaluateStructure(b.text,item)}:{})};});
  result.completed=true;
