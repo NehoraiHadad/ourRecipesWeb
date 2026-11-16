@@ -54,6 +54,27 @@ def verify():
     count += len(plain['records'])
     conditional = folder / 'plain-fp32-conditional.json'
     if conditional.exists(): count += len(json.loads(conditional.read_text())['records'])
+    folder = ROOT / 'runs/ourrecipes-stop-v8-20261116/recovered/study'
+    for route in ['free', 'grammar', 'fewshot']:
+        raw = json.loads((folder / (route + '.json')).read_text()); rows = data['language']
+        assert [r['id'] for r in rows] == [r['id'] for r in raw['records']]
+        assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']
+        count += len(rows)
+    count += len(json.loads((folder / 'plain.json').read_text())['records'])
+    conditional = folder / 'expanded.json'
+    if conditional.exists():
+        rows = json.loads((ROOT / 'verification/sparse-recipe-data-v6-20261116.json').read_text())
+        rows = rows['hard'] + rows['regression']; raw = json.loads(conditional.read_text())
+        assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
+    data = json.loads((ROOT / 'verification/sparse-recipe-control-data-v5-20261116.json').read_text())['splits']
+    folder = ROOT / 'runs/ourrecipes-teacher-v9-20261116/recovered/study/model'
+    for step in [0, 80, 160]:
+        for prefix, group in [('', 'validation'), ('diagnostic-', 'diagnostic'), ('regression-', 'regression')]:
+            raw = json.loads((folder / f'validation-step-{prefix}{step}.json').read_text()); rows = data[group]
+            assert [r['id'] for r in rows] == [r['id'] for r in raw['records']]
+            assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
+    raw = json.loads((folder / 'validation-step-train-fit-160.json').read_text()); rows = data['train_fit']
+    assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
     result = {'manifest_verified': True, 'outputs_rescored': count,
         'binary_checkpoint_hash_verified_here': False, 'new_inference': False}
     print(json.dumps(result, indent=2)); return result

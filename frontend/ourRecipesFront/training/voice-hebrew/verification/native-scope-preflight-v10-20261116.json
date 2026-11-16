@@ -1,0 +1,64 @@
+{
+  "control": {
+    "train": {
+      "cases": 360,
+      "max_total_tokens": 633,
+      "max_prompt_tokens": 611
+    },
+    "validation": {
+      "cases": 40,
+      "max_total_tokens": 623,
+      "max_prompt_tokens": 601
+    },
+    "diagnostic": {
+      "cases": 120,
+      "max_total_tokens": 625,
+      "max_prompt_tokens": 603
+    },
+    "regression": {
+      "cases": 120,
+      "max_total_tokens": 610,
+      "max_prompt_tokens": 588
+    },
+    "train_fit": {
+      "cases": 36,
+      "max_total_tokens": 629,
+      "max_prompt_tokens": 607
+    },
+    "sampled640_training_tokens": 371948,
+    "sampled640_target_tokens": 13302,
+    "padding_loss_masked": true
+  },
+  "native": {
+    "train": {
+      "cases": 360,
+      "max_total_tokens": 629,
+      "max_prompt_tokens": 612
+    },
+    "validation": {
+      "cases": 40,
+      "max_total_tokens": 623,
+      "max_prompt_tokens": 601
+    },
+    "diagnostic": {
+      "cases": 120,
+      "max_total_tokens": 625,
+      "max_prompt_tokens": 603
+    },
+    "regression": {
+      "cases": 120,
+      "max_total_tokens": 610,
+      "max_prompt_tokens": 588
+    },
+    "train_fit": {
+      "cases": 36,
+      "max_total_tokens": 627,
+      "max_prompt_tokens": 612
+    },
+    "sampled640_training_tokens": 375696,
+    "sampled640_target_tokens": 13012,
+    "padding_loss_masked": true
+  },
+  "scope": "CPU tokenizer/collator only. Same640 array indices, not matched token/FLOP count. No weights or model inference.",
+  "local_transformers": "4.48.3"
+}

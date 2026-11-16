@@ -1,0 +1,20 @@
+{
+  "scope": "Pre-GPU authoring review; no model outputs or freeze yet.",
+  "issue": "First draft tied pair type to action position. Counterbalance A and B positions across recipe/pair before any training.",
+  "draft_data_sha256": "8bad258ed7372a7ada26f049b0c94723d3e17df5dcf9f9e5b6e604e1afa1aebd",
+  "draft_source_sha256": "d68011d9de05e8c6a0e20231017505f99697b71a637e06593e3487dfab3032d8",
+  "retained_directory": "runs/v10-prelaunch-draft",
+  "fixture_id_review": {
+    "scope": "Before any GPU launch; retained unused draft bytes.",
+    "issue": "Renamed action IDs must not share one recipeID/version across different fixtures. Assign opaque unique fixture IDs per pair.",
+    "retained": "runs/v10-prelaunch-id-review",
+    "draft_sha256": {
+      "native_scope_data_v10.py": "eb235084f407444f1c230c376cb82616be0e8984a6193cab36cd8e458b26f2cf",
+      "tests/test_native_scope_v10.py": "9f567a672ed76a6915170e6b4355ab747538fced3d41663c1b3d25583c9898cb",
+      "verification/native-scope-data-v10-20261116.json": "a69766259da0edb9173826ec71527a5199ec385c8521ff711ca6e22f7a1deabc",
+      "verification/native-scope-preflight-v10-20261116.json": "17dfb879e86ffecbb81e2e97dcb6e6ba6119acfc29e8f9114c0c6247cfe0d85d",
+      "verification/native-scope-plan-v10-20261116.json": "63808a8a5b30e9f8a5d0319a33dad692eccfdb34f123075c5669e888ac27acd7",
+      "verification/native-scope-arm-plan-v10-20261116.json": "7cd0f06a20c0c0136bce135e583c5ca87d53bc3222f8c4aa9e9340d74f3bbc65"
+    }
+  }
+}

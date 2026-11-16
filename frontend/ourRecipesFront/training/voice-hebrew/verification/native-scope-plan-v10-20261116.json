@@ -1,0 +1,45 @@
+{
+  "study": "native-scope-v10-tiny-epistemic-pairs",
+  "created_utc": "2026-11-16T23:08:55.377212+00:00",
+  "source_sha256": {
+    "native_scope_data_v10.py": "0986c40ba90fdc4b546dd3c3d0b4e972e7fa53183085f63ec2604fb8970b2b99",
+    "native_scope_study_v10.py": "36fb5fe70967bed3fd394343f2ff84802aa7dda66ed60527af1ffa492c65dea9",
+    "native_scope_freeze_v10.py": "ae843240d5a097af09d5895bacef474d1504aa95bfd23f15adf8303e2a06d496",
+    "native_scope_preflight_v10.py": "cb5d8007f1e1652855163f8c041a7a7daa242a8e6a9ec247ed7850be061381a3",
+    "native_scope_job_v10.py": "c3cd6480dba2d92a7a8fda03ef6c290b7fc604e4d44caabe9f9d61226c2f5ea2",
+    "native_scope_colab_v10.py": "fa1b44400ddc369475d888ce5dd4e3017b86c98802aa920da4d307f5319e7b91",
+    "tests/test_native_scope_v10.py": "03c9e634188bf0ed5744367322117779ba241719641f0467598d74a8ddf5b001",
+    "NATIVE_SCOPE_V10_PLAN.he.md": "9cdc2ce429535bf6b1b038afd5d23b6276b4efcc30b1667cd38d690d98ebab6f",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794"
+  },
+  "artifact_sha256": {
+    "verification/native-scope-arm-plan-v10-20261116.json": "0388c71d11361c5984075f3a894b2d2135853f00eb7aa5cde63e50c6c2090b25",
+    "verification/native-scope-data-v10-20261116.json": "496fff5cb473a6d262de79c8c8708a8253ee74e4dc6e9beee3770411650598e0",
+    "verification/sparse-recipe-control-data-v5-20261116.json": "9764c23b52784000e8cb5a1a454bf4f9b4ee3b495d4b24a62638a79b2254d299",
+    "verification/sparse-recipe-data-v5-20261116.json": "2aa4bed65e0ff9640dbe97ae19c2a92177d33bb81f580199fa1e1725d6042f40",
+    "verification/native-scope-reference-v10-20261116.json": "57aa058a7ecff666578f44ce912509e285dad7d116e55050b1869a0fa8d4d2cf",
+    "verification/native-scope-preflight-v10-20261116.json": "b4920a6979484e5084c4638656981557859c305894036c745678e43d98633e22",
+    "verification/native-scope-authoring-review-v10-20261116.json": "b455801bc82a1254b7be97e5fe12d39000072a4afb13bcc0697bb19330e1c581",
+    "verification/sparse-recipe-results-v9-20261116.json": "a1d3637c18ea4814eb3278707e19e52f2ea9d5ceb4839c48dd61154797d18659"
+  },
+  "arm_plan_file": "verification/native-scope-arm-plan-v10-20261116.json",
+  "arm_data_file": "verification/native-scope-data-v10-20261116.json",
+  "master_data_file": "verification/sparse-recipe-data-v5-20261116.json",
+  "reference_file": "verification/native-scope-reference-v10-20261116.json",
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "max_study_seconds": 3600,
+  "max_owner_seconds": 4500,
+  "scope": "Fresh0.6B, unchanged engine/model/inference prompt,360 TRAIN and160 updates.180 old retained,36 diverse retained,144 authored paired scenarios; not144 independent wordings or human data. Must match cached V5 baseline280 outputs and640 training index order.840 repeated development/regression outputs plus36 TRAIN-fit. No teacher labels, protected test, audio, phone/browser or product promotion."
+}
