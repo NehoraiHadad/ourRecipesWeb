@@ -7,7 +7,7 @@ import {createHash} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import path from 'node:path';
 import os from 'node:os';
-import {jobs,settings,modelPath} from './parity_protocol.mjs';
+import {jobs as baseJobs,settings,modelPath} from './parity_protocol.mjs';
 import {cases,evaluateStructure} from './tiny_recipe_cases.mjs';
 const root=import.meta.dirname,runId=process.argv[2]||'20261116-qwen06-v1';
 if(!/^[a-zA-Z0-9-]+$/.test(runId))throw Error('Invalid run id');
@@ -15,6 +15,7 @@ const out=path.join(root,'runs/browser-native-parity',runId);
 await mkdir(path.dirname(out),{recursive:true});await mkdir(out,{recursive:false});
 const hash=async f=>{const h=createHash('sha256');for await(const b of createReadStream(f))h.update(b);return h.digest('hex');};
 const frozen=JSON.parse(await readFile(path.join(root,'verification/browser-native-parity-plan-20261116.json'),'utf8'));
+const jobs=baseJobs.filter(j=>!frozen.case_ids||frozen.case_ids.includes(j.id)).map(j=>({...j,body:{...j.body,...frozen.request_overrides}}));
 for(const [f,sha] of Object.entries(frozen.source_sha256))if(await hash(path.join(root,f))!==sha)throw Error('Unfrozen source: '+f);
 for(const [f,sha] of Object.entries(frozen.artifact_sha256))if(await hash(f)!==sha)throw Error('Artifact mismatch: '+f);
 const result={runId,plan:frozen,scope:'Cloud CPU native and actual Chromium WASM. Not a physical phone, audio, held test or training.',trainingPerformed:false,physicalDeviceTested:false,heldTestsInferred:false,applicationStateCommitted:false,environment:{platform:os.platform(),arch:os.arch(),cpuModel:os.cpus()[0]?.model},native:[],browser:[],diagnostics:[]};
@@ -32,8 +33,8 @@ try {
  if(!ready)throw Error('Native load timeout');await event({phase:'native-ready'});
  if(frozen.reuse_native_result){
   const prior=JSON.parse(await readFile(frozen.reuse_native_result,'utf8'));
-  if(prior.native.length!==jobs.length||jobs.some(j=>JSON.stringify(j.body)!==JSON.stringify(prior.native.find(r=>r.id===j.id)?.request)))throw Error('Reused native requests differ');
-  result.native=prior.native;result.nativeReusedFrom=frozen.reuse_native_result;await save();
+  if(jobs.some(j=>JSON.stringify(j.body)!==JSON.stringify(prior.native.find(r=>r.id===j.id)?.request)))throw Error('Reused native requests differ');
+  result.native=prior.native.filter(r=>jobs.some(j=>j.id===r.id));result.nativeReusedFrom=frozen.reuse_native_result;await save();
  }
  for(const job of (frozen.reuse_native_result?[]:jobs)){
   const rendered=await post('/apply-template',job.body);
