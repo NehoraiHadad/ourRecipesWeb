@@ -1,0 +1,32 @@
+{
+  "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+  "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+  "generation_config_url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/generation_config.json",
+  "generation_config_sha256": "976b81a522907a4ee2055be7719e194e65eb290de8a9874aa34fcee1cb99f380",
+  "generation_config": {
+    "bos_token_id": 151643,
+    "do_sample": true,
+    "eos_token_id": [
+      151645,
+      151643
+    ],
+    "pad_token_id": 151643,
+    "temperature": 0.6,
+    "top_k": 20,
+    "top_p": 0.95,
+    "transformers_version": "4.55.4",
+    "trust_remote_code": true
+  },
+  "old_runner_eos_id": 151643,
+  "observed_plain_first_tokens": [
+    126654,
+    151645,
+    198,
+    151644,
+    77091,
+    198,
+    126654,
+    151645
+  ],
+  "interpretation": "Old runner overrode official multi-stop configuration with tokenizer EOS only. It missed assistant end151645 and continued into new assistant turns. Effect on sparse semantic scores is not established by this observation."
+}

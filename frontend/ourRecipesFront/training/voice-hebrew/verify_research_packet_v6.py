@@ -42,6 +42,18 @@ def verify():
         assert aggregate(data['hard'], [r['text'] for r in records[:40]])[0] == raw['metrics']['hard']
         assert aggregate(data['regression'], [r['text'] for r in records[40:]])[0] == raw['metrics']['regression']
         count += len(rows)
+    data = json.loads((ROOT / 'verification/sparse-recipe-data-v7-20261116.json').read_text())
+    folder = ROOT / 'runs/ourrecipes-diagnosis-v7-20261116/recovered/study'
+    for route in ['free', 'grammar', 'fewshot']:
+        raw = json.loads((folder / (route + '.json')).read_text()); rows = data['language']
+        assert [r['id'] for r in rows] == [r['id'] for r in raw['records']]
+        assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']
+        count += len(rows)
+    plain = json.loads((folder / 'plain.json').read_text())
+    assert [r['id'] for r in data['plain']] == [r['id'] for r in plain['records']]
+    count += len(plain['records'])
+    conditional = folder / 'plain-fp32-conditional.json'
+    if conditional.exists(): count += len(json.loads(conditional.read_text())['records'])
     result = {'manifest_verified': True, 'outputs_rescored': count,
         'binary_checkpoint_hash_verified_here': False, 'new_inference': False}
     print(json.dumps(result, indent=2)); return result

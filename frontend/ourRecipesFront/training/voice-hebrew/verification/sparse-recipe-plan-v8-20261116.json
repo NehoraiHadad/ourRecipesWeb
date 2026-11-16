@@ -1,0 +1,60 @@
+{
+  "study": "sparse-recipe-v8-official-stop-correction",
+  "created_utc": "2026-11-16T22:02:13.087360+00:00",
+  "source_sha256": {
+    "sparse_recipe_stop_v8.py": "11eb34bb85b649059ac00dedb5e0882004358bdd0ec7a0c9da68a1f77d5df213",
+    "sparse_recipe_freeze_v8.py": "88879417f81dd0a1dd738594735a67501162e274c0692b0d613cd01daddf8d33",
+    "sparse_recipe_job_v8.py": "2a5809b34819f7e942b127af1f25fca8890ae02b194d2a83c0b0bcc28fdf199b",
+    "sparse_recipe_colab_v8.py": "bcbc4081c1c331700218a56652cddb6c830bb1a597dee673b7a0013187b0dc3d",
+    "sparse_recipe_diagnosis_v7.py": "769a5c4df69c9a6e812d8797e99a14330569b9db6929d08419c7ab36c5fada6e",
+    "sparse_recipe_reference_v6.py": "92fad4f3af3289e34783db565e46a1bb2a66b87e38df65ad3254466627649f4a",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "tests/test_sparse_recipe_v8.py": "f8b7c200f0e19ce2023ae5105213eb2569b7b3eb47785301fc42f597cd5f86b8",
+    "SPARSE_RECIPE_V8_PLAN.he.md": "aea1114561060535e68be2f2d5afdcfb45e18c32bca1d0c3f1423442ed9977e4"
+  },
+  "artifact_sha256": {
+    "verification/sparse-recipe-data-v7-20261116.json": "b3be691dbd25bdf4fccf6c7e8ad702ed0d6102db1e70c12d2637d188b2004d77",
+    "verification/sparse-recipe-data-v6-20261116.json": "41f9eb67c29902064b80d32f349135e814767963bd9a1977876def48124ece1c",
+    "verification/sparse-recipe-preflight-v8-20261116.json": "a482241aa5940e419b1b68b4f9c30de76d20065e8aee88f7c1601775d72bb2c7",
+    "verification/sparse-recipe-results-v7-20261116.json": "2ae59798f0d275ff8f8c5a1a4d27de31b171ce068b53f4cc2255ba1ddef5344f",
+    "verification/sparse-recipe-generation-config-v8-20261116.json": "976b81a522907a4ee2055be7719e194e65eb290de8a9874aa34fcee1cb99f380"
+  },
+  "data_file": "verification/sparse-recipe-data-v7-20261116.json",
+  "expanded_data_file": "verification/sparse-recipe-data-v6-20261116.json",
+  "model": {
+    "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+    "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+    "license": "apache-2.0",
+    "weight_bytes": 3441185576,
+    "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21"
+  },
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1",
+    "lm-format-enforcer==0.11.3",
+    "interegular==0.3.3",
+    "pydantic==2.12.4",
+    "PyYAML==6.0.3"
+  ],
+  "official_stops": [
+    151645,
+    151643
+  ],
+  "generation_config_sha256": "976b81a522907a4ee2055be7719e194e65eb290de8a9874aa34fcee1cb99f380",
+  "interest_gate": {
+    "exact_min": 13,
+    "changes_min": 8,
+    "critical_wrong_max": 0,
+    "gain_min": 4
+  },
+  "max_study_seconds": 1200,
+  "max_owner_seconds": 2400,
+  "scope": "Official stop policy correction in generate and grammar.54 repeated diagnostic outputs, conditional160 exposed V6 cases only if fixed interest gate passes. Cached V7 comparison, no training, independent test, phone, browser or promotion."
+}

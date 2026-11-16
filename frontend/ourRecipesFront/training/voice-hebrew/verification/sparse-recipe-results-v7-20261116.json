@@ -1,0 +1,501 @@
+{
+  "study": "sparse-recipe-v7-teacher-numerics-and-contract-diagnosis",
+  "status": {
+    "status": "complete",
+    "phase": "complete",
+    "seconds": 380.83355867299986
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "host_python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]"
+  },
+  "metrics": {
+    "free": {
+      "cases": 16,
+      "valid": 0,
+      "exact": 0,
+      "facts_exact": 0,
+      "intent_correct": 0,
+      "clarify_exact": 0,
+      "state_correct": 0,
+      "rejected_output": 16,
+      "unsafe_state": 0,
+      "required_changes": 9,
+      "required_changes_correct": 0,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 0,
+      "cases_with_wrong_facts": 0
+    },
+    "grammar": {
+      "cases": 16,
+      "valid": 10,
+      "exact": 0,
+      "facts_exact": 0,
+      "intent_correct": 1,
+      "clarify_exact": 8,
+      "state_correct": 4,
+      "rejected_output": 6,
+      "unsafe_state": 6,
+      "required_changes": 9,
+      "required_changes_correct": 1,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 4,
+      "cases_with_wrong_facts": 10
+    },
+    "fewshot": {
+      "cases": 16,
+      "valid": 9,
+      "exact": 1,
+      "facts_exact": 1,
+      "intent_correct": 5,
+      "clarify_exact": 7,
+      "state_correct": 4,
+      "rejected_output": 7,
+      "unsafe_state": 5,
+      "required_changes": 9,
+      "required_changes_correct": 2,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 3,
+      "cases_with_wrong_facts": 8
+    }
+  },
+  "plain_controls": [
+    {
+      "id": "v7-plain-0",
+      "utterance": "כתוב בדיוק את המילה שלום, בלי סימני פיסוק.",
+      "expected_text": "שלום",
+      "actual_text": "שלום\nassistant\nשלום\nassistant\nשלום\nassistant\nשלום\nassistant\n",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    },
+    {
+      "id": "v7-plain-1",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם כבר ערבבתי? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא\nassistant\nלא, לא ערבבת את המים.\nassistant\nלא, לא",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    },
+    {
+      "id": "v7-plain-2",
+      "utterance": "נאמר: אולי שמתי קמח, אני לא בטוח. האם אפשר לקבוע בוודאות ששמתי קמח? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא, לא ניתן לקבוע בוודאות ששמתי קמח בהתבסס על המידע שניתן.\n",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    },
+    {
+      "id": "v7-plain-3",
+      "utterance": "נאמר: התחלתי לערבב ולא סיימתי. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא, הערבוב לא הושלם.\nassistant\nלא, הערבוב לא הושלם.",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    },
+    {
+      "id": "v7-plain-4",
+      "utterance": "נאמר: גמרתי לערבב את הבלילה. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "כן",
+      "actual_text": "לא, לא הושלם הערבוב.\nassistant\nלא, הערבוב לא הושלם.",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    },
+    {
+      "id": "v7-plain-5",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם הוספתי מים? ענה רק כן או לא.",
+      "expected_text": "כן",
+      "actual_text": "כן\nassistant\nכן, הוספת מים.\nassistant\nכן, הוספת",
+      "strict_trimmed_match": false,
+      "hit_limit": true
+    }
+  ],
+  "plain_strict_trimmed_matches": 0,
+  "numeric": {
+    "fp16": {
+      "nonfinite_weight_elements": 0,
+      "max_abs_weight": 153.0,
+      "parameter_dtypes": {
+        "torch.float16": 1720574976
+      },
+      "probes": [
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-clear-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 33.21875,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            139239
+          ],
+          "top5_values": [
+            33.21875,
+            31.546875,
+            27.1875,
+            24.265625,
+            23.25
+          ],
+          "logits_float32_sha256": "476a161e63af431083323c81f98427e8324f59a24770e663b43832452c2b3b1e"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-clear-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 31.140625,
+          "top5_ids": [
+            36509,
+            9207,
+            2198,
+            14345,
+            58640
+          ],
+          "top5_values": [
+            31.140625,
+            28.328125,
+            26.546875,
+            26.515625,
+            22.609375
+          ],
+          "logits_float32_sha256": "623a3a55ec7182e975b689516e4ab30a6cb09ba98b7d052da203bb557c225941"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-negation-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 34.21875,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            334
+          ],
+          "top5_values": [
+            34.21875,
+            32.3125,
+            27.40625,
+            25.359375,
+            24.125
+          ],
+          "logits_float32_sha256": "b4d84c8b8ac378376d437c4cbd5554d80ec92c59cc1fd3849563ac2354056166"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-negation-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 31.890625,
+          "top5_ids": [
+            36509,
+            9207,
+            14345,
+            2198,
+            7115
+          ],
+          "top5_values": [
+            31.890625,
+            28.46875,
+            26.890625,
+            26.40625,
+            22.328125
+          ],
+          "logits_float32_sha256": "83e94fd1f4a980db6fedabb433851fcd31028070827e8987f1963ad3614d2d5a"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-partial-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 35.03125,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            5212
+          ],
+          "top5_values": [
+            35.03125,
+            31.578125,
+            26.234375,
+            25.5,
+            24.640625
+          ],
+          "logits_float32_sha256": "a07ec248ecf5b83601817f16cc5584a9015ccbdbec7af4df6a7fd4febf684781"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-partial-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 32.1875,
+          "top5_ids": [
+            37420,
+            10438,
+            28210,
+            4480,
+            34735
+          ],
+          "top5_values": [
+            32.1875,
+            31.0625,
+            30.171875,
+            27.671875,
+            25.953125
+          ],
+          "logits_float32_sha256": "bb7d6fa38c5dbce416a4bde71a5b55e4f43f544fcdc8e028bf6414ee0087173f"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-uncertainty-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 34.875,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            139239,
+            334
+          ],
+          "top5_values": [
+            34.875,
+            30.9375,
+            27.21875,
+            25.671875,
+            25.671875
+          ],
+          "logits_float32_sha256": "f43d6c255a7735d9063298247ca5015ab967f03ce766f8ac24ec279d7836d6f1"
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-uncertainty-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 33.0,
+          "top5_ids": [
+            37420,
+            28210,
+            4480,
+            10438,
+            49534
+          ],
+          "top5_values": [
+            33.0,
+            31.21875,
+            28.375,
+            26.515625,
+            26.390625
+          ],
+          "logits_float32_sha256": "e72caaee1c1c8018cfc989695cf4bab975cad141f1e6799dc5fba5e11e3e6bd0"
+        }
+      ],
+      "peak_allocated_bytes": 6241659904,
+      "peak_reserved_bytes": 7587495936
+    },
+    "fp32": {
+      "nonfinite_weight_elements": 0,
+      "max_abs_weight": 153.0,
+      "parameter_dtypes": {
+        "torch.float32": 1720574976
+      },
+      "probes": [
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-clear-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 33.238399505615234,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            139239
+          ],
+          "top5_values": [
+            33.238399505615234,
+            31.554006576538086,
+            27.20458984375,
+            24.284439086914062,
+            23.271892547607422
+          ],
+          "logits_float32_sha256": "ea30c09499044d6b85211fcd5c326f73644ad39da6fdd9e74518f1d482ac461e",
+          "fp16_fp32_cosine": 0.9999914765357971,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-clear-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 31.151229858398438,
+          "top5_ids": [
+            36509,
+            9207,
+            2198,
+            14345,
+            58640
+          ],
+          "top5_values": [
+            31.151229858398438,
+            28.33672523498535,
+            26.55780029296875,
+            26.516700744628906,
+            22.609336853027344
+          ],
+          "logits_float32_sha256": "36964e6f137314e9db1a37dcb3b074afaa9ce052e112914d8313727e90757105",
+          "fp16_fp32_cosine": 0.9999961853027344,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-negation-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 34.211456298828125,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            334
+          ],
+          "top5_values": [
+            34.211456298828125,
+            32.32398223876953,
+            27.38905143737793,
+            25.36600112915039,
+            24.110876083374023
+          ],
+          "logits_float32_sha256": "bd6335e02fe0a09340ba6604020ca729d7f3cd081e027950b27e6175de33ab3f",
+          "fp16_fp32_cosine": 0.9999916553497314,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-negation-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 31.87603187561035,
+          "top5_ids": [
+            36509,
+            9207,
+            14345,
+            2198,
+            7115
+          ],
+          "top5_values": [
+            31.87603187561035,
+            28.462636947631836,
+            26.890789031982422,
+            26.398263931274414,
+            22.31937026977539
+          ],
+          "logits_float32_sha256": "5944c91a6fdb0d04ff8c25e2a553a6accaa050a23a88c2b3d5cd1d8bf7932ce4",
+          "fp16_fp32_cosine": 0.999996542930603,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-partial-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 35.003692626953125,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            90,
+            5212
+          ],
+          "top5_values": [
+            35.003692626953125,
+            31.60033416748047,
+            26.214649200439453,
+            25.49579429626465,
+            24.622730255126953
+          ],
+          "logits_float32_sha256": "dec602e3759c695509d4f10768a13b827a3d69af20f07c7de9b46eb81dda88cf",
+          "fp16_fp32_cosine": 0.9999946355819702,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-partial-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 32.200435638427734,
+          "top5_ids": [
+            37420,
+            10438,
+            28210,
+            4480,
+            34735
+          ],
+          "top5_values": [
+            32.200435638427734,
+            31.036006927490234,
+            30.157575607299805,
+            27.6639404296875,
+            25.95724105834961
+          ],
+          "logits_float32_sha256": "933aef222ee188c58bb026d34c3d710e99de75fb5593e86f8ea10398c91498af",
+          "fp16_fp32_cosine": 0.9999961256980896,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-uncertainty-0",
+          "observed_prefix_tokens": 0,
+          "finite": true,
+          "max_abs": 34.872108459472656,
+          "top5_ids": [
+            4913,
+            515,
+            73594,
+            139239,
+            334
+          ],
+          "top5_values": [
+            34.872108459472656,
+            30.943317413330078,
+            27.202470779418945,
+            25.67698860168457,
+            25.656742095947266
+          ],
+          "logits_float32_sha256": "c62b86f5b1c1fdd8316d2d279c4a672795039906d79124be98c2daf0e2784201",
+          "fp16_fp32_cosine": 0.9999960064888,
+          "argmax_same": true
+        },
+        {
+          "id": "v4-dev-unseen-recipe-unseen-frame-r6-uncertainty-0",
+          "observed_prefix_tokens": 24,
+          "finite": true,
+          "max_abs": 32.99329376220703,
+          "top5_ids": [
+            37420,
+            28210,
+            4480,
+            10438,
+            49534
+          ],
+          "top5_values": [
+            32.99329376220703,
+            31.203086853027344,
+            28.38796615600586,
+            26.491655349731445,
+            26.38926124572754
+          ],
+          "logits_float32_sha256": "636fee4ce55f1c935c600a15b4fb6f391aa579ae53d81d0af7328f219989e5ce",
+          "fp16_fp32_cosine": 0.9999927282333374,
+          "argmax_same": true
+        }
+      ],
+      "peak_allocated_bytes": 9691333632,
+      "peak_reserved_bytes": 11580473344
+    }
+  },
+  "numerical_warning": false,
+  "low_cosine_pairs": 0,
+  "fewshot_interest_gate_passed": false,
+  "can_expand_fewshot_evaluation": false,
+  "product_promotion": false,
+  "generated_outputs": 54,
+  "numerical_forward_probes": 16,
+  "archive_sha256": "af5ff9c13c404f31242fd7e017c2affd1d670ab87376d4c192018ba86b00b1cf",
+  "archive_bytes": 13028,
+  "crc_manifest_source_data_verified": true,
+  "numerical_audit_scope": "Decision recomputed from recorded instrumented cosine/top5/finite metadata. Full logits not retained, so cosine itself requires replaying the pinned numerical forwards to independently reproduce.",
+  "scope": "Diagnostic only: reused16 authored Hebrew language probes in3 routes,6 plain controls,16 numerical forwards on4 exposed V6 inputs. Conditional6 FP32 plain generations only if nonfinite FP16 weights/logits. No training, protected test, phone, browser or product approval."
+}

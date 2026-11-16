@@ -1,0 +1,6 @@
+{
+  "expanded_cases": 160,
+  "fewshot_max_prompt_tokens": 785,
+  "max_total_budget": 881,
+  "all_fit": true
+}
