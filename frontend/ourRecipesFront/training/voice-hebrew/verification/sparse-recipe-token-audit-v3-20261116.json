@@ -1,0 +1,21 @@
+{
+  "scope": "Tokenizer and masking only, no model inference or training",
+  "tokenizer_repo": "Qwen/Qwen3-0.6B",
+  "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "splits": {
+    "train": {
+      "rows": 360,
+      "max_full_tokens": 585,
+      "max_prompt_tokens": 563,
+      "max_target_tokens": 31,
+      "masked_prompt_and_supervised_eos": true
+    },
+    "validation": {
+      "rows": 120,
+      "max_full_tokens": 572,
+      "max_prompt_tokens": 550,
+      "max_target_tokens": 31,
+      "masked_prompt_and_supervised_eos": true
+    }
+  }
+}
