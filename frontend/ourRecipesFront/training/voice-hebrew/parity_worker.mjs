@@ -6,7 +6,11 @@ self.onmessage=async({data})=>{
    console.log('parity-load:model-fetch');
    const start=performance.now(),response=await fetch('/model');
    if(!response.ok)throw Error('model-transfer-failed');
-   const blob=await response.blob();console.log('parity-load:model-blob',blob.size);
+   // Streaming response.blob() fails for this large file in this persistent
+   // Chromium profile. Use the already validated V19 reader/Blob transfer path.
+   const reader=response.body.getReader(),chunks=[];let loaded=0;
+   for(;;){const r=await reader.read();if(r.done)break;loaded+=r.value.length;if(loaded>data.bytes)throw Error('model-too-large');chunks.push(r.value);}
+   const blob=new Blob(chunks);chunks.length=0;console.log('parity-load:model-blob',blob.size);
    if(blob.size!==data.bytes)throw Error('model-size-mismatch');
    model=new Wllama({default:'/runtime/wllama.wasm'},{suppressNativeLog:true,logger:{log(){},debug(){},warn(){},error(...args){console.error(...args);}}});
    model.setCompat(null);console.log('parity-load:runtime');await model.loadModel([blob],data.settings);
