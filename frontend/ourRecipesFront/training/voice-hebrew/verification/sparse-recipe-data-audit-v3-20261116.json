@@ -1,0 +1,93 @@
+{
+  "data_sha256": "52b24850add6be5d1f9fd5d22351e76fe19174c43d1cfafa628a0f3aded5432d",
+  "reviewer": "assistant author, not independent human",
+  "training_data_source": "authored synthetic only",
+  "old_data_opened": false,
+  "scope": "Pre-result descriptive data audit; no inference, relabeling or threshold choice",
+  "splits": {
+    "train": {
+      "rows": 360,
+      "recipes": [
+        "sparse-recipe-0",
+        "sparse-recipe-1",
+        "sparse-recipe-2",
+        "sparse-recipe-3",
+        "sparse-recipe-4",
+        "sparse-recipe-5"
+      ],
+      "families": {
+        "clear": 36,
+        "negation": 36,
+        "partial": 36,
+        "correction": 36,
+        "uncertainty": 36,
+        "side-doubt": 36,
+        "multiple": 36,
+        "reference": 36,
+        "question": 36,
+        "nonreport-and-next": 36
+      },
+      "intents": {
+        "report": 234,
+        "clarify": 54,
+        "next": 18,
+        "missed": 6,
+        "quantity": 12,
+        "explain": 12,
+        "other": 24
+      },
+      "reported_statuses": {
+        "done": 126,
+        "pending": 78,
+        "partial": 66
+      },
+      "required_change_cases": 193,
+      "critical_no_facts": 114,
+      "global_ambiguity_cases": 18
+    },
+    "validation": {
+      "rows": 120,
+      "recipes": [
+        "sparse-recipe-6",
+        "sparse-recipe-7"
+      ],
+      "families": {
+        "clear": 12,
+        "negation": 12,
+        "partial": 12,
+        "correction": 12,
+        "uncertainty": 12,
+        "side-doubt": 12,
+        "multiple": 12,
+        "reference": 12,
+        "question": 12,
+        "nonreport-and-next": 12
+      },
+      "intents": {
+        "report": 78,
+        "clarify": 18,
+        "next": 6,
+        "missed": 2,
+        "quantity": 4,
+        "explain": 4,
+        "other": 8
+      },
+      "reported_statuses": {
+        "done": 42,
+        "pending": 26,
+        "partial": 22
+      },
+      "required_change_cases": 60,
+      "critical_no_facts": 38,
+      "global_ambiguity_cases": 6
+    }
+  },
+  "label_assumptions": [
+    "done means unqualified completion according to current report, not physical quantity verification.",
+    "currentStep is navigation position, not automatically the last spoken instruction; unresolved pronouns with no history are labeled ambiguous. This assumption is not explicit in the frozen system prompt and deserves targeted review before broader training.",
+    "Hypothetical/quoted/wording requests do not assert performance.",
+    "Exact speech corrections and ingredient substitutions are outside this small corpus.",
+    "Disjoint recipe IDs and full utterances do not imply independent natural conversations; templates and operations are correlated."
+  ],
+  "created_utc": "2026-11-16T14:06:11.726375+00:00"
+}
