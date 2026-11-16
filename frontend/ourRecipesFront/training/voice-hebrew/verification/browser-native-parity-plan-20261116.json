@@ -1,10 +1,10 @@
 {
-  "study": "browser-native-parity-stage1-v1",
-  "created_utc": "2026-11-16T10:54:39.741427+00:00",
+  "study": "browser-native-parity-stage1-v2",
+  "created_utc": "2026-11-16T10:55:42.984190+00:00",
   "source_sha256": {
     "parity_protocol.mjs": "acb73113ddda1094b75c180218473b2c787f0d8cc5365029d3704afb4bc13586",
     "parity_worker.mjs": "1fa56f0f117f08499ab31769c1c0c9eac02fa3fbd608b3e9ad948f4e694ed1eb",
-    "parity_runner.mjs": "bdefbe7e7a9c3d4e4f90eed8e64606721130f00e4571d000a82b0185056d54d6",
+    "parity_runner.mjs": "4cd37f0ae1360a9a5ede2b4d36754e24c66cc691fc7c52acc2a989bf87f17b6e",
     "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
     "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
     "tiny_recipe_cases.mjs": "e015c504beb423969a7e0c21e29df70bc3d8e98730f552f8e11d4114cadf9eb0",
@@ -68,5 +68,6 @@
   "legacy_comparison_limits": "Cache disabled and flash attention explicitly disabled here; these runs are not isolated causal comparisons against the Nov13 cached/auto flash runs. New contract is NOT passed to the model in this parity experiment; old prompts/schema are kept.",
   "scope": "Synthetic authored development only; loopback native server and local browser fixtures; no audio/user data to external inference. Public pinned weights/source downloaded for local CPU use. No physical phone/GPU.",
   "training_performed": false,
-  "held_tests_inferred": false
+  "held_tests_inferred": false,
+  "setup_correction": "v1 exited before model inference: removed CLI flag --no-mmap is now --load-mode none. Original result/plan retained. No prompt or decision-rule change."
 }
