@@ -1,0 +1,18 @@
+{
+  "created_utc": "2026-11-16T14:34:56.575561+00:00",
+  "before_free_bytes": 50368512,
+  "after_free_bytes": 457183232,
+  "items": [
+    {
+      "root": "/tmp/ourrecipes-voice-training-venv",
+      "compiled_pyc_removed": 9309,
+      "bytes": 187639302
+    },
+    {
+      "root": "/tmp/ourrecipes-voice-py313",
+      "compiled_pyc_removed": 8447,
+      "bytes": 178778046
+    }
+  ],
+  "scope": "Only .pyc under __pycache__ in two disposable Python environments. No source, weights, checkpoints, original results or archive deleted."
+}
