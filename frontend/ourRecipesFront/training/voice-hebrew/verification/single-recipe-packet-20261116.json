@@ -1,0 +1,30 @@
+{
+  "file": "/workspace/ourRecipesWeb/frontend/ourRecipesFront/training/voice-hebrew/dist/ourRecipes-single-recipe-study-20261116.zip",
+  "bytes": 484501,
+  "sha256": "055f0796acea706afba8fd47e8a4d89da2ef51c78977eebc09fa64aec83a8a8d",
+  "members": 80,
+  "manifest_entries": 79,
+  "crc_verified": true,
+  "all_manifest_sha_verified": true,
+  "extracted_code_tests_passed": 25,
+  "tests_stdout_sha256": "4491183492fc95fecb3480d6d702af0bd8610b46055be7e38c7b54017e0fd991",
+  "frozen_snapshots_verified": [
+    [
+      "verification/single-recipe-plan-20261116.json",
+      "f46838f"
+    ],
+    [
+      "verification/single-recipe-plan-20261116-compatible.json",
+      "a378c5a"
+    ],
+    [
+      "verification/single-recipe-plan-20261116-compact.json",
+      "a378c5a"
+    ],
+    [
+      "verification/single-action-probe-plan-20261116.json",
+      "288a808"
+    ]
+  ],
+  "scope": "CPU cloud inference on authored synthetic data; no training or physical phone"
+}

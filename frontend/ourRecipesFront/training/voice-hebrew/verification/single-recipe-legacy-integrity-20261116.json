@@ -1,0 +1,35 @@
+{
+  "all_preserved": true,
+  "archives": [
+    {
+      "file": "dist/ourRecipes-hebrew-model-research-scope-20261112.zip",
+      "bytes": 168109071,
+      "sha256": "b93fdbefa8ca53b6fd21fc44db39689046cb9df4bbc72e365f336d61ee989add"
+    },
+    {
+      "file": "dist/ourRecipes-hebrew-stance-continuation-20261112.zip",
+      "bytes": 81656350,
+      "sha256": "e193c37bd7f092c02a766f5e2a2a983595e43e4c0f5691f7a5d297eec4412ea6"
+    },
+    {
+      "file": "dist/ourRecipes-hebrew-capacity-diagnosis-20261112.zip",
+      "bytes": 201261,
+      "sha256": "15469009c3efdbc5f3dd116eef1c3b19f18ab302fedf1b2633150b62a1594857"
+    },
+    {
+      "file": "dist/ourRecipes-tiny-browser-recipe-20261113.zip",
+      "bytes": 114500,
+      "sha256": "7f11f4ca1b0626e79d9839d2665cb5e95522f55da60c323d0104e73035013768"
+    },
+    {
+      "file": "dist/ourRecipes-stage1-contract-parity-20261116.zip",
+      "bytes": 2486593,
+      "sha256": "f1d49873a3f2bd5a7c0403bc7c483d9d3e675af89de61cc6c81c3a49306fd019"
+    },
+    {
+      "file": "dist/ourRecipes-stage1-contract-parity-20261116-v2.zip",
+      "bytes": 2487567,
+      "sha256": "1c8cc763899575797d2d9c7f8982b11595e6a635f19133554376cbd2a8c3d5f8"
+    }
+  ]
+}

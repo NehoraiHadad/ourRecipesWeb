@@ -1,0 +1,358 @@
+{
+  "created_utc": "2026-11-16T13:32:45.589902+00:00",
+  "primary_cases_per_arm": 80,
+  "unique_synthetic_scenarios": 80,
+  "candidate_pipeline_case_outputs": 320,
+  "separate_previous_recipe_stress_cases_inferred": 0,
+  "primary_context_case_ids": [
+    "clear-1",
+    "clear-2",
+    "clear-3",
+    "clear-4",
+    "clear-5",
+    "clear-6",
+    "clear-7",
+    "clear-8",
+    "negation-1",
+    "negation-2",
+    "negation-3",
+    "negation-4",
+    "negation-5",
+    "negation-6",
+    "negation-7",
+    "negation-8",
+    "multiple-1",
+    "multiple-2",
+    "multiple-3",
+    "multiple-4",
+    "multiple-5",
+    "multiple-6",
+    "multiple-7",
+    "multiple-8",
+    "partial-1",
+    "partial-2",
+    "partial-3",
+    "partial-4",
+    "partial-5",
+    "partial-6",
+    "partial-7",
+    "partial-8",
+    "correction-1",
+    "correction-2",
+    "correction-3",
+    "correction-4",
+    "correction-5",
+    "correction-6",
+    "correction-7",
+    "correction-8",
+    "uncertainty-1",
+    "uncertainty-2",
+    "uncertainty-3",
+    "uncertainty-4",
+    "uncertainty-5",
+    "uncertainty-6",
+    "uncertainty-7",
+    "uncertainty-8",
+    "unrelated-doubt-1",
+    "unrelated-doubt-2",
+    "unrelated-doubt-3",
+    "unrelated-doubt-4",
+    "unrelated-doubt-5",
+    "unrelated-doubt-6",
+    "unrelated-doubt-7",
+    "unrelated-doubt-8",
+    "reference-1",
+    "reference-2",
+    "reference-3",
+    "reference-4",
+    "reference-5",
+    "reference-6",
+    "reference-7",
+    "reference-8",
+    "recipe-question-1",
+    "recipe-question-2",
+    "recipe-question-3",
+    "recipe-question-4",
+    "recipe-question-5",
+    "recipe-question-6",
+    "recipe-question-7",
+    "recipe-question-8",
+    "single-recipe-salad-1",
+    "single-recipe-salad-2",
+    "single-recipe-salad-3",
+    "single-recipe-salad-4",
+    "single-recipe-salad-5",
+    "single-recipe-salad-6",
+    "single-recipe-salad-7",
+    "single-recipe-salad-8"
+  ],
+  "compact_gold_and_questions_unchanged": true,
+  "max_option_tokens": 17,
+  "question_label_order_unchanged": true,
+  "arms": [
+    {
+      "run": "nativ-v1",
+      "sha256": "7c15e3042fcb271c27fc0d99c24824beb52123bafb5b34072a5c4f616a63ec41",
+      "cases": 80,
+      "training": false,
+      "browser": false,
+      "physical_phone": false,
+      "min_input_tokens": 396,
+      "max_input_tokens": 484
+    },
+    {
+      "run": "qwen-v1",
+      "sha256": "33b3b00315d248880490c0cd28711dd8ab9e01c4dacd17695761026b09d63d66",
+      "cases": 80,
+      "training": false,
+      "browser": false,
+      "physical_phone": false,
+      "most_common_action_arrays": [
+        {
+          "actions": [
+            "done",
+            "pending",
+            "partial",
+            "uncertain"
+          ],
+          "count": 70
+        },
+        {
+          "actions": [
+            "done",
+            "pending",
+            "partial"
+          ],
+          "count": 8
+        },
+        {
+          "actions": [
+            "partial",
+            "done",
+            "pending",
+            "uncertain"
+          ],
+          "count": 1
+        },
+        {
+          "actions": [
+            "pending",
+            "partial",
+            "uncertain",
+            "done"
+          ],
+          "count": 1
+        }
+      ],
+      "max_actual_prompt_tokens": 487,
+      "prompt_counts_match": true
+    },
+    {
+      "run": "nativ-compact-v1",
+      "sha256": "79cfe7f0ef73bfff931b7b0d6b60f322979014f9c10d49410d4cb095e498c889",
+      "cases": 80,
+      "training": false,
+      "browser": false,
+      "physical_phone": false,
+      "min_input_tokens": 187,
+      "max_input_tokens": 241
+    },
+    {
+      "run": "qwen-compact-v1",
+      "sha256": "602495f2ad7d8fbfaf96b4c2edf37e886c835a38474f20247bd03e56704fbcd5",
+      "cases": 80,
+      "training": false,
+      "browser": false,
+      "physical_phone": false,
+      "most_common_action_arrays": [
+        {
+          "actions": [
+            "done",
+            "pending",
+            "partial",
+            "uncertain"
+          ],
+          "count": 63
+        },
+        {
+          "actions": [
+            "done",
+            "pending",
+            "partial"
+          ],
+          "count": 4
+        },
+        {
+          "actions": [
+            "done",
+            "done",
+            "done",
+            "done"
+          ],
+          "count": 3
+        },
+        {
+          "actions": [
+            "partial",
+            "done",
+            "uncertain",
+            "pending"
+          ],
+          "count": 3
+        },
+        {
+          "actions": [
+            "partial",
+            "done",
+            "pending"
+          ],
+          "count": 3
+        }
+      ],
+      "max_actual_prompt_tokens": 465,
+      "prompt_counts_match": true
+    }
+  ],
+  "separate_primitive_probe": [
+    {
+      "arm": "nativ",
+      "sha256": "559f539ac6ed095d1d24e1ed2c646ea69a7999dcf002320a4de3b5637ccf6f87",
+      "correct": 4,
+      "cases": 16,
+      "median_ms": 379.5213599996714,
+      "mistakes": [
+        {
+          "id": "clear-5:water",
+          "expected": "done",
+          "predicted": "partial"
+        },
+        {
+          "id": "negation-3:water",
+          "expected": "pending",
+          "predicted": "partial"
+        },
+        {
+          "id": "uncertainty-1:water",
+          "expected": "uncertain",
+          "predicted": "partial"
+        },
+        {
+          "id": "clear-1:water",
+          "expected": "unmentioned",
+          "predicted": "partial"
+        },
+        {
+          "id": "reference-5:water",
+          "expected": "ambiguous",
+          "predicted": "done"
+        },
+        {
+          "id": "multiple-1:water",
+          "expected": "done",
+          "predicted": "partial"
+        },
+        {
+          "id": "correction-1:flour",
+          "expected": "pending",
+          "predicted": "partial"
+        },
+        {
+          "id": "unrelated-doubt-1:flour",
+          "expected": "done",
+          "predicted": "partial"
+        },
+        {
+          "id": "recipe-question-3:water",
+          "expected": "unmentioned",
+          "predicted": "partial"
+        },
+        {
+          "id": "partial-6:mix",
+          "expected": "partial",
+          "predicted": "pending"
+        },
+        {
+          "id": "uncertainty-4:water",
+          "expected": "uncertain",
+          "predicted": "partial"
+        },
+        {
+          "id": "recipe-question-4:water",
+          "expected": "unmentioned",
+          "predicted": "partial"
+        }
+      ]
+    },
+    {
+      "arm": "qwen",
+      "sha256": "529db38990f8a6cb65ccc4c5cc5a7614a165911145a64ed8889f6cb82557570b",
+      "correct": 4,
+      "cases": 16,
+      "median_ms": 967.4324809993777,
+      "mistakes": [
+        {
+          "id": "clear-5:water",
+          "expected": "done",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "partial-1:water",
+          "expected": "partial",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "uncertainty-1:water",
+          "expected": "uncertain",
+          "predicted": "pending"
+        },
+        {
+          "id": "clear-1:water",
+          "expected": "unmentioned",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "reference-5:water",
+          "expected": "ambiguous",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "multiple-1:water",
+          "expected": "done",
+          "predicted": "pending"
+        },
+        {
+          "id": "correction-1:flour",
+          "expected": "pending",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "unrelated-doubt-1:flour",
+          "expected": "done",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "recipe-question-3:water",
+          "expected": "unmentioned",
+          "predicted": "uncertain"
+        },
+        {
+          "id": "partial-6:mix",
+          "expected": "partial",
+          "predicted": "pending"
+        },
+        {
+          "id": "clear-8:cook",
+          "expected": "done",
+          "predicted": "pending"
+        },
+        {
+          "id": "recipe-question-4:water",
+          "expected": "unmentioned",
+          "predicted": "uncertain"
+        }
+      ]
+    }
+  ],
+  "probe_limits": "16 projected questions from15 exposed development cases, not16 new conversations; exclude from80-case scores.",
+  "scope": "Local CPU only; no training, external inference, browser/phone test, held-test evaluation or app progress committed."
+}

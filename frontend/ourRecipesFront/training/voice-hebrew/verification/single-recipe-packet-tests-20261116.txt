@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: primary contexts are clean per recipe; old cross-recipe probes remain separate
+ok 1 - primary contexts are clean per recipe; old cross-recipe probes remain separate
+  ---
+  duration_ms: 2.387259
+  type: 'test'
+  ...
+# Subtest: request construction does not accumulate the previous case or mutate its history
+ok 2 - request construction does not accumulate the previous case or mutate its history
+  ---
+  duration_ms: 0.819395
+  type: 'test'
+  ...
+# Subtest: mixed and partial facts preserve distinct actions; binding is from frozen request
+ok 3 - mixed and partial facts preserve distinct actions; binding is from frozen request
+  ---
+  duration_ms: 1.577899
+  type: 'test'
+  ...
+# Subtest: an unchanged state cannot hide missing negation facts or incorrect intent
+ok 4 - an unchanged state cannot hide missing negation facts or incorrect intent
+  ---
+  duration_ms: 0.45752
+  type: 'test'
+  ...
+# Subtest: uncertainty and unanchored reference produce clarification without invented progress
+ok 5 - uncertainty and unanchored reference produce clarification without invented progress
+  ---
+  duration_ms: 0.549528
+  type: 'test'
+  ...
+# Subtest: malformed output is rejected rather than replaced with an apparently correct no-op
+ok 6 - malformed output is rejected rather than replaced with an apparently correct no-op
+  ---
+  duration_ms: 0.336367
+  type: 'test'
+  ...
+# Subtest: compact context preserves current actions, prior state, same-recipe history and utterance without gold labels
+ok 7 - compact context preserves current actions, prior state, same-recipe history and utterance without gold labels
+  ---
+  duration_ms: 1.997662
+  type: 'test'
+  ...
+# Subtest: mixed positive and negative report previews atomically without mutating input
+ok 8 - mixed positive and negative report previews atomically without mutating input
+  ---
+  duration_ms: 6.212817
+  type: 'test'
+  ...
+# Subtest: partial action remains outstanding; no residual quantity is invented
+ok 9 - partial action remains outstanding; no residual quantity is invented
+  ---
+  duration_ms: 0.486844
+  type: 'test'
+  ...
+# Subtest: correction can reopen completed work and recompute derived lists
+ok 10 - correction can reopen completed work and recompute derived lists
+  ---
+  duration_ms: 0.452582
+  type: 'test'
+  ...
+# Subtest: stale response is rejected after a revision, recipe switch, or source edit
+ok 11 - stale response is rejected after a revision, recipe switch, or source edit
+  ---
+  duration_ms: 0.793566
+  type: 'test'
+  ...
+# Subtest: one invalid fact prevents all preview updates
+ok 12 - one invalid fact prevents all preview updates
+  ---
+  duration_ms: 0.479022
+  type: 'test'
+  ...
+# Subtest: duplicate ids, fabricated evidence and changed quote offsets fail validation
+ok 13 - duplicate ids, fabricated evidence and changed quote offsets fail validation
+  ---
+  duration_ms: 0.514045
+  type: 'test'
+  ...
+# Subtest: clear action and separate ambiguous action can coexist without guessing
+ok 14 - clear action and separate ambiguous action can coexist without guessing
+  ---
+  duration_ms: 0.532983
+  type: 'test'
+  ...
+# Subtest: question/clarification without facts leaves progress and revision unchanged
+ok 15 - question/clarification without facts leaves progress and revision unchanged
+  ---
+  duration_ms: 0.545072
+  type: 'test'
+  ...
+# Subtest: finished state has no next action; fresh recipe has no carryover
+ok 16 - finished state has no next action; fresh recipe has no carryover
+  ---
+  duration_ms: 0.445551
+  type: 'test'
+  ...
+# Subtest: exact evidence can still be semantically wrong: validator does not claim truth
+ok 17 - exact evidence can still be semantically wrong: validator does not claim truth
+  ---
+  duration_ms: 0.512914
+  type: 'test'
+  ...
+# Subtest: all 80 development fixtures have unique ids, bounded families and valid proposals
+ok 18 - all 80 development fixtures have unique ids, bounded families and valid proposals
+  ---
+  duration_ms: 10.042681
+  type: 'test'
+  ...
+# Subtest: fixtures keep correction history, unresolved references and recipe switches explicit
+ok 19 - fixtures keep correction history, unresolved references and recipe switches explicit
+  ---
+  duration_ms: 0.178079
+  type: 'test'
+  ...
+# Subtest: invalid outputs stay in both required-change and read-only denominators
+ok 20 - invalid outputs stay in both required-change and read-only denominators
+  ---
+  duration_ms: 1.475805
+  type: 'test'
+  ...
+# Subtest: duplicate ids, old mixed-history stress ids and false completion labels cannot inflate results
+ok 21 - duplicate ids, old mixed-history stress ids and false completion labels cannot inflate results
+  ---
+  duration_ms: 0.474065
+  type: 'test'
+  ...
+# Subtest: reject cross-recipe ids and duplicate updates
+ok 22 - reject cross-recipe ids and duplicate updates
+  ---
+  duration_ms: 1.863009
+  type: 'test'
+  ...
+# Subtest: partial is separate from done and source state stays unchanged
+ok 23 - partial is separate from done and source state stays unchanged
+  ---
+  duration_ms: 0.964824
+  type: 'test'
+  ...
+# Subtest: valid JSON is not evidence of semantic correctness
+ok 24 - valid JSON is not evidence of semantic correctness
+  ---
+  duration_ms: 2.052725
+  type: 'test'
+  ...
+# Subtest: question and recipe switch fixtures require no progress mutation
+ok 25 - question and recipe switch fixtures require no progress mutation
+  ---
+  duration_ms: 1.043333
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 215.642767
