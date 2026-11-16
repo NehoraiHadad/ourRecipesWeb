@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://aclanthology.org/2024.emnlp-main.333.pdf",
+    "sha256": "f893772090730d48bd18d9b06675892e6ab5cab052f2b0bed51452385e845b12",
+    "bytes": 543113,
+    "status": "Abstract and PDF methods inspected; sections 3 and 3.2-3.3; not used as training data"
+  },
+  {
+    "url": "https://aclanthology.org/2023.findings-acl.507.pdf",
+    "sha256": "bf2651f337c936c02ea6609f7b51e5d0a8227983ebb431647bd1504aea1eef32",
+    "bytes": 2309986,
+    "status": "Abstract and PDF methods inspected; sections 3 and 3.2-3.3; not used as training data"
+  }
+]

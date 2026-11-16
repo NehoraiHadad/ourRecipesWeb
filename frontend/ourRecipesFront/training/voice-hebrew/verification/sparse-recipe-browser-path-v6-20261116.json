@@ -1,0 +1,18 @@
+{
+  "package": "@wllama/wllama",
+  "version": "3.13.0",
+  "read_only_inspection": true,
+  "findings": [
+    "Published TypeScript declaration includes grammar and lora_adapters parameters",
+    "Source forwards adapter paths/scales to backend",
+    "README still lists LoRA as TODO; no actual adapter/browser test performed",
+    "Transformers LMFE is not browser runtime code; future grammar must be ported and measured separately"
+  ],
+  "sources": {
+    "package.json": "2101e4e8111c62a2885c234e7e19b5ee60a996d720090c7d34058abffcca8aed",
+    "README.md": "3558d8a6485f97440733b085d55a2987ede48add7e70db24b62cd4e21ebc530f",
+    "src/types/types.ts": "da37e9f67806c2aa53194c676ffbb05a21b7a500057f0dcf7c3e14c1ec3784d0",
+    "src/wllama.ts": "08ac94b50c6816cf9fffdad803beb2cbfeee56157637d5d81bf19ae8810be9ac",
+    "esm/types/types.d.ts": "b2b2be7accada80d201e15c2475ba5b6fcff15dcdb8fe3ec9fca8886345b21c7"
+  }
+}
