@@ -1,0 +1,17 @@
+{
+  "scope": "Unused prelaunch freeze, no GPU allocated or model outputs. Editorial spacing revision only; original bytes retained before final freeze.",
+  "files": {
+    "SPARSE_RECIPE_V9_PLAN.he.md": {
+      "sha256": "4bfd2ccd41453611c1abb8b3410bd9d6ef819173c343fc496dfdaa7fba7c6515",
+      "retained_draft": "runs/v9-prelaunch-draft/SPARSE_RECIPE_V9_PLAN.he.md"
+    },
+    "verification/sparse-recipe-plan-v9-20261116.json": {
+      "sha256": "bdc7120ed4a12e9d614442b530a37800cc273ef7720626125902e43bdd2e2498",
+      "retained_draft": "runs/v9-prelaunch-draft/sparse-recipe-plan-v9-20261116.json"
+    },
+    "verification/sparse-recipe-teacher-plan-v9-20261116.json": {
+      "sha256": "c2942f074e394b5f9ddff78278f9d219458fe7165f8af50a469fb30507f09944",
+      "retained_draft": "runs/v9-prelaunch-draft/sparse-recipe-teacher-plan-v9-20261116.json"
+    }
+  }
+}

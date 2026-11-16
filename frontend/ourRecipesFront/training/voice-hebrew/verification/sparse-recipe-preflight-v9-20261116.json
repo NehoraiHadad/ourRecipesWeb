@@ -1,0 +1,35 @@
+{
+  "train": {
+    "cases": 360,
+    "max_total_tokens": 629,
+    "max_prompt_tokens": 607
+  },
+  "validation": {
+    "cases": 40,
+    "max_total_tokens": 619,
+    "max_prompt_tokens": 597
+  },
+  "diagnostic": {
+    "cases": 120,
+    "max_total_tokens": 621,
+    "max_prompt_tokens": 599
+  },
+  "regression": {
+    "cases": 120,
+    "max_total_tokens": 606,
+    "max_prompt_tokens": 584
+  },
+  "train_fit": {
+    "cases": 36,
+    "max_total_tokens": 625,
+    "max_prompt_tokens": 603
+  },
+  "contract": {
+    "assistant_end_id": 151645,
+    "tokenizer_eos_id": 151643,
+    "pad_id": 151643,
+    "prefixes_equal_generation": true,
+    "padding_loss_masked": true,
+    "scope": "CPU tokenizer and collator only; no model weights or inference."
+  }
+}

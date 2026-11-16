@@ -1,0 +1,48 @@
+{
+  "study": "sparse-recipe-v9-hebrew-teacher-contract",
+  "created_utc": "2026-11-16T22:17:49.786698+00:00",
+  "source_sha256": {
+    "recipe_teacher_sft_v9.py": "3a771e239f7213106e9249cb7ed8b7a98096569a9826ddbab596ddcb26263037",
+    "recipe_teacher_study_v9.py": "3fda98c579afd0a52c559354968c269c63772e2e0ab5fee579c15e3666c1f596",
+    "recipe_teacher_freeze_v9.py": "f4f6a28417552e44156dc1952e265f8bfc1fecfcac27c778d77a21a827fed363",
+    "recipe_teacher_job_v9.py": "d1e7491f4d86847e79b047aecd0683716593d6c49076210c8777420d9fa7056a",
+    "recipe_teacher_colab_v9.py": "91889aa07553dfc875d5cdd12e1efd2f6f937ae50aec0c216dd4e3c5cbc5d097",
+    "tests/test_recipe_teacher_v9.py": "37d3cfa6cdcaa81b4aff3965bc88171b0f5defc5c6dbfa0d48f6b10d4b931a7b",
+    "SPARSE_RECIPE_V9_PLAN.he.md": "e585b81a75a92bdace4124acf24440400f0ca764caa688173b392a708e06ff78",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01"
+  },
+  "artifact_sha256": {
+    "verification/sparse-recipe-teacher-plan-v9-20261116.json": "ed1ccd5cafe2990311fb9cb3d53a50b817e12ab3908b249aab12cea1e04c5f87",
+    "verification/sparse-recipe-control-data-v5-20261116.json": "9764c23b52784000e8cb5a1a454bf4f9b4ee3b495d4b24a62638a79b2254d299",
+    "verification/sparse-recipe-data-v5-20261116.json": "2aa4bed65e0ff9640dbe97ae19c2a92177d33bb81f580199fa1e1725d6042f40",
+    "verification/sparse-recipe-order-v9-20261116.json": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b",
+    "verification/sparse-recipe-reference-v9-20261116.json": "59533b8891f6f0ee423413c78e3b40ffeceb59bd80ff870a284c566d1efd91c0",
+    "verification/sparse-recipe-preflight-v9-20261116.json": "193c33787ce90775e72ac48fdaf729e68435fa8723aaa6e5072e8d46aff03b74",
+    "verification/sparse-recipe-results-v8-20261116.json": "8c4769647fb0141032e725ee8adc80ff386fcebed7f31814cb5968c21bc21fea",
+    "verification/sparse-recipe-generation-config-v8-20261116.json": "976b81a522907a4ee2055be7719e194e65eb290de8a9874aa34fcee1cb99f380"
+  },
+  "arm_plan_file": "verification/sparse-recipe-teacher-plan-v9-20261116.json",
+  "arm_data_file": "verification/sparse-recipe-control-data-v5-20261116.json",
+  "master_data_file": "verification/sparse-recipe-data-v5-20261116.json",
+  "reference_file": "verification/sparse-recipe-reference-v9-20261116.json",
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1",
+    "lm-format-enforcer==0.11.3",
+    "interegular==0.3.3",
+    "pydantic==2.12.4",
+    "PyYAML==6.0.3"
+  ],
+  "max_study_seconds": 3600,
+  "max_owner_seconds": 4500,
+  "scope": "One fresh Hebrew1.7B LoRA,160 updates with exactly same640 sampled TRAIN examples as cached0.6B V5 replay; not equal FLOPs/time/parameter count.840 repeated exposed development/regression outputs plus36 TRAIN-fit. No protected test, product approval, browser or phone. Offline teacher candidate only if unchanged standard gate and strict teacher utility both pass."
+}

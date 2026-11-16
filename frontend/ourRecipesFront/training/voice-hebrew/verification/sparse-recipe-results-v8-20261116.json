@@ -1,0 +1,200 @@
+{
+  "study": "sparse-recipe-v8-official-stop-correction",
+  "status": {
+    "status": "complete",
+    "phase": "complete",
+    "seconds": 336.693019076
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "host_python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]"
+  },
+  "metrics": {
+    "free": {
+      "cases": 16,
+      "valid": 0,
+      "exact": 0,
+      "facts_exact": 0,
+      "intent_correct": 0,
+      "clarify_exact": 0,
+      "state_correct": 0,
+      "rejected_output": 16,
+      "unsafe_state": 0,
+      "required_changes": 9,
+      "required_changes_correct": 0,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 0,
+      "cases_with_wrong_facts": 0
+    },
+    "grammar": {
+      "cases": 16,
+      "valid": 10,
+      "exact": 0,
+      "facts_exact": 0,
+      "intent_correct": 1,
+      "clarify_exact": 8,
+      "state_correct": 4,
+      "rejected_output": 6,
+      "unsafe_state": 6,
+      "required_changes": 9,
+      "required_changes_correct": 1,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 4,
+      "cases_with_wrong_facts": 10
+    },
+    "fewshot": {
+      "cases": 16,
+      "valid": 9,
+      "exact": 1,
+      "facts_exact": 1,
+      "intent_correct": 5,
+      "clarify_exact": 7,
+      "state_correct": 4,
+      "rejected_output": 7,
+      "unsafe_state": 5,
+      "required_changes": 9,
+      "required_changes_correct": 2,
+      "critical_no_facts_cases": 5,
+      "critical_wrong_fact_cases": 3,
+      "cases_with_wrong_facts": 8
+    }
+  },
+  "plain_controls": [
+    {
+      "id": "v7-plain-0",
+      "utterance": "כתוב בדיוק את המילה שלום, בלי סימני פיסוק.",
+      "expected_text": "שלום",
+      "actual_text": "שלום",
+      "strict_trimmed_match": true
+    },
+    {
+      "id": "v7-plain-1",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם כבר ערבבתי? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא",
+      "strict_trimmed_match": true
+    },
+    {
+      "id": "v7-plain-2",
+      "utterance": "נאמר: אולי שמתי קמח, אני לא בטוח. האם אפשר לקבוע בוודאות ששמתי קמח? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא, לא ניתן לקבוע בוודאות ששמתי קמח בהתבסס על המידע שניתן.",
+      "strict_trimmed_match": false
+    },
+    {
+      "id": "v7-plain-3",
+      "utterance": "נאמר: התחלתי לערבב ולא סיימתי. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "לא",
+      "actual_text": "לא, הערבוב לא הושלם.",
+      "strict_trimmed_match": false
+    },
+    {
+      "id": "v7-plain-4",
+      "utterance": "נאמר: גמרתי לערבב את הבלילה. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "כן",
+      "actual_text": "לא, לא הושלם הערבוב.",
+      "strict_trimmed_match": false
+    },
+    {
+      "id": "v7-plain-5",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם הוספתי מים? ענה רק כן או לא.",
+      "expected_text": "כן",
+      "actual_text": "כן",
+      "strict_trimmed_match": true
+    }
+  ],
+  "plain_strict_trimmed_matches": 3,
+  "stop_counts": {
+    "plain": {
+      "151645": 6,
+      "151643": 0,
+      "None": 0
+    },
+    "free": {
+      "151645": 10,
+      "151643": 0,
+      "None": 6
+    },
+    "grammar": {
+      "151645": 16,
+      "151643": 0,
+      "None": 0
+    },
+    "fewshot": {
+      "151645": 16,
+      "151643": 0,
+      "None": 0
+    }
+  },
+  "comparison_to_cached_v7": {
+    "free": {
+      "same_raw_json_value_as_cached_v7": 0,
+      "cases": 16,
+      "old_metrics": {
+        "cases": 16,
+        "valid": 0,
+        "exact": 0,
+        "facts_exact": 0,
+        "intent_correct": 0,
+        "clarify_exact": 0,
+        "state_correct": 0,
+        "rejected_output": 16,
+        "unsafe_state": 0,
+        "required_changes": 9,
+        "required_changes_correct": 0,
+        "critical_no_facts_cases": 5,
+        "critical_wrong_fact_cases": 0,
+        "cases_with_wrong_facts": 0
+      }
+    },
+    "grammar": {
+      "same_raw_json_value_as_cached_v7": 16,
+      "cases": 16,
+      "old_metrics": {
+        "cases": 16,
+        "valid": 10,
+        "exact": 0,
+        "facts_exact": 0,
+        "intent_correct": 1,
+        "clarify_exact": 8,
+        "state_correct": 4,
+        "rejected_output": 6,
+        "unsafe_state": 6,
+        "required_changes": 9,
+        "required_changes_correct": 1,
+        "critical_no_facts_cases": 5,
+        "critical_wrong_fact_cases": 4,
+        "cases_with_wrong_facts": 10
+      }
+    },
+    "fewshot": {
+      "same_raw_json_value_as_cached_v7": 16,
+      "cases": 16,
+      "old_metrics": {
+        "cases": 16,
+        "valid": 9,
+        "exact": 1,
+        "facts_exact": 1,
+        "intent_correct": 5,
+        "clarify_exact": 7,
+        "state_correct": 4,
+        "rejected_output": 7,
+        "unsafe_state": 5,
+        "required_changes": 9,
+        "required_changes_correct": 2,
+        "critical_no_facts_cases": 5,
+        "critical_wrong_fact_cases": 3,
+        "cases_with_wrong_facts": 8
+      }
+    }
+  },
+  "interest_gate_passed": false,
+  "expanded": null,
+  "generated_outputs": 54,
+  "official_generation_and_grammar_stops_verified": true,
+  "product_promotion": false,
+  "archive_sha256": "8894113198ac166e5160b4b4ffa3c4f7b316b6a5778f09116cced0de71986d62",
+  "archive_bytes": 8549,
+  "crc_manifest_source_data_verified": true,
+  "scope": "Official stop policy correction in generate and grammar.54 repeated diagnostic outputs, conditional160 exposed V6 cases only if fixed interest gate passes. Cached V7 comparison, no training, independent test, phone, browser or promotion."
+}

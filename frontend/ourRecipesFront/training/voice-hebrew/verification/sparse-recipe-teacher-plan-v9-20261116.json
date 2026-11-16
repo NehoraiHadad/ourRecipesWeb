@@ -1,0 +1,114 @@
+{
+  "study": "sparse-recipe-v9-hebrew-teacher-contract",
+  "created_utc": "2026-11-16T22:17:49.786698+00:00",
+  "source_sha256": {
+    "recipe_teacher_sft_v9.py": "3a771e239f7213106e9249cb7ed8b7a98096569a9826ddbab596ddcb26263037",
+    "recipe_teacher_study_v9.py": "3fda98c579afd0a52c559354968c269c63772e2e0ab5fee579c15e3666c1f596",
+    "recipe_teacher_freeze_v9.py": "f4f6a28417552e44156dc1952e265f8bfc1fecfcac27c778d77a21a827fed363",
+    "recipe_teacher_job_v9.py": "d1e7491f4d86847e79b047aecd0683716593d6c49076210c8777420d9fa7056a",
+    "recipe_teacher_colab_v9.py": "91889aa07553dfc875d5cdd12e1efd2f6f937ae50aec0c216dd4e3c5cbc5d097",
+    "tests/test_recipe_teacher_v9.py": "37d3cfa6cdcaa81b4aff3965bc88171b0f5defc5c6dbfa0d48f6b10d4b931a7b",
+    "SPARSE_RECIPE_V9_PLAN.he.md": "e585b81a75a92bdace4124acf24440400f0ca764caa688173b392a708e06ff78",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01"
+  },
+  "data_file": "verification/sparse-recipe-control-data-v5-20261116.json",
+  "data_sha256": "9764c23b52784000e8cb5a1a454bf4f9b4ee3b495d4b24a62638a79b2254d299",
+  "seed": 42,
+  "max_sequence_tokens": 1024,
+  "max_study_seconds": 3000,
+  "max_owner_seconds": 4500,
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "model": {
+    "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+    "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+    "license": "apache-2.0",
+    "weight_bytes": 3441185576,
+    "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21",
+    "small_file_sha256": {
+      "tokenizer.json": "3c3dfe474a8bbe89b0e83627fd9ff784ad71027f12fd8c618708c818e808789d",
+      "tokenizer_config.json": "346ab2abd7a2a46a3f2b556f8345d5834494816e10a84ad993ed532216120ff1",
+      "chat_template.jinja": "00d3026f698ff7f844f9b489b1491b5423ed872b2e5bd7e68b0596c53f7ed784",
+      "config.json": "64e2e3f6508be6ee471c78648cec6b31635aea574c6daa7547066bbc243e865e",
+      "generation_config.json": "976b81a522907a4ee2055be7719e194e65eb290de8a9874aa34fcee1cb99f380"
+    }
+  },
+  "training": {
+    "updates": 160,
+    "micro_batch": 2,
+    "accumulation": 2,
+    "learning_rate": 0.0002,
+    "warmup_updates": 8,
+    "max_seconds": 1800,
+    "evaluate_at": [
+      80,
+      160
+    ],
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ]
+    },
+    "schedule_file": "verification/sparse-recipe-order-v9-20261116.json",
+    "schedule_sha256": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b"
+  },
+  "evaluation": {
+    "batch_size": 8,
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "thinking": false,
+    "grammar": false,
+    "json_repair": false,
+    "baseline_precision_and_prompt_match": true
+  },
+  "stopping": "One seed, two checkpoints; no automatic extension or held-test opening. Technical failure needs new derived version, not overwrite.",
+  "pilot_gate": {
+    "exact_min": 0.8,
+    "exact_gain_min": 0.2,
+    "required_change_min": 0.8,
+    "critical_wrong_facts_max": 0,
+    "wrong_fact_cases_not_increase": true,
+    "product_promotion": false
+  },
+  "scope": "One1.7B teacher; exact cached0.6B example exposure; same optimization, official assistant end supervised. Fixed160 endpoint. Not phone or independent quality.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B/tree/c1899de289a04d12100db370d81485cdf75e47ca",
+      "local": "verification/qwen-sparse-source-20261116",
+      "verified_public_metadata": true
+    },
+    {
+      "url": "https://huggingface.co/docs/peft/v0.17.0/en/developer_guides/lora",
+      "download_bytes": 323790,
+      "download_sha256": "0a6aea53655f845983999566aef4e10da55f0a1942746f30337dc9723bb21e1e"
+    },
+    {
+      "url": "https://qwen.readthedocs.io/en/latest/training/SFT/llama_factory.html",
+      "read": false,
+      "error": "HTTP403"
+    }
+  ],
+  "official_stop_ids": [
+    151645,
+    151643
+  ],
+  "pad_token_id": 151643,
+  "assistant_end_token_id": 151645
+}
