@@ -1,0 +1,6019 @@
+{
+  "created_utc": "2026-11-16T11:05:41.034Z",
+  "manifest": {
+    "version": "recipe-development-v1",
+    "authoredSynthetic": true,
+    "humanReviewed": false,
+    "trainingPerformed": false,
+    "modelInferencePerformed": false,
+    "heldOut": false,
+    "recipeCount": 2,
+    "caseCount": 80,
+    "families": {
+      "clear": 8,
+      "negation": 8,
+      "multiple": 8,
+      "partial": 8,
+      "correction": 8,
+      "uncertainty": 8,
+      "unrelated-doubt": 8,
+      "reference": 8,
+      "recipe-question": 8,
+      "recipe-switch": 8
+    },
+    "limits": "Reusable development probes with assistant-authored labels; not independent generalization evidence. Lifecycle/browser support is tested separately, not a text-model intent."
+  },
+  "source_sha256": {
+    "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
+    "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
+    "recipe_development_v1.mjs": "6853658bd344d439cb5d1c9e2cc86ad0e96c23d0d1ea8133f1ef246064287481",
+    "recipe_development_v1.test.mjs": "5a3da32a0963570eb72006761ba9ca26fda77baf21dc0812f1cc7175003e1211",
+    "STATE_CONTRACT_V1.he.md": "1130a2ef182725c84fd243d9e20a0e53866cb772db04da88c4883c0a94bfd9d3"
+  },
+  "cases": [
+    {
+      "id": "clear-1",
+      "family": "clear",
+      "text": "שמתי קמח בקערה",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 8,
+              "quote": "שמתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-2",
+      "family": "clear",
+      "text": "הוספתי את הקמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "הוספתי את הקמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-3",
+      "family": "clear",
+      "text": "הקמח כבר בפנים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "הקמח כבר בפנים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-4",
+      "family": "clear",
+      "text": "סיימתי להוסיף קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 17,
+              "quote": "סיימתי להוסיף קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-5",
+      "family": "clear",
+      "text": "הוספתי מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 10,
+              "quote": "הוספתי מים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-6",
+      "family": "clear",
+      "text": "המים כבר בקערה",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "המים כבר בקערה"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-7",
+      "family": "clear",
+      "text": "כבר ערבבתי את הבצק",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 18,
+              "quote": "כבר ערבבתי את הבצק"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "clear-8",
+      "family": "clear",
+      "text": "סיימתי לבשל במחבת",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cook",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 17,
+              "quote": "סיימתי לבשל במחבת"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-1",
+      "family": "negation",
+      "text": "עוד לא שמתי קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 15,
+              "quote": "עוד לא שמתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-2",
+      "family": "negation",
+      "text": "לא הוספתי קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 13,
+              "quote": "לא הוספתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-3",
+      "family": "negation",
+      "text": "טרם הוספתי מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "טרם הוספתי מים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-4",
+      "family": "negation",
+      "text": "את המים עדיין לא הוספתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 23,
+              "quote": "את המים עדיין לא הוספתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-5",
+      "family": "negation",
+      "text": "לא ערבבתי עדיין",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 15,
+              "quote": "לא ערבבתי עדיין"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-6",
+      "family": "negation",
+      "text": "עוד לא התחלתי לערבב",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 19,
+              "quote": "עוד לא התחלתי לערבב"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-7",
+      "family": "negation",
+      "text": "לא בישלתי במחבת",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cook",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 15,
+              "quote": "לא בישלתי במחבת"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "negation-8",
+      "family": "negation",
+      "text": "את הבישול עוד לא התחלתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cook",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 23,
+              "quote": "את הבישול עוד לא התחלתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-1",
+      "family": "multiple",
+      "text": "הוספתי מים אבל עוד לא ערבבתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 10,
+              "quote": "הוספתי מים"
+            }
+          },
+          {
+            "actionId": "mix",
+            "status": "pending",
+            "evidence": {
+              "start": 15,
+              "end": 28,
+              "quote": "עוד לא ערבבתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-2",
+      "family": "multiple",
+      "text": "שמתי קמח ומים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 13,
+              "quote": "שמתי קמח ומים"
+            }
+          },
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 13,
+              "quote": "שמתי קמח ומים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-3",
+      "family": "multiple",
+      "text": "לא שמתי מים, רק קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 11,
+              "quote": "לא שמתי מים"
+            }
+          },
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 13,
+              "end": 19,
+              "quote": "רק קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-4",
+      "family": "multiple",
+      "text": "ערבבתי, אבל לבשל עוד לא התחלתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 6,
+              "quote": "ערבבתי"
+            }
+          },
+          {
+            "actionId": "cook",
+            "status": "pending",
+            "evidence": {
+              "start": 12,
+              "end": 30,
+              "quote": "לבשל עוד לא התחלתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-5",
+      "family": "multiple",
+      "text": "הקמח בפנים והמים בחוץ, עוד לא הוספתי אותם",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 10,
+              "quote": "הקמח בפנים"
+            }
+          },
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 12,
+              "end": 41,
+              "quote": "המים בחוץ, עוד לא הוספתי אותם"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-6",
+      "family": "multiple",
+      "text": "הוספתי את הקמח ורק חלק מהמים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "הוספתי את הקמח"
+            }
+          },
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 16,
+              "end": 28,
+              "quote": "רק חלק מהמים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-7",
+      "family": "multiple",
+      "text": "סיימתי לערבב וגם לבשל במחבת",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 27,
+              "quote": "סיימתי לערבב וגם לבשל במחבת"
+            }
+          },
+          {
+            "actionId": "cook",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 27,
+              "quote": "סיימתי לערבב וגם לבשל במחבת"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "multiple-8",
+      "family": "multiple",
+      "text": "את המים הוספתי, את הקמח לא",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "את המים הוספתי"
+            }
+          },
+          {
+            "actionId": "flour",
+            "status": "pending",
+            "evidence": {
+              "start": 16,
+              "end": 26,
+              "quote": "את הקמח לא"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "partial-1",
+      "family": "partial",
+      "text": "הוספתי רק חלק מהמים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 19,
+              "quote": "הוספתי רק חלק מהמים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-2",
+      "family": "partial",
+      "text": "שמתי מעט מים, נשאר עוד להוסיף",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 29,
+              "quote": "שמתי מעט מים, נשאר עוד להוסיף"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-3",
+      "family": "partial",
+      "text": "התחלתי לשפוך מים ועצרתי לפני שסיימתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 36,
+              "quote": "התחלתי לשפוך מים ועצרתי לפני שסיימתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-4",
+      "family": "partial",
+      "text": "שמתי חלק מהקמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "שמתי חלק מהקמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-5",
+      "family": "partial",
+      "text": "התחלתי להוסיף קמח, עוד לא את כולו",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 33,
+              "quote": "התחלתי להוסיף קמח, עוד לא את כולו"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-6",
+      "family": "partial",
+      "text": "ערבבתי קצת אבל עוד לא סיימתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 28,
+              "quote": "ערבבתי קצת אבל עוד לא סיימתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-7",
+      "family": "partial",
+      "text": "התחלתי לבשל במחבת, הבישול עוד לא נגמר",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cook",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 37,
+              "quote": "התחלתי לבשל במחבת, הבישול עוד לא נגמר"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "partial-8",
+      "family": "partial",
+      "text": "חלק מהמים בפנים והשאר עדיין בכוס",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 32,
+              "quote": "חלק מהמים בפנים והשאר עדיין בכוס"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להכיר בביצוע חלקי; לא לסמן השלמה או להמציא כמה נשאר. לברר כמות כשנחוצה להמשך."
+    },
+    {
+      "id": "correction-1",
+      "family": "correction",
+      "text": "תיקון, בעצם לא שמתי קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "done",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [
+          "flour"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "water"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של flour: done"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "pending",
+            "evidence": {
+              "start": 12,
+              "end": 23,
+              "quote": "לא שמתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-2",
+      "family": "correction",
+      "text": "אמרתי שהוספתי מים, טעיתי, עוד לא הוספתי אותם",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "done",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [
+          "water"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של water: done"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 26,
+              "end": 44,
+              "quote": "עוד לא הוספתי אותם"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-3",
+      "family": "correction",
+      "text": "רגע, הקמח דווקא כן בפנים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של flour: pending"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 5,
+              "end": 24,
+              "quote": "הקמח דווקא כן בפנים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-4",
+      "family": "correction",
+      "text": "עדכון: כן ערבבתי בסוף",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של mix: pending"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "done",
+            "evidence": {
+              "start": 7,
+              "end": 21,
+              "quote": "כן ערבבתי בסוף"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-5",
+      "family": "correction",
+      "text": "לא נכון שסיימתי עם המים, הוספתי רק חלק",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "done",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [
+          "water"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של water: done"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "partial",
+            "evidence": {
+              "start": 25,
+              "end": 38,
+              "quote": "הוספתי רק חלק"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-6",
+      "family": "correction",
+      "text": "בעצם הבישול לא הושלם, רק התחלתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "done"
+        },
+        "completedActionIds": [
+          "cook"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של cook: done"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cook",
+            "status": "partial",
+            "evidence": {
+              "start": 5,
+              "end": 31,
+              "quote": "הבישול לא הושלם, רק התחלתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-7",
+      "family": "correction",
+      "text": "תיקון למה שאמרתי: כבר הוספתי את כל המים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "partial",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [
+          "water"
+        ],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של water: partial"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 18,
+              "end": 39,
+              "quote": "כבר הוספתי את כל המים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "correction-8",
+      "family": "correction",
+      "text": "חוזר בי, עוד לא התחלתי לערבב",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 3,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "done",
+          "cook": "pending"
+        },
+        "completedActionIds": [
+          "mix"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "המצב הקודם של mix: done"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 3,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "pending",
+            "evidence": {
+              "start": 9,
+              "end": 28,
+              "quote": "עוד לא התחלתי לערבב"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "uncertainty-1",
+      "family": "uncertainty",
+      "text": "נראה לי שהוספתי מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-2",
+      "family": "uncertainty",
+      "text": "אולי כבר שמתי מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-3",
+      "family": "uncertainty",
+      "text": "אני לא בטוח אם הוספתי מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-4",
+      "family": "uncertainty",
+      "text": "נדמה לי שהמים בפנים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-5",
+      "family": "uncertainty",
+      "text": "יכול להיות שהוספתי את המים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-6",
+      "family": "uncertainty",
+      "text": "אני חושב ששפכתי מים אבל לא זוכר",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-7",
+      "family": "uncertainty",
+      "text": "כנראה שהוספתי מים, לא בטוח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "uncertainty-8",
+      "family": "uncertainty",
+      "text": "יכול להיות שרק התכוונתי להוסיף מים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "water",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "לברר אם המים נוספו; לא לשנות את התקדמות המים."
+    },
+    {
+      "id": "unrelated-doubt-1",
+      "family": "unrelated-doubt",
+      "text": "אולי הכף בכיור, אבל שמתי קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 20,
+              "end": 28,
+              "quote": "שמתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-2",
+      "family": "unrelated-doubt",
+      "text": "אני לא בטוח איפה המגבת; קמח כבר הוספתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 24,
+              "end": 38,
+              "quote": "קמח כבר הוספתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-3",
+      "family": "unrelated-doubt",
+      "text": "יכול להיות שקר בחוץ, הקמח בפנים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 21,
+              "end": 31,
+              "quote": "הקמח בפנים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-4",
+      "family": "unrelated-doubt",
+      "text": "נראה לי שהטלפון מצלצל, אבל סיימתי להוסיף קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 27,
+              "end": 44,
+              "quote": "סיימתי להוסיף קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-5",
+      "family": "unrelated-doubt",
+      "text": "הקערה אולי קטנה, בכל מקרה הוספתי את הקמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 26,
+              "end": 40,
+              "quote": "הוספתי את הקמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-6",
+      "family": "unrelated-doubt",
+      "text": "לא זוכר איפה האריזה, את הקמח שמתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 21,
+              "end": 33,
+              "quote": "את הקמח שמתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-7",
+      "family": "unrelated-doubt",
+      "text": "אולי נגמר הסבון; הקמח כבר בקערה",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 17,
+              "end": 31,
+              "quote": "הקמח כבר בקערה"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "unrelated-doubt-8",
+      "family": "unrelated-doubt",
+      "text": "אני חושב שהשעה מאוחרת, שמתי קמח",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "done",
+            "evidence": {
+              "start": 23,
+              "end": 31,
+              "quote": "שמתי קמח"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-1",
+      "family": "reference",
+      "text": "עשיתי את זה",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "לפי המתכון, עכשיו הוסף את המים."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 11,
+              "quote": "עשיתי את זה"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-2",
+      "family": "reference",
+      "text": "אותם עדיין לא הוספתי",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "האם הוספת את המים?"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 20,
+              "quote": "אותם עדיין לא הוספתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-3",
+      "family": "reference",
+      "text": "הוספתי גם אותם",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "עכשיו נותר להוסיף את המים."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "water",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "הוספתי גם אותם"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-4",
+      "family": "reference",
+      "text": "סיימתי עם הפעולה הזאת",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "כעת ערבב את הבצק."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 21,
+              "quote": "סיימתי עם הפעולה הזאת"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-5",
+      "family": "reference",
+      "text": "עשיתי את זה",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": null,
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-6",
+      "family": "reference",
+      "text": "כבר הוספתי אותם",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "יש להוסיף קמח ומים. על איזה מהם אתה מדבר?"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": null,
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-7",
+      "family": "reference",
+      "text": "חלק ממנו בפנים",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "האם הוספת את הקמח?"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "flour",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 14,
+              "quote": "חלק ממנו בפנים"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "reference-8",
+      "family": "reference",
+      "text": "לא, בעצם עוד לא",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "done",
+          "cook": "pending"
+        },
+        "completedActionIds": [
+          "mix"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [
+        {
+          "role": "assistant",
+          "content": "סימנתי שהערבוב הושלם. נכון?"
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "mix",
+            "status": "pending",
+            "evidence": {
+              "start": 0,
+              "end": 15,
+              "quote": "לא, בעצם עוד לא"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-question-1",
+      "family": "recipe-question",
+      "text": "מה עכשיו?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "next"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "להציע קמח לפי המצב ההתחלתי, ללא שינוי מצב."
+    },
+    {
+      "id": "recipe-question-2",
+      "family": "recipe-question",
+      "text": "על איזה שלב דילגתי?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 1,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "missed"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "לציין פעולות קודמות שלא סומנו, לפי מיקום הניווט."
+    },
+    {
+      "id": "recipe-question-3",
+      "family": "recipe-question",
+      "text": "כמה מים כתוב להוסיף?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "quantity"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "120 מ״ל, לפי המקור; לא להסיק ביצוע."
+    },
+    {
+      "id": "recipe-question-4",
+      "family": "recipe-question",
+      "text": "כמה שמן להוסיף?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "quantity"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "שמן וכמותו אינם במתכון; לא להמציא כמות."
+    },
+    {
+      "id": "recipe-question-5",
+      "family": "recipe-question",
+      "text": "לערבב לפני המים או אחרי?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "explain"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "להסביר שמוסיפים מים לפני הערבוב."
+    },
+    {
+      "id": "recipe-question-6",
+      "family": "recipe-question",
+      "text": "מה השלב שאחרי הערבוב?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "explain"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "הפעולה הבאה במקור היא בישול במחבת."
+    },
+    {
+      "id": "recipe-question-7",
+      "family": "recipe-question",
+      "text": "האם צריך לחמם תנור?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "explain"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "המקור מתאר מחבת ולא הוראת תנור; לא להמציא."
+    },
+    {
+      "id": "recipe-question-8",
+      "family": "recipe-question",
+      "text": "כמה קמח לפי המתכון?",
+      "recipe": {
+        "id": "bread-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "flour",
+            "stepIndex": 0,
+            "source": "להוסיף 200 גרם קמח לקערה."
+          },
+          {
+            "id": "water",
+            "stepIndex": 0,
+            "source": "להוסיף 120 מ״ל מים."
+          },
+          {
+            "id": "mix",
+            "stepIndex": 1,
+            "source": "לערבב את הקמח והמים לבצק."
+          },
+          {
+            "id": "cook",
+            "stepIndex": 2,
+            "source": "לבשל את הבצק במחבת."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "flour": "pending",
+          "water": "pending",
+          "mix": "pending",
+          "cook": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "flour",
+          "water",
+          "mix",
+          "cook"
+        ],
+        "nextActionId": "flour"
+      },
+      "history": [],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "bread-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "quantity"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "200 גרם לפי המתכון, ללא דיווח ביצוע."
+    },
+    {
+      "id": "recipe-switch-1",
+      "family": "recipe-switch",
+      "text": "עברתי לסלט, מה קודם?",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "next"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-2",
+      "family": "recipe-switch",
+      "text": "במתכון הקודם שמתי קמח, מה עכשיו בסלט?",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "next"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-3",
+      "family": "recipe-switch",
+      "text": "חתכתי את המלפפון",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cut",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 16,
+              "quote": "חתכתי את המלפפון"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-4",
+      "family": "recipe-switch",
+      "text": "הוספתי לימון אבל עוד לא ערבבתי",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "lemon",
+            "status": "done",
+            "evidence": {
+              "start": 0,
+              "end": 12,
+              "quote": "הוספתי לימון"
+            }
+          },
+          {
+            "actionId": "toss",
+            "status": "pending",
+            "evidence": {
+              "start": 17,
+              "end": 30,
+              "quote": "עוד לא ערבבתי"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-5",
+      "family": "recipe-switch",
+      "text": "כמה מיץ לימון להוסיף?",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "quantity"
+        ],
+        "facts": [],
+        "clarifications": []
+      },
+      "replyRubric": "לומר שכמות הלימון אינה מצוינת במקור."
+    },
+    {
+      "id": "recipe-switch-6",
+      "family": "recipe-switch",
+      "text": "נראה לי שכבר חתכתי",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "clarify"
+        ],
+        "facts": [],
+        "clarifications": [
+          {
+            "actionId": "cut",
+            "question": "מה בדיוק בוצע בפעולה הזו?"
+          }
+        ]
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-7",
+      "family": "recipe-switch",
+      "text": "תיקון, עוד לא חתכתי מלפפון",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 2,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "done",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [
+          "cut"
+        ],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "lemon"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 2,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "cut",
+            "status": "pending",
+            "evidence": {
+              "start": 7,
+              "end": 26,
+              "quote": "עוד לא חתכתי מלפפון"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    },
+    {
+      "id": "recipe-switch-8",
+      "family": "recipe-switch",
+      "text": "את הסלט ערבבתי רק חלקית",
+      "recipe": {
+        "id": "salad-dev-v1",
+        "version": "source-1",
+        "actions": [
+          {
+            "id": "cut",
+            "stepIndex": 0,
+            "source": "לחתוך מלפפון."
+          },
+          {
+            "id": "lemon",
+            "stepIndex": 1,
+            "source": "להוסיף מיץ לימון. הכמות אינה מצוינת."
+          },
+          {
+            "id": "toss",
+            "stepIndex": 2,
+            "source": "לערבב את הסלט."
+          }
+        ]
+      },
+      "state": {
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "revision": 0,
+        "currentStepIndex": 0,
+        "progress": {
+          "cut": "pending",
+          "lemon": "pending",
+          "toss": "pending"
+        },
+        "completedActionIds": [],
+        "partialActionIds": [],
+        "remainingActionIds": [
+          "cut",
+          "lemon",
+          "toss"
+        ],
+        "nextActionId": "cut"
+      },
+      "history": [
+        {
+          "role": "user",
+          "content": "במתכון הקודם הוספתי קמח ומים וסיימתי לבשל במחבת."
+        }
+      ],
+      "expectedProposal": {
+        "contractVersion": 1,
+        "recipeId": "salad-dev-v1",
+        "recipeVersion": "source-1",
+        "expectedRevision": 0,
+        "intents": [
+          "report"
+        ],
+        "facts": [
+          {
+            "actionId": "toss",
+            "status": "partial",
+            "evidence": {
+              "start": 0,
+              "end": 23,
+              "quote": "את הסלט ערבבתי רק חלקית"
+            }
+          }
+        ],
+        "clarifications": []
+      },
+      "replyRubric": "להשיב בקצרה בעברית לפי המתכון והמצב המעודכן בלבד."
+    }
+  ]
+}
