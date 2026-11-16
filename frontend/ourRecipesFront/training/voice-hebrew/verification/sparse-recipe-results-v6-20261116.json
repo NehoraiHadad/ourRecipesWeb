@@ -1,0 +1,177 @@
+{
+  "study": "sparse-recipe-v6-structured-hebrew-reference",
+  "status": {
+    "status": "complete",
+    "phase": "complete",
+    "seconds": 1132.412071969
+  },
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "host_python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]"
+  },
+  "scores": {
+    "tiny-free": {
+      "hard": {
+        "cases": 40,
+        "valid": 40,
+        "exact": 25,
+        "facts_exact": 30,
+        "intent_correct": 34,
+        "clarify_exact": 35,
+        "state_correct": 32,
+        "rejected_output": 0,
+        "unsafe_state": 7,
+        "required_changes": 23,
+        "required_changes_correct": 17,
+        "critical_no_facts_cases": 12,
+        "critical_wrong_fact_cases": 1,
+        "cases_with_wrong_facts": 8
+      },
+      "regression": {
+        "cases": 120,
+        "valid": 120,
+        "exact": 85,
+        "facts_exact": 91,
+        "intent_correct": 89,
+        "clarify_exact": 97,
+        "state_correct": 100,
+        "rejected_output": 0,
+        "unsafe_state": 8,
+        "required_changes": 60,
+        "required_changes_correct": 48,
+        "critical_no_facts_cases": 38,
+        "critical_wrong_fact_cases": 11,
+        "cases_with_wrong_facts": 12
+      }
+    },
+    "tiny-json": {
+      "hard": {
+        "cases": 40,
+        "valid": 40,
+        "exact": 25,
+        "facts_exact": 30,
+        "intent_correct": 34,
+        "clarify_exact": 35,
+        "state_correct": 32,
+        "rejected_output": 0,
+        "unsafe_state": 7,
+        "required_changes": 23,
+        "required_changes_correct": 17,
+        "critical_no_facts_cases": 12,
+        "critical_wrong_fact_cases": 1,
+        "cases_with_wrong_facts": 8
+      },
+      "regression": {
+        "cases": 120,
+        "valid": 120,
+        "exact": 85,
+        "facts_exact": 91,
+        "intent_correct": 89,
+        "clarify_exact": 97,
+        "state_correct": 100,
+        "rejected_output": 0,
+        "unsafe_state": 8,
+        "required_changes": 60,
+        "required_changes_correct": 48,
+        "critical_no_facts_cases": 38,
+        "critical_wrong_fact_cases": 11,
+        "cases_with_wrong_facts": 12
+      }
+    },
+    "teacher-json": {
+      "hard": {
+        "cases": 40,
+        "valid": 29,
+        "exact": 0,
+        "facts_exact": 0,
+        "intent_correct": 8,
+        "clarify_exact": 26,
+        "state_correct": 17,
+        "rejected_output": 11,
+        "unsafe_state": 12,
+        "required_changes": 23,
+        "required_changes_correct": 9,
+        "critical_no_facts_cases": 12,
+        "critical_wrong_fact_cases": 6,
+        "cases_with_wrong_facts": 29
+      },
+      "regression": {
+        "cases": 120,
+        "valid": 73,
+        "exact": 0,
+        "facts_exact": 0,
+        "intent_correct": 12,
+        "clarify_exact": 59,
+        "state_correct": 32,
+        "rejected_output": 47,
+        "unsafe_state": 41,
+        "required_changes": 60,
+        "required_changes_correct": 5,
+        "critical_no_facts_cases": 38,
+        "critical_wrong_fact_cases": 26,
+        "cases_with_wrong_facts": 73
+      }
+    }
+  },
+  "runtime": {
+    "tiny-free": {
+      "route": "tiny-free",
+      "load_seconds": 17.158741733,
+      "grammar_token_index_seconds": 5.675889631000018,
+      "grammar_setup_seconds": 0.0001345840003068588,
+      "median_generation_seconds": 1.3921109629999933,
+      "peak_allocated_bytes": 1506160640,
+      "peak_reserved_bytes": 1547698176,
+      "hit_token_limit": 0
+    },
+    "tiny-json": {
+      "route": "tiny-json",
+      "load_seconds": 17.158741733,
+      "grammar_token_index_seconds": 5.675889631000018,
+      "grammar_setup_seconds": 0.06957278699940161,
+      "median_generation_seconds": 1.4645849835000035,
+      "peak_allocated_bytes": 1506160640,
+      "peak_reserved_bytes": 1547698176,
+      "hit_token_limit": 0
+    },
+    "teacher-json": {
+      "route": "teacher-json",
+      "load_seconds": 45.640097107999964,
+      "grammar_token_index_seconds": 6.783657029000096,
+      "grammar_setup_seconds": 0.07867056500015224,
+      "median_generation_seconds": 2.684399346500072,
+      "peak_allocated_bytes": 3609498624,
+      "peak_reserved_bytes": 3628072960,
+      "hit_token_limit": 0
+    }
+  },
+  "paired_comparisons": {
+    "tiny-free->tiny-json": {
+      "wins": 0,
+      "losses": 0,
+      "both_wrong": 50
+    },
+    "tiny-json->teacher-json": {
+      "wins": 0,
+      "losses": 110,
+      "both_wrong": 50
+    }
+  },
+  "operator_provenance": {
+    "run": "ourrecipes-reference-v6r-20261116",
+    "original_failed_run": "ourrecipes-reference-v6-20261116",
+    "failure": "SSH concurrency HTTP429 in manual status reader caused original owner to stop before archive recovery. No complete V6 raw report collected. Existing V5 archive intact.",
+    "model_data_protocol_unchanged": true,
+    "plan_sha256": "2054825da748be737b42bc953b3d501249b359a424721477dfa29d126a21d6cb",
+    "owner": "sparse_recipe_colab_v6_resilient.py",
+    "owner_sha256": "a04a32919809d204c462c0032e3a04808fdb5761e58a33f8d06962316b98b5e1",
+    "changes": "Retry transport errors longer; serial status polling also recovers each completed report locally; no concurrent manual SSH/exec while owner runs. Full frozen480-output study repeated, no output-based model/prompt changes."
+  },
+  "reference_utility_gate_passed": false,
+  "product_promotion": false,
+  "archive_sha256": "62a2e41770c54d27334bdf64455fe5fcb0bf1f734e08179c195e937ed3879c06",
+  "archive_bytes": 48029,
+  "crc_manifest_source_data_adapter_verified": true,
+  "cpu_and_gpu_prompt_token_counts_match": true,
+  "scope": "Inference only; exposed synthetic hard40 plus regression120, repeated three times. Actual T4, no physical phone/browser/quantization, no product promotion. Grammar versus free is matched; teacher comparison also changes pretraining/tokenizer/size."
+}

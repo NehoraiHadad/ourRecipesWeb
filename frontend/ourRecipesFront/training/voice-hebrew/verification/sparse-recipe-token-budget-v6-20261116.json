@@ -1,0 +1,48 @@
+{
+  "scope": "CPU tokenization of the same160 exposed Hebrew inputs only; no model weights, inference, timing or quality claim. Official chat templates included. Old local Transformers loads teacher standalone Jinja explicitly; GPU Transformers4.57.1 loads it from its pinned repo automatically.",
+  "local_transformers": "4.48.3",
+  "models": {
+    "tiny": {
+      "tokenizer_class": "Qwen2TokenizerFast",
+      "vocab_len": 151669,
+      "prompt_min": 538,
+      "prompt_median": 554.0,
+      "prompt_max": 601,
+      "sum_prompt_tokens": 89219,
+      "all_fit_1024_plus_96": true,
+      "rendered_first_prompt_sha256": "20c09451b349ae7f64cf312fbdfc36d38ad6e603e9f7cf7acb32f5e58dd2328f"
+    },
+    "teacher": {
+      "tokenizer_class": "Qwen2TokenizerFast",
+      "vocab_len": 151669,
+      "prompt_min": 534,
+      "prompt_median": 550.0,
+      "prompt_max": 597,
+      "sum_prompt_tokens": 88579,
+      "all_fit_1024_plus_96": true,
+      "rendered_first_prompt_sha256": "a8ef8f94ca3326fcb08aa5c8709caeeb9443353cb5f8408e65e41ba915c1d8a2"
+    }
+  },
+  "teacher_tokenizer_sources": {
+    "tokenizer.json": {
+      "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/tokenizer.json",
+      "bytes": 11422648,
+      "sha256": "3c3dfe474a8bbe89b0e83627fd9ff784ad71027f12fd8c618708c818e808789d"
+    },
+    "tokenizer_config.json": {
+      "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/tokenizer_config.json",
+      "bytes": 5439,
+      "sha256": "346ab2abd7a2a46a3f2b556f8345d5834494816e10a84ad993ed532216120ff1"
+    },
+    "chat_template.jinja": {
+      "url": "https://huggingface.co/dicta-il/DictaLM-3.0-1.7B-Instruct/resolve/5add44d6941d6ffb9eb6cc6b516f9fb4fd472494/chat_template.jinja",
+      "bytes": 3435,
+      "sha256": "00d3026f698ff7f844f9b489b1491b5423ed872b2e5bd7e68b0596c53f7ed784"
+    }
+  },
+  "raw_user_content_same_token_ids_all160": true,
+  "tokenizer_json_sha256": [
+    "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "3c3dfe474a8bbe89b0e83627fd9ff784ad71027f12fd8c618708c818e808789d"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "scope": "Analytical LoRA A/B parameter formula from pinned Qwen3 config, excluding output head; not inference, training, measured memory or injected PEFT experiment. No quality claim.",
+  "formula": "num_layers * rank * sum(in_features + out_features for each target module)",
+  "config_sha256": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+  "per_layer_shapes": {
+    "q_proj": [
+      1024,
+      2048
+    ],
+    "k_proj": [
+      1024,
+      1024
+    ],
+    "v_proj": [
+      1024,
+      1024
+    ],
+    "o_proj": [
+      2048,
+      1024
+    ],
+    "gate_proj": [
+      1024,
+      3072
+    ],
+    "up_proj": [
+      1024,
+      3072
+    ],
+    "down_proj": [
+      3072,
+      1024
+    ]
+  },
+  "variants": [
+    {
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj"
+      ],
+      "rank": 8,
+      "calculated_trainable_parameters": 2293760,
+      "fp32_parameters_only_bytes": 9175040
+    },
+    {
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "rank": 8,
+      "calculated_trainable_parameters": 5046272,
+      "fp32_parameters_only_bytes": 20185088
+    },
+    {
+      "modules": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ],
+      "rank": 4,
+      "calculated_trainable_parameters": 2523136,
+      "fp32_parameters_only_bytes": 10092544
+    }
+  ],
+  "local_probe_limitation": "Old CPU env lacks PEFT and its Transformers does not recognize Qwen3. No packages or environments changed. GPU study separately uses pinned Transformers4.57.1/PEFT0.17.1."
+}

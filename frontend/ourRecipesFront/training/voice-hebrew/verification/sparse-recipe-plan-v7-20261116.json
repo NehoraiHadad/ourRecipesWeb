@@ -1,0 +1,65 @@
+{
+  "study": "sparse-recipe-v7-teacher-numerics-and-contract-diagnosis",
+  "created_utc": "2026-11-16T21:48:45.706354+00:00",
+  "source_sha256": {
+    "sparse_recipe_diagnosis_v7.py": "769a5c4df69c9a6e812d8797e99a14330569b9db6929d08419c7ab36c5fada6e",
+    "sparse_recipe_freeze_v7.py": "29cc5fe8ff6a1077c49f38670e0b91b21544b01926670baad70b7998d5104861",
+    "sparse_recipe_job_v7.py": "d1316ed7b23e84104ad6ef3f1218d67b348c8a623f9d0d7e9652bae16c63c756",
+    "sparse_recipe_colab_v7.py": "b83a7ff6eeb8fd215d7a12400ff86a7055a18c26927b7b10a76d0aeb00245d57",
+    "sparse_recipe_reference_v6.py": "92fad4f3af3289e34783db565e46a1bb2a66b87e38df65ad3254466627649f4a",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "sparse_recipe_language_probe_v5.py": "2de324cc14c52766daaf00af88531a972d55097ce35647959f3f884f4178a2b6",
+    "tests/test_sparse_recipe_v7.py": "43cb533ea81a2b6209427e303c29ee6e7e813930bf2f0e1712f64eb1c0d6dcd6",
+    "SPARSE_RECIPE_V7_PLAN.he.md": "2be3e37ce1ab2b52fbc753811de4f1e9dcf04736f25957d72d3cf07046e772d2"
+  },
+  "artifact_sha256": {
+    "verification/sparse-recipe-data-v7-20261116.json": "b3be691dbd25bdf4fccf6c7e8ad702ed0d6102db1e70c12d2637d188b2004d77",
+    "verification/sparse-recipe-preflight-v7-20261116.json": "0e1b23ca438aa2cfceb12c8ae181849bf6d46bec73a6a65f52b8cdb3f55a7de6",
+    "verification/sparse-recipe-data-v6-20261116.json": "41f9eb67c29902064b80d32f349135e814767963bd9a1977876def48124ece1c",
+    "runs/ourrecipes-reference-v6r-20261116/results.zip": "62a2e41770c54d27334bdf64455fe5fcb0bf1f734e08179c195e937ed3879c06"
+  },
+  "model": {
+    "repo": "dicta-il/DictaLM-3.0-1.7B-Instruct",
+    "revision": "5add44d6941d6ffb9eb6cc6b516f9fb4fd472494",
+    "license": "apache-2.0",
+    "weight_bytes": 3441185576,
+    "weight_sha256": "e5caa19697d69a45380861dd4af6efa043c17da4466f1d92045d7557aa998e21"
+  },
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1",
+    "lm-format-enforcer==0.11.3",
+    "interegular==0.3.3",
+    "pydantic==2.12.4",
+    "PyYAML==6.0.3"
+  ],
+  "data_file": "verification/sparse-recipe-data-v7-20261116.json",
+  "max_sequence_tokens": 1024,
+  "max_study_seconds": 1200,
+  "max_owner_seconds": 2400,
+  "routes": [
+    "plain",
+    "free",
+    "grammar",
+    "fewshot"
+  ],
+  "fewshot_interest": {
+    "exact_min": 13,
+    "changes_min": 8,
+    "critical_wrong_max": 0,
+    "gain_min": 4
+  },
+  "numeric_warning": {
+    "nonfinite": true,
+    "cosine_below": 0.99,
+    "at_least_pairs": 2
+  },
+  "scope": "Diagnostic only: reused16 authored Hebrew language probes in3 routes,6 plain controls,16 numerical forwards on4 exposed V6 inputs. Conditional6 FP32 plain generations only if nonfinite FP16 weights/logits. No training, protected test, phone, browser or product approval."
+}

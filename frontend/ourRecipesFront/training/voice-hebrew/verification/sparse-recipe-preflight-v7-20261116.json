@@ -1,0 +1,17 @@
+{
+  "free": {
+    "cases": 16,
+    "max_prompt_tokens": 523,
+    "max_total_budget": 619
+  },
+  "grammar": {
+    "cases": 16,
+    "max_prompt_tokens": 523,
+    "max_total_budget": 619
+  },
+  "fewshot": {
+    "cases": 16,
+    "max_prompt_tokens": 711,
+    "max_total_budget": 807
+  }
+}

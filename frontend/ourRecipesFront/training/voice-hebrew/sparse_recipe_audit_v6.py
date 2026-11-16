@@ -32,6 +32,7 @@ def audit(run):
     archive = run / 'results.zip'; outer = json.loads((run / 'archive-manifest.json').read_text())
     assert sha(archive) == outer['sha256'] and archive.stat().st_size == outer['bytes']
     data = json.loads((ROOT / plan['data_file']).read_text()); rows = data['hard'] + data['regression']
+    token_budget = json.loads((ROOT / 'verification/sparse-recipe-token-budget-v6-20261116.json').read_text())
     with zipfile.ZipFile(archive) as src:
         assert src.testzip() is None
         manifest = json.loads(src.read('MANIFEST.json'))
@@ -47,6 +48,10 @@ def audit(run):
             report = json.loads(src.read('study/' + route + '.json')); records = report['records']
             assert [r['id'] for r in records] == [r['id'] for r in rows]
             assert all(len(r['tokens']) <= plan['max_new_tokens'] and r['prompt_tokens'] + plan['max_new_tokens'] <= plan['max_sequence_tokens'] for r in records)
+            token_reference = token_budget['models']['teacher' if route == 'teacher-json' else 'tiny']
+            lengths = [r['prompt_tokens'] for r in records]
+            assert (min(lengths), statistics.median(lengths), max(lengths), sum(lengths)) == (
+                token_reference['prompt_min'], token_reference['prompt_median'], token_reference['prompt_max'], token_reference['sum_prompt_tokens'])
             outputs = [r['text'] for r in records]
             evaluations[route] = aggregate(rows, outputs)[1]
             scores[route] = {group: aggregate(subset, outputs[:40] if group == 'hard' else outputs[40:])[0] for group, subset in data.items()}
@@ -70,7 +75,7 @@ def audit(run):
             'scores': scores, 'runtime': details, 'paired_comparisons': comparisons, 'operator_provenance': operator,
             'reference_utility_gate_passed': useful, 'product_promotion': False,
             'archive_sha256': outer['sha256'], 'archive_bytes': outer['bytes'],
-            'crc_manifest_source_data_adapter_verified': True, 'scope': plan['scope']}
+            'crc_manifest_source_data_adapter_verified': True, 'cpu_and_gpu_prompt_token_counts_match': True, 'scope': plan['scope']}
 
 
 if __name__ == '__main__':

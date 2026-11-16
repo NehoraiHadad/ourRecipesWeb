@@ -22,6 +22,9 @@ def build():
         'verification/sparse-recipe-legacy-integrity-v6-20261116.json',
         'verification/sparse-recipe-distillation-research-v6-20261116.json',
         'verification/sparse-recipe-browser-path-v6-20261116.json',
+        'verification/sparse-recipe-lora-budget-v6-20261116.json',
+        'verification/sparse-recipe-runtime-storage-v6-20261116.json',
+        'verification/sparse-recipe-token-budget-v6-20261116.json',
         'verification/sparse-recipe-error-analysis-v6-20261116.json'])
     runs = ['ourrecipes-sparse-v5-20261116', 'ourrecipes-reference-v6r-20261116']
     external = {}

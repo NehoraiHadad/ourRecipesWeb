@@ -1,0 +1,1053 @@
+{
+  "language": [
+    {
+      "id": "v5-language-he-0",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "גיררתי את הגזר"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-1",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "לא גיררתי את הגזר"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-2",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "התחלתי לגרר את הגזר אבל עוד לא סיימתי"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-3",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "אולי גיררתי את הגזר, אינני בטוח"
+      },
+      "expected": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          "a1"
+        ]
+      },
+      "critical_no_facts": true
+    },
+    {
+      "id": "v5-language-he-4",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "הוספתי צימוקים אבל לא ערבבתי"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a2",
+            "status": "done"
+          },
+          {
+            "action": "a3",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-5",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "גיררתי רק חלק מהגזר והוספתי צימוקים"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "partial"
+          },
+          {
+            "action": "a2",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-6",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "גיררתי את הגזר; אולי ערבבתי את הסלט"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "done"
+          }
+        ],
+        "clarify": [
+          "a3"
+        ]
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-7",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "מה לעשות עכשיו?"
+      },
+      "expected": {
+        "intent": "next",
+        "facts": [],
+        "clarify": []
+      },
+      "critical_no_facts": true
+    },
+    {
+      "id": "v5-language-he-8",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "done",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "תיקון, הגזר בכלל לא גורר"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-9",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "עשיתי את זה"
+      },
+      "expected": {
+        "intent": "clarify",
+        "facts": [],
+        "clarify": [
+          null
+        ]
+      },
+      "critical_no_facts": true
+    },
+    {
+      "id": "v5-language-he-10",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [
+          {
+            "role": "assistant",
+            "content": "האם גיררת את הגזר?"
+          }
+        ],
+        "utterance": "כן, את זה כבר ביצעתי"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a1",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-11",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "אני מתכוון להוסיף צימוקים בהמשך"
+      },
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "critical_no_facts": true
+    },
+    {
+      "id": "v5-language-he-12",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "רק תקן את המשפט \"גיררתי גזר\"; הוא לא דיווח שלי"
+      },
+      "expected": {
+        "intent": "other",
+        "facts": [],
+        "clarify": []
+      },
+      "critical_no_facts": true
+    },
+    {
+      "id": "v5-language-he-13",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "אולי הדלת פתוחה, אבל הוספתי צימוקים"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a2",
+            "status": "done"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-14",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "ערבבתי את הסלט רק חלקית"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a3",
+            "status": "partial"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    },
+    {
+      "id": "v5-language-he-15",
+      "family": "language-logic",
+      "input": {
+        "recipe": {
+          "id": "v5-language-probe",
+          "version": "source-1",
+          "name": "סלט",
+          "actions": [
+            {
+              "id": "a1",
+              "source": "לגרר גזר.",
+              "step": 0
+            },
+            {
+              "id": "a2",
+              "source": "להוסיף צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את הסלט.",
+              "step": 2
+            }
+          ]
+        },
+        "progress": {
+          "a1": "pending",
+          "a2": "pending",
+          "a3": "pending"
+        },
+        "currentStep": 1,
+        "history": [],
+        "utterance": "לא בטוח איפה הכף; את הצימוקים עוד לא הוספתי"
+      },
+      "expected": {
+        "intent": "report",
+        "facts": [
+          {
+            "action": "a2",
+            "status": "pending"
+          }
+        ],
+        "clarify": []
+      },
+      "critical_no_facts": false
+    }
+  ],
+  "plain": [
+    {
+      "id": "v7-plain-0",
+      "utterance": "כתוב בדיוק את המילה שלום, בלי סימני פיסוק.",
+      "expected_text": "שלום"
+    },
+    {
+      "id": "v7-plain-1",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם כבר ערבבתי? ענה רק כן או לא.",
+      "expected_text": "לא"
+    },
+    {
+      "id": "v7-plain-2",
+      "utterance": "נאמר: אולי שמתי קמח, אני לא בטוח. האם אפשר לקבוע בוודאות ששמתי קמח? ענה רק כן או לא.",
+      "expected_text": "לא"
+    },
+    {
+      "id": "v7-plain-3",
+      "utterance": "נאמר: התחלתי לערבב ולא סיימתי. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "לא"
+    },
+    {
+      "id": "v7-plain-4",
+      "utterance": "נאמר: גמרתי לערבב את הבלילה. האם הערבוב הושלם? ענה רק כן או לא.",
+      "expected_text": "כן"
+    },
+    {
+      "id": "v7-plain-5",
+      "utterance": "נאמר: הוספתי מים אבל לא ערבבתי. האם הוספתי מים? ענה רק כן או לא.",
+      "expected_text": "כן"
+    }
+  ],
+  "numeric": [
+    {
+      "id": "v4-dev-unseen-recipe-unseen-frame-r6-clear-0",
+      "input": {
+        "recipe": {
+          "id": "new-v4-recipe-0",
+          "version": "source-1",
+          "name": "סלט גזר וצימוקים",
+          "actions": [
+            {
+              "id": "a2",
+              "source": "לגרר שני גזרים.",
+              "step": 0
+            },
+            {
+              "id": "a6",
+              "source": "להוסיף חופן צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a9",
+              "source": "לסחוט תפוז.",
+              "step": 2
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את סלט הגזר.",
+              "step": 3
+            }
+          ]
+        },
+        "progress": {
+          "a2": "pending",
+          "a6": "pending",
+          "a9": "partial",
+          "a3": "pending"
+        },
+        "currentStep": 3,
+        "history": [],
+        "utterance": "מעדכן שהפעולה הושלמה: גיררתי את הגזרים"
+      },
+      "observed_tokens": [
+        4913,
+        56431,
+        3252,
+        11736,
+        2198,
+        68053,
+        66582,
+        1311,
+        3252,
+        64,
+        17,
+        2198,
+        2829,
+        3252,
+        10438,
+        36509,
+        1311,
+        3252,
+        64,
+        21,
+        2198,
+        2829,
+        3252,
+        28210
+      ]
+    },
+    {
+      "id": "v4-dev-unseen-recipe-unseen-frame-r6-negation-0",
+      "input": {
+        "recipe": {
+          "id": "new-v4-recipe-0",
+          "version": "source-1",
+          "name": "סלט גזר וצימוקים",
+          "actions": [
+            {
+              "id": "a2",
+              "source": "לגרר שני גזרים.",
+              "step": 0
+            },
+            {
+              "id": "a6",
+              "source": "להוסיף חופן צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a9",
+              "source": "לסחוט תפוז.",
+              "step": 2
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את סלט הגזר.",
+              "step": 3
+            }
+          ]
+        },
+        "progress": {
+          "a2": "done",
+          "a6": "pending",
+          "a9": "done",
+          "a3": "pending"
+        },
+        "currentStep": 3,
+        "history": [],
+        "utterance": "לגרר את הגזרים עדיין מחכה לביצוע אצלי"
+      },
+      "observed_tokens": [
+        4913,
+        56431,
+        3252,
+        3600,
+        2198,
+        68053,
+        66582,
+        1311,
+        3252,
+        64,
+        17,
+        2198,
+        2829,
+        3252,
+        10438,
+        36509,
+        1311,
+        3252,
+        64,
+        21,
+        2198,
+        2829,
+        3252,
+        28210
+      ]
+    },
+    {
+      "id": "v4-dev-unseen-recipe-unseen-frame-r6-partial-0",
+      "input": {
+        "recipe": {
+          "id": "new-v4-recipe-0",
+          "version": "source-1",
+          "name": "סלט גזר וצימוקים",
+          "actions": [
+            {
+              "id": "a2",
+              "source": "לגרר שני גזרים.",
+              "step": 0
+            },
+            {
+              "id": "a6",
+              "source": "להוסיף חופן צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a9",
+              "source": "לסחוט תפוז.",
+              "step": 2
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את סלט הגזר.",
+              "step": 3
+            }
+          ]
+        },
+        "progress": {
+          "a2": "partial",
+          "a6": "partial",
+          "a9": "done",
+          "a3": "partial"
+        },
+        "currentStep": 3,
+        "history": [],
+        "utterance": "נעצרתי לפני הסוף, אחרי שכבר התחלתי לגרר את הגזרים"
+      },
+      "observed_tokens": [
+        4913,
+        56431,
+        3252,
+        12821,
+        1437,
+        2198,
+        68053,
+        66582,
+        1311,
+        3252,
+        64,
+        18,
+        2198,
+        2829,
+        3252,
+        10438,
+        36509,
+        1311,
+        3252,
+        64,
+        21,
+        2198,
+        2829,
+        3252
+      ]
+    },
+    {
+      "id": "v4-dev-unseen-recipe-unseen-frame-r6-uncertainty-0",
+      "input": {
+        "recipe": {
+          "id": "new-v4-recipe-0",
+          "version": "source-1",
+          "name": "סלט גזר וצימוקים",
+          "actions": [
+            {
+              "id": "a2",
+              "source": "לגרר שני גזרים.",
+              "step": 0
+            },
+            {
+              "id": "a6",
+              "source": "להוסיף חופן צימוקים.",
+              "step": 1
+            },
+            {
+              "id": "a9",
+              "source": "לסחוט תפוז.",
+              "step": 2
+            },
+            {
+              "id": "a3",
+              "source": "לערבב את סלט הגזר.",
+              "step": 3
+            }
+          ]
+        },
+        "progress": {
+          "a2": "done",
+          "a6": "partial",
+          "a9": "done",
+          "a3": "done"
+        },
+        "currentStep": 0,
+        "history": [],
+        "utterance": "הזיכרון שלי מעורפל לגבי השאלה אם גיררתי את הגזרים"
+      },
+      "observed_tokens": [
+        4913,
+        56431,
+        3252,
+        12821,
+        1437,
+        2198,
+        68053,
+        66582,
+        1311,
+        3252,
+        64,
+        17,
+        2198,
+        2829,
+        3252,
+        10438,
+        36509,
+        1311,
+        3252,
+        64,
+        21,
+        2198,
+        2829,
+        3252
+      ]
+    }
+  ],
+  "numeric_origin_archive_sha256": "62a2e41770c54d27334bdf64455fe5fcb0bf1f734e08179c195e937ed3879c06"
+}
