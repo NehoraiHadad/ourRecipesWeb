@@ -1,0 +1,24 @@
+{
+  "reviewer": "assistant, not an independent human",
+  "scope": "Source-level review of twelve authored pair types before quality outputs from V10. No model-generated labels or real speech.",
+  "reviewed_categories": [
+    "doubt resolved versus newly unresolved",
+    "certain versus uncertain partial performance",
+    "explicit nonperformance versus unknown performance",
+    "side-topic versus cooking uncertainty",
+    "plan versus actual completion",
+    "direction of correction",
+    "actual next versus fictional explanation",
+    "actual report versus editing quotation",
+    "clause-local mixed certainty",
+    "planned versus partial clause with a second actual report",
+    "single versus unresolved same-recipe historical anchor",
+    "report of missing versus query of missing"
+  ],
+  "annotation_limitations": [
+    "Hypothetical next is explain under the existing contract; intent boundary is a product convention.",
+    "Reported completion is a user claim, not sensor proof.",
+    "Expected facts are semantic assertions, not all progress statuses.",
+    "Synthetic constructions and repeated recipe instantiations do not replace natural held-out speech."
+  ]
+}

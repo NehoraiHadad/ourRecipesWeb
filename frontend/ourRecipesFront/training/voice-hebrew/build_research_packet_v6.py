@@ -9,8 +9,9 @@ ROOT = Path(__file__).resolve().parent
 
 def build():
     names = set()
-    for version in [5, 6, 7, 8, 9]:
-        name = f'verification/sparse-recipe-plan-v{version}-20261116.json'
+    for version in [5, 6, 7, 8, 9, 10]:
+        name = ('verification/native-scope-plan-v10-20261116.json' if version == 10
+                else f'verification/sparse-recipe-plan-v{version}-20261116.json')
         plan = json.loads((ROOT / name).read_text()); names.add(name)
         names.update(plan['source_sha256']); names.update(n for n in plan['artifact_sha256'] if not n.startswith('adapter/'))
     names.update(['sparse_recipe_audit_v5.py', 'sparse_recipe_audit_v6.py', 'sparse_recipe_report.py',
@@ -19,6 +20,7 @@ def build():
         'sparse_recipe_audit_v7.py', 'SPARSE_RECIPE_V7_RESULTS.he.md', 'verification/sparse-recipe-results-v7-20261116.json',
         'sparse_recipe_audit_v8.py', 'SPARSE_RECIPE_V8_RESULTS.he.md', 'verification/sparse-recipe-results-v8-20261116.json',
         'recipe_teacher_audit_v9.py', 'recover_teacher_colab_v9.py', 'SPARSE_RECIPE_V9_RESULTS.he.md', 'verification/sparse-recipe-results-v9-20261116.json',
+        'native_scope_audit_v10.py', 'NATIVE_SCOPE_V10_RESULTS.he.md', 'verification/native-scope-results-v10-20261116.json',
         'verification/sparse-recipe-stop-mismatch-v7-20261116.json',
         'SPARSE_RECIPE_V5_RESULTS.he.md', 'SPARSE_RECIPE_V6_RESULTS.he.md', 'SPARSE_RECIPE_V6_REPRODUCTION.he.md',
         'SPARSE_RECIPE_DISTILLATION_OPTIONS.he.md', 'PROJECT_WORK_PLAN.he.md', 'RESEARCH_LOG.he.md', 'README.he.md',
@@ -31,14 +33,14 @@ def build():
         'verification/sparse-recipe-token-budget-v6-20261116.json',
         'verification/sparse-recipe-error-analysis-v6-20261116.json'])
     runs = ['ourrecipes-sparse-v5-20261116', 'ourrecipes-reference-v6r-20261116', 'ourrecipes-diagnosis-v7-20261116',
-            'ourrecipes-stop-v8-20261116', 'ourrecipes-teacher-v9-20261116']
+            'ourrecipes-stop-v8-20261116', 'ourrecipes-teacher-v9-20261116', 'ourrecipes-native-v10-20261116']
     external = {}
     for run in runs:
         base = ROOT / 'runs' / run
         names.update(str(p.relative_to(ROOT)) for p in (base / 'recovered').rglob('*')
             if p.is_file() and p.suffix not in ('.pt', '.safetensors') and '-partial' not in p.name)
         names.add(f'runs/{run}/archive-manifest.json'); names.add(f'runs/{run}/recovery.json')
-        if 'sparse-v5' not in run and 'teacher-v9' not in run: names.add(f'runs/{run}/results.zip')
+        if not any(tag in run for tag in ['sparse-v5', 'teacher-v9', 'native-v10']): names.add(f'runs/{run}/results.zip')
         else: external[f'runs/{run}/results.zip'] = json.loads((base / 'archive-manifest.json').read_text())
     target = ROOT / 'dist/ourRecipes-replay-reference-study-20261116.zip'
     missing = [n for n in names if not (ROOT / n).is_file()]

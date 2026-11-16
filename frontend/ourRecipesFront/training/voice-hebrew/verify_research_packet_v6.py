@@ -75,6 +75,15 @@ def verify():
             assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
     raw = json.loads((folder / 'validation-step-train-fit-160.json').read_text()); rows = data['train_fit']
     assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
+    data = json.loads((ROOT / 'verification/native-scope-data-v10-20261116.json').read_text())['splits']
+    folder = ROOT / 'runs/ourrecipes-native-v10-20261116/recovered/study/model'
+    for step in [0, 80, 160]:
+        for prefix, group in [('', 'validation'), ('diagnostic-', 'diagnostic'), ('regression-', 'regression')]:
+            raw = json.loads((folder / f'validation-step-{prefix}{step}.json').read_text()); rows = data[group]
+            assert [r['id'] for r in rows] == [r['id'] for r in raw['records']]
+            assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
+    raw = json.loads((folder / 'validation-step-train-fit-160.json').read_text()); rows = data['train_fit']
+    assert aggregate(rows, [r['text'] for r in raw['records']])[0] == raw['metrics']; count += len(rows)
     result = {'manifest_verified': True, 'outputs_rescored': count,
         'binary_checkpoint_hash_verified_here': False, 'new_inference': False}
     print(json.dumps(result, indent=2)); return result

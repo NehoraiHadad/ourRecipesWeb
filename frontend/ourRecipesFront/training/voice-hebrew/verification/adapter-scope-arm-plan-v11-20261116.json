@@ -1,0 +1,113 @@
+{
+  "study": "adapter-scope-v11-tiny-attention-plus-mlp",
+  "created_utc": "2026-11-16T23:44:17.625565+00:00",
+  "source_sha256": {
+    "adapter_scope_sft_v11.py": "a244d317429cef427d4cfa896e6f47097b6c5e6dfe4233c409acb71eda8f9967",
+    "adapter_scope_study_v11.py": "52972398cfeca51b1e07ac1325402fe20c567e870724e9eb8c2198d8ad266cda",
+    "adapter_scope_policy_v11.py": "0da6ab8f4dde357155d3e02344c57b138e6eb1198ea279b0075bf83d68aeb552",
+    "adapter_scope_preflight_v11.py": "69b0b6c127ee4c4087db84f07bcb0825e4312f0d3875a30902fab6ee5130d4a2",
+    "adapter_scope_freeze_v11.py": "d711a8aca916b938fc16cc0a61df7fc76dce75f5c74c0762e150589c8e8cc520",
+    "adapter_scope_job_v11.py": "c932007b20e0acfb776bc96077971a1d8d4b604d2229fbcbee312debd4efb65c",
+    "adapter_scope_colab_v11.py": "e9ad512f6fec63c4396c38caa3572c7a79759cf74126c0dcf4a51d485c2ee5de",
+    "tests/test_adapter_scope_v11.py": "9fcbf3e0bf276f61211133258dc7eb3ca2dc7e5089833dca57697db7adaffab1",
+    "ADAPTER_SCOPE_V11_PLAN.he.md": "09d6e43af5e43fd94a52e26fd909dafd40b53d4c1857835cf19e2c4134ee9df2",
+    "native_scope_data_v10.py": "0986c40ba90fdc4b546dd3c3d0b4e972e7fa53183085f63ec2604fb8970b2b99",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794"
+  },
+  "data_file": "verification/native-scope-data-v10-20261116.json",
+  "data_sha256": "496fff5cb473a6d262de79c8c8708a8253ee74e4dc6e9beee3770411650598e0",
+  "seed": 42,
+  "max_sequence_tokens": 1024,
+  "max_study_seconds": 3000,
+  "max_owner_seconds": 4500,
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "model": {
+    "repo": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "license": "apache-2.0",
+    "weight_bytes": 1503300328,
+    "weight_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+    "small_file_sha256": {
+      "config.json": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+      "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "dtype": "FP16 base, FP32 trainable adapters; measure actual parameter count rather than infer from checkpoint tensor inventory"
+  },
+  "training": {
+    "updates": 160,
+    "micro_batch": 2,
+    "accumulation": 2,
+    "learning_rate": 0.0002,
+    "warmup_updates": 8,
+    "max_seconds": 1800,
+    "evaluate_at": [
+      80,
+      160
+    ],
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "schedule_file": "verification/sparse-recipe-order-v9-20261116.json",
+    "schedule_sha256": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b"
+  },
+  "evaluation": {
+    "batch_size": 8,
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "thinking": false,
+    "grammar": false,
+    "json_repair": false,
+    "baseline_precision_and_prompt_match": true
+  },
+  "stopping": "One seed, two checkpoints; no automatic extension or held-test opening. Technical failure needs new derived version, not overwrite.",
+  "pilot_gate": {
+    "exact_min": 0.8,
+    "exact_gain_min": 0.2,
+    "required_change_min": 0.8,
+    "critical_wrong_facts_max": 0,
+    "wrong_fact_cases_not_increase": true,
+    "product_promotion": false
+  },
+  "scope": "Fresh tiny0.6B, same Native10 data/exposure. Only wider LoRA targets plus RNG-independent frozen sampler; fixed160 endpoint. No independent test/phone.",
+  "sources": [
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3-0.6B/tree/c1899de289a04d12100db370d81485cdf75e47ca",
+      "local": "verification/qwen-sparse-source-20261116",
+      "verified_public_metadata": true
+    },
+    {
+      "url": "https://huggingface.co/docs/peft/v0.17.0/en/developer_guides/lora",
+      "download_bytes": 323790,
+      "download_sha256": "0a6aea53655f845983999566aef4e10da55f0a1942746f30337dc9723bb21e1e"
+    },
+    {
+      "url": "https://qwen.readthedocs.io/en/latest/training/SFT/llama_factory.html",
+      "read": false,
+      "error": "HTTP403"
+    }
+  ]
+}

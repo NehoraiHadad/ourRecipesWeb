@@ -1,0 +1,51 @@
+{
+  "study": "adapter-scope-v11-tiny-attention-plus-mlp",
+  "created_utc": "2026-11-16T23:44:17.625565+00:00",
+  "source_sha256": {
+    "adapter_scope_sft_v11.py": "a244d317429cef427d4cfa896e6f47097b6c5e6dfe4233c409acb71eda8f9967",
+    "adapter_scope_study_v11.py": "52972398cfeca51b1e07ac1325402fe20c567e870724e9eb8c2198d8ad266cda",
+    "adapter_scope_policy_v11.py": "0da6ab8f4dde357155d3e02344c57b138e6eb1198ea279b0075bf83d68aeb552",
+    "adapter_scope_preflight_v11.py": "69b0b6c127ee4c4087db84f07bcb0825e4312f0d3875a30902fab6ee5130d4a2",
+    "adapter_scope_freeze_v11.py": "d711a8aca916b938fc16cc0a61df7fc76dce75f5c74c0762e150589c8e8cc520",
+    "adapter_scope_job_v11.py": "c932007b20e0acfb776bc96077971a1d8d4b604d2229fbcbee312debd4efb65c",
+    "adapter_scope_colab_v11.py": "e9ad512f6fec63c4396c38caa3572c7a79759cf74126c0dcf4a51d485c2ee5de",
+    "tests/test_adapter_scope_v11.py": "9fcbf3e0bf276f61211133258dc7eb3ca2dc7e5089833dca57697db7adaffab1",
+    "ADAPTER_SCOPE_V11_PLAN.he.md": "09d6e43af5e43fd94a52e26fd909dafd40b53d4c1857835cf19e2c4134ee9df2",
+    "native_scope_data_v10.py": "0986c40ba90fdc4b546dd3c3d0b4e972e7fa53183085f63ec2604fb8970b2b99",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794"
+  },
+  "artifact_sha256": {
+    "verification/adapter-scope-arm-plan-v11-20261116.json": "d09ac43761764a13bfee1b8a6d04a993fd435d65dabd7b8327e69430b8a5781d",
+    "verification/native-scope-data-v10-20261116.json": "496fff5cb473a6d262de79c8c8708a8253ee74e4dc6e9beee3770411650598e0",
+    "verification/sparse-recipe-order-v9-20261116.json": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b",
+    "verification/adapter-scope-reference-v11-20261116.json": "da54f967ce8f9867f7b42eb54e66e2b13321eb883b71d58d96c7762d0581f401",
+    "verification/sparse-recipe-data-v5-20261116.json": "2aa4bed65e0ff9640dbe97ae19c2a92177d33bb81f580199fa1e1725d6042f40",
+    "verification/native-scope-preflight-v10-20261116.json": "b4920a6979484e5084c4638656981557859c305894036c745678e43d98633e22",
+    "verification/adapter-scope-preflight-v11-20261116.json": "594a1569a4c4599320b718fa5df338e9217942312f327cb631d89bb9d07f265d",
+    "verification/sparse-recipe-lora-budget-v6-20261116.json": "64353cfe06a5b1d7d55226e63aaaadea1ee29f54052cdca8a4ffc98307dcb744",
+    "verification/sparse-recipe-distillation-research-v6-20261116.json": "4c278e9a463a5f1452866f57ed9b1a2eead3fd2a62df2300aff675c32e62ed22",
+    "verification/native-scope-results-v10-20261116.json": "46371243d37e970298f415ae13d2145666a8910e49922fb713b0423762c21e39"
+  },
+  "arm_plan_file": "verification/adapter-scope-arm-plan-v11-20261116.json",
+  "arm_data_file": "verification/native-scope-data-v10-20261116.json",
+  "master_data_file": "verification/sparse-recipe-data-v5-20261116.json",
+  "reference_file": "verification/adapter-scope-reference-v11-20261116.json",
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "max_study_seconds": 3600,
+  "max_owner_seconds": 4500,
+  "expected_trainable_parameters": 5046272,
+  "expected_adapter_tensors": 392,
+  "scope": "Same tiny0.6B and360 Native10 TRAIN. Add MLP gate/up/down r8 LoRA to attention q/k/v/o. Fixed160 updates, exact cached640 indices and280 baseline outputs/tokens.876 repeated outputs; both V5/V10 anchors must pass. Fresh adapter; not teacher labels, protected test, phone/browser, quantization or product promotion."
+}
