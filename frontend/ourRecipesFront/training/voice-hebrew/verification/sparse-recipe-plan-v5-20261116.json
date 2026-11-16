@@ -1,0 +1,98 @@
+{
+  "study": "sparse-recipe-v5-replay-and-counterfactual",
+  "created_utc": "2026-11-16T20:40:42.287040+00:00",
+  "source_sha256": {
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_data_v5.py": "1df4e4497830300bc5eae10be5e6ec0bfb226ca27cd6f544ea77766018b7d8a1",
+    "sparse_recipe_language_probe_v5.py": "2de324cc14c52766daaf00af88531a972d55097ce35647959f3f884f4178a2b6",
+    "sparse_recipe_study_v5.py": "fe3fdbe48f1bd937c91c0cfb445d6e38f644332564f2012a810f3d6f035440da",
+    "sparse_recipe_job_v5.py": "241611f56b81b5859b7ed304d1b44914669362d929cd87533335c86dc9b36dd6",
+    "sparse_recipe_colab_v5.py": "ff8ae8f1402eb3d215e339b63916e0c22a56f14967c54bb4d659e5a92f1e73ec",
+    "sparse_recipe_preflight_v5.py": "6b766df4ae2da3d5141e1e4f35009a128aa640b828c9a7309d3f24bb761f9c89",
+    "sparse_recipe_freeze_v5.py": "703af95b161508d82a5827d4d689f2051573bc6ea46cb91e58626c625e0d2d3e",
+    "tests/test_sparse_recipe_v5.py": "cd1c4154b74bdd2fe8f79831fd5cfcdb98493094598722b2cd3f39fe759a2d4f",
+    "SPARSE_RECIPE_V5_RESEARCH.he.md": "db84c328a92a286fbe8b3d07968a4861d81294eaf29059921b83698c1eaa5ed1",
+    "SPARSE_RECIPE_V5_PLAN.he.md": "b6fb3cdb150ca13f82522f66778bb41ba6ca850434c97d7c0ccbae0df7f7d6ad"
+  },
+  "artifact_sha256": {
+    "verification/sparse-recipe-data-v5-20261116.json": "2aa4bed65e0ff9640dbe97ae19c2a92177d33bb81f580199fa1e1725d6042f40",
+    "verification/sparse-recipe-data-v4-20261116.json": "72f97996cc5934c6c453f6d280e777d23faf9471b7078ffaf982eedf5cdfdae9",
+    "verification/sparse-recipe-data-v3-20261116.json": "52b24850add6be5d1f9fd5d22351e76fe19174c43d1cfafa628a0f3aded5432d",
+    "verification/sparse-recipe-reference-v5-20261116.json": "d13909afa285e27fea84f9d816949cd60e2721cda0f34a31ae4c04db9cb3df6e",
+    "verification/sparse-recipe-preflight-v5-20261116.json": "859a373117a2bb8fac54a7a3ad11c61da307808bfb7731c46d325c0f07508b78",
+    "verification/sparse-recipe-research-v5-20261116.json": "5d69578b2c0c91af94ab328eae6be77e4deb78160cde8afa2869931dca6d5c89",
+    "verification/sparse-recipe-control-data-v5-20261116.json": "9764c23b52784000e8cb5a1a454bf4f9b4ee3b495d4b24a62638a79b2254d299",
+    "verification/sparse-recipe-diverse-data-v5-20261116.json": "1283757b72b95d0bcfe927278f9339ae6528c4e05aebfb7b5ef7e8b0b9c951ec",
+    "verification/sparse-recipe-control-plan-v5-20261116.json": "953867435a4e796aad56f6840c9e63058ca6f0d3ab37e9e6fea74d4d6308980b",
+    "verification/sparse-recipe-diverse-plan-v5-20261116.json": "02daede894993eec9ae9d389a75bda6661d63027e15ff234123981dbfef746bb"
+  },
+  "master_data_file": "verification/sparse-recipe-data-v5-20261116.json",
+  "arm_plans": {
+    "control": "verification/sparse-recipe-control-plan-v5-20261116.json",
+    "diverse": "verification/sparse-recipe-diverse-plan-v5-20261116.json"
+  },
+  "arm_data": {
+    "control": "verification/sparse-recipe-control-data-v5-20261116.json",
+    "diverse": "verification/sparse-recipe-diverse-data-v5-20261116.json"
+  },
+  "reference_file": "verification/sparse-recipe-reference-v5-20261116.json",
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "max_study_seconds": 3600,
+  "max_owner_seconds": 4500,
+  "primary_endpoint": 160,
+  "primary_cell": "unseen-recipe/unseen-frame",
+  "method_names": {
+    "control": "replay",
+    "diverse": "paired"
+  },
+  "quality_gate_unchanged": {
+    "hard_exact_min_cases": 32,
+    "hard_gain_min_cases": 4,
+    "required_changes_min": 0.8,
+    "all_new_critical_wrong_facts": 0,
+    "regression_exact_loss_max_cases": 6,
+    "regression_critical_wrong_facts_must_not_increase": true,
+    "product_promotion": false
+  },
+  "retention_utility_gate": {
+    "all_dev_exact_min": 125,
+    "primary_exact_min": 26,
+    "primary_changes_min": 16,
+    "all_dev_critical_wrong_facts_max": 2,
+    "regression_exact_min": 81,
+    "regression_critical_wrong_facts_max": 5,
+    "product_promotion": false
+  },
+  "diagnostics": {
+    "train_fit_each": 36,
+    "language_if_paired_primary_below": 32,
+    "language_cases_each": 16,
+    "language_diagnosis_not_quality": true
+  },
+  "source_model": {
+    "repo": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "license": "apache-2.0",
+    "weight_bytes": 1503300328,
+    "weight_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+    "small_file_sha256": {
+      "config.json": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+      "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e"
+    },
+    "dtype": "FP16 base, FP32 trainable adapters; measure actual parameter count rather than infer from checkpoint tensor inventory"
+  },
+  "scope": "Two fresh adapters at fixed compute, cached V4 comparison explicit, no held sets or physical phone. Binary artifacts retained in one archive without redundant extraction."
+}

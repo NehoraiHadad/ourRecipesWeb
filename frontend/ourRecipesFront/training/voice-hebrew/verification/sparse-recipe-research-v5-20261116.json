@@ -1,0 +1,30 @@
+{
+  "retrieved_utc": "2026-11-16T20:40:42.095862+00:00",
+  "sources": [
+    {
+      "title": "An Efficient Rehearsal Scheme for Catastrophic Forgetting Mitigation during Multi-stage Fine-tuning",
+      "url": "https://aclanthology.org/2025.naacl-findings.138.pdf",
+      "pdf_bytes": 507418,
+      "pdf_sha256": "9d27a54d509d47524aeca3c54874b11c8eb1b58d676cdf72b3d7e5e03d211af3",
+      "use": "Simple mixing inspiration only; mix-cd not implemented; our fresh-start comparison is not sequential forgetting."
+    },
+    {
+      "title": "Simple and effective data augmentation for compositional generalization",
+      "url": "https://aclanthology.org/2024.naacl-long.25.pdf",
+      "pdf_bytes": 672298,
+      "pdf_sha256": "467e75a85c070f4e5e50c4bb8cda50945d710b4b1161d427adf7884d8d9f737c",
+      "use": "Semantic distribution and supervised counterfactual data inspiration; no backtranslation implemented."
+    },
+    {
+      "title": "Replaying pre-training data improves fine-tuning",
+      "url": "https://arxiv.org/abs/2603.04964",
+      "use": "Abstract read; target sizes/tasks differ, not a Hebrew guarantee."
+    },
+    {
+      "title": "DISCO",
+      "url": "https://aclanthology.org/2023.acl-long.302/",
+      "use": "Primary abstract read; teacher-filtered data alternative, not implemented."
+    }
+  ],
+  "training_data_copied_from_papers": false
+}
