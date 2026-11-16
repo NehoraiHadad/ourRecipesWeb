@@ -15,6 +15,7 @@ def build():
         names.update(plan['source_sha256']); names.update(n for n in plan['artifact_sha256'] if not n.startswith('adapter/'))
     names.update(['sparse_recipe_audit_v5.py', 'sparse_recipe_audit_v6.py', 'sparse_recipe_report.py',
         'recover_existing_colab.py', 'verify_research_packet_v6.py', 'build_research_packet_v6.py', 'analyze_sparse_errors_v6.py',
+        'sparse_recipe_colab_v6_resilient.py', 'tests/test_colab_owner_v6.py', 'verification/sparse-recipe-run-v6-20261116.json',
         'SPARSE_RECIPE_V5_RESULTS.he.md', 'SPARSE_RECIPE_V6_RESULTS.he.md', 'SPARSE_RECIPE_V6_REPRODUCTION.he.md',
         'SPARSE_RECIPE_DISTILLATION_OPTIONS.he.md', 'PROJECT_WORK_PLAN.he.md', 'RESEARCH_LOG.he.md', 'README.he.md',
         'verification/sparse-recipe-results-v5-20261116.json', 'verification/sparse-recipe-results-v6-20261116.json',
@@ -22,7 +23,7 @@ def build():
         'verification/sparse-recipe-distillation-research-v6-20261116.json',
         'verification/sparse-recipe-browser-path-v6-20261116.json',
         'verification/sparse-recipe-error-analysis-v6-20261116.json'])
-    runs = ['ourrecipes-sparse-v5-20261116', 'ourrecipes-reference-v6-20261116']
+    runs = ['ourrecipes-sparse-v5-20261116', 'ourrecipes-reference-v6r-20261116']
     external = {}
     for run in runs:
         base = ROOT / 'runs' / run

@@ -41,7 +41,7 @@ def run():
             records = json.loads((base / f'validation-step-{suffix}160.json').read_text())['records']
             reports['v5-' + method][group] = analyze(data[group], records)
     for route in ['tiny-free', 'tiny-json', 'teacher-json']:
-        path = ROOT / 'runs/ourrecipes-reference-v6-20261116/recovered/study' / (route + '.json')
+        path = ROOT / 'runs/ourrecipes-reference-v6r-20261116/recovered/study' / (route + '.json')
         if not path.exists(): continue
         records = json.loads(path.read_text())['records']
         reports['v6-' + route] = {g: analyze(rows, records[:40] if g == 'hard' else records[40:]) for g,rows in data.items()}

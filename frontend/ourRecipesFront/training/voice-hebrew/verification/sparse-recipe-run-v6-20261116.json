@@ -1,0 +1,10 @@
+{
+  "run": "ourrecipes-reference-v6r-20261116",
+  "original_failed_run": "ourrecipes-reference-v6-20261116",
+  "failure": "SSH concurrency HTTP429 in manual status reader caused original owner to stop before archive recovery. No complete V6 raw report collected. Existing V5 archive intact.",
+  "model_data_protocol_unchanged": true,
+  "plan_sha256": "2054825da748be737b42bc953b3d501249b359a424721477dfa29d126a21d6cb",
+  "owner": "sparse_recipe_colab_v6_resilient.py",
+  "owner_sha256": "a04a32919809d204c462c0032e3a04808fdb5761e58a33f8d06962316b98b5e1",
+  "changes": "Retry transport errors longer; serial status polling also recovers each completed report locally; no concurrent manual SSH/exec while owner runs. Full frozen480-output study repeated, no output-based model/prompt changes."
+}

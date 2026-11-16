@@ -36,7 +36,7 @@ def verify():
             count += len(rows)
     data = json.loads((ROOT / 'verification/sparse-recipe-data-v6-20261116.json').read_text())
     for route in ['tiny-free', 'tiny-json', 'teacher-json']:
-        raw = json.loads((ROOT / 'runs/ourrecipes-reference-v6-20261116/recovered/study' / (route + '.json')).read_text())
+        raw = json.loads((ROOT / 'runs/ourrecipes-reference-v6r-20261116/recovered/study' / (route + '.json')).read_text())
         rows = data['hard'] + data['regression']; records = raw['records']
         assert [r['id'] for r in rows] == [r['id'] for r in records]
         assert aggregate(data['hard'], [r['text'] for r in records[:40]])[0] == raw['metrics']['hard']

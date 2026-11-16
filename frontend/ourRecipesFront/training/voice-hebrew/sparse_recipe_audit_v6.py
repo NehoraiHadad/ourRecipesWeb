@@ -17,6 +17,9 @@ def sha(path):
 def audit(run):
     run = Path(run); plan = json.loads((ROOT / 'verification/sparse-recipe-plan-v6-20261116.json').read_text())
     for name, expected in plan['source_sha256'].items(): assert sha(ROOT / name) == expected, name
+    operator = json.loads((ROOT / 'verification/sparse-recipe-run-v6-20261116.json').read_text())
+    assert sha(ROOT / operator['owner']) == operator['owner_sha256']
+    assert sha(ROOT / 'verification/sparse-recipe-plan-v6-20261116.json') == operator['plan_sha256']
     for name, expected in plan['artifact_sha256'].items():
         if not name.startswith('adapter/'): assert sha(ROOT / name) == expected, name
     origin = ROOT / 'runs/ourrecipes-sparse-v5-20261116/results.zip'
@@ -64,7 +67,7 @@ def audit(run):
             and t['regression']['exact'] >= gate['regression_exact_min']
             and t['regression']['critical_wrong_fact_cases'] <= gate['regression_critical_wrong_max'])
         return {'study': plan['study'], 'status': status, 'hardware': json.loads(src.read('hardware.json')),
-            'scores': scores, 'runtime': details, 'paired_comparisons': comparisons,
+            'scores': scores, 'runtime': details, 'paired_comparisons': comparisons, 'operator_provenance': operator,
             'reference_utility_gate_passed': useful, 'product_promotion': False,
             'archive_sha256': outer['sha256'], 'archive_bytes': outer['bytes'],
             'crc_manifest_source_data_adapter_verified': True, 'scope': plan['scope']}
