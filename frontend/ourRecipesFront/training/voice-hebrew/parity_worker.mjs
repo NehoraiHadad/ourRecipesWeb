@@ -12,7 +12,7 @@ self.onmessage=async({data})=>{
    for(;;){const r=await reader.read();if(r.done)break;loaded+=r.value.length;if(loaded>data.bytes)throw Error('model-too-large');chunks.push(r.value);}
    const blob=new Blob(chunks);chunks.length=0;console.log('parity-load:model-blob',blob.size);
    if(blob.size!==data.bytes)throw Error('model-size-mismatch');
-   model=new Wllama({default:'/runtime/wllama.wasm'},{suppressNativeLog:true,logger:{log(){},debug(){},warn(){},error(...args){console.error(...args);}}});
+   model=new Wllama({default:'/runtime/wllama.wasm'},{suppressNativeLog:false,logger:{log(){},debug(){},warn(){},error(...args){console.error(...args);}}});
    model.setCompat(null);console.log('parity-load:runtime');await model.loadModel([blob],data.settings);
    self.postMessage({type:'ready',ms:performance.now()-start,context:model.getLoadedContextInfo(),template:model.getChatTemplate(),crossOriginIsolated:self.crossOriginIsolated});
   } else if(data.type==='chat') {

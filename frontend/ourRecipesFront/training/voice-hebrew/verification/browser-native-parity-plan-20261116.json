@@ -1,9 +1,9 @@
 {
-  "study": "browser-native-parity-stage1-v9-raw-transport",
-  "created_utc": "2026-11-16T11:15:44.466604+00:00",
+  "study": "browser-native-parity-stage1-v10-error-observation",
+  "created_utc": "2026-11-16T11:18:04.409352+00:00",
   "source_sha256": {
     "parity_protocol.mjs": "acb73113ddda1094b75c180218473b2c787f0d8cc5365029d3704afb4bc13586",
-    "parity_worker.mjs": "d41923450cac53950349ec49d6a2b47dc4d6e27cc5cea461dd9bf1c67637474c",
+    "parity_worker.mjs": "4193732364a1b65b75b241c7b22127f3915ae3a429b2f14dbe7cad80ac9c8d97",
     "parity_runner.mjs": "e0ddcca30e3dd150963260fe1b655b9d8d55d08789299a416865d7505cedb36d",
     "recipe_contract_v1.mjs": "a3f9c9b7e24ec67f27d46918af1bacd9ac738aef3883303411803086fcd0d58c",
     "recipe_contract_v1.test.mjs": "d55d66c330f6e222110a081fc5768446719a81ba403bcc36f482633dc5cc10a3",
@@ -71,7 +71,7 @@
   "scope": "Synthetic authored development only; loopback native server and local browser fixtures; no audio/user data to external inference. Public pinned weights/source downloaded for local CPU use. No physical phone/GPU.",
   "training_performed": false,
   "held_tests_inferred": false,
-  "setup_correction": "v8 fresh chat reproduced v7 browser branch, raw WASM request with logprobs:null failed before returned diagnostic. Retry only raw one-token pair omitting optional logprobs entirely; reuse both recorded chat observations. Save each backend raw result before its peer call. GLUE header1163217991 was interpreted as output length after native wrapper returned no encoded result; underlying exception not yet proven.",
+  "setup_correction": "v9 raw integer request still raised GLUE-length error without logprobs. Capture original C++ error log on exactly the same single raw request, preserving native success already recorded. No change to inputs/model/sampling and no further case search. This is observability reproduction, not model selection.",
   "request_overrides": {
     "logprobs": false,
     "top_logprobs": null
