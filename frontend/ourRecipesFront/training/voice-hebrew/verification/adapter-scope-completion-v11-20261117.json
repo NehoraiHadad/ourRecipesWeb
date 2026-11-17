@@ -1,0 +1,50 @@
+{
+  "completed_utc": "2026-11-17T00:06:41.481273+00:00",
+  "source_freeze_commit": "00ba16f",
+  "study": "adapter-scope-v11-tiny-attention-plus-mlp",
+  "dedicated_t4_stopped": true,
+  "raw_archive": {
+    "bytes": 112400384,
+    "sha256": "8efab624d5d9e7934d5b1a91ae1a43805862b8cc3e14b424f4c0698f7c87f2f5"
+  },
+  "packet": {
+    "file": "dist/ourRecipes-replay-reference-study-20261116.zip",
+    "bytes": 1157803,
+    "sha256": "7534bbb1c1271c7808f750eeb95d95e8ccff639a921286834c725aa662855a33"
+  },
+  "outputs_rescored_from_isolated_packet": 5000,
+  "code_tests_passed": 25,
+  "frozen_inputs_intact_after_completion": true,
+  "new_product_timer_capacitor_android_ios_changes": false,
+  "training_data": "Assistant-authored synthetic; no personal audio/text. Real cloud T4 training/inference.",
+  "not_tested": [
+    "physical phone",
+    "new adapter browser inference",
+    "adapter merging or quantization",
+    "ASR plus TTS",
+    "full voice conversation",
+    "protected held tests"
+  ],
+  "decision": {
+    "primary_endpoint_step": 160,
+    "comparisons": {
+      "replay_v5": {
+        "primary_endpoint_step": 160,
+        "hard_cell_exact_gain_cases": 1,
+        "hard_cell_exact_gain_points": 2.5,
+        "product_promotion": false,
+        "adapter_scope_gate_passed": false
+      },
+      "native_v10": {
+        "primary_endpoint_step": 160,
+        "hard_cell_exact_gain_cases": 1,
+        "hard_cell_exact_gain_points": 2.5,
+        "product_promotion": false,
+        "adapter_scope_gate_passed": false
+      }
+    },
+    "adapter_scope_gate_passed": false,
+    "product_promotion": false
+  },
+  "next_action": "Prepare explicit semantic-decomposition TRAIN supervision and matched control before any further GPU; design only, no such data/experiment yet."
+}

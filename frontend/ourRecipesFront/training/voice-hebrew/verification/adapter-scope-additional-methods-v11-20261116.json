@@ -1,0 +1,39 @@
+{
+  "source_reads": [
+    {
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/41d33bd41fd44bd9dba0e092047cf213-Paper-Conference.pdf",
+      "bytes": 7650975,
+      "sha256": "ccbf05fe6eae0593b83f74dcccde21e0a344479ebc2a7d6be2e8560903a459c3",
+      "local_cache": "/dev/shm/voice-research-papers/eva-neurips2025.pdf"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/huggingface/peft/v0.17.1/src/peft/tuners/lora/eva.py",
+      "bytes": 34252,
+      "sha256": "f3dde51323a3bbaa8d0cafc0cc6609654869d65e4b9ff471f2e8fc4d7a60b3cd",
+      "local_cache": "/dev/shm/voice-research-papers/peft-eva-v0.17.1.py"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/huggingface/peft/v0.17.1/src/peft/tuners/lora/config.py",
+      "bytes": 42385,
+      "sha256": "85a478bcdfd42f9398d232d5e0ddb49650bd1199148503f864834fdbeca3aebb",
+      "local_cache": "/dev/shm/voice-research-papers/peft-config-v0.17.1.py"
+    }
+  ],
+  "additional_paper": {
+    "url": "https://raw.githubusercontent.com/mlresearch/v235/main/assets/liu24bn/liu24bn.pdf",
+    "sha256": "9ca594270deea1a22911419836fc02432e3a83a06f253ecfb0612cfed3e2b2ce",
+    "bytes": 5177308
+  },
+  "eva_pinned_source_cautions": {
+    "default_label_check": "hasattr(model_input, \"labels\")",
+    "plain_dict_labels_key_present": true,
+    "plain_dict_has_labels_attribute": false,
+    "loop": "cycle(dataloader), convergence-based termination without a batch cap inside that loop",
+    "scope": "Static pinned-source inspection and Python dict reflection only; no EVA/DoRA injection, activation SVD, GPU or quality test. Do not assume label masking or bounded convergence for a plain dict collator."
+  },
+  "qlora_source": {
+    "url": "https://papers.neurips.cc/paper_files/paper/2023/hash/1feb87871436031bdc0f2beaa62a049b-Abstract-Conference.html",
+    "read_scope": "Primary abstract only; no QLoRA implementation or browser measurement."
+  },
+  "overall_scope": "Additional methods research after V11 source freeze. No changes to frozen V11 inputs, training algorithm, data or thresholds; methods not auto-launched."
+}

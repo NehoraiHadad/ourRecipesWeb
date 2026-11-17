@@ -1,0 +1,22 @@
+{
+  "completed_utc": "2026-11-17T00:05:56.366772+00:00",
+  "packet": "dist/ourRecipes-replay-reference-study-20261116.zip",
+  "packet_sha256": "7534bbb1c1271c7808f750eeb95d95e8ccff639a921286834c725aa662855a33",
+  "isolated_unpack_verified": true,
+  "source_tree_imported": false,
+  "verification": {
+    "manifest_verified": true,
+    "outputs_rescored": 5000,
+    "native10_and_coverage11_decisions_recomputed": true,
+    "binary_checkpoint_hash_verified_here": false,
+    "new_inference": false
+  },
+  "unit_tests": {
+    "run": 25,
+    "failures": 0,
+    "errors": 0,
+    "all_passed": true
+  },
+  "private_account_file_names_absent": true,
+  "scope": "New independent temp-directory extraction, stdlib evidence rescoring and25code tests. No model weights, GPU, browser or new inference. LMFE0.11.3/Interegular0.3.3 from temporary public-wheel path; host Pydantic2.12.5."
+}

@@ -9,8 +9,9 @@ ROOT = Path(__file__).resolve().parent
 
 def build():
     names = set()
-    for version in [5, 6, 7, 8, 9, 10]:
-        name = ('verification/native-scope-plan-v10-20261116.json' if version == 10
+    for version in [5, 6, 7, 8, 9, 10, 11]:
+        name = ('verification/adapter-scope-plan-v11-20261116.json' if version == 11
+                else 'verification/native-scope-plan-v10-20261116.json' if version == 10
                 else f'verification/sparse-recipe-plan-v{version}-20261116.json')
         plan = json.loads((ROOT / name).read_text()); names.add(name)
         names.update(plan['source_sha256']); names.update(n for n in plan['artifact_sha256'] if not n.startswith('adapter/'))
@@ -21,11 +22,16 @@ def build():
         'sparse_recipe_audit_v8.py', 'SPARSE_RECIPE_V8_RESULTS.he.md', 'verification/sparse-recipe-results-v8-20261116.json',
         'recipe_teacher_audit_v9.py', 'recover_teacher_colab_v9.py', 'SPARSE_RECIPE_V9_RESULTS.he.md', 'verification/sparse-recipe-results-v9-20261116.json',
         'native_scope_audit_v10.py', 'NATIVE_SCOPE_V10_RESULTS.he.md', 'verification/native-scope-results-v10-20261116.json',
+        'adapter_scope_audit_v11.py', 'ADAPTER_SCOPE_V11_RESULTS.he.md', 'verification/adapter-scope-results-v11-20261116.json',
+        'RESEARCH_CONTINUATION_GUIDE.he.md', 'verification/native-scope-semantic-review-v10-20261116.json',
+        'ADAPTER_METHODS_RESEARCH.he.md', 'SEMANTIC_SUPERVISION_NEXT.he.md', 'verification/adapter-scope-additional-methods-v11-20261116.json',
+        'analyze_adapter_errors_v11.py', 'verification/adapter-scope-error-analysis-v11-20261116.json',
         'verification/sparse-recipe-stop-mismatch-v7-20261116.json',
         'SPARSE_RECIPE_V5_RESULTS.he.md', 'SPARSE_RECIPE_V6_RESULTS.he.md', 'SPARSE_RECIPE_V6_REPRODUCTION.he.md',
         'SPARSE_RECIPE_DISTILLATION_OPTIONS.he.md', 'PROJECT_WORK_PLAN.he.md', 'RESEARCH_LOG.he.md', 'README.he.md',
         'verification/sparse-recipe-results-v5-20261116.json', 'verification/sparse-recipe-results-v6-20261116.json',
         'verification/sparse-recipe-legacy-integrity-v6-20261116.json',
+        'verification/adapter-scope-legacy-integrity-v11-20261116.json',
         'verification/sparse-recipe-distillation-research-v6-20261116.json',
         'verification/sparse-recipe-browser-path-v6-20261116.json',
         'verification/sparse-recipe-lora-budget-v6-20261116.json',
@@ -33,14 +39,14 @@ def build():
         'verification/sparse-recipe-token-budget-v6-20261116.json',
         'verification/sparse-recipe-error-analysis-v6-20261116.json'])
     runs = ['ourrecipes-sparse-v5-20261116', 'ourrecipes-reference-v6r-20261116', 'ourrecipes-diagnosis-v7-20261116',
-            'ourrecipes-stop-v8-20261116', 'ourrecipes-teacher-v9-20261116', 'ourrecipes-native-v10-20261116']
+            'ourrecipes-stop-v8-20261116', 'ourrecipes-teacher-v9-20261116', 'ourrecipes-native-v10-20261116', 'ourrecipes-adapter-v11-20261116']
     external = {}
     for run in runs:
         base = ROOT / 'runs' / run
         names.update(str(p.relative_to(ROOT)) for p in (base / 'recovered').rglob('*')
             if p.is_file() and p.suffix not in ('.pt', '.safetensors') and '-partial' not in p.name)
         names.add(f'runs/{run}/archive-manifest.json'); names.add(f'runs/{run}/recovery.json')
-        if not any(tag in run for tag in ['sparse-v5', 'teacher-v9', 'native-v10']): names.add(f'runs/{run}/results.zip')
+        if not any(tag in run for tag in ['sparse-v5', 'teacher-v9', 'native-v10', 'adapter-v11']): names.add(f'runs/{run}/results.zip')
         else: external[f'runs/{run}/results.zip'] = json.loads((base / 'archive-manifest.json').read_text())
     target = ROOT / 'dist/ourRecipes-replay-reference-study-20261116.zip'
     missing = [n for n in names if not (ROOT / n).is_file()]
@@ -63,7 +69,7 @@ def build():
     result = {'file': str(target), 'bytes': target.stat().st_size, 'sha256': sha,
         'members': len(manifest) + 1, 'crc_and_manifest_verified': True,
         'binary_checkpoints_external_and_preserved': external, 'base_weights_or_private_account_data_bundled': False}
-    (ROOT / 'verification/sparse-recipe-packet-v6-20261116.json').write_text(json.dumps(result, indent=2) + '\n')
+    (ROOT / 'verification/adapter-scope-packet-v11-20261116.json').write_text(json.dumps(result, indent=2) + '\n')
     print(json.dumps(result, indent=2))
 
 
