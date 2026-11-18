@@ -1,0 +1,863 @@
+{
+  "study": "semantic-supervision-v12",
+  "completed": true,
+  "session": "ourrecipes-v12-20261118-081516-2aaed9",
+  "hardware": {
+    "gpu": "Tesla T4, 15360 MiB, 580.82.07",
+    "host_python": "3.13.16 (main, Oct  1 2026, 15:40:24) [GCC 13.3.0]"
+  },
+  "archive": {
+    "sha256": "add931260bd3300227ef63d501268c6e2db9011ea61282213481c12a947d3206",
+    "bytes": 225491517,
+    "members": 67,
+    "outer_sha_crc_and_inner_sha_verified": true
+  },
+  "vm_stopped": true,
+  "arms": {
+    "primary_replay": {
+      "summaries": [
+        {
+          "step": 0,
+          "all_development": {
+            "cases": 160,
+            "valid": 10,
+            "exact": 2,
+            "facts_exact": 3,
+            "intent_correct": 7,
+            "clarify_exact": 10,
+            "state_correct": 5,
+            "rejected_output": 150,
+            "unsafe_state": 5,
+            "required_changes": 90,
+            "required_changes_correct": 1,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 2,
+            "cases_with_wrong_facts": 7
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 0,
+              "facts_exact": 0,
+              "intent_correct": 3,
+              "clarify_exact": 3,
+              "state_correct": 0,
+              "rejected_output": 37,
+              "unsafe_state": 3,
+              "required_changes": 22,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 3
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 1,
+              "exact": 0,
+              "facts_exact": 1,
+              "intent_correct": 0,
+              "clarify_exact": 1,
+              "state_correct": 1,
+              "rejected_output": 39,
+              "unsafe_state": 0,
+              "required_changes": 22,
+              "required_changes_correct": 1,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 0
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 1,
+              "facts_exact": 1,
+              "intent_correct": 2,
+              "clarify_exact": 3,
+              "state_correct": 2,
+              "rejected_output": 37,
+              "unsafe_state": 1,
+              "required_changes": 23,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 1,
+              "facts_exact": 1,
+              "intent_correct": 2,
+              "clarify_exact": 3,
+              "state_correct": 2,
+              "rejected_output": 37,
+              "unsafe_state": 1,
+              "required_changes": 23,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 2,
+            "exact": 1,
+            "facts_exact": 1,
+            "intent_correct": 2,
+            "clarify_exact": 2,
+            "state_correct": 1,
+            "rejected_output": 118,
+            "unsafe_state": 1,
+            "required_changes": 60,
+            "required_changes_correct": 1,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 0,
+            "cases_with_wrong_facts": 1
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 3,
+            "exact": 1,
+            "facts_exact": 1,
+            "intent_correct": 2,
+            "clarify_exact": 3,
+            "state_correct": 2,
+            "rejected_output": 37,
+            "unsafe_state": 1,
+            "required_changes": 23,
+            "required_changes_correct": 0,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 1,
+            "cases_with_wrong_facts": 2
+          }
+        },
+        {
+          "step": 80,
+          "all_development": {
+            "cases": 160,
+            "valid": 159,
+            "exact": 47,
+            "facts_exact": 70,
+            "intent_correct": 63,
+            "clarify_exact": 64,
+            "state_correct": 86,
+            "rejected_output": 1,
+            "unsafe_state": 12,
+            "required_changes": 90,
+            "required_changes_correct": 20,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 3,
+            "cases_with_wrong_facts": 13
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 16,
+              "facts_exact": 21,
+              "intent_correct": 21,
+              "clarify_exact": 21,
+              "state_correct": 25,
+              "rejected_output": 0,
+              "unsafe_state": 4,
+              "required_changes": 22,
+              "required_changes_correct": 8,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 4
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 12,
+              "facts_exact": 19,
+              "intent_correct": 14,
+              "clarify_exact": 14,
+              "state_correct": 24,
+              "rejected_output": 0,
+              "unsafe_state": 1,
+              "required_changes": 22,
+              "required_changes_correct": 6,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 1
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 39,
+              "exact": 12,
+              "facts_exact": 16,
+              "intent_correct": 17,
+              "clarify_exact": 17,
+              "state_correct": 20,
+              "rejected_output": 1,
+              "unsafe_state": 4,
+              "required_changes": 23,
+              "required_changes_correct": 5,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 2,
+              "cases_with_wrong_facts": 5
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 7,
+              "facts_exact": 14,
+              "intent_correct": 11,
+              "clarify_exact": 12,
+              "state_correct": 17,
+              "rejected_output": 0,
+              "unsafe_state": 3,
+              "required_changes": 23,
+              "required_changes_correct": 1,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 3
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 120,
+            "exact": 29,
+            "facts_exact": 44,
+            "intent_correct": 42,
+            "clarify_exact": 47,
+            "state_correct": 64,
+            "rejected_output": 0,
+            "unsafe_state": 7,
+            "required_changes": 60,
+            "required_changes_correct": 6,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 2,
+            "cases_with_wrong_facts": 8
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 40,
+            "exact": 7,
+            "facts_exact": 14,
+            "intent_correct": 11,
+            "clarify_exact": 12,
+            "state_correct": 17,
+            "rejected_output": 0,
+            "unsafe_state": 3,
+            "required_changes": 23,
+            "required_changes_correct": 1,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 0,
+            "cases_with_wrong_facts": 3
+          }
+        },
+        {
+          "step": 160,
+          "all_development": {
+            "cases": 160,
+            "valid": 160,
+            "exact": 124,
+            "facts_exact": 134,
+            "intent_correct": 143,
+            "clarify_exact": 143,
+            "state_correct": 140,
+            "rejected_output": 0,
+            "unsafe_state": 15,
+            "required_changes": 90,
+            "required_changes_correct": 77,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 7,
+            "cases_with_wrong_facts": 18
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 35,
+              "facts_exact": 38,
+              "intent_correct": 37,
+              "clarify_exact": 37,
+              "state_correct": 38,
+              "rejected_output": 0,
+              "unsafe_state": 2,
+              "required_changes": 22,
+              "required_changes_correct": 21,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 28,
+              "facts_exact": 31,
+              "intent_correct": 35,
+              "clarify_exact": 35,
+              "state_correct": 33,
+              "rejected_output": 0,
+              "unsafe_state": 5,
+              "required_changes": 22,
+              "required_changes_correct": 16,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 2,
+              "cases_with_wrong_facts": 6
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 33,
+              "facts_exact": 34,
+              "intent_correct": 35,
+              "clarify_exact": 36,
+              "state_correct": 36,
+              "rejected_output": 0,
+              "unsafe_state": 3,
+              "required_changes": 23,
+              "required_changes_correct": 22,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 3,
+              "cases_with_wrong_facts": 4
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 28,
+              "facts_exact": 31,
+              "intent_correct": 36,
+              "clarify_exact": 35,
+              "state_correct": 33,
+              "rejected_output": 0,
+              "unsafe_state": 5,
+              "required_changes": 23,
+              "required_changes_correct": 18,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 6
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 120,
+            "exact": 81,
+            "facts_exact": 93,
+            "intent_correct": 103,
+            "clarify_exact": 106,
+            "state_correct": 94,
+            "rejected_output": 0,
+            "unsafe_state": 21,
+            "required_changes": 60,
+            "required_changes_correct": 40,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 5,
+            "cases_with_wrong_facts": 22
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 40,
+            "exact": 28,
+            "facts_exact": 31,
+            "intent_correct": 36,
+            "clarify_exact": 35,
+            "state_correct": 33,
+            "rejected_output": 0,
+            "unsafe_state": 5,
+            "required_changes": 23,
+            "required_changes_correct": 18,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 1,
+            "cases_with_wrong_facts": 6
+          }
+        }
+      ],
+      "checkpoints": {
+        "80": {
+          "adapter": {
+            "bytes": 20236472,
+            "sha256": "5b4d071670660297232bdc6a0b8c62f1c0069f3da203e948045a212c59e9f7d2"
+          },
+          "optimizer_rng": {
+            "bytes": 40705234,
+            "sha256": "a280a7b1af05bfe557c2e689c66a265a80719f5c299be7d2f554239a96385fab"
+          },
+          "adapter_tensors": 392,
+          "adapter_parameters": 5046272,
+          "optimizer_rng_crc_verified": true
+        },
+        "160": {
+          "adapter": {
+            "bytes": 20236472,
+            "sha256": "aeca496e81662449cab8a36e60d03cef0ceaa6df38713c8e7ac4b5e99aed2da3"
+          },
+          "optimizer_rng": {
+            "bytes": 40705234,
+            "sha256": "8f60bd26a2f3c8b9537daa7428a18162ab92120b6078291cbc3ef4fcbdfb181f"
+          },
+          "adapter_tensors": 392,
+          "adapter_parameters": 5046272,
+          "optimizer_rng_crc_verified": true
+        }
+      },
+      "training": {
+        "updates": 160,
+        "primary_visits": 640,
+        "second_task_visits": 251,
+        "scheduled_exposure_and_learning_rate_verified": true
+      },
+      "scheduled_tokens": {
+        "primary": {
+          "records": 640,
+          "input_tokens": 375696,
+          "max_input": 629,
+          "target_tokens": 13012,
+          "max_target": 32
+        },
+        "second_task": {
+          "records": 251,
+          "input_tokens": 213808,
+          "max_input": 878,
+          "target_tokens": 5159,
+          "max_target": 32
+        }
+      },
+      "resources": {
+        "peak_allocated_bytes": 2087022592,
+        "peak_reserved_bytes": 2659188736,
+        "seconds_since_study_start": 864.880491694,
+        "training_seconds_including_checkpoints": 549.329947208
+      }
+    },
+    "semantic": {
+      "summaries": [
+        {
+          "step": 0,
+          "all_development": {
+            "cases": 160,
+            "valid": 10,
+            "exact": 2,
+            "facts_exact": 3,
+            "intent_correct": 7,
+            "clarify_exact": 10,
+            "state_correct": 5,
+            "rejected_output": 150,
+            "unsafe_state": 5,
+            "required_changes": 90,
+            "required_changes_correct": 1,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 2,
+            "cases_with_wrong_facts": 7
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 0,
+              "facts_exact": 0,
+              "intent_correct": 3,
+              "clarify_exact": 3,
+              "state_correct": 0,
+              "rejected_output": 37,
+              "unsafe_state": 3,
+              "required_changes": 22,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 3
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 1,
+              "exact": 0,
+              "facts_exact": 1,
+              "intent_correct": 0,
+              "clarify_exact": 1,
+              "state_correct": 1,
+              "rejected_output": 39,
+              "unsafe_state": 0,
+              "required_changes": 22,
+              "required_changes_correct": 1,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 0
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 1,
+              "facts_exact": 1,
+              "intent_correct": 2,
+              "clarify_exact": 3,
+              "state_correct": 2,
+              "rejected_output": 37,
+              "unsafe_state": 1,
+              "required_changes": 23,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 3,
+              "exact": 1,
+              "facts_exact": 1,
+              "intent_correct": 2,
+              "clarify_exact": 3,
+              "state_correct": 2,
+              "rejected_output": 37,
+              "unsafe_state": 1,
+              "required_changes": 23,
+              "required_changes_correct": 0,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 2,
+            "exact": 1,
+            "facts_exact": 1,
+            "intent_correct": 2,
+            "clarify_exact": 2,
+            "state_correct": 1,
+            "rejected_output": 118,
+            "unsafe_state": 1,
+            "required_changes": 60,
+            "required_changes_correct": 1,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 0,
+            "cases_with_wrong_facts": 1
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 3,
+            "exact": 1,
+            "facts_exact": 1,
+            "intent_correct": 2,
+            "clarify_exact": 3,
+            "state_correct": 2,
+            "rejected_output": 37,
+            "unsafe_state": 1,
+            "required_changes": 23,
+            "required_changes_correct": 0,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 1,
+            "cases_with_wrong_facts": 2
+          }
+        },
+        {
+          "step": 80,
+          "all_development": {
+            "cases": 160,
+            "valid": 160,
+            "exact": 68,
+            "facts_exact": 87,
+            "intent_correct": 84,
+            "clarify_exact": 86,
+            "state_correct": 100,
+            "rejected_output": 0,
+            "unsafe_state": 9,
+            "required_changes": 90,
+            "required_changes_correct": 33,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 1,
+            "cases_with_wrong_facts": 10
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 21,
+              "facts_exact": 25,
+              "intent_correct": 25,
+              "clarify_exact": 26,
+              "state_correct": 28,
+              "rejected_output": 0,
+              "unsafe_state": 2,
+              "required_changes": 22,
+              "required_changes_correct": 10,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 2
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 16,
+              "facts_exact": 22,
+              "intent_correct": 18,
+              "clarify_exact": 17,
+              "state_correct": 25,
+              "rejected_output": 0,
+              "unsafe_state": 1,
+              "required_changes": 22,
+              "required_changes_correct": 8,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 1
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 19,
+              "facts_exact": 23,
+              "intent_correct": 24,
+              "clarify_exact": 26,
+              "state_correct": 26,
+              "rejected_output": 0,
+              "unsafe_state": 4,
+              "required_changes": 23,
+              "required_changes_correct": 10,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 4
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 12,
+              "facts_exact": 17,
+              "intent_correct": 17,
+              "clarify_exact": 17,
+              "state_correct": 21,
+              "rejected_output": 0,
+              "unsafe_state": 2,
+              "required_changes": 23,
+              "required_changes_correct": 5,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 0,
+              "cases_with_wrong_facts": 3
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 120,
+            "exact": 42,
+            "facts_exact": 58,
+            "intent_correct": 55,
+            "clarify_exact": 60,
+            "state_correct": 73,
+            "rejected_output": 0,
+            "unsafe_state": 6,
+            "required_changes": 60,
+            "required_changes_correct": 13,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 0,
+            "cases_with_wrong_facts": 6
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 40,
+            "exact": 12,
+            "facts_exact": 17,
+            "intent_correct": 17,
+            "clarify_exact": 17,
+            "state_correct": 21,
+            "rejected_output": 0,
+            "unsafe_state": 2,
+            "required_changes": 23,
+            "required_changes_correct": 5,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 0,
+            "cases_with_wrong_facts": 3
+          }
+        },
+        {
+          "step": 160,
+          "all_development": {
+            "cases": 160,
+            "valid": 160,
+            "exact": 125,
+            "facts_exact": 138,
+            "intent_correct": 140,
+            "clarify_exact": 142,
+            "state_correct": 144,
+            "rejected_output": 0,
+            "unsafe_state": 12,
+            "required_changes": 90,
+            "required_changes_correct": 80,
+            "critical_no_facts_cases": 48,
+            "critical_wrong_fact_cases": 6,
+            "cases_with_wrong_facts": 14
+          },
+          "by_cell": {
+            "seen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 36,
+              "facts_exact": 38,
+              "intent_correct": 37,
+              "clarify_exact": 38,
+              "state_correct": 39,
+              "rejected_output": 0,
+              "unsafe_state": 1,
+              "required_changes": 22,
+              "required_changes_correct": 21,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 2
+            },
+            "seen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 28,
+              "facts_exact": 33,
+              "intent_correct": 32,
+              "clarify_exact": 32,
+              "state_correct": 35,
+              "rejected_output": 0,
+              "unsafe_state": 3,
+              "required_changes": 22,
+              "required_changes_correct": 19,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 2,
+              "cases_with_wrong_facts": 3
+            },
+            "unseen-recipe/seen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 34,
+              "facts_exact": 36,
+              "intent_correct": 36,
+              "clarify_exact": 38,
+              "state_correct": 38,
+              "rejected_output": 0,
+              "unsafe_state": 2,
+              "required_changes": 23,
+              "required_changes_correct": 22,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 2,
+              "cases_with_wrong_facts": 3
+            },
+            "unseen-recipe/unseen-frame": {
+              "cases": 40,
+              "valid": 40,
+              "exact": 27,
+              "facts_exact": 31,
+              "intent_correct": 35,
+              "clarify_exact": 34,
+              "state_correct": 32,
+              "rejected_output": 0,
+              "unsafe_state": 6,
+              "required_changes": 23,
+              "required_changes_correct": 18,
+              "critical_no_facts_cases": 12,
+              "critical_wrong_fact_cases": 1,
+              "cases_with_wrong_facts": 6
+            }
+          },
+          "regression": {
+            "cases": 120,
+            "valid": 120,
+            "exact": 90,
+            "facts_exact": 102,
+            "intent_correct": 100,
+            "clarify_exact": 108,
+            "state_correct": 104,
+            "rejected_output": 0,
+            "unsafe_state": 13,
+            "required_changes": 60,
+            "required_changes_correct": 52,
+            "critical_no_facts_cases": 38,
+            "critical_wrong_fact_cases": 7,
+            "cases_with_wrong_facts": 14
+          },
+          "primary": {
+            "cases": 40,
+            "valid": 40,
+            "exact": 27,
+            "facts_exact": 31,
+            "intent_correct": 35,
+            "clarify_exact": 34,
+            "state_correct": 32,
+            "rejected_output": 0,
+            "unsafe_state": 6,
+            "required_changes": 23,
+            "required_changes_correct": 18,
+            "critical_no_facts_cases": 12,
+            "critical_wrong_fact_cases": 1,
+            "cases_with_wrong_facts": 6
+          }
+        }
+      ],
+      "checkpoints": {
+        "80": {
+          "adapter": {
+            "bytes": 20236472,
+            "sha256": "75c8be0450303a1387ae41f1f2b9d2aa7684a707414e1d8bfc57bc2a81d7706a"
+          },
+          "optimizer_rng": {
+            "bytes": 40705234,
+            "sha256": "096fa8ec28a0993452e076d51ce1d007a6b47d3cd7e9dbed2afaac3ba6e2681b"
+          },
+          "adapter_tensors": 392,
+          "adapter_parameters": 5046272,
+          "optimizer_rng_crc_verified": true
+        },
+        "160": {
+          "adapter": {
+            "bytes": 20236472,
+            "sha256": "bdd7475808d42672d6b583977b310dd3a52ace74adaac532471ab3776a954133"
+          },
+          "optimizer_rng": {
+            "bytes": 40705234,
+            "sha256": "ef96c20874573ba18828b980d2dc74920ffd04166e624709db23aeb7e8a39abb"
+          },
+          "adapter_tensors": 392,
+          "adapter_parameters": 5046272,
+          "optimizer_rng_crc_verified": true
+        }
+      },
+      "training": {
+        "updates": 160,
+        "primary_visits": 640,
+        "second_task_visits": 251,
+        "scheduled_exposure_and_learning_rate_verified": true
+      },
+      "scheduled_tokens": {
+        "primary": {
+          "records": 640,
+          "input_tokens": 375696,
+          "max_input": 629,
+          "target_tokens": 13012,
+          "max_target": 32
+        },
+        "second_task": {
+          "records": 251,
+          "input_tokens": 222171,
+          "max_input": 937,
+          "target_tokens": 13522,
+          "max_target": 84
+        }
+      },
+      "resources": {
+        "peak_allocated_bytes": 2087628800,
+        "peak_reserved_bytes": 3646947328,
+        "seconds_since_study_start": 1732.003740221,
+        "training_seconds_including_checkpoints": 560.2513892100001
+      }
+    }
+  },
+  "matching_fresh_baseline_outputs_and_tokens": 280,
+  "decision": {
+    "primary_endpoint_step": 160,
+    "hard_cell_exact_gain_cases": -1,
+    "wrong_fact_case_delta": {
+      "all_development": -4,
+      "regression": -8
+    },
+    "conditions": {
+      "hard_exact": false,
+      "hard_gain": false,
+      "hard_required_changes": false,
+      "development_exact": true,
+      "development_critical_wrong_facts": false,
+      "regression_exact": false,
+      "relative_regression_exact": true,
+      "relative_regression_critical_wrong_facts": false,
+      "relative_wrong_facts": true
+    },
+    "semantic_gate_passed": false,
+    "product_promotion": false
+  },
+  "raw_outputs_scored": 1680
+}
