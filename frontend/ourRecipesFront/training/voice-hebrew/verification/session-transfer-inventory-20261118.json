@@ -1,0 +1,30 @@
+{
+  "checked_utc": "2026-11-18T04:20:25.292387+00:00",
+  "scope": "Session handoff: existing local archives verified, no training or new inference. runs/dist are git-ignored; access in another workspace must be arranged before source workspace removal.",
+  "branch": "codex/hebrew-cooking-voice-poc",
+  "research_commit_before_handoff": "49aa7ab",
+  "files": {
+    "dist/ourRecipes-replay-reference-study-20261116.zip": {
+      "bytes": 1157803,
+      "sha256": "7534bbb1c1271c7808f750eeb95d95e8ccff639a921286834c725aa662855a33"
+    },
+    "runs/ourrecipes-sparse-v5-20261116/results.zip": {
+      "sha256": "3870ee8f6b909eb38e1696ddc8863b656264ed47487ced1cbefdae1b2a21b4b0",
+      "bytes": 102494562
+    },
+    "runs/ourrecipes-teacher-v9-20261116/results.zip": {
+      "sha256": "7ded0c2cab5cfc0fb870262e537d2d48aa5c6eaa7ea2367119726e1b3ffdc5e8",
+      "bytes": 71467741
+    },
+    "runs/ourrecipes-native-v10-20261116/results.zip": {
+      "sha256": "9a4538441fb293584ed8bc5e472f6c3b8a7b467621a87f8f770d1a0392067986",
+      "bytes": 51236033
+    },
+    "runs/ourrecipes-adapter-v11-20261116/results.zip": {
+      "sha256": "8efab624d5d9e7934d5b1a91ae1a43805862b8cc3e14b424f4c0698f7c87f2f5",
+      "bytes": 112400384
+    }
+  },
+  "all_local_archives_listed_verified": true,
+  "uploaded_or_pushed": false
+}
