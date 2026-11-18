@@ -1,0 +1,26 @@
+{
+  "study": "semantic-supervision-v12",
+  "parent_commit": "07db532",
+  "status_at_freeze": "CPU tokenizer and loss checks completed; no GPU training or quality measurements",
+  "sha256": {
+    "SEMANTIC_SUPERVISION_V12_PLAN.he.md": "af77bd9e1702b74b8e10c18299a250b111d491a38fb48cb20735caf638002b08",
+    "adapter_scope_sft_v11.py": "a244d317429cef427d4cfa896e6f47097b6c5e6dfe4233c409acb71eda8f9967",
+    "native_scope_data_v10.py": "0986c40ba90fdc4b546dd3c3d0b4e972e7fa53183085f63ec2604fb8970b2b99",
+    "semantic_supervision_data_v12.py": "a828aee76a028de3c15c951c92fb928862b1370d84dbf38abafc3cc6d7c48368",
+    "semantic_supervision_train_v12.py": "019f8ada4c313b0f92526c134070bc247b085e8bfe8dfe4d4239cf4a5eaf8524",
+    "semantic_supervision_v12.py": "85c4491c684eb861cbabab0d0564104bdbb30fa03af6195429662bdace9d9824",
+    "sparse_recipe_data_v3.py": "ec8be1c4c1d3c3374a127b1cbe57150f10474baf30df008c5564b4ddae5b19e1",
+    "sparse_recipe_data_v4.py": "0d66808c0a1edec0ac43fa7eeff97d5c4b303783c591e399f010f57b3ea6f794",
+    "sparse_recipe_sft.py": "d39817a944cacc0f062401528a0d34d09fad33bb0361a8eb44494bd48830fe01",
+    "sparse_recipe_study_v4.py": "d477634583f1900675dfe0e7d0718d47700b3ec13ece2263946baa152e69dcb1",
+    "sparse_recipe_v3.py": "df00c7b9432d945d99f88389dad9b63e8059399ddb302336144d4ef37bb423f5",
+    "tests/test_semantic_supervision_v12.py": "a119e7f53e02169172ef7ff78826606d124babdcbd520b92ac3ed803cebdabd6",
+    "verification/adapter-scope-results-v11-20261116.json": "831028cf4ffe304eb15b4c645df6a0d13071abd26505c3aecd3ee9264e18bfc2",
+    "verification/native-scope-data-v10-20261116.json": "496fff5cb473a6d262de79c8c8708a8253ee74e4dc6e9beee3770411650598e0",
+    "verification/semantic-supervision-labels-v12-20261118.jsonl": "a6e5c345a193e47a3565e477cb594bed58a1746eec2cea9dfac3e7c759cab9a3",
+    "verification/semantic-supervision-plan-v12-20261118.json": "f7f1a5d3ff03002ce83caf5aecc7bf59d30d441ab5e655ab74b65f324faecc01",
+    "verification/semantic-supervision-preflight-v12-20261118.json": "fb5421a2a13a6b3d77f42ab1a043ba14ed1b90d70a886d6d244459f42a26f3b2",
+    "verification/sparse-recipe-data-v5-20261116.json": "2aa4bed65e0ff9640dbe97ae19c2a92177d33bb81f580199fa1e1725d6042f40",
+    "verification/sparse-recipe-order-v9-20261116.json": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b"
+  }
+}

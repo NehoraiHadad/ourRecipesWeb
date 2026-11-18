@@ -1,0 +1,129 @@
+{
+  "editorial_audit": {
+    "labeled_rows": 144,
+    "recipe_names": 6,
+    "pairs": 72,
+    "rows_by_family": {
+      "native-actual-versus-fictional-next": 12,
+      "native-clause-local-uncertainty": 12,
+      "native-correction-direction": 12,
+      "native-doubt-scope": 12,
+      "native-future-versus-partial-clause": 12,
+      "native-history-resolution": 12,
+      "native-negative-certainty": 12,
+      "native-partial-certainty": 12,
+      "native-plan-versus-performance": 12,
+      "native-report-versus-editing": 12,
+      "native-reported-versus-queried-missing": 12,
+      "native-resolved-doubt": 12
+    },
+    "clauses_by_stance": {
+      "asserted": 114,
+      "hypothetical": 6,
+      "outside_recipe": 12,
+      "plan": 18,
+      "quoted": 6,
+      "superseded": 18,
+      "uncertain": 30
+    },
+    "literal_normalized_overlap_with_development_and_regression": 0,
+    "overlapping_recipe_names": {
+      "validation": [],
+      "diagnostic": [
+        "אורז",
+        "מרק עדשים"
+      ],
+      "regression": []
+    },
+    "overlapping_recipe_id_version_pairs": 0,
+    "provenance": "Assistant-authored and assistant-reviewed synthetic TRAIN. No model teacher or independent human review."
+  },
+  "primary_encodings_checked": 676,
+  "auxiliary_encodings_checked": 144,
+  "replay_encodings_checked": 144,
+  "second_task_prompts_differ_by_one_marker_token": true,
+  "maximum_prompt_plus_generation": {
+    "validation": 697,
+    "diagnostic": 699,
+    "regression": 684,
+    "train_fit": 708
+  },
+  "train_records": {
+    "primary_replay": {
+      "primary": {
+        "records": 360,
+        "input_tokens": 211451,
+        "max_input": 629,
+        "target_tokens": 7303,
+        "max_target": 32
+      },
+      "second_task": {
+        "records": 144,
+        "input_tokens": 122654,
+        "max_input": 878,
+        "target_tokens": 2952,
+        "max_target": 32
+      }
+    },
+    "semantic": {
+      "primary": {
+        "records": 360,
+        "input_tokens": 211451,
+        "max_input": 629,
+        "target_tokens": 7303,
+        "max_target": 32
+      },
+      "second_task": {
+        "records": 144,
+        "input_tokens": 127409,
+        "max_input": 937,
+        "target_tokens": 7707,
+        "max_target": 84
+      }
+    }
+  },
+  "scheduled_exposure": {
+    "primary_replay": {
+      "primary": {
+        "records": 640,
+        "input_tokens": 375696,
+        "max_input": 629,
+        "target_tokens": 13012,
+        "max_target": 32
+      },
+      "second_task": {
+        "records": 251,
+        "input_tokens": 213808,
+        "max_input": 878,
+        "target_tokens": 5159,
+        "max_target": 32
+      }
+    },
+    "semantic": {
+      "primary": {
+        "records": 640,
+        "input_tokens": 375696,
+        "max_input": 629,
+        "target_tokens": 13012,
+        "max_target": 32
+      },
+      "second_task": {
+        "records": 251,
+        "input_tokens": 222171,
+        "max_input": 937,
+        "target_tokens": 13522,
+        "max_target": 84
+      }
+    }
+  },
+  "microbatches_with_second_task": 201,
+  "scheduled_updates_per_arm": 160,
+  "same_primary_order_and_second_task_row_positions": true,
+  "prefix_mask_and_target_round_trip_passed": true,
+  "scope": "CPU tokenizer and editorial audit. No quality inference or production change.",
+  "tokenizer_environment": {
+    "python": "3.12.14",
+    "transformers": "4.57.1",
+    "tokenizers": "0.22.1"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "seed": 42,
+  "max_sequence_tokens": 1024,
+  "dependencies": [
+    "transformers==4.57.1",
+    "huggingface-hub==0.36.0",
+    "tokenizers==0.22.1",
+    "safetensors==0.6.2",
+    "numpy==2.2.6",
+    "peft==0.17.1",
+    "accelerate==1.10.1"
+  ],
+  "model": {
+    "repo": "Qwen/Qwen3-0.6B",
+    "revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+    "license": "apache-2.0",
+    "weight_bytes": 1503300328,
+    "weight_sha256": "f47f71177f32bcd101b7573ec9171e6a57f4f4d31148d38e382306f42996874b",
+    "small_file_sha256": {
+      "config.json": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd",
+      "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+      "LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+      "generation_config.json": "2325da0f15bb848e018c5ae071b7943332e9f871d6b60e2ed22ca97d4cb993d2"
+    },
+    "dtype": "FP16 base, FP32 trainable adapters; measure actual parameter count rather than infer from checkpoint tensor inventory"
+  },
+  "training": {
+    "updates": 160,
+    "micro_batch": 2,
+    "accumulation": 2,
+    "learning_rate": 0.0002,
+    "warmup_updates": 8,
+    "evaluate_at": [
+      80,
+      160
+    ],
+    "lora": {
+      "rank": 8,
+      "alpha": 16,
+      "dropout": 0.05,
+      "targets": [
+        "q_proj",
+        "k_proj",
+        "v_proj",
+        "o_proj",
+        "gate_proj",
+        "up_proj",
+        "down_proj"
+      ]
+    },
+    "schedule_file": "verification/sparse-recipe-order-v9-20261116.json",
+    "schedule_sha256": "819b2d6feba76fded9f4afb6c8636edc171a93f8de9144804514ab243e13e21b",
+    "loss": "Per-example target token mean; paired examples allocate 0.5 to primary and 0.5 to the second task; other examples allocate 1.0 to primary.",
+    "expected_trainable_parameters": 5046272,
+    "second_task": {
+      "markers": {
+        "primary_replay": "A",
+        "semantic": "B"
+      },
+      "source_rows": "144 Native V10 rows; identical 251 visits in both arms",
+      "semantic_target": "Clause annotation projected to intent/facts/clarify during CPU audit only",
+      "control_target": "Ordinary primary JSON for the same row"
+    }
+  },
+  "evaluation": {
+    "batch_size": 8,
+    "max_new_tokens": 96,
+    "do_sample": false,
+    "thinking": false,
+    "grammar": false,
+    "json_repair": false,
+    "baseline_precision_and_prompt_match": true,
+    "master_file": "verification/sparse-recipe-data-v5-20261116.json"
+  },
+  "study": "semantic-supervision-v12",
+  "arms": [
+    "primary_replay",
+    "semantic"
+  ],
+  "base_commit": "07db532",
+  "tokenizer_sha256": {
+    "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+    "tokenizer_config.json": "d5d09f07b48c3086c508b30d1c9114bd1189145b74e982a265350c923acd8101",
+    "config.json": "660db3b73d788119c04535e48cf9be5f55bc3100841a718637ae695b442f27dd"
+  },
+  "runtime": {
+    "gpu": "T4",
+    "torch": "2.6.0",
+    "cuda": "12.4",
+    "study_seconds": 3600,
+    "training_seconds_per_arm_including_checkpoint_evaluations": 1200,
+    "peak_allocated_bytes": 12884901888,
+    "peak_reserved_bytes": 16106127360
+  },
+  "absolute_gate": {
+    "development_exact_min": 123,
+    "regression_exact_min": 95
+  },
+  "endpoint_gate": {
+    "hard_exact_min": 32,
+    "hard_gain_cases_min": 4,
+    "correct_required_changes_fraction_min": 0.8,
+    "development_critical_wrong_fact_cases_max": 0,
+    "relative_regression_exact_loss_max": 6,
+    "relative_regression_critical_wrong_fact_increase_max": 0,
+    "matching_fresh_baselines_required": true,
+    "product_promotion": false,
+    "relative_wrong_fact_case_increase_max_development_and_regression": 0
+  },
+  "scope": "Single seed, 160 fixed updates, reused exposed development and regression only. Two fresh adapters; no held test, phone, product integration, or automatic retries."
+}
