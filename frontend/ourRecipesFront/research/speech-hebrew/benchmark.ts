@@ -47,7 +47,14 @@ async function main() {
   const sourceHashes:Record<string,string>={};for(const file of files) sourceHashes[file]=hash(await readFile(path.join(ROOT,file)));
   const runtimeHashes:Record<string,string>={builtSpeechJs:hash(await readFile(runtime))};
   for(const name of ['asr/ort.wasm.min.mjs','asr/ort-wasm-simd-threaded.wasm','tts/ort-wasm-simd-threaded.wasm'])runtimeHashes[name]=hash(await readFile(path.join(RUNTIME,name)));
-  const dependencies={};for(const name of ['pocket-tts-onnx','onnxruntime-web','playwright','esbuild'])dependencies[name]=require(name+'/package.json').version;
+  const dependencies:Record<string,string>={};
+  for(const name of ['pocket-tts-onnx','onnxruntime-web','playwright','esbuild']){
+    let directory=path.dirname(require.resolve(name));
+    for(;;){
+      try{const metadata=await json(path.join(directory,'package.json'));if(metadata.name===name){dependencies[name]=metadata.version;break;}}catch{}
+      const parent=path.dirname(directory);if(parent===directory)throw new Error('Package version unavailable '+name);directory=parent;
+    }
+  }
   await writeFile(path.join(OUT,'provenance.json'),JSON.stringify({baseCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:APP,encoding:'utf8'}).trim(),sourceHashes,fixtureHashes,runtimeHashes,dependencies,smoke:SMOKE},null,2));
   const server=createServer(async(req,res)=>{
     try {
