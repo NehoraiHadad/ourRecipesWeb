@@ -1,0 +1,41 @@
+{
+  "createdUtc": "2026-11-20T12:52:14.226100+00:00",
+  "baseCommit": "b3fb45681e1dbacff42f3c66bf423404f7085e81",
+  "sourceSha256": {
+    "PLAN.he.md": "ce11464c61940b6bff539c1e474b3ceb4f27cf917fb37d1c417a6a890c7710ff",
+    "decode.py": "11122e492eb897713bcecbee39e47e6c59a75fa5c284d01c592c2b06b60dda1d",
+    "export-pcm.mjs": "86ce5ed40874be1f854d66b893b86a04a19ea0b7aef62d55c1d3fb0c2fb0ca60"
+  },
+  "inputManifestSha256": "584a92efd8bd3c0bf0e7f34808fdb7cf60298c5c0c864fb16381cfab68f6268f",
+  "models": {
+    "asr/onnx/config.json": {
+      "bytes": 10365,
+      "sha256": "6ad75405069d306cf96f1642e8093f7642773f40082c39a0ce7a3d270b1db920"
+    },
+    "asr/sherpa-onnx/tokens.txt": {
+      "bytes": 17086,
+      "sha256": "e4ebb5e72a6aeef47437a55fa2308ebbedb7c51c557de7a89bf965c23ea9af4a"
+    },
+    "asr/sherpa-onnx/encoder.int8.onnx": {
+      "bytes": 70478964,
+      "sha256": "6c6febcb74a09435315a1d872a6539f6e7fc2c333533f14c74edc0e85c49ffcd"
+    },
+    "asr/sherpa-onnx/decoder.int8.onnx": {
+      "bytes": 1049105,
+      "sha256": "feb03e7c8aa761593a9284a6fa1e91259be3702de75f630062256c1a59c5a906"
+    },
+    "asr/sherpa-onnx/joiner.int8.onnx": {
+      "bytes": 771805,
+      "sha256": "1d2c6d8e6dabc5eb52de52e95718e9bdfbffbfe7ead3808fb5ffd74e83bd9cae"
+    }
+  },
+  "arms": [
+    "greedy",
+    "beam4"
+  ],
+  "numThreads": 1,
+  "maxActivePaths": 4,
+  "temperatureScale": 2.0,
+  "newInferenceYet": false,
+  "scope": "Frozen before two native arms; no model/data/decoder tuning loop."
+}

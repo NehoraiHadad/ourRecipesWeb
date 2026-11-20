@@ -1,0 +1,3089 @@
+{
+  "browser": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+  "allInputHashesMatch": true,
+  "records": [
+    {
+      "id": "fleurs-6985392582296601957-clean",
+      "file": "fleurs-6985392582296601957-clean.f32",
+      "bytes": 545280,
+      "sha256": "54ca1d85bbef63a7f76b333072caff369866ca838c82ab930649cb56f4137754",
+      "reference": "מאוחר ביום ראשון נשיא ארה ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 8.52,
+      "browserText": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן"
+    },
+    {
+      "id": "fleurs-6985392582296601957-noise20",
+      "file": "fleurs-6985392582296601957-noise20.f32",
+      "bytes": 545280,
+      "sha256": "63375dcbc48db7f9a56770e6fd7192956e485842dcabba6612c5e3049654c8b0",
+      "reference": "מאוחר ביום ראשון נשיא ארה ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 8.52,
+      "browserText": "מאוחר ביום ראשון ושיא ארצות הברית דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן"
+    },
+    {
+      "id": "fleurs-3471313510990959749-clean",
+      "file": "fleurs-3471313510990959749-clean.f32",
+      "bytes": 476160,
+      "sha256": "4191ab659f4507bc895bb250b8f7a5d788107603ea874f629890c1b8456ce63b",
+      "reference": "המכון לצדק ולדמוקרטיה של האיטי אזכר מחקרים עצמאיים שמראים כי גדוד שמירת השלום הנפאלי של האו ם הביא ללא ידיעתו את המחלה להאיטי",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 7.44,
+      "browserText": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי."
+    },
+    {
+      "id": "fleurs-3471313510990959749-noise20",
+      "file": "fleurs-3471313510990959749-noise20.f32",
+      "bytes": 476160,
+      "sha256": "caa4f29eb869b4cbf8aef602ade9b2d2752455c6a2c6cd20cae07f65184bb97b",
+      "reference": "המכון לצדק ולדמוקרטיה של האיטי אזכר מחקרים עצמאיים שמראים כי גדוד שמירת השלום הנפאלי של האו ם הביא ללא ידיעתו את המחלה להאיטי",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 7.44,
+      "browserText": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי"
+    },
+    {
+      "id": "fleurs-15713840504788281974-clean",
+      "file": "fleurs-15713840504788281974-clean.f32",
+      "bytes": 445440,
+      "sha256": "14b4a466c41e6365a7d7432a40bfdbdb80b494e991bc8b8df24b6b7846c87a7b",
+      "reference": "גיהוץ בגדים לחים יכול לעזור להם להתייבש במלונות רבים יש מגהץ וקרש גיהוץ זמינים להשאלה גם אם הם לא נמצאים בחדר",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 6.96,
+      "browserText": "גיאוץ בגדים מלאכים יוכלו לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר"
+    },
+    {
+      "id": "fleurs-15713840504788281974-noise20",
+      "file": "fleurs-15713840504788281974-noise20.f32",
+      "bytes": 445440,
+      "sha256": "3152d905a1e6e3c01f597f377c4dd53463fcb8805c23f0dabff7114257413561",
+      "reference": "גיהוץ בגדים לחים יכול לעזור להם להתייבש במלונות רבים יש מגהץ וקרש גיהוץ זמינים להשאלה גם אם הם לא נמצאים בחדר",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 6.96,
+      "browserText": "ייעוץ בגדים לחיים יכול לעזור להם להתייבש במילים רבים משבגי עצוקה יש גבול זמינים להשלם, גם אם הם לא נמצאים בחדר"
+    },
+    {
+      "id": "fleurs-12451823994695799311-clean",
+      "file": "fleurs-12451823994695799311-clean.f32",
+      "bytes": 430080,
+      "sha256": "ee728e01d016656c0a0961154421ff63e9a52ee5c9b4d09c9c043e933793d9b7",
+      "reference": "המערה שוכנת בפסגת אחד ההרים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 6.72,
+      "browserText": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם"
+    },
+    {
+      "id": "fleurs-12451823994695799311-noise20",
+      "file": "fleurs-12451823994695799311-noise20.f32",
+      "bytes": 430080,
+      "sha256": "27effa32bd70b7b969764461495de7790e9797c394d9cd90cee2f1220346ae19",
+      "reference": "המערה שוכנת בפסגת אחד ההרים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 6.72,
+      "browserText": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם"
+    },
+    {
+      "id": "fleurs-9476563984789168422-clean",
+      "file": "fleurs-9476563984789168422-clean.f32",
+      "bytes": 376320,
+      "sha256": "25152b3294360a6a63dcccc5935a5d6ae3992d66e812fa2d9ac8419be8dbd1d4",
+      "reference": "למעשה לא קל למצוא אותה כלל אפילו אם יודעים שהיא קיימת עם הכניסה לתוך המערה אתם בבידוד מוחלט",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 5.88,
+      "browserText": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט"
+    },
+    {
+      "id": "fleurs-9476563984789168422-noise20",
+      "file": "fleurs-9476563984789168422-noise20.f32",
+      "bytes": 376320,
+      "sha256": "4a385f748081d11d38df48e8a2f13c70f67f1a2ab50c681cba28bf8eb2020af1",
+      "reference": "למעשה לא קל למצוא אותה כלל אפילו אם יודעים שהיא קיימת עם הכניסה לתוך המערה אתם בבידוד מוחלט",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 5.88,
+      "browserText": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט"
+    },
+    {
+      "id": "fleurs-8790580890171065686-clean",
+      "file": "fleurs-8790580890171065686-clean.f32",
+      "bytes": 337920,
+      "sha256": "72a90913f8d7e97a33d9a84ffba64953aad484ebcd3cf25eea02b11481797ae1",
+      "reference": "המחלה נישאת על ידי חזירים ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 5.28,
+      "browserText": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים"
+    },
+    {
+      "id": "fleurs-8790580890171065686-noise20",
+      "file": "fleurs-8790580890171065686-noise20.f32",
+      "bytes": 337920,
+      "sha256": "4710f3341aabcae3626dadce0adf016104e4c583c4666e6c623bd01dc5595bc0",
+      "reference": "המחלה נישאת על ידי חזירים ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 5.28,
+      "browserText": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים"
+    },
+    {
+      "id": "fleurs-11086736344915854194-clean",
+      "file": "fleurs-11086736344915854194-clean.f32",
+      "bytes": 268800,
+      "sha256": "1f1365d2559c677bf428a3eb8f24a2fbd776d98b0b626fff1d832bf0f77f3484",
+      "reference": "באקלים החם של המזרח התיכון לבית לא הייתה חשיבות רבה כל כך",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 4.2,
+      "browserText": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך"
+    },
+    {
+      "id": "fleurs-11086736344915854194-noise20",
+      "file": "fleurs-11086736344915854194-noise20.f32",
+      "bytes": 268800,
+      "sha256": "d11041443b645194de50e6706e781abab103bcaf0fbf8eda19ad5410cd69f79a",
+      "reference": "באקלים החם של המזרח התיכון לבית לא הייתה חשיבות רבה כל כך",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 4.2,
+      "browserText": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך"
+    },
+    {
+      "id": "fleurs-9859725698255055164-clean",
+      "file": "fleurs-9859725698255055164-clean.f32",
+      "bytes": 514560,
+      "sha256": "05c6c3a52bedcd949e36677b834fb41b76f5202a80e26f042dd6fba3db03fd61",
+      "reference": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע כולל פסיכולוגיה",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 8.04,
+      "browserText": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה."
+    },
+    {
+      "id": "fleurs-9859725698255055164-noise20",
+      "file": "fleurs-9859725698255055164-noise20.f32",
+      "bytes": 514560,
+      "sha256": "ca9c77e9b333da0ff7dfe74354fd972b6508063259756b2bb12a75448f295e35",
+      "reference": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע כולל פסיכולוגיה",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 8.04,
+      "browserText": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה."
+    },
+    {
+      "id": "fleurs-14908441627362672994-clean",
+      "file": "fleurs-14908441627362672994-clean.f32",
+      "bytes": 641280,
+      "sha256": "dddbb8eab69c4097d222248fb15ecb84b5454e352d25696ae12f496630ae3188",
+      "reference": "רק מוטציות בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות תאים או לסרטן",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 10.02,
+      "browserText": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן"
+    },
+    {
+      "id": "fleurs-14908441627362672994-noise20",
+      "file": "fleurs-14908441627362672994-noise20.f32",
+      "bytes": 641280,
+      "sha256": "81830d305e328050d6dac785ca25c5263a49e317db5ba067a40902236880fcc3",
+      "reference": "רק מוטציות בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות תאים או לסרטן",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 10.02,
+      "browserText": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן"
+    },
+    {
+      "id": "fleurs-15011168956922080339-clean",
+      "file": "fleurs-15011168956922080339-clean.f32",
+      "bytes": 768000,
+      "sha256": "96a36d49b003f968d70e57a62997da137e12353556d03bebea1be92c11b32286",
+      "reference": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים של עמיתיהם לשעבר קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 12,
+      "browserText": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה"
+    },
+    {
+      "id": "fleurs-15011168956922080339-noise20",
+      "file": "fleurs-15011168956922080339-noise20.f32",
+      "bytes": 768000,
+      "sha256": "d849550d2737b76136bcb3545d7750f94341a5dafe1d0f4737c55a55a2583f8d",
+      "reference": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים של עמיתיהם לשעבר קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 12,
+      "browserText": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מתהם לשעבר. אחד של הספקטרום מנסה להישאר אחד מהחבר'ה"
+    },
+    {
+      "id": "fleurs-17094305295227949694-clean",
+      "file": "fleurs-17094305295227949694-clean.f32",
+      "bytes": 203520,
+      "sha256": "cb824ee490e5e28a29da76268d70cf7c2477dfe6c411fa4c66d36f75024ce23f",
+      "reference": "אירוסמית' ביטלו את ההופעות הנותרות בסיבוב ההופעות שלהם",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 3.18,
+      "browserText": "הוא ביטלו את האותיות הנוצרות בסיבוב העופות שלהם"
+    },
+    {
+      "id": "fleurs-17094305295227949694-noise20",
+      "file": "fleurs-17094305295227949694-noise20.f32",
+      "bytes": 203520,
+      "sha256": "7ce4d01a0763d466a4f79e88b16cbee6cde1b1095f25e287819e10d47c1ecdf0",
+      "reference": "אירוסמית' ביטלו את ההופעות הנותרות בסיבוב ההופעות שלהם",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 3.18,
+      "browserText": "הוא היה ביטלו את האותיות הנוצרות בסביב רופאות שלהם"
+    },
+    {
+      "id": "fleurs-9677910411599000791-clean",
+      "file": "fleurs-9677910411599000791-clean.f32",
+      "bytes": 453120,
+      "sha256": "401180db6b955ed5514097298a184e8606b52ad2e1897940f29c594a08dddf1c",
+      "reference": "קואומו 53 החל את תפקידו כמושל מוקדם יותר השנה וחתם בחודש שעבר על הצעת חוק המאשרת נישואים חד-מיניים",
+      "probes": [],
+      "source": "public-human",
+      "condition": "clean",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 7.08,
+      "browserText": "קומו 53 החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים."
+    },
+    {
+      "id": "fleurs-9677910411599000791-noise20",
+      "file": "fleurs-9677910411599000791-noise20.f32",
+      "bytes": 453120,
+      "sha256": "cc9eac168b75ce6bf5e841983ce0e212cc423a8d76095a65daeafd29fede5786",
+      "reference": "קואומו 53 החל את תפקידו כמושל מוקדם יותר השנה וחתם בחודש שעבר על הצעת חוק המאשרת נישואים חד-מיניים",
+      "probes": [],
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 7.08,
+      "browserText": "קומו 53 החל את תפקידו כמושל מוקדם יותר שנה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים."
+    },
+    {
+      "id": "silence",
+      "file": "silence.f32",
+      "bytes": 192000,
+      "sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "reference": "",
+      "probes": [],
+      "source": "negative-control",
+      "condition": "silence",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 3,
+      "browserText": ""
+    },
+    {
+      "id": "noise",
+      "file": "noise.f32",
+      "bytes": 192000,
+      "sha256": "af51185d9db3bf8f1d5b1a195345e9dc7bac4c304ad3b5448d0590ccc46aaf2c",
+      "reference": "",
+      "probes": [],
+      "source": "negative-control",
+      "condition": "noise",
+      "voice": null,
+      "family": null,
+      "audioSeconds": 3,
+      "browserText": ""
+    },
+    {
+      "id": "pocket-omer-flour-next-clean",
+      "file": "pocket-omer-flour-next-clean.f32",
+      "bytes": 148480,
+      "sha256": "fe5c241e6f5be5784f4d9e75dee53dd41f143806d60a9ca2e758b26619874eca",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "report-next",
+      "audioSeconds": 2.32,
+      "browserText": "שמתי קמח, מה עכשיו?"
+    },
+    {
+      "id": "pocket-omer-flour-next-20",
+      "file": "pocket-omer-flour-next-20.f32",
+      "bytes": 148480,
+      "sha256": "c8e5483367523646a2282f5b9879dfc020f433d55b3c146b2cfa9b96a0594361",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "report-next",
+      "audioSeconds": 2.32,
+      "browserText": "שמתי קמח, מה עכשיו?"
+    },
+    {
+      "id": "pocket-omer-flour-next-10",
+      "file": "pocket-omer-flour-next-10.f32",
+      "bytes": 148480,
+      "sha256": "36a0b6a11388f636902fcba0cb185a7ea488518f8d9749ab14e732cb212644d2",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "report-next",
+      "audioSeconds": 2.32,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-clean",
+      "file": "pocket-omer-water-not-mixed-clean.f32",
+      "bytes": 158720,
+      "sha256": "108abcf378c4aa3e2f747b85e2db71ed6eb48b9f46032a9b3fcc35267454443f",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 2.48,
+      "browserText": "הוספתי מים, אבל עוד לא עירובבתי"
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-20",
+      "file": "pocket-omer-water-not-mixed-20.f32",
+      "bytes": 158720,
+      "sha256": "956d887abbacdcd9d9a97d19dab99ea6d21222e3758672bbb43c90490882d9b2",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 2.48,
+      "browserText": "הוספתי מים, אבל עוד לא ערבבתי"
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-10",
+      "file": "pocket-omer-water-not-mixed-10.f32",
+      "bytes": 158720,
+      "sha256": "8cfbaafc232aa63efb9e1cfbf73b0428b8a0d9cb7bab513b1a5dcfbd09d1fb56",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 2.48,
+      "browserText": "הוספתי מים אבל עוד לא ערבבתי"
+    },
+    {
+      "id": "pocket-omer-correct-flour-clean",
+      "file": "pocket-omer-correct-flour-clean.f32",
+      "bytes": 148480,
+      "sha256": "7e9016d2030d6359ca4d571a70b69649d45bdc3f5b12e3c08653e1703a22563f",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.32,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-omer-correct-flour-20",
+      "file": "pocket-omer-correct-flour-20.f32",
+      "bytes": 148480,
+      "sha256": "5c36e0c75b7c6732cb7ebc9e12d8a5b5bc30b8d6a0da9daa5d3a597493bcf659",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.32,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-omer-correct-flour-10",
+      "file": "pocket-omer-correct-flour-10.f32",
+      "bytes": 148480,
+      "sha256": "0080b565a5dffa745882b29e34105329a971acd7545bcb3241d48313a38d0de0",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.32,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-omer-mixed-half-clean",
+      "file": "pocket-omer-mixed-half-clean.f32",
+      "bytes": 117760,
+      "sha256": "28b38e8c9fdf8666af88c2b525083451137374aa359837572fbc9ea655177ef6",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "partial",
+      "audioSeconds": 1.84,
+      "browserText": "ערבבתי רק חצי"
+    },
+    {
+      "id": "pocket-omer-mixed-half-20",
+      "file": "pocket-omer-mixed-half-20.f32",
+      "bytes": 117760,
+      "sha256": "cb40ca74e0903cf360bf8fab4a8721e70e61e651cf2fa0f2901b610c618fdce7",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "partial",
+      "audioSeconds": 1.84,
+      "browserText": "ערבבתי רק חצי"
+    },
+    {
+      "id": "pocket-omer-mixed-half-10",
+      "file": "pocket-omer-mixed-half-10.f32",
+      "bytes": 117760,
+      "sha256": "312d2d7159dab7e32d0e57666c63547083c215a78ac931a9f0fe9096aa315529",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "partial",
+      "audioSeconds": 1.84,
+      "browserText": "ערבבתי רק חצי"
+    },
+    {
+      "id": "pocket-omer-maybe-water-clean",
+      "file": "pocket-omer-maybe-water-clean.f32",
+      "bytes": 184320,
+      "sha256": "771578b25a0ec923d5ba971059e6518770eb4cb19cf2db42334619c9371a3a57",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-omer-maybe-water-20",
+      "file": "pocket-omer-maybe-water-20.f32",
+      "bytes": 184320,
+      "sha256": "a2ca9d6ed3e4e443a26ce8dccdb46ac16267d3c0b444e0c5b62fd5e45f6accbd",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-omer-maybe-water-10",
+      "file": "pocket-omer-maybe-water-10.f32",
+      "bytes": 184320,
+      "sha256": "20d8cdf0f72d6a17f25ae02640bd9388dbae0bc19efa2a7374929ba1b87c326f",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-omer-oven-not-yet-clean",
+      "file": "pocket-omer-oven-not-yet-clean.f32",
+      "bytes": 112640,
+      "sha256": "f90ad6f1969892e082ea026edea27dd6d79809055084a23a95d91caf3fd95502",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "pocket-omer-oven-not-yet-20",
+      "file": "pocket-omer-oven-not-yet-20.f32",
+      "bytes": 112640,
+      "sha256": "6158e728f92b198607e9a2bd3e70cfce9474f2ee667ce6ffe1b25a94e8ab0084",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "pocket-omer-oven-not-yet-10",
+      "file": "pocket-omer-oven-not-yet-10.f32",
+      "bytes": 112640,
+      "sha256": "37d987d7b7d1e26a0ef25f08047df74ca2f4ab62711c85d67f1d15267ed5dc88",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התלמיד"
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-clean",
+      "file": "pocket-omer-oil-water-amounts-clean.f32",
+      "bytes": 204800,
+      "sha256": "e0aeafbd3e06e61cb2ce2d649ee8eaf3545983c150c043dddd1aa6d2c28a4812",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.2,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-20",
+      "file": "pocket-omer-oil-water-amounts-20.f32",
+      "bytes": 204800,
+      "sha256": "e64970c8123ba18e1deb93af53808fbdbf0790705a05c1cf361dce469783e835",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.2,
+      "browserText": "הוספתי שתי קפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-10",
+      "file": "pocket-omer-oil-water-amounts-10.f32",
+      "bytes": 204800,
+      "sha256": "03be0bab6275419d3c3f1a9e40d4443d45fd466fb53a90d49fbdbfb32b07b4d7",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.2,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-omer-missed-clean",
+      "file": "pocket-omer-missed-clean.f32",
+      "bytes": 117760,
+      "sha256": "3a3718c19ce95e092c2d47ff52d9c2fef8490998c1d549cc12ddbc8aa4038179",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-omer-missed-20",
+      "file": "pocket-omer-missed-20.f32",
+      "bytes": 117760,
+      "sha256": "895d9afe7a675d8abccbe1b7a7214883b875d805682f1f78504f9d50cca61c01",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-omer-missed-10",
+      "file": "pocket-omer-missed-10.f32",
+      "bytes": 117760,
+      "sha256": "fb2161e705b89d58840d7075cdc2a98619540b72b96269be5fabd1474487c698",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-omer-salt-sugar-clean",
+      "file": "pocket-omer-salt-sugar-clean.f32",
+      "bytes": 184320,
+      "sha256": "249f324d7e73aeffad9b7bdc9d0efb1bd8f04f6737ee16849dba4afacf706749",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.88,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-omer-salt-sugar-20",
+      "file": "pocket-omer-salt-sugar-20.f32",
+      "bytes": 184320,
+      "sha256": "6b4f82f1f919f3eaed1963b8c504df1b8e31ee7bb524041bde1acf1e453bb05d",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.88,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-omer-salt-sugar-10",
+      "file": "pocket-omer-salt-sugar-10.f32",
+      "bytes": 184320,
+      "sha256": "5c55f23825438e7ac0aed0cf34231fbc15a9c1af9c7aba3d0622a184fd352780",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 2.88,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-omer-oven-temperature-clean",
+      "file": "pocket-omer-oven-temperature-clean.f32",
+      "bytes": 168960,
+      "sha256": "6b5037a50dbeeec1d7cbcda70ba6d666160018f19e9875561553c3bd9826dfbd",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "חיממתי ל-180 מעלות"
+    },
+    {
+      "id": "pocket-omer-oven-temperature-20",
+      "file": "pocket-omer-oven-temperature-20.f32",
+      "bytes": 168960,
+      "sha256": "e43cc600028c1379ccee744379c0073d70656773f2cc7648eea47878bac81f1f",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "סיממתי ל-180 מעלות."
+    },
+    {
+      "id": "pocket-omer-oven-temperature-10",
+      "file": "pocket-omer-oven-temperature-10.f32",
+      "bytes": 168960,
+      "sha256": "496b30175f3e894284aed3a994c7fc4b7627b41b239bb0058d0571f12f1f9872",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "עיממתי ימיה ושמונים מעלות."
+    },
+    {
+      "id": "pocket-omer-plan-egg-clean",
+      "file": "pocket-omer-plan-egg-clean.f32",
+      "bytes": 128000,
+      "sha256": "d7c539a5b4d4aaa34773f7ddb939b7ac40bfe17403ff16d4810b1d1c5074d6fc",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף ביצה"
+    },
+    {
+      "id": "pocket-omer-plan-egg-20",
+      "file": "pocket-omer-plan-egg-20.f32",
+      "bytes": 128000,
+      "sha256": "0298301d3650d1cd0b26fb3fb6dc561c04fc2e4d83b44cd08f9bbfd6b3f07733",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף ביצה"
+    },
+    {
+      "id": "pocket-omer-plan-egg-10",
+      "file": "pocket-omer-plan-egg-10.f32",
+      "bytes": 128000,
+      "sha256": "4587bc2db2f9006792018db2ee28742d07760c61acbaf8ab31f5bb113e540b43",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף בקשה"
+    },
+    {
+      "id": "pocket-omer-ambiguous-clean",
+      "file": "pocket-omer-ambiguous-clean.f32",
+      "bytes": 76800,
+      "sha256": "8ae32419edc27ae4210afbf0bd3c5b0b34a2931e38ab68617958cfe7383b840c",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-omer-ambiguous-20",
+      "file": "pocket-omer-ambiguous-20.f32",
+      "bytes": 76800,
+      "sha256": "f127eee6d3fd506d8cfd8fbc344c541eef16e88eb414e36e0b1731240b27aa39",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-omer-ambiguous-10",
+      "file": "pocket-omer-ambiguous-10.f32",
+      "bytes": 76800,
+      "sha256": "df8d868fd2402459499142da36985569279c68a5242afebf8b7d86ba14683086",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-omer-three-quarters-clean",
+      "file": "pocket-omer-three-quarters-clean.f32",
+      "bytes": 225280,
+      "sha256": "212eea010c4be96d94a926e87e819c827a9616c83eea828692c7df4dc83b7c6e",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.52,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "pocket-omer-three-quarters-20",
+      "file": "pocket-omer-three-quarters-20.f32",
+      "bytes": 225280,
+      "sha256": "6ed51050d608ab9dc04dba7b561c5b6b3f5a34299207d2936210e36e1b30e63b",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.52,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "pocket-omer-three-quarters-10",
+      "file": "pocket-omer-three-quarters-10.f32",
+      "bytes": 225280,
+      "sha256": "54803f14452fd0d3da8d6bc23ce461636f9bf7f5fa3b8fc30fada6f5779eafa2",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 3.52,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח."
+    },
+    {
+      "id": "pocket-omer-only-asking-clean",
+      "file": "pocket-omer-only-asking-clean.f32",
+      "bytes": 194560,
+      "sha256": "3afeda9fd293e29f501a5d5403bd7d9b6e59176698a9de2704382424fbc6febf",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 3.04,
+      "browserText": "לא צריך להוסיף מים. אני רק שואל"
+    },
+    {
+      "id": "pocket-omer-only-asking-20",
+      "file": "pocket-omer-only-asking-20.f32",
+      "bytes": 194560,
+      "sha256": "50603ae53395d540c71b0e56c34dce5748594deaac234260d5ddfa3ce1766f4c",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 3.04,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל"
+    },
+    {
+      "id": "pocket-omer-only-asking-10",
+      "file": "pocket-omer-only-asking-10.f32",
+      "bytes": 194560,
+      "sha256": "9168cb546f43f4b3dbecd565e63ec6c09da4f9ce82ede05a7dfe55bd8b960556",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "question",
+      "audioSeconds": 3.04,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל"
+    },
+    {
+      "id": "pocket-omer-water-actually-oil-clean",
+      "file": "pocket-omer-water-actually-oil-clean.f32",
+      "bytes": 220160,
+      "sha256": "eb7d1097414022ba2f0b7ad2b0407fdf31453bafee5e7ac0f0be4366510d8751",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 3.44,
+      "browserText": "הוספתי מים. בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-omer-water-actually-oil-20",
+      "file": "pocket-omer-water-actually-oil-20.f32",
+      "bytes": 220160,
+      "sha256": "5af711888eb7f3dd193926cbc05a830e24adfc0454488253d4fe4ac1cb0790c0",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 3.44,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-omer-water-actually-oil-10",
+      "file": "pocket-omer-water-actually-oil-10.f32",
+      "bytes": 220160,
+      "sha256": "6650cd4ae8adf961b651e1175c34bdc0bee234d5ea8856af0bd57cc0a026f33a",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "correction",
+      "audioSeconds": 3.44,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-omer-flour-grams-clean",
+      "file": "pocket-omer-flour-grams-clean.f32",
+      "bytes": 168960,
+      "sha256": "5b85178560df7b01ddc67b4be773b48502acca37328c10a86a49fbc48ffd5edd",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "pocket-omer-flour-grams-20",
+      "file": "pocket-omer-flour-grams-20.f32",
+      "bytes": 168960,
+      "sha256": "2dc724a3b76c7bc4a1d5b759d282f3453a524f5106c4ff979dbd1912f820ea65",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "pocket-omer-flour-grams-10",
+      "file": "pocket-omer-flour-grams-10.f32",
+      "bytes": 168960,
+      "sha256": "6a293fad89d53b8f71a5b3a297a70800d890e383b296cf8ecb069228ec54ab3d",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "pocket-liat-flour-next-clean",
+      "file": "pocket-liat-flour-next-clean.f32",
+      "bytes": 133120,
+      "sha256": "5f36ab1b5d0ae43701c857c441f4ef0e16393a8a3f9ad5d7f85f6933c8e56cde",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "report-next",
+      "audioSeconds": 2.08,
+      "browserText": "שמתי קמח, מה עכשיו?"
+    },
+    {
+      "id": "pocket-liat-flour-next-20",
+      "file": "pocket-liat-flour-next-20.f32",
+      "bytes": 133120,
+      "sha256": "77873338c3a95307f2a80d147bbd5b58b1c9e019a16dba3060ff7c4a6296b669",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "report-next",
+      "audioSeconds": 2.08,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "pocket-liat-flour-next-10",
+      "file": "pocket-liat-flour-next-10.f32",
+      "bytes": 133120,
+      "sha256": "b567f2b6dc70b4d159eca51d5e9484b874790a4b3cbd6f99fa721eabae71660b",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "report-next",
+      "audioSeconds": 2.08,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-clean",
+      "file": "pocket-liat-water-not-mixed-clean.f32",
+      "bytes": 153600,
+      "sha256": "97df24b0788544549ca230f97c1f9457607bfbfc59816bd33c3529c43528abb5",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 2.4,
+      "browserText": "הוספתי מים אבל עוד לא הבבתי"
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-20",
+      "file": "pocket-liat-water-not-mixed-20.f32",
+      "bytes": 153600,
+      "sha256": "52a52506516516d281fb84d6542ddcaccf9c36701199a19cc30af22e5f6517ef",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 2.4,
+      "browserText": "הוספתי מים אבל עוד לא הבבתי"
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-10",
+      "file": "pocket-liat-water-not-mixed-10.f32",
+      "bytes": 153600,
+      "sha256": "966820c88561a90fb9aaad5ac85815f3634804b0c183b305414d589868a11d9d",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 2.4,
+      "browserText": "הוספתי מים אבל עוד לא העבדתי"
+    },
+    {
+      "id": "pocket-liat-correct-flour-clean",
+      "file": "pocket-liat-correct-flour-clean.f32",
+      "bytes": 158720,
+      "sha256": "796b9ad1d072b68246449871298d727d7c9a62c405805c4e748258f4a9d28093",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.48,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-liat-correct-flour-20",
+      "file": "pocket-liat-correct-flour-20.f32",
+      "bytes": 158720,
+      "sha256": "ad5e78f1689e50f2990eb0a11f1795336038a28ffd5c1bd2cae5daf5f68cf68c",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.48,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-liat-correct-flour-10",
+      "file": "pocket-liat-correct-flour-10.f32",
+      "bytes": 158720,
+      "sha256": "a1d7363b8c129df7fc8a6cbab64efbbfe80b279bea3ec302641f59a49690eee8",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.48,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "pocket-liat-mixed-half-clean",
+      "file": "pocket-liat-mixed-half-clean.f32",
+      "bytes": 107520,
+      "sha256": "2c1353f9f73788aaf1f42377d040d73ed073c8bc2df590d0a7160ed571fcc417",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "partial",
+      "audioSeconds": 1.68,
+      "browserText": "ערבבתי רק חצי"
+    },
+    {
+      "id": "pocket-liat-mixed-half-20",
+      "file": "pocket-liat-mixed-half-20.f32",
+      "bytes": 107520,
+      "sha256": "31b0566fc8c6181103b250a40ffcaafbb36dfe5ce0b849af35bde92aeb032716",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "partial",
+      "audioSeconds": 1.68,
+      "browserText": "ערבבתי רק חצי"
+    },
+    {
+      "id": "pocket-liat-mixed-half-10",
+      "file": "pocket-liat-mixed-half-10.f32",
+      "bytes": 107520,
+      "sha256": "b1b8f71fb58456976d0d60bc66828808803cea344c92f0cd2490a7814dacec4a",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "partial",
+      "audioSeconds": 1.68,
+      "browserText": "ערבבתי רק חפש"
+    },
+    {
+      "id": "pocket-liat-maybe-water-clean",
+      "file": "pocket-liat-maybe-water-clean.f32",
+      "bytes": 184320,
+      "sha256": "ccc45276c03344770048fa5890338f608ad3450fec06fb93ea5fa524004272d0",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-liat-maybe-water-20",
+      "file": "pocket-liat-maybe-water-20.f32",
+      "bytes": 184320,
+      "sha256": "95e81229fb561ca9e5474973eabedb495e20f656d37a13e1f16fedb423318a79",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-liat-maybe-water-10",
+      "file": "pocket-liat-maybe-water-10.f32",
+      "bytes": 184320,
+      "sha256": "5463f89e64c37822737785009237aa5b70d1e33918dd45629d9ac81c8472f904",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "uncertainty",
+      "audioSeconds": 2.88,
+      "browserText": "אולי הוספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "pocket-liat-oven-not-yet-clean",
+      "file": "pocket-liat-oven-not-yet-clean.f32",
+      "bytes": 112640,
+      "sha256": "12b301cf411eb823ff228d62fe39b46cd6cf1d7eab1aef6f5270105ed2ae24d9",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "pocket-liat-oven-not-yet-20",
+      "file": "pocket-liat-oven-not-yet-20.f32",
+      "bytes": 112640,
+      "sha256": "1fc5befea3059511c0684c48113730fdce352fe4a36811c366c0a1c3a00641c0",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "pocket-liat-oven-not-yet-10",
+      "file": "pocket-liat-oven-not-yet-10.f32",
+      "bytes": 112640,
+      "sha256": "ccb9066a4dd2d790e4df1c65a2b6895d1a509df0078ea7fc3e10a36d9a312da0",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "negation",
+      "audioSeconds": 1.76,
+      "browserText": "עוד לא הדלקתי את התניר"
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-clean",
+      "file": "pocket-liat-oil-water-amounts-clean.f32",
+      "bytes": 199680,
+      "sha256": "cbfd5709654243fca9409203cc6197178636cf3b8d43d34a26fb1b50c40c8fa0",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.12,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-20",
+      "file": "pocket-liat-oil-water-amounts-20.f32",
+      "bytes": 199680,
+      "sha256": "2792c544023af30602e069a0d10af00b21dfb1bc7ddfb18719d03e8945c80e58",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.12,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-10",
+      "file": "pocket-liat-oil-water-amounts-10.f32",
+      "bytes": 199680,
+      "sha256": "4eb536dea0d7105e4e910a4d933876a89dec4767e6c039ef091b833b987cf004",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.12,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "pocket-liat-missed-clean",
+      "file": "pocket-liat-missed-clean.f32",
+      "bytes": 117760,
+      "sha256": "0939e09bc9980a8eeb573dfc5f5d38475ca1b7dabfe9981f22578782ac6399bc",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-liat-missed-20",
+      "file": "pocket-liat-missed-20.f32",
+      "bytes": 117760,
+      "sha256": "cdacc075ca8955e905fde256e47514525a21c857f8fcdbd4cf02a1a62a303d35",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-liat-missed-10",
+      "file": "pocket-liat-missed-10.f32",
+      "bytes": 117760,
+      "sha256": "d54db6864c6ad5e210c8fbeed649074f6e2a2687aa0d7f52117891357e65c719",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 1.84,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "pocket-liat-salt-sugar-clean",
+      "file": "pocket-liat-salt-sugar-clean.f32",
+      "bytes": 179200,
+      "sha256": "a057670416b444570eef285ba4f679643a54816bcd88664faec91139e6c10022",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.8,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-liat-salt-sugar-20",
+      "file": "pocket-liat-salt-sugar-20.f32",
+      "bytes": 179200,
+      "sha256": "cc628682bb69257548f494f0d52785a052de8888c257d7c37ba26bc67862682f",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.8,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-liat-salt-sugar-10",
+      "file": "pocket-liat-salt-sugar-10.f32",
+      "bytes": 179200,
+      "sha256": "c2d636f84aae3b645e3c2ab5b2833fa66fb5cfe5ee603f724b23c5deb7aa0f45",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 2.8,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר"
+    },
+    {
+      "id": "pocket-liat-oven-temperature-clean",
+      "file": "pocket-liat-oven-temperature-clean.f32",
+      "bytes": 158720,
+      "sha256": "37282285b600f0a9db70cc98bd816e4fd10e85eb8bd027e27acdd4fdac17f1a3",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.48,
+      "browserText": "סיממתי ל-180 מעלות"
+    },
+    {
+      "id": "pocket-liat-oven-temperature-20",
+      "file": "pocket-liat-oven-temperature-20.f32",
+      "bytes": 158720,
+      "sha256": "f73b67f5b28858faa82b50a8f8d27a57efab198dfd22214a098ecdd1af5c7115",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.48,
+      "browserText": "סיממתי ל-180 מעלות"
+    },
+    {
+      "id": "pocket-liat-oven-temperature-10",
+      "file": "pocket-liat-oven-temperature-10.f32",
+      "bytes": 158720,
+      "sha256": "070f624cba01d07254a7648cae39bb0497760f1a129928b1e251c46353c2a883",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.48,
+      "browserText": "סיממתי ל-180 מעלות"
+    },
+    {
+      "id": "pocket-liat-plan-egg-clean",
+      "file": "pocket-liat-plan-egg-clean.f32",
+      "bytes": 128000,
+      "sha256": "20877799245c2dc4843a51458f31d93db36d2886a71bdc4754d1f857d28bade0",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף ביצה"
+    },
+    {
+      "id": "pocket-liat-plan-egg-20",
+      "file": "pocket-liat-plan-egg-20.f32",
+      "bytes": 128000,
+      "sha256": "d9e739535fbc8024f52dafa603e66a322d6e747c2870c23c9d023d0318866575",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף בצף"
+    },
+    {
+      "id": "pocket-liat-plan-egg-10",
+      "file": "pocket-liat-plan-egg-10.f32",
+      "bytes": 128000,
+      "sha256": "44eb33c47bbd1f6803ce6324e6a1186a09a9d329c4b28cbbe3e0739b656bc3f4",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "planned",
+      "audioSeconds": 2,
+      "browserText": "אני מתכנן להוסיף בקצה"
+    },
+    {
+      "id": "pocket-liat-ambiguous-clean",
+      "file": "pocket-liat-ambiguous-clean.f32",
+      "bytes": 76800,
+      "sha256": "73aae847cfa3cd3a0682ea07a79fd174d1fe92a8b441b3ca3cebf1459dd47e52",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-liat-ambiguous-20",
+      "file": "pocket-liat-ambiguous-20.f32",
+      "bytes": 76800,
+      "sha256": "a6b1de29d008fcac31644612c3bfbc54f080910fc39274082a10826f075048d3",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-liat-ambiguous-10",
+      "file": "pocket-liat-ambiguous-10.f32",
+      "bytes": 76800,
+      "sha256": "7d180bdd55d5f932c002759c2b77245bfad9a9d96b7e300ec34b607c373bdf21",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "ambiguous",
+      "audioSeconds": 1.2,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "pocket-liat-three-quarters-clean",
+      "file": "pocket-liat-three-quarters-clean.f32",
+      "bytes": 230400,
+      "sha256": "6bb1b4716b0eb9455d1104e97914081fc71d45b2369fa26f61ea1b05c45bbdf2",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.6,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "pocket-liat-three-quarters-20",
+      "file": "pocket-liat-three-quarters-20.f32",
+      "bytes": 230400,
+      "sha256": "fe093d721e23d49821115865b750307b8ecbc99ab3304645f5fd4d96a5b70e6b",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.6,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "pocket-liat-three-quarters-10",
+      "file": "pocket-liat-three-quarters-10.f32",
+      "bytes": 230400,
+      "sha256": "c7ca01ee9fcf18348cf45106377379384aff8b427e6b161fd20485b370c6a7a2",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 3.6,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "pocket-liat-only-asking-clean",
+      "file": "pocket-liat-only-asking-clean.f32",
+      "bytes": 184320,
+      "sha256": "b832a2dc556a7a876c584db2e4f2bd09364cd676777282b373fa9ed0bbfad1b9",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 2.88,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל"
+    },
+    {
+      "id": "pocket-liat-only-asking-20",
+      "file": "pocket-liat-only-asking-20.f32",
+      "bytes": 184320,
+      "sha256": "3e6c8026d9df2b67b7597667e9d33c8011f098726606fb74dcedd131c0ed4aef",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 2.88,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל"
+    },
+    {
+      "id": "pocket-liat-only-asking-10",
+      "file": "pocket-liat-only-asking-10.f32",
+      "bytes": 184320,
+      "sha256": "e419c3eade6654d171204dc04165458fb713f231d050fc86f539dfac7ac9ff00",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "question",
+      "audioSeconds": 2.88,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל"
+    },
+    {
+      "id": "pocket-liat-water-actually-oil-clean",
+      "file": "pocket-liat-water-actually-oil-clean.f32",
+      "bytes": 225280,
+      "sha256": "44643957128e5b37b5e270f3064399948561e8036739c7482a61334412a67271",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 3.52,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-liat-water-actually-oil-20",
+      "file": "pocket-liat-water-actually-oil-20.f32",
+      "bytes": 225280,
+      "sha256": "41afb0e4831e2de9c8899985b31f51038c9e9bc5f760f1d3ec7f4067b5d25bf5",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 3.52,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-liat-water-actually-oil-10",
+      "file": "pocket-liat-water-actually-oil-10.f32",
+      "bytes": 225280,
+      "sha256": "09371233feab9e152a6e46cd8002c8d8d6895b09d4ad68f23d63c3247fac5cd5",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "correction",
+      "audioSeconds": 3.52,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "pocket-liat-flour-grams-clean",
+      "file": "pocket-liat-flour-grams-clean.f32",
+      "bytes": 168960,
+      "sha256": "604365e35d21ae9888fc80c60d074ed1a57a169ec28f132767eead98c1b8b841",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "pocket-liat-flour-grams-20",
+      "file": "pocket-liat-flour-grams-20.f32",
+      "bytes": 168960,
+      "sha256": "371c425bae2ffc0da290d5120042fa39047896f160cf2ac3e79a9563a879a5fd",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "pocket-liat-flour-grams-10",
+      "file": "pocket-liat-flour-grams-10.f32",
+      "bytes": 168960,
+      "sha256": "dcb958018ff5b94d9fd98c9127e739371e2bb84eac4793d9f81556ea28aefe95",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "family": "quantities",
+      "audioSeconds": 2.64,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "piper-noa-flour-next-clean",
+      "file": "piper-noa-flour-next-clean.f32",
+      "bytes": 121112,
+      "sha256": "a46c88471a447c72d14620c4f6e8054f9f437b091bbf0e4529ce60c1b1d532c3",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "report-next",
+      "audioSeconds": 1.892375,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "piper-noa-flour-next-20",
+      "file": "piper-noa-flour-next-20.f32",
+      "bytes": 121112,
+      "sha256": "8905c22672811665a2c30ccb3c172de4a0a955b83518428ea9ed9f9040980b6b",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "report-next",
+      "audioSeconds": 1.892375,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "piper-noa-flour-next-10",
+      "file": "piper-noa-flour-next-10.f32",
+      "bytes": 121112,
+      "sha256": "ca4d15629a6a74d04022292b9ed0125077df6df79059b90083e25e603c37c23d",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "report-next",
+      "audioSeconds": 1.892375,
+      "browserText": "שמתי קמח, מה עכשיו"
+    },
+    {
+      "id": "piper-noa-water-not-mixed-clean",
+      "file": "piper-noa-water-not-mixed-clean.f32",
+      "bytes": 140432,
+      "sha256": "5a76872abb187b27d61674becf1577b867f45275967164f9c50719897dd03db1",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 2.19425,
+      "browserText": "הוספתי מים, אבל עוד לא ערבבתי"
+    },
+    {
+      "id": "piper-noa-water-not-mixed-20",
+      "file": "piper-noa-water-not-mixed-20.f32",
+      "bytes": 140432,
+      "sha256": "25ae659f39bc3c8a575ae547be9c35a675ffcb51475f03d144c41d4813640187",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 2.19425,
+      "browserText": "הוספתי מים, אבל עוד לא ערבבתי"
+    },
+    {
+      "id": "piper-noa-water-not-mixed-10",
+      "file": "piper-noa-water-not-mixed-10.f32",
+      "bytes": 140432,
+      "sha256": "883a06b46fd2089629dabe90a71d280bc7ee88e970107b80b1d737b3565797d5",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 2.19425,
+      "browserText": "הוספתי מים, אבל עוד לא הרבבתי"
+    },
+    {
+      "id": "piper-noa-correct-flour-clean",
+      "file": "piper-noa-correct-flour-clean.f32",
+      "bytes": 127056,
+      "sha256": "32c596fb91e5fa1080358597a4563830ee714786800e0ffc9eb635104a87f9e3",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 1.98525,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "piper-noa-correct-flour-20",
+      "file": "piper-noa-correct-flour-20.f32",
+      "bytes": 127056,
+      "sha256": "90cf0bf24dfae31e57389bbd610e627e2601634d37a301f05acbf16033edd4ba",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 1.98525,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "piper-noa-correct-flour-10",
+      "file": "piper-noa-correct-flour-10.f32",
+      "bytes": 127056,
+      "sha256": "2e1df66ae7bd82d0244ac2653cd11476aaaffd2cd60041080e63ac60648b6e51",
+      "reference": "תיקון, לא שמתי קמח.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 1.98525,
+      "browserText": "תיקון, לא שמתי קמח"
+    },
+    {
+      "id": "piper-noa-mixed-half-clean",
+      "file": "piper-noa-mixed-half-clean.f32",
+      "bytes": 93620,
+      "sha256": "fefcae2116d304224104f7ccd02f686a2681e9abac9a6d0fef01a62343211da3",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "partial",
+      "audioSeconds": 1.4628125,
+      "browserText": "יאובבתי רק חצי"
+    },
+    {
+      "id": "piper-noa-mixed-half-20",
+      "file": "piper-noa-mixed-half-20.f32",
+      "bytes": 93620,
+      "sha256": "47f2bf30ac5bbfde04004795f8c5f8f35bc33f46775124fa56c0bd94d6ce8fc1",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "partial",
+      "audioSeconds": 1.4628125,
+      "browserText": "יאובבתי רק חצי"
+    },
+    {
+      "id": "piper-noa-mixed-half-10",
+      "file": "piper-noa-mixed-half-10.f32",
+      "bytes": 93620,
+      "sha256": "c7949dd14d66510e65d5cecb391d7b3257647a0e2cfed4e72ff60a753993573c",
+      "reference": "ערבבתי רק חצי.",
+      "probes": [
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "partial",
+      "audioSeconds": 1.4628125,
+      "browserText": "היא עובדה בתי רק חסד"
+    },
+    {
+      "id": "piper-noa-maybe-water-clean",
+      "file": "piper-noa-maybe-water-clean.f32",
+      "bytes": 154552,
+      "sha256": "b01b9a941c9a13187b3832af894b77d2087e962cc96862242b7d76bfb8f81053",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "uncertainty",
+      "audioSeconds": 2.414875,
+      "browserText": "אולי אספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "piper-noa-maybe-water-20",
+      "file": "piper-noa-maybe-water-20.f32",
+      "bytes": 154552,
+      "sha256": "102e8ee37c1d54aeeb308d7921ae1a4a2f8d8f6792bff5663d739f37704e5ef0",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "uncertainty",
+      "audioSeconds": 2.414875,
+      "browserText": "אולי אספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "piper-noa-maybe-water-10",
+      "file": "piper-noa-maybe-water-10.f32",
+      "bytes": 154552,
+      "sha256": "f09f32013d953218ed5478396a7aea71df5063db7ca559d6ff9633a1870fb73c",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "probes": [
+        {
+          "name": "maybe",
+          "forms": [
+            "אולי"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "uncertainty",
+      "audioSeconds": 2.414875,
+      "browserText": "אולי אספתי מים, אני לא בטוח"
+    },
+    {
+      "id": "piper-noa-oven-not-yet-clean",
+      "file": "piper-noa-oven-not-yet-clean.f32",
+      "bytes": 109968,
+      "sha256": "500ea555932c5d065acc0b786b2ee78f95d791fcf63e3185fd762dd9257c4899",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 1.71825,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "piper-noa-oven-not-yet-20",
+      "file": "piper-noa-oven-not-yet-20.f32",
+      "bytes": 109968,
+      "sha256": "b0f65940174f633419e33c8f3eaf245dccfb74f1d5a5badd338cea46033c0d00",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 1.71825,
+      "browserText": "עוד לא הדלקתי את התנור"
+    },
+    {
+      "id": "piper-noa-oven-not-yet-10",
+      "file": "piper-noa-oven-not-yet-10.f32",
+      "bytes": 109968,
+      "sha256": "2a3523c9035936cb612790622f75918c52ea5ffbdf90bea932cfbc2ba731d412",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "negation",
+      "audioSeconds": 1.71825,
+      "browserText": "עוד לא הדלקתי את הצלום"
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-clean",
+      "file": "piper-noa-oil-water-amounts-clean.f32",
+      "bytes": 180556,
+      "sha256": "447dec112a989c32e8de51c7d752d110f5c2a54564f252dcd48e31b27bd91110",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.8211875,
+      "browserText": "הוספתי שתי כפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-20",
+      "file": "piper-noa-oil-water-amounts-20.f32",
+      "bytes": 180556,
+      "sha256": "c029b218a6d53beaea73b377dfdc2ab15bb01ad064ed5a1ff931ce1010ec0098",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.8211875,
+      "browserText": "הוספתי שתי היקפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-10",
+      "file": "piper-noa-oil-water-amounts-10.f32",
+      "bytes": 180556,
+      "sha256": "5881f0a25d4724a058bffa72275a1f166a94a156b3b31095aced87f6bf1027ae",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "probes": [
+        {
+          "name": "two",
+          "forms": [
+            "שתי",
+            "שתיים",
+            "2"
+          ]
+        },
+        {
+          "name": "half",
+          "forms": [
+            "חצי",
+            "1/2"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.8211875,
+      "browserText": "הוספתי שתי היקפות שמן וחצי כוס מים"
+    },
+    {
+      "id": "piper-noa-missed-clean",
+      "file": "piper-noa-missed-clean.f32",
+      "bytes": 107740,
+      "sha256": "4fa9ccca4240c10e06b0b5d8ded40589f705d9556deebaef46cdab2b2d09ab7d",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 1.6834375,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "piper-noa-missed-20",
+      "file": "piper-noa-missed-20.f32",
+      "bytes": 107740,
+      "sha256": "de02d0b2dd35330583d482e94f909c592fb658d96920e4b59b4acf1caf3d3b4b",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 1.6834375,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "piper-noa-missed-10",
+      "file": "piper-noa-missed-10.f32",
+      "bytes": 107740,
+      "sha256": "b3d9b4eb77ef2b7dd411af751a43750a92b3f88647a4cff901838c200180a0af",
+      "reference": "על איזה שלב דילגתי?",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 1.6834375,
+      "browserText": "על איזה שלב דילגתי"
+    },
+    {
+      "id": "piper-noa-salt-sugar-clean",
+      "file": "piper-noa-salt-sugar-clean.f32",
+      "bytes": 167180,
+      "sha256": "abd99d14208b07233b2a4dc2ba2e99e3eff35591c8aa363f00cb4140b9ff4505",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 2.6121875,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר."
+    },
+    {
+      "id": "piper-noa-salt-sugar-20",
+      "file": "piper-noa-salt-sugar-20.f32",
+      "bytes": 167180,
+      "sha256": "f3e32878a1eb07a2d8ff9aecac6c4aaf70946e930b40cdc7864ff4d63a7730c8",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 2.6121875,
+      "browserText": "לא הוספתי מלח, הוספתי סוכר."
+    },
+    {
+      "id": "piper-noa-salt-sugar-10",
+      "file": "piper-noa-salt-sugar-10.f32",
+      "bytes": 167180,
+      "sha256": "d5f5e70944e351e737101e03dd406b7d3f3b13fbe9e8ee10da46ee52c8f1d22d",
+      "reference": "לא הוספתי מלח, הוספתי סוכר.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 2.6121875,
+      "browserText": "לא הוספתי מלח, הוספתי סוכה."
+    },
+    {
+      "id": "piper-noa-oven-temperature-clean",
+      "file": "piper-noa-oven-temperature-clean.f32",
+      "bytes": 167180,
+      "sha256": "bbc18dc0bbd2b29dda25b3ad02ec5fc16bb0736a0b3c39fcaa35cc06d84e485b",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.6121875,
+      "browserText": "חימנתי ל-180 מעלות"
+    },
+    {
+      "id": "piper-noa-oven-temperature-20",
+      "file": "piper-noa-oven-temperature-20.f32",
+      "bytes": 167180,
+      "sha256": "273fedd552e1c74b83fc84ccca100ac4ab95991c6e1a97ba56e7a0e61c1d83d3",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.6121875,
+      "browserText": "חיממתי ל-180 מעלות."
+    },
+    {
+      "id": "piper-noa-oven-temperature-10",
+      "file": "piper-noa-oven-temperature-10.f32",
+      "bytes": 167180,
+      "sha256": "f76fa43a8b52c3ddb1a4c1bd5bed1f8e3fd9e24978679873fc651aa8e3ea062f",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "probes": [
+        {
+          "name": "180",
+          "forms": [
+            "מאה ושמונים",
+            "מאה שמונים",
+            "180",
+            "למאה ושמונים",
+            "למאה שמונים",
+            "ל180"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.6121875,
+      "browserText": "סימנתי ל-180 מעלות."
+    },
+    {
+      "id": "piper-noa-plan-egg-clean",
+      "file": "piper-noa-plan-egg-clean.f32",
+      "bytes": 121112,
+      "sha256": "0f1b0de987ae0565ab8e05e8a5e452c50e3ff7430450f5ffe64fe7575b9d97df",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "planned",
+      "audioSeconds": 1.892375,
+      "browserText": "אני מתכנן להוסיף ביצה"
+    },
+    {
+      "id": "piper-noa-plan-egg-20",
+      "file": "piper-noa-plan-egg-20.f32",
+      "bytes": 121112,
+      "sha256": "a98d57cad0df37a388188c2b0370e6ddab2704862542f785b9b34a6a6d86f14c",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "planned",
+      "audioSeconds": 1.892375,
+      "browserText": "אני מתכנן להוסיף ביצה"
+    },
+    {
+      "id": "piper-noa-plan-egg-10",
+      "file": "piper-noa-plan-egg-10.f32",
+      "bytes": 121112,
+      "sha256": "de348ff8f439c860998e42071d105d37c7c2182c0e5779905f86765159860648",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "probes": [
+        {
+          "name": "planned",
+          "forms": [
+            "מתכנן"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "planned",
+      "audioSeconds": 1.892375,
+      "browserText": "אני מתכנן להוסיף בצע"
+    },
+    {
+      "id": "piper-noa-ambiguous-clean",
+      "file": "piper-noa-ambiguous-clean.f32",
+      "bytes": 68356,
+      "sha256": "00ac358674a05820e30fc2d9f7adf476b85c29a2a145a50315243223a257d7e1",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "ambiguous",
+      "audioSeconds": 1.0680625,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "piper-noa-ambiguous-20",
+      "file": "piper-noa-ambiguous-20.f32",
+      "bytes": 68356,
+      "sha256": "ae684cc124d32cb5165c602e6a99d21d039e2f2d34538b729b262e4a307c64b6",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "ambiguous",
+      "audioSeconds": 1.0680625,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "piper-noa-ambiguous-10",
+      "file": "piper-noa-ambiguous-10.f32",
+      "bytes": 68356,
+      "sha256": "2ed4ffba24584d16ef44329e8c5b644721ab559da88d114c28cdd09d2a809fcd",
+      "reference": "עשיתי את זה.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "ambiguous",
+      "audioSeconds": 1.0680625,
+      "browserText": "עשיתי את זה"
+    },
+    {
+      "id": "piper-noa-three-quarters-clean",
+      "file": "piper-noa-three-quarters-clean.f32",
+      "bytes": 225140,
+      "sha256": "3874739b2b0e87aae5b34b39dfd7e87f193bfd1a03168ffe3832a9c71fa5c5ec",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 3.5178125,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "piper-noa-three-quarters-20",
+      "file": "piper-noa-three-quarters-20.f32",
+      "bytes": 225140,
+      "sha256": "a01eae44c67563f8de5244c624db56284c8cc9068fed83e461e0f5752c5c2c78",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 3.5178125,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "piper-noa-three-quarters-10",
+      "file": "piper-noa-three-quarters-10.f32",
+      "bytes": 225140,
+      "sha256": "262e9f5da2896e91670b5e52ec8e6d8a7ea35809ffddacef101c508b13be9043",
+      "reference": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "probes": [
+        {
+          "name": "three-quarters",
+          "forms": [
+            "שלושת רבעי",
+            "שלושה רבעי",
+            "שלושה רבעים",
+            "3/4"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 3.5178125,
+      "browserText": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח"
+    },
+    {
+      "id": "piper-noa-only-asking-clean",
+      "file": "piper-noa-only-asking-clean.f32",
+      "bytes": 162724,
+      "sha256": "bf29928b695c9929638eb925e24f112460b41e239faf86216039e3f5ab1457c9",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 2.5425625,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל."
+    },
+    {
+      "id": "piper-noa-only-asking-20",
+      "file": "piper-noa-only-asking-20.f32",
+      "bytes": 162724,
+      "sha256": "93315e6fc7611e3508a118681519269ec1c06f83288cfc078e60783b7e0b0f77",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 2.5425625,
+      "browserText": "לא צריך להוסיף מים, אני רק שואל."
+    },
+    {
+      "id": "piper-noa-only-asking-10",
+      "file": "piper-noa-only-asking-10.f32",
+      "bytes": 162724,
+      "sha256": "9d03bf1da7ca947cbb725c1b3d6170cb67a7b0fbcffab7401db84ad77e30194c",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "probes": [
+        {
+          "name": "question-scope",
+          "forms": [
+            "שואל"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "question",
+      "audioSeconds": 2.5425625,
+      "browserText": "לא צריך להוסיף מים, אני רק שואב"
+    },
+    {
+      "id": "piper-noa-water-actually-oil-clean",
+      "file": "piper-noa-water-actually-oil-clean.f32",
+      "bytes": 203592,
+      "sha256": "9132aca98489b47d9d48abe6e8e03f70f16fe51e7452cf25131ec8f4b7049a58",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 3.181125,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "piper-noa-water-actually-oil-20",
+      "file": "piper-noa-water-actually-oil-20.f32",
+      "bytes": 203592,
+      "sha256": "e0cbd2c30f884342328ef3fe42b38f00ad9013850f154fc2503a3cfb03de73a1",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 3.181125,
+      "browserText": "הוספתי מים, בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "piper-noa-water-actually-oil-10",
+      "file": "piper-noa-water-actually-oil-10.f32",
+      "bytes": 203592,
+      "sha256": "8cd85a1f98023524a03e477c46edf894f63bfe92fec60ba46c9c5eb0a1e9abe9",
+      "reference": "הוספתי מים. בעצם לא, זה היה שמן.",
+      "probes": [],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "correction",
+      "audioSeconds": 3.181125,
+      "browserText": "אספתי מים בעצם לא, זה היה שמן"
+    },
+    {
+      "id": "piper-noa-flour-grams-clean",
+      "file": "piper-noa-flour-grams-clean.f32",
+      "bytes": 157524,
+      "sha256": "da71f834557f3064428b1f321790d1b656eb9e328eaa8b434a537555e3e9c5e8",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.4613125,
+      "browserText": "שמתי 250 גרם קמח."
+    },
+    {
+      "id": "piper-noa-flour-grams-20",
+      "file": "piper-noa-flour-grams-20.f32",
+      "bytes": 157524,
+      "sha256": "5b630bb9ce118a21f61409a9409ad3e529dcbbfd2df0967e9c0ea92916233f08",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.4613125,
+      "browserText": "שמתי 250 גרם קמח"
+    },
+    {
+      "id": "piper-noa-flour-grams-10",
+      "file": "piper-noa-flour-grams-10.f32",
+      "bytes": 157524,
+      "sha256": "71ce229538e1176fd13708f00eb99e2e214598e6b0b259a459afc6fc33e081e2",
+      "reference": "שמתי מאתיים וחמישים גרם קמח.",
+      "probes": [
+        {
+          "name": "250",
+          "forms": [
+            "מאתיים וחמישים",
+            "מאתיים חמישים",
+            "מאתים וחמישים",
+            "מאתים חמישים",
+            "250"
+          ]
+        }
+      ],
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "family": "quantities",
+      "audioSeconds": 2.4613125,
+      "browserText": "שמתי 250 גרם קמח"
+    }
+  ],
+  "scope": "All170 raw float32 inputs byte-identical to previously measured Chromium run. No inference, enhancement, dictionary or audio upload."
+}
