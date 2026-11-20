@@ -1,0 +1,21 @@
+{
+  "frozenUtc": "2026-11-20T13:01:18.345054+00:00",
+  "arms": [
+    "greedy",
+    "beam4"
+  ],
+  "recordsPerArm": 170,
+  "sameInputPcm": true,
+  "oldBaselineUnchanged": true,
+  "newBackend": "@sherpaw/asr@0.3.0 CPU WASM",
+  "numThreads": 1,
+  "maxActivePaths": 4,
+  "temperatureScale": "Not exposed by JS wrapper; native backend default not overridden",
+  "tuning": "None; same fixed two arms as native. One prior smoke clip each; no parameter changes.",
+  "sourceSha256": {
+    "browser-beam.mjs": "24a43da939e53995064851b01d9be83baff33aa52b8c8e2a579712a23ac3d43a",
+    "browser-worker.mjs": "59199ace41db84f0e4758517eec5d57f8a7efe1829b7ac3546835f8cf5d91134",
+    "evidence/input-reconstruction.json": "584a92efd8bd3c0bf0e7f34808fdb7cf60298c5c0c864fb16381cfab68f6268f",
+    "evidence/wasm-source.json": "fa20d5b3b4486943da57bf9b6527f86b6502ad3289b90096e3d4fdb7c4046700"
+  }
+}

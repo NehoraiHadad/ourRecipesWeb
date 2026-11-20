@@ -1,0 +1,4261 @@
+{
+  "smoke": false,
+  "startedUtc": "2026-11-20T13:01:18.830Z",
+  "engine": "@sherpaw/asr@0.3.0, CPU WASM",
+  "records": [
+    {
+      "arm": "greedy",
+      "id": "fleurs-6985392582296601957-clean",
+      "type": "result",
+      "text": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הביתה לבן",
+      "ms": 956.7000000011176,
+      "inputSha256": "54ca1d85bbef63a7f76b333072caff369866ca838c82ab930649cb56f4137754",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-6985392582296601957-noise20",
+      "type": "result",
+      "text": "מאוחר ביום ראשון ושיא ארצות הברית דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "ms": 782.9000000003725,
+      "inputSha256": "63375dcbc48db7f9a56770e6fd7192956e485842dcabba6612c5e3049654c8b0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-3471313510990959749-clean",
+      "type": "result",
+      "text": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+      "ms": 648.7000000011176,
+      "inputSha256": "4191ab659f4507bc895bb250b8f7a5d788107603ea874f629890c1b8456ce63b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-3471313510990959749-noise20",
+      "type": "result",
+      "text": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי",
+      "ms": 587.8999999985099,
+      "inputSha256": "caa4f29eb869b4cbf8aef602ade9b2d2752455c6a2c6cd20cae07f65184bb97b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-15713840504788281974-clean",
+      "type": "result",
+      "text": "גיאוץ בגדים מלאכים יכול לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "ms": 628.7999999988824,
+      "inputSha256": "14b4a466c41e6365a7d7432a40bfdbdb80b494e991bc8b8df24b6b7846c87a7b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-15713840504788281974-noise20",
+      "type": "result",
+      "text": "ייעוץ בגדים לחיים יכול לעזור להם להתייבש במיונות רבים משבגי עצוק, יש גיוד זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "ms": 602.2999999988824,
+      "inputSha256": "3152d905a1e6e3c01f597f377c4dd53463fcb8805c23f0dabff7114257413561",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-12451823994695799311-clean",
+      "type": "result",
+      "text": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "ms": 580.9000000003725,
+      "inputSha256": "ee728e01d016656c0a0961154421ff63e9a52ee5c9b4d09c9c043e933793d9b7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-12451823994695799311-noise20",
+      "type": "result",
+      "text": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "ms": 589.7000000011176,
+      "inputSha256": "27effa32bd70b7b969764461495de7790e9797c394d9cd90cee2f1220346ae19",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9476563984789168422-clean",
+      "type": "result",
+      "text": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט",
+      "ms": 531.7999999988824,
+      "inputSha256": "25152b3294360a6a63dcccc5935a5d6ae3992d66e812fa2d9ac8419be8dbd1d4",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9476563984789168422-noise20",
+      "type": "result",
+      "text": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט",
+      "ms": 518.1999999992549,
+      "inputSha256": "4a385f748081d11d38df48e8a2f13c70f67f1a2ab50c681cba28bf8eb2020af1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-8790580890171065686-clean",
+      "type": "result",
+      "text": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "ms": 505.2999999988824,
+      "inputSha256": "72a90913f8d7e97a33d9a84ffba64953aad484ebcd3cf25eea02b11481797ae1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-8790580890171065686-noise20",
+      "type": "result",
+      "text": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "ms": 486.19999999925494,
+      "inputSha256": "4710f3341aabcae3626dadce0adf016104e4c583c4666e6c623bd01dc5595bc0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-11086736344915854194-clean",
+      "type": "result",
+      "text": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+      "ms": 405.90000000037253,
+      "inputSha256": "1f1365d2559c677bf428a3eb8f24a2fbd776d98b0b626fff1d832bf0f77f3484",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-11086736344915854194-noise20",
+      "type": "result",
+      "text": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+      "ms": 377.09999999962747,
+      "inputSha256": "d11041443b645194de50e6706e781abab103bcaf0fbf8eda19ad5410cd69f79a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9859725698255055164-clean",
+      "type": "result",
+      "text": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+      "ms": 681.9000000003725,
+      "inputSha256": "05c6c3a52bedcd949e36677b834fb41b76f5202a80e26f042dd6fba3db03fd61",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9859725698255055164-noise20",
+      "type": "result",
+      "text": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+      "ms": 711.1999999992549,
+      "inputSha256": "ca9c77e9b333da0ff7dfe74354fd972b6508063259756b2bb12a75448f295e35",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-14908441627362672994-clean",
+      "type": "result",
+      "text": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+      "ms": 780.6000000014901,
+      "inputSha256": "dddbb8eab69c4097d222248fb15ecb84b5454e352d25696ae12f496630ae3188",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-14908441627362672994-noise20",
+      "type": "result",
+      "text": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+      "ms": 757.5,
+      "inputSha256": "81830d305e328050d6dac785ca25c5263a49e317db5ba067a40902236880fcc3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-15011168956922080339-clean",
+      "type": "result",
+      "text": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "ms": 958.7000000011176,
+      "inputSha256": "96a36d49b003f968d70e57a62997da137e12353556d03bebea1be92c11b32286",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-15011168956922080339-noise20",
+      "type": "result",
+      "text": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מתהם לשעבר. אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "ms": 994.9000000003725,
+      "inputSha256": "d849550d2737b76136bcb3545d7750f94341a5dafe1d0f4737c55a55a2583f8d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-17094305295227949694-clean",
+      "type": "result",
+      "text": "הוא ביטלו את האותיות הנוצרות בסיבוב ההופעות שלהם",
+      "ms": 295.19999999925494,
+      "inputSha256": "cb824ee490e5e28a29da76268d70cf7c2477dfe6c411fa4c66d36f75024ce23f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-17094305295227949694-noise20",
+      "type": "result",
+      "text": "הוא היה ביטלו את האותיות הנוצרות בסביב רופאות שלהם",
+      "ms": 313.40000000037253,
+      "inputSha256": "7ce4d01a0763d466a4f79e88b16cbee6cde1b1095f25e287819e10d47c1ecdf0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9677910411599000791-clean",
+      "type": "result",
+      "text": "קומו 53 החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "ms": 585,
+      "inputSha256": "401180db6b955ed5514097298a184e8606b52ad2e1897940f29c594a08dddf1c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "fleurs-9677910411599000791-noise20",
+      "type": "result",
+      "text": "קומו 53 החל את תפקידו כמושל מוקדם יותר שנה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "ms": 599.3999999985099,
+      "inputSha256": "cc9eac168b75ce6bf5e841983ce0e212cc423a8d76095a65daeafd29fede5786",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "silence",
+      "type": "result",
+      "text": "",
+      "ms": 288.30000000074506,
+      "inputSha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "noise",
+      "type": "result",
+      "text": "",
+      "ms": 288,
+      "inputSha256": "af51185d9db3bf8f1d5b1a195345e9dc7bac4c304ad3b5448d0590ccc46aaf2c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 200.90000000037253,
+      "inputSha256": "fe5c241e6f5be5784f4d9e75dee53dd41f143806d60a9ca2e758b26619874eca",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 198.5,
+      "inputSha256": "c8e5483367523646a2282f5b9879dfc020f433d55b3c146b2cfa9b96a0594361",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 193.90000000037253,
+      "inputSha256": "36a0b6a11388f636902fcba0cb185a7ea488518f8d9749ab14e732cb212644d2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא עירובבתי",
+      "ms": 288.3999999985099,
+      "inputSha256": "108abcf378c4aa3e2f747b85e2db71ed6eb48b9f46032a9b3fcc35267454443f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי",
+      "ms": 276.90000000037253,
+      "inputSha256": "956d887abbacdcd9d9a97d19dab99ea6d21222e3758672bbb43c90490882d9b2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא ערבבתי",
+      "ms": 295.2999999988824,
+      "inputSha256": "8cfbaafc232aa63efb9e1cfbf73b0428b8a0d9cb7bab513b1a5dcfbd09d1fb56",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 249.90000000037253,
+      "inputSha256": "7e9016d2030d6359ca4d571a70b69649d45bdc3f5b12e3c08653e1703a22563f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 222.40000000037253,
+      "inputSha256": "5c36e0c75b7c6732cb7ebc9e12d8a5b5bc30b8d6a0da9daa5d3a597493bcf659",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 206.40000000037253,
+      "inputSha256": "0080b565a5dffa745882b29e34105329a971acd7545bcb3241d48313a38d0de0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-mixed-half-clean",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 207.90000000037253,
+      "inputSha256": "28b38e8c9fdf8666af88c2b525083451137374aa359837572fbc9ea655177ef6",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-mixed-half-20",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 211.90000000037253,
+      "inputSha256": "cb40ca74e0903cf360bf8fab4a8721e70e61e651cf2fa0f2901b610c618fdce7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-mixed-half-10",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 195.2999999988824,
+      "inputSha256": "312d2d7159dab7e32d0e57666c63547083c215a78ac931a9f0fe9096aa315529",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-maybe-water-clean",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 291.8999999985099,
+      "inputSha256": "771578b25a0ec923d5ba971059e6518770eb4cb19cf2db42334619c9371a3a57",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-maybe-water-20",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 302,
+      "inputSha256": "a2ca9d6ed3e4e443a26ce8dccdb46ac16267d3c0b444e0c5b62fd5e45f6accbd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-maybe-water-10",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 285.59999999962747,
+      "inputSha256": "20d8cdf0f72d6a17f25ae02640bd9388dbae0bc19efa2a7374929ba1b87c326f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 185.80000000074506,
+      "inputSha256": "f90ad6f1969892e082ea026edea27dd6d79809055084a23a95d91caf3fd95502",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 191.09999999962747,
+      "inputSha256": "6158e728f92b198607e9a2bd3e70cfce9474f2ee667ce6ffe1b25a94e8ab0084",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התלמיד",
+      "ms": 216.89999999850988,
+      "inputSha256": "37d987d7b7d1e26a0ef25f08047df74ca2f4ab62711c85d67f1d15267ed5dc88",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 325,
+      "inputSha256": "e0aeafbd3e06e61cb2ce2d649ee8eaf3545983c150c043dddd1aa6d2c28a4812",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי קפות שמן וחצי כוס מים",
+      "ms": 296.19999999925494,
+      "inputSha256": "e64970c8123ba18e1deb93af53808fbdbf0790705a05c1cf361dce469783e835",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 292.80000000074506,
+      "inputSha256": "03be0bab6275419d3c3f1a9e40d4443d45fd466fb53a90d49fbdbfb32b07b4d7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 217,
+      "inputSha256": "3a3718c19ce95e092c2d47ff52d9c2fef8490998c1d549cc12ddbc8aa4038179",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 215.80000000074506,
+      "inputSha256": "895d9afe7a675d8abccbe1b7a7214883b875d805682f1f78504f9d50cca61c01",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 198,
+      "inputSha256": "fb2161e705b89d58840d7075cdc2a98619540b72b96269be5fabd1474487c698",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 298.69999999925494,
+      "inputSha256": "249f324d7e73aeffad9b7bdc9d0efb1bd8f04f6737ee16849dba4afacf706749",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 435,
+      "inputSha256": "6b4f82f1f919f3eaed1963b8c504df1b8e31ee7bb524041bde1acf1e453bb05d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 321.09999999962747,
+      "inputSha256": "5c55f23825438e7ac0aed0cf34231fbc15a9c1af9c7aba3d0622a184fd352780",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-temperature-clean",
+      "type": "result",
+      "text": "חיממתי ל-180 מעלות",
+      "ms": 336.7000000011176,
+      "inputSha256": "6b5037a50dbeeec1d7cbcda70ba6d666160018f19e9875561553c3bd9826dfbd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-temperature-20",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות.",
+      "ms": 358.2999999988824,
+      "inputSha256": "e43cc600028c1379ccee744379c0073d70656773f2cc7648eea47878bac81f1f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-oven-temperature-10",
+      "type": "result",
+      "text": "עיממתי ל-180 מעלות.",
+      "ms": 289.2999999988824,
+      "inputSha256": "496b30175f3e894284aed3a994c7fc4b7627b41b239bb0058d0571f12f1f9872",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 207.80000000074506,
+      "inputSha256": "d7c539a5b4d4aaa34773f7ddb939b7ac40bfe17403ff16d4810b1d1c5074d6fc",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 220.2000000011176,
+      "inputSha256": "0298301d3650d1cd0b26fb3fb6dc561c04fc2e4d83b44cd08f9bbfd6b3f07733",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בקשה",
+      "ms": 216.59999999962747,
+      "inputSha256": "4587bc2db2f9006792018db2ee28742d07760c61acbaf8ab31f5bb113e540b43",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 195,
+      "inputSha256": "8ae32419edc27ae4210afbf0bd3c5b0b34a2931e38ab68617958cfe7383b840c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 199.2000000011176,
+      "inputSha256": "f127eee6d3fd506d8cfd8fbc344c541eef16e88eb414e36e0b1731240b27aa39",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 209.2999999988824,
+      "inputSha256": "df8d868fd2402459499142da36985569279c68a5242afebf8b7d86ba14683086",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 302,
+      "inputSha256": "212eea010c4be96d94a926e87e819c827a9616c83eea828692c7df4dc83b7c6e",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 294,
+      "inputSha256": "6ed51050d608ab9dc04dba7b561c5b6b3f5a34299207d2936210e36e1b30e63b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "ms": 286.80000000074506,
+      "inputSha256": "54803f14452fd0d3da8d6bc23ce461636f9bf7f5fa3b8fc30fada6f5779eafa2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים. אני רק שואל",
+      "ms": 282.80000000074506,
+      "inputSha256": "3afeda9fd293e29f501a5d5403bd7d9b6e59176698a9de2704382424fbc6febf",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 284.2000000011176,
+      "inputSha256": "50603ae53395d540c71b0e56c34dce5748594deaac234260d5ddfa3ce1766f4c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 291.09999999962747,
+      "inputSha256": "9168cb546f43f4b3dbecd565e63ec6c09da4f9ce82ede05a7dfe55bd8b960556",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים. בעצם לא, זה היה שמן",
+      "ms": 294,
+      "inputSha256": "eb7d1097414022ba2f0b7ad2b0407fdf31453bafee5e7ac0f0be4366510d8751",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 285.2999999988824,
+      "inputSha256": "5af711888eb7f3dd193926cbc05a830e24adfc0454488253d4fe4ac1cb0790c0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-water-actually-oil-10",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 273.90000000037253,
+      "inputSha256": "6650cd4ae8adf961b651e1175c34bdc0bee234d5ea8856af0bd57cc0a026f33a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 271.6000000014901,
+      "inputSha256": "5b85178560df7b01ddc67b4be773b48502acca37328c10a86a49fbc48ffd5edd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 328,
+      "inputSha256": "2dc724a3b76c7bc4a1d5b759d282f3453a524f5106c4ff979dbd1912f820ea65",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-omer-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 296.69999999925494,
+      "inputSha256": "6a293fad89d53b8f71a5b3a297a70800d890e383b296cf8ecb069228ec54ab3d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 199,
+      "inputSha256": "5f36ab1b5d0ae43701c857c441f4ef0e16393a8a3f9ad5d7f85f6933c8e56cde",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 202.90000000037253,
+      "inputSha256": "77873338c3a95307f2a80d147bbd5b58b1c9e019a16dba3060ff7c4a6296b669",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 184.69999999925494,
+      "inputSha256": "b567f2b6dc70b4d159eca51d5e9484b874790a4b3cbd6f99fa721eabae71660b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא הבבתי",
+      "ms": 187.40000000037253,
+      "inputSha256": "97df24b0788544549ca230f97c1f9457607bfbfc59816bd33c3529c43528abb5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא הבבתי",
+      "ms": 205.90000000037253,
+      "inputSha256": "52a52506516516d281fb84d6542ddcaccf9c36701199a19cc30af22e5f6517ef",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא העבדתי",
+      "ms": 200.7000000011176,
+      "inputSha256": "966820c88561a90fb9aaad5ac85815f3634804b0c183b305414d589868a11d9d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 300.90000000037253,
+      "inputSha256": "796b9ad1d072b68246449871298d727d7c9a62c405805c4e748258f4a9d28093",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 293.40000000037253,
+      "inputSha256": "ad5e78f1689e50f2990eb0a11f1795336038a28ffd5c1bd2cae5daf5f68cf68c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 303.09999999962747,
+      "inputSha256": "a1d7363b8c129df7fc8a6cbab64efbbfe80b279bea3ec302641f59a49690eee8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-mixed-half-clean",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 192.30000000074506,
+      "inputSha256": "2c1353f9f73788aaf1f42377d040d73ed073c8bc2df590d0a7160ed571fcc417",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-mixed-half-20",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 190.59999999962747,
+      "inputSha256": "31b0566fc8c6181103b250a40ffcaafbb36dfe5ce0b849af35bde92aeb032716",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-mixed-half-10",
+      "type": "result",
+      "text": "ערבבתי רק חפץ",
+      "ms": 184.7999999988824,
+      "inputSha256": "b1b8f71fb58456976d0d60bc66828808803cea344c92f0cd2490a7814dacec4a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-maybe-water-clean",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 319.7000000011176,
+      "inputSha256": "ccc45276c03344770048fa5890338f608ad3450fec06fb93ea5fa524004272d0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-maybe-water-20",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 319.80000000074506,
+      "inputSha256": "95e81229fb561ca9e5474973eabedb495e20f656d37a13e1f16fedb423318a79",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-maybe-water-10",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח",
+      "ms": 291.5,
+      "inputSha256": "5463f89e64c37822737785009237aa5b70d1e33918dd45629d9ac81c8472f904",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 204,
+      "inputSha256": "12b301cf411eb823ff228d62fe39b46cd6cf1d7eab1aef6f5270105ed2ae24d9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 187.69999999925494,
+      "inputSha256": "1fc5befea3059511c0684c48113730fdce352fe4a36811c366c0a1c3a00641c0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התניר",
+      "ms": 204.5,
+      "inputSha256": "ccb9066a4dd2d790e4df1c65a2b6895d1a509df0078ea7fc3e10a36d9a312da0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 295,
+      "inputSha256": "cbfd5709654243fca9409203cc6197178636cf3b8d43d34a26fb1b50c40c8fa0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 287.7999999988824,
+      "inputSha256": "2792c544023af30602e069a0d10af00b21dfb1bc7ddfb18719d03e8945c80e58",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 312,
+      "inputSha256": "4eb536dea0d7105e4e910a4d933876a89dec4767e6c039ef091b833b987cf004",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 200.40000000037253,
+      "inputSha256": "0939e09bc9980a8eeb573dfc5f5d38475ca1b7dabfe9981f22578782ac6399bc",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 227,
+      "inputSha256": "cdacc075ca8955e905fde256e47514525a21c857f8fcdbd4cf02a1a62a303d35",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 201,
+      "inputSha256": "d54db6864c6ad5e210c8fbeed649074f6e2a2687aa0d7f52117891357e65c719",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 291.30000000074506,
+      "inputSha256": "a057670416b444570eef285ba4f679643a54816bcd88664faec91139e6c10022",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 280,
+      "inputSha256": "cc628682bb69257548f494f0d52785a052de8888c257d7c37ba26bc67862682f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 283.69999999925494,
+      "inputSha256": "c2d636f84aae3b645e3c2ab5b2833fa66fb5cfe5ee603f724b23c5deb7aa0f45",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-temperature-clean",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות",
+      "ms": 284.09999999962747,
+      "inputSha256": "37282285b600f0a9db70cc98bd816e4fd10e85eb8bd027e27acdd4fdac17f1a3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-temperature-20",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות",
+      "ms": 279.59999999962747,
+      "inputSha256": "f73b67f5b28858faa82b50a8f8d27a57efab198dfd22214a098ecdd1af5c7115",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-oven-temperature-10",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות",
+      "ms": 279.2000000011176,
+      "inputSha256": "070f624cba01d07254a7648cae39bb0497760f1a129928b1e251c46353c2a883",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 186.2000000011176,
+      "inputSha256": "20877799245c2dc4843a51458f31d93db36d2886a71bdc4754d1f857d28bade0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בצף",
+      "ms": 187.19999999925494,
+      "inputSha256": "d9e739535fbc8024f52dafa603e66a322d6e747c2870c23c9d023d0318866575",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בצד",
+      "ms": 186,
+      "inputSha256": "44eb33c47bbd1f6803ce6324e6a1186a09a9d329c4b28cbbe3e0739b656bc3f4",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 186.2999999988824,
+      "inputSha256": "73aae847cfa3cd3a0682ea07a79fd174d1fe92a8b441b3ca3cebf1459dd47e52",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 197.19999999925494,
+      "inputSha256": "a6b1de29d008fcac31644612c3bfbc54f080910fc39274082a10826f075048d3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 193.19999999925494,
+      "inputSha256": "7d180bdd55d5f932c002759c2b77245bfad9a9d96b7e300ec34b607c373bdf21",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 297.7000000011176,
+      "inputSha256": "6bb1b4716b0eb9455d1104e97914081fc71d45b2369fa26f61ea1b05c45bbdf2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 297.6000000014901,
+      "inputSha256": "fe093d721e23d49821115865b750307b8ecbc99ab3304645f5fd4d96a5b70e6b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 286,
+      "inputSha256": "c7ca01ee9fcf18348cf45106377379384aff8b427e6b161fd20485b370c6a7a2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 283.1000000014901,
+      "inputSha256": "b832a2dc556a7a876c584db2e4f2bd09364cd676777282b373fa9ed0bbfad1b9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 272.19999999925494,
+      "inputSha256": "3e6c8026d9df2b67b7597667e9d33c8011f098726606fb74dcedd131c0ed4aef",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 287.19999999925494,
+      "inputSha256": "e419c3eade6654d171204dc04165458fb713f231d050fc86f539dfac7ac9ff00",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 285.6000000014901,
+      "inputSha256": "44643957128e5b37b5e270f3064399948561e8036739c7482a61334412a67271",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 294.19999999925494,
+      "inputSha256": "41afb0e4831e2de9c8899985b31f51038c9e9bc5f760f1d3ec7f4067b5d25bf5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-water-actually-oil-10",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 287.69999999925494,
+      "inputSha256": "09371233feab9e152a6e46cd8002c8d8d6895b09d4ad68f23d63c3247fac5cd5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 278.40000000037253,
+      "inputSha256": "604365e35d21ae9888fc80c60d074ed1a57a169ec28f132767eead98c1b8b841",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 277.19999999925494,
+      "inputSha256": "371c425bae2ffc0da290d5120042fa39047896f160cf2ac3e79a9563a879a5fd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "pocket-liat-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 301.5,
+      "inputSha256": "dcb958018ff5b94d9fd98c9127e739371e2bb84eac4793d9f81556ea28aefe95",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 187.30000000074506,
+      "inputSha256": "a46c88471a447c72d14620c4f6e8054f9f437b091bbf0e4529ce60c1b1d532c3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 187.40000000037253,
+      "inputSha256": "8905c22672811665a2c30ccb3c172de4a0a955b83518428ea9ed9f9040980b6b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 187.90000000037253,
+      "inputSha256": "ca4d15629a6a74d04022292b9ed0125077df6df79059b90083e25e603c37c23d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא ערבבתי",
+      "ms": 188.2999999988824,
+      "inputSha256": "5a76872abb187b27d61674becf1577b867f45275967164f9c50719897dd03db1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי",
+      "ms": 198.09999999962747,
+      "inputSha256": "25ae659f39bc3c8a575ae547be9c35a675ffcb51475f03d144c41d4813640187",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא הרבבתי",
+      "ms": 230.39999999850988,
+      "inputSha256": "883a06b46fd2089629dabe90a71d280bc7ee88e970107b80b1d737b3565797d5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 204.59999999962747,
+      "inputSha256": "32c596fb91e5fa1080358597a4563830ee714786800e0ffc9eb635104a87f9e3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 213.5,
+      "inputSha256": "90cf0bf24dfae31e57389bbd610e627e2601634d37a301f05acbf16033edd4ba",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 193,
+      "inputSha256": "2e1df66ae7bd82d0244ac2653cd11476aaaffd2cd60041080e63ac60648b6e51",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-mixed-half-clean",
+      "type": "result",
+      "text": "יאובבתי רק חצי",
+      "ms": 205.60000000149012,
+      "inputSha256": "fefcae2116d304224104f7ccd02f686a2681e9abac9a6d0fef01a62343211da3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-mixed-half-20",
+      "type": "result",
+      "text": "יאובבתי רק חצי",
+      "ms": 217.09999999962747,
+      "inputSha256": "47f2bf30ac5bbfde04004795f8c5f8f35bc33f46775124fa56c0bd94d6ce8fc1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-mixed-half-10",
+      "type": "result",
+      "text": "היא עובדה בתי רק חסד",
+      "ms": 253.19999999925494,
+      "inputSha256": "c7949dd14d66510e65d5cecb391d7b3257647a0e2cfed4e72ff60a753993573c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-maybe-water-clean",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח",
+      "ms": 220.09999999962747,
+      "inputSha256": "b01b9a941c9a13187b3832af894b77d2087e962cc96862242b7d76bfb8f81053",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-maybe-water-20",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח",
+      "ms": 205.5,
+      "inputSha256": "102e8ee37c1d54aeeb308d7921ae1a4a2f8d8f6792bff5663d739f37704e5ef0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-maybe-water-10",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח",
+      "ms": 202.5,
+      "inputSha256": "f09f32013d953218ed5478396a7aea71df5063db7ca559d6ff9633a1870fb73c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 192.40000000037253,
+      "inputSha256": "500ea555932c5d065acc0b786b2ee78f95d791fcf63e3185fd762dd9257c4899",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 210.90000000037253,
+      "inputSha256": "b0f65940174f633419e33c8f3eaf245dccfb74f1d5a5badd338cea46033c0d00",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את הצלום",
+      "ms": 204,
+      "inputSha256": "2a3523c9035936cb612790622f75918c52ea5ffbdf90bea932cfbc2ba731d412",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 317.40000000037253,
+      "inputSha256": "447dec112a989c32e8de51c7d752d110f5c2a54564f252dcd48e31b27bd91110",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "ms": 286,
+      "inputSha256": "c029b218a6d53beaea73b377dfdc2ab15bb01ad064ed5a1ff931ce1010ec0098",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "ms": 284.19999999925494,
+      "inputSha256": "5881f0a25d4724a058bffa72275a1f166a94a156b3b31095aced87f6bf1027ae",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 196.2000000011176,
+      "inputSha256": "4fa9ccca4240c10e06b0b5d8ded40589f705d9556deebaef46cdab2b2d09ab7d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 194.09999999962747,
+      "inputSha256": "de02d0b2dd35330583d482e94f909c592fb658d96920e4b59b4acf1caf3d3b4b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 194.69999999925494,
+      "inputSha256": "b3d9b4eb77ef2b7dd411af751a43750a92b3f88647a4cff901838c200180a0af",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 273.6000000014901,
+      "inputSha256": "abd99d14208b07233b2a4dc2ba2e99e3eff35591c8aa363f00cb4140b9ff4505",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 302.09999999962747,
+      "inputSha256": "f3e32878a1eb07a2d8ff9aecac6c4aaf70946e930b40cdc7864ff4d63a7730c8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 308.2000000011176,
+      "inputSha256": "d5f5e70944e351e737101e03dd406b7d3f3b13fbe9e8ee10da46ee52c8f1d22d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-temperature-clean",
+      "type": "result",
+      "text": "חימנתי ל-180 מעלות",
+      "ms": 319.30000000074506,
+      "inputSha256": "bbc18dc0bbd2b29dda25b3ad02ec5fc16bb0736a0b3c39fcaa35cc06d84e485b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-temperature-20",
+      "type": "result",
+      "text": "חיממתי ל-180 מעלות.",
+      "ms": 309.30000000074506,
+      "inputSha256": "273fedd552e1c74b83fc84ccca100ac4ab95991c6e1a97ba56e7a0e61c1d83d3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-oven-temperature-10",
+      "type": "result",
+      "text": "סימנתי ל-180 מעלות.",
+      "ms": 311.80000000074506,
+      "inputSha256": "f76fa43a8b52c3ddb1a4c1bd5bed1f8e3fd9e24978679873fc651aa8e3ea062f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 193,
+      "inputSha256": "0f1b0de987ae0565ab8e05e8a5e452c50e3ff7430450f5ffe64fe7575b9d97df",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 264.5,
+      "inputSha256": "a98d57cad0df37a388188c2b0370e6ddab2704862542f785b9b34a6a6d86f14c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בצע",
+      "ms": 192.39999999850988,
+      "inputSha256": "de348ff8f439c860998e42071d105d37c7c2182c0e5779905f86765159860648",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 94.80000000074506,
+      "inputSha256": "00ac358674a05820e30fc2d9f7adf476b85c29a2a145a50315243223a257d7e1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 101.80000000074506,
+      "inputSha256": "ae684cc124d32cb5165c602e6a99d21d039e2f2d34538b729b262e4a307c64b6",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 94.90000000037253,
+      "inputSha256": "2ed4ffba24584d16ef44329e8c5b644721ab559da88d114c28cdd09d2a809fcd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 280.90000000037253,
+      "inputSha256": "3874739b2b0e87aae5b34b39dfd7e87f193bfd1a03168ffe3832a9c71fa5c5ec",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 287.5,
+      "inputSha256": "a01eae44c67563f8de5244c624db56284c8cc9068fed83e461e0f5752c5c2c78",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 283.40000000037253,
+      "inputSha256": "262e9f5da2896e91670b5e52ec8e6d8a7ea35809ffddacef101c508b13be9043",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל.",
+      "ms": 288,
+      "inputSha256": "bf29928b695c9929638eb925e24f112460b41e239faf86216039e3f5ab1457c9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל.",
+      "ms": 310.19999999925494,
+      "inputSha256": "93315e6fc7611e3508a118681519269ec1c06f83288cfc078e60783b7e0b0f77",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואב",
+      "ms": 303.90000000037253,
+      "inputSha256": "9d03bf1da7ca947cbb725c1b3d6170cb67a7b0fbcffab7401db84ad77e30194c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 336.59999999962747,
+      "inputSha256": "9132aca98489b47d9d48abe6e8e03f70f16fe51e7452cf25131ec8f4b7049a58",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 308.80000000074506,
+      "inputSha256": "e0cbd2c30f884342328ef3fe42b38f00ad9013850f154fc2503a3cfb03de73a1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-water-actually-oil-10",
+      "type": "result",
+      "text": "אספתי מים, בעצם לא, זה היה שמן",
+      "ms": 288.2999999988824,
+      "inputSha256": "8cd85a1f98023524a03e477c46edf894f63bfe92fec60ba46c9c5eb0a1e9abe9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 191.90000000037253,
+      "inputSha256": "da71f834557f3064428b1f321790d1b656eb9e328eaa8b434a537555e3e9c5e8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח",
+      "ms": 193.2000000011176,
+      "inputSha256": "5b630bb9ce118a21f61409a9409ad3e529dcbbfd2df0967e9c0ea92916233f08",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "greedy",
+      "id": "piper-noa-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח",
+      "ms": 215.19999999925494,
+      "inputSha256": "71ce229538e1176fd13708f00eb99e2e214598e6b0b259a459afc6fc33e081e2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-6985392582296601957-clean",
+      "type": "result",
+      "text": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן.",
+      "ms": 918.4000000003725,
+      "inputSha256": "54ca1d85bbef63a7f76b333072caff369866ca838c82ab930649cb56f4137754",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-6985392582296601957-noise20",
+      "type": "result",
+      "text": "מאוחר ביום ראשון, נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן.",
+      "ms": 747.6000000014901,
+      "inputSha256": "63375dcbc48db7f9a56770e6fd7192956e485842dcabba6612c5e3049654c8b0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-3471313510990959749-clean",
+      "type": "result",
+      "text": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפאלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+      "ms": 626.3000000007451,
+      "inputSha256": "4191ab659f4507bc895bb250b8f7a5d788107603ea874f629890c1b8456ce63b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-3471313510990959749-noise20",
+      "type": "result",
+      "text": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי",
+      "ms": 711.0999999996275,
+      "inputSha256": "caa4f29eb869b4cbf8aef602ade9b2d2752455c6a2c6cd20cae07f65184bb97b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-15713840504788281974-clean",
+      "type": "result",
+      "text": "גיוץ בגדים מלאכים יכול לעזור להם להתייבש במלונות רבים משבגי עצוקי השגיאות זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "ms": 616.5999999996275,
+      "inputSha256": "14b4a466c41e6365a7d7432a40bfdbdb80b494e991bc8b8df24b6b7846c87a7b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-15713840504788281974-noise20",
+      "type": "result",
+      "text": "ייעוץ בגדים לכם יכול לעזור להם להתייבש בממונות רבים משבגי עצוק, יש גבול זמינים להשאלה, גם אם הם לא נמצאים בחדר.",
+      "ms": 692.0999999996275,
+      "inputSha256": "3152d905a1e6e3c01f597f377c4dd53463fcb8805c23f0dabff7114257413561",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-12451823994695799311-clean",
+      "type": "result",
+      "text": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם.",
+      "ms": 654,
+      "inputSha256": "ee728e01d016656c0a0961154421ff63e9a52ee5c9b4d09c9c043e933793d9b7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-12451823994695799311-noise20",
+      "type": "result",
+      "text": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם.",
+      "ms": 814.2999999988824,
+      "inputSha256": "27effa32bd70b7b969764461495de7790e9797c394d9cd90cee2f1220346ae19",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9476563984789168422-clean",
+      "type": "result",
+      "text": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט.",
+      "ms": 576.5,
+      "inputSha256": "25152b3294360a6a63dcccc5935a5d6ae3992d66e812fa2d9ac8419be8dbd1d4",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9476563984789168422-noise20",
+      "type": "result",
+      "text": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט.",
+      "ms": 631.5999999996275,
+      "inputSha256": "4a385f748081d11d38df48e8a2f13c70f67f1a2ab50c681cba28bf8eb2020af1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-8790580890171065686-clean",
+      "type": "result",
+      "text": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים.",
+      "ms": 550.2999999988824,
+      "inputSha256": "72a90913f8d7e97a33d9a84ffba64953aad484ebcd3cf25eea02b11481797ae1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-8790580890171065686-noise20",
+      "type": "result",
+      "text": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים.",
+      "ms": 535.3000000007451,
+      "inputSha256": "4710f3341aabcae3626dadce0adf016104e4c583c4666e6c623bd01dc5595bc0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-11086736344915854194-clean",
+      "type": "result",
+      "text": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך.",
+      "ms": 437.40000000037253,
+      "inputSha256": "1f1365d2559c677bf428a3eb8f24a2fbd776d98b0b626fff1d832bf0f77f3484",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-11086736344915854194-noise20",
+      "type": "result",
+      "text": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך.",
+      "ms": 441.7999999988824,
+      "inputSha256": "d11041443b645194de50e6706e781abab103bcaf0fbf8eda19ad5410cd69f79a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9859725698255055164-clean",
+      "type": "result",
+      "text": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+      "ms": 780.4000000003725,
+      "inputSha256": "05c6c3a52bedcd949e36677b834fb41b76f5202a80e26f042dd6fba3db03fd61",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9859725698255055164-noise20",
+      "type": "result",
+      "text": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+      "ms": 753.1999999992549,
+      "inputSha256": "ca9c77e9b333da0ff7dfe74354fd972b6508063259756b2bb12a75448f295e35",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-14908441627362672994-clean",
+      "type": "result",
+      "text": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן.",
+      "ms": 895.3000000007451,
+      "inputSha256": "dddbb8eab69c4097d222248fb15ecb84b5454e352d25696ae12f496630ae3188",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-14908441627362672994-noise20",
+      "type": "result",
+      "text": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן.",
+      "ms": 865.7999999988824,
+      "inputSha256": "81830d305e328050d6dac785ca25c5263a49e317db5ba067a40902236880fcc3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-15011168956922080339-clean",
+      "type": "result",
+      "text": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים שלה מיתיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה.",
+      "ms": 1096.4000000003725,
+      "inputSha256": "96a36d49b003f968d70e57a62997da137e12353556d03bebea1be92c11b32286",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-15011168956922080339-noise20",
+      "type": "result",
+      "text": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מתהם לשעבר. אחד של הספקטרום מנסה להישאר אחד מהחבר'ה.",
+      "ms": 1053.0999999996275,
+      "inputSha256": "d849550d2737b76136bcb3545d7750f94341a5dafe1d0f4737c55a55a2583f8d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-17094305295227949694-clean",
+      "type": "result",
+      "text": "הוא ביטלו את האותיות הנוצרות בסיבוב ההופעות שלהם",
+      "ms": 340.7000000011176,
+      "inputSha256": "cb824ee490e5e28a29da76268d70cf7c2477dfe6c411fa4c66d36f75024ce23f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-17094305295227949694-noise20",
+      "type": "result",
+      "text": "הוא היה לי, ביטלו את האותיות הנוצרות בסיבוב רופאות שלהם.",
+      "ms": 308.80000000074506,
+      "inputSha256": "7ce4d01a0763d466a4f79e88b16cbee6cde1b1095f25e287819e10d47c1ecdf0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9677910411599000791-clean",
+      "type": "result",
+      "text": "קומו 53, החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "ms": 630.2999999988824,
+      "inputSha256": "401180db6b955ed5514097298a184e8606b52ad2e1897940f29c594a08dddf1c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-9677910411599000791-noise20",
+      "type": "result",
+      "text": "קומו 53, החל את תפקידו כמושל מוקדם יותר השנה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "ms": 627.9000000003725,
+      "inputSha256": "cc9eac168b75ce6bf5e841983ce0e212cc423a8d76095a65daeafd29fede5786",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "silence",
+      "type": "result",
+      "text": "",
+      "ms": 326.2999999988824,
+      "inputSha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "noise",
+      "type": "result",
+      "text": "",
+      "ms": 322.30000000074506,
+      "inputSha256": "af51185d9db3bf8f1d5b1a195345e9dc7bac4c304ad3b5448d0590ccc46aaf2c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 222.5,
+      "inputSha256": "fe5c241e6f5be5784f4d9e75dee53dd41f143806d60a9ca2e758b26619874eca",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 207.09999999962747,
+      "inputSha256": "c8e5483367523646a2282f5b9879dfc020f433d55b3c146b2cfa9b96a0594361",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו",
+      "ms": 208.09999999962747,
+      "inputSha256": "36a0b6a11388f636902fcba0cb185a7ea488518f8d9749ab14e732cb212644d2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא עירובבתי.",
+      "ms": 420.09999999962747,
+      "inputSha256": "108abcf378c4aa3e2f747b85e2db71ed6eb48b9f46032a9b3fcc35267454443f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי.",
+      "ms": 325.40000000037253,
+      "inputSha256": "956d887abbacdcd9d9a97d19dab99ea6d21222e3758672bbb43c90490882d9b2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי.",
+      "ms": 321.69999999925494,
+      "inputSha256": "8cfbaafc232aa63efb9e1cfbf73b0428b8a0d9cb7bab513b1a5dcfbd09d1fb56",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 209.5,
+      "inputSha256": "7e9016d2030d6359ca4d571a70b69649d45bdc3f5b12e3c08653e1703a22563f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 204.59999999962747,
+      "inputSha256": "5c36e0c75b7c6732cb7ebc9e12d8a5b5bc30b8d6a0da9daa5d3a597493bcf659",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 217.90000000037253,
+      "inputSha256": "0080b565a5dffa745882b29e34105329a971acd7545bcb3241d48313a38d0de0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-mixed-half-clean",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 209.7000000011176,
+      "inputSha256": "28b38e8c9fdf8666af88c2b525083451137374aa359837572fbc9ea655177ef6",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-mixed-half-20",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 203.90000000037253,
+      "inputSha256": "cb40ca74e0903cf360bf8fab4a8721e70e61e651cf2fa0f2901b610c618fdce7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-mixed-half-10",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 218.40000000037253,
+      "inputSha256": "312d2d7159dab7e32d0e57666c63547083c215a78ac931a9f0fe9096aa315529",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-maybe-water-clean",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 342.09999999962747,
+      "inputSha256": "771578b25a0ec923d5ba971059e6518770eb4cb19cf2db42334619c9371a3a57",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-maybe-water-20",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 332.5,
+      "inputSha256": "a2ca9d6ed3e4e443a26ce8dccdb46ac16267d3c0b444e0c5b62fd5e45f6accbd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-maybe-water-10",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 318.90000000037253,
+      "inputSha256": "20d8cdf0f72d6a17f25ae02640bd9388dbae0bc19efa2a7374929ba1b87c326f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 214.5,
+      "inputSha256": "f90ad6f1969892e082ea026edea27dd6d79809055084a23a95d91caf3fd95502",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 240.2000000011176,
+      "inputSha256": "6158e728f92b198607e9a2bd3e70cfce9474f2ee667ce6ffe1b25a94e8ab0084",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התלמיד",
+      "ms": 225.59999999962747,
+      "inputSha256": "37d987d7b7d1e26a0ef25f08047df74ca2f4ab62711c85d67f1d15267ed5dc88",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "ms": 433.5,
+      "inputSha256": "e0aeafbd3e06e61cb2ce2d649ee8eaf3545983c150c043dddd1aa6d2c28a4812",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי קפות שמן וחצי כוס מים",
+      "ms": 337.80000000074506,
+      "inputSha256": "e64970c8123ba18e1deb93af53808fbdbf0790705a05c1cf361dce469783e835",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "ms": 340.09999999962747,
+      "inputSha256": "03be0bab6275419d3c3f1a9e40d4443d45fd466fb53a90d49fbdbfb32b07b4d7",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 228.5,
+      "inputSha256": "3a3718c19ce95e092c2d47ff52d9c2fef8490998c1d549cc12ddbc8aa4038179",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 319,
+      "inputSha256": "895d9afe7a675d8abccbe1b7a7214883b875d805682f1f78504f9d50cca61c01",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 208,
+      "inputSha256": "fb2161e705b89d58840d7075cdc2a98619540b72b96269be5fabd1474487c698",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 316.1000000014901,
+      "inputSha256": "249f324d7e73aeffad9b7bdc9d0efb1bd8f04f6737ee16849dba4afacf706749",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 335.5,
+      "inputSha256": "6b4f82f1f919f3eaed1963b8c504df1b8e31ee7bb524041bde1acf1e453bb05d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 312,
+      "inputSha256": "5c55f23825438e7ac0aed0cf34231fbc15a9c1af9c7aba3d0622a184fd352780",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-temperature-clean",
+      "type": "result",
+      "text": "חיממתי ל-180 מעלות.",
+      "ms": 336.7999999988824,
+      "inputSha256": "6b5037a50dbeeec1d7cbcda70ba6d666160018f19e9875561553c3bd9826dfbd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-temperature-20",
+      "type": "result",
+      "text": "סימממתי ל-180 מעלות.",
+      "ms": 305,
+      "inputSha256": "e43cc600028c1379ccee744379c0073d70656773f2cc7648eea47878bac81f1f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-oven-temperature-10",
+      "type": "result",
+      "text": "איממתי ל-180 מעלות.",
+      "ms": 333.30000000074506,
+      "inputSha256": "496b30175f3e894284aed3a994c7fc4b7627b41b239bb0058d0571f12f1f9872",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 226.90000000037253,
+      "inputSha256": "d7c539a5b4d4aaa34773f7ddb939b7ac40bfe17403ff16d4810b1d1c5074d6fc",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 245.59999999962747,
+      "inputSha256": "0298301d3650d1cd0b26fb3fb6dc561c04fc2e4d83b44cd08f9bbfd6b3f07733",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בקשה",
+      "ms": 221.10000000149012,
+      "inputSha256": "4587bc2db2f9006792018db2ee28742d07760c61acbaf8ab31f5bb113e540b43",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 203.10000000149012,
+      "inputSha256": "8ae32419edc27ae4210afbf0bd3c5b0b34a2931e38ab68617958cfe7383b840c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 200.7999999988824,
+      "inputSha256": "f127eee6d3fd506d8cfd8fbc344c541eef16e88eb414e36e0b1731240b27aa39",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 204.59999999962747,
+      "inputSha256": "df8d868fd2402459499142da36985569279c68a5242afebf8b7d86ba14683086",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 326.40000000037253,
+      "inputSha256": "212eea010c4be96d94a926e87e819c827a9616c83eea828692c7df4dc83b7c6e",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 312.80000000074506,
+      "inputSha256": "6ed51050d608ab9dc04dba7b561c5b6b3f5a34299207d2936210e36e1b30e63b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.",
+      "ms": 298,
+      "inputSha256": "54803f14452fd0d3da8d6bc23ce461636f9bf7f5fa3b8fc30fada6f5779eafa2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים. אני רק שואל",
+      "ms": 329.40000000037253,
+      "inputSha256": "3afeda9fd293e29f501a5d5403bd7d9b6e59176698a9de2704382424fbc6febf",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 320.09999999962747,
+      "inputSha256": "50603ae53395d540c71b0e56c34dce5748594deaac234260d5ddfa3ce1766f4c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 318.40000000037253,
+      "inputSha256": "9168cb546f43f4b3dbecd565e63ec6c09da4f9ce82ede05a7dfe55bd8b960556",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים. בעצם לא, זה היה שמן",
+      "ms": 318.09999999962747,
+      "inputSha256": "eb7d1097414022ba2f0b7ad2b0407fdf31453bafee5e7ac0f0be4366510d8751",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 309.2999999988824,
+      "inputSha256": "5af711888eb7f3dd193926cbc05a830e24adfc0454488253d4fe4ac1cb0790c0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-water-actually-oil-10",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 315.69999999925494,
+      "inputSha256": "6650cd4ae8adf961b651e1175c34bdc0bee234d5ea8856af0bd57cc0a026f33a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 329.59999999962747,
+      "inputSha256": "5b85178560df7b01ddc67b4be773b48502acca37328c10a86a49fbc48ffd5edd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 337.59999999962747,
+      "inputSha256": "2dc724a3b76c7bc4a1d5b759d282f3453a524f5106c4ff979dbd1912f820ea65",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-omer-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 338.09999999962747,
+      "inputSha256": "6a293fad89d53b8f71a5b3a297a70800d890e383b296cf8ecb069228ec54ab3d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 226.5,
+      "inputSha256": "5f36ab1b5d0ae43701c857c441f4ef0e16393a8a3f9ad5d7f85f6933c8e56cde",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 243.90000000037253,
+      "inputSha256": "77873338c3a95307f2a80d147bbd5b58b1c9e019a16dba3060ff7c4a6296b669",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 219.80000000074506,
+      "inputSha256": "b567f2b6dc70b4d159eca51d5e9484b874790a4b3cbd6f99fa721eabae71660b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא הבבתי",
+      "ms": 229,
+      "inputSha256": "97df24b0788544549ca230f97c1f9457607bfbfc59816bd33c3529c43528abb5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא אהבתי",
+      "ms": 231.69999999925494,
+      "inputSha256": "52a52506516516d281fb84d6542ddcaccf9c36701199a19cc30af22e5f6517ef",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים אבל עוד לא העברתי",
+      "ms": 228.5,
+      "inputSha256": "966820c88561a90fb9aaad5ac85815f3634804b0c183b305414d589868a11d9d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח.",
+      "ms": 356.5,
+      "inputSha256": "796b9ad1d072b68246449871298d727d7c9a62c405805c4e748258f4a9d28093",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 319.09999999962747,
+      "inputSha256": "ad5e78f1689e50f2990eb0a11f1795336038a28ffd5c1bd2cae5daf5f68cf68c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח.",
+      "ms": 338.19999999925494,
+      "inputSha256": "a1d7363b8c129df7fc8a6cbab64efbbfe80b279bea3ec302641f59a49690eee8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-mixed-half-clean",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 214.7000000011176,
+      "inputSha256": "2c1353f9f73788aaf1f42377d040d73ed073c8bc2df590d0a7160ed571fcc417",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-mixed-half-20",
+      "type": "result",
+      "text": "ערבבתי רק חצי",
+      "ms": 206.19999999925494,
+      "inputSha256": "31b0566fc8c6181103b250a40ffcaafbb36dfe5ce0b849af35bde92aeb032716",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-mixed-half-10",
+      "type": "result",
+      "text": "ערבבתי רק חפץ.",
+      "ms": 285.09999999962747,
+      "inputSha256": "b1b8f71fb58456976d0d60bc66828808803cea344c92f0cd2490a7814dacec4a",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-maybe-water-clean",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 378.59999999962747,
+      "inputSha256": "ccc45276c03344770048fa5890338f608ad3450fec06fb93ea5fa524004272d0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-maybe-water-20",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 339.80000000074506,
+      "inputSha256": "95e81229fb561ca9e5474973eabedb495e20f656d37a13e1f16fedb423318a79",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-maybe-water-10",
+      "type": "result",
+      "text": "אולי הוספתי מים, אני לא בטוח.",
+      "ms": 334.69999999925494,
+      "inputSha256": "5463f89e64c37822737785009237aa5b70d1e33918dd45629d9ac81c8472f904",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 250.5,
+      "inputSha256": "12b301cf411eb823ff228d62fe39b46cd6cf1d7eab1aef6f5270105ed2ae24d9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 221.59999999962747,
+      "inputSha256": "1fc5befea3059511c0684c48113730fdce352fe4a36811c366c0a1c3a00641c0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 220.40000000037253,
+      "inputSha256": "ccb9066a4dd2d790e4df1c65a2b6895d1a509df0078ea7fc3e10a36d9a312da0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "ms": 404.5,
+      "inputSha256": "cbfd5709654243fca9409203cc6197178636cf3b8d43d34a26fb1b50c40c8fa0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "ms": 368.19999999925494,
+      "inputSha256": "2792c544023af30602e069a0d10af00b21dfb1bc7ddfb18719d03e8945c80e58",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "ms": 334.1000000014901,
+      "inputSha256": "4eb536dea0d7105e4e910a4d933876a89dec4767e6c039ef091b833b987cf004",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 217.69999999925494,
+      "inputSha256": "0939e09bc9980a8eeb573dfc5f5d38475ca1b7dabfe9981f22578782ac6399bc",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 233.2999999988824,
+      "inputSha256": "cdacc075ca8955e905fde256e47514525a21c857f8fcdbd4cf02a1a62a303d35",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 216.59999999962747,
+      "inputSha256": "d54db6864c6ad5e210c8fbeed649074f6e2a2687aa0d7f52117891357e65c719",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 366.5,
+      "inputSha256": "a057670416b444570eef285ba4f679643a54816bcd88664faec91139e6c10022",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 320.2999999988824,
+      "inputSha256": "cc628682bb69257548f494f0d52785a052de8888c257d7c37ba26bc67862682f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר",
+      "ms": 369.40000000037253,
+      "inputSha256": "c2d636f84aae3b645e3c2ab5b2833fa66fb5cfe5ee603f724b23c5deb7aa0f45",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-temperature-clean",
+      "type": "result",
+      "text": "חיממתי ל-180 מעלות.",
+      "ms": 333.90000000037253,
+      "inputSha256": "37282285b600f0a9db70cc98bd816e4fd10e85eb8bd027e27acdd4fdac17f1a3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-temperature-20",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות.",
+      "ms": 424.30000000074506,
+      "inputSha256": "f73b67f5b28858faa82b50a8f8d27a57efab198dfd22214a098ecdd1af5c7115",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-oven-temperature-10",
+      "type": "result",
+      "text": "סיממתי ל-180 מעלות.",
+      "ms": 428.69999999925494,
+      "inputSha256": "070f624cba01d07254a7648cae39bb0497760f1a129928b1e251c46353c2a883",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 240.90000000037253,
+      "inputSha256": "20877799245c2dc4843a51458f31d93db36d2886a71bdc4754d1f857d28bade0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 255.09999999962747,
+      "inputSha256": "d9e739535fbc8024f52dafa603e66a322d6e747c2870c23c9d023d0318866575",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בצד",
+      "ms": 226.80000000074506,
+      "inputSha256": "44eb33c47bbd1f6803ce6324e6a1186a09a9d329c4b28cbbe3e0739b656bc3f4",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 239.80000000074506,
+      "inputSha256": "73aae847cfa3cd3a0682ea07a79fd174d1fe92a8b441b3ca3cebf1459dd47e52",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 215.90000000037253,
+      "inputSha256": "a6b1de29d008fcac31644612c3bfbc54f080910fc39274082a10826f075048d3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה.",
+      "ms": 213.59999999962747,
+      "inputSha256": "7d180bdd55d5f932c002759c2b77245bfad9a9d96b7e300ec34b607c373bdf21",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 360,
+      "inputSha256": "6bb1b4716b0eb9455d1104e97914081fc71d45b2369fa26f61ea1b05c45bbdf2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 357.80000000074506,
+      "inputSha256": "fe093d721e23d49821115865b750307b8ecbc99ab3304645f5fd4d96a5b70e6b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 319.90000000037253,
+      "inputSha256": "c7ca01ee9fcf18348cf45106377379384aff8b427e6b161fd20485b370c6a7a2",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 323.69999999925494,
+      "inputSha256": "b832a2dc556a7a876c584db2e4f2bd09364cd676777282b373fa9ed0bbfad1b9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 306.7000000011176,
+      "inputSha256": "3e6c8026d9df2b67b7597667e9d33c8011f098726606fb74dcedd131c0ed4aef",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל",
+      "ms": 301.2999999988824,
+      "inputSha256": "e419c3eade6654d171204dc04165458fb713f231d050fc86f539dfac7ac9ff00",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 324.40000000037253,
+      "inputSha256": "44643957128e5b37b5e270f3064399948561e8036739c7482a61334412a67271",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 325.09999999962747,
+      "inputSha256": "41afb0e4831e2de9c8899985b31f51038c9e9bc5f760f1d3ec7f4067b5d25bf5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-water-actually-oil-10",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 352,
+      "inputSha256": "09371233feab9e152a6e46cd8002c8d8d6895b09d4ad68f23d63c3247fac5cd5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 319.59999999962747,
+      "inputSha256": "604365e35d21ae9888fc80c60d074ed1a57a169ec28f132767eead98c1b8b841",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 317.2000000011176,
+      "inputSha256": "371c425bae2ffc0da290d5120042fa39047896f160cf2ac3e79a9563a879a5fd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "pocket-liat-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 304.19999999925494,
+      "inputSha256": "dcb958018ff5b94d9fd98c9127e739371e2bb84eac4793d9f81556ea28aefe95",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-next-clean",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 214.40000000037253,
+      "inputSha256": "a46c88471a447c72d14620c4f6e8054f9f437b091bbf0e4529ce60c1b1d532c3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-next-20",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 213.60000000149012,
+      "inputSha256": "8905c22672811665a2c30ccb3c172de4a0a955b83518428ea9ed9f9040980b6b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-next-10",
+      "type": "result",
+      "text": "שמתי קמח, מה עכשיו?",
+      "ms": 214.5,
+      "inputSha256": "ca4d15629a6a74d04022292b9ed0125077df6df79059b90083e25e603c37c23d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-not-mixed-clean",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי",
+      "ms": 216.7999999988824,
+      "inputSha256": "5a76872abb187b27d61674becf1577b867f45275967164f9c50719897dd03db1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-not-mixed-20",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא ערבבתי",
+      "ms": 218.09999999962747,
+      "inputSha256": "25ae659f39bc3c8a575ae547be9c35a675ffcb51475f03d144c41d4813640187",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-not-mixed-10",
+      "type": "result",
+      "text": "הוספתי מים, אבל עוד לא הרבבתי",
+      "ms": 212,
+      "inputSha256": "883a06b46fd2089629dabe90a71d280bc7ee88e970107b80b1d737b3565797d5",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-correct-flour-clean",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 212.5,
+      "inputSha256": "32c596fb91e5fa1080358597a4563830ee714786800e0ffc9eb635104a87f9e3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-correct-flour-20",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 213.80000000074506,
+      "inputSha256": "90cf0bf24dfae31e57389bbd610e627e2601634d37a301f05acbf16033edd4ba",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-correct-flour-10",
+      "type": "result",
+      "text": "תיקון, לא שמתי קמח",
+      "ms": 227.69999999925494,
+      "inputSha256": "2e1df66ae7bd82d0244ac2653cd11476aaaffd2cd60041080e63ac60648b6e51",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-mixed-half-clean",
+      "type": "result",
+      "text": "יאובבתי רק חצי",
+      "ms": 212,
+      "inputSha256": "fefcae2116d304224104f7ccd02f686a2681e9abac9a6d0fef01a62343211da3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-mixed-half-20",
+      "type": "result",
+      "text": "היא הובבתי רק חצי",
+      "ms": 237.7999999988824,
+      "inputSha256": "47f2bf30ac5bbfde04004795f8c5f8f35bc33f46775124fa56c0bd94d6ce8fc1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-mixed-half-10",
+      "type": "result",
+      "text": "היא אובבתי רק חסד",
+      "ms": 218.09999999962747,
+      "inputSha256": "c7949dd14d66510e65d5cecb391d7b3257647a0e2cfed4e72ff60a753993573c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-maybe-water-clean",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח",
+      "ms": 214,
+      "inputSha256": "b01b9a941c9a13187b3832af894b77d2087e962cc96862242b7d76bfb8f81053",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-maybe-water-20",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח.",
+      "ms": 209.5,
+      "inputSha256": "102e8ee37c1d54aeeb308d7921ae1a4a2f8d8f6792bff5663d739f37704e5ef0",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-maybe-water-10",
+      "type": "result",
+      "text": "אולי אספתי מים, אני לא בטוח",
+      "ms": 223.69999999925494,
+      "inputSha256": "f09f32013d953218ed5478396a7aea71df5063db7ca559d6ff9633a1870fb73c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-not-yet-clean",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 219.59999999962747,
+      "inputSha256": "500ea555932c5d065acc0b786b2ee78f95d791fcf63e3185fd762dd9257c4899",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-not-yet-20",
+      "type": "result",
+      "text": "עוד לא הדלקתי את התנור",
+      "ms": 207.69999999925494,
+      "inputSha256": "b0f65940174f633419e33c8f3eaf245dccfb74f1d5a5badd338cea46033c0d00",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-not-yet-10",
+      "type": "result",
+      "text": "עוד לא הדלקתי את הצלום.",
+      "ms": 224.7999999988824,
+      "inputSha256": "2a3523c9035936cb612790622f75918c52ea5ffbdf90bea932cfbc2ba731d412",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oil-water-amounts-clean",
+      "type": "result",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "ms": 321.19999999925494,
+      "inputSha256": "447dec112a989c32e8de51c7d752d110f5c2a54564f252dcd48e31b27bd91110",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oil-water-amounts-20",
+      "type": "result",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים.",
+      "ms": 330.09999999962747,
+      "inputSha256": "c029b218a6d53beaea73b377dfdc2ab15bb01ad064ed5a1ff931ce1010ec0098",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oil-water-amounts-10",
+      "type": "result",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים.",
+      "ms": 336.7999999988824,
+      "inputSha256": "5881f0a25d4724a058bffa72275a1f166a94a156b3b31095aced87f6bf1027ae",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-missed-clean",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 228.80000000074506,
+      "inputSha256": "4fa9ccca4240c10e06b0b5d8ded40589f705d9556deebaef46cdab2b2d09ab7d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-missed-20",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 219.19999999925494,
+      "inputSha256": "de02d0b2dd35330583d482e94f909c592fb658d96920e4b59b4acf1caf3d3b4b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-missed-10",
+      "type": "result",
+      "text": "על איזה שלב דילגתי",
+      "ms": 208.09999999962747,
+      "inputSha256": "b3d9b4eb77ef2b7dd411af751a43750a92b3f88647a4cff901838c200180a0af",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-salt-sugar-clean",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 335.40000000037253,
+      "inputSha256": "abd99d14208b07233b2a4dc2ba2e99e3eff35591c8aa363f00cb4140b9ff4505",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-salt-sugar-20",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 311.5,
+      "inputSha256": "f3e32878a1eb07a2d8ff9aecac6c4aaf70946e930b40cdc7864ff4d63a7730c8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-salt-sugar-10",
+      "type": "result",
+      "text": "לא הוספתי מלח, הוספתי סוכר.",
+      "ms": 312,
+      "inputSha256": "d5f5e70944e351e737101e03dd406b7d3f3b13fbe9e8ee10da46ee52c8f1d22d",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-temperature-clean",
+      "type": "result",
+      "text": "חימנתי ל-180 מעלות.",
+      "ms": 320.19999999925494,
+      "inputSha256": "bbc18dc0bbd2b29dda25b3ad02ec5fc16bb0736a0b3c39fcaa35cc06d84e485b",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-temperature-20",
+      "type": "result",
+      "text": "חיממתי ל-180 מעלות.",
+      "ms": 337,
+      "inputSha256": "273fedd552e1c74b83fc84ccca100ac4ab95991c6e1a97ba56e7a0e61c1d83d3",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-oven-temperature-10",
+      "type": "result",
+      "text": "סימנתי ל-180 מעלות.",
+      "ms": 340.19999999925494,
+      "inputSha256": "f76fa43a8b52c3ddb1a4c1bd5bed1f8e3fd9e24978679873fc651aa8e3ea062f",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-plan-egg-clean",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 212,
+      "inputSha256": "0f1b0de987ae0565ab8e05e8a5e452c50e3ff7430450f5ffe64fe7575b9d97df",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-plan-egg-20",
+      "type": "result",
+      "text": "אני מתכנן להוסיף ביצה",
+      "ms": 217.80000000074506,
+      "inputSha256": "a98d57cad0df37a388188c2b0370e6ddab2704862542f785b9b34a6a6d86f14c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-plan-egg-10",
+      "type": "result",
+      "text": "אני מתכנן להוסיף בצע",
+      "ms": 227.30000000074506,
+      "inputSha256": "de348ff8f439c860998e42071d105d37c7c2182c0e5779905f86765159860648",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-ambiguous-clean",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 107.30000000074506,
+      "inputSha256": "00ac358674a05820e30fc2d9f7adf476b85c29a2a145a50315243223a257d7e1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-ambiguous-20",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 107.60000000149012,
+      "inputSha256": "ae684cc124d32cb5165c602e6a99d21d039e2f2d34538b729b262e4a307c64b6",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-ambiguous-10",
+      "type": "result",
+      "text": "עשיתי את זה",
+      "ms": 115.90000000037253,
+      "inputSha256": "2ed4ffba24584d16ef44329e8c5b644721ab559da88d114c28cdd09d2a809fcd",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-three-quarters-clean",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 328.69999999925494,
+      "inputSha256": "3874739b2b0e87aae5b34b39dfd7e87f193bfd1a03168ffe3832a9c71fa5c5ec",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-three-quarters-20",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 324.40000000037253,
+      "inputSha256": "a01eae44c67563f8de5244c624db56284c8cc9068fed83e461e0f5752c5c2c78",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-three-quarters-10",
+      "type": "result",
+      "text": "לפי המתכון צריך להוסיף שלושת רבעי כוס קמח",
+      "ms": 307.30000000074506,
+      "inputSha256": "262e9f5da2896e91670b5e52ec8e6d8a7ea35809ffddacef101c508b13be9043",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-only-asking-clean",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל.",
+      "ms": 336.69999999925494,
+      "inputSha256": "bf29928b695c9929638eb925e24f112460b41e239faf86216039e3f5ab1457c9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-only-asking-20",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואל.",
+      "ms": 326.30000000074506,
+      "inputSha256": "93315e6fc7611e3508a118681519269ec1c06f83288cfc078e60783b7e0b0f77",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-only-asking-10",
+      "type": "result",
+      "text": "לא צריך להוסיף מים, אני רק שואב.",
+      "ms": 307.59999999962747,
+      "inputSha256": "9d03bf1da7ca947cbb725c1b3d6170cb67a7b0fbcffab7401db84ad77e30194c",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-actually-oil-clean",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 316.59999999962747,
+      "inputSha256": "9132aca98489b47d9d48abe6e8e03f70f16fe51e7452cf25131ec8f4b7049a58",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-actually-oil-20",
+      "type": "result",
+      "text": "הוספתי מים, בעצם לא, זה היה שמן",
+      "ms": 348.90000000037253,
+      "inputSha256": "e0cbd2c30f884342328ef3fe42b38f00ad9013850f154fc2503a3cfb03de73a1",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-water-actually-oil-10",
+      "type": "result",
+      "text": "אספתי מים, בעצם לא, זה היה שמן",
+      "ms": 326.40000000037253,
+      "inputSha256": "8cd85a1f98023524a03e477c46edf894f63bfe92fec60ba46c9c5eb0a1e9abe9",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-grams-clean",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח.",
+      "ms": 214.69999999925494,
+      "inputSha256": "da71f834557f3064428b1f321790d1b656eb9e328eaa8b434a537555e3e9c5e8",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-grams-20",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח",
+      "ms": 231.09999999962747,
+      "inputSha256": "5b630bb9ce118a21f61409a9409ad3e529dcbbfd2df0967e9c0ea92916233f08",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "piper-noa-flour-grams-10",
+      "type": "result",
+      "text": "שמתי 250 גרם קמח",
+      "ms": 211.59999999962747,
+      "inputSha256": "71ce229538e1176fd13708f00eb99e2e214598e6b0b259a459afc6fc33e081e2",
+      "wasmHeapBytes": 536870912
+    }
+  ],
+  "loads": [
+    {
+      "type": "ready",
+      "arm": "greedy",
+      "ms": 2616.5999999996275,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "greedy_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    },
+    {
+      "type": "ready",
+      "arm": "beam4",
+      "ms": 1703.5999999996275,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "modified_beam_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    }
+  ],
+  "memory": [
+    {
+      "utc": "2026-11-20T13:01:20.324Z",
+      "phase": "greedy-load",
+      "sumRssMiB": 778.59375,
+      "pssMiB": 420.9638671875
+    },
+    {
+      "utc": "2026-11-20T13:01:21.316Z",
+      "phase": "greedy-load",
+      "sumRssMiB": 898.19921875,
+      "pssMiB": 595.9873046875
+    },
+    {
+      "utc": "2026-11-20T13:01:22.893Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 901.40234375,
+      "pssMiB": 601.5185546875
+    },
+    {
+      "utc": "2026-11-20T13:01:23.888Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1028.2734375,
+      "pssMiB": 720.21875
+    },
+    {
+      "utc": "2026-11-20T13:01:24.892Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1018.29296875,
+      "pssMiB": 719.6787109375
+    },
+    {
+      "utc": "2026-11-20T13:01:25.892Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 969.87109375,
+      "pssMiB": 668.49609375
+    },
+    {
+      "utc": "2026-11-20T13:01:26.899Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 968.828125,
+      "pssMiB": 667.423828125
+    },
+    {
+      "utc": "2026-11-20T13:01:27.915Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 905.11328125,
+      "pssMiB": 603.73828125
+    },
+    {
+      "utc": "2026-11-20T13:01:28.968Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 900.1796875,
+      "pssMiB": 598.5830078125
+    },
+    {
+      "utc": "2026-11-20T13:01:29.996Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 899.0859375,
+      "pssMiB": 597.4228515625
+    },
+    {
+      "utc": "2026-11-20T13:01:31.042Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 910.40234375,
+      "pssMiB": 608.7392578125
+    },
+    {
+      "utc": "2026-11-20T13:01:32.049Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 922.28515625,
+      "pssMiB": 620.6220703125
+    },
+    {
+      "utc": "2026-11-20T13:01:33.043Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 930.9140625,
+      "pssMiB": 631.4736328125
+    },
+    {
+      "utc": "2026-11-20T13:01:34.051Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 928.43359375,
+      "pssMiB": 626.7666015625
+    },
+    {
+      "utc": "2026-11-20T13:01:35.042Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 933.4765625,
+      "pssMiB": 631.8095703125
+    },
+    {
+      "utc": "2026-11-20T13:01:36.216Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 930.58203125,
+      "pssMiB": 628.9150390625
+    },
+    {
+      "utc": "2026-11-20T13:01:37.209Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 945.69921875,
+      "pssMiB": 644.0322265625
+    },
+    {
+      "utc": "2026-11-20T13:01:38.206Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 950.8125,
+      "pssMiB": 649.1455078125
+    },
+    {
+      "utc": "2026-11-20T13:01:39.523Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 961.58203125,
+      "pssMiB": 659.9150390625
+    },
+    {
+      "utc": "2026-11-20T13:01:40.949Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 975.8984375,
+      "pssMiB": 674.2236328125
+    },
+    {
+      "utc": "2026-11-20T13:01:42.420Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 983.32421875,
+      "pssMiB": 681.6455078125
+    },
+    {
+      "utc": "2026-11-20T13:01:43.430Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1000.95703125,
+      "pssMiB": 699.3447265625
+    },
+    {
+      "utc": "2026-11-20T13:01:44.440Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1015.54296875,
+      "pssMiB": 713.8642578125
+    },
+    {
+      "utc": "2026-11-20T13:01:45.428Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 995.421875,
+      "pssMiB": 696.9501953125
+    },
+    {
+      "utc": "2026-11-20T13:01:46.589Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 999.76953125,
+      "pssMiB": 698.0908203125
+    },
+    {
+      "utc": "2026-11-20T13:01:47.629Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 999.45703125,
+      "pssMiB": 697.7783203125
+    },
+    {
+      "utc": "2026-11-20T13:01:48.631Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1004.71875,
+      "pssMiB": 703.0400390625
+    },
+    {
+      "utc": "2026-11-20T13:01:49.694Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1003.53515625,
+      "pssMiB": 701.4619140625
+    },
+    {
+      "utc": "2026-11-20T13:01:50.692Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1016.6953125,
+      "pssMiB": 713.9619140625
+    },
+    {
+      "utc": "2026-11-20T13:01:51.726Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1024.3984375,
+      "pssMiB": 721.6650390625
+    },
+    {
+      "utc": "2026-11-20T13:01:52.720Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1038.9609375,
+      "pssMiB": 735.8994140625
+    },
+    {
+      "utc": "2026-11-20T13:01:53.720Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 997.28515625,
+      "pssMiB": 694.5400390625
+    },
+    {
+      "utc": "2026-11-20T13:01:54.720Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 996.77734375,
+      "pssMiB": 694.0322265625
+    },
+    {
+      "utc": "2026-11-20T13:01:55.720Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1000.1328125,
+      "pssMiB": 697.3876953125
+    },
+    {
+      "utc": "2026-11-20T13:01:56.870Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1006.2734375,
+      "pssMiB": 706.2900390625
+    },
+    {
+      "utc": "2026-11-20T13:01:57.860Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1017.2578125,
+      "pssMiB": 714.5048828125
+    },
+    {
+      "utc": "2026-11-20T13:01:58.854Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1018.28515625,
+      "pssMiB": 714.4697265625
+    },
+    {
+      "utc": "2026-11-20T13:01:59.968Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1020.80078125,
+      "pssMiB": 718.7041015625
+    },
+    {
+      "utc": "2026-11-20T13:02:01.180Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1028.359375,
+      "pssMiB": 725.6064453125
+    },
+    {
+      "utc": "2026-11-20T13:02:02.181Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1036.55078125,
+      "pssMiB": 734.6142578125
+    },
+    {
+      "utc": "2026-11-20T13:02:03.174Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1032.95703125,
+      "pssMiB": 730.9619140625
+    },
+    {
+      "utc": "2026-11-20T13:02:04.179Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1045.56640625,
+      "pssMiB": 739.0751953125
+    },
+    {
+      "utc": "2026-11-20T13:02:05.220Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1045.8671875,
+      "pssMiB": 743.1142578125
+    },
+    {
+      "utc": "2026-11-20T13:02:06.224Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1053.0859375,
+      "pssMiB": 750.4580078125
+    },
+    {
+      "utc": "2026-11-20T13:02:07.225Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1059.265625,
+      "pssMiB": 756.5126953125
+    },
+    {
+      "utc": "2026-11-20T13:02:08.224Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1068.4375,
+      "pssMiB": 765.6845703125
+    },
+    {
+      "utc": "2026-11-20T13:02:09.227Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1065.32421875,
+      "pssMiB": 762.5712890625
+    },
+    {
+      "utc": "2026-11-20T13:02:10.341Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1068.97265625,
+      "pssMiB": 767.3056640625
+    },
+    {
+      "utc": "2026-11-20T13:02:11.345Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1072.42578125,
+      "pssMiB": 769.6494140625
+    },
+    {
+      "utc": "2026-11-20T13:02:12.225Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1078.70703125,
+      "pssMiB": 775.9306640625
+    },
+    {
+      "utc": "2026-11-20T13:02:13.225Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1087.6015625,
+      "pssMiB": 784.8251953125
+    },
+    {
+      "utc": "2026-11-20T13:02:14.334Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1050.99609375,
+      "pssMiB": 748.2197265625
+    },
+    {
+      "utc": "2026-11-20T13:02:15.349Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1058.51171875,
+      "pssMiB": 763.0595703125
+    },
+    {
+      "utc": "2026-11-20T13:02:16.374Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1060.3125,
+      "pssMiB": 757.9345703125
+    },
+    {
+      "utc": "2026-11-20T13:02:17.372Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1066.9609375,
+      "pssMiB": 764.1845703125
+    },
+    {
+      "utc": "2026-11-20T13:02:18.374Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1072.46484375,
+      "pssMiB": 769.6923828125
+    },
+    {
+      "utc": "2026-11-20T13:02:19.377Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1073.38671875,
+      "pssMiB": 770.5576171875
+    },
+    {
+      "utc": "2026-11-20T13:02:20.374Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1075.453125,
+      "pssMiB": 772.6201171875
+    },
+    {
+      "utc": "2026-11-20T13:02:21.455Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1081.94921875,
+      "pssMiB": 779.03515625
+    },
+    {
+      "utc": "2026-11-20T13:02:22.505Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1090.17578125,
+      "pssMiB": 787.109375
+    },
+    {
+      "utc": "2026-11-20T13:02:23.505Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1087.390625,
+      "pssMiB": 784.3359375
+    },
+    {
+      "utc": "2026-11-20T13:02:24.506Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1098.01953125,
+      "pssMiB": 794.96484375
+    },
+    {
+      "utc": "2026-11-20T13:02:25.510Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1102.8203125,
+      "pssMiB": 799.732421875
+    },
+    {
+      "utc": "2026-11-20T13:02:26.691Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1108.74609375,
+      "pssMiB": 807.123046875
+    },
+    {
+      "utc": "2026-11-20T13:02:27.745Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1115.2734375,
+      "pssMiB": 814.912109375
+    },
+    {
+      "utc": "2026-11-20T13:02:28.744Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1125.5234375,
+      "pssMiB": 822.513671875
+    },
+    {
+      "utc": "2026-11-20T13:02:29.825Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1120.11328125,
+      "pssMiB": 817.6708984375
+    },
+    {
+      "utc": "2026-11-20T13:02:30.817Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1126.03515625,
+      "pssMiB": 822.9287109375
+    },
+    {
+      "utc": "2026-11-20T13:02:31.823Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1127.6171875,
+      "pssMiB": 825.5625
+    },
+    {
+      "utc": "2026-11-20T13:02:32.822Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1131.3046875,
+      "pssMiB": 828.1943359375
+    },
+    {
+      "utc": "2026-11-20T13:02:33.896Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1140.890625,
+      "pssMiB": 841.3662109375
+    },
+    {
+      "utc": "2026-11-20T13:02:34.897Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1145.3828125,
+      "pssMiB": 842.8740234375
+    },
+    {
+      "utc": "2026-11-20T13:02:35.896Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1152.6484375,
+      "pssMiB": 849.5380859375
+    },
+    {
+      "utc": "2026-11-20T13:02:36.891Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1150.20703125,
+      "pssMiB": 847.0927734375
+    },
+    {
+      "utc": "2026-11-20T13:02:37.973Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1152.75390625,
+      "pssMiB": 851.7216796875
+    },
+    {
+      "utc": "2026-11-20T13:02:38.962Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1158.81640625,
+      "pssMiB": 855.7021484375
+    },
+    {
+      "utc": "2026-11-20T13:02:39.960Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1163.27734375,
+      "pssMiB": 860.1630859375
+    },
+    {
+      "utc": "2026-11-20T13:02:41.048Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1166.1484375,
+      "pssMiB": 863.0341796875
+    },
+    {
+      "utc": "2026-11-20T13:02:41.964Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1170.5,
+      "pssMiB": 867.3857421875
+    },
+    {
+      "utc": "2026-11-20T13:02:42.962Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1181.0546875,
+      "pssMiB": 877.9404296875
+    },
+    {
+      "utc": "2026-11-20T13:02:43.966Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1180.53515625,
+      "pssMiB": 877.4208984375
+    },
+    {
+      "utc": "2026-11-20T13:02:44.965Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1185.4140625,
+      "pssMiB": 882.2998046875
+    },
+    {
+      "utc": "2026-11-20T13:02:45.967Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1189.19140625,
+      "pssMiB": 886.1044921875
+    },
+    {
+      "utc": "2026-11-20T13:02:47.025Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1184.9296875,
+      "pssMiB": 882.2412109375
+    },
+    {
+      "utc": "2026-11-20T13:02:47.620Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 1196.72265625,
+      "pssMiB": 892.185546875
+    },
+    {
+      "utc": "2026-11-20T13:02:48.022Z",
+      "phase": "beam4-load",
+      "sumRssMiB": 1048.8046875,
+      "pssMiB": 776.6552734375
+    },
+    {
+      "utc": "2026-11-20T13:02:49.031Z",
+      "phase": "beam4-load",
+      "sumRssMiB": 1237.75,
+      "pssMiB": 934.2998046875
+    },
+    {
+      "utc": "2026-11-20T13:02:50.033Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1240.58203125,
+      "pssMiB": 937.5107421875
+    },
+    {
+      "utc": "2026-11-20T13:02:51.273Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1240.8359375,
+      "pssMiB": 936.2294921875
+    },
+    {
+      "utc": "2026-11-20T13:02:52.473Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1192.4296875,
+      "pssMiB": 888.6396484375
+    },
+    {
+      "utc": "2026-11-20T13:02:53.532Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1200.44140625,
+      "pssMiB": 895.8349609375
+    },
+    {
+      "utc": "2026-11-20T13:02:54.670Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1132.53515625,
+      "pssMiB": 827.9287109375
+    },
+    {
+      "utc": "2026-11-20T13:02:55.711Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1137.84375,
+      "pssMiB": 833.2373046875
+    },
+    {
+      "utc": "2026-11-20T13:02:56.845Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1143.515625,
+      "pssMiB": 839.1982421875
+    },
+    {
+      "utc": "2026-11-20T13:02:57.923Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1150.46875,
+      "pssMiB": 845.8623046875
+    },
+    {
+      "utc": "2026-11-20T13:02:59.127Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1129.68359375,
+      "pssMiB": 825.0771484375
+    },
+    {
+      "utc": "2026-11-20T13:03:00.126Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1139.4375,
+      "pssMiB": 834.6865234375
+    },
+    {
+      "utc": "2026-11-20T13:03:01.126Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1141.39453125,
+      "pssMiB": 836.7880859375
+    },
+    {
+      "utc": "2026-11-20T13:03:02.125Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1145.734375,
+      "pssMiB": 841.1279296875
+    },
+    {
+      "utc": "2026-11-20T13:03:03.127Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1139.88671875,
+      "pssMiB": 835.2802734375
+    },
+    {
+      "utc": "2026-11-20T13:03:04.271Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1147.078125,
+      "pssMiB": 842.2138671875
+    },
+    {
+      "utc": "2026-11-20T13:03:05.617Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1153.69140625,
+      "pssMiB": 849.0849609375
+    },
+    {
+      "utc": "2026-11-20T13:03:06.990Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1161.859375,
+      "pssMiB": 857.1474609375
+    },
+    {
+      "utc": "2026-11-20T13:03:08.512Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1152.08984375,
+      "pssMiB": 846.6005859375
+    },
+    {
+      "utc": "2026-11-20T13:03:08.987Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1161.57421875,
+      "pssMiB": 856.9677734375
+    },
+    {
+      "utc": "2026-11-20T13:03:10.088Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1158.26953125,
+      "pssMiB": 853.6630859375
+    },
+    {
+      "utc": "2026-11-20T13:03:11.083Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1178.31640625,
+      "pssMiB": 873.70703125
+    },
+    {
+      "utc": "2026-11-20T13:03:12.080Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1186.51171875,
+      "pssMiB": 881.9921875
+    },
+    {
+      "utc": "2026-11-20T13:03:13.083Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1186.02734375,
+      "pssMiB": 881.41796875
+    },
+    {
+      "utc": "2026-11-20T13:03:14.082Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1189.296875,
+      "pssMiB": 884.6875
+    },
+    {
+      "utc": "2026-11-20T13:03:15.085Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1189.8125,
+      "pssMiB": 885.203125
+    },
+    {
+      "utc": "2026-11-20T13:03:16.083Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1192.640625,
+      "pssMiB": 888.03125
+    },
+    {
+      "utc": "2026-11-20T13:03:17.085Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1199.78515625,
+      "pssMiB": 895.17578125
+    },
+    {
+      "utc": "2026-11-20T13:03:18.083Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1214.32421875,
+      "pssMiB": 909.71484375
+    },
+    {
+      "utc": "2026-11-20T13:03:19.087Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1220.11328125,
+      "pssMiB": 915.4306640625
+    },
+    {
+      "utc": "2026-11-20T13:03:20.085Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1178.75,
+      "pssMiB": 874.0673828125
+    },
+    {
+      "utc": "2026-11-20T13:03:21.084Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1155.47265625,
+      "pssMiB": 850.7939453125
+    },
+    {
+      "utc": "2026-11-20T13:03:22.089Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1165.08984375,
+      "pssMiB": 860.3984375
+    },
+    {
+      "utc": "2026-11-20T13:03:23.086Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1171.30078125,
+      "pssMiB": 866.609375
+    },
+    {
+      "utc": "2026-11-20T13:03:24.097Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1175.93359375,
+      "pssMiB": 871.25390625
+    },
+    {
+      "utc": "2026-11-20T13:03:25.252Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1183.46875,
+      "pssMiB": 878.77734375
+    },
+    {
+      "utc": "2026-11-20T13:03:26.091Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1187.16796875,
+      "pssMiB": 882.4765625
+    },
+    {
+      "utc": "2026-11-20T13:03:27.099Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1190.69921875,
+      "pssMiB": 890.828125
+    },
+    {
+      "utc": "2026-11-20T13:03:28.097Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1197.49609375,
+      "pssMiB": 892.8046875
+    },
+    {
+      "utc": "2026-11-20T13:03:29.088Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1199.54296875,
+      "pssMiB": 894.8515625
+    },
+    {
+      "utc": "2026-11-20T13:03:30.100Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1200.8828125,
+      "pssMiB": 896.19140625
+    },
+    {
+      "utc": "2026-11-20T13:03:31.184Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1204.28125,
+      "pssMiB": 899.58984375
+    },
+    {
+      "utc": "2026-11-20T13:03:32.183Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1211.375,
+      "pssMiB": 906.68359375
+    },
+    {
+      "utc": "2026-11-20T13:03:33.185Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1212.1875,
+      "pssMiB": 907.49609375
+    },
+    {
+      "utc": "2026-11-20T13:03:34.189Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1220,
+      "pssMiB": 915.30859375
+    },
+    {
+      "utc": "2026-11-20T13:03:35.182Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1164.91796875,
+      "pssMiB": 860.2265625
+    },
+    {
+      "utc": "2026-11-20T13:03:36.183Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1167.140625,
+      "pssMiB": 863.5703125
+    },
+    {
+      "utc": "2026-11-20T13:03:37.209Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1177.3515625,
+      "pssMiB": 877.22265625
+    },
+    {
+      "utc": "2026-11-20T13:03:38.185Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1184.046875,
+      "pssMiB": 879.35546875
+    },
+    {
+      "utc": "2026-11-20T13:03:39.186Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1191.890625,
+      "pssMiB": 887.19921875
+    },
+    {
+      "utc": "2026-11-20T13:03:40.190Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1200.45703125,
+      "pssMiB": 895.765625
+    },
+    {
+      "utc": "2026-11-20T13:03:41.191Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1207.84765625,
+      "pssMiB": 903.15625
+    },
+    {
+      "utc": "2026-11-20T13:03:42.270Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1214.515625,
+      "pssMiB": 909.8125
+    },
+    {
+      "utc": "2026-11-20T13:03:43.361Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1219.70703125,
+      "pssMiB": 914.8671875
+    },
+    {
+      "utc": "2026-11-20T13:03:44.199Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1218.0859375,
+      "pssMiB": 913.39453125
+    },
+    {
+      "utc": "2026-11-20T13:03:45.284Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1219.51953125,
+      "pssMiB": 916.04296875
+    },
+    {
+      "utc": "2026-11-20T13:03:46.296Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1221.265625,
+      "pssMiB": 916.57421875
+    },
+    {
+      "utc": "2026-11-20T13:03:47.417Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1220.3828125,
+      "pssMiB": 915.69140625
+    },
+    {
+      "utc": "2026-11-20T13:03:48.419Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1226.22265625,
+      "pssMiB": 921.53125
+    },
+    {
+      "utc": "2026-11-20T13:03:49.560Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1228.4765625,
+      "pssMiB": 923.78515625
+    },
+    {
+      "utc": "2026-11-20T13:03:50.620Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1196.21484375,
+      "pssMiB": 891.5234375
+    },
+    {
+      "utc": "2026-11-20T13:03:51.726Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1199.25,
+      "pssMiB": 894.85546875
+    },
+    {
+      "utc": "2026-11-20T13:03:52.739Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1205.2265625,
+      "pssMiB": 902.92578125
+    },
+    {
+      "utc": "2026-11-20T13:03:53.742Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1211.0234375,
+      "pssMiB": 906.33203125
+    },
+    {
+      "utc": "2026-11-20T13:03:54.743Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1215.67578125,
+      "pssMiB": 910.984375
+    },
+    {
+      "utc": "2026-11-20T13:03:55.741Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1227.234375,
+      "pssMiB": 922.54296875
+    },
+    {
+      "utc": "2026-11-20T13:03:56.745Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1233.45703125,
+      "pssMiB": 928.765625
+    },
+    {
+      "utc": "2026-11-20T13:03:57.769Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1236.9375,
+      "pssMiB": 932.24609375
+    },
+    {
+      "utc": "2026-11-20T13:03:58.837Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1246.59375,
+      "pssMiB": 941.90234375
+    },
+    {
+      "utc": "2026-11-20T13:03:59.854Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1247.2578125,
+      "pssMiB": 942.97265625
+    },
+    {
+      "utc": "2026-11-20T13:04:00.845Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1250.39453125,
+      "pssMiB": 945.7109375
+    },
+    {
+      "utc": "2026-11-20T13:04:01.847Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1254.26953125,
+      "pssMiB": 949.578125
+    },
+    {
+      "utc": "2026-11-20T13:04:02.849Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1259.734375,
+      "pssMiB": 955.04296875
+    },
+    {
+      "utc": "2026-11-20T13:04:03.850Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1266.921875,
+      "pssMiB": 962.23046875
+    },
+    {
+      "utc": "2026-11-20T13:04:04.848Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1284.375,
+      "pssMiB": 971.5390625
+    },
+    {
+      "utc": "2026-11-20T13:04:05.926Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1255.6484375,
+      "pssMiB": 951.1357421875
+    },
+    {
+      "utc": "2026-11-20T13:04:06.974Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1250.84375,
+      "pssMiB": 947.41796875
+    },
+    {
+      "utc": "2026-11-20T13:04:07.968Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1255.71875,
+      "pssMiB": 948.55859375
+    },
+    {
+      "utc": "2026-11-20T13:04:09.046Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1252.1484375,
+      "pssMiB": 947.4765625
+    },
+    {
+      "utc": "2026-11-20T13:04:10.041Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1254.9453125,
+      "pssMiB": 950.20703125
+    },
+    {
+      "utc": "2026-11-20T13:04:11.039Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1256.28515625,
+      "pssMiB": 951.546875
+    },
+    {
+      "utc": "2026-11-20T13:04:12.042Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1265.03125,
+      "pssMiB": 960.29296875
+    },
+    {
+      "utc": "2026-11-20T13:04:13.043Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1268.09765625,
+      "pssMiB": 963.359375
+    },
+    {
+      "utc": "2026-11-20T13:04:14.043Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1269.10546875,
+      "pssMiB": 964.3671875
+    },
+    {
+      "utc": "2026-11-20T13:04:15.041Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1272.55078125,
+      "pssMiB": 967.58203125
+    },
+    {
+      "utc": "2026-11-20T13:04:16.044Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1271.65234375,
+      "pssMiB": 966.9140625
+    },
+    {
+      "utc": "2026-11-20T13:04:17.041Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1271.359375,
+      "pssMiB": 966.62109375
+    },
+    {
+      "utc": "2026-11-20T13:04:18.054Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1278.08203125,
+      "pssMiB": 973.15625
+    },
+    {
+      "utc": "2026-11-20T13:04:19.043Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1282.78515625,
+      "pssMiB": 977.8701171875
+    },
+    {
+      "utc": "2026-11-20T13:04:19.554Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1237.97265625,
+      "pssMiB": 933.23828125
+    },
+    {
+      "utc": "2026-11-20T13:04:19.582Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1190.40625,
+      "pssMiB": 673.9609375
+    }
+  ],
+  "externalRequests": [],
+  "completed": true,
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": false,
+    "cores": 5
+  },
+  "completedUtc": "2026-11-20T13:04:19.556Z"
+}

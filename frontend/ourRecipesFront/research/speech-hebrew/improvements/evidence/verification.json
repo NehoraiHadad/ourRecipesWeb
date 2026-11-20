@@ -1,0 +1,44 @@
+{
+  "frozenSourceHashes": true,
+  "nativeComparisonReproduced": true,
+  "browserComparisonReproduced": true,
+  "publishedScorerUnchanged": true,
+  "availableModelFilesVerified": {
+    "asr/onnx/config.json": true,
+    "asr/sherpa-onnx/tokens.txt": true,
+    "asr/sherpa-onnx/encoder.int8.onnx": true,
+    "asr/sherpa-onnx/decoder.int8.onnx": true,
+    "asr/sherpa-onnx/joiner.int8.onnx": true
+  },
+  "availableRuntimeFilesVerified": {
+    "README.md": true,
+    "package.json": true,
+    "LICENSE": true,
+    "dist/webgpu.d.ts": true,
+    "dist/tokens.d.ts": true,
+    "dist/tokens-CAkSVa4s.d.ts": true,
+    "dist/streaming-CJO70wco.d.ts": true,
+    "dist/index.d.ts": true,
+    "dist/asr.d.ts": true,
+    "dist/webgpu.js": true,
+    "dist/tokens.js": true,
+    "dist/tokens-wFJ0vjND.js": true,
+    "dist/index.js": true,
+    "dist/asr-B3QtWJoU.js": true,
+    "dist/prebuilt/asr.wasm": true
+  },
+  "availableExactPcmInputsVerified": 170,
+  "note": "Models/runtime/PCM are optional for an offline saved-output audit. Counts describe this invocation.",
+  "evidenceSha256": {
+    "protocol.json": "d74fc082a9980e1876408a9be8dbc12408f378c2a4ae82147acedb6b5faf3465",
+    "browser-protocol.json": "ee6ecbf97f69267fcf1d62e5c6a7389dabf22c8dd98951c22b50dfe3ab98e665",
+    "input-reconstruction.json": "584a92efd8bd3c0bf0e7f34808fdb7cf60298c5c0c864fb16381cfab68f6268f",
+    "greedy.json": "a2f9e31ae58511b8a58b0a28d6c9d786c2ff4f537ee743d4adf8a09374642361",
+    "beam4.json": "3dad448da2964440c91f880b9eadbeb7a8e1e3d48541adf551fc385ec859eafa",
+    "comparison.json": "87f7f934c1eff4250a5bd37b8e11485f4e988702c5c0b3f1d9adc6e0e35f7d44",
+    "browser-smoke.json": "25e651a669aa729313381c8731df8ba0c0f5aee52753b138982d1c7c9a7bd8a0",
+    "browser-full.json": "c65dcbda0598ad54aca9bba4b5467fd58ae053a2c0bd049d7ec04980b0529e7b",
+    "browser-comparison.json": "09200bfeac2e1c106c8695a63e3c84bbe76312d2809919ce3dcfe69214446f80",
+    "wasm-source.json": "fa20d5b3b4486943da57bf9b6527f86b6502ad3289b90096e3d4fdb7c4046700"
+  }
+}

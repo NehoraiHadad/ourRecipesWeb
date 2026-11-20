@@ -1,0 +1,223 @@
+{
+  "smoke": true,
+  "startedUtc": "2026-11-20T12:58:52.402Z",
+  "engine": "@sherpaw/asr@0.3.0, CPU WASM",
+  "records": [
+    {
+      "arm": "greedy",
+      "id": "fleurs-6985392582296601957-clean",
+      "type": "result",
+      "text": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הביתה לבן",
+      "ms": 813.1999999992549,
+      "inputSha256": "54ca1d85bbef63a7f76b333072caff369866ca838c82ab930649cb56f4137754",
+      "wasmHeapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "id": "fleurs-6985392582296601957-clean",
+      "type": "result",
+      "text": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן.",
+      "ms": 938,
+      "inputSha256": "54ca1d85bbef63a7f76b333072caff369866ca838c82ab930649cb56f4137754",
+      "wasmHeapBytes": 536870912
+    }
+  ],
+  "loads": [
+    {
+      "type": "ready",
+      "arm": "greedy",
+      "ms": 2624.7999999988824,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "greedy_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    },
+    {
+      "type": "ready",
+      "arm": "beam4",
+      "ms": 1746.4000000003725,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "modified_beam_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    }
+  ],
+  "memory": [
+    {
+      "utc": "2026-11-20T12:58:53.875Z",
+      "phase": "greedy-load",
+      "sumRssMiB": 751.20703125,
+      "pssMiB": 452.6171875
+    },
+    {
+      "utc": "2026-11-20T12:58:54.885Z",
+      "phase": "greedy-load",
+      "sumRssMiB": 900.0703125,
+      "pssMiB": 601.7265625
+    },
+    {
+      "utc": "2026-11-20T12:58:56.403Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 900.421875,
+      "pssMiB": 601.5927734375
+    },
+    {
+      "utc": "2026-11-20T12:58:57.388Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 958.68359375,
+      "pssMiB": 657.53125
+    },
+    {
+      "utc": "2026-11-20T12:58:57.426Z",
+      "phase": "greedy-decode",
+      "sumRssMiB": 948.03125,
+      "pssMiB": 645.640625
+    },
+    {
+      "utc": "2026-11-20T12:58:58.392Z",
+      "phase": "beam4-load",
+      "sumRssMiB": 917.41796875,
+      "pssMiB": 616.1318359375
+    },
+    {
+      "utc": "2026-11-20T12:58:59.669Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 917.84375,
+      "pssMiB": 616.537109375
+    },
+    {
+      "utc": "2026-11-20T12:59:00.668Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1019.32421875,
+      "pssMiB": 718.986328125
+    },
+    {
+      "utc": "2026-11-20T12:59:00.711Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 1020.82421875,
+      "pssMiB": 716.462890625
+    },
+    {
+      "utc": "2026-11-20T12:59:00.740Z",
+      "phase": "beam4-decode",
+      "sumRssMiB": 907.53125,
+      "pssMiB": 426.673828125
+    }
+  ],
+  "externalRequests": [],
+  "completed": true,
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "crossOriginIsolated": false,
+    "cores": 5
+  },
+  "completedUtc": "2026-11-20T12:59:00.716Z"
+}

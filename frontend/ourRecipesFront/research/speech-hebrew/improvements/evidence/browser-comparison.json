@@ -1,0 +1,1335 @@
+{
+  "scope": "Actual Chromium CPU WASM: two arms, same new runtime and byte-identical inputs. New backend versus old app worker is a separate variable; no claim that decoder alone reproduces old browser baseline.",
+  "groups": {
+    "greedy": {
+      "public-human/clean": {
+        "cases": 12,
+        "wordErrors": 37,
+        "referenceWords": 197,
+        "wer": 0.18781725888324874,
+        "characterErrors": 58,
+        "exact": 2,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 585,
+        "p95Ms": 958.7000000011176,
+        "medianRtf": 0.08719086021520397
+      },
+      "public-human/white-noise-20dB": {
+        "cases": 12,
+        "wordErrors": 42,
+        "referenceWords": 197,
+        "wer": 0.2131979695431472,
+        "characterErrors": 71,
+        "exact": 2,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 589.7000000011176,
+        "p95Ms": 994.9000000003725,
+        "medianRtf": 0.0877529761906425
+      },
+      "negative-control/silence": {
+        "cases": 1,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "wer": null,
+        "characterErrors": 0,
+        "exact": 1,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 288.30000000074506,
+        "p95Ms": 288.30000000074506,
+        "medianRtf": 0.09610000000024836
+      },
+      "negative-control/noise": {
+        "cases": 1,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "wer": null,
+        "characterErrors": 0,
+        "exact": 1,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 288,
+        "p95Ms": 288,
+        "medianRtf": 0.09599999999999999
+      },
+      "synthetic-loopback/clean": {
+        "cases": 48,
+        "wordErrors": 18,
+        "referenceWords": 246,
+        "wer": 0.07317073170731707,
+        "characterErrors": 80,
+        "exact": 38,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 249.90000000037253,
+        "p95Ms": 325,
+        "medianRtf": 0.10390000000037253
+      },
+      "synthetic-loopback/white-noise-20dB": {
+        "cases": 48,
+        "wordErrors": 20,
+        "referenceWords": 246,
+        "wer": 0.08130081300813008,
+        "characterErrors": 84,
+        "exact": 36,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 264.5,
+        "p95Ms": 328,
+        "medianRtf": 0.10499999999971778
+      },
+      "synthetic-loopback/white-noise-10dB": {
+        "cases": 48,
+        "wordErrors": 32,
+        "referenceWords": 246,
+        "wer": 0.13008130081300814,
+        "characterErrors": 109,
+        "exact": 28,
+        "markerWarnings": 3,
+        "negationWarnings": 0,
+        "medianMs": 253.19999999925494,
+        "p95Ms": 311.80000000074506,
+        "medianRtf": 0.10132142857116248
+      }
+    },
+    "beam4": {
+      "public-human/clean": {
+        "cases": 12,
+        "wordErrors": 31,
+        "referenceWords": 197,
+        "wer": 0.15736040609137056,
+        "characterErrors": 51,
+        "exact": 4,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 626.3000000007451,
+        "p95Ms": 1096.4000000003725,
+        "medianRtf": 0.09706467661696178
+      },
+      "public-human/white-noise-20dB": {
+        "cases": 12,
+        "wordErrors": 37,
+        "referenceWords": 197,
+        "wer": 0.18781725888324874,
+        "characterErrors": 63,
+        "exact": 4,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 692.0999999996275,
+        "p95Ms": 1053.0999999996275,
+        "medianRtf": 0.09557795698919723
+      },
+      "negative-control/silence": {
+        "cases": 1,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "wer": null,
+        "characterErrors": 0,
+        "exact": 1,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 326.2999999988824,
+        "p95Ms": 326.2999999988824,
+        "medianRtf": 0.10876666666629414
+      },
+      "negative-control/noise": {
+        "cases": 1,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "wer": null,
+        "characterErrors": 0,
+        "exact": 1,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 322.30000000074506,
+        "p95Ms": 322.30000000074506,
+        "medianRtf": 0.10743333333358168
+      },
+      "synthetic-loopback/clean": {
+        "cases": 48,
+        "wordErrors": 17,
+        "referenceWords": 246,
+        "wer": 0.06910569105691057,
+        "characterErrors": 79,
+        "exact": 38,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 250.5,
+        "p95Ms": 404.5,
+        "medianRtf": 0.11831521739089941
+      },
+      "synthetic-loopback/white-noise-20dB": {
+        "cases": 48,
+        "wordErrors": 20,
+        "referenceWords": 246,
+        "wer": 0.08130081300813008,
+        "characterErrors": 86,
+        "exact": 37,
+        "markerWarnings": 0,
+        "negationWarnings": 0,
+        "medianMs": 305,
+        "p95Ms": 357.80000000074506,
+        "medianRtf": 0.11649305555555557
+      },
+      "synthetic-loopback/white-noise-10dB": {
+        "cases": 48,
+        "wordErrors": 30,
+        "referenceWords": 246,
+        "wer": 0.12195121951219512,
+        "characterErrors": 107,
+        "exact": 29,
+        "markerWarnings": 3,
+        "negationWarnings": 0,
+        "medianMs": 285.09999999962747,
+        "p95Ms": 352,
+        "medianRtf": 0.11340000000037252
+      }
+    }
+  },
+  "exactNativeParity": {
+    "greedy": {
+      "exact": 159,
+      "total": 170,
+      "differences": [
+        {
+          "id": "fleurs-6985392582296601957-clean",
+          "browser": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הביתה לבן",
+          "native": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן"
+        },
+        {
+          "id": "fleurs-3471313510990959749-clean",
+          "browser": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+          "native": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפאלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי."
+        },
+        {
+          "id": "fleurs-3471313510990959749-noise20",
+          "browser": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי",
+          "native": "המכון לצדק ולדמוקרטיה שלהייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי"
+        },
+        {
+          "id": "fleurs-15713840504788281974-clean",
+          "browser": "גיאוץ בגדים מלאכים יכול לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+          "native": "גיאוץ בגדים מלאכים יכול לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוצמינים להשאלה, גם אם הם לא נמצאים בחדר"
+        },
+        {
+          "id": "fleurs-15713840504788281974-noise20",
+          "browser": "ייעוץ בגדים לחיים יכול לעזור להם להתייבש במיונות רבים משבגי עצוק, יש גיוד זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+          "native": "ייעוץ בגדים לחיים יכול לעזור להם להתייבש במיונות רבים משבגי עצוקה יש גיוד זמינים להשלם, גם אם הם לא נמצאים בחדר"
+        },
+        {
+          "id": "fleurs-17094305295227949694-clean",
+          "browser": "הוא ביטלו את האותיות הנוצרות בסיבוב ההופעות שלהם",
+          "native": "הוא ביטלו את האותיות הנוצרות בסיבוב העופות שלהם"
+        },
+        {
+          "id": "pocket-omer-oven-temperature-10",
+          "browser": "עיממתי ל-180 מעלות.",
+          "native": "עיממתי ימיה ושמונים מעלות."
+        },
+        {
+          "id": "pocket-liat-mixed-half-10",
+          "browser": "ערבבתי רק חפץ",
+          "native": "ערבבתי רק חפש"
+        },
+        {
+          "id": "pocket-liat-plan-egg-10",
+          "browser": "אני מתכנן להוסיף בצד",
+          "native": "אני מתכנן להוסיף בקצה"
+        },
+        {
+          "id": "piper-noa-maybe-water-20",
+          "browser": "אולי אספתי מים, אני לא בטוח",
+          "native": "אולי אספתי מים, אני לא בטוח."
+        },
+        {
+          "id": "piper-noa-salt-sugar-10",
+          "browser": "לא הוספתי מלח, הוספתי סוכר.",
+          "native": "לא הוספתי מלח, הוספתי סוכה."
+        }
+      ]
+    },
+    "beam4": {
+      "exact": 153,
+      "total": 170,
+      "differences": [
+        {
+          "id": "fleurs-3471313510990959749-noise20",
+          "browser": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם והללו ידיעתו את המחלה להייתי",
+          "native": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי"
+        },
+        {
+          "id": "fleurs-15713840504788281974-clean",
+          "browser": "גיוץ בגדים מלאכים יכול לעזור להם להתייבש במלונות רבים משבגי עצוקי השגיאות זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+          "native": "גיוץ בגדים מלאכים יכול לעזור להם להתייבש במלונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר"
+        },
+        {
+          "id": "fleurs-15713840504788281974-noise20",
+          "browser": "ייעוץ בגדים לכם יכול לעזור להם להתייבש בממונות רבים משבגי עצוק, יש גבול זמינים להשאלה, גם אם הם לא נמצאים בחדר.",
+          "native": "ייעוץ בגדים לכם יכול לעזור להם להתייבש בממונות רבים משבגי עצוק, יש גוץ זמינים להשאלה, גם אם לא נמצאים בחדר."
+        },
+        {
+          "id": "fleurs-9476563984789168422-noise20",
+          "browser": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט.",
+          "native": "למעשה לא קל למצוא את הכלל, אפילו אם אתם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט."
+        },
+        {
+          "id": "fleurs-15011168956922080339-clean",
+          "browser": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים שלה מיתיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה.",
+          "native": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים שלה מיטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה."
+        },
+        {
+          "id": "fleurs-17094305295227949694-clean",
+          "browser": "הוא ביטלו את האותיות הנוצרות בסיבוב ההופעות שלהם",
+          "native": "הוא ביטלו את האותיות הנוצרות בסיבוב ועופות שלהם"
+        },
+        {
+          "id": "fleurs-17094305295227949694-noise20",
+          "browser": "הוא היה לי, ביטלו את האותיות הנוצרות בסיבוב רופאות שלהם.",
+          "native": "הוא היה לי שביטלו את האותיות הנוצרות בסיבוב רופאות שלהם."
+        },
+        {
+          "id": "pocket-omer-flour-next-10",
+          "browser": "שמתי קמח, מה עכשיו",
+          "native": "שמתי קמח. מה עכשיו?"
+        },
+        {
+          "id": "pocket-omer-oven-temperature-20",
+          "browser": "סימממתי ל-180 מעלות.",
+          "native": "סיממתי ל-180 מעלות."
+        },
+        {
+          "id": "pocket-omer-oven-temperature-10",
+          "browser": "איממתי ל-180 מעלות.",
+          "native": "איממתי ימי 180 מעלות."
+        },
+        {
+          "id": "pocket-omer-plan-egg-10",
+          "browser": "אני מתכנן להוסיף בקשה",
+          "native": "אני מתכנן להוסיף בקצה"
+        },
+        {
+          "id": "pocket-omer-only-asking-20",
+          "browser": "לא צריך להוסיף מים, אני רק שואל",
+          "native": "לא צריך להוסיף מים, אני רק שואל."
+        },
+        {
+          "id": "pocket-liat-mixed-half-10",
+          "browser": "ערבבתי רק חפץ.",
+          "native": "ערבבתי רק חפש"
+        },
+        {
+          "id": "piper-noa-correct-flour-20",
+          "browser": "תיקון, לא שמתי קמח",
+          "native": "תיקון. לא שמתי קמח"
+        },
+        {
+          "id": "piper-noa-mixed-half-20",
+          "browser": "היא הובבתי רק חצי",
+          "native": "יאובבתי רק חצי"
+        },
+        {
+          "id": "piper-noa-oven-not-yet-10",
+          "browser": "עוד לא הדלקתי את הצלום.",
+          "native": "עוד לא הדלקתי את הצלום"
+        },
+        {
+          "id": "piper-noa-salt-sugar-10",
+          "browser": "לא הוספתי מלח, הוספתי סוכר.",
+          "native": "לא הוספתי מלח, הוספתי סוכה."
+        }
+      ]
+    }
+  },
+  "loads": [
+    {
+      "type": "ready",
+      "arm": "greedy",
+      "ms": 2616.5999999996275,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "greedy_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    },
+    {
+      "type": "ready",
+      "arm": "beam4",
+      "ms": 1703.5999999996275,
+      "wasmHeapBytes": 536870912,
+      "config": {
+        "type": 0,
+        "featConfig": {
+          "sampleRate": 16000,
+          "featureDim": 80
+        },
+        "modelConfig": {
+          "transducer": {
+            "encoder": "/model/encoder.int8.onnx",
+            "decoder": "/model/decoder.int8.onnx",
+            "joiner": "/model/joiner.int8.onnx"
+          },
+          "paraformer": {
+            "encoder": "",
+            "decoder": ""
+          },
+          "zipformer2Ctc": {
+            "model": ""
+          },
+          "nemoCtc": {
+            "model": ""
+          },
+          "toneCtc": {
+            "model": ""
+          },
+          "tokens": "/model/tokens.txt",
+          "numThreads": 1,
+          "provider": "cpu",
+          "debug": 0,
+          "modelType": "zipformer2",
+          "modelingUnit": "cjkchar",
+          "bpeVocab": "",
+          "tokensBuf": "",
+          "tokensBufSize": 0
+        },
+        "decodingMethod": "modified_beam_search",
+        "maxActivePaths": 4,
+        "enableEndpoint": 0,
+        "rule1MinTrailingSilence": 2.4,
+        "rule2MinTrailingSilence": 1.2,
+        "rule3MinUtteranceLength": 20,
+        "hotwordsFile": "",
+        "hotwordsScore": 1.5,
+        "ctcFstDecoderConfig": {
+          "graph": "",
+          "maxActive": 3000
+        },
+        "ruleFsts": "",
+        "ruleFars": "",
+        "blankPenalty": 0,
+        "hotwordsBuf": "",
+        "hotwordsBufSize": 0,
+        "hr": {
+          "lexicon": "",
+          "ruleFsts": ""
+        }
+      }
+    }
+  ],
+  "memory": {
+    "greedy-load": {
+      "samples": 2,
+      "peakPssMiB": 595.9873046875,
+      "peakRssMiB": 898.19921875
+    },
+    "greedy-decode": {
+      "samples": 83,
+      "peakPssMiB": 892.185546875,
+      "peakRssMiB": 1196.72265625
+    },
+    "beam4-load": {
+      "samples": 2,
+      "peakPssMiB": 934.2998046875,
+      "peakRssMiB": 1237.75
+    },
+    "beam4-decode": {
+      "samples": 89,
+      "peakPssMiB": 977.8701171875,
+      "peakRssMiB": 1284.375
+    }
+  },
+  "changedCount": 68,
+  "changedByWordErrors": {
+    "better": 12,
+    "worse": 1,
+    "equal": 55
+  },
+  "changed": [
+    {
+      "id": "fleurs-6985392582296601957-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "מאוחר ביום ראשון נשיא ארה ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "greedy": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הביתה לבן",
+      "beam4": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן.",
+      "wordErrorDelta": -2,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-6985392582296601957-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "מאוחר ביום ראשון נשיא ארה ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "greedy": "מאוחר ביום ראשון ושיא ארצות הברית דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+      "beam4": "מאוחר ביום ראשון, נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן.",
+      "wordErrorDelta": -3,
+      "characterErrorDelta": -7,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-3471313510990959749-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "המכון לצדק ולדמוקרטיה של האיטי אזכר מחקרים עצמאיים שמראים כי גדוד שמירת השלום הנפאלי של האו ם הביא ללא ידיעתו את המחלה להאיטי",
+      "greedy": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+      "beam4": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפאלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-15713840504788281974-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "גיהוץ בגדים לחים יכול לעזור להם להתייבש במלונות רבים יש מגהץ וקרש גיהוץ זמינים להשאלה גם אם הם לא נמצאים בחדר",
+      "greedy": "גיאוץ בגדים מלאכים יכול לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "beam4": "גיוץ בגדים מלאכים יכול לעזור להם להתייבש במלונות רבים משבגי עצוקי השגיאות זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-15713840504788281974-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "גיהוץ בגדים לחים יכול לעזור להם להתייבש במלונות רבים יש מגהץ וקרש גיהוץ זמינים להשאלה גם אם הם לא נמצאים בחדר",
+      "greedy": "ייעוץ בגדים לחיים יכול לעזור להם להתייבש במיונות רבים משבגי עצוק, יש גיוד זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+      "beam4": "ייעוץ בגדים לכם יכול לעזור להם להתייבש בממונות רבים משבגי עצוק, יש גבול זמינים להשאלה, גם אם הם לא נמצאים בחדר.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 2,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-12451823994695799311-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "המערה שוכנת בפסגת אחד ההרים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "greedy": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "beam4": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-12451823994695799311-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "המערה שוכנת בפסגת אחד ההרים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "greedy": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+      "beam4": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-9476563984789168422-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "למעשה לא קל למצוא אותה כלל אפילו אם יודעים שהיא קיימת עם הכניסה לתוך המערה אתם בבידוד מוחלט",
+      "greedy": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט",
+      "beam4": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-9476563984789168422-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "למעשה לא קל למצוא אותה כלל אפילו אם יודעים שהיא קיימת עם הכניסה לתוך המערה אתם בבידוד מוחלט",
+      "greedy": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט",
+      "beam4": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערה כן בבידוד מוחלט.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-8790580890171065686-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "המחלה נישאת על ידי חזירים ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "greedy": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "beam4": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-8790580890171065686-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "המחלה נישאת על ידי חזירים ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "greedy": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+      "beam4": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-11086736344915854194-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "באקלים החם של המזרח התיכון לבית לא הייתה חשיבות רבה כל כך",
+      "greedy": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+      "beam4": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -2,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-11086736344915854194-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "באקלים החם של המזרח התיכון לבית לא הייתה חשיבות רבה כל כך",
+      "greedy": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+      "beam4": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -2,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-14908441627362672994-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "רק מוטציות בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות תאים או לסרטן",
+      "greedy": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+      "beam4": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-14908441627362672994-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "רק מוטציות בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות תאים או לסרטן",
+      "greedy": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+      "beam4": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-15011168956922080339-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים של עמיתיהם לשעבר קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "greedy": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "beam4": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים שלה מיתיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -3,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-15011168956922080339-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים של עמיתיהם לשעבר קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "greedy": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מתהם לשעבר. אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+      "beam4": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מתהם לשעבר. אחד של הספקטרום מנסה להישאר אחד מהחבר'ה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-17094305295227949694-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "אירוסמית' ביטלו את ההופעות הנותרות בסיבוב ההופעות שלהם",
+      "greedy": "הוא היה ביטלו את האותיות הנוצרות בסביב רופאות שלהם",
+      "beam4": "הוא היה לי, ביטלו את האותיות הנוצרות בסיבוב רופאות שלהם.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-9677910411599000791-clean",
+      "source": "public-human",
+      "condition": "clean",
+      "reference": "קואומו 53 החל את תפקידו כמושל מוקדם יותר השנה וחתם בחודש שעבר על הצעת חוק המאשרת נישואים חד-מיניים",
+      "greedy": "קומו 53 החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "beam4": "קומו 53, החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "fleurs-9677910411599000791-noise20",
+      "source": "public-human",
+      "condition": "white-noise-20dB",
+      "reference": "קואומו 53 החל את תפקידו כמושל מוקדם יותר השנה וחתם בחודש שעבר על הצעת חוק המאשרת נישואים חד-מיניים",
+      "greedy": "קומו 53 החל את תפקידו כמושל מוקדם יותר שנה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "beam4": "קומו 53, החל את תפקידו כמושל מוקדם יותר השנה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים, אבל עוד לא עירובבתי",
+      "beam4": "הוספתי מים, אבל עוד לא עירובבתי.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים, אבל עוד לא ערבבתי",
+      "beam4": "הוספתי מים, אבל עוד לא ערבבתי.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-water-not-mixed-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים אבל עוד לא ערבבתי",
+      "beam4": "הוספתי מים, אבל עוד לא ערבבתי.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-maybe-water-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-maybe-water-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-maybe-water-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-oven-temperature-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "חיממתי ל-180 מעלות",
+      "beam4": "חיממתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-oven-temperature-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "סיממתי ל-180 מעלות.",
+      "beam4": "סימממתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-oven-temperature-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "עיממתי ל-180 מעלות.",
+      "beam4": "איממתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-ambiguous-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-ambiguous-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-omer-ambiguous-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-flour-next-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "greedy": "שמתי קמח, מה עכשיו",
+      "beam4": "שמתי קמח, מה עכשיו?",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-flour-next-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "greedy": "שמתי קמח, מה עכשיו",
+      "beam4": "שמתי קמח, מה עכשיו?",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים אבל עוד לא הבבתי",
+      "beam4": "הוספתי מים, אבל עוד לא הבבתי",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים אבל עוד לא הבבתי",
+      "beam4": "הוספתי מים, אבל עוד לא אהבתי",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-water-not-mixed-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים אבל עוד לא העבדתי",
+      "beam4": "הוספתי מים אבל עוד לא העברתי",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-correct-flour-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "תיקון, לא שמתי קמח.",
+      "greedy": "תיקון, לא שמתי קמח",
+      "beam4": "תיקון, לא שמתי קמח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-correct-flour-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "תיקון, לא שמתי קמח.",
+      "greedy": "תיקון, לא שמתי קמח",
+      "beam4": "תיקון, לא שמתי קמח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-mixed-half-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "ערבבתי רק חצי.",
+      "greedy": "ערבבתי רק חפץ",
+      "beam4": "ערבבתי רק חפץ.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": true,
+      "beamMarkerWarning": true
+    },
+    {
+      "id": "pocket-liat-maybe-water-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-maybe-water-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-maybe-water-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי הוספתי מים, אני לא בטוח",
+      "beam4": "אולי הוספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oven-not-yet-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "greedy": "עוד לא הדלקתי את התניר",
+      "beam4": "עוד לא הדלקתי את התנור",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oven-temperature-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "סיממתי ל-180 מעלות",
+      "beam4": "חיממתי ל-180 מעלות.",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oven-temperature-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "סיממתי ל-180 מעלות",
+      "beam4": "סיממתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-oven-temperature-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "סיממתי ל-180 מעלות",
+      "beam4": "סיממתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-plan-egg-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "אני מתכנן להוסיף ביצה.",
+      "greedy": "אני מתכנן להוסיף בצף",
+      "beam4": "אני מתכנן להוסיף ביצה",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -2,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-ambiguous-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-ambiguous-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "pocket-liat-ambiguous-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "עשיתי את זה.",
+      "greedy": "עשיתי את זה",
+      "beam4": "עשיתי את זה.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-flour-next-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "greedy": "שמתי קמח, מה עכשיו",
+      "beam4": "שמתי קמח, מה עכשיו?",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-flour-next-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "greedy": "שמתי קמח, מה עכשיו",
+      "beam4": "שמתי קמח, מה עכשיו?",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-flour-next-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "שמתי קמח, מה עכשיו?",
+      "greedy": "שמתי קמח, מה עכשיו",
+      "beam4": "שמתי קמח, מה עכשיו?",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-water-not-mixed-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "greedy": "הוספתי מים אבל עוד לא ערבבתי",
+      "beam4": "הוספתי מים, אבל עוד לא ערבבתי",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-mixed-half-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "ערבבתי רק חצי.",
+      "greedy": "יאובבתי רק חצי",
+      "beam4": "היא הובבתי רק חצי",
+      "wordErrorDelta": 1,
+      "characterErrorDelta": 2,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-mixed-half-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "ערבבתי רק חצי.",
+      "greedy": "היא עובדה בתי רק חסד",
+      "beam4": "היא אובבתי רק חסד",
+      "wordErrorDelta": -1,
+      "characterErrorDelta": -1,
+      "greedyMarkerWarning": true,
+      "beamMarkerWarning": true
+    },
+    {
+      "id": "piper-noa-maybe-water-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "אולי הוספתי מים, אני לא בטוח.",
+      "greedy": "אולי אספתי מים, אני לא בטוח",
+      "beam4": "אולי אספתי מים, אני לא בטוח.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-oven-not-yet-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "עוד לא הדלקתי את התנור.",
+      "greedy": "עוד לא הדלקתי את הצלום",
+      "beam4": "עוד לא הדלקתי את הצלום.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-20",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-20dB",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי היקפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "greedy": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "beam4": "הוספתי שתי היקפות שמן וחצי כוס מים.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-oven-temperature-clean",
+      "source": "synthetic-loopback",
+      "condition": "clean",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "greedy": "חימנתי ל-180 מעלות",
+      "beam4": "חימנתי ל-180 מעלות.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": false,
+      "beamMarkerWarning": false
+    },
+    {
+      "id": "piper-noa-only-asking-10",
+      "source": "synthetic-loopback",
+      "condition": "white-noise-10dB",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "greedy": "לא צריך להוסיף מים, אני רק שואב",
+      "beam4": "לא צריך להוסיף מים, אני רק שואב.",
+      "wordErrorDelta": 0,
+      "characterErrorDelta": 0,
+      "greedyMarkerWarning": true,
+      "beamMarkerWarning": true
+    }
+  ],
+  "decision": {
+    "lowerPublicHumanWordErrors": true,
+    "noAdditionalMarkerWarningsCleanAnd20dB": true,
+    "noWordsOnNegativeControls": true,
+    "browserTested": true,
+    "physicalPhoneTested": false,
+    "productPromotion": false
+  },
+  "limitations": [
+    "Exposed development corpus: 12 public transcript IDs, not 12 verified speakers; no real kitchen speech.",
+    "Decode timing excludes capture, endpoint wait, fixture transfer, hash check and physical playback; adds same 1.5-second quiet tail computationally without waiting 1.5 seconds.",
+    "Load timing includes local fixture transfer/FS; not real internet download. No cold-cache repetitions.",
+    "Memory is whole Chrome process tree, 1-second sampling, sequential greedy then beam4; retained caches/processes can affect arm comparison.",
+    "Wrapper does not expose temperatureScale; not overridden. Browser-versus-native text parity is measured separately.",
+    "Word/marker scores do not establish V52 recipe state accuracy, perceptual voice quality or phone support."
+  ]
+}
