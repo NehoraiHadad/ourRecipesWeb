@@ -1,0 +1,712 @@
+{
+  "scope": "Real Chromium WASM CPU inference. Public human read speech and authored synthetic TTS loopback; simulated noise. No physical microphone/speaker/phone, V52 call or perceptual listening judgement.",
+  "completedUtc": "2026-11-20T10:28:32.101Z",
+  "browser": {
+    "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+    "cores": 5,
+    "crossOriginIsolated": false,
+    "selfOrigin": "http://127.0.0.1:38353",
+    "localHebrewVoices": []
+  },
+  "host": {
+    "cpuMax": "400000 100000",
+    "memoryMax": "17179869184",
+    "node": "v24.22.1"
+  },
+  "load": [
+    {
+      "engine": "zipformer",
+      "type": "ready",
+      "ms": 1820.7000000001863
+    },
+    {
+      "engine": "pocket",
+      "type": "ready",
+      "kind": "pocket",
+      "ms": 2372,
+      "inputNames": null
+    },
+    {
+      "engine": "piper",
+      "type": "ready",
+      "kind": "piper",
+      "ms": 2318.600000000559,
+      "inputNames": [
+        "input",
+        "input_lengths",
+        "scales",
+        "sid"
+      ]
+    },
+    {
+      "engine": "zipformer",
+      "type": "ready",
+      "ms": 1813.199999999255
+    },
+    {
+      "engine": "pocket",
+      "phase": "combined-pocket",
+      "type": "ready",
+      "kind": "pocket",
+      "ms": 2622.199999999255,
+      "inputNames": null
+    },
+    {
+      "engine": "piper",
+      "phase": "combined-piper",
+      "type": "ready",
+      "kind": "piper",
+      "ms": 1675.300000000745,
+      "inputNames": [
+        "input",
+        "input_lengths",
+        "scales",
+        "sid"
+      ]
+    }
+  ],
+  "asr": {
+    "public-human/clean": {
+      "cases": 12,
+      "wordErrors": 36,
+      "referenceWords": 197,
+      "wer": 0.18274111675126903,
+      "characterErrors": 61,
+      "referenceCharacters": 897,
+      "cer": 0.06800445930880714,
+      "exact": 4,
+      "negationCountWarnings": 0,
+      "markerWarnings": 0,
+      "medianMs": 698,
+      "p95Ms": 1101,
+      "medianRtf": 0.09857142857134542
+    },
+    "public-human/white-noise-20dB": {
+      "cases": 12,
+      "wordErrors": 43,
+      "referenceWords": 197,
+      "wer": 0.2182741116751269,
+      "characterErrors": 79,
+      "referenceCharacters": 897,
+      "cer": 0.08807134894091416,
+      "exact": 2,
+      "negationCountWarnings": 0,
+      "markerWarnings": 0,
+      "medianMs": 680.3999999994412,
+      "p95Ms": 1141.0999999996275,
+      "medianRtf": 0.09818075117370893
+    },
+    "negative-control/silence": {
+      "cases": 1,
+      "wordErrors": 0,
+      "referenceWords": 0,
+      "wer": null,
+      "characterErrors": 0,
+      "referenceCharacters": 0,
+      "cer": null,
+      "exact": 1,
+      "negationCountWarnings": 0,
+      "markerWarnings": 0,
+      "medianMs": 333.09999999962747,
+      "p95Ms": 333.09999999962747,
+      "medianRtf": 0.11103333333320915
+    },
+    "negative-control/noise": {
+      "cases": 1,
+      "wordErrors": 0,
+      "referenceWords": 0,
+      "wer": null,
+      "characterErrors": 0,
+      "referenceCharacters": 0,
+      "cer": null,
+      "exact": 1,
+      "negationCountWarnings": 0,
+      "markerWarnings": 0,
+      "medianMs": 352.8999999994412,
+      "p95Ms": 352.8999999994412,
+      "medianRtf": 0.11763333333314707
+    },
+    "synthetic-loopback/omer/clean": {
+      "cases": 16,
+      "wordErrors": 5,
+      "referenceWords": 82,
+      "wer": 0.06097560975609756,
+      "characterErrors": 25,
+      "referenceCharacters": 317,
+      "cer": 0.07886435331230283,
+      "exact": 13,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 332.90000000037253,
+      "p95Ms": 381.59999999962747,
+      "medianRtf": 0.12735000000009314
+    },
+    "synthetic-loopback/omer/white-noise-20dB": {
+      "cases": 16,
+      "wordErrors": 6,
+      "referenceWords": 82,
+      "wer": 0.07317073170731707,
+      "characterErrors": 25,
+      "referenceCharacters": 317,
+      "cer": 0.07886435331230283,
+      "exact": 13,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 323.3999999994412,
+      "p95Ms": 382.8999999994412,
+      "medianRtf": 0.12100694444444444
+    },
+    "synthetic-loopback/omer/white-noise-10dB": {
+      "cases": 16,
+      "wordErrors": 6,
+      "referenceWords": 82,
+      "wer": 0.07317073170731707,
+      "characterErrors": 22,
+      "referenceCharacters": 317,
+      "cer": 0.0694006309148265,
+      "exact": 12,
+      "negationCountWarnings": 0,
+      "markerWarnings": 2,
+      "medianMs": 309.79999999981374,
+      "p95Ms": 492,
+      "medianRtf": 0.11734848484841429
+    },
+    "synthetic-loopback/liat/clean": {
+      "cases": 16,
+      "wordErrors": 6,
+      "referenceWords": 82,
+      "wer": 0.07317073170731707,
+      "characterErrors": 26,
+      "referenceCharacters": 317,
+      "cer": 0.08201892744479496,
+      "exact": 13,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 329.40000000037253,
+      "p95Ms": 386.79999999981374,
+      "medianRtf": 0.12173611111098177
+    },
+    "synthetic-loopback/liat/white-noise-20dB": {
+      "cases": 16,
+      "wordErrors": 7,
+      "referenceWords": 82,
+      "wer": 0.08536585365853659,
+      "characterErrors": 28,
+      "referenceCharacters": 317,
+      "cer": 0.08832807570977919,
+      "exact": 12,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 319.5,
+      "p95Ms": 379.5,
+      "medianRtf": 0.12329545454545454
+    },
+    "synthetic-loopback/liat/white-noise-10dB": {
+      "cases": 16,
+      "wordErrors": 9,
+      "referenceWords": 82,
+      "wer": 0.10975609756097561,
+      "characterErrors": 31,
+      "referenceCharacters": 317,
+      "cer": 0.09779179810725552,
+      "exact": 10,
+      "negationCountWarnings": 0,
+      "markerWarnings": 2,
+      "medianMs": 320.79999999981374,
+      "p95Ms": 379.5,
+      "medianRtf": 0.12093750000025871
+    },
+    "synthetic-loopback/noa/clean": {
+      "cases": 16,
+      "wordErrors": 7,
+      "referenceWords": 82,
+      "wer": 0.08536585365853659,
+      "characterErrors": 29,
+      "referenceCharacters": 317,
+      "cer": 0.0914826498422713,
+      "exact": 12,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 271.30000000074506,
+      "p95Ms": 432.5,
+      "medianRtf": 0.12980349586838388
+    },
+    "synthetic-loopback/noa/white-noise-20dB": {
+      "cases": 16,
+      "wordErrors": 7,
+      "referenceWords": 82,
+      "wer": 0.08536585365853659,
+      "characterErrors": 31,
+      "referenceCharacters": 317,
+      "cer": 0.09779179810725552,
+      "exact": 11,
+      "negationCountWarnings": 0,
+      "markerWarnings": 1,
+      "medianMs": 265.20000000018626,
+      "p95Ms": 471.59999999962747,
+      "medianRtf": 0.12821184344525752
+    },
+    "synthetic-loopback/noa/white-noise-10dB": {
+      "cases": 16,
+      "wordErrors": 17,
+      "referenceWords": 82,
+      "wer": 0.2073170731707317,
+      "characterErrors": 48,
+      "referenceCharacters": 317,
+      "cer": 0.15141955835962145,
+      "exact": 5,
+      "negationCountWarnings": 0,
+      "markerWarnings": 3,
+      "medianMs": 246.1000000005588,
+      "p95Ms": 416.70000000018626,
+      "medianRtf": 0.12360129466910164
+    }
+  },
+  "tts": {
+    "omer": {
+      "cases": 16,
+      "medianGenerationMs": 2351.2000000001863,
+      "p95GenerationMs": 3314.5,
+      "medianFirstPcmMs": 255.79999999981374,
+      "p95FirstPcmMs": 320.20000000018626,
+      "medianFirstNonzeroMs": 255.90000000037253,
+      "medianRtf": 0.9044375000000582,
+      "p95Rtf": 0.9480645161291075,
+      "medianG2pMs": 23.5
+    },
+    "liat": {
+      "cases": 16,
+      "medianGenerationMs": 2207.199999999255,
+      "p95GenerationMs": 3351.0999999996275,
+      "medianFirstPcmMs": 262.70000000018626,
+      "p95FirstPcmMs": 348.20000000018626,
+      "medianFirstNonzeroMs": 262.70000000018626,
+      "medianRtf": 0.9196666666663563,
+      "p95Rtf": 0.9520170454544397,
+      "medianG2pMs": 21.5
+    },
+    "noa": {
+      "cases": 16,
+      "medianGenerationMs": 613.5,
+      "p95GenerationMs": 905.2000000001863,
+      "medianFirstPcmMs": 613.4000000003725,
+      "p95FirstPcmMs": 905.1000000005588,
+      "medianFirstNonzeroMs": 613.4000000003725,
+      "medianRtf": 0.26022672833136795,
+      "p95Rtf": 0.3241869967407976,
+      "medianG2pMs": 23.100000000558794
+    }
+  },
+  "memory": {
+    "baseline": {
+      "samples": 2,
+      "peakRssMiB": 612.5234375,
+      "peakPssMiB": 307.5126953125
+    },
+    "asr-load": {
+      "samples": 4,
+      "peakRssMiB": 1094.37109375,
+      "peakPssMiB": 749.5810546875
+    },
+    "asr-human": {
+      "samples": 40,
+      "peakRssMiB": 1103.48046875,
+      "peakPssMiB": 759.3115234375
+    },
+    "pocket-load": {
+      "samples": 3,
+      "peakRssMiB": 1582.765625,
+      "peakPssMiB": 1198.5595703125
+    },
+    "pocket-omer": {
+      "samples": 40,
+      "peakRssMiB": 1521.73828125,
+      "peakPssMiB": 1177.3359375
+    },
+    "pocket-liat": {
+      "samples": 39,
+      "peakRssMiB": 1343.56640625,
+      "peakPssMiB": 998.7998046875
+    },
+    "piper-load": {
+      "samples": 3,
+      "peakRssMiB": 1123.4453125,
+      "peakPssMiB": 778.662109375
+    },
+    "piper-noa": {
+      "samples": 12,
+      "peakRssMiB": 1220.49609375,
+      "peakPssMiB": 877.826171875
+    },
+    "asr-synthetic-loopback": {
+      "samples": 86,
+      "peakRssMiB": 1247.30859375,
+      "peakPssMiB": 903.1630859375
+    },
+    "combined-pocket": {
+      "samples": 6,
+      "peakRssMiB": 1840.9296875,
+      "peakPssMiB": 1502.8974609375
+    },
+    "combined-piper": {
+      "samples": 5,
+      "peakRssMiB": 1492.37890625,
+      "peakPssMiB": 1146.0693359375
+    }
+  },
+  "memoryScope": "One-second sampled whole Chromium process tree. RSS sum double-counts shared pages; PSS apportions shared pages. Includes browser/runtime/workers/cache and fixture transfer; not phone RAM or model-only memory.",
+  "nativeComparison": {
+    "cases": 12,
+    "rawExact": 9,
+    "normalizedExact": 9,
+    "browserWordErrors": 36,
+    "nativeWordErrors": 36,
+    "pairs": [
+      {
+        "id": "fleurs-6985392582296601957-clean",
+        "reference": "מאוחר ביום ראשון נשיא ארה ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+        "browser": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+        "native": "מאוחר ביום ראשון נשיא ארה\"ב דונלד טראמפ הודיע שהכוחות האמריקאים יעזבו את סוריה בהצהרה שהעבירה דוברת הבית הלבן",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 0,
+        "nativeWordErrors": 0
+      },
+      {
+        "id": "fleurs-3471313510990959749-clean",
+        "reference": "המכון לצדק ולדמוקרטיה של האיטי אזכר מחקרים עצמאיים שמראים כי גדוד שמירת השלום הנפאלי של האו ם הביא ללא ידיעתו את המחלה להאיטי",
+        "browser": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+        "native": "המכון לצדק ולדמוקרטיה שלה הייתי הזכר מחקרים עצמאיים שמראים כגדוד שמירת השלום הנפאלי של האו\"ם, והיא ללא ידיעתו את המחלה להייתי.",
+        "rawExact": false,
+        "normalizedExact": false,
+        "browserWordErrors": 8,
+        "nativeWordErrors": 7
+      },
+      {
+        "id": "fleurs-15713840504788281974-clean",
+        "reference": "גיהוץ בגדים לחים יכול לעזור להם להתייבש במלונות רבים יש מגהץ וקרש גיהוץ זמינים להשאלה גם אם הם לא נמצאים בחדר",
+        "browser": "גיאוץ בגדים מלאכים יוכלו לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוט זמינים להשאלה, גם אם הם לא נמצאים בחדר",
+        "native": "גיאוץ בגדים מלאכים יכול לעזור להם להתייבש בממונות רבים משבגי עצוקה יש גיוצמינים להשאלה, גם אם הם לא נמצאים בחדר",
+        "rawExact": false,
+        "normalizedExact": false,
+        "browserWordErrors": 8,
+        "nativeWordErrors": 8
+      },
+      {
+        "id": "fleurs-12451823994695799311-clean",
+        "reference": "המערה שוכנת בפסגת אחד ההרים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+        "browser": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+        "native": "המערה שוכנת בפסגת אחד הערים מצפון למכה והיא מבודדת לחלוטין מכל שאר העולם",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 1,
+        "nativeWordErrors": 1
+      },
+      {
+        "id": "fleurs-9476563984789168422-clean",
+        "reference": "למעשה לא קל למצוא אותה כלל אפילו אם יודעים שהיא קיימת עם הכניסה לתוך המערה אתם בבידוד מוחלט",
+        "browser": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט",
+        "native": "למעשה לא קל למצוא את הכלל, אפילו אם יודעים שהיא קיימת. אם הכניסה לתוך המערעת אין בבידוד מוחלט",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 5,
+        "nativeWordErrors": 5
+      },
+      {
+        "id": "fleurs-8790580890171065686-clean",
+        "reference": "המחלה נישאת על ידי חזירים ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+        "browser": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+        "native": "המחלה נישאת על ידי חזירים, ולאחר מכן עוברת לבני אדם באמצעות יתושים",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 0,
+        "nativeWordErrors": 0
+      },
+      {
+        "id": "fleurs-11086736344915854194-clean",
+        "reference": "באקלים החם של המזרח התיכון לבית לא הייתה חשיבות רבה כל כך",
+        "browser": "באקלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+        "native": "בכלים החם של המזרח התיכון, לבית לא הייתה חשיבות רבה כל כך",
+        "rawExact": false,
+        "normalizedExact": false,
+        "browserWordErrors": 0,
+        "nativeWordErrors": 1
+      },
+      {
+        "id": "fleurs-9859725698255055164-clean",
+        "reference": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע כולל פסיכולוגיה",
+        "browser": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+        "native": "השקפותיו של אריסטו היו מקובלות בכל תחומי המדע, כולל פסיכולוגיה.",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 0,
+        "nativeWordErrors": 0
+      },
+      {
+        "id": "fleurs-14908441627362672994-clean",
+        "reference": "רק מוטציות בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות תאים או לסרטן",
+        "browser": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+        "native": "רק מוטציית בתאים משושלת שכבת הנבט יכולות לעבור לילדים בעוד מוטציות במקומות אחרים עלולות לגרום למות טעים או לסרטן",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 2,
+        "nativeWordErrors": 2
+      },
+      {
+        "id": "fleurs-15011168956922080339-clean",
+        "reference": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר אנשים הופכים להיות המנהלים של עמיתיהם לשעבר קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+        "browser": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+        "native": "באופן כללי שתי התנהגויות יכולות לפרוץ כאשר הנשים הופכים להיות המנהלים שלה מטיהם לשעבר. קצה אחד של הספקטרום מנסה להישאר אחד מהחבר'ה",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 3,
+        "nativeWordErrors": 3
+      },
+      {
+        "id": "fleurs-17094305295227949694-clean",
+        "reference": "אירוסמית' ביטלו את ההופעות הנותרות בסיבוב ההופעות שלהם",
+        "browser": "הוא ביטלו את האותיות הנוצרות בסיבוב העופות שלהם",
+        "native": "הוא ביטלו את האותיות הנוצרות בסיבוב העופות שלהם",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 4,
+        "nativeWordErrors": 4
+      },
+      {
+        "id": "fleurs-9677910411599000791-clean",
+        "reference": "קואומו 53 החל את תפקידו כמושל מוקדם יותר השנה וחתם בחודש שעבר על הצעת חוק המאשרת נישואים חד-מיניים",
+        "browser": "קומו 53 החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+        "native": "קומו 53 החל את תפקידו כמושל מוקדם יותר שלה, וחתם בחודש שעבר על צעד חוק המאשר את נישואים חד מיניים.",
+        "rawExact": true,
+        "normalizedExact": true,
+        "browserWordErrors": 5,
+        "nativeWordErrors": 5
+      }
+    ]
+  },
+  "markerWarnings": [
+    {
+      "id": "pocket-omer-oil-water-amounts-clean",
+      "condition": "clean",
+      "voice": "omer",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-20",
+      "condition": "white-noise-20dB",
+      "voice": "omer",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי קפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-omer-oil-water-amounts-10",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-omer-oven-temperature-10",
+      "condition": "white-noise-10dB",
+      "voice": "omer",
+      "reference": "חיממתי למאה ושמונים מעלות.",
+      "text": "עיממתי ימיה ושמונים מעלות.",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "180",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-liat-mixed-half-10",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "reference": "ערבבתי רק חצי.",
+      "text": "ערבבתי רק חפש",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-clean",
+      "condition": "clean",
+      "voice": "liat",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-20",
+      "condition": "white-noise-20dB",
+      "voice": "liat",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "pocket-liat-oil-water-amounts-10",
+      "condition": "white-noise-10dB",
+      "voice": "liat",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "piper-noa-mixed-half-10",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "reference": "ערבבתי רק חצי.",
+      "text": "היא עובדה בתי רק חסד",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-clean",
+      "condition": "clean",
+      "voice": "noa",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי כפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-20",
+      "condition": "white-noise-20dB",
+      "voice": "noa",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "piper-noa-oil-water-amounts-10",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "reference": "הוספתי שתי כפות שמן וחצי כוס מים.",
+      "text": "הוספתי שתי היקפות שמן וחצי כוס מים",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "two",
+          "present": true
+        },
+        {
+          "name": "half",
+          "present": false
+        }
+      ]
+    },
+    {
+      "id": "piper-noa-only-asking-10",
+      "condition": "white-noise-10dB",
+      "voice": "noa",
+      "reference": "לא צריך להוסיף מים? אני רק שואל.",
+      "text": "לא צריך להוסיף מים, אני רק שואב",
+      "negationCountDelta": 0,
+      "markerChecks": [
+        {
+          "name": "question-scope",
+          "present": false
+        }
+      ]
+    }
+  ],
+  "externalRequests": [],
+  "validatedTtsWavs": 48,
+  "validatedAsrOutputs": 170,
+  "extraProbeScope": "Full run also makes2 unscored TTS calls during combined residency checks. Prior smoke generated3 other WAVs. Neither is part of the48 quality comparisons.",
+  "interpretation": "Read-speech diagnostic and synthetic loopback, not representative kitchen/user/phone quality. Marker checks do not score V52 state correctness or perceptual speech quality."
+}

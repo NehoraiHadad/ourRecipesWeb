@@ -1,0 +1,42 @@
+{
+  "completedUtc": "2026-11-20T10:42:04.707537+00:00",
+  "branch": "codex/hebrew-speech-evaluation",
+  "base": "c7d9d54",
+  "measurementCommit": "1bb49353a7fba5df12b32a00067b7460c7e32974",
+  "fullRun": {
+    "browserAsr": 170,
+    "qualityTts": 48,
+    "nativeAsr": 12,
+    "combinedResidencyTtsProbes": 2
+  },
+  "engineeringSmoke": {
+    "beforeFullRunTts": 3,
+    "afterTypeCompatibilityTts": 3,
+    "finalSmokePassed": true
+  },
+  "checks": {
+    "existingVoiceUnitTests": 30,
+    "researchMetricTests": 6,
+    "fullFrontendTypecheckPassed": true,
+    "sixtyArchivedAudioHashesAndCrcVerified": true,
+    "allBrowserAsrScoresRecomputed": true,
+    "frozenMeasurementSourcesCheckedAgainstGit": true
+  },
+  "nativeVersions": {
+    "python": "3.12",
+    "numpy": "2.3.5",
+    "soundfile": "0.14.0",
+    "sherpa_onnx": "2.0.1"
+  },
+  "scope": "CPU cloud Chromium only. No physical microphone/speaker/phone, V52 evaluation, app/timer/mobile change or GPU allocation.",
+  "scorerCorrection": "v1 incorrectly failed exact gold containing וחצי. Optional conjunction prefix fixed, preserving original checker+summary.9false positives removed,4marker warnings remain. No inference, corpus or WER/CER changed.",
+  "audioArchive": {
+    "file": "research/speech-hebrew/evidence/audio-inputs.zip",
+    "bytes": 8452340,
+    "sha256": "3882f02c2f9d44254e0aaf1b22d58f5eee6b9c2532f822d62868f4f8ba515b97",
+    "synthetic_wavs": 48,
+    "public_human_wavs": 12,
+    "crc_and_all_member_hashes_verified": true,
+    "model_weights_or_credentials": false
+  }
+}

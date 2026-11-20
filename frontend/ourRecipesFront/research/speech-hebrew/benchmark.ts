@@ -86,7 +86,7 @@ async function main() {
     const ids=new Set(rows.filter(r=>r.args.includes(profile)).map(r=>r.pid));
     for(let changed=true;changed;){changed=false;for(const r of rows)if(ids.has(r.parent)&&!ids.has(r.pid)){ids.add(r.pid);changed=true;}}
     let pssKiB=0,available=true;
-    for(const pid of ids)try{const text=await readFile(`/proc/${pid}/smaps_rollup`,'utf8');pssKiB+=Number(text.match(/^Pss:\s+(\d+)/m)?.[1]||0);}catch{available=false;}
+    for(const pid of Array.from(ids))try{const text=await readFile(`/proc/${pid}/smaps_rollup`,'utf8');pssKiB+=Number(text.match(/^Pss:\s+(\d+)/m)?.[1]||0);}catch{available=false;}
     report.memory.push({utc:new Date().toISOString(),phase,processes:ids.size,sumRssMiB:rows.filter(r=>ids.has(r.pid)).reduce((s,r)=>s+r.rss,0)/1024,pssMiB:available?pssKiB/1024:null});
   };
   const timer=setInterval(()=>void memory(),1000);await memory();
@@ -104,7 +104,7 @@ async function main() {
     }
     for(const name of ['he_IL-noa-medium.onnx','he_IL-noa-medium.onnx.json'])entries.push({cache:'speech-research-tts',key:origin+'/models/piper/'+name,url:'/models/piper/'+name});
     await page.evaluate(async entries=>{for(const e of entries){const response=await fetch(e.url);if(!response.ok)throw new Error('Local fixture '+e.url);await(await caches.open(e.cache)).put(e.key,response);}},entries);
-    async function worker(key:string,payload:object,file?:string) {
+    const worker=async(key:string,payload:object,file?:string)=>{
       return page.evaluate(async({key,payload,file})=>{
         const scope=window as any;scope.workers ||= {};scope.frames=[];
         const w:Worker=scope.workers[key] ||= new Worker(file!,{type:'module'});
@@ -116,11 +116,11 @@ async function main() {
         });
       },{key,payload,file});
     }
-    async function terminate(key:string){await page.evaluate(key=>{(window as any).workers?.[key]?.terminate();delete (window as any).workers?.[key];(window as any).frames=[];},key);}
-    async function loadAsr(){phase='asr-load';const loaded=await worker('asr',{type:'load',spec:{...MODELS.asr,cache:'speech-research-asr',base:modelURL(MODELS.asr,'')}},'/voice/asr-worker.js');report.load.push({engine:'zipformer',...loaded});if(loaded.type==='error')throw new Error(loaded.message);}
-    async function pcmFromWav(bytes:Buffer){return page.evaluate(async bytes=>{const scope=window as any;scope.decoder ||= new AudioContext({sampleRate:16000});const data=await scope.decoder.decodeAudioData(Uint8Array.from(bytes).buffer);if(data.sampleRate!==16000||data.numberOfChannels!==1)throw new Error('Unexpected decoded audio format');return Array.from(data.getChannelData(0));},Array.from(bytes));}
-    async function transcribe(id:string,reference:string,pcm:Float32Array,details:object,probes:any[]=[]){
-      const result=await page.evaluate(async data=>{const scope=window as any;return new Promise<any>((resolve,reject)=>{const timeout=setTimeout(()=>reject(new Error('ASR timeout')),180000);scope.workers.asr.onmessage=({data})=>{clearTimeout(timeout);resolve(data);};scope.workers.asr.postMessage({type:'transcribe',pcm:Float32Array.from(data)});});},Array.from(pcm));
+    const terminate=async(key:string)=>{await page.evaluate(key=>{(window as any).workers?.[key]?.terminate();delete (window as any).workers?.[key];(window as any).frames=[];},key);}
+    const loadAsr=async()=>{phase='asr-load';const loaded=await worker('asr',{type:'load',spec:{...MODELS.asr,cache:'speech-research-asr',base:modelURL(MODELS.asr,'')}},'/voice/asr-worker.js');report.load.push({engine:'zipformer',...loaded});if(loaded.type==='error')throw new Error(loaded.message);}
+    const pcmFromWav=async(bytes:Buffer)=>{return page.evaluate(async bytes=>{const scope=window as any;scope.decoder ||= new AudioContext({sampleRate:16000});const data=await scope.decoder.decodeAudioData(Uint8Array.from(bytes).buffer);if(data.sampleRate!==16000||data.numberOfChannels!==1)throw new Error('Unexpected decoded audio format');return Array.from(data.getChannelData(0));},Array.from(bytes));}
+    const transcribe=async(id:string,reference:string,pcm:Float32Array,details:object,probes:any[]=[])=>{
+      const result=await page.evaluate(async data=>{const scope=window as any;return new Promise<any>((resolve,reject)=>{const timeout=setTimeout(()=>reject(new Error('ASR timeout')),180000);scope.workers.asr.onmessage=({data}:{data:any})=>{clearTimeout(timeout);resolve(data);};scope.workers.asr.postMessage({type:'transcribe',pcm:Float32Array.from(data)});});},Array.from(pcm));
       const row={id,reference,pcmSha256:hash(Buffer.from(pcm.buffer,pcm.byteOffset,pcm.byteLength)),...details,...result,evaluation:result.type==='result'?score(reference,result.text,probes):null};report.asr.push(row);console.log('ASR',id,result.text);await save();
     }
     if(!SMOKE){
@@ -141,7 +141,7 @@ async function main() {
         phase=kind+'-'+voice;const result=await worker(kind,{type:'speak',text:c.text,voice});
         const row={id:c.id,text:c.text,voice,engine:kind,...result};report.tts.push(row);
         if(result.type==='result'){
-          const samples=await page.evaluate(()=>{const frames=(window as any).frames as Float32Array[];const result:number[]=[];for(const f of frames)for(const x of f)result.push(x);return result;});
+          const samples=await page.evaluate(()=>{const frames=(window as any).frames as Float32Array[];const result:number[]=[];for(const f of frames)for(const x of Array.from(f))result.push(x);return result;});
           if(samples.length!==result.samples||!samples.every(Number.isFinite)||!samples.some(x=>Math.abs(x)>1e-5))throw new Error('Invalid generated PCM');
           const bytes=wav(Float32Array.from(samples),result.sampleRate),name=`${kind}-${voice}-${c.id}.wav`;
           await writeFile(path.join(OUT,name),bytes);row.wav={file:name,bytes:bytes.length,sha256:hash(bytes)};

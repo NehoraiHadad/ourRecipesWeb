@@ -1,5 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 import { normalize, score, noise, phonemeIds } from './metrics.mjs';
 test('normalization removes nikud and punctuation without deleting negation or merging maqaf words',()=>{
   assert.equal(normalize('עוֹד־לֹא הוֹסַפְתִּי מַיִם!'),'עוד לא הוספתי מים');
@@ -16,6 +17,12 @@ test('marker checks accept authored quantity aliases without forgiving lost unce
   const probes=[{name:'maybe',forms:['אולי']},{name:'two',forms:['שתי','2']}];
   assert.equal(score('אולי הוספתי שתי כפות','אולי הוספתי 2 כפות',probes).markerWarning,false);
   assert.equal(score('אולי הוספתי שתי כפות','הוספתי 2 כפות',probes).markerWarning,true);
+});
+test('every gold fixture passes its own marker checks, including conjunction-prefixed half',()=>{
+  const cases=JSON.parse(readFileSync(new URL('./cases.json',import.meta.url)));
+  for(const row of cases)assert.equal(score(row.text,row.text,row.probes||[]).markerWarning,false,row.id);
+  assert.equal(score('הוספתי חצי','הוספתי וחצי',[{name:'half',forms:['חצי']}]).markerWarning,false);
+  assert.equal(score('הוספתי חצי','הוספתי',[{name:'half',forms:['חצי']}]).markerWarning,true);
 });
 test('noise meets measured SNR, is reproducible, finite and bounded',()=>{
   const pcm=Float32Array.from({length:16000},(_,i)=>.2*Math.sin(i*.2));

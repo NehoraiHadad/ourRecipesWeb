@@ -18,7 +18,12 @@ export function score(reference, hypothesis, probes = []) {
   const words = s => s ? s.split(' ') : [];
   const rw = words(ref), hw = words(hyp);
   const negations = ws => ws.filter(w => ['לא','ולא'].includes(w)).length;
-  const markerChecks = probes.map(p => ({ name: p.name, present: p.forms.some(form => ` ${hyp} `.includes(` ${normalize(form)} `)) }));
+  // Hebrew conjunction is attached to a word: וחצי retains חצי. No spelling,
+  // numeric or semantic repair is applied to the transcript or WER/CER.
+  const markerChecks = probes.map(p => ({ name: p.name, present: p.forms.some(form => {
+    const normalized=normalize(form);
+    return [` ${normalized} `,` ו${normalized} `].some(variant=>` ${hyp} `.includes(variant));
+  }) }));
   return { normalizedReference: ref, normalizedHypothesis: hyp, exact: ref === hyp,
     wordErrors: distance(rw, hw), referenceWords: rw.length,
     characterErrors: distance([...ref.replaceAll(' ', '')], [...hyp.replaceAll(' ', '')]), referenceCharacters: ref.replaceAll(' ', '').length,

@@ -1,0 +1,9 @@
+{
+  "file": "research/speech-hebrew/evidence/audio-inputs.zip",
+  "bytes": 8452340,
+  "sha256": "3882f02c2f9d44254e0aaf1b22d58f5eee6b9c2532f822d62868f4f8ba515b97",
+  "synthetic_wavs": 48,
+  "public_human_wavs": 12,
+  "crc_and_all_member_hashes_verified": true,
+  "model_weights_or_credentials": false
+}

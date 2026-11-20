@@ -1,0 +1,68 @@
+{
+  "baseCommit": "1bb49353a7fba5df12b32a00067b7460c7e32974",
+  "sourceHashes": {
+    "cases.json": "8367f52a084ed607367c854f8370db337c90440ad23738304b11ce904d5dda60",
+    "metrics.mjs": "203f36ccb33c83d556122f8d2681914f3460b61d386d73dc77d290479f69c445",
+    "metrics.test.mjs": "59a9c6d4aaea32d7314b53b937fed5457d29d7cbb5c6c4c9e7fa9e530de6f407",
+    "tts-worker.mjs": "283d7f659854355eb3415dd62a00f51dcb11d503ff6e063764fd10277a9fdddf",
+    "benchmark.ts": "ff440de62e904b345b2dce6c3822941e224f905f3645a7999e9aa5c92c88a1e0",
+    "PLAN.he.md": "96ef2534370f95f880c73dc7c5b06758ab0a43652f4ebc253785f2039211753e",
+    "evidence/human-fixtures.json": "c93cfead96825ffb4a5f6422f474b0d600ce2d7a657751371cfd55395bcecd1c",
+    "evidence/model-sources.json": "e2f090a676c5f45c30bcc236b229e8058168ca3dca042fb18405f03a6989bd53"
+  },
+  "fixtureHashes": {
+    "asr/onnx/config.json": {
+      "bytes": 10365,
+      "sha256": "6ad75405069d306cf96f1642e8093f7642773f40082c39a0ce7a3d270b1db920"
+    },
+    "asr/sherpa-onnx/tokens.txt": {
+      "bytes": 17086,
+      "sha256": "e4ebb5e72a6aeef47437a55fa2308ebbedb7c51c557de7a89bf965c23ea9af4a"
+    },
+    "asr/sherpa-onnx/encoder.int8.onnx": {
+      "bytes": 70478964,
+      "sha256": "6c6febcb74a09435315a1d872a6539f6e7fc2c333533f14c74edc0e85c49ffcd"
+    },
+    "asr/sherpa-onnx/decoder.int8.onnx": {
+      "bytes": 1049105,
+      "sha256": "feb03e7c8aa761593a9284a6fa1e91259be3702de75f630062256c1a59c5a906"
+    },
+    "asr/sherpa-onnx/joiner.int8.onnx": {
+      "bytes": 771805,
+      "sha256": "1d2c6d8e6dabc5eb52de52e95718e9bdfbffbfe7ead3808fb5ffd74e83bd9cae"
+    },
+    "tts/he/model.onnx": {
+      "bytes": 176992315,
+      "sha256": "010c6701d007277e6b37440b909de098200802fddbe70f74e890763b5dd43745"
+    },
+    "tts/he/assets.json": {
+      "bytes": 1654421,
+      "sha256": "82db670c52c35d0dd9440339af0a02269b8e19f9531c97673b0f2244d37a9b23"
+    },
+    "tts/he/manifest.json": {
+      "bytes": 584,
+      "sha256": "c274819e9bd562d5669d23828635f5573ceb3191c7e6f8d98f40af3a909b2931"
+    },
+    "tts/he/renikud.onnx": {
+      "bytes": 20620594,
+      "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca"
+    },
+    "piper/model": {
+      "bytes": 77056101,
+      "sha256": "83b18c0b8fad6ac00fcea5c5bdf3c1fdbec182f9eadad9f97bc423ab4e22be7d"
+    }
+  },
+  "runtimeHashes": {
+    "builtSpeechJs": "f54c0835d54e780ee64c7f54b93ed8413c2d660317486909271de392bba8519e",
+    "asr/ort.wasm.min.mjs": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b",
+    "asr/ort-wasm-simd-threaded.wasm": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2",
+    "tts/ort-wasm-simd-threaded.wasm": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+  },
+  "dependencies": {
+    "pocket-tts-onnx": "0.1.0",
+    "onnxruntime-web": "1.30.0",
+    "playwright": "1.65.0",
+    "esbuild": "0.25.12"
+  },
+  "smoke": false
+}
