@@ -1,0 +1,503 @@
+[
+  {
+    "repo": "ivrit-ai/zipformer2-66m-streaming-he",
+    "revision": "ee769a2a13b887f91572eec349458bfb0fe79e7a",
+    "license": "cc-by-4.0",
+    "card_sha256": "ff83405af29506c01b1092153db6bf122dcf6430dc42bf225a38e9649337d7e9",
+    "card_text": "---\nlicense: cc-by-4.0\nlanguage:\n- he\npipeline_tag: automatic-speech-recognition\nbase_model: Zengwei/icefall-asr-librispeech-streaming-zipformer-2023-05-17\ntags:\n- speech\n- asr\n- hebrew\n- streaming\n- zipformer\n- transducer\n- icefall\n- k2\n---\n\n# zipformer2-66m-streaming-he\n\n> **Developed by Yakov Kolani.** This is a mirror of his original model,\n> [thewh1teagle/zipformer2-66m-streaming-he](https://huggingface.co/thewh1teagle/zipformer2-66m-streaming-he)\n> (CC-BY-4.0), with additional ONNX exports for browsers and GPUs in [`onnx/`](#additional-onnx-exports-onnx).\n> Used by [live-transcribe.ivrit.ai](https://live-transcribe.ivrit.ai) for on-device transcription.\n\n\nStreaming Hebrew speech recognition: a 66 M-parameter Zipformer2 transducer, fine-tuned from\n[icefall's English streaming Zipformer](https://huggingface.co/Zengwei/icefall-asr-librispeech-streaming-zipformer-2023-05-17)\non [ivrit.ai](https://www.ivrit.ai) Hebrew audio. Decodes in 1.28 s chunks as audio arrives.\n\n## Usage (sherpa-onnx)\n\n```sh\nuv pip install sherpa-onnx soundfile numpy huggingface_hub\nuv run hf download thewh1teagle/zipformer2-66m-streaming-he --include \"sherpa-onnx/*\" --local-dir .\n```\n\n```python\nimport numpy as np, sherpa_onnx, soundfile as sf\n\nmodel_dir = \"sherpa-onnx\"\nrecognizer = sherpa_onnx.OnlineRecognizer.from_transducer(\n    tokens=f\"{model_dir}/tokens.txt\",\n    encoder=f\"{model_dir}/encoder.int8.onnx\",\n    decoder=f\"{model_dir}/decoder.int8.onnx\",\n    joiner=f\"{model_dir}/joiner.int8.onnx\",\n    model_type=\"zipformer2\",\n    num_threads=4,\n)\n\naudio, sample_rate = sf.read(\"audio.wav\", dtype=\"float32\", always_2d=True)\nstream = recognizer.create_stream()\nstream.accept_waveform(sample_rate, audio.mean(axis=1))\nstream.accept_waveform(sample_rate, np.zeros(int(1.5 * sample_rate), dtype=np.float32))  # flush the last chunk\nstream.input_finished()\nwhile recognizer.is_ready(stream):\n    recognizer.decode_stream(stream)\nprint(recognizer.get_result(stream))\n```\n\n<details>\n<summary><b>PyTorch checkpoint (icefall)</b></summary>\n\n`model.pt` holds an [icefall](https://github.com/k2-fsa/icefall) Zipformer2 `AsrModel` state dict under `\"model\"`,\nthe config under `\"config\"` and the SentencePiece tokenizer under `\"tokenizer\"` (same as `bpe.model`).\n\n| Setting | Value |\n|---|---|\n| `num_encoder_layers` | 2,2,3,4,3,2 |\n| `downsampling_factor` | 1,2,4,8,4,2 |\n| `feedforward_dim` | 512,768,1024,1536,1024,768 |\n| `num_heads` | 4,4,4,8,4,4 |\n| `encoder_dim` | 192,256,384,512,384,256 |\n| `encoder_unmasked_dim` | 192,192,256,256,256,192 |\n| `cnn_module_kernel` | 31,31,15,15,15,31 |\n| `query_head_dim` / `value_head_dim` / `pos_head_dim` / `pos_dim` | 32 / 12 / 4 / 48 |\n| `decoder_dim` / `joiner_dim` / `context_size` | 512 / 512 / 2 |\n| `vocab_size` (blank = 0) | 1493 |\n| `causal` | true; chunk 64 (1.28 s), left context 256 frames |\n| Features | 80-dim fbank, 16 kHz mono |\n\n</details>\n\n## Results\n\nWER (%, lower is better) on ivrit.ai's test sets with the\n[leaderboard](https://huggingface.co/spaces/ivrit-ai/hebrew-transcription-leaderboard) normalization.\nOther numbers are from the leaderboard; all are offline (full-utterance) except where marked.\n\n| Model | eval-d1 ↓ | eval-whatsapp ↓ |\n|---|---|---|\n| Soniox | 4.8 | 9.0 |\n| **🌊 zipformer2-66m-streaming-he (this model)** | **5.1** | **8.9** |\n| ivrit-ai/whisper-large-v3-turbo | 5.3 | 7.1 |\n| parakeet-tdt-0.6b-v3-he | 6.1 | 8.8 |\n| openai/whisper-large-v3-turbo | 8.4 | 12.8 |\n| NVIDIA nemotron-3.5-asr-streaming-0.6b (streaming) | 17.1 | 36.5 |\n\nThe sherpa-onnx int8 export scores 5.3 / 8.8.\n\n## Additional ONNX exports (`onnx/`)\n\nAdded by ivrit.ai to Yakov Kolani's model. The original repo ships only the int8 sherpa-onnx export; these are full-precision\nexports of the same `model.pt`, with identical inputs and outputs (drop-in for sherpa-onnx or onnxruntime).\n\n| File | Notes |\n|---|---|\n| `encoder.onnx`, `decoder.onnx`, `joiner.onnx` | fp32, icefall `zipformer/export-onnx-streaming.py`, chunk 64 (1.28 s), left context 256 |\n| `encoder.fp16.onnx`, `decoder.fp16.onnx`, `joiner.fp16.onnx` | fp16 weights and compute, fp32 inputs/outputs (for WebGPU / CUDA). Encoder output vs fp32: min cosine 0.99999 over a streamed utterance |\n| `config.json` | Chunking parameters and every encoder state tensor (name, shape, dtype) for runtimes that need to initialize streaming state themselves, e.g. onnxruntime-web |\n| `tokens.txt` | Same as `sherpa-onnx/tokens.txt` |\n\nOn 15 eval-whatsapp clips, int8 (`sherpa-onnx/`) and fp32 scored 9.31% and 9.40% WER, so int8 loses nothing measurable.\nIn the browser (onnxruntime-web 1.30), the int8 export on the WASM backend was about as fast as fp16 on WebGPU on an\nintegrated GPU, at half the download, so live-transcribe.ivrit.ai uses int8 + WASM.\n\n## Limitations\n\n- English is weak (spelled letter by letter).\n- Numbers come out as words or digits inconsistently.\n\n## Fine-tuning & training notes\n\n<details>\n<summary><b>Fine-tune this model</b></summary>\n\nLoad `model.pt[\"model\"]` into icefall's Zipformer2 `AsrModel` (config above) and continue with icefall's\n`finetune.py` or any transducer training loop.\n\n- Audio 16 kHz mono; normalize text like training: strip nikud and bidi marks, geresh/gershayim → `'`/`\"`.\n- ScaledAdam `base_lr 0.0045`, Eden `lr_batches 7500` / `lr_epochs 2`, ~600 s of audio per step.\n\n</details>\n\n<details>\n<summary><b>How it was trained (new language on an English streaming Zipformer)</b></summary>\n\n- **Extend the tokenizer, don't replace it.** A 1,024-piece Hebrew SentencePiece model, trained on ~500 h of\n  transcripts, appended after the English 500 pieces (1,493 total).\n  New embedding and output rows start at the mean of the old rows (+1% noise).\n- **10× LR on decoder + joiner**, so the new rows separate quickly.\n- **Let the LR decay.** icefall's `finetune.py` defaults (`lr_batches 100000` / `lr_epochs 100`) keep the LR flat,\n  which stalled a new language at ~20% WER; `lr_batches 7500` / `lr_epochs 2` fixed it.\n- **Data:** ~20k h of ivrit.ai audio pseudo-labeled with ivrit.ai Whisper models. Drop labels the teacher cut\n  off at its token cap (they teach deletions) and `compression_ratio > 2.6` (Whisper loops).\n  Rows sharing word 8-grams with the eval sets were removed (no test leakage).\n- **Finish:** weight EMA, then the joiner's blank bias lowered by 1.0 (fewer dropped words, baked into the weights).\n\n</details>\n\n## License\n\nCC-BY-4.0. Base model from [k2-fsa/icefall](https://github.com/k2-fsa/icefall) (Apache-2.0).\nTrained on audio from [ivrit.ai](https://www.ivrit.ai) ([license](https://www.ivrit.ai/en/the-license/)).\n",
+    "files": [
+      {
+        "rfilename": "README.md",
+        "blobId": "aef667664511ad83d1f91860732a2d161ff85aa1",
+        "size": 6595
+      },
+      {
+        "rfilename": "bpe.model",
+        "blobId": "bcdbd07a1edfe8f11834cd9543e9a72c3a9965e2",
+        "size": 262382,
+        "lfs": {
+          "sha256": "80e625d3648f13e67fdd804158feefaed432a89ed5107218a3af6ec7c4c129f0",
+          "size": 262382,
+          "pointerSize": 131
+        }
+      },
+      {
+        "rfilename": "model.pt",
+        "blobId": "450355ec94dc24c8f86d65b91c2608f6bf464dad",
+        "size": 273216023,
+        "lfs": {
+          "sha256": "45f9f6181d1fe4674750e62ac0cf346ce56c6584952f90120ad4ac91c3f20492",
+          "size": 273216023,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "onnx/config.json",
+        "blobId": "9df9c9c602815e579a60a9f38ad2824bc1a6a163",
+        "size": 10365
+      },
+      {
+        "rfilename": "onnx/decoder.fp16.onnx",
+        "blobId": "a553d2cf90067fe45e39632138409dae5850088c",
+        "size": 2065280,
+        "lfs": {
+          "sha256": "0b96a2f423ad49e2e47b063774a2c2baa77e6175ada732605f8308433062379f",
+          "size": 2065280,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "onnx/decoder.onnx",
+        "blobId": "09e5dc0e16fa6bb715732a82f9c2d33fd52b2abb",
+        "size": 4126748,
+        "lfs": {
+          "sha256": "9e03a27f8bd2704679425425d30bcc65c44f6238180e1f7464df63b7293768e0",
+          "size": 4126748,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "onnx/encoder.fp16.onnx",
+        "blobId": "0260d4c12635770267fd6bbd65e0a22f3e5fce8d",
+        "size": 131384201,
+        "lfs": {
+          "sha256": "d3804a11c950c2925fc94c0a04e8563d9e47955cc9289522450906d93e0a3c2f",
+          "size": 131384201,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "onnx/encoder.onnx",
+        "blobId": "93cb4019cb4c1e8d2fa21cec6c9e750870d15dca",
+        "size": 261016892,
+        "lfs": {
+          "sha256": "e788d56a0d878ee53084ae96fc5b15db926996815e725b668ff363deb9653489",
+          "size": 261016892,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "onnx/joiner.fp16.onnx",
+        "blobId": "c3153ec72caabb433cfcc6f7d2d1b854f95fe5f1",
+        "size": 1532709,
+        "lfs": {
+          "sha256": "1e0b5bf6d19b643e5d97b321878060fee13abce7a7a0d117c115c98358659459",
+          "size": 1532709,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "onnx/joiner.onnx",
+        "blobId": "673d8d19e5f087d34ac65123fae16289ab92c7ee",
+        "size": 3064101,
+        "lfs": {
+          "sha256": "e1dbf925971441e18332ab3ee2639971ec2fac387f2e0da4f50cc2a5e5e80d84",
+          "size": 3064101,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "onnx/tokens.txt",
+        "blobId": "97675cfca093bb75694b0f8e5a115b3fecf51d86",
+        "size": 17086
+      },
+      {
+        "rfilename": "sherpa-onnx/decoder.int8.onnx",
+        "blobId": "ef99642d5570237d7a8fa55d0c562aebba8d42a0",
+        "size": 1049105,
+        "lfs": {
+          "sha256": "feb03e7c8aa761593a9284a6fa1e91259be3702de75f630062256c1a59c5a906",
+          "size": 1049105,
+          "pointerSize": 132
+        }
+      },
+      {
+        "rfilename": "sherpa-onnx/encoder.int8.onnx",
+        "blobId": "0153a516983f8db346db84957b64a36a02c7272c",
+        "size": 70478964,
+        "lfs": {
+          "sha256": "6c6febcb74a09435315a1d872a6539f6e7fc2c333533f14c74edc0e85c49ffcd",
+          "size": 70478964,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "sherpa-onnx/joiner.int8.onnx",
+        "blobId": "4c00d944a293553168aeb55a033f4d1efc5cdf73",
+        "size": 771805,
+        "lfs": {
+          "sha256": "1d2c6d8e6dabc5eb52de52e95718e9bdfbffbfe7ead3808fb5ffd74e83bd9cae",
+          "size": 771805,
+          "pointerSize": 131
+        }
+      },
+      {
+        "rfilename": "sherpa-onnx/tokens.txt",
+        "blobId": "97675cfca093bb75694b0f8e5a115b3fecf51d86",
+        "size": 17086
+      }
+    ]
+  },
+  {
+    "repo": "thewh1teagle/pocket-tts-onnx",
+    "revision": "110f5251188e9407b4f724acdd8b0dfd0b20692a",
+    "license": "cc-by-4.0",
+    "card_sha256": "a241b299980fe5d47cdd5896479584685ff43bb37ac3ac8f590906c53d140af3",
+    "card_text": "---\nlicense: cc-by-4.0\nlibrary_name: onnx\ntags:\n  - text-to-speech\n  - onnx\n  - onnxruntime-web\n  - hebrew\n  - english\nlanguage:\n  - en\n  - he\n---\n\n# pocket-tts-onnx\n\n[Kyutai's Pocket TTS](https://github.com/kyutai-labs/pocket-tts) exported to ONNX for\n[pocket-tts-onnx](https://github.com/thewh1teagle/pocket-tts-onnx), including a Hebrew IPA\nadapter. Runs in the browser on onnxruntime-web, or in Python with onnxruntime and numpy.\n\n**Try it:** https://thewh1teagle.github.io/pocket-tts-onnx/\n\n## Web asset set\n\nThe browser app fetches these; they are hosted here rather than in a GitHub release because\nrelease assets are not served with CORS headers.\n\n| file | size | what |\n| --- | --- | --- |\n| `model.onnx` | 177 MB | the streaming step graph, int8, adapter bundled |\n| `encoder.onnx` | 39 MB | the mimi voice encoder, fetched only when cloning |\n| `assets.json` | 1.4 MB | config, tokenizer and voice conditionings |\n| `manifest.json` | tiny | what to fetch and how big it is |\n| `renikud.onnx` | 21 MB | Hebrew G2P, mirrored from [thewh1teagle/renikud](https://huggingface.co/thewh1teagle/renikud) |\n\n## Single-file models\n\nFor the Python package, where everything rides inside one file:\n\n| file | size |\n| --- | --- |\n| `pocket-tts-english.onnx` | 228 MB |\n| `pocket-tts-english-ipa.onnx` | 231 MB |\n\n```python\nfrom pocket_tts_onnx import PocketTTS\n\ntts = PocketTTS(\"pocket-tts-english-ipa.onnx\")\nsamples, sample_rate = tts.create(\"Hello world.\", voice=\"alba\")\n```\n\nVoices baked in: `alba`, `cosette`, `javert`, `male1`.\n",
+    "files": [
+      {
+        "rfilename": "README.md",
+        "blobId": "179318b383ac3ca3bfa2bc8f49dc776e2a93c671",
+        "size": 1531
+      },
+      {
+        "rfilename": "de/assets.json",
+        "blobId": "fb7641fa36fd8c5588f8534afc3ab6c27496fb7d",
+        "size": 771450
+      },
+      {
+        "rfilename": "de/encoder.onnx",
+        "blobId": "d5112b8d07514f5f32a37ebb496ef48d72311f84",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "80e0efae03c43e2ca1252874095fa1df4a2f36c5140246c9349810de70abdd50",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "de/manifest.json",
+        "blobId": "270410096677b1607103b30a0f6c3b4949a76f86",
+        "size": 494
+      },
+      {
+        "rfilename": "de/model.onnx",
+        "blobId": "f2a1b1e8aaf1d4c866f21c816be5ef345fb78928",
+        "size": 173604779,
+        "lfs": {
+          "sha256": "6ea90a844c839eb91b4d429835921e0fd9b6d8be716ff5a304b473ccdd322805",
+          "size": 173604779,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "en/assets.json",
+        "blobId": "2e9a843de62207f8846893e36a0b8545b72b9509",
+        "size": 1654421
+      },
+      {
+        "rfilename": "en/encoder.onnx",
+        "blobId": "1022cc8354ddcb6d2d9e00c18d33a0fa990fbebb",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "89451a17187f589bb00d6b127e4bb82d99849d31472abd62c5546acd78df0246",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "en/manifest.json",
+        "blobId": "f79e0a43cfc1164fdb112096bd8db74de2548b3c",
+        "size": 584
+      },
+      {
+        "rfilename": "en/model.onnx",
+        "blobId": "8e609e02b679849342d282dd8f4d21b67de6a34c",
+        "size": 176992315,
+        "lfs": {
+          "sha256": "010c6701d007277e6b37440b909de098200802fddbe70f74e890763b5dd43745",
+          "size": 176992315,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "en/renikud.onnx",
+        "blobId": "641837a86200904707a9e950908b2f734902d51a",
+        "size": 20620594,
+        "lfs": {
+          "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca",
+          "size": 20620594,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "es/assets.json",
+        "blobId": "739a4b4b484b8beb8790d44692c7644bf704bccb",
+        "size": 756477
+      },
+      {
+        "rfilename": "es/encoder.onnx",
+        "blobId": "85d8ceebcbef6c19c24996b7f7c3165092c8fdab",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "e59ac0c12c3fb6fab8921a907118e1240389a4dbd8d1419505cc4c066eda02cd",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "es/manifest.json",
+        "blobId": "6dbf73b9c19585a8018834a36def53bb5b912e19",
+        "size": 492
+      },
+      {
+        "rfilename": "es/model.onnx",
+        "blobId": "b83df8a968da12667a555e8bc8d45d16d117e51a",
+        "size": 173604779,
+        "lfs": {
+          "sha256": "fd31ae98160932edb15c22e4a3539912a1010c691615fff0bc05c9135e18dd81",
+          "size": 173604779,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "fr/assets.json",
+        "blobId": "3663c3caa1482d8d76cb8edf678d741922e54359",
+        "size": 883862
+      },
+      {
+        "rfilename": "fr/encoder.onnx",
+        "blobId": "6654c408792a55260130807fc852601f9a86bf60",
+        "size": 39183572,
+        "lfs": {
+          "sha256": "8cee869e6f4334d51a6898cda7f93b3d4747a1b6d4597255a576f6d07f7fa68c",
+          "size": 39183572,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "fr/manifest.json",
+        "blobId": "d1b51da80a82faa0830d36dbc0e40fc1be61cf63",
+        "size": 498
+      },
+      {
+        "rfilename": "fr/model.onnx",
+        "blobId": "725dea4d1351a51e3bcc1e8ff633eec9ee642568",
+        "size": 401857170,
+        "lfs": {
+          "sha256": "b1de2f525b3f6684825a65f02bbc43d4eca9178cd97812344bba902590a7710b",
+          "size": 401857170,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "he/assets.json",
+        "blobId": "2e9a843de62207f8846893e36a0b8545b72b9509",
+        "size": 1654421
+      },
+      {
+        "rfilename": "he/encoder.onnx",
+        "blobId": "1022cc8354ddcb6d2d9e00c18d33a0fa990fbebb",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "89451a17187f589bb00d6b127e4bb82d99849d31472abd62c5546acd78df0246",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "he/manifest.json",
+        "blobId": "f79e0a43cfc1164fdb112096bd8db74de2548b3c",
+        "size": 584
+      },
+      {
+        "rfilename": "he/model.onnx",
+        "blobId": "8e609e02b679849342d282dd8f4d21b67de6a34c",
+        "size": 176992315,
+        "lfs": {
+          "sha256": "010c6701d007277e6b37440b909de098200802fddbe70f74e890763b5dd43745",
+          "size": 176992315,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "he/renikud.onnx",
+        "blobId": "641837a86200904707a9e950908b2f734902d51a",
+        "size": 20620594,
+        "lfs": {
+          "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca",
+          "size": 20620594,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "it/assets.json",
+        "blobId": "130ccb0b0b80ae55bec210db09af06c81e8c60a8",
+        "size": 681662
+      },
+      {
+        "rfilename": "it/encoder.onnx",
+        "blobId": "0d6c0e4c422c78855ed32cc113eb57f20fb55f1f",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "2ed055b9c43ac01191e9a52235a36b28fe156269907406d1cdee5a2c1f12d548",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "it/manifest.json",
+        "blobId": "3e8f76ef24fbec74ada2b8b06fa04a911e6481d2",
+        "size": 496
+      },
+      {
+        "rfilename": "it/model.onnx",
+        "blobId": "86484f5fc7a2f55032281c891118c44c3ec6ef4d",
+        "size": 173604779,
+        "lfs": {
+          "sha256": "9db83d6e05f352a34d2ff6cbb2feac24a6ff733db496d268ce7ab27af42480a5",
+          "size": 173604779,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "pocket-tts-english-ipa.onnx",
+        "blobId": "1efe3b9b09389281b2821500d70d838aba30b46c",
+        "size": 231924037,
+        "lfs": {
+          "sha256": "4c4592b7c5aadab2235ddc1409a0209aa164161a060543bf96a984298dfc6529",
+          "size": 231924037,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "pocket-tts-english.onnx",
+        "blobId": "e3f7d897f6600e07cefaabde2528439f20414bf3",
+        "size": 228144283,
+        "lfs": {
+          "sha256": "b157f4a949477df83f9d0a141d5bc68de7aa2a6c9dfd3dcdc49c0642e6a66e4c",
+          "size": 228144283,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "pt/assets.json",
+        "blobId": "7b57e5a89456558e1fd36ef967636aaea65fa0a7",
+        "size": 770264
+      },
+      {
+        "rfilename": "pt/encoder.onnx",
+        "blobId": "fe2d7a9349b81e06b301931ddfbdebddfd123d44",
+        "size": 39183564,
+        "lfs": {
+          "sha256": "3ef853269060f07a453958e9b603c08524e5b40998b4a18ac5fbd49cc23fecee",
+          "size": 39183564,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "pt/manifest.json",
+        "blobId": "afca342bd78eab9c5434d124fce7bd9dc52fee17",
+        "size": 492
+      },
+      {
+        "rfilename": "pt/model.onnx",
+        "blobId": "247f259f8b18fef51bb74c44364dfe274ed3e57d",
+        "size": 173604779,
+        "lfs": {
+          "sha256": "155a12c42a7d9b218ae99e79bb456f841d96ff41503ab0e20d39ffaecd179862",
+          "size": 173604779,
+          "pointerSize": 134
+        }
+      },
+      {
+        "rfilename": "renikud.onnx",
+        "blobId": "641837a86200904707a9e950908b2f734902d51a",
+        "size": 20620594,
+        "lfs": {
+          "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca",
+          "size": 20620594,
+          "pointerSize": 133
+        }
+      }
+    ]
+  },
+  {
+    "repo": "thewh1teagle/piper-he-noa",
+    "revision": "23f8e06909e9a1e562a50f99df63e3785451379a",
+    "license": "cc-by-4.0",
+    "card_sha256": "6ac05d8d71625dd19b6fd80d8df9b80ef0ad2d93add1460a8d784dcc23a406b9",
+    "card_text": "---\nlicense: cc-by-4.0\nlanguage:\n  - he\n  - en\npipeline_tag: text-to-speech\nlibrary_name: piper\ntags:\n  - piper\n  - vits\n  - onnx\n  - hebrew\n  - tts\n---\n\n# Piper Hebrew — noa (medium)\n\nA [Piper](https://github.com/OHF-Voice/piper1-gpl) voice for Hebrew: **noa**, a natural female voice, plus an English\nspeaker (**ljspeech**) in the same model. Fast, CPU-friendly, standard Piper ONNX.\n\nType plain Hebrew — phonemes follow [renikud](https://renikud.github.io) (stressed IPA).\n\n## Files\n\n| File | |\n|---|---|\n| `he_IL-noa-medium.onnx` | Piper voice (ONNX, 22.05 kHz) |\n| `he_IL-noa-medium.onnx.json` | Piper config (`phoneme_type: hebrew`, speakers) |\n| `noa-ljspeech-step20322.pt` | PyTorch checkpoint (generator + discriminator) for further fine-tuning |\n\n## Speakers\n\n| Speaker | Id | Language |\n|---|---|---|\n| `noa` | 0 (default) | Hebrew |\n| `ljspeech` | 1 | English |\n\n## Usage\n\n```sh\necho \"הוא צפה בסרט וראה חיה שצפה במים.\" \\\n  | uvx --from piper-tts piper -m he_IL-noa-medium.onnx -f noa.wav\n```\n\n`phoneme_type` is `hebrew`: Piper converts plain Hebrew to stressed IPA with\n[renikud](https://renikud.github.io), the phoneme convention this model is trained on.\n\n## Training\n\n- **Architecture** — Piper VITS, medium.\n- **Init** — `en_US-ljspeech-medium` (trained from scratch on public-domain LJSpeech), converted to multi-speaker\n  with the speaker conditioning zero-initialized.\n- **Data**\n  - **noa** — 24 h of Hebrew speech generated with [Chatterbox](https://github.com/resemble-ai/chatterbox),\n    Knesset sentences, Whisper-filtered.\n  - **ljspeech** — [LJSpeech](https://keithito.com/LJ-Speech-Dataset/) (public domain), ~24 h.\n- **Steps** — 20,322 (best held-out mel L1 0.405).\n- **Code** — [piper-tts-finetune](https://github.com/thewh1teagle/piper-tts-finetune).\n\n## License\n\nCC BY 4.0.\n",
+    "files": [
+      {
+        "rfilename": "README.md",
+        "blobId": "e95ae093aa547532142fab545eb6028a76919d7f",
+        "size": 1846
+      },
+      {
+        "rfilename": "he_IL-noa-medium.onnx",
+        "blobId": "c3d0cdc2b4f16b1228d669359bb869424a1d28d8",
+        "size": 77056101,
+        "lfs": {
+          "sha256": "83b18c0b8fad6ac00fcea5c5bdf3c1fdbec182f9eadad9f97bc423ab4e22be7d",
+          "size": 77056101,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "he_IL-noa-medium.onnx.json",
+        "blobId": "decea6264736ff2452c5f53c58a990dafe2e3b49",
+        "size": 5048
+      },
+      {
+        "rfilename": "noa-ljspeech-step20322.pt",
+        "blobId": "66c321368a2c87fdefdbd83c30d125246001f5d4",
+        "size": 308079075,
+        "lfs": {
+          "sha256": "2546449548243ade263cb874f77718874708691e90c0894a16e74d82208cc17a",
+          "size": 308079075,
+          "pointerSize": 134
+        }
+      }
+    ]
+  },
+  {
+    "repo": "thewh1teagle/renikud",
+    "revision": "a59c632c8cbac0f8c63f298cad77ef3a3a2547c9",
+    "license": "cc-by-4.0",
+    "card_sha256": "8d99a2e8587cce248781e8a7e88481fe6747c0dad8970b7d2309625f9749e7d2",
+    "card_text": "---\nlicense: cc-by-4.0\nlanguage:\n- he\ntags:\n- g2p\n- hebrew\n- ipa\n- onnx\n---\n\n# renikud\n\nHebrew grapheme-to-phoneme (G2P) model. Converts unvocalized Hebrew text to IPA phonemes.\n\n- 85.1% word accuracy on [heb-g2p-benchmark](https://github.com/thewh1teagle/heb-g2p-benchmark)\n- Single `.onnx` file, no extra dependencies\n- Punctuation-conditional: preserves punctuation when present\n\n## Usage\n\n```python\nfrom renikud_onnx import G2P\n\ng2p = G2P(\"model.onnx\")\nprint(g2p.phonemize(\"שלום עולם\"))\n# → ʃalˈom ʔolˈam\n```\n\n## Training\n\nSee [thewh1teagle/renikud](https://github.com/thewh1teagle/renikud) for the full training code.\n\n## Citation\n\n```bibtex\n@misc{melichov2026renikud,\n  title={ReNikud: Audio-Supervised Hebrew Grapheme-to-Phoneme Conversion},\n  author={Maxim Melichov and Yakov Kolani and Morris Alper},\n  year={2026},\n  note={Code and models forthcoming},\n}",
+    "files": [
+      {
+        "rfilename": "README.md",
+        "blobId": "0a40cacc490e0233869d615d5db2c1f2ae59cf7c",
+        "size": 878
+      },
+      {
+        "rfilename": "model.onnx",
+        "blobId": "641837a86200904707a9e950908b2f734902d51a",
+        "size": 20620594,
+        "lfs": {
+          "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca",
+          "size": 20620594,
+          "pointerSize": 133
+        }
+      },
+      {
+        "rfilename": "model.safetensors",
+        "blobId": "ccde543b4173b5de9db2d058ac673d73f79c6c81",
+        "size": 1226219724,
+        "lfs": {
+          "sha256": "4d6f7c0227c86afc2f5d9658d63ca42b22b856c63950634b9a4e08af433926c8",
+          "size": 1226219724,
+          "pointerSize": 135
+        }
+      },
+      {
+        "rfilename": "tokenizer.json",
+        "blobId": "f1ea838f698bcc1feab433c81695d4a8d6449336",
+        "size": 17812
+      },
+      {
+        "rfilename": "tokenizer_config.json",
+        "blobId": "a15dead1fff9550ade9aa3b2256dd2176ac200db",
+        "size": 363
+      },
+      {
+        "rfilename": "train_state.json",
+        "blobId": "8a25538aff2e99f8dcd9b962af4cdbd170a2ac10",
+        "size": 257
+      }
+    ]
+  }
+]

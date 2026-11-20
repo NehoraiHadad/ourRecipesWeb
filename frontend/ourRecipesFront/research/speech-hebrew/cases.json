@@ -1,0 +1,18 @@
+[
+  {"id":"flour-next","text":"שמתי קמח, מה עכשיו?","family":"report-next"},
+  {"id":"water-not-mixed","text":"הוספתי מים אבל עוד לא ערבבתי.","family":"negation"},
+  {"id":"correct-flour","text":"תיקון, לא שמתי קמח.","family":"correction"},
+  {"id":"mixed-half","text":"ערבבתי רק חצי.","family":"partial","probes":[{"name":"half","forms":["חצי","1/2"]}]},
+  {"id":"maybe-water","text":"אולי הוספתי מים, אני לא בטוח.","family":"uncertainty","probes":[{"name":"maybe","forms":["אולי"]}]},
+  {"id":"oven-not-yet","text":"עוד לא הדלקתי את התנור.","family":"negation"},
+  {"id":"oil-water-amounts","text":"הוספתי שתי כפות שמן וחצי כוס מים.","family":"quantities","probes":[{"name":"two","forms":["שתי","שתיים","2"]},{"name":"half","forms":["חצי","1/2"]}]},
+  {"id":"missed","text":"על איזה שלב דילגתי?","family":"question"},
+  {"id":"salt-sugar","text":"לא הוספתי מלח, הוספתי סוכר.","family":"correction"},
+  {"id":"oven-temperature","text":"חיממתי למאה ושמונים מעלות.","family":"quantities","probes":[{"name":"180","forms":["מאה ושמונים","מאה שמונים","180","למאה ושמונים","למאה שמונים","ל180"]}]},
+  {"id":"plan-egg","text":"אני מתכנן להוסיף ביצה.","family":"planned","probes":[{"name":"planned","forms":["מתכנן"]}]},
+  {"id":"ambiguous","text":"עשיתי את זה.","family":"ambiguous"},
+  {"id":"three-quarters","text":"לפי המתכון צריך להוסיף שלושת רבעי כוס קמח.","family":"quantities","probes":[{"name":"three-quarters","forms":["שלושת רבעי","שלושה רבעי","שלושה רבעים","3/4"]}]},
+  {"id":"only-asking","text":"לא צריך להוסיף מים? אני רק שואל.","family":"question","probes":[{"name":"question-scope","forms":["שואל"]}]},
+  {"id":"water-actually-oil","text":"הוספתי מים. בעצם לא, זה היה שמן.","family":"correction"},
+  {"id":"flour-grams","text":"שמתי מאתיים וחמישים גרם קמח.","family":"quantities","probes":[{"name":"250","forms":["מאתיים וחמישים","מאתיים חמישים","מאתים וחמישים","מאתים חמישים","250"]}]}
+]
