@@ -1,0 +1,8 @@
+{
+  "verifiedUtc": "2026-11-20T13:10:17.039100+00:00",
+  "scope": "Fresh PCM cache reconstructed from committed audio archive, without ASR inference; original evidence preserved.",
+  "inputCount": 170,
+  "all170PcmHashesMatch": true,
+  "sourceCommit": "c18b967",
+  "restoreSourceSha256": "51fa161bd7acf20c2c597fdbfd908367035747a604475f5dda48ee3d88f489f2"
+}

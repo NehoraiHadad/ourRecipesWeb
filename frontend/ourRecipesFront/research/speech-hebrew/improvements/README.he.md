@@ -77,3 +77,5 @@ node research/speech-hebrew/improvements/restore-pcm.mjs
 `verify.py` משחזר סיכומים, מאמת מקורות קפואים ובודק את קוד הניקוד מול commit הבסיס. אם ה־cache קיים, נבדקים גם כל המשקולות, חבילת WASM ו־170 קלטי PCM. [verification.json](evidence/verification.json) מתעד את הביקורת בסביבת המדידה. היעדר cache ב־checkout חדש אינו כשל בביקורת על פלטים שמורים.
 
 מקורות: [API streaming הרשמי](https://github.com/k2-fsa/sherpa-onnx/blob/master/sherpa-onnx/python/sherpa_onnx/online_recognizer.py), [תיעוד hotwords והגבלות decoding](https://k2-fsa.github.io/sherpa/onnx/hotwords/), [חבילת Sherpaw](https://www.npmjs.com/package/@sherpaw/asr), [המקור המדויק וה־hash](evidence/wasm-source.json), [דוח המודלים המקורי](../README.he.md).
+
+בדיקת שחזור נוספת הצליחה גם מתיקיית cache חדשה: כל 170 קלטי ה־PCM תאמו ל־SHA המקורי, בלי הסקת ASR נוספת ובלי שינוי הראיות. [תיעוד הבדיקה](evidence/pcm-replay-verification.json).
