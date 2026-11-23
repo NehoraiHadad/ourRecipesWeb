@@ -1,3 +1,4 @@
+import { formatIngredient, type StructuredIngredient } from '@/lib/recipes/ingredientParser';
 import files from './compact-v82.json';
 
 const base = '/voice/compact/v82/';
@@ -6,12 +7,13 @@ export const assetBytes = files.reduce((sum, file) => sum + file.bytes, 0);
 
 export type Progress = 'pending' | 'partial' | 'done';
 export type Action = { id: string; source: string; step: number };
-export type ActiveRecipe = { id: string; version: string; name: string; actions: Action[] };
+export type RecipeIngredient = { id: string; name: string; label: string };
+export type ActiveRecipe = { id: string; version: string; name: string; actions: Action[]; ingredients: RecipeIngredient[] };
 export type Turn = { role: 'user' | 'assistant'; content: string };
 export type Write = { recipe_id: string; recipe_version: string; action: string; status: Progress };
 export type Answer = { reply: string; writes: Write[] };
 
-export function activeRecipe(id: number, name: string, steps: string[], ingredients: string[]): ActiveRecipe {
+export function activeRecipe(id: number, name: string, steps: string[], ingredients: StructuredIngredient[]): ActiveRecipe {
   const actions = steps.flatMap((line, step) => {
     const instruction = line.trim().replace(/^(?:\d+[.)\-:]|[-*•])\s*/, '');
     // Keep qualifications and explicit alternatives together with their source action.
@@ -19,8 +21,9 @@ export function activeRecipe(id: number, name: string, steps: string[], ingredie
       .map((source, i) => ({ id: 's' + step + 'a' + i, source: source.trim(), step }));
   });
   let hash = 2166136261;
-  for (const char of JSON.stringify([steps, ingredients])) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
-  return { id: String(id), name, version: String(hash >>> 0), actions };
+  for (const char of JSON.stringify([steps, ingredients.map(formatIngredient)])) hash = Math.imul(hash ^ char.charCodeAt(0), 16777619);
+  return { id: String(id), name, version: String(hash >>> 0), actions,
+    ingredients: ingredients.map((item, i) => ({ id: 'i' + i, name: item.name, label: formatIngredient(item) })) };
 }
 
 export function isProgress(value: unknown): value is Progress {
@@ -93,10 +96,11 @@ export class CompactEngine {
 
   async answer(recipe: ActiveRecipe, progress: Record<string, Progress>, currentStep: number,
                utterance: string, history: Turn[], signal: AbortSignal) {
-    const result = await this.ask({ id: String(++this.sequence), input: { recipe, progress, currentStep, utterance, history } }, signal);
+    const actionProgress = Object.fromEntries(recipe.actions.map(a => [a.id, progress[a.id]]));
+    const result = await this.ask({ id: String(++this.sequence), input: { recipe, progress: actionProgress, currentStep, utterance, history } }, signal);
     if (!result || typeof result.reply !== 'string' || !Array.isArray(result.writes) ||
         result.writes.some(w => w.recipe_id !== recipe.id || w.recipe_version !== recipe.version ||
-          !Object.hasOwn(progress, w.action) || !isProgress(w.status))) throw new Error('התקבל עדכון שלא תואם למתכון.');
+          !Object.hasOwn(actionProgress, w.action) || !isProgress(w.status))) throw new Error('התקבל עדכון שלא תואם למתכון.');
     return result;
   }
 

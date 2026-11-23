@@ -12,8 +12,8 @@ describe('active cooking recipe', () => {
   });
 
   it('invalidates saved progress when the instructions or ingredients change', () => {
-    const recipe = activeRecipe(5, 'כיסונים', ['לרדד בצק'], ['קמח']);
-    expect(activeRecipe(5, 'כיסונים', ['למלא את הבצק'], ['קמח']).version).not.toBe(recipe.version);
-    expect(activeRecipe(5, 'כיסונים', ['לרדד בצק'], ['אורז']).version).not.toBe(recipe.version);
+    const recipe = activeRecipe(5, 'כיסונים', ['לרדד בצק'], [{ name: 'קמח' }]);
+    expect(activeRecipe(5, 'כיסונים', ['למלא את הבצק'], [{ name: 'קמח' }]).version).not.toBe(recipe.version);
+    expect(activeRecipe(5, 'כיסונים', ['לרדד בצק'], [{ name: 'אורז' }]).version).not.toBe(recipe.version);
   });
 });

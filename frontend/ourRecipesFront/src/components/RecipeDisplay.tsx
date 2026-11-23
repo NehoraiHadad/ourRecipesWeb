@@ -13,7 +13,6 @@ import IngredientListView from './recipe/IngredientListView';
 import ServingsMultiplier from './recipe/ServingsMultiplier';
 import RecipeTimersPanel from './recipe/RecipeTimersPanel';
 import RecipeVoiceGuide from './recipe/RecipeVoiceGuide';
-import { formatIngredient } from '@/lib/recipes/ingredientParser';
 import { activeRecipe } from '@/lib/voice/compactEngine';
 import { difficultyLabel } from '@/utils/difficulty';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
@@ -38,7 +37,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
   const instructionLines = React.useMemo(
     () => (recipe.instructions ?? '').split('\n').filter(line => line.trim()), [recipe.instructions]);
   const cookingRecipe = React.useMemo(
-    () => activeRecipe(recipe.id, title, instructionLines, recipe.ingredients.map(formatIngredient)),
+    () => activeRecipe(recipe.id, title, instructionLines, recipe.ingredients),
     [recipe.id, title, instructionLines, recipe.ingredients]);
 
   // Show the timer feature announcement the first time prep time is clicked.

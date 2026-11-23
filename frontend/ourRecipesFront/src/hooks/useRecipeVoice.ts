@@ -35,7 +35,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   const wantsMic = useRef(false);
   const speechRef = useRef<SpeechSynthesisUtterance | null>(null);
   const restartRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const commandRef = useRef<(text: string) => void>(() => {});
+  const commandRef = useRef<(text: string, local?: boolean) => void>(() => {});
   const startRef = useRef<() => void>(() => {});
 
   const stopBrowser = useCallback(() => {
@@ -102,9 +102,9 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     } else readStep(indexRef.current + 1);
   }, [readStep, speak]);
 
-  commandRef.current = text => {
+  commandRef.current = (text, local = false) => {
     setTranscript(text);
-    if (onUtterance?.(text, indexRef.current, speak)) { setStatus(''); return; }
+    if (onUtterance?.(text, indexRef.current, message => { if (local || wantsMic.current) speak(message); })) { setStatus(''); return; }
     switch (recipeVoiceCommand(text)) {
       case 'next': next(); break;
       case 'previous': readStep(indexRef.current - 1); break;
@@ -199,9 +199,10 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   };
 
   const acceptTranscript = (text: string) => {
-    if (!speechRef.current && document.visibilityState !== 'hidden') commandRef.current(text);
+    if (!speechRef.current && document.visibilityState !== 'hidden') commandRef.current(text, true);
   };
   return { acceptTranscript, stopBrowser, canSpeak, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
     read: () => readStep(indexRef.current), next, previous: () => readStep(indexRef.current - 1),
-    restart: () => readStep(0), stop, speak, toggleMicrophone };
+    restart: () => readStep(0), stop, speak, toggleMicrophone,
+    focus: (step: number) => { indexRef.current = step; setStepIndex(step); } };
 }

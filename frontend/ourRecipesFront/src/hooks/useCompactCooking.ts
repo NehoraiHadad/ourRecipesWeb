@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { CompactEngine, isProgress, prepareCompact, type ActiveRecipe, type Answer, type Progress, type Turn } from '@/lib/voice/compactEngine';
 
+import { nextInstruction, questionOnly, recipeTurn } from '@/lib/voice/recipeConversation';
+
 type States = Record<string, Progress>;
 type Proposal = { answer: Answer; text: string; before: States };
 export const progressLabel: Record<Progress, string> = { pending: 'ממתין', partial: 'בוצע חלקית', done: 'בוצע' };
@@ -10,7 +12,7 @@ export const progressLabel: Record<Progress, string> = { pending: 'ממתין', 
 function loadProgress(key: string, recipe: ActiveRecipe): States {
   let saved: States = {};
   try { saved = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch { /* First use or unavailable storage. */ }
-  return Object.fromEntries(recipe.actions.map(({ id }) => [id, isProgress(saved[id]) ? saved[id] : 'pending']));
+  return Object.fromEntries([...recipe.actions, ...recipe.ingredients].map(({ id }) => [id, isProgress(saved[id]) ? saved[id] : 'pending']));
 }
 
 // The guide is keyed by recipe and source revision, so another recipe starts a new session.
@@ -67,18 +69,27 @@ export function useCompactCooking(recipe: ActiveRecipe) {
   function remember(text: string, answer: string) {
     history.current = [...history.current, { role: 'user' as const, content: text }, { role: 'assistant' as const, content: answer }].slice(-4);
   }
-  async function submit(text: string, step: number, speak?: (reply: string) => void) {
+  async function submit(text: string, step: number, speak?: (reply: string) => void, focus?: (step: number) => void) {
     const signal = lifetime.current?.signal;
     if (!signal || !engine.current || busy.current || !text.trim()) return;
     const turn = revision.current;
     busy.current = true;
     setStage('thinking'); setError(''); setReply(''); setProposal(null);
     try {
-      const answer = await engine.current.answer(recipe, progress, step, text.trim(), history.current, signal);
+      const direct = recipeTurn(recipe, progress, step, text.trim());
+      let answer = direct ?? await engine.current.answer(recipe, progress, step, text.trim(), history.current, signal);
+      if (!direct && answer.writes.length && questionOnly(text)) {
+        answer = { writes: [], reply: 'לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.' };
+      }
       if (signal.aborted || turn !== revision.current) return;
-      if (answer.writes.length) {
+      if (direct?.focus !== undefined) focus?.(direct.focus);
+      if (direct?.writes.length) {
+        save({ ...progress, ...Object.fromEntries(direct.writes.map(w => [w.action, w.status])) });
+        setReply(answer.reply); remember(text, answer.reply); speak?.(answer.reply);
+      } else if (answer.writes.length) {
         setProposal({ answer, text, before: progress });
-        speak?.('יש עדכון מוצע. אפשר לבדוק ולאשר אותו במסך.');
+        const summary = answer.writes.map(w => recipe.actions.find(a => a.id === w.action)?.source + ' — ' + progressLabel[w.status]).join(', ');
+        speak?.(summary + '. לאשר? אפשר לומר כן או לא.');
       } else {
         setReply(answer.reply); remember(text, answer.reply); speak?.(answer.reply);
       }
@@ -95,11 +106,19 @@ export function useCompactCooking(recipe: ActiveRecipe) {
     try { localStorage.setItem(key, JSON.stringify(next)); }
     catch { setError('ההתקדמות זמינה במסך הזה. השמירה במכשיר נכשלה.'); }
   }
-  function confirm() {
+  function confirm(step: number, focus: (step: number) => void) {
     if (!proposal || proposal.before !== progress) return;
     const next = { ...progress };
     for (const w of proposal.answer.writes) next[w.action] = w.status;
-    save(next); setReply(proposal.answer.reply); remember(proposal.text, proposal.answer.reply);
+    let reply = proposal.answer.reply;
+    const current = recipe.actions.filter(a => a.step === step);
+    if (current.some(a => progress[a.id] !== 'done') && current.every(a => next[a.id] === 'done')) {
+      const following = nextInstruction(recipe, next, step);
+      if (following.focus !== undefined) focus(following.focus);
+      reply += ' ' + following.reply;
+    }
+    save(next); setReply(reply); remember(proposal.text, reply);
+    return reply;
   }
   function manual(id: string, status: Progress) {
     if (!isProgress(status) || !Object.hasOwn(progress, id)) return;

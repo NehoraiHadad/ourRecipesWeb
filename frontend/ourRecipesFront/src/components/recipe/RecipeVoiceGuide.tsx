@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useCompactCooking, progressLabel } from '@/hooks/useCompactCooking';
 import { assetBytes, type ActiveRecipe, type Progress } from '@/lib/voice/compactEngine';
 import { recipeVoiceCommand } from '@/lib/recipes/voiceCommands';
@@ -13,19 +13,56 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
   const cooking = useCompactCooking(recipe);
   const [text, setText] = useState('');
   const interrupt = useRef<(() => void) | null>(null);
-  const voice = useRecipeVoice(steps, (heard, step, speak) => {
+  type SpokenTurn = { text: string; step: number; speak: (message: string) => void };
+  const [queue, setQueue] = useState<SpokenTurn[]>([]);
+  const voice = useRecipeVoice(steps, (heard, step, speak): boolean => {
     const command = heard.trim().replace(/[.!?״]+$/g, '');
     // Pure navigation remains available even before downloading the model.
-    if (recipeVoiceCommand(heard) === 'stop' ||
+    if (recipeVoiceCommand(heard) === 'stop') { setQueue([]); return false; }
+    if (
         /^(?:(?:תתחיל[י]? |התחל[י]? )?מההתחלה|התחל[י]? מחדש|(?:חזור|חזרי|תחזור|תחזרי)(?: על השלב)?|(?:השלב |שלב )?(?:הקודם|הבא)|אפשר להמשיך|תמשיך|תמשיכי)$/.test(command)) return false;
     if (cooking.stage === 'idle') {
       if (/^(?:מה עכשיו|מה הלאה|מה השלב הבא|אחורה|שוב|עוד פעם)$/.test(command)) return false;
       setText(heard);
       return true;
     }
-    if (cooking.stage === 'ready') { setText(heard); void cooking.submit(heard, step, speak); }
+    if (!voice.microphoneOn) {
+      setText(heard);
+      handleTurn({ text: heard, step, speak });
+      return true;
+    }
+    setQueue(turns => [...turns, { text: heard, step, speak }]);
     return true;
   }, interrupt);
+  useEffect(() => {
+    if (!voice.microphoneOn || cooking.stage === 'idle') {
+      if (queue.length) setQueue([]);
+      return;
+    }
+    if (cooking.stage !== 'ready' || !queue.length) return;
+    const [turn, ...rest] = queue;
+    setQueue(rest);
+    setText(turn.text);
+    handleTurn(turn);
+  }, [queue, voice, cooking]);
+
+  function handleTurn(turn: SpokenTurn) {
+    const response = turn.text.trim().replace(/[.!?]+$/g, '');
+    if (cooking.proposal && /^(?:כן|אישור|לאשר|נכון|מאשר|מאשרת|כן תאשר)$/.test(response)) {
+      const reply = cooking.confirm(turn.step, voice.focus);
+      if (reply) turn.speak(reply);
+    } else if (cooking.proposal && /^(?:לא|ביטול|בטל|לבטל|לא נכון)$/.test(response)) {
+      cooking.dismiss(); turn.speak('העדכון בוטל.');
+    } else {
+      void cooking.submit(turn.text, turn.step, turn.speak, voice.focus);
+    }
+  }
+
+  function toggleConversation() {
+    if (voice.microphoneOn) setQueue([]);
+    else if (cooking.stage === 'idle') void cooking.start();
+    voice.toggleMicrophone();
+  }
   const active = cooking.stage === 'ready' || cooking.stage === 'thinking';
   if (!steps.length) return null;
 
@@ -55,7 +92,17 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
             </select>
           </li>)}
         </ul>
-        <form className="space-y-2" onSubmit={e => { e.preventDefault(); void cooking.submit(text, voice.stepIndex); }}>
+        {recipe.ingredients.length > 0 && <details className="rounded border bg-white p-2">
+          <summary>מצרכים שסומנו ({recipe.ingredients.filter(i => cooking.progress[i.id] === 'done').length}/{recipe.ingredients.length})</summary>
+          <ul>{recipe.ingredients.map(i => <li key={i.id} className="flex items-center justify-between gap-2 py-1">
+            <span>{i.label}</span>
+            <select aria-label={'מצב המצרך ' + i.name} value={cooking.progress[i.id] ?? 'pending'} disabled={cooking.stage === 'thinking'}
+              onChange={e => cooking.manual(i.id, e.target.value as Progress)}>
+              {Object.entries(progressLabel).map(([value, label]) => <option key={value} value={value}>{label}</option>)}
+            </select>
+          </li>)}</ul>
+        </details>}
+        <form className="space-y-2" onSubmit={e => { e.preventDefault(); void cooking.submit(text, voice.stepIndex, undefined, voice.focus); }}>
           <label className="block"><span>שאלה או עדכון למתכון</span>
             <textarea className="mt-1 block w-full rounded border p-2" rows={2} maxLength={600} value={text}
               disabled={cooking.stage === 'thinking'} onChange={e => { cooking.dismiss(); setText(e.target.value); }} />
@@ -65,7 +112,7 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
         {cooking.proposal && <div className="rounded-lg border bg-white p-3 space-y-2">
           <strong>עדכון מוצע</strong>
           <ul>{cooking.proposal.answer.writes.map(w => <li key={w.action}>{recipe.actions.find(a => a.id === w.action)?.source} · {progressLabel[w.status]}</li>)}</ul>
-          <div className="flex gap-2"><Button size="sm" onClick={cooking.confirm}>אישור העדכון</Button>
+          <div className="flex gap-2"><Button size="sm" onClick={() => cooking.confirm(voice.stepIndex, voice.focus)}>אישור העדכון</Button>
             <Button variant="ghost" size="sm" onClick={cooking.dismiss}>ביטול</Button></div>
         </div>}
         {cooking.reply && <div className="space-y-1"><p role="status">{cooking.reply}</p>
@@ -83,12 +130,12 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
         interrupt={interrupt} stopVoice={voice.stopBrowser} onTranscript={voice.acceptTranscript} />
       {voice.canListen && (
         <details><summary className="cursor-pointer text-sm">פקודות קוליות דרך שירות הדפדפן</summary>
-          <Button variant={voice.microphoneOn ? 'primary' : 'secondary'} size="sm" aria-pressed={voice.microphoneOn} onClick={voice.toggleMicrophone}>
+          <Button variant={voice.microphoneOn ? 'primary' : 'secondary'} size="sm" aria-pressed={voice.microphoneOn} onClick={toggleConversation}>
             {voice.microphoneOn ? 'כבה מיקרופון' : 'הפעל זיהוי דיבור שעשוי לשלוח שמע לשירות הדפדפן'}
           </Button>
           <p className="text-xs text-secondary-600">
             אחרי הפעלת המיקרופון, אפשר לומר: „שמתי קמח, מה עכשיו?”, „חזור על השלב”, „השלב הקודם” או „עצור”.
-            כשעוזר המתכון פעיל אפשר גם לשאול על ההוראות ולדווח על פעולה שבוצעה. ההאזנה פועלת כשהמסך פתוח, בין ההקראות.
+            כשנדרש אישור אפשר לענות „כן” או „לא”. ההאזנה פועלת כשהמסך פתוח, בין ההקראות.
             זיהוי הדיבור עשוי להשתמש בשירות של הדפדפן ולדרוש חיבור לאינטרנט.
           </p>
         </details>
