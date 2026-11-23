@@ -1,0 +1,168 @@
+{
+  "groups": {
+    "greedy": {
+      "clips": 30,
+      "words": 207,
+      "wordErrors": 23,
+      "anchors": 111,
+      "misses": 16,
+      "negationFlags": 0,
+      "medianDecodeMs": 324.2999999988824
+    },
+    "beam4": {
+      "clips": 30,
+      "words": 207,
+      "wordErrors": 23,
+      "anchors": 111,
+      "misses": 16,
+      "negationFlags": 0,
+      "medianDecodeMs": 338.40000000037253
+    },
+    "matching": {
+      "clips": 30,
+      "words": 207,
+      "wordErrors": 20,
+      "anchors": 111,
+      "misses": 13,
+      "negationFlags": 0,
+      "medianDecodeMs": 314.19999999925494
+    },
+    "swapped": {
+      "clips": 30,
+      "words": 207,
+      "wordErrors": 20,
+      "anchors": 111,
+      "misses": 14,
+      "negationFlags": 0,
+      "medianDecodeMs": 322.90000000037253
+    }
+  },
+  "gate": true,
+  "safety": [],
+  "controls": [
+    {
+      "id": "silence",
+      "arm": "greedy",
+      "text": ""
+    },
+    {
+      "id": "silence",
+      "arm": "beam4",
+      "text": ""
+    },
+    {
+      "id": "silence",
+      "arm": "hints-salad",
+      "text": ""
+    },
+    {
+      "id": "silence",
+      "arm": "hints-cookies",
+      "text": ""
+    },
+    {
+      "id": "noise",
+      "arm": "greedy",
+      "text": ""
+    },
+    {
+      "id": "noise",
+      "arm": "beam4",
+      "text": ""
+    },
+    {
+      "id": "noise",
+      "arm": "hints-salad",
+      "text": ""
+    },
+    {
+      "id": "noise",
+      "arm": "hints-cookies",
+      "text": ""
+    }
+  ],
+  "observations": [
+    {
+      "id": "omer-s1",
+      "group": "matching",
+      "reference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "beam4": "קודם מהכתי את השום, ואחר כך גירדתי את הגזר.",
+      "hinted": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "lost": [
+        "מעכתי",
+        "גירדתי"
+      ]
+    },
+    {
+      "id": "omer-s5",
+      "group": "swapped",
+      "reference": "רגע, כיביתי את הגז, זה הכול.",
+      "beam4": "רגע, כי ביביתי את הגז, זה הכל.",
+      "hinted": "רגע, כיביתי את הגז, זה הכל.",
+      "lost": []
+    },
+    {
+      "id": "omer-c4",
+      "group": "matching",
+      "reference": "לא וניל. סליחה, זה היה קינמון.",
+      "beam4": "לא וניר. סליחה, זה היה קימון",
+      "hinted": "לא וניל. סליחה, זה היה קימון",
+      "lost": [
+        "קינמון"
+      ]
+    },
+    {
+      "id": "liat-c1",
+      "group": "matching",
+      "reference": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "beam4": "לקערה הוספתי את הקקעו ואת הקמח",
+      "hinted": "לקערה הוספתי את הקקאו ואת הקמח",
+      "lost": []
+    },
+    {
+      "id": "noa-s1",
+      "group": "matching",
+      "reference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "beam4": "קודם האחתי את השום, ואחר כך גרדתי את הגזר",
+      "hinted": "קודם הערכתי את השום, ואחר כך גלדתי את הגזר",
+      "lost": [
+        "מעכתי",
+        "גירדתי"
+      ]
+    },
+    {
+      "id": "noa-s2",
+      "group": "matching",
+      "reference": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "beam4": "את העדשים שטפתי, אבל את אלימון עוד לא סחטתי",
+      "hinted": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי",
+      "lost": []
+    },
+    {
+      "id": "noa-s2",
+      "group": "swapped",
+      "reference": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "beam4": "את העדשים שטפתי, אבל את אלימון עוד לא סחטתי",
+      "hinted": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי",
+      "lost": []
+    },
+    {
+      "id": "noa-c1",
+      "group": "matching",
+      "reference": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "beam4": "לקערה, הוספתי את הקקעו ואת הקמח",
+      "hinted": "לקערה, הוספתי את הקקאו ואת הקמח",
+      "lost": []
+    },
+    {
+      "id": "noa-c2",
+      "group": "matching",
+      "reference": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "beam4": "את החמאה ריכחתי, אבל עוד לא שברתי ביצה",
+      "hinted": "את החמאה ריקחתי, אבל עוד לא שברתי ביצה.",
+      "lost": [
+        "ריככתי"
+      ]
+    }
+  ]
+}

@@ -7,7 +7,6 @@ const recipes=await json('recipes.json');
 const {records:fixtures}=await json('manifest.json');
 const {records,externalRequests}=await json('results.json');
 assert.deepEqual(externalRequests,[]);
-const inputs=new Map(fixtures.map(f=>[f.filename,f]));
 const groups={},observations=[],safety=[],controls=[],times={};
 const counts=()=>({clips:0,words:0,wordErrors:0,anchors:0,misses:0,negationFlags:0});
 const forms=noun=>['','ה','ב','ל','מ','ו','וה'].map(prefix=>prefix+noun);
@@ -27,8 +26,10 @@ for(const f of fixtures){
     const context=arm.startsWith('hints-')?arm.slice(6):null;
     const group=context?(context===f.recipe?'matching':'swapped'):arm;
     const g=groups[group]??=counts();
-    const lost=missing(row.text,f.anchors);
-    assert.deepEqual(missing(f.reference,f.anchors),[]);
+    // s3's reference itself contains the conjunction-prefixed variant.
+    const anchors=f.anchors.map(term=>f.id==='s3' && term==='עוד לא' ? 'עוד לא|ועוד לא' : term);
+    const lost=missing(row.text,anchors);
+    assert.deepEqual(missing(f.reference,anchors),[]);
     g.clips++;g.words+=metrics.referenceWords;g.wordErrors+=metrics.wordErrors;
     g.anchors+=f.anchors.length;g.misses+=lost.length;
     g.negationFlags+=Number(metrics.negationCountDelta!==0);

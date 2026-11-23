@@ -1,0 +1,940 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "greedy",
+      "ms": 2163.10000000149,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "ms": 1662,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-salad",
+      "ms": 1760.5,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-cookies",
+      "ms": 1973,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6",
+      "ms": 1199.699999999255,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 322.19999999925494,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 788.5999999996275,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות.",
+      "ms": 898.6000000014901,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+      "ms": 573.2999999988824,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 12,
+        "characterErrors": 0,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+      "ms": 478,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "ms": 498.69999999925494,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 482.40000000037253,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס.",
+      "ms": 869.0999999996275,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 390.40000000037253,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה אדון עודי מים וצופות תקלון",
+      "ms": 792.1999999992549,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה אדון עודי מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 12,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא",
+      "ms": 997.8999999985099,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו, החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6.",
+      "ms": 1173.1000000014901,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 349.5,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 853.0999999996275,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף, כיתות אדידיות בחוויות.",
+      "ms": 1011.4000000003725,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר.",
+      "ms": 626.7999999988824,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 12,
+        "characterErrors": 2,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו.",
+      "ms": 521.7999999988824,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 548,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 517.2999999988824,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 924.5999999996275,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 441.69999999925494,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 832,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1079.3999999985099,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו, החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6.",
+      "ms": 1294.7000000011176,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 348.69999999925494,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 836.5,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף, כיתות אדידיות בחוויות.",
+      "ms": 1012.4000000003725,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר.",
+      "ms": 616.6999999992549,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 12,
+        "characterErrors": 2,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו.",
+      "ms": 539.7000000011176,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 542.3999999985099,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 537.0999999996275,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 991.4000000003725,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 457.09999999962747,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 872.3999999985099,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1229.7999999988824,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו, החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6.",
+      "ms": 1364.699999999255,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 313.5,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 819.4000000003725,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף, כיתות אדידיות בחוויות.",
+      "ms": 1013.2999999988824,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר.",
+      "ms": 636.1000000014901,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 12,
+        "characterErrors": 2,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו.",
+      "ms": 640.3999999985099,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 551.5,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 520.5999999996275,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 1001.1999999992549,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 493.3999999985099,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 888.0999999996275,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1128.5999999996275,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

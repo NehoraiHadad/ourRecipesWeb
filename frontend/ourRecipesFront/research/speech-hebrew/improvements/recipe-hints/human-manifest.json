@@ -1,0 +1,148 @@
+{
+  "records": [
+    {
+      "source_id": "1929",
+      "filename": "11145584623559134796.wav",
+      "reference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6",
+      "group": "general",
+      "matched": [],
+      "samples": 175680,
+      "gender": "MALE",
+      "wav_sha256": "961cfee7eff5227d124b11209177979220b4ee1e3ffbdcb6eabe7bd5083b4874",
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590"
+    },
+    {
+      "source_id": "1672",
+      "filename": "9230704744502262655.wav",
+      "reference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+      "group": "general",
+      "matched": [],
+      "samples": 48960,
+      "gender": "MALE",
+      "wav_sha256": "2b86ea292c837a73905dca2b19f8676f3bfbec8642e423c20a17b3fa7d558bba",
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077"
+    },
+    {
+      "source_id": "1711",
+      "filename": "4006498820324443479.wav",
+      "reference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "group": "general",
+      "matched": [],
+      "samples": 160320,
+      "gender": "MALE",
+      "wav_sha256": "f42c7cfd3a3ee3ae3414c6f2a5c6b04687f1708568ff4c5957ed927d7c5f14f7",
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076"
+    },
+    {
+      "source_id": "1881",
+      "filename": "1062031265143490849.wav",
+      "reference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+      "group": "general",
+      "matched": [],
+      "samples": 180480,
+      "gender": "MALE",
+      "wav_sha256": "1298bbd0f1b8e46fbd0ec289aadb74f0dacc637cbd9f187279def35e4d930571",
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0"
+    },
+    {
+      "source_id": "1966",
+      "filename": "5404112682557272827.wav",
+      "reference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+      "group": "general",
+      "matched": [],
+      "samples": 111360,
+      "gender": "MALE",
+      "wav_sha256": "b8ae9801a6de5905b27001e2e402d245771ec2534526a377959f47e959525b9d",
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1"
+    },
+    {
+      "source_id": "1945",
+      "filename": "4600619609092480735.wav",
+      "reference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+      "group": "general",
+      "matched": [],
+      "samples": 96960,
+      "gender": "MALE",
+      "wav_sha256": "04e6b62db5749ad5d8a9f3d3a07dcecde440d02f16c182f9cde53beb057199c1",
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad"
+    },
+    {
+      "source_id": "1674",
+      "filename": "5003424012824870622.wav",
+      "reference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "group": "food-word",
+      "matched": [
+        "מים"
+      ],
+      "samples": 85440,
+      "gender": "MALE",
+      "wav_sha256": "8e162d062a674fcedb20906daa2dc0b98f9bc014e6468d46d129ae007d3280f9",
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af"
+    },
+    {
+      "source_id": "1717",
+      "filename": "17171468810841175967.wav",
+      "reference": "בגלל הטופולוגיה התת-מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+      "group": "food-word",
+      "matched": [
+        "למים"
+      ],
+      "samples": 96000,
+      "gender": "MALE",
+      "wav_sha256": "5603f2a60da7c5493c0d19e2667c50586b2ab30d98cdd7345e03f994ea5718a0",
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303"
+    },
+    {
+      "source_id": "1763",
+      "filename": "3625786575614857833.wav",
+      "reference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+      "group": "food-word",
+      "matched": [
+        "החלב"
+      ],
+      "samples": 163200,
+      "gender": "MALE",
+      "wav_sha256": "9e55facfa5457b727bb5fe714e0a83e35c9d7eb9c9861f9bcf7efdd0ce72bfbf",
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2"
+    },
+    {
+      "source_id": "1886",
+      "filename": "17425601106312478953.wav",
+      "reference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+      "group": "food-word",
+      "matched": [
+        "לחלב"
+      ],
+      "samples": 72000,
+      "gender": "MALE",
+      "wav_sha256": "72cca9c639173fa180187fc393facb8b54384ae9ca32d865e7b43f0f95e5bf84",
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3"
+    },
+    {
+      "source_id": "1971",
+      "filename": "3445988181539980871.wav",
+      "reference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+      "group": "food-word",
+      "matched": [
+        "מים"
+      ],
+      "samples": 157440,
+      "gender": "MALE",
+      "wav_sha256": "c95efcef7f086f56a19cc0c0a6c9e77e9f8b0785e48c8313fe05c860b126b010",
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae"
+    },
+    {
+      "source_id": "1695",
+      "filename": "11245875030612691124.wav",
+      "reference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה-pa amb oli: לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו'",
+      "group": "food-word",
+      "matched": [
+        "שמן"
+      ],
+      "samples": 188160,
+      "gender": "MALE",
+      "wav_sha256": "e8f9712a2536dbd87a8111b1727e8b6186885a94dfa5f5077e1fde00af173211",
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a"
+    }
+  ]
+}

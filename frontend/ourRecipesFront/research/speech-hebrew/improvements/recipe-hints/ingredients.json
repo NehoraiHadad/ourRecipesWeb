@@ -1,0 +1,101 @@
+{
+  "cooking": {
+    "groups": {
+      "greedy": {
+        "words": 207,
+        "wordErrors": 23,
+        "expectedNouns": 33,
+        "missedNouns": 4,
+        "negationFlags": 0
+      },
+      "beam4": {
+        "words": 207,
+        "wordErrors": 23,
+        "expectedNouns": 33,
+        "missedNouns": 4,
+        "negationFlags": 0
+      },
+      "matching": {
+        "words": 207,
+        "wordErrors": 20,
+        "expectedNouns": 33,
+        "missedNouns": 0,
+        "negationFlags": 0
+      },
+      "swapped": {
+        "words": 207,
+        "wordErrors": 20,
+        "expectedNouns": 33,
+        "missedNouns": 3,
+        "negationFlags": 0
+      }
+    },
+    "newIntrusions": []
+  },
+  "human": {
+    "groups": {
+      "greedy": {
+        "words": 205,
+        "wordErrors": 54,
+        "expectedNouns": 1,
+        "missedNouns": 0,
+        "negationFlags": 0
+      },
+      "beam4": {
+        "words": 205,
+        "wordErrors": 54,
+        "expectedNouns": 1,
+        "missedNouns": 0,
+        "negationFlags": 0
+      },
+      "hints-salad": {
+        "words": 205,
+        "wordErrors": 54,
+        "expectedNouns": 1,
+        "missedNouns": 0,
+        "negationFlags": 0
+      },
+      "hints-cookies": {
+        "words": 205,
+        "wordErrors": 54,
+        "expectedNouns": 1,
+        "missedNouns": 0,
+        "negationFlags": 0
+      }
+    },
+    "newIntrusions": []
+  },
+  "replay": {
+    "groups": {
+      "greedy": {
+        "words": 120,
+        "wordErrors": 21,
+        "expectedNouns": 30,
+        "missedNouns": 6,
+        "negationFlags": 0
+      },
+      "beam4": {
+        "words": 120,
+        "wordErrors": 20,
+        "expectedNouns": 30,
+        "missedNouns": 6,
+        "negationFlags": 0
+      },
+      "matching": {
+        "words": 120,
+        "wordErrors": 16,
+        "expectedNouns": 30,
+        "missedNouns": 2,
+        "negationFlags": 0
+      },
+      "swapped": {
+        "words": 120,
+        "wordErrors": 20,
+        "expectedNouns": 30,
+        "missedNouns": 6,
+        "negationFlags": 0
+      }
+    },
+    "newIntrusions": []
+  }
+}

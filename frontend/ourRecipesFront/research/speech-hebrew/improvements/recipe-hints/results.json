@@ -1,0 +1,2460 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "greedy",
+      "ms": 2629.5999999996275,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "ms": 2027.4000000003725,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-salad",
+      "ms": 1950.2999999988824,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-cookies",
+      "ms": 1823.2999999988824,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "omer-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גירדתי את הגזר",
+      "ms": 674.5999999996275,
+      "pcm_sha256": "ef0a096bc54ab24895c95f3868d2db6c6eac54fbeb2949f146707d9fd00a66b4",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גירדתי את הגזר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 543.0999999996275,
+      "pcm_sha256": "b4de6298123a5804a8193cb7333d2c07d41daf21191a1ea959aa34dd6eefe3c4",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום",
+      "ms": 541.7999999988824,
+      "pcm_sha256": "5470aff5272f3efc6438c2b6a6b34515a454afa71e6eacecc6513d7c0501b5d9",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-s4",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום",
+      "ms": 358,
+      "pcm_sha256": "1b3c71366475d65702316b311d3b7ee184c673935066832508526837888b7c29",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-s5",
+      "text": "רגע, כי ביתי את הגז, זה הכל",
+      "ms": 306,
+      "pcm_sha256": "ea6c3d6c09a109dfef5e69056b03d716a3d070af1bbe5e7fba7838037309577d",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-c1",
+      "text": "וקרא הוספתי את הקקאו ואת הקמח",
+      "ms": 335.2000000011176,
+      "pcm_sha256": "6bc6bd79167a16a89ed0b5d6c5a8946b770281d4ec3f1f7691727ff13e8004ed",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "וקרא הוספתי את הקקאו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-c2",
+      "text": "את החמאה ריכפתי, אבל עוד לא שברתי ביצה",
+      "ms": 327,
+      "pcm_sha256": "b9f42f43bb0611ca464a80493a265dabc35fa89c97057d61672e73e8691e0a38",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכפתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-c3",
+      "text": "התכוונתי לשים סוכר. בסוף שמתי דבש",
+      "ms": 328.80000000074506,
+      "pcm_sha256": "16f72e7f27d6718e3092237efe0f34196f3519ece5d97930bf187cd9ac8869f5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-c4",
+      "text": "לא וניר. סליחה זה היה קמון",
+      "ms": 334.69999999925494,
+      "pcm_sha256": "4648782910e3e2988066440d51da8f3e6faf7cf3e692e8e52200a2253dd41c8a",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניר סליחה זה היה קמון",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 316.5,
+      "pcm_sha256": "d9911d4752e375c650a38e8681dfc8d709194a78d56b7d4bc6a714f7811addc1",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "ms": 418.59999999962747,
+      "pcm_sha256": "5fa5eac429583a2a6401bff663d07b5f6a34c0aa6fb52449dad8254cf48c8a09",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 417.6000000014901,
+      "pcm_sha256": "0d3c853747dd68afbf020a1bbfd60ac1ae0c63b04f0674d910b5ab8738711980",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 426.09999999962747,
+      "pcm_sha256": "858c35183bab4206ab662c337f614e5e14f49e0740e1da009bc6452cc1233e62",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-s4",
+      "text": "לא שמתי מלח שמטיא פלפל שחור במקום",
+      "ms": 324,
+      "pcm_sha256": "a8cddf383984121f541f3ba7cb937a8f9ed77e6a4de9477e151fea23a1b7200e",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמטיא פלפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל",
+      "ms": 313.40000000037253,
+      "pcm_sha256": "bfa84327b41c5c429040a03bcea91848fe654d6a8e587746279496f7199da172",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-c1",
+      "text": "לקערה הוספתי את הקקעו ואת הקמח",
+      "ms": 317.80000000074506,
+      "pcm_sha256": "7607cc3696e047b2da6cb95d0a88231afec71d44fa32c4f0758983e8bc82314d",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-c2",
+      "text": "את החמאה ריכתי, אבל עוד לא שברתי ביצה",
+      "ms": 332.6000000014901,
+      "pcm_sha256": "f710ff80f58638cad23796261ad7e95800fbcc82239aff0f99e98cef64cd922a",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 318.2999999988824,
+      "pcm_sha256": "ed89bf76c6f0953c5c1e4cfc99d03d9293d99a251c68beb3aeb7d8870af11fe5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-c4",
+      "text": "לא וניל. סליחה זה היה קינמון",
+      "ms": 366.90000000037253,
+      "pcm_sha256": "5562c4a95e507a694238737dbc99c6c1525e2cfb72f1dc4543e1790f7468e7ac",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קינמון",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 307,
+      "pcm_sha256": "e25652eee0cd73e4fbac7134355b05ac2df406d8ac5c335eea68aa1d35f28e7e",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-s1",
+      "text": "קודם האחתי את השום, ואחר כך גלדתי את הגזר",
+      "ms": 318.40000000037253,
+      "pcm_sha256": "849af8754cfe8f8576a24545629421fab62493c986fb959b1b291c468b2a2fa0",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם האחתי את השום ואחר כך גלדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 5,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-s2",
+      "text": "את העדשים שטפתי, אבל את אלימון עוד לא סחטתי",
+      "ms": 324.2999999988824,
+      "pcm_sha256": "ab57c32c812530f9bd6d47b92e52405262b084dc36033860cab90c92c8471b8a",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את אלימון עוד לא סחטתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום",
+      "ms": 303.59999999962747,
+      "pcm_sha256": "cb9daa035df2772490038dc18efc006f2bbe7c39fdec9dfd099ebd14bcf2b282",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-s4",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום",
+      "ms": 309.5,
+      "pcm_sha256": "a5f752a259305680d978c03ba3779ad8ff3120644c2397bdb5ceb786c1f1a530",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-s5",
+      "text": "רגע, כיביתי את הגז, זה הכל",
+      "ms": 260.90000000037253,
+      "pcm_sha256": "546862412fcd6397b6e8ae5fd89d7767843d0c3e75ca355e4a876ab29b616124",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כיביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-c1",
+      "text": "לקערה הוספתי את הקקעו ואת הקמח",
+      "ms": 295.69999999925494,
+      "pcm_sha256": "301d27d21b2dfbd2d4e0c33536acd893f1baced7cb111c79d76e37833a516aa8",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-c2",
+      "text": "את החמאה ריקחתי, אבל עוד לא שברתי ביצה",
+      "ms": 300.5,
+      "pcm_sha256": "5a23c266ea1879937fe1047c9bf6c463b6f9d89636891482403039862acec082",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריקחתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 317.6000000014901,
+      "pcm_sha256": "3bcdbbddd4d5ccf62294e99ce5e79e9e3981f06cd8f3e2d702f5f426f69c307f",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-c4",
+      "text": "לא וניל, סליחה, זה היה קימון",
+      "ms": 329.30000000074506,
+      "pcm_sha256": "f48d492704c20f699c84c13541080e81c4dad893b38b6d5712c56c28c19674bb",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 337.59999999962747,
+      "pcm_sha256": "a8c081d589e50af96e383c833092cfbe30cef466e5aa4b52a486bb0914d960bc",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "silence",
+      "text": "",
+      "ms": 388.40000000037253,
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noise",
+      "text": "",
+      "ms": 291.40000000037253,
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גירדתי את הגזר.",
+      "ms": 646.1999999992549,
+      "pcm_sha256": "ef0a096bc54ab24895c95f3868d2db6c6eac54fbeb2949f146707d9fd00a66b4",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גירדתי את הגזר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 554,
+      "pcm_sha256": "b4de6298123a5804a8193cb7333d2c07d41daf21191a1ea959aa34dd6eefe3c4",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 485.3999999985099,
+      "pcm_sha256": "5470aff5272f3efc6438c2b6a6b34515a454afa71e6eacecc6513d7c0501b5d9",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-s4",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום",
+      "ms": 350.69999999925494,
+      "pcm_sha256": "1b3c71366475d65702316b311d3b7ee184c673935066832508526837888b7c29",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל.",
+      "ms": 333.09999999962747,
+      "pcm_sha256": "ea6c3d6c09a109dfef5e69056b03d716a3d070af1bbe5e7fba7838037309577d",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-c1",
+      "text": "וקראה הוספתי את הקקאו ואת הקמח.",
+      "ms": 348.2000000011176,
+      "pcm_sha256": "6bc6bd79167a16a89ed0b5d6c5a8946b770281d4ec3f1f7691727ff13e8004ed",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "וקראה הוספתי את הקקאו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-c2",
+      "text": "את החמאה ריכפתי, אבל עוד לא שברתי ביצה.",
+      "ms": 332.6000000014901,
+      "pcm_sha256": "b9f42f43bb0611ca464a80493a265dabc35fa89c97057d61672e73e8691e0a38",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכפתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-c3",
+      "text": "התכוונתי לשים סוכר. בסוף שמתי דבש",
+      "ms": 326.5,
+      "pcm_sha256": "16f72e7f27d6718e3092237efe0f34196f3519ece5d97930bf187cd9ac8869f5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-c4",
+      "text": "לא וניר. סליחה, זה היה קימון",
+      "ms": 366.2999999988824,
+      "pcm_sha256": "4648782910e3e2988066440d51da8f3e6faf7cf3e692e8e52200a2253dd41c8a",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניר סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 326.19999999925494,
+      "pcm_sha256": "d9911d4752e375c650a38e8681dfc8d709194a78d56b7d4bc6a714f7811addc1",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "ms": 480.40000000037253,
+      "pcm_sha256": "5fa5eac429583a2a6401bff663d07b5f6a34c0aa6fb52449dad8254cf48c8a09",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 468.80000000074506,
+      "pcm_sha256": "0d3c853747dd68afbf020a1bbfd60ac1ae0c63b04f0674d910b5ab8738711980",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 512.9000000003725,
+      "pcm_sha256": "858c35183bab4206ab662c337f614e5e14f49e0740e1da009bc6452cc1233e62",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-s4",
+      "text": "לא שמתי מלח, שמעתי פלפל שחור במקום",
+      "ms": 358.80000000074506,
+      "pcm_sha256": "a8cddf383984121f541f3ba7cb937a8f9ed77e6a4de9477e151fea23a1b7200e",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמעתי פלפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל",
+      "ms": 352.3999999985099,
+      "pcm_sha256": "bfa84327b41c5c429040a03bcea91848fe654d6a8e587746279496f7199da172",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-c1",
+      "text": "לקערה הוספתי את הקקעו ואת הקמח",
+      "ms": 338.40000000037253,
+      "pcm_sha256": "7607cc3696e047b2da6cb95d0a88231afec71d44fa32c4f0758983e8bc82314d",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-c2",
+      "text": "את החמאה ריככתי, אבל עוד לא שברתי ביצה",
+      "ms": 346.30000000074506,
+      "pcm_sha256": "f710ff80f58638cad23796261ad7e95800fbcc82239aff0f99e98cef64cd922a",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 335.2999999988824,
+      "pcm_sha256": "ed89bf76c6f0953c5c1e4cfc99d03d9293d99a251c68beb3aeb7d8870af11fe5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-c4",
+      "text": "לא וניל. סליחה, זה היה קינמון",
+      "ms": 350.19999999925494,
+      "pcm_sha256": "5562c4a95e507a694238737dbc99c6c1525e2cfb72f1dc4543e1790f7468e7ac",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קינמון",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-c5",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "ms": 324.59999999962747,
+      "pcm_sha256": "e25652eee0cd73e4fbac7134355b05ac2df406d8ac5c335eea68aa1d35f28e7e",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-s1",
+      "text": "קודם האחתי את השום, ואחר כך גרדתי את הגזר",
+      "ms": 325.5,
+      "pcm_sha256": "849af8754cfe8f8576a24545629421fab62493c986fb959b1b291c468b2a2fa0",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם האחתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 4,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-s2",
+      "text": "את העדשים שטפתי, אבל את אלימון עוד לא סחטתי",
+      "ms": 310.59999999962747,
+      "pcm_sha256": "ab57c32c812530f9bd6d47b92e52405262b084dc36033860cab90c92c8471b8a",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את אלימון עוד לא סחטתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום",
+      "ms": 336.40000000037253,
+      "pcm_sha256": "cb9daa035df2772490038dc18efc006f2bbe7c39fdec9dfd099ebd14bcf2b282",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-s4",
+      "text": "לא שמתי מלח, שמתי פגפל שחור במקום",
+      "ms": 324.19999999925494,
+      "pcm_sha256": "a5f752a259305680d978c03ba3779ad8ff3120644c2397bdb5ceb786c1f1a530",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פגפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-s5",
+      "text": "רגע, כיביתי את הגז, זה הכל",
+      "ms": 230.2000000011176,
+      "pcm_sha256": "546862412fcd6397b6e8ae5fd89d7767843d0c3e75ca355e4a876ab29b616124",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כיביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-c1",
+      "text": "לקערה, הוספתי את הקקעו ואת הקמח",
+      "ms": 341.19999999925494,
+      "pcm_sha256": "301d27d21b2dfbd2d4e0c33536acd893f1baced7cb111c79d76e37833a516aa8",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-c2",
+      "text": "את החמאה ריכחתי, אבל עוד לא שברתי ביצה",
+      "ms": 336.5,
+      "pcm_sha256": "5a23c266ea1879937fe1047c9bf6c463b6f9d89636891482403039862acec082",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכחתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 342.69999999925494,
+      "pcm_sha256": "3bcdbbddd4d5ccf62294e99ce5e79e9e3981f06cd8f3e2d702f5f426f69c307f",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-c4",
+      "text": "לא וניל, סליחה, זה היה קימון",
+      "ms": 317.90000000037253,
+      "pcm_sha256": "f48d492704c20f699c84c13541080e81c4dad893b38b6d5712c56c28c19674bb",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 330.7999999988824,
+      "pcm_sha256": "a8c081d589e50af96e383c833092cfbe30cef466e5aa4b52a486bb0914d960bc",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "silence",
+      "text": "",
+      "ms": 406.3999999985099,
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noise",
+      "text": "",
+      "ms": 357.40000000037253,
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "ms": 669.4000000003725,
+      "pcm_sha256": "ef0a096bc54ab24895c95f3868d2db6c6eac54fbeb2949f146707d9fd00a66b4",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 520.8000000007451,
+      "pcm_sha256": "b4de6298123a5804a8193cb7333d2c07d41daf21191a1ea959aa34dd6eefe3c4",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 478.40000000037253,
+      "pcm_sha256": "5470aff5272f3efc6438c2b6a6b34515a454afa71e6eacecc6513d7c0501b5d9",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-s4",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום",
+      "ms": 318.40000000037253,
+      "pcm_sha256": "1b3c71366475d65702316b311d3b7ee184c673935066832508526837888b7c29",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל.",
+      "ms": 319.80000000074506,
+      "pcm_sha256": "ea6c3d6c09a109dfef5e69056b03d716a3d070af1bbe5e7fba7838037309577d",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-c1",
+      "text": "וקראה הוספתי את הקקאו ואת הקמח.",
+      "ms": 333.40000000037253,
+      "pcm_sha256": "6bc6bd79167a16a89ed0b5d6c5a8946b770281d4ec3f1f7691727ff13e8004ed",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "וקראה הוספתי את הקקאו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-c2",
+      "text": "את החמאה ריכפתי, אבל עוד לא שברתי ביצה.",
+      "ms": 326.7000000011176,
+      "pcm_sha256": "b9f42f43bb0611ca464a80493a265dabc35fa89c97057d61672e73e8691e0a38",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכפתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-c3",
+      "text": "התכוונתי לשים סוכר. בסוף שמתי דבש",
+      "ms": 323.2000000011176,
+      "pcm_sha256": "16f72e7f27d6718e3092237efe0f34196f3519ece5d97930bf187cd9ac8869f5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-c4",
+      "text": "לא וניר. סליחה, זה היה קימון",
+      "ms": 345.69999999925494,
+      "pcm_sha256": "4648782910e3e2988066440d51da8f3e6faf7cf3e692e8e52200a2253dd41c8a",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניר סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 311.5,
+      "pcm_sha256": "d9911d4752e375c650a38e8681dfc8d709194a78d56b7d4bc6a714f7811addc1",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "ms": 447.40000000037253,
+      "pcm_sha256": "5fa5eac429583a2a6401bff663d07b5f6a34c0aa6fb52449dad8254cf48c8a09",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 427.30000000074506,
+      "pcm_sha256": "0d3c853747dd68afbf020a1bbfd60ac1ae0c63b04f0674d910b5ab8738711980",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 432.40000000037253,
+      "pcm_sha256": "858c35183bab4206ab662c337f614e5e14f49e0740e1da009bc6452cc1233e62",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-s4",
+      "text": "לא שמתי מלח, שמעתי פלפל שחור במקום",
+      "ms": 384.40000000037253,
+      "pcm_sha256": "a8cddf383984121f541f3ba7cb937a8f9ed77e6a4de9477e151fea23a1b7200e",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמעתי פלפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל",
+      "ms": 302.09999999962747,
+      "pcm_sha256": "bfa84327b41c5c429040a03bcea91848fe654d6a8e587746279496f7199da172",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-c1",
+      "text": "לקערה הוספתי את הקקעו ואת הקמח",
+      "ms": 305.19999999925494,
+      "pcm_sha256": "7607cc3696e047b2da6cb95d0a88231afec71d44fa32c4f0758983e8bc82314d",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-c2",
+      "text": "את החמאה ריככתי, אבל עוד לא שברתי ביצה",
+      "ms": 304.7999999988824,
+      "pcm_sha256": "f710ff80f58638cad23796261ad7e95800fbcc82239aff0f99e98cef64cd922a",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 306,
+      "pcm_sha256": "ed89bf76c6f0953c5c1e4cfc99d03d9293d99a251c68beb3aeb7d8870af11fe5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-c4",
+      "text": "לא וניל. סליחה, זה היה קינמון",
+      "ms": 316.59999999962747,
+      "pcm_sha256": "5562c4a95e507a694238737dbc99c6c1525e2cfb72f1dc4543e1790f7468e7ac",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קינמון",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-c5",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "ms": 314.59999999962747,
+      "pcm_sha256": "e25652eee0cd73e4fbac7134355b05ac2df406d8ac5c335eea68aa1d35f28e7e",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-s1",
+      "text": "קודם הערכתי את השום, ואחר כך גלדתי את הגזר",
+      "ms": 385.7999999988824,
+      "pcm_sha256": "849af8754cfe8f8576a24545629421fab62493c986fb959b1b291c468b2a2fa0",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם הערכתי את השום ואחר כך גלדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 4,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי",
+      "ms": 306.59999999962747,
+      "pcm_sha256": "ab57c32c812530f9bd6d47b92e52405262b084dc36033860cab90c92c8471b8a",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום",
+      "ms": 303.59999999962747,
+      "pcm_sha256": "cb9daa035df2772490038dc18efc006f2bbe7c39fdec9dfd099ebd14bcf2b282",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-s4",
+      "text": "לא שמתי מלח, שמתי פגפל שחור במקום",
+      "ms": 305.30000000074506,
+      "pcm_sha256": "a5f752a259305680d978c03ba3779ad8ff3120644c2397bdb5ceb786c1f1a530",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פגפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-s5",
+      "text": "רגע, כיביתי את הגז, זה הכל",
+      "ms": 203.30000000074506,
+      "pcm_sha256": "546862412fcd6397b6e8ae5fd89d7767843d0c3e75ca355e4a876ab29b616124",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כיביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-c1",
+      "text": "לקערה, הוספתי את הקקעו ואת הקמח",
+      "ms": 322.90000000037253,
+      "pcm_sha256": "301d27d21b2dfbd2d4e0c33536acd893f1baced7cb111c79d76e37833a516aa8",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקעו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-c2",
+      "text": "את החמאה ריכחתי, אבל עוד לא שברתי ביצה",
+      "ms": 360.5,
+      "pcm_sha256": "5a23c266ea1879937fe1047c9bf6c463b6f9d89636891482403039862acec082",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכחתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 338.40000000037253,
+      "pcm_sha256": "3bcdbbddd4d5ccf62294e99ce5e79e9e3981f06cd8f3e2d702f5f426f69c307f",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-c4",
+      "text": "לא וניל, סליחה, זה היה קימון",
+      "ms": 321.5,
+      "pcm_sha256": "f48d492704c20f699c84c13541080e81c4dad893b38b6d5712c56c28c19674bb",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 313.30000000074506,
+      "pcm_sha256": "a8c081d589e50af96e383c833092cfbe30cef466e5aa4b52a486bb0914d960bc",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "silence",
+      "text": "",
+      "ms": 311.5,
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noise",
+      "text": "",
+      "ms": 302.5,
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גירדתי את הגזר.",
+      "ms": 540.9000000003725,
+      "pcm_sha256": "ef0a096bc54ab24895c95f3868d2db6c6eac54fbeb2949f146707d9fd00a66b4",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גירדתי את הגזר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 480.59999999962747,
+      "pcm_sha256": "b4de6298123a5804a8193cb7333d2c07d41daf21191a1ea959aa34dd6eefe3c4",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 459.8999999985099,
+      "pcm_sha256": "5470aff5272f3efc6438c2b6a6b34515a454afa71e6eacecc6513d7c0501b5d9",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-s4",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום",
+      "ms": 326.69999999925494,
+      "pcm_sha256": "1b3c71366475d65702316b311d3b7ee184c673935066832508526837888b7c29",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-s5",
+      "text": "רגע, כיביתי את הגז, זה הכל.",
+      "ms": 323.7000000011176,
+      "pcm_sha256": "ea6c3d6c09a109dfef5e69056b03d716a3d070af1bbe5e7fba7838037309577d",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כיביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c1",
+      "text": "וקראה הוספתי את הקקאו ואת הקמח.",
+      "ms": 308.09999999962747,
+      "pcm_sha256": "6bc6bd79167a16a89ed0b5d6c5a8946b770281d4ec3f1f7691727ff13e8004ed",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "וקראה הוספתי את הקקאו ואת הקמח",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c2",
+      "text": "את החמאה ריכפתי, אבל עוד לא שברתי ביצה",
+      "ms": 347.7999999988824,
+      "pcm_sha256": "b9f42f43bb0611ca464a80493a265dabc35fa89c97057d61672e73e8691e0a38",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריכפתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c3",
+      "text": "התכוונתי לשים סוכר. בסוף שמתי דבש",
+      "ms": 314.19999999925494,
+      "pcm_sha256": "16f72e7f27d6718e3092237efe0f34196f3519ece5d97930bf187cd9ac8869f5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c4",
+      "text": "לא וניל. סליחה, זה היה קימון",
+      "ms": 328.09999999962747,
+      "pcm_sha256": "4648782910e3e2988066440d51da8f3e6faf7cf3e692e8e52200a2253dd41c8a",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 329.5,
+      "pcm_sha256": "d9911d4752e375c650a38e8681dfc8d709194a78d56b7d4bc6a714f7811addc1",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-s1",
+      "text": "קודם מהכתי את השום, ואחר כך גרדתי את הגזר.",
+      "ms": 456.80000000074506,
+      "pcm_sha256": "5fa5eac429583a2a6401bff663d07b5f6a34c0aa6fb52449dad8254cf48c8a09",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם מהכתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "ms": 434.09999999962747,
+      "pcm_sha256": "0d3c853747dd68afbf020a1bbfd60ac1ae0c63b04f0674d910b5ab8738711980",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "ms": 472.09999999962747,
+      "pcm_sha256": "858c35183bab4206ab662c337f614e5e14f49e0740e1da009bc6452cc1233e62",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-s4",
+      "text": "לא שמתי מלח, שמעתי פלפל שחור במקום",
+      "ms": 322.2000000011176,
+      "pcm_sha256": "a8cddf383984121f541f3ba7cb937a8f9ed77e6a4de9477e151fea23a1b7200e",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמעתי פלפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-s5",
+      "text": "רגע, כי ביביתי את הגז, זה הכל",
+      "ms": 314.2999999988824,
+      "pcm_sha256": "bfa84327b41c5c429040a03bcea91848fe654d6a8e587746279496f7199da172",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כי ביביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c1",
+      "text": "לקערה הוספתי את הקקאו ואת הקמח",
+      "ms": 309.7999999988824,
+      "pcm_sha256": "7607cc3696e047b2da6cb95d0a88231afec71d44fa32c4f0758983e8bc82314d",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקאו ואת הקמח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c2",
+      "text": "את החמאה ריככתי, אבל עוד לא שברתי ביצה",
+      "ms": 310.09999999962747,
+      "pcm_sha256": "f710ff80f58638cad23796261ad7e95800fbcc82239aff0f99e98cef64cd922a",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 347.69999999925494,
+      "pcm_sha256": "ed89bf76c6f0953c5c1e4cfc99d03d9293d99a251c68beb3aeb7d8870af11fe5",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c4",
+      "text": "לא וניל. סליחה, זה היה קינמון",
+      "ms": 303.7999999988824,
+      "pcm_sha256": "5562c4a95e507a694238737dbc99c6c1525e2cfb72f1dc4543e1790f7468e7ac",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קינמון",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c5",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "ms": 345.59999999962747,
+      "pcm_sha256": "e25652eee0cd73e4fbac7134355b05ac2df406d8ac5c335eea68aa1d35f28e7e",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-s1",
+      "text": "קודם האחתי את השום, ואחר כך גרדתי את הגזר",
+      "ms": 331,
+      "pcm_sha256": "849af8754cfe8f8576a24545629421fab62493c986fb959b1b291c468b2a2fa0",
+      "metrics": {
+        "normalizedReference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר",
+        "normalizedHypothesis": "קודם האחתי את השום ואחר כך גרדתי את הגזר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 4,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-s2",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי",
+      "ms": 313.1000000014901,
+      "pcm_sha256": "ab57c32c812530f9bd6d47b92e52405262b084dc36033860cab90c92c8471b8a",
+      "metrics": {
+        "normalizedReference": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "normalizedHypothesis": "את העדשים שטפתי אבל את הלימון עוד לא סחטתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-s3",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום",
+      "ms": 312,
+      "pcm_sha256": "cb9daa035df2772490038dc18efc006f2bbe7c39fdec9dfd099ebd14bcf2b282",
+      "metrics": {
+        "normalizedReference": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "normalizedHypothesis": "חזרתי מהשוק ועוד לא התחלתי להכין כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-s4",
+      "text": "לא שמתי מלח, שמתי פגפל שחור במקום",
+      "ms": 319.2000000011176,
+      "pcm_sha256": "a5f752a259305680d978c03ba3779ad8ff3120644c2397bdb5ceb786c1f1a530",
+      "metrics": {
+        "normalizedReference": "לא שמתי מלח שמתי פלפל שחור במקום",
+        "normalizedHypothesis": "לא שמתי מלח שמתי פגפל שחור במקום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-s5",
+      "text": "רגע, כיביתי את הגז, זה הכל",
+      "ms": 239.5,
+      "pcm_sha256": "546862412fcd6397b6e8ae5fd89d7767843d0c3e75ca355e4a876ab29b616124",
+      "metrics": {
+        "normalizedReference": "רגע כיביתי את הגז זה הכול",
+        "normalizedHypothesis": "רגע כיביתי את הגז זה הכל",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 20,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c1",
+      "text": "לקערה, הוספתי את הקקאו ואת הקמח",
+      "ms": 301.5,
+      "pcm_sha256": "301d27d21b2dfbd2d4e0c33536acd893f1baced7cb111c79d76e37833a516aa8",
+      "metrics": {
+        "normalizedReference": "לקערה הוספתי את הקקאו ואת הקמח",
+        "normalizedHypothesis": "לקערה הוספתי את הקקאו ואת הקמח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c2",
+      "text": "את החמאה ריקחתי, אבל עוד לא שברתי ביצה.",
+      "ms": 304.5,
+      "pcm_sha256": "5a23c266ea1879937fe1047c9bf6c463b6f9d89636891482403039862acec082",
+      "metrics": {
+        "normalizedReference": "את החמאה ריככתי אבל עוד לא שברתי ביצה",
+        "normalizedHypothesis": "את החמאה ריקחתי אבל עוד לא שברתי ביצה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c3",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש",
+      "ms": 311.7000000011176,
+      "pcm_sha256": "3bcdbbddd4d5ccf62294e99ce5e79e9e3981f06cd8f3e2d702f5f426f69c307f",
+      "metrics": {
+        "normalizedReference": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "normalizedHypothesis": "התכוונתי לשים סוכר בסוף שמתי דבש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c4",
+      "text": "לא וניל, סליחה, זה היה קימון",
+      "ms": 310.8999999985099,
+      "pcm_sha256": "f48d492704c20f699c84c13541080e81c4dad893b38b6d5712c56c28c19674bb",
+      "metrics": {
+        "normalizedReference": "לא וניל סליחה זה היה קינמון",
+        "normalizedHypothesis": "לא וניל סליחה זה היה קימון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 22,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c5",
+      "text": "חכי רגע, רק שטפתי ידיים",
+      "ms": 309.5,
+      "pcm_sha256": "a8c081d589e50af96e383c833092cfbe30cef466e5aa4b52a486bb0914d960bc",
+      "metrics": {
+        "normalizedReference": "חכי רגע רק שטפתי ידיים",
+        "normalizedHypothesis": "חכי רגע רק שטפתי ידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 18,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "silence",
+      "text": "",
+      "ms": 408.09999999962747,
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noise",
+      "text": "",
+      "ms": 301.6000000014901,
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

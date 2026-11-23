@@ -1,0 +1,310 @@
+{
+  "records": [
+    {
+      "filename": "omer-p03-plain-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "omer",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "da66a1f722c39067fdd699d1d37b9458f9e2b72a3de84bf9124d181172b9ab50",
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "recipe": "salad"
+    },
+    {
+      "filename": "omer-p03-fan-room-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "omer",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "da66a1f722c39067fdd699d1d37b9458f9e2b72a3de84bf9124d181172b9ab50",
+      "pcm_sha256": "e5bbaaa79f411175afe3b97d7636e25ce276b930746b94f606eab56feb8b9340",
+      "recipe": "salad"
+    },
+    {
+      "filename": "omer-p04-plain-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "omer",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "c5615557d7f94b00d3dd1637bb3efa013ad88d7be252a71d2d3ade0ad5fc51c2",
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "omer-p04-fan-room-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "omer",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "c5615557d7f94b00d3dd1637bb3efa013ad88d7be252a71d2d3ade0ad5fc51c2",
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "omer-p10-plain-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "omer",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "18ef1aff4b49a56df889febf09c54200b67c6b00e67e242780a63f68af49323c",
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "omer-p10-fan-room-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "omer",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "18ef1aff4b49a56df889febf09c54200b67c6b00e67e242780a63f68af49323c",
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "liat-p03-plain-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "liat",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "50184390d9cdab8601d3ae4a9a2a0cc0b59bb84cf6d267e5b4bc3d9dc861e7ec",
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "recipe": "salad"
+    },
+    {
+      "filename": "liat-p03-fan-room-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "liat",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "50184390d9cdab8601d3ae4a9a2a0cc0b59bb84cf6d267e5b4bc3d9dc861e7ec",
+      "pcm_sha256": "bfca1f57d642045bb952e57deecda391ec5a2e4fe16527f6d6ccf6f19bca4076",
+      "recipe": "salad"
+    },
+    {
+      "filename": "liat-p04-plain-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "liat",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "11f76faa616dfb504761320f03d672fcfa203c0b70169b02f1152a49dbeaca30",
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "liat-p04-fan-room-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "liat",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "11f76faa616dfb504761320f03d672fcfa203c0b70169b02f1152a49dbeaca30",
+      "pcm_sha256": "486953f2db78eeaa639bfd32c0fd89e31d84d94afb7dfb8d849299db2669d7d8",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "liat-p10-plain-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "liat",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "e8c4d215d9d037adfeba76db97772145bb3b8476b79473e9cdad778bcc9a2248",
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "liat-p10-fan-room-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "liat",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "e8c4d215d9d037adfeba76db97772145bb3b8476b79473e9cdad778bcc9a2248",
+      "pcm_sha256": "1416bdabd0de08a33521a8fa0cbe848c8a5230883c59317e7d8aa45fb12dfa0c",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "noa-p03-plain-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "noa",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "e29408f0de0b7a81c18cc311168ebf65d02efb53bf773387bdd0ff6c886eab13",
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "recipe": "salad"
+    },
+    {
+      "filename": "noa-p03-fan-room-raw",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "prompt": "p03",
+      "voice": "noa",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "source_sha256": "e29408f0de0b7a81c18cc311168ebf65d02efb53bf773387bdd0ff6c886eab13",
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "recipe": "salad"
+    },
+    {
+      "filename": "noa-p04-plain-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "noa",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "a7f4b98fe4de17fb2be2d3be1b6edf8e1123c88ae002e17e736568a9486a46e5",
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "noa-p04-fan-room-raw",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "prompt": "p04",
+      "voice": "noa",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "source_sha256": "a7f4b98fe4de17fb2be2d3be1b6edf8e1123c88ae002e17e736568a9486a46e5",
+      "pcm_sha256": "b79f3bf620535693b9698977805d80b1322d36f85e8031d55d4f8fe7ae8ffdbf",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "noa-p10-plain-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "noa",
+      "style": "plain",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "6abb0da8c71573abeff0acec3cdf2b00976cdf2321ae8417fa030ecc18a9daea",
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "recipe": "cookies"
+    },
+    {
+      "filename": "noa-p10-fan-room-raw",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "prompt": "p10",
+      "voice": "noa",
+      "style": "fan-room",
+      "filter": "raw",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "source_sha256": "6abb0da8c71573abeff0acec3cdf2b00976cdf2321ae8417fa030ecc18a9daea",
+      "pcm_sha256": "3fb371cd5eb5f645ec0a4155879a9ede289b2aaf1c9951b5471ec6347a48181e",
+      "recipe": "cookies"
+    }
+  ]
+}

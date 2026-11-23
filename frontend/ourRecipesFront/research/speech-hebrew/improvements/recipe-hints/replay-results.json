@@ -1,0 +1,1396 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "greedy",
+      "ms": 2390.7999999988824,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "ms": 1645.7000000011176,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-salad",
+      "ms": 1576.5,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-cookies",
+      "ms": 1518.3999999985099,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "omer-p03-plain-raw",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי.",
+      "ms": 505.19999999925494,
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p03-fan-room-raw",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי.",
+      "ms": 424.59999999962747,
+      "pcm_sha256": "e5bbaaa79f411175afe3b97d7636e25ce276b930746b94f606eab56feb8b9340",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 328.2999999988824,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-fan-room-raw",
+      "text": "במקום סוכה מוסף תדבש, זה בסדר",
+      "ms": 339.90000000037253,
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה מוסף תדבש זה בסדר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-plain-raw",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 393.7000000011176,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 394.40000000037253,
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 408,
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p03-fan-room-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילצתי",
+      "ms": 391.1000000014901,
+      "pcm_sha256": "bfca1f57d642045bb952e57deecda391ec5a2e4fe16527f6d6ccf6f19bca4076",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילצתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 288.5,
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 302,
+      "pcm_sha256": "486953f2db78eeaa639bfd32c0fd89e31d84d94afb7dfb8d849299db2669d7d8",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p10-plain-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 420.19999999925494,
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לי ככאו",
+      "ms": 394.30000000074506,
+      "pcm_sha256": "1416bdabd0de08a33521a8fa0cbe848c8a5230883c59317e7d8aa45fb12dfa0c",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לי ככאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-plain-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי",
+      "ms": 299.7999999988824,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-fan-room-raw",
+      "text": "את השוק כבר קטשתי ואת הגזל רק קילפתי",
+      "ms": 401,
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזל רק קילפתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 4,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 318.59999999962747,
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 291.8999999985099,
+      "pcm_sha256": "b79f3bf620535693b9698977805d80b1322d36f85e8031d55d4f8fe7ae8ffdbf",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p10-plain-raw",
+      "text": "לידה לידה, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 287.09999999962747,
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לידה לידה אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 8,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p10-fan-room-raw",
+      "text": "ליידר לידה, אמרתי קמח, התכוונתי לכקעות",
+      "ms": 315.90000000037253,
+      "pcm_sha256": "3fb371cd5eb5f645ec0a4155879a9ede289b2aaf1c9951b5471ec6347a48181e",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "ליידר לידה אמרתי קמח התכוונתי לכקעות",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 11,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 595,
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p03-fan-room-raw",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי.",
+      "ms": 500.19999999925494,
+      "pcm_sha256": "e5bbaaa79f411175afe3b97d7636e25ce276b930746b94f606eab56feb8b9340",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 347.69999999925494,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p04-fan-room-raw",
+      "text": "במקום סוכה ומוסף תדבש, זה בסדר",
+      "ms": 309.7999999988824,
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה ומוסף תדבש זה בסדר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p10-plain-raw",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 437.19999999925494,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 491.09999999962747,
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 446.40000000037253,
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p03-fan-room-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילצתי.",
+      "ms": 420.5,
+      "pcm_sha256": "bfca1f57d642045bb952e57deecda391ec5a2e4fe16527f6d6ccf6f19bca4076",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילצתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 334.80000000074506,
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 317.59999999962747,
+      "pcm_sha256": "486953f2db78eeaa639bfd32c0fd89e31d84d94afb7dfb8d849299db2669d7d8",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p10-plain-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 411.80000000074506,
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקכאו",
+      "ms": 432.09999999962747,
+      "pcm_sha256": "1416bdabd0de08a33521a8fa0cbe848c8a5230883c59317e7d8aa45fb12dfa0c",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקכאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p03-plain-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 322.3999999985099,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p03-fan-room-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזל רק קילפתי.",
+      "ms": 429.59999999962747,
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזל רק קילפתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 4,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 312.09999999962747,
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 321.40000000037253,
+      "pcm_sha256": "b79f3bf620535693b9698977805d80b1322d36f85e8031d55d4f8fe7ae8ffdbf",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p10-plain-raw",
+      "text": "לידה לידה, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 313.09999999962747,
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לידה לידה אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 8,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p10-fan-room-raw",
+      "text": "ליידר לידה, אמרתי קמח, התכוונתי לקקרוב",
+      "ms": 344.3999999985099,
+      "pcm_sha256": "3fb371cd5eb5f645ec0a4155879a9ede289b2aaf1c9951b5471ec6347a48181e",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "ליידר לידה אמרתי קמח התכוונתי לקקרוב",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 10,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 608,
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p03-fan-room-raw",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי.",
+      "ms": 467.59999999962747,
+      "pcm_sha256": "e5bbaaa79f411175afe3b97d7636e25ce276b930746b94f606eab56feb8b9340",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 333.59999999962747,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p04-fan-room-raw",
+      "text": "במקום סוכה ומוסף תדבש, זה בסדר",
+      "ms": 323.80000000074506,
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה ומוסף תדבש זה בסדר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p10-plain-raw",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 435.2000000011176,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 427.40000000037253,
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 406.59999999962747,
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p03-fan-room-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילצתי.",
+      "ms": 436.19999999925494,
+      "pcm_sha256": "bfca1f57d642045bb952e57deecda391ec5a2e4fe16527f6d6ccf6f19bca4076",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילצתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 322.59999999962747,
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 327.09999999962747,
+      "pcm_sha256": "486953f2db78eeaa639bfd32c0fd89e31d84d94afb7dfb8d849299db2669d7d8",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p10-plain-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 526,
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקכאו",
+      "ms": 447.2000000011176,
+      "pcm_sha256": "1416bdabd0de08a33521a8fa0cbe848c8a5230883c59317e7d8aa45fb12dfa0c",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקכאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי",
+      "ms": 322.5,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p03-fan-room-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 420.1000000014901,
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 318.2999999988824,
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 358.69999999925494,
+      "pcm_sha256": "b79f3bf620535693b9698977805d80b1322d36f85e8031d55d4f8fe7ae8ffdbf",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p10-plain-raw",
+      "text": "לידה לידה, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 321.09999999962747,
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לידה לידה אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 8,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p10-fan-room-raw",
+      "text": "ליידר לידה, אמרתי קמח, התכוונתי לקקרוב",
+      "ms": 311.5,
+      "pcm_sha256": "3fb371cd5eb5f645ec0a4155879a9ede289b2aaf1c9951b5471ec6347a48181e",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "ליידר לידה אמרתי קמח התכוונתי לקקרוב",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 10,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 597.2000000011176,
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p03-fan-room-raw",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי.",
+      "ms": 478.2000000011176,
+      "pcm_sha256": "e5bbaaa79f411175afe3b97d7636e25ce276b930746b94f606eab56feb8b9340",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 325.59999999962747,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p04-fan-room-raw",
+      "text": "במקום סוכר מוסף תדבש, זה בסדר",
+      "ms": 330,
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר מוסף תדבש זה בסדר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p10-plain-raw",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 408,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 408.59999999962747,
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 408.69999999925494,
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p03-fan-room-raw",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילצתי.",
+      "ms": 405.80000000074506,
+      "pcm_sha256": "bfca1f57d642045bb952e57deecda391ec5a2e4fe16527f6d6ccf6f19bca4076",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילצתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 322.09999999962747,
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 320.2999999988824,
+      "pcm_sha256": "486953f2db78eeaa639bfd32c0fd89e31d84d94afb7dfb8d849299db2669d7d8",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p10-plain-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 440.09999999962747,
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p10-fan-room-raw",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 444,
+      "pcm_sha256": "1416bdabd0de08a33521a8fa0cbe848c8a5230883c59317e7d8aa45fb12dfa0c",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p03-plain-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 344,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p03-fan-room-raw",
+      "text": "את השוק כבר קטשתי, ואת הגזל רק קילפתי.",
+      "ms": 535.4000000003725,
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזל רק קילפתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 4,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p04-plain-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 319.30000000074506,
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p04-fan-room-raw",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 314.19999999925494,
+      "pcm_sha256": "b79f3bf620535693b9698977805d80b1322d36f85e8031d55d4f8fe7ae8ffdbf",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p10-plain-raw",
+      "text": "לידה לידה, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 318.7000000011176,
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לידה לידה אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 8,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p10-fan-room-raw",
+      "text": "ליידר לידה, אמרתי קמח, התכוונתי לקקרוב",
+      "ms": 313.8999999985099,
+      "pcm_sha256": "3fb371cd5eb5f645ec0a4155879a9ede289b2aaf1c9951b5471ec6347a48181e",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "ליידר לידה אמרתי קמח התכוונתי לקקרוב",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 10,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}
