@@ -16,7 +16,10 @@ const manifest = JSON.parse(await readFile(process.env.SPEECH_MANIFEST || join(r
 const sources = JSON.parse(await readFile(join(root, '../evidence/wasm-source.json')));
 const modelSources = JSON.parse(await readFile(join(root, '../evidence/protocol.json')));
 const whisper = process.env.SPEECH_WHISPER_TINY === '1';
-const files = new Map([['/worker.mjs', resolve(root, whisper ? '../whisper/worker.mjs' : '../browser-worker.mjs')]]);
+const hebrewExport = process.env.SPEECH_WHISPER_HE === '1';
+assert(!(whisper && hebrewExport), 'Select one candidate per process');
+const workerFile = hebrewExport ? '../whisper/he-worker.mjs' : whisper ? '../whisper/worker.mjs' : '../browser-worker.mjs';
+const files = new Map([['/worker.mjs', resolve(root, workerFile)]]);
 const sha = data => createHash('sha256').update(data).digest('hex');
 
 for (const [name, metadata] of Object.entries(sources.files)) {
@@ -25,7 +28,22 @@ for (const [name, metadata] of Object.entries(sources.files)) {
   assert.equal(sha(await readFile(file)), metadata.sha256);
   files.set('/pkg/' + name.slice(5), file);
 }
-if (whisper) {
+if (hebrewExport) {
+  const cacheDir='/dev/shm/ourrecipes-whisper-he';
+  for (const name of ['transformers.min.js','ort-wasm-simd-threaded.jsep.wasm','ort-wasm-simd-threaded.jsep.mjs']) {
+    files.set('/dist/'+name, join(cacheDir,'dist',name));
+  }
+  const source=JSON.parse(await readFile(resolve(root,'../whisper/he-source.json')));
+  for (const entry of source.files) {
+    const name=(entry.rfilename.endsWith('.onnx')?'onnx/':'')+entry.rfilename;
+    const file=join(cacheDir,'model',name);
+    const bytes=await readFile(file);
+    assert.equal(bytes.length,entry.size);
+    if (entry.lfs) assert.equal(sha(bytes),entry.lfs.sha256);
+    else assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.blobId);
+    files.set('/model/'+name,file);
+  }
+} else if (whisper) {
   const source = JSON.parse(await readFile(resolve(root,'../whisper/source.json')));
   for (const entry of source.files) {
     const file = join('/dev/shm/ourrecipes-whisper-tiny',entry.rfilename);
@@ -52,6 +70,7 @@ const out = process.env.SPEECH_RESULT || join(root, 'results.json');
 try { await stat(out); throw new Error('Choose a fresh SPEECH_RESULT path'); }
 catch (error) { if (error.code !== 'ENOENT') throw error; }
 
+const assetsServed = new Map();
 const server = createServer(async (req, res) => {
   if (req.url === '/') {
     res.writeHead(200, {'content-type': 'text/html'}).end('<title>Local ASR evaluation</title>');
@@ -59,6 +78,7 @@ const server = createServer(async (req, res) => {
   }
   const file = files.get(req.url);
   if (!file) { res.writeHead(404).end(); return; }
+  if(hebrewExport && !req.url.startsWith('/audio/')) assetsServed.set(req.url,(await stat(file)).size);
   const type = file.endsWith('.wasm') ? 'application/wasm' : /\.m?js$/.test(file) ? 'text/javascript' : 'application/octet-stream';
   try { res.writeHead(200, {'content-type': type}).end(await readFile(file)); }
   catch { res.destroy(); }
@@ -77,7 +97,7 @@ try {
   });
   const page = await context.newPage();
   await page.goto(origin);
-  for (const arm of (whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
+  for (const arm of (hebrewExport ? ['whisper-he'] : whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
     const loaded = await page.evaluate(async arm => {
       window.worker = new Worker('/worker.mjs', {type: 'module'});
       window.ask = payload => new Promise((resolve, reject) => {
@@ -108,7 +128,7 @@ try {
     console.log('Completed', arm, manifest.records.length);
   }
   assert.deepEqual(external, []);
-  await writeFile(out, JSON.stringify({browser: browser.version(), loads, externalRequests: external, records}, null, 2) + '\n', {flag: 'wx'});
+  await writeFile(out, JSON.stringify({browser: browser.version(), loads, ...(hebrewExport ? {assetsServed:Object.fromEntries(assetsServed)} : {}), externalRequests: external, records}, null, 2) + '\n', {flag: 'wx'});
 } finally {
   await browser.close();
   server.closeAllConnections();

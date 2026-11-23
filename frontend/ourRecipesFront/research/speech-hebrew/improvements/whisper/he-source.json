@@ -1,0 +1,71 @@
+{
+  "repo": "tzikitrop/whisper-he-tiny-onnx",
+  "revision": "51dabf65d8d8172753784969ea7f2c7620e07c55",
+  "files": [
+    {
+      "rfilename": "added_tokens.json",
+      "blobId": "e3d256c988462aa153dcabe2aa38b8e9b436c06f",
+      "size": 34604
+    },
+    {
+      "rfilename": "config.json",
+      "blobId": "097a0de6575c5693e8a8256193b37a567ce9f84f",
+      "size": 1265
+    },
+    {
+      "rfilename": "decoder_model_merged_quantized.onnx",
+      "blobId": "1d5c50b2a625e867fadc63efb8d6e8c0b6d2f8ba",
+      "size": 50636168,
+      "lfs": {
+        "sha256": "16a2643ef61fd1d8a4dda83225143407c7499d0ed803d06218f55d7139b692d3",
+        "size": 50636168,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "encoder_model_quantized.onnx",
+      "blobId": "248f663278762f2f9abd824dea8eceb26f83cf11",
+      "size": 10124991,
+      "lfs": {
+        "sha256": "999fe32e42db320274471f80dd88e7435fbe57605e1b293214df1a294c9c463a",
+        "size": 10124991,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "generation_config.json",
+      "blobId": "66748d23b8004d9b282fe0bfdd9e336b3177dec7",
+      "size": 2917
+    },
+    {
+      "rfilename": "merges.txt",
+      "blobId": "6038932a2a1f09a66991b1c2adae0d14066fa29e",
+      "size": 493869
+    },
+    {
+      "rfilename": "preprocessor_config.json",
+      "blobId": "d7c5b1dfd466c815664b16139e8f605620d22e4e",
+      "size": 356
+    },
+    {
+      "rfilename": "special_tokens_map.json",
+      "blobId": "156262f7d61a27706bdcad9d117c579e88e2fa27",
+      "size": 587
+    },
+    {
+      "rfilename": "tokenizer.json",
+      "blobId": "df5dbd8e115dcd64da9ef01a60f538a7f4e7a855",
+      "size": 3930759
+    },
+    {
+      "rfilename": "tokenizer_config.json",
+      "blobId": "b094940e0b11ac672212258322282b6fc53b2e49",
+      "size": 281128
+    },
+    {
+      "rfilename": "vocab.json",
+      "blobId": "90e797dd4fd05d9dea443d702ca06be2463c5f2f",
+      "size": 1036584
+    }
+  ]
+}
