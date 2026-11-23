@@ -1,0 +1,925 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-cookies",
+      "ms": 1915.3000000000466,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-wet-clean",
+      "text": "עוד לא היטבתי את המגבת, היא יבשה.",
+      "ms": 494.89999999990687,
+      "pcm_sha256": "8684a1c1919a638c696e9db18dfd48652d6c818da03fd21b9a7f7ec29f4b592f",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא היטבתי את המגבת היא יבשה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-wet-water",
+      "text": "עוד לא היטבתי את המגרת, היא יבשה.",
+      "ms": 527.7999999998137,
+      "pcm_sha256": "52b00692777b589ba6760f1df24adbd8bd6f2d65b844b13bdbfd8dccfb074e35",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא היטבתי את המגרת היא יבשה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-wet-clean",
+      "text": "עוד לא הוטפתי את המגבת, היא יבשה.",
+      "ms": 389.4000000001397,
+      "pcm_sha256": "39ab6a86cd101a1d8adf297c4e8d28c7cf141d5e2441f44bcb171be12a842b84",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא הוטפתי את המגבת היא יבשה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-wet-water",
+      "text": "עוד לא הוטפתי את המגבת, היא יבשה.",
+      "ms": 339.69999999995343,
+      "pcm_sha256": "3abc17d59feef00f34b2078f163ea2abdd1f3ba63830954258a7e2a3263808d5",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא הוטפתי את המגבת היא יבשה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-wet-clean",
+      "text": "עוד לא הטבתי את המגבת, היא יבשה",
+      "ms": 323.89999999990687,
+      "pcm_sha256": "61f5d1d05c6185b803977a06b82c1ea9d050d8eff4ddd36b00268924e260804d",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא הטבתי את המגבת היא יבשה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-wet-water",
+      "text": "עוד לא הטבתי את המגבת, היא יבשה.",
+      "ms": 373.20000000018626,
+      "pcm_sha256": "e930ff2f4d24063b3a3d0a07b6eac0a6af2961688dddb6f35336c00c4a87425e",
+      "metrics": {
+        "normalizedReference": "עוד לא הרטבתי את המגבת היא יבשה",
+        "normalizedHypothesis": "עוד לא הטבתי את המגבת היא יבשה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-like-clean",
+      "text": "לא אהבתי את המרק, זה עניין של טעם",
+      "ms": 352.69999999995343,
+      "pcm_sha256": "e56aa638a293cb8d84fbee451eca9e59e35f3cbe0161c2fd8b30bceea7739a22",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-like-water",
+      "text": "לא אהבתי את המרק, זה עניין של טעם.",
+      "ms": 499.9000000001397,
+      "pcm_sha256": "a142fd755fb14df372b12d695cb5cd37254d36780f94418d9c7958f74f5c9bb7",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-like-clean",
+      "text": "לא אהבתי את המרק, זה עניין של טעם",
+      "ms": 329.30000000004657,
+      "pcm_sha256": "32a97a9210bd6fc65157d8890493836d162083092ebae90b4181d2dd91167159",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-like-water",
+      "text": "לא אהבתי את המרק, זה עניין של טעם.",
+      "ms": 327.4000000001397,
+      "pcm_sha256": "d9d6c68cd48e715637b6fdc506fc79ab62fb6adfaf55900d1805eab9e4a0fc1a",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-like-clean",
+      "text": "לא אהבתי את המרק, זה עניין של טעם",
+      "ms": 335,
+      "pcm_sha256": "f89f51f010fbf64c8527eff7ee67339b1cf4b0e087e004169159458bd3396977",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-like-water",
+      "text": "לא אהבתי את המרק, זה עניין של טעם",
+      "ms": 321,
+      "pcm_sha256": "c78ad54a8530f391672bd1472b4cff5b74bca395cb45f1f29479c9e140529c58",
+      "metrics": {
+        "normalizedReference": "לא אהבתי את המרק זה עניין של טעם",
+        "normalizedHypothesis": "לא אהבתי את המרק זה עניין של טעם",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-plan-clean",
+      "text": "עוד לא תכננתי את הארוחה למחר",
+      "ms": 205.69999999995343,
+      "pcm_sha256": "0b48598808d5c0f4dd8bab37bd0047edaf0665c3f176b0ce8b95d1a0f036cf1f",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-plan-water",
+      "text": "עוד לא תכננתי את הארוחה למחר",
+      "ms": 322.60000000009313,
+      "pcm_sha256": "3ddfc290dc652c389281d5310db71a97a9ff1733b88f4eb43a88a3004c11a811",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-plan-clean",
+      "text": "עוד לא תכננתי את הארוחה למחר",
+      "ms": 227.0999999998603,
+      "pcm_sha256": "1230485c9db8c43cdb2525615a1e037c29299c1c5fdb5d9cf51122a03594ac2c",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-plan-water",
+      "text": "עוד לא תכננתי את הארוחה למחר",
+      "ms": 222.4000000001397,
+      "pcm_sha256": "32984747c1c35c0b33cb05782fe9a2affa22053ae8196895668d0e435488618c",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-plan-clean",
+      "text": "עוד לא תכננתי את הארוחה למחר",
+      "ms": 226.5,
+      "pcm_sha256": "12e15ca1bda2544808d49b49c0df088440b44b1fd863110d94aa82995644c27d",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-plan-water",
+      "text": "עוד לא תכננתי את הארוחה למחר.",
+      "ms": 212.79999999981374,
+      "pcm_sha256": "9ade833a2be17152d21948fe709f1dc450ff1ffbfb1200b3431250bda4c4222a",
+      "metrics": {
+        "normalizedReference": "עוד לא תכננתי את הארוחה למחר",
+        "normalizedHypothesis": "עוד לא תכננתי את הארוחה למחר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-dry-clean",
+      "text": "לא ניגבתי את השיש, רק את הידיים",
+      "ms": 314.0999999998603,
+      "pcm_sha256": "10a2791d27cab000a9caebebc7f970ef60353ff45d7b5f3a6cdcf5a734c28221",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא ניגבתי את השיש רק את הידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-dry-water",
+      "text": "לא ניגבתי את השיש, רק את הידיים",
+      "ms": 326.19999999995343,
+      "pcm_sha256": "e532fcd8a49177cc7cbe777731e59c84632567d1361dcf404948764b0c4f7979",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא ניגבתי את השיש רק את הידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-dry-clean",
+      "text": "לא ניגבתי את השיש, רק את הידיים",
+      "ms": 518.3000000000466,
+      "pcm_sha256": "6e8174f539e59c8afa6a286217a2fe5c1b694a9e4a787c670b9e44b01fbe6887",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא ניגבתי את השיש רק את הידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-dry-water",
+      "text": "לא ניגבתי את השיש, רק את הידיים",
+      "ms": 315.60000000009313,
+      "pcm_sha256": "1b9ff29587f001bddf27b33390472cfeebea5b0b4ff6dbfd8970c343a03bd426",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא ניגבתי את השיש רק את הידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-dry-clean",
+      "text": "לא נגבתי את השיש, רק את הידיים",
+      "ms": 311,
+      "pcm_sha256": "4bc0637d11d7fdfae5b8160a954f9ad4642883f4cfae37ab170a81128278fab4",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא נגבתי את השיש רק את הידיים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-dry-water",
+      "text": "לא ניגבתי את השיש, רק את הידיים",
+      "ms": 311.30000000004657,
+      "pcm_sha256": "7b18320f8c8c245fa7b8c02607ec976a8b125daa05884ce886e1429d7fcc347a",
+      "metrics": {
+        "normalizedReference": "לא ניגבתי את השיש רק את הידיים",
+        "normalizedHypothesis": "לא ניגבתי את השיש רק את הידיים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-clean",
+      "text": "שמתי הכל בסיר, אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "ms": 420,
+      "pcm_sha256": "434bf6fe80476d6189c97fa30a45ae3c070a6d4f25453c444d7d8927fc952415",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 10,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-water",
+      "text": "שמתי הכל בסיר, אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "ms": 412,
+      "pcm_sha256": "cd5c392bb1fed687a7dc5a5c01bedc9ad59288e413ed9a9646335b9798a8d0cd",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 10,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-clean",
+      "text": "שמתי הכל בסיר, אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "ms": 553.3000000000466,
+      "pcm_sha256": "3fb3fd45c6f4ffc4d90844117ac7ed2b1b7d1075c6f383e995175333fe32847b",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 10,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-water",
+      "text": "שמתי הכל בסיר, אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "ms": 408.5,
+      "pcm_sha256": "1c4a006f458e722b0001821735e9abc0217251cd5053f5e1e3ad8e800ef1cf4a",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 10,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-clean",
+      "text": "שמתי הכל בשיא, אבל עוד לא ערבבתי אפילו פעם אחת",
+      "ms": 309.80000000004657,
+      "pcm_sha256": "5a64f2508d855e39298b8c987e2a679621048655dd73f8a6a42293c88280c37c",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בשיא אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 10,
+        "characterErrors": 3,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-water",
+      "text": "שמתי הכל בשיא, אבל עוד לא ערבבתי אפילו פעם אחת",
+      "ms": 328.69999999995343,
+      "pcm_sha256": "887b6f6da6058030418cfec9978e9031b105521ca3af023e31eca4c5554c43cc",
+      "metrics": {
+        "normalizedReference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת",
+        "normalizedHypothesis": "שמתי הכל בשיא אבל עוד לא ערבבתי אפילו פעם אחת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 10,
+        "characterErrors": 3,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-fry-clean",
+      "text": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "ms": 425.5,
+      "pcm_sha256": "c3434d2f2b00c2acd94b28889ccb7fff1510fd02cc34d4cd40661389079d847b",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-fry-water",
+      "text": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "ms": 574.8999999999069,
+      "pcm_sha256": "0afdd512f2227766dbad34b5672e1ebd8fa444164440875f2a372ba5e59de111",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-fry-clean",
+      "text": "פיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "ms": 434.79999999981374,
+      "pcm_sha256": "532f10555b5519eedd56d0be0a0ab805ecae39905a4dc54990269789aa937d24",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "פיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-fry-water",
+      "text": "סיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "ms": 436.80000000004657,
+      "pcm_sha256": "a106d9732787d3500bb6561a52c87cd13a9bb62346f81c1c2442b8aa9f6a36b9",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "סיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-fry-clean",
+      "text": "חימנתי קצת שמן, אבל את הבצל עוד לא טיגנתי",
+      "ms": 330.39999999990687,
+      "pcm_sha256": "a9bafda0c0614f136edd6db328888c6722490abe90eda4d4501bcf18ae603689",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "חימנתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-fry-water",
+      "text": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי",
+      "ms": 331.30000000004657,
+      "pcm_sha256": "f341e58958d769339682cd6ac9ea3f17514faf31a1b7f507e3a4fd6c92bdaaed",
+      "metrics": {
+        "normalizedReference": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "normalizedHypothesis": "חיממתי קצת שמן אבל את הבצל עוד לא טיגנתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-both-clean",
+      "text": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "ms": 581.8999999999069,
+      "pcm_sha256": "463a0fdea63953b471742dfbf524b001e268eb9859911778e68aef8fda4a5d22",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-both-water",
+      "text": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "ms": 453.29999999981374,
+      "pcm_sha256": "6cb7f030ac6182011ae1923b2d94f1c48824d6ac12c25d7be040ebc95f6c06b0",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-both-clean",
+      "text": "את הרוטב יובבתי, ואת השום טיגנתי בנפרד.",
+      "ms": 451.5999999998603,
+      "pcm_sha256": "a5174ee3e9dc8415e41d9791d7f7e770d00308ad8a3199eeffd93464336c6d35",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוטב יובבתי ואת השום טיגנתי בנפרד",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-both-water",
+      "text": "את הרוטב יובבתי, ואת השום טיגנתי בנפרד.",
+      "ms": 471.60000000009313,
+      "pcm_sha256": "614cdeb60e86fb4cd1dbed0647456f0b08440c529e3dd774d47917c7dcccb19a",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוטב יובבתי ואת השום טיגנתי בנפרד",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-both-clean",
+      "text": "את הרוט הבירבתי, ואת השום טיגנתי בנפרד",
+      "ms": 550.3000000000466,
+      "pcm_sha256": "d53bc1bbc7aa6c2d7e3e0feac2b91f3a57e4add9e45a37c36e638041750fb22d",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוט הבירבתי ואת השום טיגנתי בנפרד",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 3,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-both-water",
+      "text": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד",
+      "ms": 331.10000000009313,
+      "pcm_sha256": "0c1146d2269a2010ef9593c55c6a23a3704e3b3df969a6f21b410dce78a640f8",
+      "metrics": {
+        "normalizedReference": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "normalizedHypothesis": "את הרוטב ערבבתי ואת השום טיגנתי בנפרד",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-none-clean",
+      "text": "הסיר יבש והכרה עוד על השולחן.",
+      "ms": 312.30000000004657,
+      "pcm_sha256": "bec0589023cea2a7194bd6dd379d88ba37d312b4ca0f9928800198c251b93d88",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "הסיר יבש והכרה עוד על השולחן",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-none-water",
+      "text": "הסיר יבש והכרה עוד על השולחן.",
+      "ms": 315.80000000004657,
+      "pcm_sha256": "baffe107e9998a19404dec973d3758bfe29665f190f7df2f5cfb4da9b91f35cc",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "הסיר יבש והכרה עוד על השולחן",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-none-clean",
+      "text": "הסיל יבש והכרה עוד השולחן.",
+      "ms": 311,
+      "pcm_sha256": "cc3b65fe8560ac3d47931d54cd1cb3336ff7f3f771ce69f72da81c8ca22ee72c",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "הסיל יבש והכרה עוד השולחן",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-none-water",
+      "text": "הסיר יבש והכרה עוד על שולחן.",
+      "ms": 313.80000000004657,
+      "pcm_sha256": "7b0b7fec24693667c86e7329585c71aa01eda7709e7ac30f1b2454d2b6d4a578",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "הסיר יבש והכרה עוד על שולחן",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-none-clean",
+      "text": "הסיר יבש והכרה עוד על השולחן.",
+      "ms": 478.0999999998603,
+      "pcm_sha256": "d347139bc4fdae7d6bf8a1f4aee82a89da4ccd3b9aef30e0b0ed954132779cec",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "הסיר יבש והכרה עוד על השולחן",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-none-water",
+      "text": "אסיר יבש והכרה עוד על השולחן.",
+      "ms": 312.5,
+      "pcm_sha256": "358971e19f55859941eba80339cc55f0f633f9ba67c0056a111f7ecbffddada6",
+      "metrics": {
+        "normalizedReference": "הסיר יבש והקערה עוד על השולחן",
+        "normalizedHypothesis": "אסיר יבש והכרה עוד על השולחן",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,430 @@
+{
+  "records": [
+    {
+      "filename": "omer-stir-late-clean",
+      "case": "stir-late",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "d060ae9744d7e4b32defa8e9402df94bb25844e295515df6be65c967e6b5de3a"
+    },
+    {
+      "filename": "omer-stir-late-water",
+      "case": "stir-late",
+      "voice": "omer",
+      "style": "water",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "bc0a0d83b3bfcd0131bc47ecc0dfb74ea02bc66aad4e0029dd66e6740734b2a9"
+    },
+    {
+      "filename": "liat-stir-late-clean",
+      "case": "stir-late",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "592c7409a7b4346853b0ef624c8f00483ca03d70f1d0152278b49d65b355b072"
+    },
+    {
+      "filename": "liat-stir-late-water",
+      "case": "stir-late",
+      "voice": "liat",
+      "style": "water",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "cb4f048973dd41af7772d0ec0bfef229ddcd2958d23013c8d47a95b83cd2f36f"
+    },
+    {
+      "filename": "noa-stir-late-clean",
+      "case": "stir-late",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "999563a00c9ba4f7bb4680461c746ede895c30ca8c3ef1cc54b4a046e34bdea5"
+    },
+    {
+      "filename": "noa-stir-late-water",
+      "case": "stir-late",
+      "voice": "noa",
+      "style": "water",
+      "reference": "המים כבר חמים אבל לא ערבבתי אותם עדיין.",
+      "critical": [
+        "לא ערבבתי אותם"
+      ],
+      "pcm_sha256": "253a132df8d8a248b0f348bcbfa9a85e519d2b1826e9131ccc8c8cf5f772ffcf"
+    },
+    {
+      "filename": "omer-pan-late-clean",
+      "case": "pan-late",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "f76c74268317eaa78a7d789607d828c3af03f66c1942feb4c6a45f1b7f115cce"
+    },
+    {
+      "filename": "omer-pan-late-water",
+      "case": "pan-late",
+      "voice": "omer",
+      "style": "water",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "a83ef707beb61f3fd3894ea03a2b82e86496c2e58ba231782ebcee5ae64b9a08"
+    },
+    {
+      "filename": "liat-pan-late-clean",
+      "case": "pan-late",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "7925f605f472cfaae004f8a39b651a5cba98d64172123f65ff7646602ef5acea"
+    },
+    {
+      "filename": "liat-pan-late-water",
+      "case": "pan-late",
+      "voice": "liat",
+      "style": "water",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "b354892779c1d18bbc70ece3a01c9ff845077bb62ca3d5f5be38cfe7c25e80e4"
+    },
+    {
+      "filename": "noa-pan-late-clean",
+      "case": "pan-late",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "c7aca8b9c43fa76465ea9e96afb0ffa103312f79ce4e5beff411360ec0ed2644"
+    },
+    {
+      "filename": "noa-pan-late-water",
+      "case": "pan-late",
+      "voice": "noa",
+      "style": "water",
+      "reference": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "critical": [
+        "עוד לא טיגנתי",
+        "רק הוצאתי"
+      ],
+      "pcm_sha256": "8584018037699335032005ee004eb6646834d923566d9e730ab08d9ce9a87bd6"
+    },
+    {
+      "filename": "omer-coat-clean",
+      "case": "coat",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "d692969ec9dc3aed9fa996c19863d444487e6c5c8a3438db74e6851d80e519a8"
+    },
+    {
+      "filename": "omer-coat-water",
+      "case": "coat",
+      "voice": "omer",
+      "style": "water",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "e490074efe4719bc02e7734fe7354de80a517dadf3a7e1551b12ae953121e85c"
+    },
+    {
+      "filename": "liat-coat-clean",
+      "case": "coat",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "564a840e50787bbf98050e0c8d144ff0e8eb29b4a89e1a4edacbb7f5a3794d71"
+    },
+    {
+      "filename": "liat-coat-water",
+      "case": "coat",
+      "voice": "liat",
+      "style": "water",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "ec56ab8e95a03caa6d5d7b986d05edb31daee1d3c2aaa41b09a307d7856a6fed"
+    },
+    {
+      "filename": "noa-coat-clean",
+      "case": "coat",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "02d53ffa3249c59580b11ada8b5e3ec2cad3ed10d89e41662b332bccd5ffcb93"
+    },
+    {
+      "filename": "noa-coat-water",
+      "case": "coat",
+      "voice": "noa",
+      "style": "water",
+      "reference": "את התבנית לא ציפיתי. הנייר עוד במגירה.",
+      "critical": [
+        "לא ציפיתי",
+        "הנייר עוד במגירה"
+      ],
+      "pcm_sha256": "c2b84e658ed0e60a338ba0c3ae4deec7950499213cbf1c040ffa8280ca1fd936"
+    },
+    {
+      "filename": "omer-seal-clean",
+      "case": "seal",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "1b53b3eef18e90cdb2ff75d362983af49717ae6709683cb5c24529cd55b151c2"
+    },
+    {
+      "filename": "omer-seal-water",
+      "case": "seal",
+      "voice": "omer",
+      "style": "water",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "65db816dbd40bb6f3618e7b7eed9ea30b03322f6e773855ead8770f0c5cdc855"
+    },
+    {
+      "filename": "liat-seal-clean",
+      "case": "seal",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "42f53874395014b7e0d47d7c09a8d336593314d75fa89826eba4d4a1daff5d8f"
+    },
+    {
+      "filename": "liat-seal-water",
+      "case": "seal",
+      "voice": "liat",
+      "style": "water",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "2650906a892e83be61df096a8815d3cc694a0dd0cce24da9e56dedb4f9158c1d"
+    },
+    {
+      "filename": "noa-seal-clean",
+      "case": "seal",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "e40f37afb3c7eb0a135a091b6fbdde01a2f24ed3f18ddbb247ee5cbf754086d9"
+    },
+    {
+      "filename": "noa-seal-water",
+      "case": "seal",
+      "voice": "noa",
+      "style": "water",
+      "reference": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "critical": [
+        "לא עטפתי",
+        "רק חתכתי"
+      ],
+      "pcm_sha256": "d0a9d7e0af9b95e510e24a211c257217a0e87fdda96ad589edd8cc30e5de8860"
+    },
+    {
+      "filename": "omer-changed-clean",
+      "case": "changed",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "b54829da6c9acf9696602185dcaa922295532c0cd7bc3e94eb87769214d820e2"
+    },
+    {
+      "filename": "omer-changed-water",
+      "case": "changed",
+      "voice": "omer",
+      "style": "water",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "691c4e9524db58c52344853fecdfdbcc4ed44496656985913efc9392e16b4d7b"
+    },
+    {
+      "filename": "liat-changed-clean",
+      "case": "changed",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "9584a6c0d1a4b1d88532badc92ae8aa3e599c230861d52f528939b84050e907e"
+    },
+    {
+      "filename": "liat-changed-water",
+      "case": "changed",
+      "voice": "liat",
+      "style": "water",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "841dd3d7a726c6b78297d8f747df531d189ee776394f0645275d34d8f35db0a3"
+    },
+    {
+      "filename": "noa-changed-clean",
+      "case": "changed",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "e10341d979536ea6b7f1f41396bbe0b209f20085cc1e2c1c6c28438f752c8845"
+    },
+    {
+      "filename": "noa-changed-water",
+      "case": "changed",
+      "voice": "noa",
+      "style": "water",
+      "reference": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "critical": [
+        "שלא בישלתי אורז",
+        "דווקא בישלתי"
+      ],
+      "pcm_sha256": "5c4a1f2b30616f90f65254aba79a9a16fcf2b778f16cd620d79ee4c11cdbeb3d"
+    },
+    {
+      "filename": "omer-forward-clean",
+      "case": "forward",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "3db2d842d96d476b92a9562739249f7aa0942217c529fa10cf1b619fef11ec07"
+    },
+    {
+      "filename": "omer-forward-water",
+      "case": "forward",
+      "voice": "omer",
+      "style": "water",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "de5cd37fbbd697fe42eda1d8faa712a9980a39a83772251f7c42f80744f565fd"
+    },
+    {
+      "filename": "liat-forward-clean",
+      "case": "forward",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "f9984ecbd4695da1fda1930d9d233ab656e86452b8f6391a143a8fd578c9dea8"
+    },
+    {
+      "filename": "liat-forward-water",
+      "case": "forward",
+      "voice": "liat",
+      "style": "water",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "7191280afbfb7003b50a24cf84acf9f37120509c1a3ce81e419da9a7b54eff57"
+    },
+    {
+      "filename": "noa-forward-clean",
+      "case": "forward",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "beb287ffafa7f032772f01744a8f3584d4596a20879c3f0d46e9421a677b467e"
+    },
+    {
+      "filename": "noa-forward-water",
+      "case": "forward",
+      "voice": "noa",
+      "style": "water",
+      "reference": "לערבב עכשיו? אני מחכה לתשובה, עוד לא התחלתי.",
+      "critical": [
+        "לערבב עכשיו",
+        "עוד לא התחלתי"
+      ],
+      "pcm_sha256": "664d04e4fcf6b74b54e320945522ddbadedbc8f292b9052ca5d2206246ea05fc"
+    }
+  ]
+}

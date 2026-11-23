@@ -1,0 +1,738 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-salad",
+      "ms": 2554.399999999907,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "guarded",
+      "filename": "omer-stir-late-clean",
+      "text": "המים כבר חמים, אבל לא ערבבתי אותם עדיין.",
+      "ms": 512.6000000000931,
+      "pcm_sha256": "d060ae9744d7e4b32defa8e9402df94bb25844e295515df6be65c967e6b5de3a",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-stir-late-water",
+      "text": "המים כבר חמים, אבל לא ערבבתי אותם עדיין.",
+      "ms": 400,
+      "pcm_sha256": "bc0a0d83b3bfcd0131bc47ecc0dfb74ea02bc66aad4e0029dd66e6740734b2a9",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-stir-late-clean",
+      "text": "המים כבר חמים, אבל לא ערבבתי אותם עדיין.",
+      "ms": 373.5,
+      "pcm_sha256": "592c7409a7b4346853b0ef624c8f00483ca03d70f1d0152278b49d65b355b072",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-stir-late-water",
+      "text": "המים כבר חמים, אבל לא ערבבתי אותם עדיין.",
+      "ms": 339.89999999990687,
+      "pcm_sha256": "cb4f048973dd41af7772d0ec0bfef229ddcd2958d23013c8d47a95b83cd2f36f",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-stir-late-clean",
+      "text": "המים כבר חמים, אבל לא היבבתי אותם עדיין",
+      "ms": 361.80000000004657,
+      "pcm_sha256": "999563a00c9ba4f7bb4680461c746ede895c30ca8c3ef1cc54b4a046e34bdea5",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא היבבתי אותם עדיין",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-stir-late-water",
+      "text": "המים כבר חמים, אבל לא היבבתי אותם עדיין",
+      "ms": 336.80000000004657,
+      "pcm_sha256": "253a132df8d8a248b0f348bcbfa9a85e519d2b1826e9131ccc8c8cf5f772ffcf",
+      "metrics": {
+        "normalizedReference": "המים כבר חמים אבל לא ערבבתי אותם עדיין",
+        "normalizedHypothesis": "המים כבר חמים אבל לא היבבתי אותם עדיין",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-pan-late-clean",
+      "text": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחבת.",
+      "ms": 447.70000000018626,
+      "pcm_sha256": "f76c74268317eaa78a7d789607d828c3af03f66c1942feb4c6a45f1b7f115cce",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-pan-late-water",
+      "text": "עוד לא טיגנתי שום דבר. רק הוצאתי את המחרת.",
+      "ms": 442.19999999995343,
+      "pcm_sha256": "a83ef707beb61f3fd3894ea03a2b82e86496c2e58ba231782ebcee5ae64b9a08",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המחרת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-pan-late-clean",
+      "text": "עוד לא טיגנתי שום דבר, רק הוצאתי את המרחבת.",
+      "ms": 530.1000000000931,
+      "pcm_sha256": "7925f605f472cfaae004f8a39b651a5cba98d64172123f65ff7646602ef5acea",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המרחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-pan-late-water",
+      "text": "עוד לא טיגנתי שום דבר, רק הוצאתי את המחדת.",
+      "ms": 449.9000000001397,
+      "pcm_sha256": "b354892779c1d18bbc70ece3a01c9ff845077bb62ca3d5f5be38cfe7c25e80e4",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המחדת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-pan-late-clean",
+      "text": "עוד לא טיגנתי שום דבר, רק הוצאתי את המרחבת",
+      "ms": 332.19999999995343,
+      "pcm_sha256": "c7aca8b9c43fa76465ea9e96afb0ffa103312f79ce4e5beff411360ec0ed2644",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המרחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-pan-late-water",
+      "text": "עוד לא טיגנתי שום דבר, רק הוצאתי את המחדת",
+      "ms": 342.69999999995343,
+      "pcm_sha256": "8584018037699335032005ee004eb6646834d923566d9e730ab08d9ce9a87bd6",
+      "metrics": {
+        "normalizedReference": "עוד לא טיגנתי שום דבר רק הוצאתי את המחבת",
+        "normalizedHypothesis": "עוד לא טיגנתי שום דבר רק הוצאתי את המחדת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-coat-clean",
+      "text": "את התבנית לא ציפיתי. הנייר עוד במגירה",
+      "ms": 314.0999999998603,
+      "pcm_sha256": "d692969ec9dc3aed9fa996c19863d444487e6c5c8a3438db74e6851d80e519a8",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-coat-water",
+      "text": "את התבנית לא ציפיתי. הנייר עוד במגירה",
+      "ms": 314.10000000009313,
+      "pcm_sha256": "e490074efe4719bc02e7734fe7354de80a517dadf3a7e1551b12ae953121e85c",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-coat-clean",
+      "text": "את התבנית לא ציפיתי, הנייר עוד במגירה.",
+      "ms": 385.30000000004657,
+      "pcm_sha256": "564a840e50787bbf98050e0c8d144ff0e8eb29b4a89e1a4edacbb7f5a3794d71",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-coat-water",
+      "text": "את התבנית לא ציפיתי. הנייר עוד במגירה",
+      "ms": 346.5,
+      "pcm_sha256": "ec56ab8e95a03caa6d5d7b986d05edb31daee1d3c2aaa41b09a307d7856a6fed",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-coat-clean",
+      "text": "את התבנית לא ציפיתי, הנייר עוד במגירה",
+      "ms": 373.5,
+      "pcm_sha256": "02d53ffa3249c59580b11ada8b5e3ec2cad3ed10d89e41662b332bccd5ffcb93",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-coat-water",
+      "text": "את התבנית לא ציפיתי, הנייר עוד במגירה",
+      "ms": 330.69999999995343,
+      "pcm_sha256": "c2b84e658ed0e60a338ba0c3ae4deec7950499213cbf1c040ffa8280ca1fd936",
+      "metrics": {
+        "normalizedReference": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "normalizedHypothesis": "את התבנית לא ציפיתי הנייר עוד במגירה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-seal-clean",
+      "text": "לא עטפתי את הכיכר, רק חטפתי פרוסה",
+      "ms": 327.69999999995343,
+      "pcm_sha256": "1b53b3eef18e90cdb2ff75d362983af49717ae6709683cb5c24529cd55b151c2",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חטפתי פרוסה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-seal-water",
+      "text": "לא עטפתי את הכיכר, רק חטפתי פרוסה",
+      "ms": 325.4000000001397,
+      "pcm_sha256": "65db816dbd40bb6f3618e7b7eed9ea30b03322f6e773855ead8770f0c5cdc855",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חטפתי פרוסה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-seal-clean",
+      "text": "לא עטפתי את הכיכר, רק חתכתי פרוסה.",
+      "ms": 432,
+      "pcm_sha256": "42f53874395014b7e0d47d7c09a8d336593314d75fa89826eba4d4a1daff5d8f",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-seal-water",
+      "text": "לא עטפתי את הכיכר, רק חתכתי פרוסה",
+      "ms": 333.5,
+      "pcm_sha256": "2650906a892e83be61df096a8815d3cc694a0dd0cce24da9e56dedb4f9158c1d",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-seal-clean",
+      "text": "לא עטפתי את הכיכר, רק חתכתי פוסה",
+      "ms": 326.60000000009313,
+      "pcm_sha256": "e40f37afb3c7eb0a135a091b6fbdde01a2f24ed3f18ddbb247ee5cbf754086d9",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חתכתי פוסה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-seal-water",
+      "text": "לא עטפתי את הכיכר, רק חתכתי קורסה",
+      "ms": 349.10000000009313,
+      "pcm_sha256": "d0a9d7e0af9b95e510e24a211c257217a0e87fdda96ad589edd8cc30e5de8860",
+      "metrics": {
+        "normalizedReference": "לא עטפתי את הכיכר רק חתכתי פרוסה",
+        "normalizedHypothesis": "לא עטפתי את הכיכר רק חתכתי קורסה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 3,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-changed-clean",
+      "text": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי",
+      "ms": 420.0999999998603,
+      "pcm_sha256": "b54829da6c9acf9696602185dcaa922295532c0cd7bc3e94eb87769214d820e2",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-changed-water",
+      "text": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "ms": 544.8000000000466,
+      "pcm_sha256": "691c4e9524db58c52344853fecdfdbcc4ed44496656985913efc9392e16b4d7b",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-changed-clean",
+      "text": "אמרתי שלא בישלתי אורז. את הרוטב דווקא בישלתי.",
+      "ms": 451.19999999995343,
+      "pcm_sha256": "9584a6c0d1a4b1d88532badc92ae8aa3e599c230861d52f528939b84050e907e",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-changed-water",
+      "text": "אמרתי שלא בישלתי אורז, את הרוטב דווקא בישלתי",
+      "ms": 419.5,
+      "pcm_sha256": "841dd3d7a726c6b78297d8f747df531d189ee776394f0645275d34d8f35db0a3",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-changed-clean",
+      "text": "אמרתי שלא בשלתי אורז את הרוטב דווקא בישלתי.",
+      "ms": 443.5,
+      "pcm_sha256": "e10341d979536ea6b7f1f41396bbe0b209f20085cc1e2c1c6c28438f752c8845",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בשלתי אורז את הרוטב דווקא בישלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-changed-water",
+      "text": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי.",
+      "ms": 469.9000000001397,
+      "pcm_sha256": "5c4a1f2b30616f90f65254aba79a9a16fcf2b778f16cd620d79ee4c11cdbeb3d",
+      "metrics": {
+        "normalizedReference": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "normalizedHypothesis": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 36,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-forward-clean",
+      "text": "לערבב עכשיו, אני מחכה לי תשובה, עוד לא התחלתי.",
+      "ms": 421.5999999998603,
+      "pcm_sha256": "3db2d842d96d476b92a9562739249f7aa0942217c529fa10cf1b619fef11ec07",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לערבב עכשיו אני מחכה לי תשובה עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "omer-forward-water",
+      "text": "לערבב עכשיו, אני מחכה לי תשובה, עוד לא התחלתי.",
+      "ms": 416.19999999995343,
+      "pcm_sha256": "de5cd37fbbd697fe42eda1d8faa712a9980a39a83772251f7c42f80744f565fd",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לערבב עכשיו אני מחכה לי תשובה עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-forward-clean",
+      "text": "לערבב עכשיו, אני מחכה לי תשובה. עוד לא התחלתי",
+      "ms": 428.5,
+      "pcm_sha256": "f9984ecbd4695da1fda1930d9d233ab656e86452b8f6391a143a8fd578c9dea8",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לערבב עכשיו אני מחכה לי תשובה עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "liat-forward-water",
+      "text": "לעבב עכשיו, אני מחכה לי תשובה. עוד לא התחלתי.",
+      "ms": 435.30000000004657,
+      "pcm_sha256": "7191280afbfb7003b50a24cf84acf9f37120509c1a3ce81e419da9a7b54eff57",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לעבב עכשיו אני מחכה לי תשובה עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-forward-clean",
+      "text": "לערבב עכשיו, אני מחכה לתשובה, עוד לא התחלתי.",
+      "ms": 589.6000000000931,
+      "pcm_sha256": "beb287ffafa7f032772f01744a8f3584d4596a20879c3f0d46e9421a677b467e",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "guarded",
+      "filename": "noa-forward-water",
+      "text": "לערבב עכשיו, אני מחכה לתשובה, עוד לא התחלתי.",
+      "ms": 452.10000000009313,
+      "pcm_sha256": "664d04e4fcf6b74b54e320945522ddbadedbc8f292b9052ca5d2206246ea05fc",
+      "metrics": {
+        "normalizedReference": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "normalizedHypothesis": "לערבב עכשיו אני מחכה לתשובה עוד לא התחלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "file": "noa-stir-late-clean",
+      "first": "המים כבר חמים, אבל לא היבבתי אותם עדיין",
+      "second": "המים כבר חמים, אבל לא עיבבתי אותם עדיין",
+      "shiftedSha256": "999563a00c9ba4f7bb4680461c746ede895c30ca8c3ef1cc54b4a046e34bdea5",
+      "extraDecodeMs": 555.2999999998137,
+      "edits": []
+    },
+    {
+      "file": "noa-stir-late-water",
+      "first": "המים כבר חמים, אבל לא היבבתי אותם עדיין",
+      "second": "המים כבר חמים, אבל לא היבבתי אותם עדיין",
+      "shiftedSha256": "253a132df8d8a248b0f348bcbfa9a85e519d2b1826e9131ccc8c8cf5f772ffcf",
+      "extraDecodeMs": 408.39999999990687,
+      "edits": []
+    },
+    {
+      "file": "noa-changed-clean",
+      "first": "אמרתי שלא בשלתי אורז את הרוטב דווקא בישלתי.",
+      "second": "אמרתי שלא בשלתי אורז את הרוטב דווקא בישלתי.",
+      "shiftedSha256": "e10341d979536ea6b7f1f41396bbe0b209f20085cc1e2c1c6c28438f752c8845",
+      "extraDecodeMs": 448.19999999995343,
+      "edits": []
+    },
+    {
+      "file": "noa-changed-water",
+      "first": "אמרתי שלא בשלתי אורז את הרוטב דווקא בישלתי.",
+      "second": "אמרתי שלא בישלתי אורז את הרוטב דווקא בישלתי.",
+      "shiftedSha256": "5c4a1f2b30616f90f65254aba79a9a16fcf2b778f16cd620d79ee4c11cdbeb3d",
+      "extraDecodeMs": 460.69999999995343,
+      "edits": [
+        {
+          "i": 2,
+          "offset": 10,
+          "from": "בשלתי",
+          "to": "בישלתי"
+        }
+      ]
+    }
+  ]
+}

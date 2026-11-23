@@ -1,0 +1,544 @@
+{
+  "records": [
+    {
+      "filename": "omer-wet-clean",
+      "case": "wet",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "8684a1c1919a638c696e9db18dfd48652d6c818da03fd21b9a7f7ec29f4b592f"
+    },
+    {
+      "filename": "omer-wet-water",
+      "case": "wet",
+      "voice": "omer",
+      "style": "water",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "52b00692777b589ba6760f1df24adbd8bd6f2d65b844b13bdbfd8dccfb074e35"
+    },
+    {
+      "filename": "liat-wet-clean",
+      "case": "wet",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "39ab6a86cd101a1d8adf297c4e8d28c7cf141d5e2441f44bcb171be12a842b84"
+    },
+    {
+      "filename": "liat-wet-water",
+      "case": "wet",
+      "voice": "liat",
+      "style": "water",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "3abc17d59feef00f34b2078f163ea2abdd1f3ba63830954258a7e2a3263808d5"
+    },
+    {
+      "filename": "noa-wet-clean",
+      "case": "wet",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "61f5d1d05c6185b803977a06b82c1ea9d050d8eff4ddd36b00268924e260804d"
+    },
+    {
+      "filename": "noa-wet-water",
+      "case": "wet",
+      "voice": "noa",
+      "style": "water",
+      "reference": "עוד לא הרטבתי את המגבת, היא יבשה.",
+      "critical": [
+        "עוד לא הרטבתי"
+      ],
+      "pcm_sha256": "e930ff2f4d24063b3a3d0a07b6eac0a6af2961688dddb6f35336c00c4a87425e"
+    },
+    {
+      "filename": "omer-like-clean",
+      "case": "like",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "e56aa638a293cb8d84fbee451eca9e59e35f3cbe0161c2fd8b30bceea7739a22"
+    },
+    {
+      "filename": "omer-like-water",
+      "case": "like",
+      "voice": "omer",
+      "style": "water",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "a142fd755fb14df372b12d695cb5cd37254d36780f94418d9c7958f74f5c9bb7"
+    },
+    {
+      "filename": "liat-like-clean",
+      "case": "like",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "32a97a9210bd6fc65157d8890493836d162083092ebae90b4181d2dd91167159"
+    },
+    {
+      "filename": "liat-like-water",
+      "case": "like",
+      "voice": "liat",
+      "style": "water",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "d9d6c68cd48e715637b6fdc506fc79ab62fb6adfaf55900d1805eab9e4a0fc1a"
+    },
+    {
+      "filename": "noa-like-clean",
+      "case": "like",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "f89f51f010fbf64c8527eff7ee67339b1cf4b0e087e004169159458bd3396977"
+    },
+    {
+      "filename": "noa-like-water",
+      "case": "like",
+      "voice": "noa",
+      "style": "water",
+      "reference": "לא אהבתי את המרק, זה עניין של טעם.",
+      "critical": [
+        "לא אהבתי"
+      ],
+      "pcm_sha256": "c78ad54a8530f391672bd1472b4cff5b74bca395cb45f1f29479c9e140529c58"
+    },
+    {
+      "filename": "omer-plan-clean",
+      "case": "plan",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "0b48598808d5c0f4dd8bab37bd0047edaf0665c3f176b0ce8b95d1a0f036cf1f"
+    },
+    {
+      "filename": "omer-plan-water",
+      "case": "plan",
+      "voice": "omer",
+      "style": "water",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "3ddfc290dc652c389281d5310db71a97a9ff1733b88f4eb43a88a3004c11a811"
+    },
+    {
+      "filename": "liat-plan-clean",
+      "case": "plan",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "1230485c9db8c43cdb2525615a1e037c29299c1c5fdb5d9cf51122a03594ac2c"
+    },
+    {
+      "filename": "liat-plan-water",
+      "case": "plan",
+      "voice": "liat",
+      "style": "water",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "32984747c1c35c0b33cb05782fe9a2affa22053ae8196895668d0e435488618c"
+    },
+    {
+      "filename": "noa-plan-clean",
+      "case": "plan",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "12e15ca1bda2544808d49b49c0df088440b44b1fd863110d94aa82995644c27d"
+    },
+    {
+      "filename": "noa-plan-water",
+      "case": "plan",
+      "voice": "noa",
+      "style": "water",
+      "reference": "עוד לא תכננתי את הארוחה למחר.",
+      "critical": [
+        "עוד לא תכננתי"
+      ],
+      "pcm_sha256": "9ade833a2be17152d21948fe709f1dc450ff1ffbfb1200b3431250bda4c4222a"
+    },
+    {
+      "filename": "omer-dry-clean",
+      "case": "dry",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "10a2791d27cab000a9caebebc7f970ef60353ff45d7b5f3a6cdcf5a734c28221"
+    },
+    {
+      "filename": "omer-dry-water",
+      "case": "dry",
+      "voice": "omer",
+      "style": "water",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "e532fcd8a49177cc7cbe777731e59c84632567d1361dcf404948764b0c4f7979"
+    },
+    {
+      "filename": "liat-dry-clean",
+      "case": "dry",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "6e8174f539e59c8afa6a286217a2fe5c1b694a9e4a787c670b9e44b01fbe6887"
+    },
+    {
+      "filename": "liat-dry-water",
+      "case": "dry",
+      "voice": "liat",
+      "style": "water",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "1b9ff29587f001bddf27b33390472cfeebea5b0b4ff6dbfd8970c343a03bd426"
+    },
+    {
+      "filename": "noa-dry-clean",
+      "case": "dry",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "4bc0637d11d7fdfae5b8160a954f9ad4642883f4cfae37ab170a81128278fab4"
+    },
+    {
+      "filename": "noa-dry-water",
+      "case": "dry",
+      "voice": "noa",
+      "style": "water",
+      "reference": "לא ניגבתי את השיש, רק את הידיים.",
+      "critical": [
+        "לא ניגבתי"
+      ],
+      "pcm_sha256": "7b18320f8c8c245fa7b8c02607ec976a8b125daa05884ce886e1429d7fcc347a"
+    },
+    {
+      "filename": "omer-stir-clean",
+      "case": "stir",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "434bf6fe80476d6189c97fa30a45ae3c070a6d4f25453c444d7d8927fc952415"
+    },
+    {
+      "filename": "omer-stir-water",
+      "case": "stir",
+      "voice": "omer",
+      "style": "water",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "cd5c392bb1fed687a7dc5a5c01bedc9ad59288e413ed9a9646335b9798a8d0cd"
+    },
+    {
+      "filename": "liat-stir-clean",
+      "case": "stir",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "3fb3fd45c6f4ffc4d90844117ac7ed2b1b7d1075c6f383e995175333fe32847b"
+    },
+    {
+      "filename": "liat-stir-water",
+      "case": "stir",
+      "voice": "liat",
+      "style": "water",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "1c4a006f458e722b0001821735e9abc0217251cd5053f5e1e3ad8e800ef1cf4a"
+    },
+    {
+      "filename": "noa-stir-clean",
+      "case": "stir",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "5a64f2508d855e39298b8c987e2a679621048655dd73f8a6a42293c88280c37c"
+    },
+    {
+      "filename": "noa-stir-water",
+      "case": "stir",
+      "voice": "noa",
+      "style": "water",
+      "reference": "שמתי הכול בסיר אבל עוד לא ערבבתי אפילו פעם אחת.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "pcm_sha256": "887b6f6da6058030418cfec9978e9031b105521ca3af023e31eca4c5554c43cc"
+    },
+    {
+      "filename": "omer-fry-clean",
+      "case": "fry",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "c3434d2f2b00c2acd94b28889ccb7fff1510fd02cc34d4cd40661389079d847b"
+    },
+    {
+      "filename": "omer-fry-water",
+      "case": "fry",
+      "voice": "omer",
+      "style": "water",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "0afdd512f2227766dbad34b5672e1ebd8fa444164440875f2a372ba5e59de111"
+    },
+    {
+      "filename": "liat-fry-clean",
+      "case": "fry",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "532f10555b5519eedd56d0be0a0ab805ecae39905a4dc54990269789aa937d24"
+    },
+    {
+      "filename": "liat-fry-water",
+      "case": "fry",
+      "voice": "liat",
+      "style": "water",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "a106d9732787d3500bb6561a52c87cd13a9bb62346f81c1c2442b8aa9f6a36b9"
+    },
+    {
+      "filename": "noa-fry-clean",
+      "case": "fry",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "a9bafda0c0614f136edd6db328888c6722490abe90eda4d4501bcf18ae603689"
+    },
+    {
+      "filename": "noa-fry-water",
+      "case": "fry",
+      "voice": "noa",
+      "style": "water",
+      "reference": "חיממתי קצת שמן, אבל את הבצל עוד לא טיגנתי.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "pcm_sha256": "f341e58958d769339682cd6ac9ea3f17514faf31a1b7f507e3a4fd6c92bdaaed"
+    },
+    {
+      "filename": "omer-both-clean",
+      "case": "both",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "463a0fdea63953b471742dfbf524b001e268eb9859911778e68aef8fda4a5d22"
+    },
+    {
+      "filename": "omer-both-water",
+      "case": "both",
+      "voice": "omer",
+      "style": "water",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "6cb7f030ac6182011ae1923b2d94f1c48824d6ac12c25d7be040ebc95f6c06b0"
+    },
+    {
+      "filename": "liat-both-clean",
+      "case": "both",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "a5174ee3e9dc8415e41d9791d7f7e770d00308ad8a3199eeffd93464336c6d35"
+    },
+    {
+      "filename": "liat-both-water",
+      "case": "both",
+      "voice": "liat",
+      "style": "water",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "614cdeb60e86fb4cd1dbed0647456f0b08440c529e3dd774d47917c7dcccb19a"
+    },
+    {
+      "filename": "noa-both-clean",
+      "case": "both",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "d53bc1bbc7aa6c2d7e3e0feac2b91f3a57e4add9e45a37c36e638041750fb22d"
+    },
+    {
+      "filename": "noa-both-water",
+      "case": "both",
+      "voice": "noa",
+      "style": "water",
+      "reference": "את הרוטב ערבבתי, ואת השום טיגנתי בנפרד.",
+      "critical": [
+        "הרוטב ערבבתי",
+        "השום טיגנתי"
+      ],
+      "pcm_sha256": "0c1146d2269a2010ef9593c55c6a23a3704e3b3df969a6f21b410dce78a640f8"
+    },
+    {
+      "filename": "omer-none-clean",
+      "case": "none",
+      "voice": "omer",
+      "style": "clean",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "bec0589023cea2a7194bd6dd379d88ba37d312b4ca0f9928800198c251b93d88"
+    },
+    {
+      "filename": "omer-none-water",
+      "case": "none",
+      "voice": "omer",
+      "style": "water",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "baffe107e9998a19404dec973d3758bfe29665f190f7df2f5cfb4da9b91f35cc"
+    },
+    {
+      "filename": "liat-none-clean",
+      "case": "none",
+      "voice": "liat",
+      "style": "clean",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "cc3b65fe8560ac3d47931d54cd1cb3336ff7f3f771ce69f72da81c8ca22ee72c"
+    },
+    {
+      "filename": "liat-none-water",
+      "case": "none",
+      "voice": "liat",
+      "style": "water",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "7b0b7fec24693667c86e7329585c71aa01eda7709e7ac30f1b2454d2b6d4a578"
+    },
+    {
+      "filename": "noa-none-clean",
+      "case": "none",
+      "voice": "noa",
+      "style": "clean",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "d347139bc4fdae7d6bf8a1f4aee82a89da4ccd3b9aef30e0b0ed954132779cec"
+    },
+    {
+      "filename": "noa-none-water",
+      "case": "none",
+      "voice": "noa",
+      "style": "water",
+      "reference": "הסיר יבש והקערה עוד על השולחן.",
+      "critical": [
+        "הסיר יבש",
+        "הקערה עוד על השולחן"
+      ],
+      "pcm_sha256": "358971e19f55859941eba80339cc55f0f633f9ba67c0056a111f7ecbffddada6"
+    }
+  ]
+}

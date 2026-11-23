@@ -1,0 +1,298 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-cookies",
+      "ms": 1907.6000000000931,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "hints-cookies",
+      "filename": "5533611810171800056",
+      "text": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+      "ms": 612.1000000000931,
+      "pcm_sha256": "4454a9821855a889b550c4a2f669578787993ed36b31f998e0b52abc90fec33c",
+      "metrics": {
+        "normalizedReference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "normalizedHypothesis": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "characterErrors": 0,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "4087159111056890210",
+      "text": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+      "ms": 1042.6999999999534,
+      "pcm_sha256": "4dcfb1aaceebd4b2d41d50a5174c51c11bfeec697331b9e10276ec7fec61d349",
+      "metrics": {
+        "normalizedReference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "normalizedHypothesis": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "characterErrors": 0,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "1083791105728656051",
+      "text": "אוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "ms": 420.10000000009313,
+      "pcm_sha256": "edba945f0a5003e71bb46693d82c9651390a6f4690359a6d0505e9a87e51c9f2",
+      "metrics": {
+        "normalizedReference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "normalizedHypothesis": "אוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "671253326365773738",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+      "ms": 880,
+      "pcm_sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3933341704547636563",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר ובזה שימוש נכאב בשמן זית.",
+      "ms": 642.8000000000466,
+      "pcm_sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר ובזה שימוש נכאב בשמן זית",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 31,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7963201897982563627",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1384.6999999999534,
+      "pcm_sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "12767039217536701376",
+      "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו נפתור ממכס.",
+      "ms": 720.1999999999534,
+      "pcm_sha256": "d7184a5c503d0c137469ca4b1d16e03c359cdfeb6422f068104fff3d24367ef7",
+      "metrics": {
+        "normalizedReference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "normalizedHypothesis": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו נפתור ממכס",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 3,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "9998010172575924808",
+      "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס.",
+      "ms": 696.1000000000931,
+      "pcm_sha256": "fce2a8b70de19c26d0229fa32449fdcfbfe9cf390eacec69401b6df1550f0fe9",
+      "metrics": {
+        "normalizedReference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "normalizedHypothesis": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "characterErrors": 1,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "18147387225164914689",
+      "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+      "ms": 320.60000000009313,
+      "pcm_sha256": "05ef883b8267225a6447fa753ff2ef0d00d2ac9abcfa677c8ce653754e3089c1",
+      "metrics": {
+        "normalizedReference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+        "normalizedHypothesis": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "15848500317962835492",
+      "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+      "ms": 587.5999999998603,
+      "pcm_sha256": "eafede9985a5e7c8c20dedee656408e2b3c0d78429a33b93b441b1401bff33c0",
+      "metrics": {
+        "normalizedReference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+        "normalizedHypothesis": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "10012360550181770926",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מנת מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+      "ms": 1416.8999999999069,
+      "pcm_sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכי פלג המטבח הג וואני מאופיין במגוון מנת מטובלות בפשטות והטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים בלבלצ ילי סוכר ומגוון תבלינים ארומותי",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "characterErrors": 32,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "15572944599586100683",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+      "ms": 1109.7999999998137,
+      "pcm_sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכיבלג המטבח הג יבאני מאופיין במגוון מונח",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "characterErrors": 109,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16538192119906209361",
+      "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+      "ms": 961.3000000000466,
+      "pcm_sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל החוויה הכי פלאג המטבח הג מאני מאופיין במגוון מנות מטובלות בפשטות והטעמים הבולטים שהג פאזים אוהבים הם בוטנים פלפלצ ילי סוכר ומגוון תמנינים ארמוטיים",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "characterErrors": 39,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "water-only",
+      "text": "תודה רבה.",
+      "ms": 491.79999999981374,
+      "pcm_sha256": "69f45f74818058ce392ad5001bc319b1ae100dc3f4dc0794c1ca503480622c3f",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "תודה רבה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 0,
+        "characterErrors": 7,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "silence",
+      "text": "",
+      "ms": 558.1999999999534,
+      "pcm_sha256": "24a046dc04fefdb652e4077b41162490b344a4dd45f918505477f84c592f3070",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 0,
+        "characterErrors": 0,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

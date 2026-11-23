@@ -1,0 +1,1837 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-cookies",
+      "ms": 2349.3000000000466,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-oil-fluent",
+      "text": "שמתי שמן קנולה במקום שמן זית.",
+      "ms": 529.7999999999302,
+      "pcm_sha256": "b1eb8460e872ff339af132811cea4ba37ab399396217404d212ad5a1a9c09518",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום שמן זית",
+        "normalizedHypothesis": "שמתי שמן קנולה במקום שמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-oil-steady",
+      "text": "טוב, שמתי שמן זית, מה פתאום? זה היה שמן קנולה. הבקבוק עם הפקק הירוק",
+      "ms": 770.0999999999767,
+      "pcm_sha256": "ca53fe241b12b9a659a2c1ddcec1df0b24b5319f395dbc58e1e037349d6ea929",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-oil-varied",
+      "text": "טוב, שמתי שמן זית, מה פתאום? זה היה שמן קנולה. הבקבוק עם הפקק הירוק",
+      "ms": 651.4000000000233,
+      "pcm_sha256": "855b6cd210c3a98d89814df856c6b5e24be5d9375a024b3067459b959d5bc2ba",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-oil-water",
+      "text": "טוב, שמתי שמן זית. מה פתאום? זה היה שמן קנולה. הבקבוקים הפקק הירוק",
+      "ms": 629.0999999999767,
+      "pcm_sha256": "e6b99bec59100fa9b4b9705e8ac7a35f52a44ea6184b430af4705409799a7460",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוקים הפקק הירוק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 14,
+        "characterErrors": 1,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-oil-fluent",
+      "text": "שמתי שמן קנו לה במקום שמן זית.",
+      "ms": 318.9000000000233,
+      "pcm_sha256": "68999e38edfa99a621d4da53940279ad9b1c6b9a41255b1d78773e2251e8c65a",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום שמן זית",
+        "normalizedHypothesis": "שמתי שמן קנו לה במקום שמן זית",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-oil-steady",
+      "text": "טוב, שמתי שמן זית, מה פתאום? זה היה שמן קנולה. הבקבוק עם הפקק הירוק.",
+      "ms": 687.9000000000233,
+      "pcm_sha256": "34cdd228aa87a1777f7f1d3ebf35ffec60ab5c7301f9ecca855871db5fbb78ad",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-oil-varied",
+      "text": "טוב, שמתי שמן זית, מה פתאום? זה היה שמן קנולה. הבקבוק עם הפקק הירוק.",
+      "ms": 648.5999999999767,
+      "pcm_sha256": "87550175b419616d487e03da9fd4706ee74962d0c35fd5412590a2c2481366ee",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-oil-water",
+      "text": "טוב, שמתי שמן זית. מה פתאום? זה היה שמן קנולה. הבקבוק עם הפקק הירוע",
+      "ms": 656,
+      "pcm_sha256": "47d7231ad72d283de38f95675f152cdd103f3e15579b8d7a6d6c61bff1f2a1af",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוע",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 14,
+        "characterErrors": 1,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-oil-fluent",
+      "text": "שמתי שמן קנו לה במקום שמן זית.",
+      "ms": 336.0999999999767,
+      "pcm_sha256": "85ebf4cfcfe5a19daae2114bfb00a4b3a8db63aecae0b9f9ee14d597cf09f30e",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום שמן זית",
+        "normalizedHypothesis": "שמתי שמן קנו לה במקום שמן זית",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-oil-steady",
+      "text": "טוב, צנתי שמן זית, מה פתאום? זה היה שמן קנולה, הבקבוק עם הפקק הירוק",
+      "ms": 565.2999999999302,
+      "pcm_sha256": "727c88b576c5c33f5343a924e89525402f6c4689c3bb57a60c8fe7ad1c1ac38c",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב צנתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 14,
+        "characterErrors": 2,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-oil-varied",
+      "text": "טוב, צנתי שמן זית, מה פתאום? זה היה שמן קנולה, הבקבוק עם הקק הירוק.",
+      "ms": 649.5,
+      "pcm_sha256": "750b1498285b05fc8d1a131a89ca3c5b37e24f33cb835717da6f41c2a80a1730",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב צנתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הקק הירוק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 14,
+        "characterErrors": 3,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-oil-water",
+      "text": "טוב, צנתי שמן זית, מה פתאום? זה היה שמן קנולה, הבקבוק עם הקק הירוק.",
+      "ms": 668.5,
+      "pcm_sha256": "f30f92e01cbeeadde6aa4d56b5f4e313c2247ec97646e15cf4ca5664f068300a",
+      "metrics": {
+        "normalizedReference": "טוב שמתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הפקק הירוק",
+        "normalizedHypothesis": "טוב צנתי שמן זית מה פתאום זה היה שמן קנולה הבקבוק עם הקק הירוק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 14,
+        "characterErrors": 3,
+        "referenceCharacters": 50,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-garlic-fluent",
+      "text": "קילפתי את השום, אבל עוד לא טיגנתי אותו.",
+      "ms": 382.4000000000233,
+      "pcm_sha256": "dc7024ae381c77f004ee04ae1bdae66e61ef98c082b9f3f09969415480eaafbf",
+      "metrics": {
+        "normalizedReference": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-garlic-steady",
+      "text": "אשום כבר במחבת, כאילו, מה אני אומר הוא על הקרש. קילפתי אותו, אבל עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 914.7999999999302,
+      "pcm_sha256": "e5d100e9b881153fc88630bd2c048f59bfb995c06f5a99e3cc121cf26845db51",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "אשום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "characterErrors": 1,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-garlic-varied",
+      "text": "השום כבר במחבת, כאילו, מה אני אומר הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 903.2999999999302,
+      "pcm_sha256": "ac76016ae68ad2e32968e644f5ee49d5e3377b53a8dd61a05fd382cf456bfbc7",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-garlic-water",
+      "text": "השום כבר במרחבת, כאילו, מה אני אומר הוא על הקרש. קילקתי אותו אבל עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 922.7999999999302,
+      "pcm_sha256": "faeef3e2cc3c66b8855de85bbf054ec6bf15d72e85e689c40903ed7c46101dba",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במרחבת כאילו מה אני אומר הוא על הקרש קילקתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 2,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-garlic-fluent",
+      "text": "קילפתי את השום, אבל עוד לא טיגנתי אותו.",
+      "ms": 330.30000000004657,
+      "pcm_sha256": "5df7ee07de70857e71a58962783384cc60dd61c71f4266610943d44c1d1d64ca",
+      "metrics": {
+        "normalizedReference": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-garlic-steady",
+      "text": "השום כבר במחבת, כאילו, מה אני אומר? הוא על הקרש. קילפתי אותו, אבל עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 777.9000000000233,
+      "pcm_sha256": "3e85d5996469af59beeddd68c2e887b32422ba4bf24393df62a1c56e709f32da",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-garlic-varied",
+      "text": "השום כבר במחבת, כאילו, מה אני אומר? הוא על הקרש. קילפתי אותו, אבל עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 829.5,
+      "pcm_sha256": "94c3d4a31468c1b740b22b66073015bd74faf45950ac1256d5b97ef4e9a79acf",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-garlic-water",
+      "text": "השום כבר במחבת, כאילו, מה אני אומר? הוא על הקרש. קילכתי אותו, אבל עוד לא קיגנתי אותו. אז מה עכשיו?",
+      "ms": 748,
+      "pcm_sha256": "c2a2171a408440c0deec0f7988389893f50e89034813fbda313a708fc24386ac",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילכתי אותו אבל עוד לא קיגנתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 2,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-garlic-fluent",
+      "text": "קילפתי את השום, אבל עוד לא טיגנתי אותו.",
+      "ms": 391.0999999999767,
+      "pcm_sha256": "4a7e10afe3104f112dd687c3de34210cc9e0e5be93b3c2bf6d86354ca3c352f6",
+      "metrics": {
+        "normalizedReference": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "קילפתי את השום אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-garlic-steady",
+      "text": "השום כבר במחבת, כאילו, מה אני אומר הוא על הקרש? קילפתי אותו, אבל הוא עוד לא טיגנתי אותו. אז מה עכשיו?",
+      "ms": 824.9000000000233,
+      "pcm_sha256": "b9b241739145bc5e812183ab872a6e132dbb260e4f0d29c5de700e9100d05ceb",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל הוא עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "characterErrors": 3,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-garlic-varied",
+      "text": "השום כבר במרחבת, כאילו, מה אני אומר הוא על הכבש. קילפתי אותו, אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "ms": 828.2000000000698,
+      "pcm_sha256": "c06ba0455ad74c6aff3d894ef729da2f9955bb857177bb5869cfea28a2af318f",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השום כבר במרחבת כאילו מה אני אומר הוא על הכבש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 3,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-garlic-water",
+      "text": "השוק כבר במרחבת, כאילו, מה אני אומר הוא על הקרש? קילפתי אותו, אבל עוד לא טיינתי אותו, אז מה עכשיו?",
+      "ms": 826,
+      "pcm_sha256": "c8041197483e00f9b99c5655b2e2652eecf84cf69f17b2e870bcd449d8eda6f4",
+      "metrics": {
+        "normalizedReference": "השום כבר במחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיגנתי אותו אז מה עכשיו",
+        "normalizedHypothesis": "השוק כבר במרחבת כאילו מה אני אומר הוא על הקרש קילפתי אותו אבל עוד לא טיינתי אותו אז מה עכשיו",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 20,
+        "characterErrors": 3,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-quantity-fluent",
+      "text": "הוספתי חצי כפית מלח",
+      "ms": 211.19999999995343,
+      "pcm_sha256": "6c8b94a71401382ad0a0466d647601014256fada7cb02b16f714c4a100ee6f75",
+      "metrics": {
+        "normalizedReference": "הוספתי חצי כפית מלח",
+        "normalizedHypothesis": "הוספתי חצי כפית מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 4,
+        "characterErrors": 0,
+        "referenceCharacters": 16,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-quantity-steady",
+      "text": "כמה מלח שמעתי, כפית, נראה לי, רגע, רק חצי כפית מלח. השאר עדיין פה בכפית.",
+      "ms": 795.1999999999534,
+      "pcm_sha256": "b849b32b44acd7907d5eeb652358cd801b7789463cdbcc69d716cbf8f1eb4e30",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמעתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-quantity-varied",
+      "text": "כמה מלח שמעתי, כפית, נראה לי, רגע. רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "ms": 894.3999999999069,
+      "pcm_sha256": "f610d793c39af9fd7393132405f89a2b6e05c308878fc24a8a498f51bfdf0d43",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמעתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-quantity-water",
+      "text": "כמה מלח שמתי? כפית נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "ms": 1070.3000000000466,
+      "pcm_sha256": "433764dc71e649505230ed2af36a41e9be8976af192a13cbe055d0ed2d1fcce1",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-quantity-fluent",
+      "text": "הוספתי חצי כפית מלח",
+      "ms": 250.69999999995343,
+      "pcm_sha256": "73fd4738e825838809f77539b353782bfb96109e1c687dec69d9538d751274e3",
+      "metrics": {
+        "normalizedReference": "הוספתי חצי כפית מלח",
+        "normalizedHypothesis": "הוספתי חצי כפית מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 4,
+        "characterErrors": 0,
+        "referenceCharacters": 16,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-quantity-steady",
+      "text": "כמה מלח שמעתי, כפית, נראה לי, רגע. רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "ms": 822.4000000000233,
+      "pcm_sha256": "485d438eae1c7e97a40dc71228bdb31c73a3138e8e6ea7c5fe67c53e512c05c0",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמעתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-quantity-varied",
+      "text": "כמה מלח שמעתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית",
+      "ms": 954,
+      "pcm_sha256": "3b6cc6026e602d373f503212105d2dc99e3a412f760a0a4ac507fa21d86da324",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמעתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-quantity-water",
+      "text": "כמה מלח שמציא? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "ms": 873.3999999999069,
+      "pcm_sha256": "3565d814f9b5035cca04010dcecbefc74a9399c9cb3d51070015b2734252a76a",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמציא כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-quantity-fluent",
+      "text": "הוספתי חצי כפית מלח",
+      "ms": 300.4000000000233,
+      "pcm_sha256": "23f79863cb11bad5db320fb13274833427e41392561425587755f0e0ac63d70a",
+      "metrics": {
+        "normalizedReference": "הוספתי חצי כפית מלח",
+        "normalizedHypothesis": "הוספתי חצי כפית מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 4,
+        "characterErrors": 0,
+        "referenceCharacters": 16,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-quantity-steady",
+      "text": "כמה מלח שמעתי, כפית ניהלי, רגע. רק חצי כפית מלח, השאר עדיין פה בכפית",
+      "ms": 791,
+      "pcm_sha256": "f8477895dae0d2f31926ea32bd652593ab5f8e9630fb1c19cdd47068d9452f72",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "כמה מלח שמעתי כפית ניהלי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 15,
+        "characterErrors": 3,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-quantity-varied",
+      "text": "קם המלח שמתי, כפית, ניהלי, רגע. רק חצי כפית, מלח, השאר עדיין פה בכפית",
+      "ms": 819.6999999999534,
+      "pcm_sha256": "c5257823dbc5856b05da93b9238a2cc3b792f0c5eea592193430e26299aeb0d3",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "קם המלח שמתי כפית ניהלי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 15,
+        "characterErrors": 4,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-quantity-water",
+      "text": "חם המלך שמתי, כפית ניהלי, רגע. את חצי כפית מלח, השאר עדיין פה בכפית.",
+      "ms": 698.7999999999302,
+      "pcm_sha256": "6a8fbb612d8c467bd2184615a20b50e300c527142452e0ff2be0f956c90e563f",
+      "metrics": {
+        "normalizedReference": "כמה מלח שמתי כפית נראה לי רגע רק חצי כפית מלח השאר עדיין פה בכפית",
+        "normalizedHypothesis": "חם המלך שמתי כפית ניהלי רגע את חצי כפית מלח השאר עדיין פה בכפית",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 15,
+        "characterErrors": 7,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-pepper-fluent",
+      "text": "הוספתי פלפל לבן, כי נגמר הפלפל השחור",
+      "ms": 321.0999999999767,
+      "pcm_sha256": "d7248b2b90fe7134608e27f4683a59e8c59a7ee50c9dfdc04a5a7afd94d64d92",
+      "metrics": {
+        "normalizedReference": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "normalizedHypothesis": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-pepper-steady",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה",
+      "ms": 806.6999999999534,
+      "pcm_sha256": "ae4d2dfc5c89208724b6b2f6b9e62d567d6ea73eb31d17b12456ef529e359945",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-pepper-varied",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 674.8999999999069,
+      "pcm_sha256": "8b985d26936d0f022c4dcb2e4bef3546a710438dd513ccb5a9e2cc3ff97eb250",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-pepper-water",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 642.5999999999767,
+      "pcm_sha256": "2f6861cd619d6f3b591f2a8bdf20b1d2bc5e333f336889d56ddffcea6e1cd21c",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-pepper-fluent",
+      "text": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+      "ms": 425.5,
+      "pcm_sha256": "aa446b34ef0c876b181797596a436730d2abbdaf2bab6113472d888585fb213b",
+      "metrics": {
+        "normalizedReference": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "normalizedHypothesis": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-pepper-steady",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 673.7999999999302,
+      "pcm_sha256": "67256fd3af1bb490814e79b93d9b6b410135a878a0e9bb71f4520ee3017460ef",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-pepper-varied",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 673.8000000000466,
+      "pcm_sha256": "d4fab7dda44732a9a1163e3f00e5304233dbc03a682be5244729bef9bc37d6b1",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-pepper-water",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה",
+      "ms": 696.8000000000466,
+      "pcm_sha256": "f4cff5189da15e5374e015aa9e2ef4d119d45c8a6b87af68331a174a115af334",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-pepper-fluent",
+      "text": "הוספתי פלפל לבן, כי נגמר הפלפל השחור",
+      "ms": 328.29999999993015,
+      "pcm_sha256": "63c04b945b37420322f50604a088c4f7d9e5b5e0d0167d90c54e60bbae1cfdf8",
+      "metrics": {
+        "normalizedReference": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "normalizedHypothesis": "הוספתי פלפל לבן כי נגמר הפלפל השחור",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-pepper-steady",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 656.2000000000698,
+      "pcm_sha256": "b8c62c0d285a8c02339baf626ad0ecfe9e80173474b36b7f4fc9b065a807442c",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-pepper-varied",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה.",
+      "ms": 615.8000000000466,
+      "pcm_sha256": "5281f672d20c6b5b22e9f1ac6cbaeb9d4dc85497dac874b66368d62c7ba48ca5",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 14,
+        "characterErrors": 0,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-pepper-water",
+      "text": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי טיפל לבן, זה משנה.",
+      "ms": 823.6999999999534,
+      "pcm_sha256": "380d4e3699ec3590946f79dabeecff7b85cbcdf987e1abe58c75e722fe13332e",
+      "metrics": {
+        "normalizedReference": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי פלפל לבן זה משנה",
+        "normalizedHypothesis": "נו הפלפל הזה שכתוב במתכון נגמר לי אז בסוף הוספתי טיפל לבן זה משנה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 14,
+        "characterErrors": 2,
+        "referenceCharacters": 52,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-fluent",
+      "text": "הוספתי את המים אבל עוד לא ערבבתי.",
+      "ms": 322.20000000006985,
+      "pcm_sha256": "5404618b6e71df36c3d5844a42d2af57c9ecdc7884effd9038e8bceaa9ef94d9",
+      "metrics": {
+        "normalizedReference": "הוספתי את המים אבל עוד לא ערבבתי",
+        "normalizedHypothesis": "הוספתי את המים אבל עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-steady",
+      "text": "המים בפנים, כן, כן, שנייה, הכף נפלה לי, עוד לא ערבבתי, רק מזגתי את המים",
+      "ms": 624.6999999999534,
+      "pcm_sha256": "5d15591e76214339ae33bb1f33520dc7e25c2f59283dbee1cf58f5f53145c94f",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-varied",
+      "text": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא יובבתי, רק מזגתי את המים.",
+      "ms": 852.6000000000931,
+      "pcm_sha256": "10355759c04a536f29d442a7f1eac8e4464a66248b3cffde517b9d70e43b965b",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא יובבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-stir-water",
+      "text": "המים בפנים, כן, כן, שנייה, הכף נכללת. עוד לא יובבתי, רק מזגתי את המים.",
+      "ms": 844.5,
+      "pcm_sha256": "a66902df45078796a932d72daeb709347dff799ffd93851c405dd0f2c2e58ff1",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה הכף נכללת עוד לא יובבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 15,
+        "characterErrors": 5,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-fluent",
+      "text": "הוספתי את המים, אבל עוד לא ערבבתי.",
+      "ms": 317.60000000009313,
+      "pcm_sha256": "973deb20bc4ceb4d2624513d63702f600813c7263955391e31bc90be75539b43",
+      "metrics": {
+        "normalizedReference": "הוספתי את המים אבל עוד לא ערבבתי",
+        "normalizedHypothesis": "הוספתי את המים אבל עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-steady",
+      "text": "המים בפנים, כן, כן, שנייה, הכף נפלה לי, עוד לא ערבבתי, רק מזגתי את המים",
+      "ms": 708.5999999999767,
+      "pcm_sha256": "c6c95be526d354eddbf317345ecdf4caa1cd76190a6fb9105dcc2f0b9354cd8f",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-varied",
+      "text": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "ms": 782.4000000000233,
+      "pcm_sha256": "45548048bd55bbbf6601f8d6c8695047efd4630d1530a261385d158c1beb36ec",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-stir-water",
+      "text": "המים בפנים, כן, כן, שנייה, כף נטלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "ms": 775.7999999999302,
+      "pcm_sha256": "9afd099afe65cda78547dfdcb42742d5d4c5fe7b5a5fdc9378e7dc41584dbd2f",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה כף נטלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-fluent",
+      "text": "הוספתי את המים, אבל עוד לא ערבבתי.",
+      "ms": 393.5,
+      "pcm_sha256": "05f3c7f8df7756dfc607e5759bef1786ca423c923fdbe0cf4ce2f33894f132fb",
+      "metrics": {
+        "normalizedReference": "הוספתי את המים אבל עוד לא ערבבתי",
+        "normalizedHypothesis": "הוספתי את המים אבל עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-steady",
+      "text": "המים בפנים, כן, כן, שנייה, כף נפלה לי, עוד לא ערבבתי, רק מזגתי את המים",
+      "ms": 540.3000000000466,
+      "pcm_sha256": "3e8407465b0137eaa2d713ce6d96c4fef738940dafe747b89cc3d88c7ee337d0",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה כף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-varied",
+      "text": "המים בפנים כן, כן, שנייה, כף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים",
+      "ms": 536.8000000000466,
+      "pcm_sha256": "bcba8423f0fdfa267ee03095ec64152277f6a41d9d58bf65ff9c8894f153e7f3",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה כף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-stir-water",
+      "text": "המים בפנים, כן, כן, שנייה, כף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים",
+      "ms": 529.4000000000233,
+      "pcm_sha256": "166efe0cfafbe1c905b9bc8751330eae7619235b1405ada7d7abfaa85962ad5e",
+      "metrics": {
+        "normalizedReference": "המים בפנים כן כן שנייה הכף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "normalizedHypothesis": "המים בפנים כן כן שנייה כף נפלה לי עוד לא ערבבתי רק מזגתי את המים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 1,
+        "referenceCharacters": 51,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-question-fluent",
+      "text": "עוד לא הוספתי את הרוטף, להוסיף אותו עכשיו",
+      "ms": 390.5,
+      "pcm_sha256": "90d926438c9a89b34d387525b7abbaabcad1a89890a8a915188c204d57e62749",
+      "metrics": {
+        "normalizedReference": "עוד לא הוספתי את הרוטב להוסיף אותו עכשיו",
+        "normalizedHypothesis": "עוד לא הוספתי את הרוטף להוסיף אותו עכשיו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-question-steady",
+      "text": "אז את הרוטב אני שמח עכשיו. רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 721.7999999999302,
+      "pcm_sha256": "34f0532fc60b144eb888da678b4e16081e96ae543e1cff53514b1a47000ddbda",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-question-varied",
+      "text": "אז את הרוטב אני שמח עכשיו. רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 752.5,
+      "pcm_sha256": "8c501718019d77d4e1f348ffd77b30b52036e260b1bddc351f235abf263188c6",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-question-water",
+      "text": "אז את הרוטב אני שמח עכשיו. רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואל אותו.",
+      "ms": 807.2000000000698,
+      "pcm_sha256": "4b2dc2507ab0122fef74db3a46af8e1c3e3e0b356bfefab9290f343ecbf5a4be",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואל אותו",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 4,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-question-fluent",
+      "text": "עוד לא הוספתי את הרוטב, להוסיף אותו עכשיו",
+      "ms": 310.0999999999767,
+      "pcm_sha256": "28d1bb9c381852c2c236e608dc69708c1419e4a95a05e531d0eeb79ff7b87501",
+      "metrics": {
+        "normalizedReference": "עוד לא הוספתי את הרוטב להוסיף אותו עכשיו",
+        "normalizedHypothesis": "עוד לא הוספתי את הרוטב להוסיף אותו עכשיו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-question-steady",
+      "text": "אז את הרוטב אני שמח עכשיו, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת",
+      "ms": 619.3000000000466,
+      "pcm_sha256": "20552c0e09d298f1ef7d51235a964b4d27842b9e3b0ae04c70891376cabfebd1",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-question-varied",
+      "text": "אז את הרוטב אני שמח עכשיו, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 645,
+      "pcm_sha256": "4eabe3e48d0ac2d368acd5a136a2d16dbb5b840fa451066ada9203b60ef4a095",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-question-water",
+      "text": "אז את הרוטב אני שמח עכשיו, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 620.1999999999534,
+      "pcm_sha256": "e84ffb0e7d24d04d636adc23006e4061376b7818dd6aa978d42d2aef0cc7a59a",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-question-fluent",
+      "text": "עוד לא הוספתי את הרוטב, להוסיף אותו עכשיו",
+      "ms": 326,
+      "pcm_sha256": "0de05a60c0b738242294310e30a6673315d5ebef59f1f7058a9990ad24aab26b",
+      "metrics": {
+        "normalizedReference": "עוד לא הוספתי את הרוטב להוסיף אותו עכשיו",
+        "normalizedHypothesis": "עוד לא הוספתי את הרוטב להוסיף אותו עכשיו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 33,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-question-steady",
+      "text": "אז את הרוטב, ואני שמח שו, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 732.7000000000698,
+      "pcm_sha256": "20f8cfa5231a6dbcca5ea9b5121ee89770f2557b93c346f93cd51e0ed362cff4",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב ואני שמח שו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-question-varied",
+      "text": "אז את הרוטב, אני שמח שהאו, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת",
+      "ms": 808.5,
+      "pcm_sha256": "757a810c096f1f7ecc773cadedafb4cc342a086e5d82a10f56119cf48ae88d1c",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח שהאו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-question-water",
+      "text": "אז את הרוטב, אני שמח שם, רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "ms": 793.4000000000233,
+      "pcm_sha256": "679f61e79db85c61cb5c60b349493195a1198f1a14689c828cbe410fe84685e4",
+      "metrics": {
+        "normalizedReference": "אז את הרוטב אני שמה עכשיו רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "normalizedHypothesis": "אז את הרוטב אני שמח שם רגע שלא תבין שכבר שמתי עוד לא הוספתי אותו אני רק שואלת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-uncertain-fluent",
+      "text": "אני לא זוכרת אם שמתי מלח",
+      "ms": 230.90000000002328,
+      "pcm_sha256": "0e41b0f20b70a91834992c5bf8f760ff48fc97ec65c4c30f2cd4bef9766a924a",
+      "metrics": {
+        "normalizedReference": "אני לא זוכרת אם שמתי מלח",
+        "normalizedHypothesis": "אני לא זוכרת אם שמתי מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 19,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-uncertain-steady",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "ms": 792.6000000000931,
+      "pcm_sha256": "44f5e288c0158992b99bf23d4e67d27f21242aec8264271e0b88740497100f66",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-uncertain-varied",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח, או רק הוצאתי אותו.",
+      "ms": 761.3000000000466,
+      "pcm_sha256": "c8fa5ed5f6e53af3f7f12aee3ba080ba39cd693e597e8434c67cc29db85bc73c",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-uncertain-water",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "ms": 900.6000000000931,
+      "pcm_sha256": "dc65856d2bbed63b1e2c69bc35911b1d0585e63d7ce2bf72a717c76c8327f24e",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-uncertain-fluent",
+      "text": "אני לא זוכרת אם שמתי מלח",
+      "ms": 234.30000000004657,
+      "pcm_sha256": "7ee281f8ff3406f2ec3e6fed0b106479b57fc9a539d463c87aae91253c3c55b5",
+      "metrics": {
+        "normalizedReference": "אני לא זוכרת אם שמתי מלח",
+        "normalizedHypothesis": "אני לא זוכרת אם שמתי מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 19,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-uncertain-steady",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "ms": 784.9000000000233,
+      "pcm_sha256": "9c81b1e58fe9e3bdfae54506b585c29efeefd34bbd06fedc947a83705f451173",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-uncertain-varied",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "ms": 769.8000000000466,
+      "pcm_sha256": "cf32f67870e21a444567f5fb02f0fba98afc2cf2aae79cf8bdc4f2bfafc09f2b",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-uncertain-water",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת שמסתמכין מלח או רק הוצאתי אותו.",
+      "ms": 1046.3000000000466,
+      "pcm_sha256": "a5628ff3993ce7f2887613b3eee4393342b6da14c7dda04aa92c39cae8de3c99",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת שמסתמכין מלח או רק הוצאתי אותו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 6,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-uncertain-fluent",
+      "text": "אני לא זוכרת אם שמתי מלח",
+      "ms": 251.19999999995343,
+      "pcm_sha256": "0842e5da48418933dba27badf60b2144ff1ccd9e6827bca73f5eb76982d8e81b",
+      "metrics": {
+        "normalizedReference": "אני לא זוכרת אם שמתי מלח",
+        "normalizedHypothesis": "אני לא זוכרת אם שמתי מלח",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 19,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-uncertain-steady",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג, אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+      "ms": 901.9000000000233,
+      "pcm_sha256": "c198d7c92a2b82db2e0ab2e4a73d63437ee8afe91bdca4f43be4912ccda0a13e",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 20,
+        "characterErrors": 0,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-uncertain-varied",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוחלת אם שמתי מלח או רק הוצאתי אותו",
+      "ms": 774.4000000000233,
+      "pcm_sha256": "d0e56336fa959ef5f9ed3d1db02778bfda0ac37bc458f758b6ebd5ccd98c6627",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוחלת אם שמתי מלח או רק הוצאתי אותו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "characterErrors": 2,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-uncertain-water",
+      "text": "המלח פה פתוח, אבל הייתי בטלפון, ובאמת שאין לי מושג. אני לא זוכרת אם שמקים, מלך, או רק הוצאתי אותו",
+      "ms": 849.1999999999534,
+      "pcm_sha256": "57940dfcecd915da4aaf332ae99c82fa80a7733ec2be8d3bc9f293e385d8528c",
+      "metrics": {
+        "normalizedReference": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו",
+        "normalizedHypothesis": "המלח פה פתוח אבל הייתי בטלפון ובאמת שאין לי מושג אני לא זוכרת אם שמקים מלך או רק הוצאתי אותו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "characterErrors": 3,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-sauce-fluent",
+      "text": "שמתי רוטב סויה במקום רוטב עגבניות",
+      "ms": 359.0999999999767,
+      "pcm_sha256": "2b4afe80294134fc079916469b54279c56ad4b5e3a54cf0ee96d46d94821a504",
+      "metrics": {
+        "normalizedReference": "שמתי רוטב סויה במקום רוטב עגבניות",
+        "normalizedHypothesis": "שמתי רוטב סויה במקום רוטב עגבניות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-sauce-steady",
+      "text": "הוספתי רוטב, איך קוראים לזה? ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות, הלך על הפסטה.",
+      "ms": 937.1999999999534,
+      "pcm_sha256": "13fa5a3147bb94fae7bab95bb76cf9b371f06f3fb8e274a62bbfaf5b8938b11f",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 17,
+        "characterErrors": 0,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-sauce-varied",
+      "text": "הוספתי רוטב, איך קוראים לזה? ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות, הלך על הפסטה",
+      "ms": 889.3000000000466,
+      "pcm_sha256": "66390fafba5403fd1bbc4fd11593a20ace84feaf35a826e858b7668ad6825fd2",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 17,
+        "characterErrors": 0,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-sauce-water",
+      "text": "הוספתי רוטב, איך קוראים לזה? ההוא של הסושי. רוטב סויה שמעתיק, לא רוטב עגבניות, הלך על הפסטה.",
+      "ms": 822.5999999999767,
+      "pcm_sha256": "c0c42dd86bacf319406abbf470386e94077e377705bda56ec80387f8d9ea3d2a",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמעתיק לא רוטב עגבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 17,
+        "characterErrors": 2,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-sauce-fluent",
+      "text": "שמתי רוטב סויה במקום רוטב עניות.",
+      "ms": 348.5,
+      "pcm_sha256": "1c6a5b2fd2d9d55ff2d6f36a115269c36e8785a5444a641dafc8c832c1837599",
+      "metrics": {
+        "normalizedReference": "שמתי רוטב סויה במקום רוטב עגבניות",
+        "normalizedHypothesis": "שמתי רוטב סויה במקום רוטב עניות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-sauce-steady",
+      "text": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטבניות, הלך על הפסטה",
+      "ms": 743.9000000000233,
+      "pcm_sha256": "4bbaf42556b77c3dc9fe5e36589894db200ac4f1e9c759b99dc5467df217ea6b",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 17,
+        "characterErrors": 3,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-sauce-varied",
+      "text": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטבניות, הלך על הפסטה",
+      "ms": 735.7999999999302,
+      "pcm_sha256": "f708a933ab201538b07fb61bf6a09d0e4ddab551abe86b78005be7e1b2964a7d",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 17,
+        "characterErrors": 3,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-sauce-water",
+      "text": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמכיר, לא רוטבניות. הלך על הפסטה",
+      "ms": 853.5999999999767,
+      "pcm_sha256": "72b66e7656e1d6bc4f363f5c12d40e505d562af7290b634c9d2436915a6ed44c",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמכיר לא רוטבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 17,
+        "characterErrors": 5,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-sauce-fluent",
+      "text": "סנטי רוטב סויה, במקום רוטב עגבניות",
+      "ms": 359.19999999995343,
+      "pcm_sha256": "ebd20baf469826c395d3a8096961c251525da4eb5bbbde13edca11ca25eafc27",
+      "metrics": {
+        "normalizedReference": "שמתי רוטב סויה במקום רוטב עגבניות",
+        "normalizedHypothesis": "סנטי רוטב סויה במקום רוטב עגבניות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-sauce-steady",
+      "text": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי, רוטב סואי השמתי, לא רוטב עגבניות, הלך על הפסטה",
+      "ms": 793.3999999999069,
+      "pcm_sha256": "bee967d4518c43e1123d1969649576a4439edc34247a10ac7a647a8df0015158",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סואי השמתי לא רוטב עגבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 17,
+        "characterErrors": 1,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-sauce-varied",
+      "text": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סוא יש אמתי, לא רוטב עגבניות, הלך על הפסטה",
+      "ms": 865.4000000000233,
+      "pcm_sha256": "980f18f940c0f2b9750aa047679c02c210e94692bf209481a46df2896efe4fde",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סוא יש אמתי לא רוטב עגבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 17,
+        "characterErrors": 3,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-sauce-water",
+      "text": "הוספתי רוטב, איך קוראים לזה, הראש של הסושי. רוטב סואיה שמתי, לא רוטב רגבניות, הלך על הפסטה",
+      "ms": 762.9000000000233,
+      "pcm_sha256": "3e619d9633202922a33d46e1ed9bae50e1489ef8c13f9e61af43d0d9b02b901d",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב איך קוראים לזה ההוא של הסושי רוטב סויה שמתי לא רוטב עגבניות הלך על הפסטה",
+        "normalizedHypothesis": "הוספתי רוטב איך קוראים לזה הראש של הסושי רוטב סואיה שמתי לא רוטב רגבניות הלך על הפסטה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 17,
+        "characterErrors": 5,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

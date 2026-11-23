@@ -1,0 +1,1381 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-salad",
+      "ms": 3213.5,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "hints-salad",
+      "filename": "omer-pair-a-clean",
+      "text": "את השום טיגנתי, את הרוטב עוד לא ערבבתי",
+      "ms": 580.3999999999069,
+      "pcm_sha256": "b84df83dd6b3b34430e56b3f09318da3ce1f9c624ae0f895e08d4edf94eb9d04",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-pair-a-water",
+      "text": "את השום טיגנתי, את הרוטב עוד לא ערבבתי",
+      "ms": 498.0999999999767,
+      "pcm_sha256": "54bcadec25675337c3cb1de56de333db09938f55702032a06db9cd0e98a54433",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-pair-a-clean",
+      "text": "את השום תיגנתי, את הרוטב עוד לא ערבבתי",
+      "ms": 412.30000000004657,
+      "pcm_sha256": "3614d39ed73383262abf8c804ab7e4be9b0b3d67c320f4b496eed6a7ff4ddaff",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום תיגנתי את הרוטב עוד לא ערבבתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-pair-a-water",
+      "text": "את השום תיגנתי, את הרוטב עוד לא יובבתי.",
+      "ms": 323.19999999995343,
+      "pcm_sha256": "d8c70d6417b72c110934427428960fe24813a3ee53df5a9ad087406d56ebad04",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום תיגנתי את הרוטב עוד לא יובבתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-pair-a-clean",
+      "text": "את השום טיגנתי, את הרוטב, עוד לא ערבבתי.",
+      "ms": 312.9000000000233,
+      "pcm_sha256": "8a3816fa92ec790037f437012e248f09117b1684788053680a288ba0baababf3",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-pair-a-water",
+      "text": "את השום תיגנתי, את הרוטב, עוד לא ערבבתי.",
+      "ms": 356.69999999995343,
+      "pcm_sha256": "4cb3799fd31694e9aca1dc29a9da85c83827ffefcb4169ebdb81828acb7470cd",
+      "metrics": {
+        "normalizedReference": "את השום טיגנתי את הרוטב עוד לא ערבבתי",
+        "normalizedHypothesis": "את השום תיגנתי את הרוטב עוד לא ערבבתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-pair-b-clean",
+      "text": "את השום עוד לא טיגנתי, את הרוטב יאובבתי",
+      "ms": 436.5,
+      "pcm_sha256": "8db460ad575aa0489575bd2b4e1d167009ad48ff5437f3521b8d436d9cedd120",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את הרוטב יאובבתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-pair-b-water",
+      "text": "את השום עוד לא טיגנתי, את הרוטב היא אובבתי",
+      "ms": 359.0999999999767,
+      "pcm_sha256": "c2060aab3ff373f46e749cffafd06fa43c83d557b8f0ecfece1e5512ec5ec019",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את הרוטב היא אובבתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 5,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-pair-b-clean",
+      "text": "את השום עוד לא טיגנתי, את הרוטב ערבבתי.",
+      "ms": 350.20000000006985,
+      "pcm_sha256": "0396c767ea0f0c656fa66cf02e171da7adfc87e80ba3a2d9b149b3d0c9fb1526",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-pair-b-water",
+      "text": "את השום עוד לא טיגנתי, את הרוטב ערבבתי.",
+      "ms": 337.60000000009313,
+      "pcm_sha256": "6f677777c60d10b9caca92845e42306c73b2362adc529ba315de6694c924c11b",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-pair-b-clean",
+      "text": "את השום עוד לא טיגנתי, את הרוט הביא ובבתי.",
+      "ms": 324.30000000004657,
+      "pcm_sha256": "fd0d9b077c3c70737608449ead5f924ce4f1dded73df1ddaf669fb5c8e158243",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את הרוט הביא ובבתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 4,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-pair-b-water",
+      "text": "את השום עוד לא טיגנתי, את אורות הביא ובבתי.",
+      "ms": 318.5999999999767,
+      "pcm_sha256": "223bd044e5552d97ef54fb9ffd8bb47a449fc8255e1db1910a72ec1b7d8dff35",
+      "metrics": {
+        "normalizedReference": "את השום עוד לא טיגנתי את הרוטב ערבבתי",
+        "normalizedHypothesis": "את השום עוד לא טיגנתי את אורות הביא ובבתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 7,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-reverse-clean",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 499.5,
+      "pcm_sha256": "0b4989367072fb025561cb0fa5ee0eb62b9097606707a6489a49034a3204f8dd",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-reverse-water",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 454.69999999995343,
+      "pcm_sha256": "545b3c0d6ba3d9c67483cf3ce62c0a73bbedfaa2cfffa0a5ff8ca204067ad57c",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-reverse-clean",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 485.9000000000233,
+      "pcm_sha256": "93d7242756f33dfd080b8e376450f8386ec0375f57c4ea9507971845e00dd278",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-reverse-water",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 445.0999999999767,
+      "pcm_sha256": "0759f603d83b9225751e78587418d315abe082dc895c50beab6444f5408a2fa6",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-reverse-clean",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 482.20000000006985,
+      "pcm_sha256": "f61acdeab31f7c72e5c66d5501620bca899daae0a8a90577d8c3c26afda0ffd8",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-reverse-water",
+      "text": "אמרתי שכבר הוספתי, טעיתי, עוד לא הוספתי כלום.",
+      "ms": 558.3000000000466,
+      "pcm_sha256": "4e4196167de0a2d71064266e5c128956be6b02c1ea7fa3990b4d57c44e08b679",
+      "metrics": {
+        "normalizedReference": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "normalizedHypothesis": "אמרתי שכבר הוספתי טעיתי עוד לא הוספתי כלום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-confirmed-clean",
+      "text": "חכה, אמרתי שלא עובבתי, דווקא ערבבתי כבר.",
+      "ms": 448.80000000004657,
+      "pcm_sha256": "dca90cce2cbdd5a20fc1f05e32e72dcbdabb55239b344d0ead757c26af466478",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא עובבתי דווקא ערבבתי כבר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-confirmed-water",
+      "text": "חכה, אמרתי שלא ערבבתי, דווקא ערבבתי כבר.",
+      "ms": 413.19999999995343,
+      "pcm_sha256": "5bc7ae9dbf5bb3da1cecbb34cae31d0a793792c12a692a967c8cd5096400dcf2",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-confirmed-clean",
+      "text": "חכה, אמרתי שלא יובבתי, דווקא ערבבתי כבר.",
+      "ms": 415.30000000004657,
+      "pcm_sha256": "a8f7b57d8ea2a7945572fa041d2c3fe3e77436f723b056b5cb1dc89eb37e2d3b",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא יובבתי דווקא ערבבתי כבר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-confirmed-water",
+      "text": "חכה, אמרתי שלא יובבתי, דווקא ערבבתי כבר",
+      "ms": 484.5999999999767,
+      "pcm_sha256": "e9514051093e410cd7ad241b5ce92ac7b91a10c9fb7486c7482b8b3f4cb448ac",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא יובבתי דווקא ערבבתי כבר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-confirmed-clean",
+      "text": "חכה, אמרתי שלא ערבבתי, דווקא ערבבתי כבר",
+      "ms": 320.5999999999767,
+      "pcm_sha256": "b1dd9f8043405c92b08532794269f1246ff38dd1d015bb81a6cd70781c6c3fd1",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-confirmed-water",
+      "text": "חכה, אמרתי שלא ערבבתי, דווקא ערבבתי כבר",
+      "ms": 315,
+      "pcm_sha256": "404046819c79489a4914193764c88c58b49110d56eb82b90dbe040bb825db0e2",
+      "metrics": {
+        "normalizedReference": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "normalizedHypothesis": "חכה אמרתי שלא ערבבתי דווקא ערבבתי כבר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-boil-clean",
+      "text": "בישלתי רק את הפסטה, את האפונה עוד לא בישלתי.",
+      "ms": 414,
+      "pcm_sha256": "692c05f373f240e3e8b1f5310a63ae65893cc63aeaa6fca691e26840942ee178",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-boil-water",
+      "text": "בישלתי רק את הפסטה, את האפונה עוד לא בישלתי.",
+      "ms": 436,
+      "pcm_sha256": "7f2fb0f7890a5fcbeb5f72aeb97595f978f4014bad0dafc37a2b29dff03f37eb",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-boil-clean",
+      "text": "בישלתי רק את הפסטה, את האפונה עוד לא בישלתי.",
+      "ms": 505.5999999999767,
+      "pcm_sha256": "b82397f816305b0de8e5f10646cd273cd2f614358c12b824bec2dba64c842b35",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-boil-water",
+      "text": "השאלתי רק את הפסטה, את האפונה עוד לא בישלתי.",
+      "ms": 497.30000000004657,
+      "pcm_sha256": "64d52e61bd5b567edeb49e28f93598c16d5323ab6d7bfbad4fbdd30ddd810678",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "השאלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 3,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-boil-clean",
+      "text": "בישלתי רק את הפסטה, את הפורנה, עוד לא בישלתי.",
+      "ms": 453.69999999995343,
+      "pcm_sha256": "f54b471ad8da4f34201d696e067fe6cfdd4ddf0e9d078e7f957ea94683c268a2",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "בישלתי רק את הפסטה את הפורנה עוד לא בישלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-boil-water",
+      "text": "ושאלתי רק את הפסטה, את הפורנה, עוד לא בישלתי.",
+      "ms": 425.79999999993015,
+      "pcm_sha256": "6480806dea1133966eed7f348a638f0bacda4502ce68549857d2eaa9c156659a",
+      "metrics": {
+        "normalizedReference": "בישלתי רק את הפסטה את האפונה עוד לא בישלתי",
+        "normalizedHypothesis": "ושאלתי רק את הפסטה את הפורנה עוד לא בישלתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 9,
+        "characterErrors": 5,
+        "referenceCharacters": 34,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-outside-clean",
+      "text": "קודם שטפתי את המסננת, אחר כך סיננתי את הפסטה.",
+      "ms": 470.70000000006985,
+      "pcm_sha256": "f033b8d50a97a767c1aea17fd0c541353ac9b920617609bc56b5c7c4f97f5793",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-outside-water",
+      "text": "קודם שטפתי את המסננת, אחר כך סיננתי את הפסקה.",
+      "ms": 422,
+      "pcm_sha256": "3c7e5b557ec2cd11af33671ee33de717efbf1163cab048a9ae6e7f1ac0202369",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שטפתי את המסננת אחר כך סיננתי את הפסקה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-outside-clean",
+      "text": "קודם שתפתי את המסננת, אחר כך סיננתי את הפסטה.",
+      "ms": 505.19999999995343,
+      "pcm_sha256": "275d8df12064a24a48f8bb79196af7c4cd5809a6e176a250bcbd4def748c9e59",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שתפתי את המסננת אחר כך סיננתי את הפסטה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-outside-water",
+      "text": "קודם שתפתי את המסננת, אחר כך סיננתי את הפסטה.",
+      "ms": 436.5999999999767,
+      "pcm_sha256": "dfd87f5da14d44e33ad07bbc7c740eba3f38821a856e2f9571713cd27409e3b0",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שתפתי את המסננת אחר כך סיננתי את הפסטה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-outside-clean",
+      "text": "קודם שתפתי את המסננת, אחר כך סיננתי את הפסטה",
+      "ms": 321.69999999995343,
+      "pcm_sha256": "f03f5856fcf0a471541199f933007e5111e41752eccae2ce2454de74ac31b7b2",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שתפתי את המסננת אחר כך סיננתי את הפסטה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-outside-water",
+      "text": "קודם שתפתי את המסננת. אחר כך סיננתי את הפסטה.",
+      "ms": 360.80000000004657,
+      "pcm_sha256": "b514f690523279e99735fc4285496ebaecf1b52fff9c22ed0389929f7f868da0",
+      "metrics": {
+        "normalizedReference": "קודם שטפתי את המסננת אחר כך סיננתי את הפסטה",
+        "normalizedHypothesis": "קודם שתפתי את המסננת אחר כך סיננתי את הפסטה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 35,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-similar-clean",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש",
+      "ms": 328.4000000000233,
+      "pcm_sha256": "786e1af68b3ec034c458a10023430a64f48337c6a44bea2f7b23a1448b6d5360",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-similar-water",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש",
+      "ms": 350.0999999999767,
+      "pcm_sha256": "1352657df6961799c285ce7b2ae4115a4ebf2bb7eb522af2cc6fbf325589ce21",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-similar-clean",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש.",
+      "ms": 439.89999999990687,
+      "pcm_sha256": "3663c553a170c4953fca7940067bd874954a241cbe12f5c2c480fdd1f0bb01f6",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-similar-water",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש.",
+      "ms": 414.5999999999767,
+      "pcm_sha256": "cad2a557238be2055beec36def36dae9bdb5e0b4657dfc61d2731503e2e7d5b5",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-similar-clean",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש",
+      "ms": 378.20000000006985,
+      "pcm_sha256": "cf1a101baf2097e0fd4ee255fad68921ce4666fad5a55f42a22ec86ba73f2f7a",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-similar-water",
+      "text": "את המגבת הרטבתי, ועכשיו ניגבתי את השיש",
+      "ms": 317.0999999999767,
+      "pcm_sha256": "74f94baab5252d6e8ed7b270039a2a3c16c2cf1666d101370bf130bb2bce42c2",
+      "metrics": {
+        "normalizedReference": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "normalizedHypothesis": "את המגבת הרטבתי ועכשיו ניגבתי את השיש",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 31,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-liked-clean",
+      "text": "דווקא אהבתי את הריח. אפשר כבר לאכול",
+      "ms": 320.79999999993015,
+      "pcm_sha256": "823adc813072c8505c0b4374f52ddfa1930b9d4c5830f7150b2b566cb5d37c5d",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-liked-water",
+      "text": "דווקא אהבתי את הריח. אפשר כבר לאכול",
+      "ms": 320,
+      "pcm_sha256": "cd570ccf686fe3209a57863789bde3bbdd8e5470bdba702f18d8fd642e0a94ad",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-liked-clean",
+      "text": "דווקא אהבתי את הריח. אפשר כבר לאכול",
+      "ms": 346.80000000004657,
+      "pcm_sha256": "d3766c37f2407aecf37018c23a98726e598457c97b73d7caa02fadb4d0fee3e3",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-liked-water",
+      "text": "דווקא אהבתי את הריח. אפשר כבר לאכול",
+      "ms": 317.79999999993015,
+      "pcm_sha256": "d006f31d5320ef46fe2b9296ead1f0975b41d99ed11fec5b88dcde070367dee5",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-liked-clean",
+      "text": "דווקא אהבתי את הוויח, אפשר כבר לאכול",
+      "ms": 363.89999999990687,
+      "pcm_sha256": "f6820a9da0ee6086eea888bda9311db7da20d9a75e695c4f13ec81b7a31eafcb",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הוויח אפשר כבר לאכול",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-liked-water",
+      "text": "דווקא אהבתי את הריח. אישה כבר לאכול",
+      "ms": 314.9000000000233,
+      "pcm_sha256": "4e803aa773e0063c8651fce6ced2efe790552d2f9b320ad0f36f13cf65e24f5c",
+      "metrics": {
+        "normalizedReference": "דווקא אהבתי את הריח אפשר כבר לאכול",
+        "normalizedHypothesis": "דווקא אהבתי את הריח אישה כבר לאכול",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-intend-clean",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השום",
+      "ms": 317.5999999999767,
+      "pcm_sha256": "53e68fb1df57158cc58385ba1929d38beaaec4fee9c7c84d6b8cf6bc7747dd2c",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-intend-water",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השוק",
+      "ms": 319.30000000004657,
+      "pcm_sha256": "ff8de732dc38e4a7aad0e257065e21c5c89fa15684a3f3c65b881085228cca75",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השוק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-intend-clean",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השום.",
+      "ms": 328.19999999995343,
+      "pcm_sha256": "f4e5faabe6ccf1d6ff1952926b6372dfce973479568cca9c800f3e30509c6e46",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-intend-water",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השוק",
+      "ms": 343.79999999993015,
+      "pcm_sha256": "86f3a5d4d1004707924f5e9ec62dafcf563dcc689e4ab880cd36b9e10f274339",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השוק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-intend-clean",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השום.",
+      "ms": 332.19999999995343,
+      "pcm_sha256": "a36d643cc3ee14b84ff4f512bb87f56ccccfb375dfed0f30e0412a4b3c7dafc1",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-intend-water",
+      "text": "חשבתי לטגן, אבל בסוף עפיתי את השור",
+      "ms": 312.19999999995343,
+      "pcm_sha256": "ee8b2996c2e22112719367035f4d50ff9887964658554e126cf66780e9235e64",
+      "metrics": {
+        "normalizedReference": "חשבתי לטגן אבל בסוף אפיתי את השום",
+        "normalizedHypothesis": "חשבתי לטגן אבל בסוף עפיתי את השור",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-instead-clean",
+      "text": "לא הוספתי מים. מזגתי יין במקום",
+      "ms": 312.69999999995343,
+      "pcm_sha256": "78e588ef09d75cf25b3c2f5813a55334ce0214ed40c80587d0786d36b046d6ae",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-instead-water",
+      "text": "לא הוספתי מים. מזגתי יין במקום",
+      "ms": 346.5,
+      "pcm_sha256": "33aa3dfaf195ad8ff48bdd880fdbfe7e5057e884b92aca603edd14dcfc349ce1",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-instead-clean",
+      "text": "לא הוספתי מים, מזגתי יין במקום.",
+      "ms": 309.5999999999767,
+      "pcm_sha256": "7c0c649837d866135d78d16dc94058950c36dcff205985f2e0d8c3edc69ae178",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-instead-water",
+      "text": "לא הוספתי מים, מזגתי יין במקום.",
+      "ms": 310.10000000009313,
+      "pcm_sha256": "98b11bd3a57720804e6bb211d2b5cd10a53b2613d35233305c25cd2d0c3f6612",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-instead-clean",
+      "text": "לא הוספתי מים, מזגתי יין במקום.",
+      "ms": 359,
+      "pcm_sha256": "94899d92458ed6996cc1aeb2f1f2c27bfd302d71bd233ff1c4f7e567841663d0",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-instead-water",
+      "text": "לא הוספתי מים, מזגתי יין במקום.",
+      "ms": 355.80000000004657,
+      "pcm_sha256": "0498282710974e5f183a61fa49cbcd5178370daf75ddea8e6b2e7c9300eb1043",
+      "metrics": {
+        "normalizedReference": "לא הוספתי מים מזגתי יין במקום",
+        "normalizedHypothesis": "לא הוספתי מים מזגתי יין במקום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-mixed-clean",
+      "text": "טיגנתי את הבצל ואז הוספתי אותו לסיר.",
+      "ms": 307.20000000006985,
+      "pcm_sha256": "7df07a303c5332a5c801971c904fdbbe65a2918a9805ed49449ce9bd2b89c482",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-mixed-water",
+      "text": "טיגנתי את הבצל ואז הוספתי אותו לסיר.",
+      "ms": 338.5999999999767,
+      "pcm_sha256": "89c1e8cf444fa7e86c7bb28152b73e9017aebde0b15a0e1f33560c01e135ed69",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-mixed-clean",
+      "text": "טיגנתי את הבצל ואז הוספתי אותו לסיר.",
+      "ms": 312.30000000004657,
+      "pcm_sha256": "630cd98c94584a7aadc53322d323c5a6b5943aa40fb407b00e02c12e9f2fbc5d",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-mixed-water",
+      "text": "טיגנתי את הבצל ואז הוספתי אותו לסיום",
+      "ms": 329.0999999999767,
+      "pcm_sha256": "1e41cbb9078c271f938f13b787b3b4ec758f62987b35ca48cf37f39470f2a487",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-mixed-clean",
+      "text": "טיגנתי את הבצל, ואז הוספתי אותו לסיר",
+      "ms": 358.80000000004657,
+      "pcm_sha256": "7847ae4d2e43e14ce3c81158003915f4cd473d2e7460826b6aa3aa0598d62e24",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-mixed-water",
+      "text": "טיגנתי את הבצל, ואז הוספתי אותו לסיר",
+      "ms": 312.10000000009313,
+      "pcm_sha256": "de237fa73530caa5bff467f27c7ac7694f1a0de451404765f2237273af0a713e",
+      "metrics": {
+        "normalizedReference": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "normalizedHypothesis": "טיגנתי את הבצל ואז הוספתי אותו לסיר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-question-clean",
+      "text": "מתי לבשל את הפסטה? בינתיים רק חיממתי מים.",
+      "ms": 421.30000000004657,
+      "pcm_sha256": "6fe680cb2337e27c87b473ebbc752126b90e2a7b4c67ca6c529b17e941c81e21",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-question-water",
+      "text": "מתי לבשל את הפסטה? בינתיים רק חיממתי מים.",
+      "ms": 494.5,
+      "pcm_sha256": "ea7653744e469ff8409fe32d6a82492142aa832692802582001062019066b3d8",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-question-clean",
+      "text": "מתי לבשל את הפסטה? בינתיים רק חיממתי מים.",
+      "ms": 513.5999999999767,
+      "pcm_sha256": "932ffb6e20c90c3d1cd313eccd68b592133b46d61d8cd5047be43fbfe20a2739",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-question-water",
+      "text": "מתי לבשל את הפסקה? בינתיים רק חיממתי מים.",
+      "ms": 452.5999999999767,
+      "pcm_sha256": "4527f99426e3def376236809940c26a4a907a59625a53a96bc7ba972004a6b32",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשל את הפסקה בינתיים רק חיממתי מים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-question-clean",
+      "text": "מתי לבשל את הפסטה? בינתיים רק חימנתי מים.",
+      "ms": 480,
+      "pcm_sha256": "d40f69a0921c262c18d5224ebf337b8273a819fc1638e4ba2ca95c51c2a226d6",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשל את הפסטה בינתיים רק חימנתי מים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-question-water",
+      "text": "מתי לבשלת הפסטה? בינתיים רק חינמנתי מים.",
+      "ms": 509.5999999999767,
+      "pcm_sha256": "a404e23ccab971f9cf0d0fcbfb54c01b92879df1105b0127defded85f0e362d7",
+      "metrics": {
+        "normalizedReference": "מתי לבשל את הפסטה בינתיים רק חיממתי מים",
+        "normalizedHypothesis": "מתי לבשלת הפסטה בינתיים רק חינמנתי מים",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}
