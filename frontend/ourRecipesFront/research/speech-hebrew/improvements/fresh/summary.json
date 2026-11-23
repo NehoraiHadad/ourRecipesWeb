@@ -1,0 +1,42 @@
+{
+  "food-word": {
+    "clips": 12,
+    "words": 206,
+    "greedyErrors": 61,
+    "beamErrors": 59,
+    "greedyWER": 0.2961165048543689,
+    "beamWER": 0.28640776699029125,
+    "deltaPercentagePoints": -0.970873786407767,
+    "descriptivePairedBootstrap95": [
+      -3.4653465346534653,
+      1.0050251256281406
+    ],
+    "better": 2,
+    "worse": 1,
+    "unchanged": 9,
+    "decodeMedianMs": {
+      "greedy": 670.1000000000058,
+      "beam4": 764.3499999999913
+    }
+  },
+  "general": {
+    "clips": 40,
+    "words": 643,
+    "greedyErrors": 203,
+    "beamErrors": 204,
+    "greedyWER": 0.3157076205287714,
+    "beamWER": 0.31726283048211507,
+    "deltaPercentagePoints": 0.15552099533437014,
+    "descriptivePairedBootstrap95": [
+      -0.8810572687224669,
+      1.1884550084889642
+    ],
+    "better": 2,
+    "worse": 3,
+    "unchanged": 35,
+    "decodeMedianMs": {
+      "greedy": 636.4999999999927,
+      "beam4": 732.5500000000029
+    }
+  }
+}

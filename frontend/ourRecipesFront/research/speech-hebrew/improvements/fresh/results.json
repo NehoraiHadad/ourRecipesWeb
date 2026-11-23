@@ -1,0 +1,1982 @@
+{
+  "browser": "156.0.8078.79",
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "ms": 677.8000000000029,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 576.3999999999942,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס.",
+      "ms": 864.2000000000116,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 390.8999999999942,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה אדון עודי מים וצופות תקלון",
+      "ms": 853.3000000000029,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה אדון עודי מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 12,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא",
+      "ms": 945.5,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17103514183588460100.wav",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 754.4000000000087,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9854665193577160905.wav",
+      "text": "תבשיל קרעי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+      "ms": 460.8000000000029,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרעי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 13,
+        "characterErrors": 6,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17616472487509301569.wav",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 481.09999999999127,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13665306490465162429.wav",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+      "ms": 549.3000000000029,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16399478934663246649.wav",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+      "ms": 662.4000000000087,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7220901400489669549.wav",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות. הם היו אדמה, מים אוויר ואש.",
+      "ms": 888,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6",
+      "ms": 886.9000000000087,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 302.8999999999942,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 776.8000000000029,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות.",
+      "ms": 891.0999999999913,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+      "ms": 564.8999999999942,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 12,
+        "characterErrors": 0,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+      "ms": 471.70000000001164,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16689718980874752228.wav",
+      "text": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות, צרו מהן כדור",
+      "ms": 586.1000000000058,
+      "pcm_sha256": "1b754a14fb048d92f56934abe76b1ed1e03e4ce0b791b06d05ccc0b37842c4a1",
+      "metrics": {
+        "normalizedReference": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות צרו מהן כדור",
+        "normalizedHypothesis": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות צרו מהן כדור",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "characterErrors": 0,
+        "referenceCharacters": 56,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13407968475845125084.wav",
+      "text": "כל דבר ביקום עשוי מחומר, כל חומר עשוי מחלקיקים זהים הנקראים אטומיים",
+      "ms": 501.8000000000029,
+      "pcm_sha256": "d5e9d4d8108459637fcd7067fe4906f15a401d08f72c2e473ed9b1585aad3f73",
+      "metrics": {
+        "normalizedReference": "כל דבר ביקום עשוי מחומר כל חומר עשוי מחלקיקים זעירים הנקראים אטומים",
+        "normalizedHypothesis": "כל דבר ביקום עשוי מחומר כל חומר עשוי מחלקיקים זהים הנקראים אטומיים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 12,
+        "characterErrors": 4,
+        "referenceCharacters": 56,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "18157833681597154960.wav",
+      "text": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתוכניות הטיול.",
+      "ms": 680.1999999999971,
+      "pcm_sha256": "745cb5592399783ec00f6984f76e6992a6bf2b5e0d5edc0efdf7d8d769cea9de",
+      "metrics": {
+        "normalizedReference": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתכניות הטיול",
+        "normalizedHypothesis": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתוכניות הטיול",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 19,
+        "characterErrors": 1,
+        "referenceCharacters": 84,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1449323185503264876.wav",
+      "text": "כמו בכל הפרקים הלאומיים בדרום אפריקה, ישנם משימור כניסה יומיים לפארק",
+      "ms": 378.3000000000029,
+      "pcm_sha256": "1382837130c16b8409ced10571f040d90d27c5d8268d96cab2acd12ef2bab81a",
+      "metrics": {
+        "normalizedReference": "כמו בכל הפארקים הלאומיים בדרום אפריקה ישנם דמי שימור וכניסה יומיים לפארק",
+        "normalizedHypothesis": "כמו בכל הפרקים הלאומיים בדרום אפריקה ישנם משימור כניסה יומיים לפארק",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 12,
+        "characterErrors": 4,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1803155917495283910.wav",
+      "text": "האירי גם הבסיס לטיפוס על הר הגש ניר גונגו, יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת הערים.",
+      "ms": 681.3000000000029,
+      "pcm_sha256": "696f1bb10ede1eea0c32cea99091325cdf296163786dd28ead14166c054e6b18",
+      "metrics": {
+        "normalizedReference": "העיר היא גם הבסיס לטיפוס על הר הגעש נירגונגו יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת ההרים",
+        "normalizedHypothesis": "האירי גם הבסיס לטיפוס על הר הגש ניר גונגו יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת הערים",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 88,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "4045023671488945822.wav",
+      "text": "פיננדיאד שהייט נהדר בארץ אלף האגמים, יש גם אלפי איים, באגמים וארכיפלגים של החוף",
+      "ms": 570.8999999999942,
+      "pcm_sha256": "5551c2bb69a1e30067a4f7058c30c3f06ce283f55427aaa34e5df50810eb5c7b",
+      "metrics": {
+        "normalizedReference": "פינלנד היא יעד שיט נהדר ב ארץ אלף האגמים יש גם אלפי איים באגמים ובארכיפלגים של החוף",
+        "normalizedHypothesis": "פיננדיאד שהייט נהדר בארץ אלף האגמים יש גם אלפי איים באגמים וארכיפלגים של החוף",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 17,
+        "characterErrors": 7,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15549337232523171759.wav",
+      "text": "בעצם דיסונציה.",
+      "ms": 495.6999999999971,
+      "pcm_sha256": "e3f873adbd7bb915c061fae6a914fd4bb68239247d2d3b08e0fae67e18049f65",
+      "metrics": {
+        "normalizedReference": "פרי הצהיר שהוא ישוב לטקסס כדי להעריך את תוצאות ועידת המפלגה שהתקיימה הלילה כדי לקבוע אם יש מסלול קדימה עבורי במירוץ הזה אך מאוחר יותר אמר שהוא יישאר במירוץ ויתמודד בבחירות בדרום קרוליינה ב 21 בינואר",
+        "normalizedHypothesis": "בעצם דיסונציה",
+        "exact": false,
+        "wordErrors": 36,
+        "referenceWords": 36,
+        "characterErrors": 154,
+        "referenceCharacters": 163,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15326679477862451102.wav",
+      "text": "ככלל שמספר אוספיק קטן יותר, הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים",
+      "ms": 795.1999999999971,
+      "pcm_sha256": "6e7df992e6d7415b83bf49d7278981ce17e6bc77fc76fa247da554208aab2b1b",
+      "metrics": {
+        "normalizedReference": "ככל שמספר רוסבי קטן יותר הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים",
+        "normalizedHypothesis": "ככלל שמספר אוספיק קטן יותר הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 11,
+        "characterErrors": 4,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "2294405282867555319.wav",
+      "text": "אז אמר רדיו קנדלבל ליווה אותו, צ'פן בוג בג'אן, כמו כן לקה סינג הציג את",
+      "ms": 690.8000000000029,
+      "pcm_sha256": "b18e8026b2c6d1e7fa76a74a29f69fd0a072076983ff3378406cbaaae6a3b424",
+      "metrics": {
+        "normalizedReference": "כמו כן לאקה סינג הציג את chhappan bhog bhajan הזמר ראג ו קנדלוואל ליווה אותו",
+        "normalizedHypothesis": "אז אמר רדיו קנדלבל ליווה אותו צ פן בוג בג אן כמו כן לקה סינג הציג את",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 15,
+        "characterErrors": 56,
+        "referenceCharacters": 62,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5181265305826391033.wav",
+      "text": "זה נותן לי הזדמנות טובה לראות את הזוהר הצפוני, היות והשמיים יהיו כהים פחות או יותר במשך כל שעות היממה",
+      "ms": 809.6000000000058,
+      "pcm_sha256": "fcb19ee0a7e19d70c61077b3ddfd609c3ff143b73ce5bb49285165e34c5ac1a6",
+      "metrics": {
+        "normalizedReference": "זה נותן הזדמנות טובה לראות את הזוהר הצפוני היות והשמים יהיו כהים פחות או יותר במשך כל שעות היממה",
+        "normalizedHypothesis": "זה נותן לי הזדמנות טובה לראות את הזוהר הצפוני היות והשמיים יהיו כהים פחות או יותר במשך כל שעות היממה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 3,
+        "referenceCharacters": 78,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7151673752467324945.wav",
+      "text": "ציוויליזציה היא תרבות יחידה, משותפת לקבוצה גדולה, במיוחד של אנשים שחיים ועובדים בשיתוף פעולה כחברה",
+      "ms": 590.3999999999942,
+      "pcm_sha256": "df61d8e39f4988ae064604d628fe691d0fc27c3badce791b17636ca2a79fa404",
+      "metrics": {
+        "normalizedReference": "ציוויליזציה היא תרבות יחידה המשותפת לקבוצה גדולה במיוחד של אנשים אשר חיים ועובדים בשיתוף פעולה כחברה",
+        "normalizedHypothesis": "ציוויליזציה היא תרבות יחידה משותפת לקבוצה גדולה במיוחד של אנשים שחיים ועובדים בשיתוף פעולה כחברה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 16,
+        "characterErrors": 3,
+        "referenceCharacters": 85,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1071817449427799096.wav",
+      "text": "בשכת תורה כי מתדרדרת למצב של אנרכיה על ידי משקיף אחד, כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה.",
+      "ms": 950.4000000000087,
+      "pcm_sha256": "37b9c906bd4eded03f0d484b7278380a2eaf06f2e2a133d6a1a15063a7b42699",
+      "metrics": {
+        "normalizedReference": "בישקק תוארה כמתדרדרת למצב של אנרכיה על ידי משקיף אחד כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה",
+        "normalizedHypothesis": "בשכת תורה כי מתדרדרת למצב של אנרכיה על ידי משקיף אחד כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 87,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15274554963702571165.wav",
+      "text": "מצד שני, תנאי כרך ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה",
+      "ms": 472.6999999999971,
+      "pcm_sha256": "59aecc07ce80726282e6952c096fc22558ff504e7be4f48f6e078ec9fc3b6a9f",
+      "metrics": {
+        "normalizedReference": "מצד שני תנאי קרח ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה",
+        "normalizedHypothesis": "מצד שני תנאי כרך ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 16,
+        "characterErrors": 2,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16656706951664950083.wav",
+      "text": "לאחר הקמת השחקי בשנת 1933 נעצרו שיטפונות עונתיים שפיזרו משקעים לאורך הנהר",
+      "ms": 502.59999999999127,
+      "pcm_sha256": "bc900c4fcf0020451c35fc4ce02987a7a9bb90156df27e3d69b429b83875c383",
+      "metrics": {
+        "normalizedReference": "לאחר הקמת הסכר בשנת 1963 נעצרו השיטפונות העונתיים שפיזרו משקעים לאורך הנהר",
+        "normalizedHypothesis": "לאחר הקמת השחקי בשנת 1933 נעצרו שיטפונות עונתיים שפיזרו משקעים לאורך הנהר",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 12,
+        "characterErrors": 7,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15635813267193318722.wav",
+      "text": "ב-1976-30 אחוזים עם מצ'ו פיצו שהוחזרו והשחזור נמשך עד היום",
+      "ms": 439,
+      "pcm_sha256": "aa2ab9047378d314915062be6ca2025969c1c569b8aac02a5654199bea1461d5",
+      "metrics": {
+        "normalizedReference": "ב 1976 שלושים אחוזים ממאצ ו פיצ ו שוחזרו והשחזור נמשך עד היום",
+        "normalizedHypothesis": "ב 1976 30 אחוזים עם מצ ו פיצו שהוחזרו והשחזור נמשך עד היום",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 10,
+        "referenceCharacters": 49,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9882296549860200214.wav",
+      "text": "אבל לאחר שהפסידה את שער הקפטן, הודו צברה רק 36 נקודות והפסידה שבעה שערים בגמר הסיבובים.",
+      "ms": 586.6999999999971,
+      "pcm_sha256": "bc4ac0063d0d4eba6b33a5d4d07ceda507028487d417e36a616c92c2afed5e52",
+      "metrics": {
+        "normalizedReference": "אבל לאחר שהפסידה את שער הקפטן הודו צברה רק 36 נקודות והפסידה 7 שערים בגמר הסיבובים",
+        "normalizedHypothesis": "אבל לאחר שהפסידה את שער הקפטן הודו צברה רק 36 נקודות והפסידה שבעה שערים בגמר הסיבובים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 16,
+        "characterErrors": 4,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "10644564750491259525.wav",
+      "text": "בשנות 11, זה לפני עשרה ושמונה",
+      "ms": 277.5,
+      "pcm_sha256": "bf84f706639a2e7897283dab764c700f3897d8626f1e8884c7c1df27b0ababab",
+      "metrics": {
+        "normalizedReference": "בין השעות 22 00 23 00 לפי אזור זמן ההרים mdt הוצתה שריפה על ידי האסירים בחצר",
+        "normalizedHypothesis": "בשנות 11 זה לפני עשרה ושמונה",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 17,
+        "characterErrors": 49,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "1776070829168832837.wav",
+      "text": "אוכלוסיית קריית הוותיקן היא 800 איש בערך, זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר.",
+      "ms": 677.1999999999971,
+      "pcm_sha256": "6d846da311e00b2a97544fd99a69b433bdcb56cf24c1c6d492334a98b9f9b8ba",
+      "metrics": {
+        "normalizedReference": "אוכלוסיית קריית הוותיקן היא 800 איש בערך זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר",
+        "normalizedHypothesis": "אוכלוסיית קריית הוותיקן היא 800 איש בערך זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 94,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13981864000952012586.wav",
+      "text": "שלא אל-עברו התיירים הם 16 או לונדו מנדנודה עיירה גרובה",
+      "ms": 850.6999999999971,
+      "pcm_sha256": "1287515bd4957bec46f2d755b43da5e3961fc753320f36d1788651e0c497cd39",
+      "metrics": {
+        "normalizedReference": "רולנדו מנדוזה ירה ברובה ה m16 שלו אל עבר התיירים",
+        "normalizedHypothesis": "שלא אל עברו התיירים הם 16 או לונדו מנדנודה עיירה גרובה",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 10,
+        "characterErrors": 35,
+        "referenceCharacters": 39,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "6280519902338658127.wav",
+      "text": "מוזזאוס היה טורף העל של זמנו ולכן הוא לא חשש מדבר חוץ ממוזואה עם אחרים",
+      "ms": 554.5999999999913,
+      "pcm_sha256": "25a3fc1fe830f91044949fb173c5c434006ce0c0a6224014f118d70b932f03c1",
+      "metrics": {
+        "normalizedReference": "מוזאזאורוס היה טורף העל של זמנו ולכן הוא לא חשש מדבר חוץ ממוזאזאורים אחרים",
+        "normalizedHypothesis": "מוזזאוס היה טורף העל של זמנו ולכן הוא לא חשש מדבר חוץ ממוזואה עם אחרים",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 14,
+        "characterErrors": 8,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "8139398818360073401.wav",
+      "text": "כמו כן בין השושלות היה עידן לא יציב של מחוזות חלוקים, הידועה בהן הייתה תקופת שלוש הממלכות שנמשכה שישים שנה בין שושלת הן לשושלת ג'י",
+      "ms": 774.3000000000029,
+      "pcm_sha256": "95335ca0b0656846371e7d7fe8b518b947a29f8338507c1a3e2707761868def7",
+      "metrics": {
+        "normalizedReference": "כמו כן בין השושלות היה עידן לא יציב של מחוזות חלוקים הידועה שבהן הייתה תקופת שלוש הממלכות שנמשכה 60 שנה בין שושלת האן לשושלת ג ין",
+        "normalizedHypothesis": "כמו כן בין השושלות היה עידן לא יציב של מחוזות חלוקים הידועה בהן הייתה תקופת שלוש הממלכות שנמשכה שישים שנה בין שושלת הן לשושלת ג י",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 26,
+        "characterErrors": 8,
+        "referenceCharacters": 104,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "2227947490314777414.wav",
+      "text": "שמרה על רוב, גם בבחירות לפרלמנט, סוואפו, מפלגת השלטון, ארגון האנשים של דרום-מערב אפריקה",
+      "ms": 595.7999999999884,
+      "pcm_sha256": "48c6825344fe82cf6a0dcf7685a5bfb981210cd4e06df523d1476a3208699799",
+      "metrics": {
+        "normalizedReference": "מפלגת השלטון ארגון האנשים של דרום מערב אפריקה swapo שמרה על רוב גם בבחירות לפרלמנט",
+        "normalizedHypothesis": "שמרה על רוב גם בבחירות לפרלמנט סוואפו מפלגת השלטון ארגון האנשים של דרום מערב אפריקה",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 15,
+        "characterErrors": 61,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "18026689619231812649.wav",
+      "text": "השפות הראשונות של ברצלונה אינן קטלנית וספרדית, כי מחצית מתושביה מעדיפים לדבר קטלנית ובגדול מבינים אותה וכמעט כולם יודעים ספרדית",
+      "ms": 755,
+      "pcm_sha256": "b9c24bb8dc640fcead4edb27184c71308c63b3e144894afdd0b7a4621c4e2309",
+      "metrics": {
+        "normalizedReference": "השפות הרשמיות של ברצלונה הנן קטלאנית וספרדית כמחצית מתושביה מעדיפים לדבר קטלאנית רוב גדול מבינים אותה וכמעט כולם יודעים ספרדית",
+        "normalizedHypothesis": "השפות הראשונות של ברצלונה אינן קטלנית וספרדית כי מחצית מתושביה מעדיפים לדבר קטלנית ובגדול מבינים אותה וכמעט כולם יודעים ספרדית",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 20,
+        "characterErrors": 9,
+        "referenceCharacters": 107,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3182284832674191542.wav",
+      "text": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים בקרובי משפחה לצד לא פחות משלושים נקיבות וגורים.",
+      "ms": 702.3000000000175,
+      "pcm_sha256": "0f5969670ff11378f1633bb8624a7eedfd6c3d05bb8284a93cff97192d63268e",
+      "metrics": {
+        "normalizedReference": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים קרובי משפחה לצד לא פחות משלושים נקבות וגורים",
+        "normalizedHypothesis": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים בקרובי משפחה לצד לא פחות משלושים נקיבות וגורים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "831366016177804295.wav",
+      "text": "גיליון דן לאפ שעדיין ידוע 25 קיימים ממונותקים מעתיקים ביותר של המסמך ששרדו. העותק המטורי שנכתב ביד לא שרד",
+      "ms": 754.8000000000175,
+      "pcm_sha256": "21cfd596cdc29e0d3501fe1ef2b765528037a601ccde854432789dc31a5820b4",
+      "metrics": {
+        "normalizedReference": "25 גיליונות דנלאפ שעדיין ידוע שקיימים הם העותקים העתיקים ביותר של המסמך ששרדו העותק המקורי שנכתב ביד לא שרד",
+        "normalizedHypothesis": "גיליון דן לאפ שעדיין ידוע 25 קיימים ממונותקים מעתיקים ביותר של המסמך ששרדו העותק המטורי שנכתב ביד לא שרד",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 19,
+        "characterErrors": 14,
+        "referenceCharacters": 89,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "2051441846618755650.wav",
+      "text": "עם זאת, בשל ערוצי התקשורת האיטיים, הסגנונות במערב עשויים לפגר ב-25 עד 30 שנה.",
+      "ms": 726.1000000000058,
+      "pcm_sha256": "5810aa3026cf73bde0b821da5bf4aa7940fac90f63497faff2489f272a091b99",
+      "metrics": {
+        "normalizedReference": "עם זאת בשל ערוצי התקשורת האיטיים הסגנונות במערב עשויים לפגר ב 25 עד 30 שנה",
+        "normalizedHypothesis": "עם זאת בשל ערוצי התקשורת האיטיים הסגנונות במערב עשויים לפגר ב 25 עד 30 שנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "2360658388181844369.wav",
+      "text": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה",
+      "ms": 510.1000000000058,
+      "pcm_sha256": "edacae5a290997be2c67a6d8dd2cf200c93d887c405378c722db2b0b1bc2da4b",
+      "metrics": {
+        "normalizedReference": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה",
+        "normalizedHypothesis": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 12,
+        "characterErrors": 0,
+        "referenceCharacters": 62,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3267293553124454901.wav",
+      "text": "זה יאפשר לו להיות תואם לאחור, 802.11 BA עם 802.11, בתנאי של התחנת 802.11 IG יש מכשירי קשר כפולים",
+      "ms": 1016.5999999999767,
+      "pcm_sha256": "0e27a4d21c5461bc2b0c973b8b645a6955bf4820010e758943430c0e212a708b",
+      "metrics": {
+        "normalizedReference": "זה יאפשר לו להיות תואם לאחור עם 802 11a 802 11b ו 802 11g בתנאי שלתחנת הבסיס יש מכשירי קשר כפולים",
+        "normalizedHypothesis": "זה יאפשר לו להיות תואם לאחור 802 11 ba עם 802 11 בתנאי של התחנת 802 11 ig יש מכשירי קשר כפולים",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 19,
+        "referenceCharacters": 77,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16473915741881200993.wav",
+      "text": "חיל ההנדסה האמריקני העריך ששישה אינצ'ים של גשם עלולים לפרוץ את הזכרים שנפגעו בעבר",
+      "ms": 931,
+      "pcm_sha256": "0beac70ee08a333f769dce68174b5fece6689a06531cda243cb08776b48e23e3",
+      "metrics": {
+        "normalizedReference": "חיל ההנדסה האמריקני העריך ש 6 אינצ ים של גשם עלולים לפרוץ את הסכרים שנפגעו בעבר",
+        "normalizedHypothesis": "חיל ההנדסה האמריקני העריך ששישה אינצ ים של גשם עלולים לפרוץ את הזכרים שנפגעו בעבר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 16,
+        "characterErrors": 5,
+        "referenceCharacters": 64,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "8879531117843766353.wav",
+      "text": "אבל הרבה דברים אצל ציפורים עדיין נהיים כמו דינוזאורים",
+      "ms": 409.3999999999942,
+      "pcm_sha256": "338fa63aa8e6510600c9974d5e9420854ead434afb16bb6133461131d76ee23f",
+      "metrics": {
+        "normalizedReference": "אבל הרבה דברים אצל ציפורים עדיין נראים כמו דינוזאורים",
+        "normalizedHypothesis": "אבל הרבה דברים אצל ציפורים עדיין נהיים כמו דינוזאורים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 45,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "14098153000556256241.wav",
+      "text": "הוא התייחס לשמועות כפטפטת ושטויות פוליטיות.",
+      "ms": 373.3999999999942,
+      "pcm_sha256": "31a76d281c9c241f88800c8af1039518b4d6940d67863f9b6d9d123192377cce",
+      "metrics": {
+        "normalizedReference": "הוא התייחס לשמועות כ פטפטת ושטויות פוליטיות",
+        "normalizedHypothesis": "הוא התייחס לשמועות כפטפטת ושטויות פוליטיות",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5236609378509141982.wav",
+      "text": "שישנם בני הערובה הכוללים את הילדים והקשישים, שוחררו מוקדם כמו גם הצנעמים הפיליפינים.",
+      "ms": 551.2999999999884,
+      "pcm_sha256": "7f35c5fe1ea8d959c711d9bc5a7ee5ab885128878cf2dcfc08b4a4b1960032c6",
+      "metrics": {
+        "normalizedReference": "שישה בני ערובה הכוללים את הילדים והקשישים שוחררו מוקדם כמו גם הצלמים הפיליפינים",
+        "normalizedHypothesis": "שישנם בני הערובה הכוללים את הילדים והקשישים שוחררו מוקדם כמו גם הצנעמים הפיליפינים",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 5,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3446562879854852618.wav",
+      "text": "לפני המדעים גברים ונשים רבים בחיים ששרדו את תקופתם כאן, ברבים נוספים שקרעים נרצחו או עבדו למוות שם יהודים ולא יהודים כרעים.",
+      "ms": 734.5,
+      "pcm_sha256": "ef2f52a135d3dd1c19ff38739d4f44cc768ea997983c44088dcb79f3611209a6",
+      "metrics": {
+        "normalizedReference": "ישנם עדיין גברים ונשים רבים בחיים ששרדו את תקופתם כאן ורבים נוספים שיקיריהם נרצחו או הועבדו למוות שם יהודים ולא יהודים כאחד",
+        "normalizedHypothesis": "לפני המדעים גברים ונשים רבים בחיים ששרדו את תקופתם כאן ברבים נוספים שקרעים נרצחו או עבדו למוות שם יהודים ולא יהודים כרעים",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 22,
+        "characterErrors": 18,
+        "referenceCharacters": 102,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13007795820992507465.wav",
+      "text": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזה שיקום לגורמים הנחשבים מקורבים לוושינגטון.",
+      "ms": 682.6999999999825,
+      "pcm_sha256": "889aed4c118e2d07ff360ce8564b5955d30b340c348b9e64b5d5c8c5717d569e",
+      "metrics": {
+        "normalizedReference": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזי שיקום לגורמים הנחשבים מקורבים לוושינגטון",
+        "normalizedHypothesis": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזה שיקום לגורמים הנחשבים מקורבים לוושינגטון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 77,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5003424012824870622.wav",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 760.1999999999825,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17171468810841175967.wav",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 562,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3625786575614857833.wav",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 929.6000000000058,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17425601106312478953.wav",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 418.5,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3445988181539980871.wav",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 833.1999999999825,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11245875030612691124.wav",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1085.8999999999942,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17103514183588460100.wav",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+      "ms": 850.7000000000116,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9854665193577160905.wav",
+      "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+      "ms": 607.7000000000116,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 4,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17616472487509301569.wav",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 555,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13665306490465162429.wav",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+      "ms": 693.2000000000116,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16399478934663246649.wav",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טיר אקס.",
+      "ms": 768.5,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טיר אקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 3,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7220901400489669549.wav",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים, אוויר ואש.",
+      "ms": 944.5,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11145584623559134796.wav",
+      "text": "דל פוטרו, החזיק ביתרון מוקדם במערכה השנייה, אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6-6.",
+      "ms": 1047.5,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 19,
+        "characterErrors": 0,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9230704744502262655.wav",
+      "text": "היזהרו שעבד לא יתחבא יותר מדי",
+      "ms": 414.5,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "היזהרו שעבד לא יתחבא יותר מדי",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 14,
+        "characterErrors": 44,
+        "referenceCharacters": 65,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "4006498820324443479.wav",
+      "text": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+      "ms": 921.6999999999825,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 26,
+        "characterErrors": 0,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1062031265143490849.wav",
+      "text": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף, כיתות אדידיות בחוויות.",
+      "ms": 1057.5,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות אדידיות בחוויות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 15,
+        "characterErrors": 2,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5404112682557272827.wav",
+      "text": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר.",
+      "ms": 729.2000000000116,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הוועדה הייתה תגובתו של מרטין למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 12,
+        "characterErrors": 2,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "4600619609092480735.wav",
+      "text": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו.",
+      "ms": 591.1000000000058,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות מהם קניות במרוקו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16689718980874752228.wav",
+      "text": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות, צרו מהן כדור.",
+      "ms": 694.0999999999767,
+      "pcm_sha256": "1b754a14fb048d92f56934abe76b1ed1e03e4ce0b791b06d05ccc0b37842c4a1",
+      "metrics": {
+        "normalizedReference": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות צרו מהן כדור",
+        "normalizedHypothesis": "ערבבו את שתי האבקות היבשות יחד ואז בידיים רטובות ונקיות צרו מהן כדור",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "characterErrors": 0,
+        "referenceCharacters": 56,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13407968475845125084.wav",
+      "text": "כל דבר ביקום עשוי מחומר, כל חומר עשוי מחלקיקים זהים הנקראים אטומיים.",
+      "ms": 531.2999999999884,
+      "pcm_sha256": "d5e9d4d8108459637fcd7067fe4906f15a401d08f72c2e473ed9b1585aad3f73",
+      "metrics": {
+        "normalizedReference": "כל דבר ביקום עשוי מחומר כל חומר עשוי מחלקיקים זעירים הנקראים אטומים",
+        "normalizedHypothesis": "כל דבר ביקום עשוי מחומר כל חומר עשוי מחלקיקים זהים הנקראים אטומיים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 12,
+        "characterErrors": 4,
+        "referenceCharacters": 56,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "18157833681597154960.wav",
+      "text": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתוכניות הטיול.",
+      "ms": 746.6000000000058,
+      "pcm_sha256": "745cb5592399783ec00f6984f76e6992a6bf2b5e0d5edc0efdf7d8d769cea9de",
+      "metrics": {
+        "normalizedReference": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתכניות הטיול",
+        "normalizedHypothesis": "מומלץ בחום למטיילים לשים לב לסכנה של מזג אוויר קשה שפוקד את האזור מכיוון שהוא עלול לפגוע בתוכניות הטיול",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 19,
+        "characterErrors": 1,
+        "referenceCharacters": 84,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1449323185503264876.wav",
+      "text": "כמו בכל הפרקים הלאומיים בדרום אפריקה, ישנם משימור כניסה יומיים לפארק.",
+      "ms": 435.79999999998836,
+      "pcm_sha256": "1382837130c16b8409ced10571f040d90d27c5d8268d96cab2acd12ef2bab81a",
+      "metrics": {
+        "normalizedReference": "כמו בכל הפארקים הלאומיים בדרום אפריקה ישנם דמי שימור וכניסה יומיים לפארק",
+        "normalizedHypothesis": "כמו בכל הפרקים הלאומיים בדרום אפריקה ישנם משימור כניסה יומיים לפארק",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 12,
+        "characterErrors": 4,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1803155917495283910.wav",
+      "text": "האירי גם הבסיס לטיפוס על הרגש ניר גונגו, יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת הערים.",
+      "ms": 720.7000000000116,
+      "pcm_sha256": "696f1bb10ede1eea0c32cea99091325cdf296163786dd28ead14166c054e6b18",
+      "metrics": {
+        "normalizedReference": "העיר היא גם הבסיס לטיפוס על הר הגעש נירגונגו יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת ההרים",
+        "normalizedHypothesis": "האירי גם הבסיס לטיפוס על הרגש ניר גונגו יחד עם כמה מהמסלולים הזולים ביותר באפריקה בעקבות גורילת הערים",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 6,
+        "referenceCharacters": 88,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "4045023671488945822.wav",
+      "text": "פיננדיאד שהייט נהדר בארץ אלף האגמים, יש גם אלפי איים, באגמים וארכיפלגים של החוף",
+      "ms": 628.3999999999942,
+      "pcm_sha256": "5551c2bb69a1e30067a4f7058c30c3f06ce283f55427aaa34e5df50810eb5c7b",
+      "metrics": {
+        "normalizedReference": "פינלנד היא יעד שיט נהדר ב ארץ אלף האגמים יש גם אלפי איים באגמים ובארכיפלגים של החוף",
+        "normalizedHypothesis": "פיננדיאד שהייט נהדר בארץ אלף האגמים יש גם אלפי איים באגמים וארכיפלגים של החוף",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 17,
+        "characterErrors": 7,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15549337232523171759.wav",
+      "text": "באזור של ינותך סנדר.",
+      "ms": 509.5,
+      "pcm_sha256": "e3f873adbd7bb915c061fae6a914fd4bb68239247d2d3b08e0fae67e18049f65",
+      "metrics": {
+        "normalizedReference": "פרי הצהיר שהוא ישוב לטקסס כדי להעריך את תוצאות ועידת המפלגה שהתקיימה הלילה כדי לקבוע אם יש מסלול קדימה עבורי במירוץ הזה אך מאוחר יותר אמר שהוא יישאר במירוץ ויתמודד בבחירות בדרום קרוליינה ב 21 בינואר",
+        "normalizedHypothesis": "באזור של ינותך סנדר",
+        "exact": false,
+        "wordErrors": 36,
+        "referenceWords": 36,
+        "characterErrors": 152,
+        "referenceCharacters": 163,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15326679477862451102.wav",
+      "text": "ככלל שמספר רוספי קטן יותר, הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים.",
+      "ms": 837,
+      "pcm_sha256": "6e7df992e6d7415b83bf49d7278981ce17e6bc77fc76fa247da554208aab2b1b",
+      "metrics": {
+        "normalizedReference": "ככל שמספר רוסבי קטן יותר הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים",
+        "normalizedHypothesis": "ככלל שמספר רוספי קטן יותר הכוכב פחות פעיל בהתייחס להיפוכים מגנטיים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 11,
+        "characterErrors": 2,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "2294405282867555319.wav",
+      "text": "אז אמר רדיו, קנדלבל ליווה אותו, צ'פן בוג בג'אן, כמו כן, לקה סינג הציג את.",
+      "ms": 735.8999999999942,
+      "pcm_sha256": "b18e8026b2c6d1e7fa76a74a29f69fd0a072076983ff3378406cbaaae6a3b424",
+      "metrics": {
+        "normalizedReference": "כמו כן לאקה סינג הציג את chhappan bhog bhajan הזמר ראג ו קנדלוואל ליווה אותו",
+        "normalizedHypothesis": "אז אמר רדיו קנדלבל ליווה אותו צ פן בוג בג אן כמו כן לקה סינג הציג את",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 15,
+        "characterErrors": 56,
+        "referenceCharacters": 62,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5181265305826391033.wav",
+      "text": "זה נותן לי הזדמנות טובה לראות את הזוהר הצפוני, היות והשמיים יהיו כהים פחות או יותר במשך כל שעות היממה.",
+      "ms": 818,
+      "pcm_sha256": "fcb19ee0a7e19d70c61077b3ddfd609c3ff143b73ce5bb49285165e34c5ac1a6",
+      "metrics": {
+        "normalizedReference": "זה נותן הזדמנות טובה לראות את הזוהר הצפוני היות והשמים יהיו כהים פחות או יותר במשך כל שעות היממה",
+        "normalizedHypothesis": "זה נותן לי הזדמנות טובה לראות את הזוהר הצפוני היות והשמיים יהיו כהים פחות או יותר במשך כל שעות היממה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 3,
+        "referenceCharacters": 78,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7151673752467324945.wav",
+      "text": "ציוויליזציה היא תרבות יחידה, משותפת לקבוצה גדולה, במיוחד של אנשים שחיים ועובדים בשיתוף פעולה כחברה.",
+      "ms": 681.2999999999884,
+      "pcm_sha256": "df61d8e39f4988ae064604d628fe691d0fc27c3badce791b17636ca2a79fa404",
+      "metrics": {
+        "normalizedReference": "ציוויליזציה היא תרבות יחידה המשותפת לקבוצה גדולה במיוחד של אנשים אשר חיים ועובדים בשיתוף פעולה כחברה",
+        "normalizedHypothesis": "ציוויליזציה היא תרבות יחידה משותפת לקבוצה גדולה במיוחד של אנשים שחיים ועובדים בשיתוף פעולה כחברה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 16,
+        "characterErrors": 3,
+        "referenceCharacters": 85,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1071817449427799096.wav",
+      "text": "בשכת תורה כי היא מתדרדרת למצב של אנרכיה על ידי משקיף אחד, כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה.",
+      "ms": 1153.1000000000058,
+      "pcm_sha256": "37b9c906bd4eded03f0d484b7278380a2eaf06f2e2a133d6a1a15063a7b42699",
+      "metrics": {
+        "normalizedReference": "בישקק תוארה כמתדרדרת למצב של אנרכיה על ידי משקיף אחד כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה",
+        "normalizedHypothesis": "בשכת תורה כי היא מתדרדרת למצב של אנרכיה על ידי משקיף אחד כשכנופיות שוטטו ברחובות ובזזו חנויות של מוצרי צריכה",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 18,
+        "characterErrors": 8,
+        "referenceCharacters": 87,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15274554963702571165.wav",
+      "text": "מצד שני, תנאי כרך ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה.",
+      "ms": 562.2000000000116,
+      "pcm_sha256": "59aecc07ce80726282e6952c096fc22558ff504e7be4f48f6e078ec9fc3b6a9f",
+      "metrics": {
+        "normalizedReference": "מצד שני תנאי קרח ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה",
+        "normalizedHypothesis": "מצד שני תנאי כרך ושלג הם נורמליים במדינות רבות והתנועה נמשכת ברובה ללא הפרעה כל השנה",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 16,
+        "characterErrors": 2,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16656706951664950083.wav",
+      "text": "לאחר הקמת השחקי בשנת 1933 נעצרו שיטפונות עונתיים שפיזרו משקעים לאורך הנהר.",
+      "ms": 576.8999999999942,
+      "pcm_sha256": "bc900c4fcf0020451c35fc4ce02987a7a9bb90156df27e3d69b429b83875c383",
+      "metrics": {
+        "normalizedReference": "לאחר הקמת הסכר בשנת 1963 נעצרו השיטפונות העונתיים שפיזרו משקעים לאורך הנהר",
+        "normalizedHypothesis": "לאחר הקמת השחקי בשנת 1933 נעצרו שיטפונות עונתיים שפיזרו משקעים לאורך הנהר",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 12,
+        "characterErrors": 7,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15635813267193318722.wav",
+      "text": "ב-1976-30 אחוזים עם מצ'ו פיצו שהוחזרו והשחזור נמשך עד היום.",
+      "ms": 473.3999999999942,
+      "pcm_sha256": "aa2ab9047378d314915062be6ca2025969c1c569b8aac02a5654199bea1461d5",
+      "metrics": {
+        "normalizedReference": "ב 1976 שלושים אחוזים ממאצ ו פיצ ו שוחזרו והשחזור נמשך עד היום",
+        "normalizedHypothesis": "ב 1976 30 אחוזים עם מצ ו פיצו שהוחזרו והשחזור נמשך עד היום",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 10,
+        "referenceCharacters": 49,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9882296549860200214.wav",
+      "text": "אבל לאחר שהפסידה את שער הקפטן, הודו צברה רק 36 נקודות והפסידה שבעה שערים בגמר הסיבובים.",
+      "ms": 724.6000000000058,
+      "pcm_sha256": "bc4ac0063d0d4eba6b33a5d4d07ceda507028487d417e36a616c92c2afed5e52",
+      "metrics": {
+        "normalizedReference": "אבל לאחר שהפסידה את שער הקפטן הודו צברה רק 36 נקודות והפסידה 7 שערים בגמר הסיבובים",
+        "normalizedHypothesis": "אבל לאחר שהפסידה את שער הקפטן הודו צברה רק 36 נקודות והפסידה שבעה שערים בגמר הסיבובים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 16,
+        "characterErrors": 4,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "10644564750491259525.wav",
+      "text": "בשנות 11, זה לפני 28",
+      "ms": 324.70000000001164,
+      "pcm_sha256": "bf84f706639a2e7897283dab764c700f3897d8626f1e8884c7c1df27b0ababab",
+      "metrics": {
+        "normalizedReference": "בין השעות 22 00 23 00 לפי אזור זמן ההרים mdt הוצתה שריפה על ידי האסירים בחצר",
+        "normalizedHypothesis": "בשנות 11 זה לפני 28",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 17,
+        "characterErrors": 52,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "1776070829168832837.wav",
+      "text": "אוכלוסיית קריית הוותיקן היא 800 איש בערך, זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר.",
+      "ms": 760.0999999999767,
+      "pcm_sha256": "6d846da311e00b2a97544fd99a69b433bdcb56cf24c1c6d492334a98b9f9b8ba",
+      "metrics": {
+        "normalizedReference": "אוכלוסיית קריית הוותיקן היא 800 איש בערך זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר",
+        "normalizedHypothesis": "אוכלוסיית קריית הוותיקן היא 800 איש בערך זו המדינה העצמאית הקטנה ביותר בעולם והמדינה עם האוכלוסייה המועטה ביותר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 94,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13981864000952012586.wav",
+      "text": "שלא אל-עברו התיירים, אם 16 או לונדו מנדנודה עיירה ברובה.",
+      "ms": 1056.6000000000058,
+      "pcm_sha256": "1287515bd4957bec46f2d755b43da5e3961fc753320f36d1788651e0c497cd39",
+      "metrics": {
+        "normalizedReference": "רולנדו מנדוזה ירה ברובה ה m16 שלו אל עבר התיירים",
+        "normalizedHypothesis": "שלא אל עברו התיירים אם 16 או לונדו מנדנודה עיירה ברובה",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 10,
+        "characterErrors": 36,
+        "referenceCharacters": 39,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "6280519902338658127.wav",
+      "text": "מוזזאוס היה טורף העל של זמנו, ולכן הוא לא חשש מדבר חוץ ממוזועיים אחרים.",
+      "ms": 760.3000000000175,
+      "pcm_sha256": "25a3fc1fe830f91044949fb173c5c434006ce0c0a6224014f118d70b932f03c1",
+      "metrics": {
+        "normalizedReference": "מוזאזאורוס היה טורף העל של זמנו ולכן הוא לא חשש מדבר חוץ ממוזאזאורים אחרים",
+        "normalizedHypothesis": "מוזזאוס היה טורף העל של זמנו ולכן הוא לא חשש מדבר חוץ ממוזועיים אחרים",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 14,
+        "characterErrors": 8,
+        "referenceCharacters": 61,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "8139398818360073401.wav",
+      "text": "כמו כן, בין השושלות היה עידן לא יציב של מחוזות חלוקים, הידועה בהן הייתה תקופת שלוש הממלכות שנמשכה 60 שנה בין שושלת האן לשושלת ג'י",
+      "ms": 994.0999999999767,
+      "pcm_sha256": "95335ca0b0656846371e7d7fe8b518b947a29f8338507c1a3e2707761868def7",
+      "metrics": {
+        "normalizedReference": "כמו כן בין השושלות היה עידן לא יציב של מחוזות חלוקים הידועה שבהן הייתה תקופת שלוש הממלכות שנמשכה 60 שנה בין שושלת האן לשושלת ג ין",
+        "normalizedHypothesis": "כמו כן בין השושלות היה עידן לא יציב של מחוזות חלוקים הידועה בהן הייתה תקופת שלוש הממלכות שנמשכה 60 שנה בין שושלת האן לשושלת ג י",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 26,
+        "characterErrors": 2,
+        "referenceCharacters": 104,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "2227947490314777414.wav",
+      "text": "שמרה על רוב, גם בבחירות לפרלמנט, סוואפו, מפלגת השלטון, ארגון האנשים של דרום-מערב אפריקה.",
+      "ms": 705.5,
+      "pcm_sha256": "48c6825344fe82cf6a0dcf7685a5bfb981210cd4e06df523d1476a3208699799",
+      "metrics": {
+        "normalizedReference": "מפלגת השלטון ארגון האנשים של דרום מערב אפריקה swapo שמרה על רוב גם בבחירות לפרלמנט",
+        "normalizedHypothesis": "שמרה על רוב גם בבחירות לפרלמנט סוואפו מפלגת השלטון ארגון האנשים של דרום מערב אפריקה",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 15,
+        "characterErrors": 61,
+        "referenceCharacters": 68,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "18026689619231812649.wav",
+      "text": "השפות הראשונות של ברצלונה אינן קטלנית וספרדית, כי מחצית מתושביה מעדיפים לדבר קטלנית, ובגדול מבינים אותה, וכמעט כולם יודעים ספרדית.",
+      "ms": 850.8999999999942,
+      "pcm_sha256": "b9c24bb8dc640fcead4edb27184c71308c63b3e144894afdd0b7a4621c4e2309",
+      "metrics": {
+        "normalizedReference": "השפות הרשמיות של ברצלונה הנן קטלאנית וספרדית כמחצית מתושביה מעדיפים לדבר קטלאנית רוב גדול מבינים אותה וכמעט כולם יודעים ספרדית",
+        "normalizedHypothesis": "השפות הראשונות של ברצלונה אינן קטלנית וספרדית כי מחצית מתושביה מעדיפים לדבר קטלנית ובגדול מבינים אותה וכמעט כולם יודעים ספרדית",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 20,
+        "characterErrors": 9,
+        "referenceCharacters": 107,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3182284832674191542.wav",
+      "text": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים בקרובי משפחה לצד לא פחות מ-30 נקיבות וגורים.",
+      "ms": 826,
+      "pcm_sha256": "0f5969670ff11378f1633bb8624a7eedfd6c3d05bb8284a93cff97192d63268e",
+      "metrics": {
+        "normalizedReference": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים קרובי משפחה לצד לא פחות משלושים נקבות וגורים",
+        "normalizedHypothesis": "להקות מורכבות מאחד עד שלושה זכרים מבוגרים בקרובי משפחה לצד לא פחות מ 30 נקיבות וגורים",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 15,
+        "characterErrors": 8,
+        "referenceCharacters": 72,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "831366016177804295.wav",
+      "text": "גיליון דנלפ שעדיין ידוע 25 קיימים ממונותקים מעתיקים ביותר של המסמך ששרדו. העותק המטורי שנכתב ביד לא שרד.",
+      "ms": 769.1000000000058,
+      "pcm_sha256": "21cfd596cdc29e0d3501fe1ef2b765528037a601ccde854432789dc31a5820b4",
+      "metrics": {
+        "normalizedReference": "25 גיליונות דנלאפ שעדיין ידוע שקיימים הם העותקים העתיקים ביותר של המסמך ששרדו העותק המקורי שנכתב ביד לא שרד",
+        "normalizedHypothesis": "גיליון דנלפ שעדיין ידוע 25 קיימים ממונותקים מעתיקים ביותר של המסמך ששרדו העותק המטורי שנכתב ביד לא שרד",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 19,
+        "characterErrors": 14,
+        "referenceCharacters": 89,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "2051441846618755650.wav",
+      "text": "עם זאת, בשל ערוצי התקשורת האיטיים, הסגנונות במערב עשויים לפגר ב-25 עד 30 שנה.",
+      "ms": 748.6000000000058,
+      "pcm_sha256": "5810aa3026cf73bde0b821da5bf4aa7940fac90f63497faff2489f272a091b99",
+      "metrics": {
+        "normalizedReference": "עם זאת בשל ערוצי התקשורת האיטיים הסגנונות במערב עשויים לפגר ב 25 עד 30 שנה",
+        "normalizedHypothesis": "עם זאת בשל ערוצי התקשורת האיטיים הסגנונות במערב עשויים לפגר ב 25 עד 30 שנה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 15,
+        "characterErrors": 0,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "2360658388181844369.wav",
+      "text": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה.",
+      "ms": 573,
+      "pcm_sha256": "edacae5a290997be2c67a6d8dd2cf200c93d887c405378c722db2b0b1bc2da4b",
+      "metrics": {
+        "normalizedReference": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה",
+        "normalizedHypothesis": "בתוך שנתיים מסיום המלחמה בעלות הברית לשעבר הפכו לאויבות והמלחמה הקרה החלה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 12,
+        "characterErrors": 0,
+        "referenceCharacters": 62,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3267293553124454901.wav",
+      "text": "זה יאפשר לו להיות תואם לאחור, 802.11 BA עם 802.11, בתנאי של התחנת 802.11 IG, יש מכשירי קשר כפולים.",
+      "ms": 1065.5,
+      "pcm_sha256": "0e27a4d21c5461bc2b0c973b8b645a6955bf4820010e758943430c0e212a708b",
+      "metrics": {
+        "normalizedReference": "זה יאפשר לו להיות תואם לאחור עם 802 11a 802 11b ו 802 11g בתנאי שלתחנת הבסיס יש מכשירי קשר כפולים",
+        "normalizedHypothesis": "זה יאפשר לו להיות תואם לאחור 802 11 ba עם 802 11 בתנאי של התחנת 802 11 ig יש מכשירי קשר כפולים",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 19,
+        "referenceCharacters": 77,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16473915741881200993.wav",
+      "text": "חיל ההנדסה האמריקני העריך ששישה אינצ'ים של גשם עלולים לפרוץ את הזכרים שנפגעו בעבר.",
+      "ms": 987.2999999999884,
+      "pcm_sha256": "0beac70ee08a333f769dce68174b5fece6689a06531cda243cb08776b48e23e3",
+      "metrics": {
+        "normalizedReference": "חיל ההנדסה האמריקני העריך ש 6 אינצ ים של גשם עלולים לפרוץ את הסכרים שנפגעו בעבר",
+        "normalizedHypothesis": "חיל ההנדסה האמריקני העריך ששישה אינצ ים של גשם עלולים לפרוץ את הזכרים שנפגעו בעבר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 16,
+        "characterErrors": 5,
+        "referenceCharacters": 64,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "8879531117843766353.wav",
+      "text": "אבל הרבה דברים אצל ציפורים עדיין נהיים כמו דינוזאורים",
+      "ms": 424.5,
+      "pcm_sha256": "338fa63aa8e6510600c9974d5e9420854ead434afb16bb6133461131d76ee23f",
+      "metrics": {
+        "normalizedReference": "אבל הרבה דברים אצל ציפורים עדיין נראים כמו דינוזאורים",
+        "normalizedHypothesis": "אבל הרבה דברים אצל ציפורים עדיין נהיים כמו דינוזאורים",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 2,
+        "referenceCharacters": 45,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "14098153000556256241.wav",
+      "text": "הוא התייחס לשמועות כפטפטת ושטויות פוליטיות.",
+      "ms": 447.5,
+      "pcm_sha256": "31a76d281c9c241f88800c8af1039518b4d6940d67863f9b6d9d123192377cce",
+      "metrics": {
+        "normalizedReference": "הוא התייחס לשמועות כ פטפטת ושטויות פוליטיות",
+        "normalizedHypothesis": "הוא התייחס לשמועות כפטפטת ושטויות פוליטיות",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 7,
+        "characterErrors": 0,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5236609378509141982.wav",
+      "text": "שישנה בני הערובה הכוללים את הילדים והקשישים, שוחררו מוקדם, כמו גם הצנעמים הפיליפינים.",
+      "ms": 633.8999999999942,
+      "pcm_sha256": "7f35c5fe1ea8d959c711d9bc5a7ee5ab885128878cf2dcfc08b4a4b1960032c6",
+      "metrics": {
+        "normalizedReference": "שישה בני ערובה הכוללים את הילדים והקשישים שוחררו מוקדם כמו גם הצלמים הפיליפינים",
+        "normalizedHypothesis": "שישנה בני הערובה הכוללים את הילדים והקשישים שוחררו מוקדם כמו גם הצנעמים הפיליפינים",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 4,
+        "referenceCharacters": 67,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3446562879854852618.wav",
+      "text": "לפני המדעים גברים ונשים רבים בחיים ששרדו את תקופתם כאן, ברבים נוספים שקרעים נרצחו או עבדו למוות שם יהודים ולא יהודים כרעים.",
+      "ms": 786.6000000000058,
+      "pcm_sha256": "ef2f52a135d3dd1c19ff38739d4f44cc768ea997983c44088dcb79f3611209a6",
+      "metrics": {
+        "normalizedReference": "ישנם עדיין גברים ונשים רבים בחיים ששרדו את תקופתם כאן ורבים נוספים שיקיריהם נרצחו או הועבדו למוות שם יהודים ולא יהודים כאחד",
+        "normalizedHypothesis": "לפני המדעים גברים ונשים רבים בחיים ששרדו את תקופתם כאן ברבים נוספים שקרעים נרצחו או עבדו למוות שם יהודים ולא יהודים כרעים",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 22,
+        "characterErrors": 18,
+        "referenceCharacters": 102,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13007795820992507465.wav",
+      "text": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזה שיקום לגורמים הנחשבים מקורבים לוושינגטון.",
+      "ms": 791.3999999999942,
+      "pcm_sha256": "889aed4c118e2d07ff360ce8564b5955d30b340c348b9e64b5d5c8c5717d569e",
+      "metrics": {
+        "normalizedReference": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזי שיקום לגורמים הנחשבים מקורבים לוושינגטון",
+        "normalizedHypothesis": "ביקורת ליברלית על מאמץ השיקום התמקדה בהענקת חוזה שיקום לגורמים הנחשבים מקורבים לוושינגטון",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 77,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}
