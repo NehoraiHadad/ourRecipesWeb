@@ -66,7 +66,7 @@ try {
   });
   const page = await context.newPage();
   await page.goto(origin);
-  for (const arm of ['greedy', 'beam4']) {
+  for (const arm of (process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
     const loaded = await page.evaluate(async arm => {
       window.worker = new Worker('/worker.mjs', {type: 'module'});
       window.ask = payload => new Promise((resolve, reject) => {
