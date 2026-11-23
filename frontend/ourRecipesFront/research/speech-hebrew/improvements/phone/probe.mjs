@@ -1,3 +1,5 @@
+import {suspect,reconcile} from '/improvements/recipe-actions/retry.mjs';
+import {checkWindows} from '/improvements/time-window/window.mjs';
 const el = id => document.getElementById(id);
 let manifest, assets, worker, recorder, stream, timer, downloading;
 let stage = 'initial', generation = 0;
@@ -22,7 +24,53 @@ function forgetWorker() {
   worker?.terminate();
   worker = null;
 }
+function clearClarification() {
+  el('clarify').hidden=true;
+  el('keep-word').onclick=null;
+  el('replace-word').onclick=null;
+  el('other-word').onclick=null;
+  el('edit-word-form').onsubmit=null;
+  el('edit-word-form').hidden=true;
+  el('edit-word').setCustomValidity('');
+  el('edit-word').value='';
+}
+
+function offerClarification(text,id,kept=new Set()) {
+  clearClarification();
+  if(id!==generation)return;
+  const item=suspect(text,manifest.actions).find(s=>!kept.has(s.i));
+  if(!item)return;
+  el('word-question').textContent='איזו מילה אמרת אחרי השלילה?';
+  el('keep-word').textContent='להשאיר ״'+item.from+'״';
+  el('replace-word').textContent='התכוונתי ל״'+item.to+'״';
+  el('clarify').hidden=false;
+  function choose(word) {
+    if(id!==generation)return;
+    const next=text.slice(0,item.offset)+word+text.slice(item.offset+item.from.length);
+    kept.add(item.i);
+    el('plain').textContent=next;
+    offerClarification(next,id,kept);
+  }
+  el('keep-word').onclick=()=>choose(item.from);
+  el('replace-word').onclick=()=>choose(item.to);
+  el('other-word').onclick=()=>{
+    el('edit-word-form').hidden=false;
+    el('edit-word').focus();
+  };
+  el('edit-word').oninput=()=>el('edit-word').setCustomValidity('');
+  el('edit-word-form').onsubmit=event=>{
+    event.preventDefault();
+    const input=el('edit-word'), word=input.value.trim();
+    if(!/^[\p{L}][\p{L}\p{M}]*$/u.test(word)) {
+      input.setCustomValidity('יש להקליד מילה אחת.');
+      input.reportValidity();
+      return;
+    }
+    choose(word);
+  };
+}
 function clearOutputs() {
+  clearClarification();
   for (const id of ['hinted','plain','timing']) el(id).textContent = '';
   el('file').value = '';
 }
@@ -72,6 +120,12 @@ async function warm(id, message) {
   }
 }
 function showIngredients() {
+  const pasta=el('recipe').value==='pasta';
+  el('first-label').textContent=pasta?'תמלול ראשוני':'עם רמזי המתכון';
+  el('second-label').textContent=pasta?'אחרי בדיקת הפעולה':'בלי רמזים';
+  el('description').textContent=pasta
+    ? 'בדיקת פעולות במתכון פסטה. אם פועל אחרי שלילה אינו ברור, הדפדפן בודק שוב את ההקלטה.'
+    : 'אותה הקלטה, עם מצרכי המתכון ובלעדיהם. הקול והתמלילים נשארים בלשונית.';
   el('ingredients').textContent=manifest.recipes[el('recipe').value].join(', ');
 }
 el('recipe').onchange=()=>{ clearOutputs();showIngredients();void warm(++generation); };
@@ -116,6 +170,41 @@ el('load').onclick=async()=>{
 };
 el('cancel').onclick=()=>{erase();status('ההורדה בוטלה.');};
 el('erase').onclick=erase;
+async function finishActionCheck(first, pcm, id, stopTime, displayMs) {
+  const verbs=manifest.actions;
+  const needsRetry=suspect(first.text,verbs).length>0;
+  let finalText=first.text, clips=0, failed=false;
+  if(needsRetry) {
+    status('בודק את הפועל מול ההקלטה…');
+    try {
+      await openWorker('hints-pasta-actions');
+      if(id!==generation)return;
+      const retry=await request({type:'transcribe',pcm});
+      if(id!==generation)return;
+      if(retry.inputSha256!==first.inputSha256)throw Error('הקלטים אינם תואמים.');
+      finalText=reconcile(first.text,retry.text,verbs).text;
+      finalText=await checkWindows(finalText,first,verbs,pcm,async cut=>{
+        if(id!==generation)throw Error('הבדיקה הופסקה.');
+        clips++;
+        return (await request({type:'transcribe',pcm:cut})).text;
+      });
+    } catch {
+      failed=true;
+    }
+  }
+  if(id!==generation)return;
+  el('plain').textContent=finalText.trim()||'(לא זוהה דיבור)';
+  await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
+  if(id!==generation)return;
+  const finalMs=Math.round(performance.now()-stopTime);
+  el('timing').textContent='עד לתמלול ראשוני: '+displayMs+' מ״ש. עד לסיום הבדיקה: '+finalMs+' מ״ש. '+
+    (failed?'הבדיקה החוזרת נקטעה. מוצג התמלול האחרון שהתקבל.':
+      needsRetry?'בוצע פענוח חוזר. מספר חלונות קצרים שנבדקו: '+clips+'.':'לא נדרש פענוח חוזר.');
+  offerClarification(finalText,id);
+  const done='הבדיקה הסתיימה. אפשר להקליט שוב או להחליף מתכון.';
+  if(needsRetry) await warm(id,done);
+  else {state('ready');status(done);}
+}
 async function compare(blob, stopTime, id) {
   state('working');status('מתמלל עם רמזי המתכון…');
   try {
@@ -129,13 +218,15 @@ async function compare(blob, stopTime, id) {
       const channel=decoded.getChannelData(c);
       for(let i=0;i<pcm.length;i++)pcm[i]+=channel[i]/decoded.numberOfChannels;
     }
-    const withHints=await request({type:'transcribe',pcm});
+    const actions=el('recipe').value==='pasta';
+    const withHints=await request({type:'transcribe',pcm,withTiming:actions});
     if(id!==generation)return;
     el('hinted').textContent=withHints.text.trim()||'(לא זוהה דיבור)';
     // Two animation frames provide a proxy for first visible text on the foreground tab.
     await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));
     if(id!==generation)return;
     const displayMs=Math.round(performance.now()-stopTime);
+    if(actions){await finishActionCheck(withHints,pcm,id,stopTime,displayMs);return;}
     status('משווה לאותה הקלטה בלי רמזים…');
     await openWorker('beam4');
     if(id!==generation)return;

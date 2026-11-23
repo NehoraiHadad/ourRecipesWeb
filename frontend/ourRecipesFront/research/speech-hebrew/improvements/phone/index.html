@@ -6,15 +6,19 @@
 *{box-sizing:border-box}body{max-width:36rem;margin:auto;padding:1.25rem;background:#faf9f4;color:#182c21;font:18px/1.5 system-ui,sans-serif}h1{font-size:1.65rem}h2{font-size:1.1rem}button,select,input{font:inherit;max-width:100%;padding:.45rem;border-radius:.35rem}button{background:#205341;color:white;border:0;margin:.25rem}button:disabled{background:#dfe4df;color:#505c54}p{margin:.6rem 0}label{display:block;margin:.5rem 0}progress{width:100%}output{display:block;min-height:1.4em}
 </style>
 <h1>בדיקת תמלול במטבח</h1>
-<p>אותה הקלטה, עם מצרכי המתכון ובלעדיהם. הקול והתמלילים נשארים בלשונית.</p>
+<p id="description">אותה הקלטה, עם מצרכי המתכון ובלעדיהם. הקול והתמלילים נשארים בלשונית.</p>
 <button id="load" disabled>טעינת מודל ללשונית (כ־72 מ״ב)</button><button id="cancel" disabled>ביטול ההורדה</button><button id="erase" disabled>מחיקה מהלשונית</button>
 <progress id="progress" hidden></progress>
-<label>מתכון <select id="recipe" disabled><option value="salad">סלט עדשים</option><option value="cookies">עוגיות קקאו</option></select></label>
+<label>מתכון <select id="recipe" disabled><option value="salad">סלט עדשים</option><option value="cookies">עוגיות קקאו</option><option value="pasta">פסטה ברוטב עגבניות</option></select></label>
 <p id="ingredients"></p>
 <button id="start" disabled>הקלטה</button><button id="stop" disabled>סיום ותמלול</button>
 <label>או לבחור קובץ שמע קצר <input id="file" type="file" accept="audio/*" disabled></label>
 <p id="status" role="status">בודק תמיכה…</p>
-<h2>עם רמזי המתכון</h2><output id="hinted"></output>
-<h2>בלי רמזים</h2><output id="plain"></output>
+<h2 id="first-label">עם רמזי המתכון</h2><output id="hinted"></output>
+<h2 id="second-label">בלי רמזים</h2><output id="plain"></output>
+<div id="clarify" hidden><p id="word-question"></p><button id="keep-word"></button><button id="replace-word"></button>
+<button id="other-word">מילה אחרת</button><form id="edit-word-form" hidden>
+<label>המילה שאמרתי <input id="edit-word" required maxlength="60" autocomplete="off"></label>
+<button type="submit">שמירת המילה</button></form></div>
 <p id="timing"></p><a href="NOTICE.txt">ייחוס ורישיונות</a>
 <script type="module" src="probe.mjs"></script></html>

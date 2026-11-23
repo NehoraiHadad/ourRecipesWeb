@@ -125,14 +125,14 @@ try {
     assert.equal(loaded.type, 'ready');
     loads.push({arm,ms:loaded.ms,heapBytes:loaded.wasmHeapBytes});
     for (const row of manifest.records) {
-      const result = await page.evaluate(async filename => {
+      const result = await page.evaluate(async ({filename,withTiming}) => {
         const response = await fetch('/audio/' + filename);
         if (!response.ok) throw new Error('Missing audio');
-        return window.ask({type: 'transcribe', pcm: new Float32Array(await response.arrayBuffer())});
-      }, row.filename);
+        return window.ask({type: 'transcribe', withTiming, pcm: new Float32Array(await response.arrayBuffer())});
+      }, {filename:row.filename,withTiming:process.env.SPEECH_TOKEN_TIMING==='1'});
       assert.equal(result.inputSha256, row.pcm_sha256);
       records.push({arm, filename: row.filename, text: result.text, ms: result.ms, pcm_sha256: result.inputSha256,
-        metrics: score(row.reference, result.text, [])});
+        ...(result.tokens ? {tokens:result.tokens,timestamps:result.timestamps} : {}), metrics: score(row.reference, result.text, [])});
     }
     await page.evaluate(() => window.worker.terminate());
     console.log('Completed', arm, manifest.records.length);

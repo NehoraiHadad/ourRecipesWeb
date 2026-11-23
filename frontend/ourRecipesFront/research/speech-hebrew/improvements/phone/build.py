@@ -41,9 +41,19 @@ vocab = (ROOT/'bpe.vocab').read_bytes()
 assert hashlib.sha256(vocab).hexdigest()=='9e6534080d66310a383c77dde1fa26e04c1c53162a7de734b559181a1d4a422e'
 add('hints/bpe.vocab',vocab)
 recipes=json.loads((BASE/'recipe-hints/recipes.json').read_text())
+recipes['pasta'] = ['רוטב', 'שמן', 'פלפל']
+actions = list(json.loads((BASE/'recipe-actions/hints.json').read_text()).values())
+for subdir, filename in [('recipe-actions','retry.mjs'), ('time-window','window.mjs')]:
+    dest = out/'improvements'/subdir
+    dest.mkdir(parents=True)
+    shutil.copyfile(BASE/subdir/filename, dest/filename)
+shutil.copyfile(BASE.parent/'metrics.mjs', out/'metrics.mjs')
 for recipe, nouns in recipes.items():
     forms=[prefix+noun for noun in nouns for prefix in ('','ה','ב','ל','מ','ו','וה')]
     add('hints/'+recipe+'.txt', ('\n'.join(forms)+'\n').encode())
-(out/'manifest.json').write_text(json.dumps(dict(assets=assets,recipes=recipes),ensure_ascii=False))
+action_forms = [prefix+verb for verb in actions for prefix in ('','ו')]
+negative_forms = [prefix+' '+verb for verb in actions for prefix in ('לא','עוד לא')]
+add('hints/pasta-actions.txt', (out/'hints/pasta.txt').read_bytes() + ('\n'.join(action_forms+negative_forms)+'\n').encode())
+(out/'manifest.json').write_text(json.dumps(dict(assets=assets,recipes=recipes,actions=actions),ensure_ascii=False))
 (out/'NOTICE.txt').write_text('Hebrew Zipformer2 and derived BPE vocabulary: Yakov Kolani / ivrit.ai, CC BY 4.0. https://huggingface.co/ivrit-ai/zipformer2-66m-streaming-he/tree/'+REV+'\nhttps://creativecommons.org/licenses/by/4.0/\nRuntime: @sherpaw/asr 0.3.0, Apache-2.0; see SHERPAW-LICENSE.txt.\n')
 print(out.resolve())

@@ -26,7 +26,7 @@ self.onmessage=async({data})=>{
     decodingMethod:data.arm==='beam4'?'modified_beam_search':'greedy_search',maxActivePaths:4,enableEndpoint:0,hotwordsFile:'',blankPenalty:0};
    if (data.arm.startsWith('hints-')) {
     const recipe = data.arm.slice('hints-'.length);
-    if (!['salad','cookies'].includes(recipe)) throw Error('Unknown recipe fixture');
+    if (!['salad','cookies','pasta','pasta-actions'].includes(recipe)) throw Error('Unknown recipe fixture');
     for (const file of ['bpe.vocab', recipe+'.txt']) {
       module.FS_createDataFile('/model',file,new Uint8Array(await readAsset('/hints/'+file)),true,false,false);
     }
@@ -48,7 +48,7 @@ self.onmessage=async({data})=>{
     stream.acceptWaveform(16000,pcm);stream.acceptWaveform(16000,new Float32Array(24000));stream.inputFinished();
     while(recognizer.isReady(stream))recognizer.decode(stream);
     const result=recognizer.getResult(stream);
-    self.postMessage({type:'result',text:result.text,ms:performance.now()-start,inputSha256,wasmHeapBytes:module.HEAPU8?.buffer.byteLength});
+    self.postMessage({type:'result',text:result.text,...(data.withTiming ? {tokens:result.tokens,timestamps:result.timestamps} : {}),ms:performance.now()-start,inputSha256,wasmHeapBytes:module.HEAPU8?.buffer.byteLength});
    }finally{stream.free();}
   }
  }catch(error){self.postMessage({type:'error',error:String(error?.stack||error)});}
