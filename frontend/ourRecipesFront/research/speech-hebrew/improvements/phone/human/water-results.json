@@ -1,0 +1,242 @@
+{
+  "browser": "156.0.8078.79",
+  "platform": "linux",
+  "physicalPhone": false,
+  "manifestSha256": "e70a434f2f4980d6ad1840d2209e3ba5414dd27f53f09be2dd1352779e3719e0",
+  "rejectedRequests": [],
+  "pageErrors": [],
+  "runs": [
+    {
+      "file": "5533611810171800056.wav",
+      "source_id": "1599",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "5533611810171800056.wav",
+        "file": "water-10dB-5533611810171800056.wav",
+        "snrDb": 10,
+        "sha256": "ea2cda55f3550d98fdc08d6404551b1146a67609f47ea90827298ea05aa5fe16"
+      },
+      "hinted": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותם התאמות שהיו בעבר.",
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותם התאמות שהיו בעבר.",
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 651,
+      "hintedDecodeMs": 612,
+      "plainDecodeMs": 593
+    },
+    {
+      "file": "5533611810171800056.wav",
+      "source_id": "1599",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "5533611810171800056.wav",
+        "file": "water-0dB-5533611810171800056.wav",
+        "snrDb": 0,
+        "sha256": "36c920ae9f67cc53fd15f5fe4f0680942ddda49323e128b8797812688843ec40"
+      },
+      "hinted": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כרגע, עדיין 300 של כמה טענות שהיו בעבר.",
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כרגע, עדיין 300 של כמה טענות שהיו בעבר.",
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 578,
+      "hintedDecodeMs": 546,
+      "plainDecodeMs": 544
+    },
+    {
+      "file": "18147387225164914689.wav",
+      "source_id": "1577",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "18147387225164914689.wav",
+        "file": "water-10dB-18147387225164914689.wav",
+        "snrDb": 10,
+        "sha256": "589e69a13bd7d2b276da06e841ee865e5c558901c481513a00d4f6647a2bd9a9"
+      },
+      "hinted": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 500,
+      "hintedDecodeMs": 475,
+      "plainDecodeMs": 467
+    },
+    {
+      "file": "18147387225164914689.wav",
+      "source_id": "1577",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "18147387225164914689.wav",
+        "file": "water-0dB-18147387225164914689.wav",
+        "snrDb": 0,
+        "sha256": "7980b0adf267a18f89b1bafcf2a8b0ec3deafd55a605ea5796dffd0baff9bc91"
+      },
+      "hinted": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה יודע.",
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה יודע.",
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 531,
+      "hintedDecodeMs": 489,
+      "plainDecodeMs": 465
+    },
+    {
+      "file": "671253326365773738.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "671253326365773738.wav",
+        "file": "water-10dB-671253326365773738.wav",
+        "snrDb": 10,
+        "sha256": "ce4eb2029e27e0dc28df797d26bc18aeb817dc22bc4c42a4f3552b2f698a59c4"
+      },
+      "hinted": {
+        "transcript": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זין.",
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זין.",
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1192,
+      "hintedDecodeMs": 1152,
+      "plainDecodeMs": 1121
+    },
+    {
+      "file": "671253326365773738.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "salad",
+      "mix": {
+        "sourceFile": "671253326365773738.wav",
+        "file": "water-0dB-671253326365773738.wav",
+        "snrDb": 0,
+        "sha256": "33abd66d52f749503cf7291ea285822d67e304fd02587e242983de14285e79c7"
+      },
+      "hinted": {
+        "transcript": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשמן זין.",
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשם ע\"ז.",
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "firstVisibleMs": 1394,
+      "hintedDecodeMs": 1358,
+      "plainDecodeMs": 1296
+    },
+    {
+      "file": "10012360550181770926.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "cookies",
+      "mix": {
+        "sourceFile": "10012360550181770926.wav",
+        "file": "water-10dB-10012360550181770926.wav",
+        "snrDb": 10,
+        "sha256": "ef3b926f5ca7e85d8b0c3adcdf1be01f31928f9d20b097f431346a3ca1c7d603"
+      },
+      "hinted": {
+        "transcript": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים מבלג'ין לסוכר ומגוון תבלינים עומדים.",
+        "wordErrors": 18,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים מבלג'יני, סוכר ומגוון תבלינים עמודים.",
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 2084,
+      "hintedDecodeMs": 2047,
+      "plainDecodeMs": 1915
+    },
+    {
+      "file": "10012360550181770926.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "cookies",
+      "mix": {
+        "sourceFile": "10012360550181770926.wav",
+        "file": "water-0dB-10012360550181770926.wav",
+        "snrDb": 0,
+        "sha256": "68402dd803f8b85702621b0d39aaba7908fd2ab921b7e736db541e26de729691"
+      },
+      "hinted": {
+        "transcript": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+        "wordErrors": 27,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+        "wordErrors": 27,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "firstVisibleMs": 1849,
+      "hintedDecodeMs": 1801,
+      "plainDecodeMs": 1911
+    }
+  ]
+}

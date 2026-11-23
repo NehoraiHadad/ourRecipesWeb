@@ -1,0 +1,470 @@
+{
+  "browser": "156.0.8078.79",
+  "platform": "linux",
+  "physicalPhone": false,
+  "manifestSha256": "e70a434f2f4980d6ad1840d2209e3ba5414dd27f53f09be2dd1352779e3719e0",
+  "rejectedRequests": [],
+  "pageErrors": [],
+  "runs": [
+    {
+      "file": "5533611810171800056.wav",
+      "source_id": "1599",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 704,
+      "hintedDecodeMs": 666,
+      "plainDecodeMs": 654
+    },
+    {
+      "file": "4087159111056890210.wav",
+      "source_id": "1599",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "wordErrors": 0,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 1223,
+      "hintedDecodeMs": 1185,
+      "plainDecodeMs": 1213
+    },
+    {
+      "file": "1083791105728656051.wav",
+      "source_id": "1599",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "אוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "אוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 666,
+      "hintedDecodeMs": 622,
+      "plainDecodeMs": 603
+    },
+    {
+      "file": "671253326365773738.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1146,
+      "hintedDecodeMs": 1105,
+      "plainDecodeMs": 1147
+    },
+    {
+      "file": "3933341704547636563.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 810,
+      "hintedDecodeMs": 789,
+      "plainDecodeMs": 744
+    },
+    {
+      "file": "7963201897982563627.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1575,
+      "hintedDecodeMs": 1528,
+      "plainDecodeMs": 1584
+    },
+    {
+      "file": "12767039217536701376.wav",
+      "source_id": "1654",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו נפתור ממכס.",
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו נפתור ממכס.",
+        "wordErrors": 2,
+        "referenceWords": 20,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 916,
+      "hintedDecodeMs": 875,
+      "plainDecodeMs": 962
+    },
+    {
+      "file": "9998010172575924808.wav",
+      "source_id": "1654",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס.",
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "wordErrors": 1,
+        "referenceWords": 20,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 933,
+      "hintedDecodeMs": 912,
+      "plainDecodeMs": 1012
+    },
+    {
+      "file": "18147387225164914689.wav",
+      "source_id": "1577",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 472,
+      "hintedDecodeMs": 434,
+      "plainDecodeMs": 464
+    },
+    {
+      "file": "15848500317962835492.wav",
+      "source_id": "1577",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "plain": {
+        "transcript": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "negationCountDelta": 0,
+        "ingredientMentions": null
+      },
+      "firstVisibleMs": 787,
+      "hintedDecodeMs": 752,
+      "plainDecodeMs": 803
+    },
+    {
+      "file": "10012360550181770926.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מעמד מטובלות בפשטות. והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מענק מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 2086,
+      "hintedDecodeMs": 2046,
+      "plainDecodeMs": 1673
+    },
+    {
+      "file": "15572944599586100683.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "firstVisibleMs": 1418,
+      "hintedDecodeMs": 1381,
+      "plainDecodeMs": 1239
+    },
+    {
+      "file": "16538192119906209361.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1264,
+      "hintedDecodeMs": 1235,
+      "plainDecodeMs": 1273
+    },
+    {
+      "file": "671253326365773738.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1183,
+      "hintedDecodeMs": 1142,
+      "plainDecodeMs": 1087
+    },
+    {
+      "file": "3933341704547636563.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 794,
+      "hintedDecodeMs": 764,
+      "plainDecodeMs": 742
+    },
+    {
+      "file": "7963201897982563627.wav",
+      "source_id": "1602",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1571,
+      "hintedDecodeMs": 1528,
+      "plainDecodeMs": 1606
+    },
+    {
+      "file": "10012360550181770926.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מנת מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מענק מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1718,
+      "hintedDecodeMs": 1680,
+      "plainDecodeMs": 1666
+    },
+    {
+      "file": "15572944599586100683.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 0
+      },
+      "firstVisibleMs": 1441,
+      "hintedDecodeMs": 1409,
+      "plainDecodeMs": 1349
+    },
+    {
+      "file": "16538192119906209361.wav",
+      "source_id": "1620",
+      "input": "file",
+      "recipe": "cookies",
+      "hinted": {
+        "transcript": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים, פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1218,
+      "hintedDecodeMs": 1171,
+      "plainDecodeMs": 1241
+    },
+    {
+      "file": "671253326365773738.wav",
+      "source_id": "1602",
+      "input": "microphone-replay",
+      "recipe": "salad",
+      "hinted": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "plain": {
+        "transcript": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "negationCountDelta": 0,
+        "ingredientMentions": 1
+      },
+      "firstVisibleMs": 1463,
+      "hintedDecodeMs": 1386,
+      "plainDecodeMs": 1248
+    }
+  ]
+}
