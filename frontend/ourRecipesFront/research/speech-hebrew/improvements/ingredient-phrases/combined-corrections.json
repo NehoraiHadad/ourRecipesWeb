@@ -1,0 +1,355 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "hints-cookies",
+      "ms": 2101.7000000029802,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c01",
+      "text": "עוד לא שמתי שמן זית, שמתי שמן קנו לה",
+      "ms": 533.7999999970198,
+      "pcm_sha256": "0657c29f014da8e417b49c42b226068e017c9e9b1b9a85b0eb90dc42155d64b5",
+      "metrics": {
+        "normalizedReference": "עוד לא שמתי שמן זית שמתי שמן קנולה",
+        "normalizedHypothesis": "עוד לא שמתי שמן זית שמתי שמן קנו לה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c01",
+      "text": "עוד לא שמתי שמן זית. שמתי שמן קנו לה.",
+      "ms": 552.8999999985099,
+      "pcm_sha256": "4ae1c41de00b9671e09a154913d71fcd9d1877ddd7017076f640ecb00c27427d",
+      "metrics": {
+        "normalizedReference": "עוד לא שמתי שמן זית שמתי שמן קנולה",
+        "normalizedHypothesis": "עוד לא שמתי שמן זית שמתי שמן קנו לה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c01",
+      "text": "עוד לא שמתי שמן זית, שמתי שמן קנולה",
+      "ms": 376.5,
+      "pcm_sha256": "ebbd79c2d9d22cd31113868d73bd0785cc64399470519fc449cbc292c2ea3ccb",
+      "metrics": {
+        "normalizedReference": "עוד לא שמתי שמן זית שמתי שמן קנולה",
+        "normalizedHypothesis": "עוד לא שמתי שמן זית שמתי שמן קנולה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c02",
+      "text": "רגע, זה פלפל אדום. פלפל שחור עוד לא הוספתי.",
+      "ms": 436,
+      "pcm_sha256": "a08cf7a89c184b017f14e5d546155a1efac2549977b3e84a3234d7d383c58115",
+      "metrics": {
+        "normalizedReference": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "normalizedHypothesis": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c02",
+      "text": "רגע, זה פלפל אדום. פלפל שחור עוד לא הוספתי.",
+      "ms": 432.8999999985099,
+      "pcm_sha256": "565a7d4bb369f992eb95ab3157fd155b493deb6aca3c99e3819a6c9673c442d2",
+      "metrics": {
+        "normalizedReference": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "normalizedHypothesis": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c02",
+      "text": "רגע, זה פלפל אדום, פלפל שחור, עוד לא הוספתי.",
+      "ms": 417,
+      "pcm_sha256": "2b18a9e7e86b7de41a6122518aad711631c1a7f117390a3a37f06aa997ca1251",
+      "metrics": {
+        "normalizedReference": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "normalizedHypothesis": "רגע זה פלפל אדום פלפל שחור עוד לא הוספתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c03",
+      "text": "שמתי שמן קנולה במקום חמאה.",
+      "ms": 319,
+      "pcm_sha256": "26990b6436f415f36a8398c193f4adee9a8ce551f84b832f944061c5733fe4bb",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום חמאה",
+        "normalizedHypothesis": "שמתי שמן קנולה במקום חמאה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c03",
+      "text": "שמתי שמן קנולה במקום חמאה.",
+      "ms": 315.09999999403954,
+      "pcm_sha256": "3f9edde79ec62b026fab6012c7f53f6fc32b4f67229f1e370cf3821ae1d663be",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום חמאה",
+        "normalizedHypothesis": "שמתי שמן קנולה במקום חמאה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c03",
+      "text": "שמתי שמן, קנו לה במקום חמאה.",
+      "ms": 307.3999999985099,
+      "pcm_sha256": "eeba5472326148fa628c3706d84e3ab12933dd23d13780d926869033ed74142f",
+      "metrics": {
+        "normalizedReference": "שמתי שמן קנולה במקום חמאה",
+        "normalizedHypothesis": "שמתי שמן קנו לה במקום חמאה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c04",
+      "text": "לא רוטב עגבניות, רוטב סויה",
+      "ms": 340.20000000298023,
+      "pcm_sha256": "eb83f35d57343e86cef0d43ce9d3494561f783474924c969f099087ea28c12f6",
+      "metrics": {
+        "normalizedReference": "לא רוטב עגבניות רוטב סויה",
+        "normalizedHypothesis": "לא רוטב עגבניות רוטב סויה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c04",
+      "text": "לא הוט יווניות, רוטב סויה.",
+      "ms": 335.6000000014901,
+      "pcm_sha256": "4b9f293b82a2bdff4fac9b526657acdfa3e909cf0b37c3886ac949209d228074",
+      "metrics": {
+        "normalizedReference": "לא רוטב עגבניות רוטב סויה",
+        "normalizedHypothesis": "לא הוט יווניות רוטב סויה",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 5,
+        "characterErrors": 5,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c04",
+      "text": "לא רוטב עגבניות, רוטב סויה",
+      "ms": 222.60000000149012,
+      "pcm_sha256": "02c5cf06fd9de06f22361b03be86e5826f80713d8379156e85b46fa35df800fb",
+      "metrics": {
+        "normalizedReference": "לא רוטב עגבניות רוטב סויה",
+        "normalizedHypothesis": "לא רוטב עגבניות רוטב סויה",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c05",
+      "text": "הוספתי רוטב סויה וקצת פלפל לבן.",
+      "ms": 335.29999999701977,
+      "pcm_sha256": "6e65b5cae8947ea9ef5917eadd3cc7dbdbdc12a2f7aa209a6ba9033b224aebe6",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "normalizedHypothesis": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c05",
+      "text": "הוספתי רוטב סויה וקצת פלפל לבן.",
+      "ms": 306.29999999701977,
+      "pcm_sha256": "a9c0eaaed9db7daf2226de4c1944eb56a005062b22d11f957ebc5c308d4cb318",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "normalizedHypothesis": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c05",
+      "text": "הוספתי רוטב סויה וקצת פלפל לבן.",
+      "ms": 309.5,
+      "pcm_sha256": "bb4fc7fd0c43fe4960dbee8d3d1478db74301c96da8d76919d274636893111fa",
+      "metrics": {
+        "normalizedReference": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "normalizedHypothesis": "הוספתי רוטב סויה וקצת פלפל לבן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-c06",
+      "text": "אמרתי זיתים, לא הוספתי שמן",
+      "ms": 304.3999999985099,
+      "pcm_sha256": "1f610155c02a46a1efb22962f41c1854ad454afc8ec188568a54c524cf3dbdf5",
+      "metrics": {
+        "normalizedReference": "אמרתי זיתים לא הוספתי שמן",
+        "normalizedHypothesis": "אמרתי זיתים לא הוספתי שמן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-c06",
+      "text": "אמרתי זיתים, לא הוספתי שמן",
+      "ms": 323.6000000014901,
+      "pcm_sha256": "d730d7abce5f984d347d35fe7905ac7615653178a1f40e64714fcc6cb1906721",
+      "metrics": {
+        "normalizedReference": "אמרתי זיתים לא הוספתי שמן",
+        "normalizedHypothesis": "אמרתי זיתים לא הוספתי שמן",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 5,
+        "characterErrors": 0,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-c06",
+      "text": "אמרתי, זה איתיים, לא הוספתי שמן",
+      "ms": 331,
+      "pcm_sha256": "e83fbe6bd7b349b46d90fde904239444f08519a359d86a299a341c7e36e4981e",
+      "metrics": {
+        "normalizedReference": "אמרתי זיתים לא הוספתי שמן",
+        "normalizedHypothesis": "אמרתי זה איתיים לא הוספתי שמן",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 5,
+        "characterErrors": 3,
+        "referenceCharacters": 21,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

@@ -102,7 +102,12 @@ try {
   });
   const page = await context.newPage();
   await page.goto(origin);
-  for (const arm of (recipeHints ? ['greedy','beam4','hints-salad','hints-cookies'] : hebrewExport ? ['whisper-he'] : whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
+  let arms = recipeHints ? ['greedy','beam4','hints-salad','hints-cookies'] : hebrewExport ? ['whisper-he'] : whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'];
+  if (process.env.SPEECH_HINT_ARM) {
+    assert(recipeHints && ['hints-salad','hints-cookies'].includes(process.env.SPEECH_HINT_ARM));
+    arms = [process.env.SPEECH_HINT_ARM];
+  }
+  for (const arm of arms) {
     const loaded = await page.evaluate(async arm => {
       window.worker = new Worker('/worker.mjs', {type: 'module'});
       window.ask = payload => new Promise((resolve, reject) => {

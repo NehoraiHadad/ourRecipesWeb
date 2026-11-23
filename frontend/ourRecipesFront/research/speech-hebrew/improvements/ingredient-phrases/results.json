@@ -1,0 +1,4588 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "greedy",
+      "ms": 2445.3000000044703,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "beam4",
+      "ms": 1988.8000000044703,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-salad",
+      "ms": 2167.7000000029802,
+      "heapBytes": 536870912
+    },
+    {
+      "arm": "hints-cookies",
+      "ms": 2034.0999999940395,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "671253326365773738-clean",
+      "text": "המטבח המיוורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+      "ms": 1010.6999999955297,
+      "pcm_sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 21,
+        "characterErrors": 1,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "671253326365773738-10",
+      "text": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד לחזיר בועסת שימוש נרחב בשמן זין.",
+      "ms": 830.5,
+      "pcm_sha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד לחזיר בועסת שימוש נרחב בשמן זין",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "characterErrors": 8,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "671253326365773738-0",
+      "text": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשם עמד ז'",
+      "ms": 892.7999999970198,
+      "pcm_sha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד באותו שימוש נרחב בשם עמד ז",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 14,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3933341704547636563-clean",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+      "ms": 484.3999999985099,
+      "pcm_sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 32,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3933341704547636563-10",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז, חומוס הלחם יעקב לבשר וכזה שימוש מיכל בשמן זית.",
+      "ms": 518.6000000014901,
+      "pcm_sha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז חומוס הלחם יעקב לבשר וכזה שימוש מיכל בשמן זית",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 21,
+        "characterErrors": 42,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3933341704547636563-0",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, שמחים להשקע את הבשר כזה שימוש ניחד בשמן זית.",
+      "ms": 514.8999999985099,
+      "pcm_sha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במיוחד שמחים להשקע את הבשר כזה שימוש ניחד בשמן זית",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 21,
+        "characterErrors": 47,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7963201897982563627-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1142,
+      "pcm_sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7963201897982563627-10",
+      "text": "המטווח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1175.1999999955297,
+      "pcm_sha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטווח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 21,
+        "characterErrors": 2,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7963201897982563627-0",
+      "text": "המזרח המיורי מוזה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב קשה לזית",
+      "ms": 1127.6999999955297,
+      "pcm_sha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המזרח המיורי מוזה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב קשה לזית",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "10012360550181770926-clean",
+      "text": "כעת זמין באופן נחרב, בכל רחבי הארכי פלג המטבח הג'וואני מאופיין במגוון מענק מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים בלבל צ'ילי סוכר ומגוון תבלינים האומותי",
+      "ms": 1233.7000000029802,
+      "pcm_sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נחרב בכל רחבי הארכי פלג המטבח הג וואני מאופיין במגוון מענק מטובלות בפשטות והטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים בלבל צ ילי סוכר ומגוון תבלינים האומותי",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "characterErrors": 38,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "10012360550181770926-10",
+      "text": "כעת זמין באופן אחד, כל רחבי האפיד המטבח הג'ואני מאופיין במגוון ממת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים מבלג'יני, סוכר ומגוון תבלינים עומדים.",
+      "ms": 1237,
+      "pcm_sha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אחד כל רחבי האפיד המטבח הג ואני מאופיין במגוון ממת מטובלות בפשטות בטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים מבלג יני סוכר ומגוון תבלינים עומדים",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "characterErrors": 48,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "10012360550181770926-0",
+      "text": "כעת זמין באופן כללי המטבח הג'וואלי הוא אופיין עגווני רק מטובלות בפשטות. הג'וולסן עם האזינים בוטנים מספרים מגוון דולר.",
+      "ms": 1240.3999999985099,
+      "pcm_sha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן כללי המטבח הג וואלי הוא אופיין עגווני רק מטובלות בפשטות הג וולסן עם האזינים בוטנים מספרים מגוון דולר",
+        "exact": false,
+        "wordErrors": 28,
+        "referenceWords": 34,
+        "characterErrors": 97,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15572944599586100683-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח",
+      "ms": 955.1999999955297,
+      "pcm_sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכיבלג המטבח הג יבאני מאופיין במגוון מונח",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "characterErrors": 109,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15572944599586100683-10",
+      "text": "כעת זמין באופן מרחק, בכל רחבי הארכי דלק, המטבח הזוזני מאוחייין במגוון מונח.",
+      "ms": 942.2999999970198,
+      "pcm_sha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן מרחק בכל רחבי הארכי דלק המטבח הזוזני מאוחייין במגוון מונח",
+        "exact": false,
+        "wordErrors": 28,
+        "referenceWords": 34,
+        "characterErrors": 114,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "15572944599586100683-0",
+      "text": "כעת זנים באופן מוחלט, בחורך הווד האר תדלק. המטבח הזדן מאוחיי במגוון מונח.",
+      "ms": 1041.5,
+      "pcm_sha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זנים באופן מוחלט בחורך הווד האר תדלק המטבח הזדן מאוחיי במגוון מונח",
+        "exact": false,
+        "wordErrors": 31,
+        "referenceWords": 34,
+        "characterErrors": 129,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16538192119906209361-clean",
+      "text": "כעת זמין באופן נרחב בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים ובוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+      "ms": 860.9000000059605,
+      "pcm_sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל החוויה הכי פלאג המטבח הג מאני מאופיין במגוון מנות מטובלות בפשטות והטעמים הבולטים שהג פאזים אוהבים ובוטנים פלפלצ ילי סוכר ומגוון תמנינים ארמוטיים",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "characterErrors": 41,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16538192119906209361-10",
+      "text": "כעת זמין באופן אחד, חול חדש, את הרי גם מטבח הג'מאני מאופיין במגוון מעלות מטובלות בפשטות, והטעמים הבולטים של הג'פרסם רבים ובפנים, פולפן צ'ילי, סוכר ומגוון תמנונים הרמוטי.",
+      "ms": 908.5,
+      "pcm_sha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אחד חול חדש את הרי גם מטבח הג מאני מאופיין במגוון מעלות מטובלות בפשטות והטעמים הבולטים של הג פרסם רבים ובפנים פולפן צ ילי סוכר ומגוון תמנונים הרמוטי",
+        "exact": false,
+        "wordErrors": 23,
+        "referenceWords": 34,
+        "characterErrors": 64,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16538192119906209361-0",
+      "text": "כעת זמין באופן אישי, זה היה הכי טוב במחבש התימני מאפיין במגוון מעודות מטובלות בפשטות, והטעמים הבולטים של הדיפרת הנרדים לנחל צ'ילי סוכר ומגוון תמונה.",
+      "ms": 918.5,
+      "pcm_sha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אישי זה היה הכי טוב במחבש התימני מאפיין במגוון מעודות מטובלות בפשטות והטעמים הבולטים של הדיפרת הנרדים לנחל צ ילי סוכר ומגוון תמונה",
+        "exact": false,
+        "wordErrors": 23,
+        "referenceWords": 34,
+        "characterErrors": 82,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p01-clean",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 297.40000000596046,
+      "pcm_sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p01-10",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 288.8999999985099,
+      "pcm_sha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p01-0",
+      "text": "רגע, קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+      "ms": 283.09999999403954,
+      "pcm_sha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p02-clean",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 310.79999999701977,
+      "pcm_sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p02-10",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 298.59999999403954,
+      "pcm_sha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p02-0",
+      "text": "שמתי טיפל שחור, סליחה, פיזל אדום",
+      "ms": 293.5,
+      "pcm_sha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי טיפל שחור סליחה פיזל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-clean",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי",
+      "ms": 294.1000000014901,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-10",
+      "text": "אתה שוב כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 294.8999999985099,
+      "pcm_sha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "אתה שוב כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-0",
+      "text": "הפסוק כבר קטשתי ואת הגזל רק קילכתי.",
+      "ms": 292.30000000447035,
+      "pcm_sha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "הפסוק כבר קטשתי ואת הגזל רק קילכתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-clean",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 311,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-10",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 300.5,
+      "pcm_sha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-0",
+      "text": "במקום סוכה וספתי דבש, זה בסדר",
+      "ms": 331,
+      "pcm_sha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה וספתי דבש זה בסדר",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p05-clean",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 292.69999999552965,
+      "pcm_sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p05-10",
+      "text": "חצי כפית מלח, לא חצי כף",
+      "ms": 294.5,
+      "pcm_sha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p05-0",
+      "text": "חצי כפית מלח, לא חצי כף",
+      "ms": 296.8999999985099,
+      "pcm_sha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-clean",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 383.79999999701977,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-10",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 430.69999999552965,
+      "pcm_sha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-0",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 404.19999999552965,
+      "pcm_sha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5003424012824870622-clean",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "ms": 507,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "5003424012824870622-5",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות",
+      "ms": 511.1000000014901,
+      "pcm_sha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17171468810841175967-clean",
+      "text": "בגלל הטופולוגיה התת-מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 574.1999999955297,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית הזה מחוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17171468810841175967-5",
+      "text": "אני לא אטופרגיה תת-מינית, אז היום חוזר מפה בכמה קטעי נימוקים, וזה גם היה נימוקים לנגד צלע",
+      "ms": 533.3999999985099,
+      "pcm_sha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "אני לא אטופרגיה תת מינית אז היום חוזר מפה בכמה קטעי נימוקים וזה גם היה נימוקים לנגד צלע",
+        "exact": false,
+        "wordErrors": 18,
+        "referenceWords": 18,
+        "characterErrors": 44,
+        "referenceCharacters": 86,
+        "negationCountDelta": 1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3625786575614857833-clean",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס.",
+      "ms": 903.3999999985099,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סאג איטריוס",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3625786575614857833-5",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סאג איטריוס",
+      "ms": 941.1000000014901,
+      "pcm_sha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סאג איטריוס",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 18,
+        "characterErrors": 8,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17425601106312478953-clean",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 379,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17425601106312478953-5",
+      "text": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב פרווה הבשר בעולמות",
+      "ms": 384.5,
+      "pcm_sha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב פרווה הבשר בעולמות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 9,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3445988181539980871-clean",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה אדון עודי מים וצופות תקלון",
+      "ms": 782.1999999955297,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה אדון עודי מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 12,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "3445988181539980871-5",
+      "text": "רוחות הזאת ברד ושקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם שפות רעמים, שפות תור נאדון בדי מים ושפות תקלות",
+      "ms": 751.1999999955297,
+      "pcm_sha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד ושקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם שפות רעמים שפות תור נאדון בדי מים ושפות תקלות",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 24,
+        "characterErrors": 18,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "11245875030612691124-clean",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא",
+      "ms": 983.6000000014901,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וכה פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "11245875030612691124-5",
+      "text": "לחם עם שמן זית, עגבניה וכל תוספת זמינה כול, הנה, תונה וחוף פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איה",
+      "ms": 931.2000000029802,
+      "pcm_sha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כול הנה תונה וחוף פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ איה",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 81,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17103514183588460100-clean",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 747.8999999985099,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17103514183588460100-5",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 787.6999999955297,
+      "pcm_sha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9854665193577160905-clean",
+      "text": "תבשיל קרעי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+      "ms": 479.20000000298023,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרעי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 13,
+        "characterErrors": 6,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "9854665193577160905-5",
+      "text": "תבשיל קרעי ובמנה מבוססת על תבלינים והסבי תרגון, בנוסף לבשר או ירקות",
+      "ms": 474.79999999701977,
+      "pcm_sha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרעי ובמנה מבוססת על תבלינים והסבי תרגון בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 10,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17616472487509301569-clean",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 485.20000000298023,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "17616472487509301569-5",
+      "text": "20% מהמים שנשפכים להערות כדור הארץ, כי הם עושים הגינה, אז הוא עושה",
+      "ms": 508,
+      "pcm_sha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים להערות כדור הארץ כי הם עושים הגינה אז הוא עושה",
+        "exact": false,
+        "wordErrors": 9,
+        "referenceWords": 10,
+        "characterErrors": 27,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13665306490465162429-clean",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+      "ms": 572.8999999985099,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "13665306490465162429-5",
+      "text": "בנוסף, תקף כל יצור שנכנס למים, אפילו דינוזאור ענק, כמו התירקס, לא יכול היה לעמוד מולו",
+      "ms": 619.5,
+      "pcm_sha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו התירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 18,
+        "characterErrors": 4,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16399478934663246649-clean",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+      "ms": 730,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "16399478934663246649-5",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים לשתי רגליהם אחוריות כמו טירץ.",
+      "ms": 716.7999999970198,
+      "pcm_sha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים לשתי רגליהם אחוריות כמו טירץ",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7220901400489669549-clean",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות. הם היו אדמה, מים אוויר ואש.",
+      "ms": 933.1999999955297,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "7220901400489669549-5",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות. הם היו אדמה, מים אוויר ואש",
+      "ms": 893.3999999985099,
+      "pcm_sha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "671253326365773738-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+      "ms": 1104.1000000014901,
+      "pcm_sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "671253326365773738-10",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זין.",
+      "ms": 925.7999999970198,
+      "pcm_sha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד בחזיר בועשי שימוש נרחב בשמן זין",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "671253326365773738-0",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשם ע\"ז.",
+      "ms": 899.1000000014901,
+      "pcm_sha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד באותו שימוש נרחב בשם ע ז",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 13,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3933341704547636563-clean",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+      "ms": 588.8000000044703,
+      "pcm_sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 32,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3933341704547636563-10",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית.",
+      "ms": 553.8000000044703,
+      "pcm_sha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 21,
+        "characterErrors": 44,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3933341704547636563-0",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, נכון? זה בשר וכוצא שימוש ניחד בשמן זית.",
+      "ms": 559.1000000014901,
+      "pcm_sha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במיוחד נכון זה בשר וכוצא שימוש ניחד בשמן זית",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 21,
+        "characterErrors": 47,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7963201897982563627-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1278.1000000014901,
+      "pcm_sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7963201897982563627-10",
+      "text": "המטווח המיוורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1269.5,
+      "pcm_sha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטווח המיוורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 21,
+        "characterErrors": 3,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7963201897982563627-0",
+      "text": "המזרח המיורי, מוזה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב קשה לזית.",
+      "ms": 1259.9000000059605,
+      "pcm_sha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המזרח המיורי מוזה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב קשה לזית",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "10012360550181770926-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מענק מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+      "ms": 1460.3999999985099,
+      "pcm_sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכי פלג המטבח הג וואני מאופיין במגוון מענק מטובלות בפשטות והטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים בלבלצ ילי סוכר ומגוון תבלינים ארומותי",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "characterErrors": 34,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "10012360550181770926-10",
+      "text": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים מבלג'יני, סוכר ומגוון תבלינים עמודים.",
+      "ms": 1489.8000000044703,
+      "pcm_sha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אחד כל רחבי האפיפיינים המטבח הג וואני מאופיין במגוון מרת מטובלות בפשטות בטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים מבלג יני סוכר ומגוון תבלינים עמודים",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "characterErrors": 51,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "10012360550181770926-0",
+      "text": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+      "ms": 1378.5,
+      "pcm_sha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן כללי המטבח הג וואלי הוא הגווני רק מטובלות בפשטות הג וול סני מאזינים בוטנים",
+        "exact": false,
+        "wordErrors": 27,
+        "referenceWords": 34,
+        "characterErrors": 106,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15572944599586100683-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+      "ms": 1161.8999999985099,
+      "pcm_sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכיבלג המטבח הג יבאני מאופיין במגוון מונח",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "characterErrors": 109,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15572944599586100683-10",
+      "text": "כעת זמין באופן מרחק, בכל רחבי הארכי דלג, המטבח, הזוזני מאוחייין במגוון מונח.",
+      "ms": 1144.3999999985099,
+      "pcm_sha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן מרחק בכל רחבי הארכי דלג המטבח הזוזני מאוחייין במגוון מונח",
+        "exact": false,
+        "wordErrors": 28,
+        "referenceWords": 34,
+        "characterErrors": 113,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "15572944599586100683-0",
+      "text": "כעת זנים באופן מיוחד, בחורף הזד האר תדלק. המטבח הזה אני אוכל במגוון מונח.",
+      "ms": 1084.3999999985099,
+      "pcm_sha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זנים באופן מיוחד בחורף הזד האר תדלק המטבח הזה אני אוכל במגוון מונח",
+        "exact": false,
+        "wordErrors": 31,
+        "referenceWords": 34,
+        "characterErrors": 129,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16538192119906209361-clean",
+      "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+      "ms": 1084.8999999985099,
+      "pcm_sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל החוויה הכי פלאג המטבח הג מאני מאופיין במגוון מנות מטובלות בפשטות והטעמים הבולטים שהג פאזים אוהבים הם בוטנים פלפלצ ילי סוכר ומגוון תמנינים ארמוטיים",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "characterErrors": 39,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16538192119906209361-10",
+      "text": "כעת זמין באופן נרחב, חול חדש, הפרק המטווח הג'מאני מאופיין במגוון מעלות מטובלות בפשטות, והטעמים הבולטים של הג'פרסם רבים ובפנים, פולפן צ'ילי, סוכר ומגוון תמנונים הרמוטים.",
+      "ms": 956.8999999985099,
+      "pcm_sha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב חול חדש הפרק המטווח הג מאני מאופיין במגוון מעלות מטובלות בפשטות והטעמים הבולטים של הג פרסם רבים ובפנים פולפן צ ילי סוכר ומגוון תמנונים הרמוטים",
+        "exact": false,
+        "wordErrors": 20,
+        "referenceWords": 34,
+        "characterErrors": 61,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16538192119906209361-0",
+      "text": "כעת זמין באופן אישי, שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות, והטעמים הבולטים של הדיפרת הנרדים לנחם, הוא בן צ'ילי סוכר ומגוון תמונים אמיתי.",
+      "ms": 978.8000000044703,
+      "pcm_sha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אישי שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות והטעמים הבולטים של הדיפרת הנרדים לנחם הוא בן צ ילי סוכר ומגוון תמונים אמיתי",
+        "exact": false,
+        "wordErrors": 23,
+        "referenceWords": 34,
+        "characterErrors": 78,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p01-clean",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 313.1000000014901,
+      "pcm_sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p01-10",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 305.20000000298023,
+      "pcm_sha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p01-0",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 302.59999999403954,
+      "pcm_sha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p02-clean",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 309.8999999985099,
+      "pcm_sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p02-10",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 306.19999999552965,
+      "pcm_sha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p02-0",
+      "text": "שמתי טיפל שחור, סליחה, פיזל אדום",
+      "ms": 328.70000000298023,
+      "pcm_sha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי טיפל שחור סליחה פיזל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p03-clean",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 315.69999999552965,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p03-10",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 321.3999999985099,
+      "pcm_sha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "noa-p03-0",
+      "text": "הפסוק כבר קטשתי, ואת הגזל רק קילכתי.",
+      "ms": 320.20000000298023,
+      "pcm_sha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "הפסוק כבר קטשתי ואת הגזל רק קילכתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p04-clean",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 301,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p04-10",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 305.5,
+      "pcm_sha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p04-0",
+      "text": "במקום סוכה הוספתי דבש, זה בסדר",
+      "ms": 324.29999999701977,
+      "pcm_sha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה הוספתי דבש זה בסדר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p05-clean",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 312,
+      "pcm_sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p05-10",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 316.70000000298023,
+      "pcm_sha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "liat-p05-0",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 310.40000000596046,
+      "pcm_sha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p10-clean",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 414.20000000298023,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p10-10",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 419.70000000298023,
+      "pcm_sha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "omer-p10-0",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 432.20000000298023,
+      "pcm_sha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5003424012824870622-clean",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 526,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "5003424012824870622-5",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות.",
+      "ms": 523.6000000014901,
+      "pcm_sha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17171468810841175967-clean",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 537.8999999985099,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17171468810841175967-5",
+      "text": "אני לא אטופולוגיה תת-מינית, אז היום חוזר מפה בכמה קטעי נימוקים, וזה גם היה נימוקים לנגד סליחה.",
+      "ms": 542.2000000029802,
+      "pcm_sha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "אני לא אטופולוגיה תת מינית אז היום חוזר מפה בכמה קטעי נימוקים וזה גם היה נימוקים לנגד סליחה",
+        "exact": false,
+        "wordErrors": 18,
+        "referenceWords": 18,
+        "characterErrors": 42,
+        "referenceCharacters": 86,
+        "negationCountDelta": 1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3625786575614857833-clean",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 931.8999999985099,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3625786575614857833-5",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית, סגיטריוס.",
+      "ms": 1008,
+      "pcm_sha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17425601106312478953-clean",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 430.6000000014901,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17425601106312478953-5",
+      "text": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+      "ms": 420.6000000014901,
+      "pcm_sha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 11,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3445988181539980871-clean",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 877.9000000059605,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "3445988181539980871-5",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם שפות רעמים, שפות טור נאדון בדי מים ושפות תקלות.",
+      "ms": 870.8999999985099,
+      "pcm_sha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם שפות רעמים שפות טור נאדון בדי מים ושפות תקלות",
+        "exact": false,
+        "wordErrors": 9,
+        "referenceWords": 24,
+        "characterErrors": 16,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11245875030612691124-clean",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1109.3999999985099,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "11245875030612691124-5",
+      "text": "לחם עם שמן זית, עגבניה וכל תוספת זה מנהג הכל, הנה, תמונה וחוף פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איהא.",
+      "ms": 1065.9000000059605,
+      "pcm_sha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זה מנהג הכל הנה תמונה וחוף פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ איהא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 82,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17103514183588460100-clean",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+      "ms": 868.8999999985099,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17103514183588460100-5",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 860.3999999985099,
+      "pcm_sha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9854665193577160905-clean",
+      "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+      "ms": 508.8999999985099,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 4,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "9854665193577160905-5",
+      "text": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון, בנוסף לבשר או ירקות",
+      "ms": 519.2999999970198,
+      "pcm_sha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 9,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17616472487509301569-clean",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 535.5999999940395,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "17616472487509301569-5",
+      "text": "20% מהמים שנשפכים להערות כדור האזר, כי הם עושים הגינה, מה זה אומר?",
+      "ms": 519.2000000029802,
+      "pcm_sha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים להערות כדור האזר כי הם עושים הגינה מה זה אומר",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 10,
+        "characterErrors": 28,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13665306490465162429-clean",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+      "ms": 630.2999999970198,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "13665306490465162429-5",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק, כמו התירקס, לא יכול היה לעמוד מולו",
+      "ms": 638.7999999970198,
+      "pcm_sha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו התירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16399478934663246649-clean",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טיר אקס.",
+      "ms": 703.6000000014901,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טיר אקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 3,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "16399478934663246649-5",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת.",
+      "ms": 769.4000000059605,
+      "pcm_sha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7220901400489669549-clean",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים, אוויר ואש.",
+      "ms": 972,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "7220901400489669549-5",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים עבירות ואש.",
+      "ms": 981.8999999985099,
+      "pcm_sha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים עבירות ואש",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 9,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "671253326365773738-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+      "ms": 1186,
+      "pcm_sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "671253326365773738-10",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זין.",
+      "ms": 880.5,
+      "pcm_sha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד בחזיר בועשי שימוש נרחב בשמן זין",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "671253326365773738-0",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשמן זין.",
+      "ms": 963.5,
+      "pcm_sha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד באותו שימוש נרחב בשמן זין",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 21,
+        "characterErrors": 10,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3933341704547636563-clean",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+      "ms": 544.2999999970198,
+      "pcm_sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 32,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3933341704547636563-10",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית.",
+      "ms": 524.2000000029802,
+      "pcm_sha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 21,
+        "characterErrors": 44,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3933341704547636563-0",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, נכון? שמחנו לעשות את הבשר הוא כזה שימוש ניחד בשמן זית.",
+      "ms": 544,
+      "pcm_sha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במיוחד נכון שמחנו לעשות את הבשר הוא כזה שימוש ניחד בשמן זית",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 21,
+        "characterErrors": 44,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "7963201897982563627-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1281.1000000014901,
+      "pcm_sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "7963201897982563627-10",
+      "text": "המטווח המיוורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1301.3000000044703,
+      "pcm_sha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטווח המיוורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 21,
+        "characterErrors": 3,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "7963201897982563627-0",
+      "text": "המזרח המיורי, מוזה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב קשה לזית.",
+      "ms": 1308.8000000044703,
+      "pcm_sha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המזרח המיורי מוזה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב קשה לזית",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "10012360550181770926-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מנת מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+      "ms": 1464.2999999970198,
+      "pcm_sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכי פלג המטבח הג וואני מאופיין במגוון מנת מטובלות בפשטות והטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים בלבלצ ילי סוכר ומגוון תבלינים ארומותי",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "characterErrors": 32,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "10012360550181770926-10",
+      "text": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, מבלג'יני, סוכר ומגוון תבלינים ארנוטים.",
+      "ms": 1426.5,
+      "pcm_sha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אחד כל רחבי האפיפיינים המטבח הג וואני מאופיין במגוון מרת מטובלות בפשטות בטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים מבלג יני סוכר ומגוון תבלינים ארנוטים",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "characterErrors": 49,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "10012360550181770926-0",
+      "text": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+      "ms": 1459.2000000029802,
+      "pcm_sha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן כללי המטבח הג וואלי הוא הגווני רק מטובלות בפשטות הג וול סני מאזינים בוטנים",
+        "exact": false,
+        "wordErrors": 27,
+        "referenceWords": 34,
+        "characterErrors": 106,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "15572944599586100683-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+      "ms": 1096.3999999985099,
+      "pcm_sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכיבלג המטבח הג יבאני מאופיין במגוון מונח",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "characterErrors": 109,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "15572944599586100683-10",
+      "text": "כעת זמין באופן מרחק, בכל רחבי הארכי דלג, המטבח, הזוזני מאוחייין במגוון מונח.",
+      "ms": 1253.7999999970198,
+      "pcm_sha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן מרחק בכל רחבי הארכי דלג המטבח הזוזני מאוחייין במגוון מונח",
+        "exact": false,
+        "wordErrors": 28,
+        "referenceWords": 34,
+        "characterErrors": 113,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "15572944599586100683-0",
+      "text": "כעת זנים באופן מיוחד, בחורף הזד האר תדלק. המטבח הזדן יאופן במגוון מונח.",
+      "ms": 1258.1000000014901,
+      "pcm_sha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זנים באופן מיוחד בחורף הזד האר תדלק המטבח הזדן יאופן במגוון מונח",
+        "exact": false,
+        "wordErrors": 31,
+        "referenceWords": 34,
+        "characterErrors": 129,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "16538192119906209361-clean",
+      "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+      "ms": 1061.1000000014901,
+      "pcm_sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל החוויה הכי פלאג המטבח הג מאני מאופיין במגוון מנות מטובלות בפשטות והטעמים הבולטים שהג פאזים אוהבים הם בוטנים פלפלצ ילי סוכר ומגוון תמנינים ארמוטיים",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "characterErrors": 39,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "16538192119906209361-10",
+      "text": "כעת זמין באופן נרחב, חול חדש, הפרק המטווח הג'מאני מאופיין במגוון מעלות מטובלות בפשטות, והטעמים הבולטים של הג'פרסם רבים ובפנים, פלפלצ'ילי, סוכר ומגוון תמנונים הרמוטים.",
+      "ms": 1071.0999999940395,
+      "pcm_sha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב חול חדש הפרק המטווח הג מאני מאופיין במגוון מעלות מטובלות בפשטות והטעמים הבולטים של הג פרסם רבים ובפנים פלפלצ ילי סוכר ומגוון תמנונים הרמוטים",
+        "exact": false,
+        "wordErrors": 21,
+        "referenceWords": 34,
+        "characterErrors": 59,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "16538192119906209361-0",
+      "text": "כעת זמין באופן אישי, שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות, והטעמים הבולטים של הדיפרת הנרדים לנחם, הוא בן צ'ילי סוכר ומגוון תמונים אמיתי.",
+      "ms": 984.6000000014901,
+      "pcm_sha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אישי שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות והטעמים הבולטים של הדיפרת הנרדים לנחם הוא בן צ ילי סוכר ומגוון תמונים אמיתי",
+        "exact": false,
+        "wordErrors": 23,
+        "referenceWords": 34,
+        "characterErrors": 78,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p01-clean",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 329.69999999552965,
+      "pcm_sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p01-10",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 320.30000000447035,
+      "pcm_sha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p01-0",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 342,
+      "pcm_sha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p02-clean",
+      "text": "שמתי פיפל שחור, סליחה, פלפל אדום",
+      "ms": 309.8999999985099,
+      "pcm_sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פלפל אדום",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p02-10",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 305.8999999985099,
+      "pcm_sha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p02-0",
+      "text": "שמתי טיפל שחור, סליחה, פיזל אדום",
+      "ms": 308.8999999985099,
+      "pcm_sha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי טיפל שחור סליחה פיזל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p03-clean",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 321.29999999701977,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p03-10",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 320.3999999985099,
+      "pcm_sha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "noa-p03-0",
+      "text": "הפסוק כבר קטשתי, ואת הגזל רק קילכתי.",
+      "ms": 335.1000000014901,
+      "pcm_sha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "הפסוק כבר קטשתי ואת הגזל רק קילכתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p04-clean",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 330.20000000298023,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p04-10",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 334.79999999701977,
+      "pcm_sha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p04-0",
+      "text": "במקום סוכה הוספתי דבש, זה בסדר",
+      "ms": 319.40000000596046,
+      "pcm_sha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה הוספתי דבש זה בסדר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p05-clean",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 306.79999999701977,
+      "pcm_sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p05-10",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 305.19999999552965,
+      "pcm_sha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "liat-p05-0",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 307.20000000298023,
+      "pcm_sha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p10-clean",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 462.70000000298023,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p10-10",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 425.79999999701977,
+      "pcm_sha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "omer-p10-0",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 411.8999999985099,
+      "pcm_sha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "5003424012824870622-clean",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 538.8000000044703,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "5003424012824870622-5",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות.",
+      "ms": 699.6000000014901,
+      "pcm_sha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17171468810841175967-clean",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 814.7000000029802,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17171468810841175967-5",
+      "text": "אני לא אטופולוגיה תת-מינית, אז היום חוזר מפה בכמה קטעי נימוקים, וזה גם היה נימוקים לנגד סליחה.",
+      "ms": 582.6000000014901,
+      "pcm_sha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "אני לא אטופולוגיה תת מינית אז היום חוזר מפה בכמה קטעי נימוקים וזה גם היה נימוקים לנגד סליחה",
+        "exact": false,
+        "wordErrors": 18,
+        "referenceWords": 18,
+        "characterErrors": 42,
+        "referenceCharacters": 86,
+        "negationCountDelta": 1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3625786575614857833-clean",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 1073.7000000029802,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3625786575614857833-5",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית, סגיטריוס.",
+      "ms": 1014.5,
+      "pcm_sha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17425601106312478953-clean",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 551.6000000014901,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17425601106312478953-5",
+      "text": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+      "ms": 486.8999999985099,
+      "pcm_sha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 11,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3445988181539980871-clean",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 856.0999999940395,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "3445988181539980871-5",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם שפות רעמים, שפות טור נאדון בדי מים ושפות תקלות.",
+      "ms": 870.2999999970198,
+      "pcm_sha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם שפות רעמים שפות טור נאדון בדי מים ושפות תקלות",
+        "exact": false,
+        "wordErrors": 9,
+        "referenceWords": 24,
+        "characterErrors": 16,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "11245875030612691124-clean",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1101.9000000059605,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "11245875030612691124-5",
+      "text": "לחם עם שמן זית, עגבניה וכל תוספת זה מנהג הכל, מינה תמונה וחוף פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איהא.",
+      "ms": 1143.3999999985099,
+      "pcm_sha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זה מנהג הכל מינה תמונה וחוף פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ איהא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 82,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17103514183588460100-clean",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+      "ms": 906.8999999985099,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17103514183588460100-5",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 904.9000000059605,
+      "pcm_sha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "9854665193577160905-clean",
+      "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+      "ms": 547.8000000044703,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 4,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "9854665193577160905-5",
+      "text": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון, בנוסף לבשר או ירקות",
+      "ms": 610.6999999955297,
+      "pcm_sha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 9,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17616472487509301569-clean",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 525.2000000029802,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "17616472487509301569-5",
+      "text": "20% מהמים שנשפכים להערות כדור האזר, כי הם עושים הגינה, מה זה אומר?",
+      "ms": 544.7000000029802,
+      "pcm_sha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים להערות כדור האזר כי הם עושים הגינה מה זה אומר",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 10,
+        "characterErrors": 28,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "13665306490465162429-clean",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+      "ms": 654.3999999985099,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "13665306490465162429-5",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק, כמו הקירקס, לא יכול היה לעמוד מולו",
+      "ms": 659.8999999985099,
+      "pcm_sha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הקירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "16399478934663246649-clean",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס.",
+      "ms": 767.1000000014901,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "16399478934663246649-5",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת.",
+      "ms": 782.8000000044703,
+      "pcm_sha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "7220901400489669549-clean",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים, אוויר ואש.",
+      "ms": 1042.1000000014901,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-salad",
+      "filename": "7220901400489669549-5",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים עבירות ואש.",
+      "ms": 995.3000000044703,
+      "pcm_sha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים עבירות ואש",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 9,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "671253326365773738-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+      "ms": 1065.3999999985099,
+      "pcm_sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "671253326365773738-10",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זית.",
+      "ms": 903.1999999955297,
+      "pcm_sha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד בחזיר בועשי שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 21,
+        "characterErrors": 6,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "671253326365773738-0",
+      "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשמן זית.",
+      "ms": 891.3999999985099,
+      "pcm_sha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיוורטי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד באותו שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 21,
+        "characterErrors": 9,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3933341704547636563-clean",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+      "ms": 588.3000000044703,
+      "pcm_sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 21,
+        "characterErrors": 32,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3933341704547636563-10",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית.",
+      "ms": 540.3000000044703,
+      "pcm_sha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 21,
+        "characterErrors": 44,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3933341704547636563-0",
+      "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, נכון? שמחנו לעשות את הבשר הוא כזה שימוש ניחד בשמן זית.",
+      "ms": 534.5,
+      "pcm_sha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המאורי כמו זה שאני זוכרים את זה במיוחד נכון שמחנו לעשות את הבשר הוא כזה שימוש ניחד בשמן זית",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 21,
+        "characterErrors": 44,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7963201897982563627-clean",
+      "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1301.6000000014901,
+      "pcm_sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 21,
+        "characterErrors": 0,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7963201897982563627-10",
+      "text": "המטווח המיוורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+      "ms": 1391.8000000044703,
+      "pcm_sha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המטווח המיוורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 21,
+        "characterErrors": 3,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7963201897982563627-0",
+      "text": "המזרח המיורי, מוזה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב קשה לזית.",
+      "ms": 1331.8999999985099,
+      "pcm_sha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+      "metrics": {
+        "normalizedReference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+        "normalizedHypothesis": "המזרח המיורי מוזה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב קשה לזית",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 21,
+        "characterErrors": 7,
+        "referenceCharacters": 91,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "10012360550181770926-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מנת מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+      "ms": 1946.3999999985099,
+      "pcm_sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכי פלג המטבח הג וואני מאופיין במגוון מנת מטובלות בפשטות והטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים בלבלצ ילי סוכר ומגוון תבלינים ארומותי",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 34,
+        "characterErrors": 32,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "10012360550181770926-10",
+      "text": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, מבלג'יני, סוכר ומגוון תבלינים ארנוטים.",
+      "ms": 1624.0999999940395,
+      "pcm_sha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אחד כל רחבי האפיפיינים המטבח הג וואני מאופיין במגוון מרת מטובלות בפשטות בטעמים הבולטים שהג וואנסנים אוהבים הם בוטנים מבלג יני סוכר ומגוון תבלינים ארנוטים",
+        "exact": false,
+        "wordErrors": 17,
+        "referenceWords": 34,
+        "characterErrors": 49,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "10012360550181770926-0",
+      "text": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+      "ms": 1369.1999999955297,
+      "pcm_sha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן כללי המטבח הג וואלי הוא הגווני רק מטובלות בפשטות הג וול סני מאזינים בוטנים",
+        "exact": false,
+        "wordErrors": 27,
+        "referenceWords": 34,
+        "characterErrors": 106,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "15572944599586100683-clean",
+      "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+      "ms": 1144.8999999985099,
+      "pcm_sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל רחבי הארכיבלג המטבח הג יבאני מאופיין במגוון מונח",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 34,
+        "characterErrors": 109,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "15572944599586100683-10",
+      "text": "כעת זמין באופן מרחק, בכל רחבי הארכי דלג, המטבח, הזוזני מאוחייין במגוון מונח.",
+      "ms": 1234.1999999955297,
+      "pcm_sha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן מרחק בכל רחבי הארכי דלג המטבח הזוזני מאוחייין במגוון מונח",
+        "exact": false,
+        "wordErrors": 28,
+        "referenceWords": 34,
+        "characterErrors": 113,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "15572944599586100683-0",
+      "text": "כעת זנים באופן מיוחד, בחורף הזד האר תדלק. המטבח הזדן יאופן במגוון מונח.",
+      "ms": 1069.6999999955297,
+      "pcm_sha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זנים באופן מיוחד בחורף הזד האר תדלק המטבח הזדן יאופן במגוון מונח",
+        "exact": false,
+        "wordErrors": 31,
+        "referenceWords": 34,
+        "characterErrors": 129,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16538192119906209361-clean",
+      "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+      "ms": 1011.8000000044703,
+      "pcm_sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב בכל החוויה הכי פלאג המטבח הג מאני מאופיין במגוון מנות מטובלות בפשטות והטעמים הבולטים שהג פאזים אוהבים הם בוטנים פלפלצ ילי סוכר ומגוון תמנינים ארמוטיים",
+        "exact": false,
+        "wordErrors": 15,
+        "referenceWords": 34,
+        "characterErrors": 39,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16538192119906209361-10",
+      "text": "כעת זמין באופן נרחב, חול חדש, הפרק המטווח הג'מאני מאופיין במגוון מעלות מטובלות בפשטות, והטעמים הבולטים של הג'פרסם רבים ובפנים, פולפלצ'ילי, סוכר ומגוון תמנונים הרמוטים.",
+      "ms": 1025.5,
+      "pcm_sha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן נרחב חול חדש הפרק המטווח הג מאני מאופיין במגוון מעלות מטובלות בפשטות והטעמים הבולטים של הג פרסם רבים ובפנים פולפלצ ילי סוכר ומגוון תמנונים הרמוטים",
+        "exact": false,
+        "wordErrors": 21,
+        "referenceWords": 34,
+        "characterErrors": 60,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16538192119906209361-0",
+      "text": "כעת זמין באופן אישי, שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות, והטעמים הבולטים של הדיפרת הנרדים לנחם, הוא בן צ'ילי סוכר ומגוון תמונים אמיתי.",
+      "ms": 1033.8999999985099,
+      "pcm_sha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+      "metrics": {
+        "normalizedReference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג אוונסים אוהבים הם בוטנים פלפל צ ילי סוכר בעיקר סוכר קוקוס ג אווני ומגוון תבלינים ארומטיים",
+        "normalizedHypothesis": "כעת זמין באופן אישי שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות והטעמים הבולטים של הדיפרת הנרדים לנחם הוא בן צ ילי סוכר ומגוון תמונים אמיתי",
+        "exact": false,
+        "wordErrors": 23,
+        "referenceWords": 34,
+        "characterErrors": 78,
+        "referenceCharacters": 164,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p01-clean",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 346.69999999552965,
+      "pcm_sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p01-10",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 338.70000000298023,
+      "pcm_sha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p01-0",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 316.80000000447035,
+      "pcm_sha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p02-clean",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 342.69999999552965,
+      "pcm_sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p02-10",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 329.3999999985099,
+      "pcm_sha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p02-0",
+      "text": "שמתי טיפל שחור, סליחה, פיזל אדום",
+      "ms": 327.6000000014901,
+      "pcm_sha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי טיפל שחור סליחה פיזל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p03-clean",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 326.6000000014901,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p03-10",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 332.5,
+      "pcm_sha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "noa-p03-0",
+      "text": "הפסוק כבר קטשתי, ואת הגזל רק קילכתי.",
+      "ms": 353.20000000298023,
+      "pcm_sha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "הפסוק כבר קטשתי ואת הגזל רק קילכתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p04-clean",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+      "ms": 359.8999999985099,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p04-10",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 370.8999999985099,
+      "pcm_sha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p04-0",
+      "text": "במקום סוכה הוספתי דבש, זה בסדר",
+      "ms": 309.5,
+      "pcm_sha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה הוספתי דבש זה בסדר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p05-clean",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 354.19999999552965,
+      "pcm_sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p05-10",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 306.70000000298023,
+      "pcm_sha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "liat-p05-0",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 327.6000000014901,
+      "pcm_sha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p10-clean",
+      "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 506.29999999701977,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p10-10",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+      "ms": 477.79999999701977,
+      "pcm_sha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "omer-p10-0",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 495.30000000447035,
+      "pcm_sha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "5003424012824870622-clean",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+      "ms": 519,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 11,
+        "characterErrors": 0,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "5003424012824870622-5",
+      "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות.",
+      "ms": 552.3000000044703,
+      "pcm_sha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 11,
+        "characterErrors": 1,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17171468810841175967-clean",
+      "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+      "ms": 580.5999999940395,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בגלל הטופולוגיה התת מימית אז היום החוזה מרוכז בכמה קטעים עמוקים יותר וזרם העיר למים עמוקים עלול להיווצר שם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 7,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17171468810841175967-5",
+      "text": "אני לא אטופולוגיה תת-מינית, אז היום חוזר מפה בכמה קטעי נימוקים, וזה גם היה נימוקים לנגד סליחה.",
+      "ms": 547,
+      "pcm_sha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "אני לא אטופולוגיה תת מינית אז היום חוזר מפה בכמה קטעי נימוקים וזה גם היה נימוקים לנגד סליחה",
+        "exact": false,
+        "wordErrors": 18,
+        "referenceWords": 18,
+        "characterErrors": 42,
+        "referenceCharacters": 86,
+        "negationCountDelta": 1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3625786575614857833-clean",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+      "ms": 1046.9000000059605,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 5,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3625786575614857833-5",
+      "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית, סגיטריוס.",
+      "ms": 1185.7000000029802,
+      "pcm_sha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 18,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17425601106312478953-clean",
+      "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+      "ms": 429.20000000298023,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ואורות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 13,
+        "characterErrors": 1,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17425601106312478953-5",
+      "text": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+      "ms": 411.30000000447035,
+      "pcm_sha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 11,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3445988181539980871-clean",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+      "ms": 1114,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנה דונו די מים וצופות תקלון",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 24,
+        "characterErrors": 9,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "3445988181539980871-5",
+      "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם שפות רעמים, שפות טור נאדון בדי מים ושפות תקלות.",
+      "ms": 863.2000000029802,
+      "pcm_sha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה כמו גם שפות רעמים שפות טור נאדון בדי מים ושפות תקלות",
+        "exact": false,
+        "wordErrors": 9,
+        "referenceWords": 24,
+        "characterErrors": 16,
+        "referenceCharacters": 109,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "11245875030612691124-clean",
+      "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+      "ms": 1163.9000000059605,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה טונה וקו פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ אי הא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 83,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "11245875030612691124-5",
+      "text": "לחם עם שמן זית, עגבניה וכל תוספת זה מנהג הכל, מינה תמונה וחוף פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איהא.",
+      "ms": 1062.2999999970198,
+      "pcm_sha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לחם עם שמן זית עגבניה וכל תוספת זה מנהג הכל מינה תמונה וחוף פעם בעולי ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ איהא",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 82,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17103514183588460100-clean",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+      "ms": 1030.1000000014901,
+      "pcm_sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17103514183588460100-5",
+      "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "ms": 863.3999999985099,
+      "pcm_sha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+      "metrics": {
+        "normalizedReference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "normalizedHypothesis": "מאפים גרמנים רבים מכינים גם שקדים אגוזי לוז ואגוזים אחרים גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 19,
+        "characterErrors": 5,
+        "referenceCharacters": 93,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "9854665193577160905-clean",
+      "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+      "ms": 511.5,
+      "pcm_sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 13,
+        "characterErrors": 4,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "9854665193577160905-5",
+      "text": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון, בנוסף לבשר או ירקות",
+      "ms": 621.6999999955297,
+      "pcm_sha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+      "metrics": {
+        "normalizedReference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+        "normalizedHypothesis": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון בנוסף לבשר או ירקות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 13,
+        "characterErrors": 9,
+        "referenceCharacters": 57,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17616472487509301569-clean",
+      "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+      "ms": 513.8000000044703,
+      "pcm_sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 10,
+        "characterErrors": 8,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "17616472487509301569-5",
+      "text": "20% מהמים שנשפכים להערות כדור האזר, כי הם עושים הגינה, מה זה אומר?",
+      "ms": 546.7999999970198,
+      "pcm_sha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+      "metrics": {
+        "normalizedReference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+        "normalizedHypothesis": "20 מהמים שנשפכים להערות כדור האזר כי הם עושים הגינה מה זה אומר",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 10,
+        "characterErrors": 28,
+        "referenceCharacters": 59,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "13665306490465162429-clean",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+      "ms": 796.2999999970198,
+      "pcm_sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 0,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "13665306490465162429-5",
+      "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק, כמו הקירקס, לא יכול היה לעמוד מולו",
+      "ms": 625.7000000029802,
+      "pcm_sha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+      "metrics": {
+        "normalizedReference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי רקס לא יכול היה לעמוד מולו",
+        "normalizedHypothesis": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הקירקס לא יכול היה לעמוד מולו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 18,
+        "characterErrors": 1,
+        "referenceCharacters": 69,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16399478934663246649-clean",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס.",
+      "ms": 739.5,
+      "pcm_sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 19,
+        "characterErrors": 2,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "16399478934663246649-5",
+      "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת.",
+      "ms": 860.2000000029802,
+      "pcm_sha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+      "metrics": {
+        "normalizedReference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+        "normalizedHypothesis": "יש להם כפות רגליים עם קשקשים ותופרים הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 6,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7220901400489669549-clean",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים, אוויר ואש.",
+      "ms": 937.4000000059605,
+      "pcm_sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים אוויר ואש",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 19,
+        "characterErrors": 4,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "hints-cookies",
+      "filename": "7220901400489669549-5",
+      "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים עבירות ואש.",
+      "ms": 1061.6000000014901,
+      "pcm_sha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+      "metrics": {
+        "normalizedReference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+        "normalizedHypothesis": "אריסטו פילוסוף פיתחו את התיאוריה שהכל מורכב מאחד או יותר מתוך ארבעת היסודות הם היו אדמה מים עבירות ואש",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 19,
+        "characterErrors": 9,
+        "referenceCharacters": 81,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}
