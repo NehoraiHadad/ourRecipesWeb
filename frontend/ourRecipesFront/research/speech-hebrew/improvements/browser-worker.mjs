@@ -26,7 +26,7 @@ self.onmessage=async({data})=>{
     decodingMethod:data.arm==='beam4'?'modified_beam_search':'greedy_search',maxActivePaths:4,enableEndpoint:0,hotwordsFile:'',blankPenalty:0};
    if (data.arm.startsWith('hints-')) {
     const recipe = data.arm.slice('hints-'.length);
-    if (!['salad','cookies','pasta','pasta-actions'].includes(recipe)) throw Error('Unknown recipe fixture');
+    if (!['salad','cookies','pasta','pasta-actions','pasta-alternatives'].includes(recipe)) throw Error('Unknown recipe fixture');
     for (const file of ['bpe.vocab', recipe+'.txt']) {
       module.FS_createDataFile('/model',file,new Uint8Array(await readAsset('/hints/'+file)),true,false,false);
     }

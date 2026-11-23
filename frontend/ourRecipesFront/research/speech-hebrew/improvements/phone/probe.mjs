@@ -38,7 +38,7 @@ function clearClarification() {
 function offerClarification(text,id,kept=new Set()) {
   clearClarification();
   if(id!==generation)return;
-  const item=suspect(text,manifest.actions).find(s=>!kept.has(s.i));
+  const item=suspect(text,manifest.actions,manifest.otherVerbs).find(s=>!kept.has(s.i));
   if(!item)return;
   el('word-question').textContent='איזו מילה אמרת אחרי השלילה?';
   el('keep-word').textContent='להשאיר ״'+item.from+'״';
@@ -172,22 +172,28 @@ el('cancel').onclick=()=>{erase();status('ההורדה בוטלה.');};
 el('erase').onclick=erase;
 async function finishActionCheck(first, pcm, id, stopTime, displayMs) {
   const verbs=manifest.actions;
-  const needsRetry=suspect(first.text,verbs).length>0;
+  const needsRetry=suspect(first.text,verbs,manifest.otherVerbs).length>0;
   let finalText=first.text, clips=0, failed=false;
   if(needsRetry) {
     status('בודק את הפועל מול ההקלטה…');
     try {
-      await openWorker('hints-pasta-actions');
-      if(id!==generation)return;
-      const retry=await request({type:'transcribe',pcm});
-      if(id!==generation)return;
-      if(retry.inputSha256!==first.inputSha256)throw Error('הקלטים אינם תואמים.');
-      finalText=reconcile(first.text,retry.text,verbs).text;
-      finalText=await checkWindows(finalText,first,verbs,pcm,async cut=>{
-        if(id!==generation)throw Error('הבדיקה הופסקה.');
-        clips++;
-        return (await request({type:'transcribe',pcm:cut})).text;
-      });
+      async function checkWith(arm, alternatives) {
+        await openWorker(arm);
+        if(id!==generation)return;
+        const retry=await request({type:'transcribe',pcm});
+        if(id!==generation)return;
+        if(retry.inputSha256!==first.inputSha256)throw Error('הקלטים אינם תואמים.');
+        finalText=reconcile(finalText,retry.text,verbs,alternatives).text;
+        finalText=await checkWindows(finalText,first,verbs,pcm,async cut=>{
+          if(id!==generation)throw Error('הבדיקה הופסקה.');
+          clips++;
+          return (await request({type:'transcribe',pcm:cut})).text;
+        },alternatives);
+      }
+      await checkWith('hints-pasta-actions',manifest.preserveRecipePass ? [] : manifest.otherVerbs);
+      if(id===generation && manifest.preserveRecipePass && suspect(finalText,verbs,manifest.otherVerbs).length) {
+        await checkWith('hints-pasta-alternatives',manifest.otherVerbs);
+      }
     } catch {
       failed=true;
     }

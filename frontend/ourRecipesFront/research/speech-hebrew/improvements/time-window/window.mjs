@@ -2,7 +2,7 @@ import {suspect,reconcile} from '../recipe-actions/retry.mjs';
 
 const rate=16000;
 const words = text => Array.from(text.matchAll(/[\p{L}\p{N}]+/gu));
-export function actionWindows(text,timing,verbs,samples) {
+export function actionWindows(text,timing,verbs,samples,otherVerbs=[]) {
   const {tokens,timestamps}=timing;
   if(!Array.isArray(tokens) || !Array.isArray(timestamps) || tokens.length!==timestamps.length) return [];
   const at=[];
@@ -14,7 +14,7 @@ export function actionWindows(text,timing,verbs,samples) {
   const spans=words(tokens.join('')),current=words(text);
   if(spans.length!==current.length) return [];
   const windows=[];
-  for(const s of suspect(text,verbs)) {
+  for(const s of suspect(text,verbs,otherVerbs)) {
     // Other single-word edits from the full pass cannot change this local alignment.
     const left=Math.max(0,s.i-2), right=Math.min(spans.length-1,s.i+1);
     if(spans.slice(left,right+1).some((m,k)=>m[0]!==current[left+k][0])) continue;
@@ -27,11 +27,11 @@ export function actionWindows(text,timing,verbs,samples) {
 }
 
 // Apply edits in reverse index order so a changed word length preserves earlier offsets.
-export async function checkWindows(text,timing,verbs,pcm,decode) {
+export async function checkWindows(text,timing,verbs,pcm,decode,otherVerbs=[]) {
   let result=text;
-  for(const window of actionWindows(text,timing,verbs,pcm.length).reverse()) {
+  for(const window of actionWindows(text,timing,verbs,pcm.length,otherVerbs).reverse()) {
     const alternative=await decode(pcm.subarray(window.start,window.end));
-    const edit=reconcile(text,alternative,verbs).edits.find(e=>e.i===window.index);
+    const edit=reconcile(text,alternative,verbs,otherVerbs).edits.find(e=>e.i===window.index);
     if(edit) result=result.slice(0,edit.offset)+edit.to+result.slice(edit.offset+edit.from.length);
   }
   return result;

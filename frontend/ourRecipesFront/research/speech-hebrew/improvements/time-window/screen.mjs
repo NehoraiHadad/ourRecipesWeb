@@ -10,6 +10,7 @@ import {missing} from '../styles/anchors.mjs';
 
 const [site,dir,out]=process.argv.slice(2);
 const verbs=Object.values(JSON.parse(await readFile(new URL('../recipe-actions/hints.json',import.meta.url))));
+const {otherVerbs=[],preserveRecipePass=false}=JSON.parse(await readFile(path.join(site,'manifest.json')));
 const microphone=process.argv.includes('--mic');
 const inputs=JSON.parse(await readFile(path.join(dir,'manifest.json')));
 const cases=microphone ? inputs.filter(c=>c.name==='omer-stir-water') : inputs;
@@ -75,19 +76,19 @@ try {
     const trace=await page.evaluate(()=>window.trace);
     if(!microphone)assert.equal(trace[0].sha256,c.sha256);
     assert.equal(trace[0].text,first);
-    const needs=suspect(first,verbs).length>0;
+    const needs=suspect(first,verbs,otherVerbs).length>0;
     assert.equal(trace.length>1,needs);
     if(needs) assert.equal(trace[1].sha256,trace[0].sha256);
-    const previous=needs?reconcile(first,trace[1].text,verbs).text:first;
+    const previous=needs?reconcile(first,trace[1].text,verbs,preserveRecipePass ? [] : otherVerbs).text:first;
     const [firstMs,finalMs]=timing.match(/\d+/g).map(Number);
     const values={};
     for(const [key,text] of Object.entries({first,previous,final})) {
       values[key]={text,errors:score(c.reference,text).wordErrors,missing:missing(text,c.critical)};
     }
     const clarify=await page.locator('#clarify').isVisible();
-    assert.equal(clarify,suspect(final,verbs).length>0);
+    assert.equal(clarify,suspect(final,verbs,otherVerbs).length>0);
     let manual=null;
-    if(!microphone && (c.name==='omer-stir-water' || c.name==='noa-wet-clean')){
+    if(!microphone && !otherVerbs.length && (c.name==='omer-stir-water' || c.name==='noa-wet-clean')){
       const keep=c.name==='noa-wet-clean';
       assert(clarify);
       await page.locator(keep?'#keep-word':'#replace-word').click();
@@ -96,7 +97,7 @@ try {
       assert.equal(await page.locator('#hinted').textContent(),first);
       assert(await page.locator('#clarify').isHidden());
     }
-    if(c.name==='liat-cloth-water' && clarify){
+    if(!otherVerbs.length && c.name==='liat-cloth-water' && clarify){
       await page.locator('#other-word').click();
       await page.locator('#edit-word').fill('הרטבתי');
       await page.locator('#edit-word-form button').click();

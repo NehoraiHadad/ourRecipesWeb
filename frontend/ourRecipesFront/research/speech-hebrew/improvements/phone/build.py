@@ -13,7 +13,12 @@ BASE = ROOT.parent
 REV = 'ee769a2a13b887f91572eec349458bfb0fe79e7a'
 parser = argparse.ArgumentParser()
 parser.add_argument('destination', type=Path)
-out = parser.parse_args().destination
+parser.add_argument('--competing-verbs', action='store_true', help='Include the experimental kitchen verb vocabulary')
+parser.add_argument('--preserve-recipe-pass', action='store_true', help='Try alternative verbs only after the prior acoustic checks')
+args = parser.parse_args()
+if args.preserve_recipe_pass and not args.competing_verbs:
+    parser.error('--preserve-recipe-pass requires --competing-verbs')
+out = args.destination
 out.mkdir(parents=True, exist_ok=False)
 (out/'models').mkdir()
 (out/'hints').mkdir()
@@ -51,9 +56,16 @@ shutil.copyfile(BASE.parent/'metrics.mjs', out/'metrics.mjs')
 for recipe, nouns in recipes.items():
     forms=[prefix+noun for noun in nouns for prefix in ('','ה','ב','ל','מ','ו','וה')]
     add('hints/'+recipe+'.txt', ('\n'.join(forms)+'\n').encode())
-action_forms = [prefix+verb for verb in actions for prefix in ('','ו')]
-negative_forms = [prefix+' '+verb for verb in actions for prefix in ('לא','עוד לא')]
-add('hints/pasta-actions.txt', (out/'hints/pasta.txt').read_bytes() + ('\n'.join(action_forms+negative_forms)+'\n').encode())
-(out/'manifest.json').write_text(json.dumps(dict(assets=assets,recipes=recipes,actions=actions),ensure_ascii=False))
+other_verbs = json.loads((BASE/'competing-verbs/other-verbs.json').read_text()) if args.competing_verbs else []
+def add_actions(filename, verbs):
+    action_forms = [prefix+verb for verb in verbs for prefix in ('','ו')]
+    negative_forms = [prefix+' '+verb for verb in verbs for prefix in ('לא','עוד לא')]
+    add('hints/'+filename+'.txt', (out/'hints/pasta.txt').read_bytes() + ('\n'.join(action_forms+negative_forms)+'\n').encode())
+
+add_actions('pasta-actions', actions if args.preserve_recipe_pass else actions+other_verbs)
+if args.preserve_recipe_pass:
+    add_actions('pasta-alternatives', actions+other_verbs)
+(out/'manifest.json').write_text(json.dumps(dict(assets=assets,recipes=recipes,actions=actions,
+    otherVerbs=other_verbs,preserveRecipePass=args.preserve_recipe_pass),ensure_ascii=False))
 (out/'NOTICE.txt').write_text('Hebrew Zipformer2 and derived BPE vocabulary: Yakov Kolani / ivrit.ai, CC BY 4.0. https://huggingface.co/ivrit-ai/zipformer2-66m-streaming-he/tree/'+REV+'\nhttps://creativecommons.org/licenses/by/4.0/\nRuntime: @sherpaw/asr 0.3.0, Apache-2.0; see SHERPAW-LICENSE.txt.\n')
 print(out.resolve())

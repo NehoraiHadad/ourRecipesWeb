@@ -14,6 +14,7 @@ HERE = Path(__file__).resolve().parent
 parser = argparse.ArgumentParser()
 parser.add_argument('out', type=Path)
 parser.add_argument('--voices', type=Path)
+parser.add_argument('--corpus', type=Path, default=HERE, help='Directory containing new-cases.json and new-voices.zip')
 parser.add_argument('--controls', nargs=4, type=Path, metavar=('DEV','HOLDOUT','CHALLENGE','FINAL'))
 args = parser.parse_args()
 args.out.mkdir(parents=True, exist_ok=False)
@@ -38,8 +39,8 @@ if args.controls:
             add(name, pcm, item['reference'], item['critical'])
             assert rows[-1]['sha256'] == item['pcm_sha256']
 else:
-    cases = json.loads((HERE / 'new-cases.json').read_text())
-    source = HERE / 'new-voices.zip'
+    cases = json.loads((args.corpus / 'new-cases.json').read_text())
+    source = args.corpus / 'new-voices.zip'
     if args.voices:
         with ZipFile(source, 'x') as archive, ZipFile(HERE.parent/'free-speech/source-flac.zip') as old:
             archive.writestr('ATTRIBUTION.txt',old.read('ATTRIBUTION.txt'))
@@ -72,5 +73,5 @@ else:
                 mixed*=min(1,.98/np.max(np.abs(mixed)))
                 for kind,audio in [('clean',speech),('water',mixed)]:
                     add(stem+'-'+kind,audio,case['text'],case['critical'])
-assert len(rows)==(6 if args.controls else 36)
+assert len(rows)==(6 if args.controls else len(cases)*6)
 (args.out/'manifest.json').write_text(json.dumps(rows,ensure_ascii=False))
