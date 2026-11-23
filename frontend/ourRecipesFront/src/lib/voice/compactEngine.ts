@@ -39,7 +39,7 @@ export async function prepareCompact(signal: AbortSignal, onBytes: (n: number) =
     signal.throwIfAborted();
     const url = base + file.path;
     if ((await cache.match(url))?.headers.get('X-Recipe-SHA256') !== file.sha256) {
-      const response = await fetch(url, { signal, cache: 'reload' });
+      const response = await fetch(url, { signal, cache: 'reload', headers: { 'X-Recipe-Download': '1' } });
       if (!response.ok) throw new Error('הורדת העוזר נכשלה. אפשר לנסות שוב.');
       const buffer = await response.arrayBuffer();
       const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', buffer));
