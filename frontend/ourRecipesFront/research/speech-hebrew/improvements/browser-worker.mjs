@@ -7,9 +7,19 @@ self.onmessage=async({data})=>{
   if(data.type==='load'){
    const start=performance.now();module=await initASRModule();
    module.FS_createPath('/','model',true,true);
+   // A phone probe can provide verified tab-local blobs after an explicit download.
+   const readAsset = async url => {
+    if (data.assets) {
+     const blob = data.assets[url];
+     if (!(blob instanceof Blob)) throw Error('Missing local asset '+url);
+     return blob.arrayBuffer();
+    }
+    const response = await fetch(url);
+    if (!response.ok) throw Error('Missing fixture '+url);
+    return response.arrayBuffer();
+   };
    for(const name of ['encoder.int8.onnx','decoder.int8.onnx','joiner.int8.onnx','tokens.txt']){
-    const response=await fetch('/models/'+name);if(!response.ok)throw new Error('Local model fixture missing');
-    module.FS_createDataFile('/model',name,new Uint8Array(await response.arrayBuffer()),true,false,false);
+    module.FS_createDataFile('/model',name,new Uint8Array(await readAsset('/models/'+name)),true,false,false);
    }
    const config={featConfig:{sampleRate:16000,featureDim:80},modelConfig:{transducer:{encoder:'/model/encoder.int8.onnx',decoder:'/model/decoder.int8.onnx',joiner:'/model/joiner.int8.onnx'},
     tokens:'/model/tokens.txt',numThreads:1,provider:'cpu',modelType:'zipformer2',debug:0},
@@ -18,9 +28,7 @@ self.onmessage=async({data})=>{
     const recipe = data.arm.slice('hints-'.length);
     if (!['salad','cookies'].includes(recipe)) throw Error('Unknown recipe fixture');
     for (const file of ['bpe.vocab', recipe+'.txt']) {
-      const response = await fetch('/hints/'+file);
-      if (!response.ok) throw Error('Missing hotword fixture '+file);
-      module.FS_createDataFile('/model',file,new Uint8Array(await response.arrayBuffer()),true,false,false);
+      module.FS_createDataFile('/model',file,new Uint8Array(await readAsset('/hints/'+file)),true,false,false);
     }
     config.decodingMethod='modified_beam_search';
     config.modelConfig.modelingUnit='bpe';
