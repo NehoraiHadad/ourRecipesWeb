@@ -19,7 +19,7 @@ type VoiceWindow = Window & {
   webkitSpeechRecognition?: new () => Recognition;
 };
 
-export function useRecipeVoice(steps: string[]) {
+export function useRecipeVoice(steps: string[], onUtterance?: (text: string, step: number, speak: (text: string) => void) => boolean) {
   const [canSpeak, setCanSpeak] = useState(false);
   const [canListen, setCanListen] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -98,6 +98,7 @@ export function useRecipeVoice(steps: string[]) {
 
   commandRef.current = text => {
     setTranscript(text);
+    if (onUtterance?.(text, indexRef.current, speak)) { setStatus(''); return; }
     switch (recipeVoiceCommand(text)) {
       case 'next': next(); break;
       case 'previous': readStep(indexRef.current - 1); break;
@@ -187,5 +188,5 @@ export function useRecipeVoice(steps: string[]) {
 
   return { canSpeak, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
     read: () => readStep(indexRef.current), next, previous: () => readStep(indexRef.current - 1),
-    restart: () => readStep(0), stop, toggleMicrophone };
+    restart: () => readStep(0), stop, speak, toggleMicrophone };
 }

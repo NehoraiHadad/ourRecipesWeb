@@ -13,6 +13,8 @@ import IngredientListView from './recipe/IngredientListView';
 import ServingsMultiplier from './recipe/ServingsMultiplier';
 import RecipeTimersPanel from './recipe/RecipeTimersPanel';
 import RecipeVoiceGuide from './recipe/RecipeVoiceGuide';
+import { formatIngredient } from '@/lib/recipes/ingredientParser';
+import { activeRecipe } from '@/lib/voice/compactEngine';
 import { difficultyLabel } from '@/utils/difficulty';
 import type { SerializedRecipe } from '@/lib/serializers/recipeTypes';
 import { shareRecipe } from '@/utils/share';
@@ -33,7 +35,11 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
 
   const title = recipe.title ?? '';
   const difficulty = difficultyLabel(recipe.difficulty);
-  const instructionLines = (recipe.instructions ?? '').split('\n').filter((line) => line.trim());
+  const instructionLines = React.useMemo(
+    () => (recipe.instructions ?? '').split('\n').filter(line => line.trim()), [recipe.instructions]);
+  const cookingRecipe = React.useMemo(
+    () => activeRecipe(recipe.id, title, instructionLines, recipe.ingredients.map(formatIngredient)),
+    [recipe.id, title, instructionLines, recipe.ingredients]);
 
   // Show the timer feature announcement the first time prep time is clicked.
   useEffect(() => {
@@ -132,7 +138,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
             <Typography variant="h3" className="text-base font-medium text-secondary-700 mb-1">
               הוראות הכנה
             </Typography>
-            <RecipeVoiceGuide key={`${recipe.id}:${recipe.instructions}`} steps={instructionLines} />
+            <RecipeVoiceGuide key={cookingRecipe.id + ':' + cookingRecipe.version} steps={instructionLines} recipe={cookingRecipe} />
             <div className="space-y-1 leading-relaxed">
               {instructionLines.map((line, index) => (
                 <p key={index}>{line}</p>

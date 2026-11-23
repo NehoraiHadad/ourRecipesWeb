@@ -1,0 +1,4 @@
+Hebrew action recognition for recipe progress. Adapted from DictaBERT-tiny by Dicta.
+Source: https://huggingface.co/dicta-il/dictabert-tiny/tree/2034285c0ae100faf8ccc4beb7314bc273f3cb05
+Model license: CC BY 4.0, https://creativecommons.org/licenses/by/4.0/
+Changes: supervised classifiers for recipe actions and intent, clause attention, and quantized embeddings.

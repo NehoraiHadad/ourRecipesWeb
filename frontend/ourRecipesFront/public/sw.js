@@ -97,3 +97,13 @@ self.addEventListener('notificationclick', event => {
     return self.clients.openWindow(url);
   }));
 });
+
+// The versioned cooking worker imports modules and WASM by URL, including offline.
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  if (event.request.method === 'GET' && event.request.cache !== 'reload' && url.origin === self.location.origin &&
+      url.pathname.startsWith('/voice/compact/v82/')) {
+    event.respondWith(caches.open('recipe-compact-v82').then(async cache =>
+      (await cache.match(event.request)) || fetch(event.request)));
+  }
+});
