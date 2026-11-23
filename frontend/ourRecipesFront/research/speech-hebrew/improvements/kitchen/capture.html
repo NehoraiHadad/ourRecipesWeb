@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; media-src blob:; connect-src 'none'; form-action 'none'; base-uri 'none'">
+<title>הקלטת דיווח בישול</title>
+<style>
+*{box-sizing:border-box}body{font:18px/1.5 system-ui,sans-serif;max-width:38rem;margin:auto;padding:1.2rem;color:#17261e;background:#faf9f4}h1{font-size:1.6rem}label{display:block;margin-top:1rem}select,textarea,button{font:inherit;padding:.55rem;border-radius:.4rem;border:1px solid #71877a}textarea,select,audio{width:100%}button{margin:.4rem 0;background:#205341;color:white}button:disabled{background:#e3e6df;color:#546058}fieldset{margin:1rem 0;border:1px solid #bbc5bc}p{margin:.6rem 0}
+</style>
+<h1>הקלטת דיווח בישול</h1>
+<p>ההקלטה נשארת בדף עד לשמירת עותק במכשיר. סגירת הדף מוחקת אותה מהדף.</p>
+<label>קוד דובר לבחירתך (ללא שם, אותו קוד בכל ההקלטות שלך) <input id="speaker" maxlength="32" autocomplete="off"></label>
+<label>מצב לתיאור במילים שלך
+<select id="scenario">
+<option value="partial">הוספת מרכיב, ועוד נשארה פעולה לעשות</option>
+<option value="correction">אמרת איזה מרכיב הוספת ואז תיקנת את עצמך</option>
+<option value="multiple">ביצעת שתי פעולות ברצף</option>
+<option value="substitution">השתמשת במרכיב שונה מזה שבמתכון</option>
+<option value="quantity">השתמשת רק בחלק מהכמות</option>
+<option value="question">רצית לשאול על שלב שעדיין לא ביצעת</option>
+</select></label>
+<label>סביבת ההקלטה <select id="room"><option value="quiet">שקטה</option><option value="kitchen">רעש מטבח</option></select></label>
+<button id="start">התחלת הקלטה</button> <button id="stop" disabled>סיום</button>
+<label>או לבחור הקלטה מהמכשיר <input id="file" type="file" accept="audio/*"></label>
+<p role="status" id="status"></p>
+<audio id="listen" controls hidden></audio>
+<label>מה נאמר בפועל? כדאי להאזין ולכתוב גם תיקונים ומילות שלילה.
+<textarea id="reference" rows="2" disabled></textarea></label>
+<button id="save" disabled>שמירת הקלטה ותמליל במכשיר</button> <button id="clear" disabled>מחיקה מהדף</button>
+<script>
+const el = id => document.getElementById(id);
+const status = text => el('status').textContent = text;
+const canRecord = Boolean(navigator.mediaDevices?.getUserMedia && window.MediaRecorder);
+let clip, url, recorder, stream, limitTimer, state = 'empty';
+function controls(next) {
+  state = next;
+  el('start').disabled = next !== 'empty' || !canRecord;
+  el('file').disabled = next !== 'empty';
+  el('stop').disabled = next !== 'recording';
+  el('reference').disabled = next !== 'review';
+  el('save').disabled = next !== 'review' || !el('reference').value.trim();
+  el('clear').disabled = next !== 'review';
+  for (const id of ['scenario','room','speaker']) el(id).disabled = !['empty','review'].includes(next);
+}
+function release() {
+  clearTimeout(limitTimer);
+  stream?.getTracks().forEach(track => track.stop());
+  stream = null;
+}
+function review(blob) {
+  if (!blob?.size || blob.size > 8 * 1024 * 1024) {
+    controls('empty'); el('file').value = ''; status('יש לבחור הקלטה קצרה, עד 8 מ״ב.'); return;
+  }
+  clip = blob; url = URL.createObjectURL(blob);
+  el('listen').src = url; el('listen').hidden = false;
+  controls('review'); status('אפשר להאזין ולמלא את התמליל.');
+}
+function clearClip() {
+  el('listen').pause(); el('listen').removeAttribute('src'); el('listen').load();
+  if (url) URL.revokeObjectURL(url);
+  clip = url = null;
+  el('reference').value = el('file').value = ''; el('listen').hidden = true;
+  controls('empty');
+}
+el('start').onclick = async () => {
+  controls('request'); status('ממתין לגישה למיקרופון.');
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({audio:{channelCount:1,echoCancellation:true,noiseSuppression:true}});
+    recorder = new MediaRecorder(stream);
+    const chunks = [];
+    let failed = false;
+    recorder.ondataavailable = e => { if (e.data.size) chunks.push(e.data); };
+    recorder.onerror = () => { failed = true; release(); controls('empty'); status('ההקלטה נכשלה. אפשר לבחור קובץ מהמכשיר.'); };
+    recorder.onstop = event => {
+      if (failed) return;
+      release(); review(new Blob(chunks,{type:event.target.mimeType}));
+    };
+    recorder.start(); controls('recording'); status('מקליט. ההקלטה תסתיים אוטומטית אחרי 20 שניות.');
+    limitTimer = setTimeout(stopRecording,20000);
+  } catch { release(); controls('empty'); status('המיקרופון אינו זמין. אפשר לבחור קובץ מהמכשיר.'); }
+};
+function stopRecording() {
+  if (state === 'recording') { controls('finishing'); recorder.stop(); }
+}
+el('stop').onclick = stopRecording;
+el('file').onchange = e => { if (e.target.files[0]) review(e.target.files[0]); };
+el('clear').onclick = () => { clearClip(); status('ההקלטה נמחקה מהדף.'); };
+el('reference').oninput = () => controls(state);
+el('save').onclick = async () => {
+  if (state !== 'review') return;
+  controls('saving');
+  try {
+    const data = await new Promise((resolve,reject) => {
+      const reader = new FileReader(); reader.onerror = reject;
+      reader.onload = () => resolve(reader.result.split(',')[1]); reader.readAsDataURL(clip);
+    });
+    const record = {format:'ourrecipes-kitchen-audio-v1',scenario:el('scenario').value,
+      condition:el('room').value,speakerCode:el('speaker').value.trim() || null,reference:el('reference').value.trim(),mime:clip.type,audioBase64:data};
+    const link = document.createElement('a');
+    const download = URL.createObjectURL(new Blob([JSON.stringify(record)],{type:'application/json'}));
+    link.href = download; link.download = 'kitchen-'+Date.now()+'.json'; document.body.append(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(download),60000);
+    status('נוצר קובץ לשמירה. אפשר למחוק את ההקלטה מהדף כדי להתחיל נוספת.');
+  } catch { status('השמירה נכשלה. אפשר לנסות שוב.'); }
+  finally { controls('review'); }
+};
+window.addEventListener('pagehide',() => { stopRecording(); release(); });
+controls('empty');
+if (!canRecord) status('בדפדפן הזה אפשר לבחור קובץ שהוקלט במכשיר.');
+</script></html>

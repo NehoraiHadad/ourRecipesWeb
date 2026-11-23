@@ -1,0 +1,184 @@
+[
+  {
+    "scenario": "water-not-mixed",
+    "term": "ערבבתי",
+    "total": 9,
+    "greedy": 4,
+    "beam4": 4,
+    "greedyMisses": [
+      {
+        "id": "pocket-omer-water-not-mixed-clean",
+        "text": "הוספתי מים, אבל עוד לא עירובבתי"
+      },
+      {
+        "id": "pocket-liat-water-not-mixed-clean",
+        "text": "הוספתי מים אבל עוד לא הבבתי"
+      },
+      {
+        "id": "pocket-liat-water-not-mixed-20",
+        "text": "הוספתי מים אבל עוד לא הבבתי"
+      },
+      {
+        "id": "pocket-liat-water-not-mixed-10",
+        "text": "הוספתי מים אבל עוד לא העבדתי"
+      },
+      {
+        "id": "piper-noa-water-not-mixed-10",
+        "text": "הוספתי מים, אבל עוד לא הרבבתי"
+      }
+    ]
+  },
+  {
+    "scenario": "water-not-mixed",
+    "term": "עוד לא",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "mixed-half",
+    "term": "ערבבתי",
+    "total": 9,
+    "greedy": 6,
+    "beam4": 6,
+    "greedyMisses": [
+      {
+        "id": "piper-noa-mixed-half-clean",
+        "text": "יאובבתי רק חצי"
+      },
+      {
+        "id": "piper-noa-mixed-half-20",
+        "text": "יאובבתי רק חצי"
+      },
+      {
+        "id": "piper-noa-mixed-half-10",
+        "text": "היא עובדה בתי רק חסד"
+      }
+    ]
+  },
+  {
+    "scenario": "mixed-half",
+    "term": "חצי",
+    "total": 9,
+    "greedy": 7,
+    "beam4": 7,
+    "greedyMisses": [
+      {
+        "id": "pocket-liat-mixed-half-10",
+        "text": "ערבבתי רק חפץ"
+      },
+      {
+        "id": "piper-noa-mixed-half-10",
+        "text": "היא עובדה בתי רק חסד"
+      }
+    ]
+  },
+  {
+    "scenario": "oven-not-yet",
+    "term": "הדלקתי",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "oven-not-yet",
+    "term": "התנור",
+    "total": 9,
+    "greedy": 6,
+    "beam4": 7,
+    "greedyMisses": [
+      {
+        "id": "pocket-omer-oven-not-yet-10",
+        "text": "עוד לא הדלקתי את התלמיד"
+      },
+      {
+        "id": "pocket-liat-oven-not-yet-10",
+        "text": "עוד לא הדלקתי את התניר"
+      },
+      {
+        "id": "piper-noa-oven-not-yet-10",
+        "text": "עוד לא הדלקתי את הצלום"
+      }
+    ]
+  },
+  {
+    "scenario": "plan-egg",
+    "term": "מתכנן",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "plan-egg",
+    "term": "ביצה",
+    "total": 9,
+    "greedy": 5,
+    "beam4": 6,
+    "greedyMisses": [
+      {
+        "id": "pocket-omer-plan-egg-10",
+        "text": "אני מתכנן להוסיף בקשה"
+      },
+      {
+        "id": "pocket-liat-plan-egg-20",
+        "text": "אני מתכנן להוסיף בצף"
+      },
+      {
+        "id": "pocket-liat-plan-egg-10",
+        "text": "אני מתכנן להוסיף בצד"
+      },
+      {
+        "id": "piper-noa-plan-egg-10",
+        "text": "אני מתכנן להוסיף בצע"
+      }
+    ]
+  },
+  {
+    "scenario": "salt-sugar",
+    "term": "מלח",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "salt-sugar",
+    "term": "סוכר",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "water-actually-oil",
+    "term": "בעצם לא",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  },
+  {
+    "scenario": "water-actually-oil",
+    "term": "הוספתי",
+    "total": 9,
+    "greedy": 8,
+    "beam4": 8,
+    "greedyMisses": [
+      {
+        "id": "piper-noa-water-actually-oil-10",
+        "text": "אספתי מים, בעצם לא, זה היה שמן"
+      }
+    ]
+  },
+  {
+    "scenario": "water-actually-oil",
+    "term": "שמן",
+    "total": 9,
+    "greedy": 9,
+    "beam4": 9,
+    "greedyMisses": []
+  }
+]

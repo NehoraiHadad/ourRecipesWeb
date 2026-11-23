@@ -1,0 +1,101 @@
+{
+  "browser": "156.0.8078.79",
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "clip-1",
+      "text": "הוספתי מים, אבל עוד לא עירובבתי",
+      "ms": 434,
+      "pcm_sha256": "79d3bee2c8e390923b2bf9577e91654e25033f91ed6e11a6d020e21eddb9b735",
+      "metrics": {
+        "normalizedReference": "הוספתי מים אבל עוד לא ערבבתי",
+        "normalizedHypothesis": "הוספתי מים אבל עוד לא עירובבתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "clip-2",
+      "text": "",
+      "ms": 110.3999999994412,
+      "pcm_sha256": "02233c03a50d8bda27243d64ae0c1293e68638a44db5ea33946b8e48f9485740",
+      "metrics": {
+        "normalizedReference": "צליל בדיקה",
+        "normalizedHypothesis": "",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 2,
+        "characterErrors": 9,
+        "referenceCharacters": 9,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "clip-1",
+      "text": "הוספתי מים, אבל עוד לא עירובבתי.",
+      "ms": 498.1000000005588,
+      "pcm_sha256": "79d3bee2c8e390923b2bf9577e91654e25033f91ed6e11a6d020e21eddb9b735",
+      "metrics": {
+        "normalizedReference": "הוספתי מים אבל עוד לא ערבבתי",
+        "normalizedHypothesis": "הוספתי מים אבל עוד לא עירובבתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 23,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "beam4",
+      "filename": "clip-2",
+      "text": "",
+      "ms": 118,
+      "pcm_sha256": "02233c03a50d8bda27243d64ae0c1293e68638a44db5ea33946b8e48f9485740",
+      "metrics": {
+        "normalizedReference": "צליל בדיקה",
+        "normalizedHypothesis": "",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 2,
+        "characterErrors": 9,
+        "referenceCharacters": 9,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ],
+  "fixtures": [
+    {
+      "filename": "clip-1",
+      "pcm_sha256": "79d3bee2c8e390923b2bf9577e91654e25033f91ed6e11a6d020e21eddb9b735",
+      "speakerCode": "smoke",
+      "reference": "הוספתי מים אבל עוד לא ערבבתי.",
+      "scenario": "partial",
+      "condition": "quiet"
+    },
+    {
+      "filename": "clip-2",
+      "pcm_sha256": "02233c03a50d8bda27243d64ae0c1293e68638a44db5ea33946b8e48f9485740",
+      "speakerCode": "smoke",
+      "reference": "צליל בדיקה",
+      "scenario": "partial",
+      "condition": "quiet"
+    }
+  ],
+  "scope": "I/O smoke only. clip-1 is an existing synthetic Hebrew WAV. clip-2 is a simulated microphone sound with a test label, not spoken Hebrew. Do not aggregate their quality scores."
+}
