@@ -98,7 +98,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
 
   commandRef.current = text => {
     setTranscript(text);
-    if (onUtterance?.(text, indexRef.current, speak)) { setStatus(''); return; }
+    if (onUtterance?.(text, indexRef.current, message => { if (wantsMic.current) speak(message); })) { setStatus(''); return; }
     switch (recipeVoiceCommand(text)) {
       case 'next': next(); break;
       case 'previous': readStep(indexRef.current - 1); break;
@@ -188,5 +188,6 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
 
   return { canSpeak, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
     read: () => readStep(indexRef.current), next, previous: () => readStep(indexRef.current - 1),
-    restart: () => readStep(0), stop, speak, toggleMicrophone };
+    restart: () => readStep(0), stop, speak, toggleMicrophone,
+    focus: (step: number) => { indexRef.current = step; setStepIndex(step); } };
 }
