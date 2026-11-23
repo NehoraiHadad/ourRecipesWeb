@@ -15,7 +15,8 @@ const pkg = process.env.SPEECH_WASM || '/dev/shm/ourrecipes-speech-wasm/sherpaw-
 const manifest = JSON.parse(await readFile(process.env.SPEECH_MANIFEST || join(root, 'manifest.json')));
 const sources = JSON.parse(await readFile(join(root, '../evidence/wasm-source.json')));
 const modelSources = JSON.parse(await readFile(join(root, '../evidence/protocol.json')));
-const files = new Map([['/worker.mjs', resolve(root, '../browser-worker.mjs')]]);
+const whisper = process.env.SPEECH_WHISPER_TINY === '1';
+const files = new Map([['/worker.mjs', resolve(root, whisper ? '../whisper/worker.mjs' : '../browser-worker.mjs')]]);
 const sha = data => createHash('sha256').update(data).digest('hex');
 
 for (const [name, metadata] of Object.entries(sources.files)) {
@@ -24,7 +25,17 @@ for (const [name, metadata] of Object.entries(sources.files)) {
   assert.equal(sha(await readFile(file)), metadata.sha256);
   files.set('/pkg/' + name.slice(5), file);
 }
-for (const [name, metadata] of Object.entries(modelSources.models)) {
+if (whisper) {
+  const source = JSON.parse(await readFile(resolve(root,'../whisper/source.json')));
+  for (const entry of source.files) {
+    const file = join('/dev/shm/ourrecipes-whisper-tiny',entry.rfilename);
+    const bytes = await readFile(file);
+    assert.equal(bytes.length,entry.size);
+    if (entry.lfs) assert.equal(sha(bytes),entry.lfs.sha256);
+    else assert.equal(createHash('sha1').update('blob '+bytes.length+'\0').update(bytes).digest('hex'),entry.blobId);
+    files.set('/models/'+entry.rfilename,file);
+  }
+} else for (const [name, metadata] of Object.entries(modelSources.models)) {
   if (!name.startsWith('asr/sherpa-onnx/')) continue;
   const basename = name.split('/').pop();
   const file = join(model, basename);
@@ -54,7 +65,7 @@ const server = createServer(async (req, res) => {
 });
 await new Promise(resolve => server.listen(0, '127.0.0.1', resolve));
 const origin = 'http://127.0.0.1:' + server.address().port;
-const records = [];
+const records = [], loads = [];
 const browser = await chromium.launch({executablePath: process.env.CHROMIUM || '/usr/bin/chromium', args: ['--no-sandbox']});
 try {
   const context = await browser.newContext({serviceWorkers: 'block'});
@@ -66,7 +77,7 @@ try {
   });
   const page = await context.newPage();
   await page.goto(origin);
-  for (const arm of (process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
+  for (const arm of (whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
     const loaded = await page.evaluate(async arm => {
       window.worker = new Worker('/worker.mjs', {type: 'module'});
       window.ask = payload => new Promise((resolve, reject) => {
@@ -82,6 +93,7 @@ try {
       return window.ask({type: 'load', arm});
     }, arm);
     assert.equal(loaded.type, 'ready');
+    loads.push({arm,ms:loaded.ms,heapBytes:loaded.wasmHeapBytes});
     for (const row of manifest.records) {
       const result = await page.evaluate(async filename => {
         const response = await fetch('/audio/' + filename);
@@ -96,7 +108,7 @@ try {
     console.log('Completed', arm, manifest.records.length);
   }
   assert.deepEqual(external, []);
-  await writeFile(out, JSON.stringify({browser: browser.version(), externalRequests: external, records}, null, 2) + '\n', {flag: 'wx'});
+  await writeFile(out, JSON.stringify({browser: browser.version(), loads, externalRequests: external, records}, null, 2) + '\n', {flag: 'wx'});
 } finally {
   await browser.close();
   server.closeAllConnections();

@@ -1,0 +1,31 @@
+{
+  "repo": "csukuangfj/sherpa-onnx-whisper-tiny",
+  "revision": "65176e2deb88badc814a94058666cadccc29b61c",
+  "files": [
+    {
+      "rfilename": "tiny-decoder.int8.onnx",
+      "blobId": "a62129e6f2e71df56f77c04b3c13d64358e49c47",
+      "size": 89855401,
+      "lfs": {
+        "sha256": "d2fece8dd42771f1df975c6c0445770d0c292bf7547c2cae04a6c0cc57540925",
+        "size": 89855401,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "tiny-encoder.int8.onnx",
+      "blobId": "16e39b36b676d7614c6324c4c36653bc666beef3",
+      "size": 12937772,
+      "lfs": {
+        "sha256": "d24fb083ae3b1041fc24e97971d60e280c9342201fbb67b0ab428a8b4a51a434",
+        "size": 12937772,
+        "pointerSize": 133
+      }
+    },
+    {
+      "rfilename": "tiny-tokens.txt",
+      "blobId": "a4edf0b719c10d28cd83f8c294449f99ff5d5dc0",
+      "size": 816730
+    }
+  ]
+}
