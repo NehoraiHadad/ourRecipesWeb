@@ -7,6 +7,7 @@ import { recipeVoiceCommand } from '@/lib/recipes/voiceCommands';
 import { Button } from '@/components/ui/Button';
 import { useRecipeVoice } from '@/hooks/useRecipeVoice';
 
+import RecipeNarrationSettings from './RecipeNarrationSettings';
 import LocalRecipeMicrophone from './LocalRecipeMicrophone';
 
 export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps: string[]; recipe: ActiveRecipe; ingredients: string[] }) {
@@ -127,7 +128,7 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
       </div>}
       {cooking.error && <p role="alert" className="text-red-700">{cooking.error}</p>}
       <LocalRecipeMicrophone steps={steps} ingredients={ingredients} disabled={voice.speaking || cooking.stage === 'thinking' || cooking.stage === 'loading'}
-        interrupt={interrupt} stopVoice={voice.stopBrowser} onTranscript={voice.acceptTranscript} />
+        interrupt={interrupt} stopVoice={voice.startLocalMic} onTranscript={voice.acceptTranscript} />
       {voice.canListen && (
         <details><summary className="cursor-pointer text-sm">פקודות קוליות דרך שירות הדפדפן</summary>
           <Button variant={voice.microphoneOn ? 'primary' : 'secondary'} size="sm" aria-pressed={voice.microphoneOn} onClick={toggleConversation}>
@@ -140,7 +141,8 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
           </p>
         </details>
       )}
-      {!voice.canSpeak && <p className="text-xs text-secondary-600">הקראה אינה זמינה בדפדפן הזה. אפשר לקרוא את השלב ולעבור בכפתורים.</p>}
+      <RecipeNarrationSettings system={voice.systemVoice} installed={voice.installed} usingNoa={voice.usingNoa}
+        setInstalled={voice.setInstalled} choose={voice.chooseVoice} />
       <div role="status" className="text-sm text-secondary-600">
         {voice.status || (voice.listening ? 'מקשיב לפקודה…' : voice.speaking ? 'מקריא את השלב…' : voice.microphoneOn ? 'המיקרופון פעיל; ממתין לסיום ההקראה…' : '')}
       </div>

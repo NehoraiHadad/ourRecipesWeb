@@ -108,12 +108,14 @@ self.addEventListener('fetch', event => {
   }
 });
 
-// The local microphone downloads and verifies this version before starting its module worker.
+// Each optional speech engine has its own verified offline cache.
 self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
-  if (event.request.method === 'GET' && url.origin === self.location.origin &&
-      url.pathname.startsWith('/voice/asr/v1/') && !event.request.headers.has('X-Recipe-Download')) {
-    event.respondWith(caches.open('recipe-asr-v1').then(async cache =>
+  const cacheName = url.pathname.startsWith('/voice/asr/v1/') ? 'recipe-asr-v1'
+    : url.pathname.startsWith('/voice/noa/v1/') ? 'recipe-noa-v1' : null;
+  if (cacheName && event.request.method === 'GET' && url.origin === self.location.origin &&
+      !event.request.headers.has('X-Recipe-Download')) {
+    event.respondWith(caches.open(cacheName).then(async cache =>
       (await cache.match(event.request)) || fetch(event.request)));
   }
 });

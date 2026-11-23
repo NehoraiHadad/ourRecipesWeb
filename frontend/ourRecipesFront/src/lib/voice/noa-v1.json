@@ -1,0 +1,50 @@
+[
+  {
+    "path": "vendor/g2p.js",
+    "bytes": 5564,
+    "sha256": "ad5f74105fc9a695a5bfc7cde8180360e76d3f8ea779e5ccc9776ec015eb1e4f"
+  },
+  {
+    "path": "vendor/onnxMeta.js",
+    "bytes": 2477,
+    "sha256": "d46fbb2377f631f5968a3c816bb96c3a0a133984b86cb6f93f3424777d7aec73"
+  },
+  {
+    "path": "vendor/ort-wasm-simd-threaded.mjs",
+    "bytes": 24381,
+    "sha256": "e13f7f94fc51b4ca72b12faeb1ee95f4ace6dfbc8939bc718aabdc0a27c4299b"
+  },
+  {
+    "path": "vendor/ort-wasm-simd-threaded.wasm",
+    "bytes": 14239897,
+    "sha256": "3398c10d07d229bd91b364548e130e0e51a8e5704b88c7c083ebbeb78842dee2"
+  },
+  {
+    "path": "vendor/ort.wasm.min.mjs",
+    "bytes": 50126,
+    "sha256": "219e6a1fc8a9938268d18efca3c91d310bd2f4a59bbd13744df5b2b7fc6cee3b"
+  },
+  {
+    "path": "worker.mjs",
+    "bytes": 2367,
+    "sha256": "bf963f2e9a7697551bb6ce29524c01fcbe14738967ca616fed806aa2ef7546f5"
+  },
+  {
+    "path": "he_IL-noa-medium.onnx",
+    "bytes": 77056101,
+    "sha256": "83b18c0b8fad6ac00fcea5c5bdf3c1fdbec182f9eadad9f97bc423ab4e22be7d",
+    "source": "https://huggingface.co/thewh1teagle/piper-he-noa/resolve/23f8e06909e9a1e562a50f99df63e3785451379a/he_IL-noa-medium.onnx"
+  },
+  {
+    "path": "he_IL-noa-medium.onnx.json",
+    "bytes": 5048,
+    "sha256": "109a7a2a0739061510f318d987e81c27ba81ca57c9303444298f712f71b1082c",
+    "source": "https://huggingface.co/thewh1teagle/piper-he-noa/resolve/23f8e06909e9a1e562a50f99df63e3785451379a/he_IL-noa-medium.onnx.json"
+  },
+  {
+    "path": "renikud.onnx",
+    "bytes": 20620594,
+    "sha256": "8b881a3a8f00283d86c6d1feea44d37e09c1ea6609a4de7d820d937e7f3dbbca",
+    "source": "https://huggingface.co/thewh1teagle/pocket-tts-onnx/resolve/110f5251188e9407b4f724acdd8b0dfd0b20692a/he/renikud.onnx"
+  }
+]

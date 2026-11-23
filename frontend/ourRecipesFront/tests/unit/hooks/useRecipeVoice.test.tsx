@@ -1,5 +1,6 @@
 import { act, renderHook } from '@testing-library/react';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { LocalNarrator } from '@/lib/voice/localNarrator';
 import { useRecipeVoice } from '@/hooks/useRecipeVoice';
 
 class FakeRecognition {
@@ -117,6 +118,37 @@ describe('recipe voice navigation', () => {
     const {result} = renderHook(() => useRecipeVoice(steps));
     expect(result.current.canSpeak).toBe(false);
     act(() => result.current.speak('תשובה מקומית'));
+    expect(speak).not.toHaveBeenCalled();
+  });
+
+  it('pauses recognition until Noa has finished playing the entire utterance', async () => {
+    let ended!: () => void;
+    const playback = vi.spyOn(LocalNarrator.prototype, 'play').mockImplementation(() =>
+      new Promise<void>(resolve => { ended=resolve; }));
+    const prime = vi.spyOn(LocalNarrator.prototype, 'unlock').mockResolvedValue({} as AudioContext);
+    try {
+      const {result} = renderHook(() => useRecipeVoice(steps));
+      act(() => {result.current.setInstalled(true); result.current.chooseVoice(true);});
+      act(() => result.current.toggleMicrophone());
+      const recognition = FakeRecognition.instance;
+      act(() => result.current.read());
+      expect(playback).toHaveBeenCalledOnce();
+      expect(result.current.speaking).toBe(true);
+      act(() => recognition.say('השלב הבא'));
+      expect(result.current.stepIndex).toBe(0);
+      expect(recognition.start).toHaveBeenCalledTimes(1);
+      await act(async () => ended());
+      expect(result.current.speaking).toBe(false);
+      expect(recognition.start).toHaveBeenCalledTimes(2);
+    } finally { playback.mockRestore(); prime.mockRestore(); }
+  });
+
+  it('discards a pending spoken brain reply when the user stops', () => {
+    let reply!: (text:string) => void;
+    const {result} = renderHook(() => useRecipeVoice(steps, (_text,_step,say) => {reply=say; return true;}));
+    act(() => result.current.acceptTranscript('הוספתי מים'));
+    act(() => result.current.stop());
+    act(() => reply('עדכון מוצע'));
     expect(speak).not.toHaveBeenCalled();
   });
 
