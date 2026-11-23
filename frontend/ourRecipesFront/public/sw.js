@@ -107,3 +107,13 @@ self.addEventListener('fetch', event => {
       (await cache.match(event.request)) || fetch(event.request)));
   }
 });
+
+// The local microphone downloads and verifies this version before starting its module worker.
+self.addEventListener('fetch', event => {
+  const url = new URL(event.request.url);
+  if (event.request.method === 'GET' && url.origin === self.location.origin &&
+      url.pathname.startsWith('/voice/asr/v1/') && !event.request.headers.has('X-Recipe-Download')) {
+    event.respondWith(caches.open('recipe-asr-v1').then(async cache =>
+      (await cache.match(event.request)) || fetch(event.request)));
+  }
+});

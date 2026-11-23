@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState, type MutableRefObject } from 'react';
 import { recipeVoiceCommand } from '@/lib/recipes/voiceCommands';
 
 // SpeechRecognition is still prefixed in some browsers and absent from lib.dom.
@@ -19,7 +19,7 @@ type VoiceWindow = Window & {
   webkitSpeechRecognition?: new () => Recognition;
 };
 
-export function useRecipeVoice(steps: string[], onUtterance?: (text: string, step: number, speak: (text: string) => void) => boolean) {
+export function useRecipeVoice(steps: string[], onUtterance?: (text: string, step: number, speak: (text: string) => void) => boolean, interrupt?: MutableRefObject<(() => void) | null>) {
   const [canSpeak, setCanSpeak] = useState(false);
   const [canListen, setCanListen] = useState(false);
   const [stepIndex, setStepIndex] = useState(0);
@@ -38,7 +38,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   const commandRef = useRef<(text: string) => void>(() => {});
   const startRef = useRef<() => void>(() => {});
 
-  const stop = useCallback(() => {
+  const stopBrowser = useCallback(() => {
     wantsMic.current = false;
     if (restartRef.current) clearTimeout(restartRef.current);
     recognitionRef.current?.abort();
@@ -49,17 +49,23 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     setListening(false);
     setMicrophoneOn(false);
   }, []);
+  const stop = useCallback(() => {
+    interrupt?.current?.();
+    stopBrowser();
+  }, [interrupt, stopBrowser]);
 
   const speak = useCallback((text: string) => {
+    interrupt?.current?.();
     if (!window.speechSynthesis || typeof window.SpeechSynthesisUtterance !== 'function') return;
+    const hebrewVoice = window.speechSynthesis.getVoices().find(v => v.localService && /^he(?:-|$)/i.test(v.lang));
+    if (!hebrewVoice) return;
     const utterance = new SpeechSynthesisUtterance(text);
     // Keep a strong reference, and ignore completion events from cancelled speech.
     speechRef.current = utterance;
     recognitionRef.current?.abort();
     window.speechSynthesis.cancel();
     utterance.lang = 'he-IL';
-    const hebrewVoice = window.speechSynthesis.getVoices().find(voice => /^he(?:-|$)/i.test(voice.lang));
-    if (hebrewVoice) utterance.voice = hebrewVoice;
+    utterance.voice = hebrewVoice;
     utterance.rate = 0.9;
     const finish = () => {
       if (speechRef.current !== utterance) return;
@@ -75,7 +81,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     };
     setSpeaking(true);
     window.speechSynthesis.speak(utterance);
-  }, []);
+  }, [interrupt]);
 
   const readStep = useCallback((index: number) => {
     const currentSteps = stepsRef.current;
@@ -111,7 +117,11 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   };
 
   useEffect(() => {
-    setCanSpeak(Boolean(window.speechSynthesis) && typeof window.SpeechSynthesisUtterance === 'function');
+    const synth = window.speechSynthesis;
+    const updateVoices = () => setCanSpeak(!!synth && typeof window.SpeechSynthesisUtterance === 'function' &&
+      synth.getVoices().some(v => v.localService && /^he(?:-|$)/i.test(v.lang)));
+    updateVoices();
+    synth?.addEventListener?.('voiceschanged', updateVoices);
     const Constructor = (window as VoiceWindow).SpeechRecognition ?? (window as VoiceWindow).webkitSpeechRecognition;
     setCanListen(Boolean(Constructor));
     if (Constructor) {
@@ -161,6 +171,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     };
     document.addEventListener('visibilitychange', onHidden);
     return () => {
+      synth?.removeEventListener?.('voiceschanged', updateVoices);
       document.removeEventListener('visibilitychange', onHidden);
       if (recognitionRef.current) {
         recognitionRef.current.onend = null;
@@ -181,12 +192,16 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       return;
     }
     setStatus('');
+    interrupt?.current?.();
     wantsMic.current = true;
     setMicrophoneOn(true);
     startRef.current();
   };
 
-  return { canSpeak, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
+  const acceptTranscript = (text: string) => {
+    if (!speechRef.current && document.visibilityState !== 'hidden') commandRef.current(text);
+  };
+  return { acceptTranscript, stopBrowser, canSpeak, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
     read: () => readStep(indexRef.current), next, previous: () => readStep(indexRef.current - 1),
     restart: () => readStep(0), stop, speak, toggleMicrophone };
 }

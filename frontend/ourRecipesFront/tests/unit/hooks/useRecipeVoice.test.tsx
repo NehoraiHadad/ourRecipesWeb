@@ -30,7 +30,7 @@ beforeEach(() => {
   speak.mockClear(); cancel.mockClear();
   vi.stubGlobal('SpeechRecognition', FakeRecognition);
   vi.stubGlobal('SpeechSynthesisUtterance', FakeUtterance);
-  vi.stubGlobal('speechSynthesis', { speak, cancel, getVoices: () => [{ lang: 'he-IL' }] });
+  vi.stubGlobal('speechSynthesis', { speak, cancel, getVoices: () => [{ lang: 'he-IL', localService: true }] });
 });
 afterEach(() => { vi.useRealTimers(); vi.unstubAllGlobals(); });
 
@@ -98,6 +98,26 @@ describe('recipe voice navigation', () => {
     unmount();
     expect(recognition.abort).toHaveBeenCalled();
     expect(recognition.onend).toBeNull();
+  });
+
+  it('interrupts local capture for narration and ignores a late local transcript during playback', () => {
+    const interrupt = { current: vi.fn() }, report = vi.fn(() => true);
+    const {result} = renderHook(() => useRecipeVoice(steps, report, interrupt));
+    act(() => result.current.read());
+    expect(interrupt.current).toHaveBeenCalled();
+    act(() => result.current.acceptTranscript('הקראה מהטלפון'));
+    expect(report).not.toHaveBeenCalled();
+    act(() => (speak.mock.lastCall![0] as FakeUtterance).onend?.());
+    act(() => result.current.acceptTranscript('עוד לא ערבבתי'));
+    expect(report).toHaveBeenCalledWith('עוד לא ערבבתי', 0, expect.any(Function));
+  });
+
+  it('keeps a cloud-only Hebrew TTS voice from receiving the transcript or reply', () => {
+    vi.stubGlobal('speechSynthesis', { speak, cancel, getVoices: () => [{lang:'he-IL',localService:false}] });
+    const {result} = renderHook(() => useRecipeVoice(steps));
+    expect(result.current.canSpeak).toBe(false);
+    act(() => result.current.speak('תשובה מקומית'));
+    expect(speak).not.toHaveBeenCalled();
   });
 
   it('allows button navigation when browser speech APIs are absent', () => {

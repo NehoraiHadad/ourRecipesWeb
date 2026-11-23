@@ -1,0 +1,3 @@
+Hebrew Zipformer2 and derived BPE vocabulary: Yakov Kolani / ivrit.ai, CC BY 4.0. https://huggingface.co/ivrit-ai/zipformer2-66m-streaming-he/tree/ee769a2a13b887f91572eec349458bfb0fe79e7a
+https://creativecommons.org/licenses/by/4.0/
+Runtime: @sherpaw/asr 0.3.0, Apache-2.0; see SHERPAW-LICENSE.txt.
