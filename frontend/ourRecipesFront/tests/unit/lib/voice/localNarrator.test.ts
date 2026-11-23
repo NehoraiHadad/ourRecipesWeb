@@ -13,6 +13,7 @@ describe('Piper Noa in the cooking guide', () => {
     expect(normalizeHebrewSpeech('⅔ כוס, 2–3 דקות, 180°C ו-1,000 גרם'))
       .toBe('שני שלישים כוס, שתיים עד שלוש דקות, מאה ושמונים מעלות צלזיוס ואלף גרם');
     expect(normalizeHebrewSpeech('1 1/20')).toBe('אחת ואחת חלקי עשרים');
+    expect(normalizeHebrewSpeech('להוסיף מים — בוצע. לאשר?')).toBe('להוסיף מים , בוצע. לאשר?');
     expect(() => normalizeHebrewSpeech('1/0')).toThrow();
   });
 

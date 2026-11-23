@@ -38,7 +38,8 @@ export function normalizeHebrewSpeech(source: string) {
     .replace(/\d+(?:\.\d+)?/g,raw=>{
       const [whole,decimal] = raw.split('.');
       return integer(Number(whole)) + (decimal ? ' נקודה ' + decimal.split('').map(d=>digits[Number(d)]).join(' ') : '');
-    }).replace(/%/g,' אחוזים ').replace(/°/g,' מעלות ').replace(/[•·]/g,', ').replace(/־/g,' ');
+    }).replace(/%/g,' אחוזים ').replace(/°/g,' מעלות ').replace(/[•·–—]/g,', ').replace(/־/g,' ')
+    .replace(/[„“”]/g,'"').replace(/…/g,'...').replace(/[\u200e\u200f]/g,'');
   if (/[^\u0590-\u05ff\s.,;:!?()'"״׳\-–—]/.test(text)) throw Error('יש סימן שאינו נתמך בהקראה. הטקסט המקורי זמין במסך.');
   return text.replace(/שתיים (?=כפות|כפיות|כוסות|דקות|שעות|מעלות|יחידות)/g,'שתי ').replace(/\s+/g,' ').trim();
 }
