@@ -1,0 +1,2704 @@
+{
+  "browser": "156.0.8078.79",
+  "filterBytes": 1933102,
+  "initMs": 98.5,
+  "filterHeapBytes": 16777216,
+  "externalRequests": [],
+  "records": [
+    {
+      "group": "human",
+      "clip": "5533611810171800056",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "clean",
+      "file": "5533611810171800056-clean.pcm",
+      "sha256": "4454a9821855a889b550c4a2f669578787993ed36b31f998e0b52abc90fec33c",
+      "raw": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "inputSha256": "4454a9821855a889b550c4a2f669578787993ed36b31f998e0b52abc90fec33c",
+        "decodeMs": 688.3000000044703,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "inputSha256": "a6ec55b97306cebed847b23ce7a23533b87c22c02b991bcb41eabc92d3efbd19",
+        "decodeMs": 588,
+        "preprocessMs": 307.19999999552965,
+        "wordErrors": 0,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "5533611810171800056",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "10",
+      "file": "5533611810171800056-10.pcm",
+      "sha256": "784ce8d2f9e96bbd70ccd9688da7f1415553775fed0e831be1c74c23e95e33ad",
+      "filtered": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין סוגים את אותם התאמות שהיו בעבר.",
+        "inputSha256": "81177d06a49c1d0fa52e7ecc32f582b33c10a3c05d7ae98d75cb36f989b5d8e4",
+        "decodeMs": 444.80000000447035,
+        "preprocessMs": 301.1000000014901,
+        "wordErrors": 2,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותם התאמות שהיו בעבר.",
+        "inputSha256": "784ce8d2f9e96bbd70ccd9688da7f1415553775fed0e831be1c74c23e95e33ad",
+        "decodeMs": 475,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "5533611810171800056",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "0",
+      "file": "5533611810171800056-0.pcm",
+      "sha256": "2bb38d2adfa73cf58d7c981a6d7814be4e1d0d5944970f5a376a50438c776f3f",
+      "raw": {
+        "text": "האוכלוסייה המקורית לא השתנתה כרגע, עדיין 300 של כמה טענות שהיו בעבר.",
+        "inputSha256": "2bb38d2adfa73cf58d7c981a6d7814be4e1d0d5944970f5a376a50438c776f3f",
+        "decodeMs": 458.30000000447035,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "האוכלוסייה המקורית לא השתמשה כאן, אני עדיין משלשמת הקמת המאית היו בעבר.",
+        "inputSha256": "66adba17b53def2f55e137aa33febf4611301ee73f36a5185728238fbcb8a416",
+        "decodeMs": 430.1000000014901,
+        "preprocessMs": 243.89999999850988,
+        "wordErrors": 8,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "4087159111056890210",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "clean",
+      "file": "4087159111056890210-clean.pcm",
+      "sha256": "4dcfb1aaceebd4b2d41d50a5174c51c11bfeec697331b9e10276ec7fec61d349",
+      "filtered": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "inputSha256": "2b82f8836d332697307e29a85b49a82a0e6ce1c48593c7da02021333a03d52fb",
+        "decodeMs": 1027.5,
+        "preprocessMs": 505.80000000447035,
+        "wordErrors": 0,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן התאמות שהיו בעבר.",
+        "inputSha256": "4dcfb1aaceebd4b2d41d50a5174c51c11bfeec697331b9e10276ec7fec61d349",
+        "decodeMs": 1129.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "4087159111056890210",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "10",
+      "file": "4087159111056890210-10.pcm",
+      "sha256": "00296a0af16d3414fe8aad829856f38a2d82281a3184d5c841699e939aea50d8",
+      "raw": {
+        "text": "האוכלוסייה המקורית לא השתנתה כלל. הם עדיין צריכים את אותן מתעמות שהיו בעבר.",
+        "inputSha256": "00296a0af16d3414fe8aad829856f38a2d82281a3184d5c841699e939aea50d8",
+        "decodeMs": 1060.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "האוכלוסייה הנקראת לאינשתנתה? למה? הם עדיין צריכים את אותן תקופות עמוק שהיו בעבר.",
+        "inputSha256": "cf005d2b503343a0d96ccc0bb62081bb6e729713694d4a82bd72afd0bba2ad7a",
+        "decodeMs": 1114.0999999940395,
+        "preprocessMs": 582.1999999955297,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "4087159111056890210",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "0",
+      "file": "4087159111056890210-0.pcm",
+      "sha256": "60e5c6ceeabe9ebffccb050c95eb842321665da1cf97ff9ddc93754a536e4789",
+      "filtered": {
+        "text": "אוקיי, אני מקווה. כן. למה? היו בעבר.",
+        "inputSha256": "6421780e66b3fd3fbad5f18d19235f3788997c3348bd35a182da1fcc3a799793",
+        "decodeMs": 998.0999999940395,
+        "preprocessMs": 545.3000000044703,
+        "wordErrors": 12,
+        "words": 13,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      },
+      "raw": {
+        "text": "האוכלוסייה, אנחנו עדיין צריכים את אותן שהיו בעבר.",
+        "inputSha256": "60e5c6ceeabe9ebffccb050c95eb842321665da1cf97ff9ddc93754a536e4789",
+        "decodeMs": 1161.7999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "1083791105728656051",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "clean",
+      "file": "1083791105728656051-clean.pcm",
+      "sha256": "edba945f0a5003e71bb46693d82c9651390a6f4690359a6d0505e9a87e51c9f2",
+      "raw": {
+        "text": "אוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותן התאמות שהיו בעבר",
+        "inputSha256": "edba945f0a5003e71bb46693d82c9651390a6f4690359a6d0505e9a87e51c9f2",
+        "decodeMs": 495.3999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אוכלוסייה המקורית לא השתנתה כלל, הם עדיין צריכים את אותם התאמות שהיו בעבר",
+        "inputSha256": "8a1a9e6e4ca8509f4a9df72077850aedbb03ccfcb988e97f500ba16a2838c8c3",
+        "decodeMs": 458.6000000014901,
+        "preprocessMs": 246.10000000149012,
+        "wordErrors": 2,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "1083791105728656051",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "10",
+      "file": "1083791105728656051-10.pcm",
+      "sha256": "bd7a4536d9aa992a9ace545041de78f4dc985778e2db060d0ac2df36ca2dfc39",
+      "filtered": {
+        "text": "אוכלוסייה המקורית לא השתלטה כלל, הם עדיין צריכים לכתוב התאמות שהיו בעבר",
+        "inputSha256": "4a7333b474be99b569f06833ca01af19157038c5edbc314859dc1dc2cd6cff0f",
+        "decodeMs": 431.6000000014901,
+        "preprocessMs": 249.19999999552965,
+        "wordErrors": 4,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      },
+      "raw": {
+        "text": "אוכלוסייה המקורית לא השקעתה כלל, הם עדיין צריכים את אותם התאמות שהיו בעבר.",
+        "inputSha256": "bd7a4536d9aa992a9ace545041de78f4dc985778e2db060d0ac2df36ca2dfc39",
+        "decodeMs": 434.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "1083791105728656051",
+      "reference": "האוכלוסייה המקורית לא השתנתה כלל הם עדיין צריכים את אותן התאמות שהיו בעבר",
+      "anchors": [
+        "לא השתנתה"
+      ],
+      "condition": "0",
+      "file": "1083791105728656051-0.pcm",
+      "sha256": "398180c3e715b09da67956e36b6d03c5c4884077ed5aeeb6d826058f55c1109f",
+      "raw": {
+        "text": "אוכלוסייה המקורית לא בדרך כלל, עדיין צריכים לתת המתאמות שהיו באורך",
+        "inputSha256": "398180c3e715b09da67956e36b6d03c5c4884077ed5aeeb6d826058f55c1109f",
+        "decodeMs": 433.1000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 7,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      },
+      "filtered": {
+        "text": "אוכלוסייה המקורית לא הייתה בכלל, אני עדיין צריך לכתוב את המאות שהיו בעבר",
+        "inputSha256": "d0462eba9deba3df7f4e363d9fa98a40e9e7b53bd1fee312660830cb846d5baf",
+        "decodeMs": 493.5,
+        "preprocessMs": 252.5,
+        "wordErrors": 8,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא השתנתה"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "671253326365773738",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "clean",
+      "file": "671253326365773738-clean.pcm",
+      "sha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+      "filtered": {
+        "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "6c24ca31620d4c79e9ae1b7dd4c51358b9b00011617e0718a9614fbd5d9eaf78",
+        "decodeMs": 883.7000000029802,
+        "preprocessMs": 524.5,
+        "wordErrors": 0,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד חזיר ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "3752722a41cd3f2c704beaa0584b9a90ec3f1f198186236b491e8c248fcf1465",
+        "decodeMs": 901.5,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "671253326365773738",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "10",
+      "file": "671253326365773738-10.pcm",
+      "sha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+      "raw": {
+        "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד בחזיר בועשי שימוש נרחב בשמן זין.",
+        "inputSha256": "edd0dfad1ff073f1230c29b4595905696a2def93a2f1a9e518d0c81f8481f574",
+        "decodeMs": 901.8000000044703,
+        "preprocessMs": 0,
+        "wordErrors": 4,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      },
+      "filtered": {
+        "text": "המטבח המיורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד. נרחב בשמן זין.",
+        "inputSha256": "d1c46d7915dffd0b170b36391d6793937c8527df60db3bde3887bdd7b3bb42f4",
+        "decodeMs": 843.3999999985099,
+        "preprocessMs": 545.1000000014901,
+        "wordErrors": 5,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "671253326365773738",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "0",
+      "file": "671253326365773738-0.pcm",
+      "sha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+      "filtered": {
+        "text": "המטבח המיורטי, ועוד אצל אזורים דומים במזרח התיכון מבוסס על לחם, גרפות ובשר. במיוחד. נרחב בשם ע\"ז",
+        "inputSha256": "b1eb4063aafb0603b9f1aa3d8c3bc8d01af90bfb1e485a67ffa681902f1878a0",
+        "decodeMs": 921.1999999955297,
+        "preprocessMs": 510.30000000447035,
+        "wordErrors": 11,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      },
+      "raw": {
+        "text": "המטבח המיוורטי, כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם, ירקות ובשר, במיוחד באותו שימוש נרחב בשם ע\"ז.",
+        "inputSha256": "f5a64285830dd867e83e73376174ea7c62f7b1914545837b61824884393edd3a",
+        "decodeMs": 901.2000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "3933341704547636563",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "clean",
+      "file": "3933341704547636563-clean.pcm",
+      "sha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+      "raw": {
+        "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכאב בשמן זית.",
+        "inputSha256": "6174e4dbb0c946b8df29bda1aa7ebdd974caefca5599081c9aaca057e9c9cc1e",
+        "decodeMs": 571.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 11,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "המטבח המאורי, כמו זה שהם זוכרים את זה במרכז הביטחון מבוסס על לחם ירקות ובשר מבוסס שימוש נכחב בשמן זית.",
+        "inputSha256": "2d529b4a59ea156739410812b17f368d5faa762d6b696c00a87c07c2ce29c354",
+        "decodeMs": 562.2000000029802,
+        "preprocessMs": 267.3999999985099,
+        "wordErrors": 11,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "3933341704547636563",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "10",
+      "file": "3933341704547636563-10.pcm",
+      "sha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+      "filtered": {
+        "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, זה פחות מסתדרג על יעקב ובשר הוא כזה שימוש ניחד בשמן זין.",
+        "inputSha256": "157789f6453486a7e7e061289acc5b6fcd7a64d88ce3b49369da668912eac612",
+        "decodeMs": 540.5,
+        "preprocessMs": 262.5,
+        "wordErrors": 16,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      },
+      "raw": {
+        "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במרכז הלחם יעקב ובשר הוא כזה שימוש מיכל בשמן זית.",
+        "inputSha256": "232c6213a0a114897baeb18651756b92f4a2eb81856e6ce66667ec173965c0d0",
+        "decodeMs": 546.7000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 14,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "3933341704547636563",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "0",
+      "file": "3933341704547636563-0.pcm",
+      "sha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+      "raw": {
+        "text": "המטבח המאורי, כמו זה שאני זוכרים את זה במיוחד, נכון? זה בשר וכוצא שימוש ניחד בשמן זית.",
+        "inputSha256": "29b931770d743420cd294752ac91762b0f20c54e656a8c80c1526584c63d4428",
+        "decodeMs": 598,
+        "preprocessMs": 0,
+        "wordErrors": 15,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "המטבח המאורי, כמו זה שאני זוכרים, אני אעשה את זה בשר, כמו שיש לי אחד בשם י\"ז.",
+        "inputSha256": "25f81df7e111734c0ccfa97e083bbfe34a9d2e9b81e5da69e0022e73a068d313",
+        "decodeMs": 549.7999999970198,
+        "preprocessMs": 264.29999999701977,
+        "wordErrors": 18,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "7963201897982563627",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "clean",
+      "file": "7963201897982563627-clean.pcm",
+      "sha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+      "filtered": {
+        "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "06af4a779bfc6089ce24c0a0c317b6a7459d5ddc9a883f126984e6604a4a20b6",
+        "decodeMs": 1354.6000000014901,
+        "preprocessMs": 790.1000000014901,
+        "wordErrors": 0,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "המטבח המיורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "9d62637bd8bda9fe22a3eae83a370515dffc92ad19aa7e1f996ebcd728f402b1",
+        "decodeMs": 1422.6999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "7963201897982563627",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "10",
+      "file": "7963201897982563627-10.pcm",
+      "sha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+      "raw": {
+        "text": "המטווח המיוורקי, כמו זה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "6cd961589fa07e83dd2367ded8e2035c8f287c6f0496f7525fec00abb4c7ac5d",
+        "decodeMs": 1483.5,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "המטווח המיורקי, מוצא של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב בשמן זית.",
+        "inputSha256": "6231e6abcf3aefad32bad4b505c5ad329247da881dd3a00079eefa6d368d299b",
+        "decodeMs": 1426.8999999985099,
+        "preprocessMs": 775,
+        "wordErrors": 3,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "7963201897982563627",
+      "reference": "המטבח המיורקי כמו זה של אזורים דומים במזרח התיכון מבוסס על לחם ירקות ובשר במיוחד חזיר ועושה שימוש נרחב בשמן זית",
+      "anchors": [
+        "בשמן זית"
+      ],
+      "condition": "0",
+      "file": "7963201897982563627-0.pcm",
+      "sha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+      "filtered": {
+        "text": "המשפט המיופי, מוצא של אזורים דומים במזרח התיכון, מבוסס על נכד, מרחוק מבשר, במיוחד חזיר, ועושה שימוש נרחב לפני נג'י.",
+        "inputSha256": "7f02ff2e73f7b4666c7cbd7db0815da867eec5bae4d3bc6177e67c98fcceba83",
+        "decodeMs": 1457.7999999970198,
+        "preprocessMs": 807.7000000029802,
+        "wordErrors": 10,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      },
+      "raw": {
+        "text": "המזרח המיורי, מוזה של אזורים דומים במזרח התיכון, מבוסס על לחם, ירקות ובשר, במיוחד חזיר, ועושה שימוש נרחב קשה לזית.",
+        "inputSha256": "85c243d8a3d6911ded76d6bd46bcbafeea51a842ae9f72fd6e4e9d90ed590373",
+        "decodeMs": 1396.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 21,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בשמן זית"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "12767039217536701376",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "clean",
+      "file": "12767039217536701376-clean.pcm",
+      "sha256": "d7184a5c503d0c137469ca4b1d16e03c359cdfeb6422f068104fff3d24367ef7",
+      "raw": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו נפתור ממכס.",
+        "inputSha256": "d7184a5c503d0c137469ca4b1d16e03c359cdfeb6422f068104fff3d24367ef7",
+        "decodeMs": 682.9000000059605,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו, אני פטור ממכס.",
+        "inputSha256": "4e1e593491ebf38b5654878e19f511dfbce5f96ba4d2ba787c82d828c51ef704",
+        "decodeMs": 725.2999999970198,
+        "preprocessMs": 324.70000000298023,
+        "wordErrors": 1,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "12767039217536701376",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "10",
+      "file": "12767039217536701376-10.pcm",
+      "sha256": "2e3be8310b16dcce3357db8dd06ed065723f0c1bfff7187494e3d8ad04b08033",
+      "filtered": {
+        "text": "אני לא יודע אם אתם מבינים גם, אבל רוב הספרים על מרכז אמריקה הגיעה למדינה זו לפתור מנכס.",
+        "inputSha256": "b6ca7a5bfcf1b64fee66bf64027b011a98514ca6c5d53b3c67026dcadd537c41",
+        "decodeMs": 677.8000000044703,
+        "preprocessMs": 372.6000000014901,
+        "wordErrors": 9,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      },
+      "raw": {
+        "text": "אני לא יודע אם אתם מבינים את זה הכלל, אבל רוב הסחורה למרכז אמריקה הגיעה למדינה זו פטור מנכס.",
+        "inputSha256": "2e3be8310b16dcce3357db8dd06ed065723f0c1bfff7187494e3d8ad04b08033",
+        "decodeMs": 654.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "12767039217536701376",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "0",
+      "file": "12767039217536701376-0.pcm",
+      "sha256": "62441610d6c8d14e803711a8921b3f32e0770173d9d438e33bb76c09583daded",
+      "raw": {
+        "text": "אני לא יודע אם אתם מבינים בעזרת השכלה כאלה הגיעה למדינה זו נפתור לי לאפס.",
+        "inputSha256": "62441610d6c8d14e803711a8921b3f32e0770173d9d438e33bb76c09583daded",
+        "decodeMs": 692.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 11,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      },
+      "filtered": {
+        "text": "אני לא יודע אם אתם מבינים אצלנו, אין לי מוגיקה הגיעה למדינה זו נפתור מליקס",
+        "inputSha256": "69f8c1b72babaed5920cbeb65f07fe6a0240c5cdce99e978a997bd20518efaaa",
+        "decodeMs": 647.7999999970198,
+        "preprocessMs": 341.79999999701977,
+        "wordErrors": 11,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "9998010172575924808",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "clean",
+      "file": "9998010172575924808-clean.pcm",
+      "sha256": "fce2a8b70de19c26d0229fa32449fdcfbfe9cf390eacec69401b6df1550f0fe9",
+      "filtered": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "inputSha256": "be35c3b189ce84b3fb5172f888e3cee8a28523bf30a4b4178479e2525abca69b",
+        "decodeMs": 667.8000000044703,
+        "preprocessMs": 379.5,
+        "wordErrors": 1,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+        "inputSha256": "fce2a8b70de19c26d0229fa32449fdcfbfe9cf390eacec69401b6df1550f0fe9",
+        "decodeMs": 650.6999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "9998010172575924808",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "10",
+      "file": "9998010172575924808-10.pcm",
+      "sha256": "176012ab80a0b8699462857e73b2c48c27bd2c07d33355ba428e3b65753d9864",
+      "raw": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, אבל רוב הסחורה במרכז אמריקה הגיעה למדינה זו עם פטור מנכס.",
+        "inputSha256": "176012ab80a0b8699462857e73b2c48c27bd2c07d33355ba428e3b65753d9864",
+        "decodeMs": 670.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אני לא יודע אם אתם מבינים זאת או לא, רוב הספורם במרכז אמריקה הגיעה למדינה זו עם פטור ממכס.",
+        "inputSha256": "ec7dd9ab94334c72168ce998f1390deaf3fbf7cda9e0ed815195bb02b14d34be",
+        "decodeMs": 754.2999999970198,
+        "preprocessMs": 379.70000000298023,
+        "wordErrors": 3,
+        "words": 20,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "9998010172575924808",
+      "reference": "אני לא יודע אם אתם מבינים זאת או לא אבל רוב הסחורה ממרכז אמריקה הגיעה למדינה זו עם פטור ממכס",
+      "anchors": [
+        "לא יודע",
+        "או לא"
+      ],
+      "condition": "0",
+      "file": "9998010172575924808-0.pcm",
+      "sha256": "1d467878d5f88952d57ba95823bd3191c873d71fd38837f67d5a2b62058f5431",
+      "filtered": {
+        "text": "אני לא יודע אם אתם נכנסים את זה פה, לרוב הסברה ממרכז אמריקה הגיעה למדינה הזו עם פטור מנכס.",
+        "inputSha256": "3fe2afe9f2d20a4e797a8dc39233cb44ef1aba50b86e07245f7e31bd0189020f",
+        "decodeMs": 652.6999999955297,
+        "preprocessMs": 403.79999999701977,
+        "wordErrors": 9,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      },
+      "raw": {
+        "text": "אני לא יודע אם אתם יודעים את זה פה, רוב הספורה במרכז אמריקה הגיעה למדינה זו עם פטור מנכס.",
+        "inputSha256": "1d467878d5f88952d57ba95823bd3191c873d71fd38837f67d5a2b62058f5431",
+        "decodeMs": 750.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 8,
+        "words": 20,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "או לא"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "18147387225164914689",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "clean",
+      "file": "18147387225164914689-clean.pcm",
+      "sha256": "05ef883b8267225a6447fa753ff2ef0d00d2ac9abcfa677c8ce653754e3089c1",
+      "raw": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+        "inputSha256": "05ef883b8267225a6447fa753ff2ef0d00d2ac9abcfa677c8ce653754e3089c1",
+        "decodeMs": 322.70000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+        "inputSha256": "26e584aa9f4aba6a0c390e81a6fd636898c3e648000eab0ef0916298f1041b8d",
+        "decodeMs": 340.8999999985099,
+        "preprocessMs": 128.39999999850988,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "18147387225164914689",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "10",
+      "file": "18147387225164914689-10.pcm",
+      "sha256": "ec613102b0decb09018b62e47e04b470d7a434b5aa8c6b9e639306200385edf5",
+      "filtered": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה עובד.",
+        "inputSha256": "2577d92506318bc69b7302a4c6733969838f6ffdbad2d80eb06336f4c79c2373",
+        "decodeMs": 348,
+        "preprocessMs": 143,
+        "wordErrors": 1,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא היה הוגן"
+        ]
+      },
+      "raw": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "inputSha256": "ec613102b0decb09018b62e47e04b470d7a434b5aa8c6b9e639306200385edf5",
+        "decodeMs": 359.3999999985099,
+        "preprocessMs": 0.10000000149011612,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "18147387225164914689",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "0",
+      "file": "18147387225164914689-0.pcm",
+      "sha256": "549bbf3ddec4683a002f1327a536028bc065464f946925550611afd5b1365d3e",
+      "raw": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה יודע.",
+        "inputSha256": "549bbf3ddec4683a002f1327a536028bc065464f946925550611afd5b1365d3e",
+        "decodeMs": 339.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לא היה הוגן"
+        ]
+      },
+      "filtered": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט נראה אותי.",
+        "inputSha256": "3d2868dcd00fbe717ed36966db809e7c72a1fd04a451bbbd7342a1d4543f9f22",
+        "decodeMs": 323.19999999552965,
+        "preprocessMs": 141.29999999701977,
+        "wordErrors": 3,
+        "words": 11,
+        "negationCountDelta": -1,
+        "missingAnchors": [
+          "לא היה הוגן"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15848500317962835492",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "clean",
+      "file": "15848500317962835492-clean.pcm",
+      "sha256": "eafede9985a5e7c8c20dedee656408e2b3c0d78429a33b93b441b1401bff33c0",
+      "filtered": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן",
+        "inputSha256": "873bbc22b34904ac067513e9b825f50cf90c502f9b3d3cc3139015faa8b70674",
+        "decodeMs": 556.2000000029802,
+        "preprocessMs": 284.40000000596046,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "זה לא היה נראה לי הגיוני, זה בהחלט לא היה הוגן.",
+        "inputSha256": "eafede9985a5e7c8c20dedee656408e2b3c0d78429a33b93b441b1401bff33c0",
+        "decodeMs": 578.5,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15848500317962835492",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "10",
+      "file": "15848500317962835492-10.pcm",
+      "sha256": "f1fb18ac675e716f32c2ff2d78a568bacb50e301474873fca4b1a128b558a256",
+      "raw": {
+        "text": "זה לא היה נראה לי בדיוק, זה בהחלט לא היה הוגן.",
+        "inputSha256": "f1fb18ac675e716f32c2ff2d78a568bacb50e301474873fca4b1a128b558a256",
+        "decodeMs": 559.6999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "זה לא היה נראה לי, ובהחלט לא היה הוגן",
+        "inputSha256": "c8cc2d727841e6f724b9bf575fb531bb04878785d85c215cad9d9d9cc09f2ef7",
+        "decodeMs": 525.5,
+        "preprocessMs": 281.29999999701977,
+        "wordErrors": 3,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15848500317962835492",
+      "reference": "זה לא היה נראה לי הגיוני זה בהחלט לא היה הוגן",
+      "anchors": [
+        "לא היה נראה",
+        "לא היה הוגן"
+      ],
+      "condition": "0",
+      "file": "15848500317962835492-0.pcm",
+      "sha256": "3453548266fd299c62e2fef0a50d54006b4193357fd74a36335171cd048a988a",
+      "filtered": {
+        "text": "זה לא היה נראה לי, ולהחלט לא היה הוגן.",
+        "inputSha256": "735ef55c3fff796fb70b19b4a497e3407fc5d016c54e15003c71973b8b79de6d",
+        "decodeMs": 558.8999999985099,
+        "preprocessMs": 287.5,
+        "wordErrors": 3,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "זה לא היה נראה לי בהחלט לא היה הוגן.",
+        "inputSha256": "3453548266fd299c62e2fef0a50d54006b4193357fd74a36335171cd048a988a",
+        "decodeMs": 542.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "human",
+      "clip": "10012360550181770926",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "clean",
+      "file": "10012360550181770926-clean.pcm",
+      "sha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+      "raw": {
+        "text": "כעת זמין באופן נרחב, בכל רחבי הארכי פלג, המטבח הג'וואני מאופיין במגוון מענק מטובלות בפשטות, והטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים, בלבלצ'ילי סוכר ומגוון תבלינים ארומותי.",
+        "inputSha256": "dae4402e43fff4e7d39d79716d305e98031e1696b47c3367b4daab16aa92f057",
+        "decodeMs": 1491.6999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 14,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      },
+      "filtered": {
+        "text": "כעת זמין באופן אחד, בכל רחבי הארכי פלג, המטבח הג'ואני מאופיין במגוון מנת מטובלות בפשטות. והטעמים הבולטים שהג'אוונסנים אוהבים הם בוטנים, בלבלצ'ילי, סוכר ומגוון תבלינים ארומותים.",
+        "inputSha256": "e587b0da8338f28e600b998f509832a04c298385efb413fabe6130988d48cb6c",
+        "decodeMs": 1660.1000000014901,
+        "preprocessMs": 860.8999999985099,
+        "wordErrors": 15,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "10012360550181770926",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "10",
+      "file": "10012360550181770926-10.pcm",
+      "sha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+      "filtered": {
+        "text": "כעת זמין באופן אחד, המטבח הג'וואני מאופיין במגוון מרק ותובלות בפשטות, וגם אם המומחים, ג'וואנסנים אוהבים הם בוטנים. סוכר ממגוון תבלינים עונותיים.",
+        "inputSha256": "05362a739e8755b07131ecf6b3f3c235303164cce838c24bcbf3f02e6672f8f1",
+        "decodeMs": 1496.7000000029802,
+        "preprocessMs": 931.5,
+        "wordErrors": 22,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      },
+      "raw": {
+        "text": "כעת זמין באופן אחד, כל רחבי האפיפיינים המטבח הג'וואני מאופיין במגוון מרת מטובלות בפשטות. בטעמים הבולטים שהג'וואנסנים אוהבים הם בוטנים מבלג'יני, סוכר ומגוון תבלינים עמודים.",
+        "inputSha256": "14334a02a9b69640c44adc406b54b1405ccf1133d9c3ceca549ec55d0833e902",
+        "decodeMs": 1410.5,
+        "preprocessMs": 0,
+        "wordErrors": 17,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "10012360550181770926",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "0",
+      "file": "10012360550181770926-0.pcm",
+      "sha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+      "raw": {
+        "text": "כעת זמין באופן כללי, המטבח הג'וואלי הוא הגווני רק מטובלות בפשטות. הג'וול סני מאזינים בוטנים.",
+        "inputSha256": "f005b6011ba4a2ce1b02fd6d682bc23c1dd3cc3ed4526ec579a95eeb947aaffd",
+        "decodeMs": 1357.3999999985099,
+        "preprocessMs": 0.10000000149011612,
+        "wordErrors": 27,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      },
+      "filtered": {
+        "text": "כעת זמין באופן נראה לי שגם. במגוון מורת וטובלות בפשטות. לג'בלסנים ערביים בפני. אמרתי.",
+        "inputSha256": "fa015899313ef8558c31c9d281aae975937c874933bef96009867ae1ca3528d5",
+        "decodeMs": 1416.8999999985099,
+        "preprocessMs": 867.3999999985099,
+        "wordErrors": 29,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15572944599586100683",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "clean",
+      "file": "15572944599586100683-clean.pcm",
+      "sha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+      "filtered": {
+        "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "inputSha256": "e663c9e92169baf9e57da6fb8f3ae1f96c0f630e67ea3e4527ca663903be5709",
+        "decodeMs": 1088.8999999985099,
+        "preprocessMs": 600.3000000044703,
+        "wordErrors": 24,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      },
+      "raw": {
+        "text": "כעת זמין באופן נרחב, בכל רחבי הארכיבלג, המטבח, הג'יבאני מאופיין במגוון מונח.",
+        "inputSha256": "f447f22f7bb403817d46d42a52fcfbda6853039a1057790fe1e8dbd75331c9b4",
+        "decodeMs": 1198.8000000044703,
+        "preprocessMs": 0,
+        "wordErrors": 24,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15572944599586100683",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "10",
+      "file": "15572944599586100683-10.pcm",
+      "sha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+      "raw": {
+        "text": "כעת זמין באופן מרחק, בכל רחבי הארכי דלג, המטבח, הזוזני מאוחייין במגוון מונח.",
+        "inputSha256": "c77e70376799c62cef9c8aea7f3139473ad134d1eb2119a4fbd6a7fb441955f3",
+        "decodeMs": 1102.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 28,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      },
+      "filtered": {
+        "text": "כעת זנים באופן נוסף, בכל רחבי הארכי דלג. המטבח, הזוזני מאוקייין ממגוון מונח.",
+        "inputSha256": "fc0840dbaa1f929b957df0345b35b13d096678b8d71d0eb1be95cbd6d5aa3751",
+        "decodeMs": 1084.8999999985099,
+        "preprocessMs": 632.5,
+        "wordErrors": 30,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "15572944599586100683",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "0",
+      "file": "15572944599586100683-0.pcm",
+      "sha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+      "filtered": {
+        "text": "כעת זנים באופן נוסף, בכל רחביות הארץ ידלק. המדבר היזני הוא אופיין ממגוון מונח.",
+        "inputSha256": "38e351a5ac686688ec2b9fc67cb006b09d5b3cb42d44334c5024c98cd5c1fc55",
+        "decodeMs": 1084.4000000059605,
+        "preprocessMs": 675,
+        "wordErrors": 31,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      },
+      "raw": {
+        "text": "כעת זנים באופן מיוחד, בחורף הזד האר תדלק. המטבח הזה אני אוכל במגוון מונח.",
+        "inputSha256": "aa027979646bf8dc4e40b5de911e186281fc9eb4fc1d1d8653442b5e3394a57d",
+        "decodeMs": 1072.2999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 31,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "16538192119906209361",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "clean",
+      "file": "16538192119906209361-clean.pcm",
+      "sha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+      "raw": {
+        "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלאג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים, הם בוטנים פלפלצ'ילי, סוכר ומגוון תמנינים ארמוטיים.",
+        "inputSha256": "4f341ac169a1d5ce2d2a3dd90a85422a368003df8bfca4bd18bd7910c9ba4850",
+        "decodeMs": 937.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 15,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      },
+      "filtered": {
+        "text": "כעת זמין באופן נרחב, בכל החוויה הכי פלג, המטבח הג'מאני מאופיין במגוון מנות מטובלות בפשטות, והטעמים הבולטים שהג'פאזים אוהבים ובוטנים פלפלצ'ילי, סוכר ומגוון תבנינים הרמוטיים.",
+        "inputSha256": "957da89ec64be25d5837f03f12d81aa3604dea458635bc3c065e4249edadf4f6",
+        "decodeMs": 989.7000000029802,
+        "preprocessMs": 541.5999999940395,
+        "wordErrors": 17,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "16538192119906209361",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "10",
+      "file": "16538192119906209361-10.pcm",
+      "sha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+      "filtered": {
+        "text": "כעת זמין באופן נרחב, אורח הלאה תקרא רגע למטבח הג'מאני מאפיין במגוון מעולות מטובלות בפשטות, הטעמים הבולטים של ג'פרנסה לרדיני גופמין, פלפלצ'ילי, סוכר ומגוון תרגונים אנגלית.",
+        "inputSha256": "35e4f7a5a08fbca2754dd87609bcdd5763db7b64b35501f0cbe1d39f738e25f9",
+        "decodeMs": 1030.2999999970198,
+        "preprocessMs": 539.8999999985099,
+        "wordErrors": 24,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      },
+      "raw": {
+        "text": "כעת זמין באופן נרחב, חול חדש, הפרק המטווח הג'מאני מאופיין במגוון מעלות מטובלות בפשטות, והטעמים הבולטים של הג'פרסם רבים ובפנים, פולפן צ'ילי, סוכר ומגוון תמנונים הרמוטים.",
+        "inputSha256": "87b9f48fd185763faadd55aa94b47ca682dad55d957a1252ae0f5aa755f4cf7d",
+        "decodeMs": 986.1000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 20,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "human",
+      "clip": "16538192119906209361",
+      "reference": "כעת זמין באופן נרחב בכל רחבי הארכיפלג המטבח הג'אווני מאופיין במגוון מנות מתובלות בפשטות והטעמים הבולטים שהג'אוונסים אוהבים הם בוטנים פלפל צ'ילי סוכר בעיקר סוכר קוקוס ג'אווני ומגוון תבלינים ארומטיים",
+      "anchors": [
+        "סוכר",
+        "סוכר קוקוס"
+      ],
+      "condition": "0",
+      "file": "16538192119906209361-0.pcm",
+      "sha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+      "raw": {
+        "text": "כעת זמין באופן אישי, שזה היה הכי טוב במחטבח התימני מאפיין במגוון מטובלות בפשטות, והטעמים הבולטים של הדיפרת הנרדים לנחם, הוא בן צ'ילי סוכר ומגוון תמונים אמיתי.",
+        "inputSha256": "f5a1f2deb69394adc2558c5d6bf5f7dcc9c43f29829ca1f6b4ba1337daf2d782",
+        "decodeMs": 988.0999999940395,
+        "preprocessMs": 0,
+        "wordErrors": 23,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      },
+      "filtered": {
+        "text": "כעת זמין באופן אישי. שם במגוון מאוד מקובלות בפשטות, בטעמים הבולטים של הדיפרנציאלי, בין People chily, סוכר ומגוון תמונים אנגליה",
+        "inputSha256": "b753d22e7c84a14018ace3ec1313d900d06cf7c7945460d3b5cb52b151ae7d5f",
+        "decodeMs": 986.3999999985099,
+        "preprocessMs": 521.2999999970198,
+        "wordErrors": 26,
+        "words": 34,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר קוקוס"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p01",
+      "reference": "רגע, קצצתי את הבצל אבל עוד לא טיגנתי אותו.",
+      "anchors": [
+        "קצצתי",
+        "הבצל",
+        "עוד לא",
+        "טיגנתי"
+      ],
+      "condition": "clean",
+      "file": "omer-p01-clean.pcm",
+      "sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "filtered": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו.",
+        "inputSha256": "b8e08e6f3d6a9c0827d35d49c57d3063405463b30c3699a19d1a7c33f329be5c",
+        "decodeMs": 445.6000000014901,
+        "preprocessMs": 182.29999999701977,
+        "wordErrors": 0,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+        "inputSha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+        "decodeMs": 308.1000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p01",
+      "reference": "רגע, קצצתי את הבצל אבל עוד לא טיגנתי אותו.",
+      "anchors": [
+        "קצצתי",
+        "הבצל",
+        "עוד לא",
+        "טיגנתי"
+      ],
+      "condition": "10",
+      "file": "omer-p01-10.pcm",
+      "sha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+      "raw": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+        "inputSha256": "0eb72c22f530dfa5b9210ec9904355417d376283ab50259fbc9b48cc100b336c",
+        "decodeMs": 314.1000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו.",
+        "inputSha256": "eb9b95f9a2865a6aa4368615be839bb61e15fc27b9e1bb3eb3a54f3eaf2736ae",
+        "decodeMs": 428.20000000298023,
+        "preprocessMs": 201.90000000596046,
+        "wordErrors": 0,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p01",
+      "reference": "רגע, קצצתי את הבצל אבל עוד לא טיגנתי אותו.",
+      "anchors": [
+        "קצצתי",
+        "הבצל",
+        "עוד לא",
+        "טיגנתי"
+      ],
+      "condition": "0",
+      "file": "omer-p01-0.pcm",
+      "sha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+      "filtered": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותי.",
+        "inputSha256": "59ee06e9cc1c23f6cfbddf64ec93d696d4d004d99a133fb4eba88724a18d556c",
+        "decodeMs": 440.79999999701977,
+        "preprocessMs": 191.5,
+        "wordErrors": 1,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+        "inputSha256": "ea40671a5d69245847839410977e3b200daf6b7fd035003c90fff2cb78c46304",
+        "decodeMs": 316.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p02",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "anchors": [
+        "שמתי",
+        "פלפל שחור",
+        "סליחה",
+        "פלפל אדום"
+      ],
+      "condition": "clean",
+      "file": "liat-p02-clean.pcm",
+      "sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "raw": {
+        "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+        "inputSha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+        "decodeMs": 320,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "פלפל אדום"
+        ]
+      },
+      "filtered": {
+        "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+        "inputSha256": "104f4fb49a0811b2c13d8076ea4a48ea87e0eda739f5de164033dd55ad413386",
+        "decodeMs": 324.8999999985099,
+        "preprocessMs": 182.5,
+        "wordErrors": 2,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "פלפל אדום"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p02",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "anchors": [
+        "שמתי",
+        "פלפל שחור",
+        "סליחה",
+        "פלפל אדום"
+      ],
+      "condition": "10",
+      "file": "liat-p02-10.pcm",
+      "sha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+      "filtered": {
+        "text": "שמתי פיפל שחור, שיחקתי פיפל אדום",
+        "inputSha256": "8e81103191ae24884739dc441e82243e64885f2d0a4e836fc3c9f9c0fafe88c7",
+        "decodeMs": 325.5,
+        "preprocessMs": 179.39999999850988,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "סליחה",
+          "פלפל אדום"
+        ]
+      },
+      "raw": {
+        "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+        "inputSha256": "4c622fffc451193ad3752e039c6574605b8c8dacd8d18b5193dfe22f2845f006",
+        "decodeMs": 321.19999999552965,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "פלפל אדום"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p02",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "anchors": [
+        "שמתי",
+        "פלפל שחור",
+        "סליחה",
+        "פלפל אדום"
+      ],
+      "condition": "0",
+      "file": "liat-p02-0.pcm",
+      "sha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+      "raw": {
+        "text": "שמתי טיפל שחור, סליחה, פיזל אדום",
+        "inputSha256": "26d9c0850c1992254f30ce73621ea45d99dbe0467b6f2ba8eee4b1106919592b",
+        "decodeMs": 312.19999999552965,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "פלפל אדום"
+        ]
+      },
+      "filtered": {
+        "text": "שמתי פיפל שחור, טיפה של אדום",
+        "inputSha256": "5c972430ec0ff84adf2e7ca9280765fc3745337f0f272159e8c08d1600d26876",
+        "decodeMs": 317.20000000298023,
+        "preprocessMs": 187.39999999850988,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "פלפל שחור",
+          "סליחה",
+          "פלפל אדום"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p03",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "condition": "clean",
+      "file": "noa-p03-clean.pcm",
+      "sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "filtered": {
+        "text": "את השוק כבר קטשתי, ואת הגזל רק קילפתי.",
+        "inputSha256": "64a32fe94b9fa786166bdc1e0e8ec8a91786b1363de9c7b9ca0a9300f459b6f1",
+        "decodeMs": 403.70000000298023,
+        "preprocessMs": 185.29999999701977,
+        "wordErrors": 3,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי",
+          "הגזר"
+        ]
+      },
+      "raw": {
+        "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+        "inputSha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+        "decodeMs": 311.29999999701977,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p03",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "condition": "10",
+      "file": "noa-p03-10.pcm",
+      "sha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+      "raw": {
+        "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+        "inputSha256": "41f14e4d3f6e0eaec0c359b93236a5d23a00005e9c9a1afc5619078b7a263bb9",
+        "decodeMs": 354.29999999701977,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי"
+        ]
+      },
+      "filtered": {
+        "text": "את השוק כבר קטשתי, ואת הגזל רק קילפתי.",
+        "inputSha256": "1e48cad509e4176979861b54c899a43272a636ea5a89dd2d2cc94a3fa111d05f",
+        "decodeMs": 473.70000000298023,
+        "preprocessMs": 183.39999999850988,
+        "wordErrors": 3,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי",
+          "הגזר"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p03",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "anchors": [
+        "השום",
+        "כתשתי",
+        "הגזר",
+        "רק קילפתי"
+      ],
+      "condition": "0",
+      "file": "noa-p03-0.pcm",
+      "sha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+      "filtered": {
+        "text": "אתה שוב כבר כתבתי, ואת הגזל רק קילקתי.",
+        "inputSha256": "00d78ff1808b521af10797d57a43aea835cf9697f6abf14044ede7d91adbf834",
+        "decodeMs": 455.79999999701977,
+        "preprocessMs": 185.29999999701977,
+        "wordErrors": 5,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי",
+          "הגזר",
+          "רק קילפתי"
+        ]
+      },
+      "raw": {
+        "text": "הפסוק כבר קטשתי, ואת הגזל רק קילכתי.",
+        "inputSha256": "f4504657d206fb7cf4e000e9b4e3892df1eec9dbdfba787f7bd94d322367ba8d",
+        "decodeMs": 347.19999999552965,
+        "preprocessMs": 0,
+        "wordErrors": 5,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השום",
+          "כתשתי",
+          "הגזר",
+          "רק קילפתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p04",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "condition": "clean",
+      "file": "omer-p04-clean.pcm",
+      "sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "raw": {
+        "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+        "inputSha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+        "decodeMs": 329.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "במקום סוכר הוספתי דבש, זה בסדר.",
+        "inputSha256": "c2ac6b6e6f55b49cbddbaaef8979dfccf1d329b5e9085b7be7644827ff973569",
+        "decodeMs": 331.6000000014901,
+        "preprocessMs": 160.69999999552965,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p04",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "condition": "10",
+      "file": "omer-p04-10.pcm",
+      "sha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+      "filtered": {
+        "text": "במקום סוכר הוספתי דבש, זה בסדר",
+        "inputSha256": "de741877a68b0514510a997827f56bfafbbe67e38e618f89388fe53a06e7844b",
+        "decodeMs": 343.8999999985099,
+        "preprocessMs": 169.89999999850988,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "במקום סוכר הוספתי דבש, זה בסדר",
+        "inputSha256": "a7a189ef71aa780f627a729f842cc102b78e4b9e727786bd07d159be8e24e46e",
+        "decodeMs": 333.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p04",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "anchors": [
+        "במקום",
+        "סוכר",
+        "הוספתי",
+        "דבש"
+      ],
+      "condition": "0",
+      "file": "omer-p04-0.pcm",
+      "sha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+      "raw": {
+        "text": "במקום סוכה הוספתי דבש, זה בסדר",
+        "inputSha256": "e3cd7e31cc6085d657e129811cbe3642bd5fb75b86e90d67bd6572274d25897b",
+        "decodeMs": 317.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר"
+        ]
+      },
+      "filtered": {
+        "text": "במקום תפוקה וסף ט\"ו, זה בסדר.",
+        "inputSha256": "52fa8f71d1686e48b01d8638fb86a4132acb0b4955b1eb45fe1ab9fb01ce1450",
+        "decodeMs": 318.5,
+        "preprocessMs": 176.30000000447035,
+        "wordErrors": 4,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סוכר",
+          "הוספתי",
+          "דבש"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p05",
+      "reference": "חצי כפית מלח, לא חצי כף.",
+      "anchors": [
+        "חצי כפית",
+        "מלח",
+        "לא",
+        "חצי כף"
+      ],
+      "condition": "clean",
+      "file": "liat-p05-clean.pcm",
+      "sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "filtered": {
+        "text": "חצי כפית מלח, לא חצי כף.",
+        "inputSha256": "71c9cfb905d1f21a53b1bf87f6664cd3a9f277928c9fb8ca1d28532ee9037240",
+        "decodeMs": 362.6000000014901,
+        "preprocessMs": 140.89999999850988,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "חצי כפית מלח, לא חצי כף.",
+        "inputSha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+        "decodeMs": 357.20000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p05",
+      "reference": "חצי כפית מלח, לא חצי כף.",
+      "anchors": [
+        "חצי כפית",
+        "מלח",
+        "לא",
+        "חצי כף"
+      ],
+      "condition": "10",
+      "file": "liat-p05-10.pcm",
+      "sha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+      "raw": {
+        "text": "חצי כפית מלח, לא חצי כף.",
+        "inputSha256": "9cfb5da0eaefc9460f30bf509d8eb580aba932b632cf68e903277211ec6f347a",
+        "decodeMs": 346.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "חצי כפית מלח, לא חצי כף.",
+        "inputSha256": "6868a47471260492158d4e2bf7d55340facca932b94a51631dffa6c871b6a9b5",
+        "decodeMs": 324.19999999552965,
+        "preprocessMs": 154,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p05",
+      "reference": "חצי כפית מלח, לא חצי כף.",
+      "anchors": [
+        "חצי כפית",
+        "מלח",
+        "לא",
+        "חצי כף"
+      ],
+      "condition": "0",
+      "file": "liat-p05-0.pcm",
+      "sha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+      "filtered": {
+        "text": "חצי כפית מלח, לא חצי כפי",
+        "inputSha256": "51aa4becbd9b768c8d5785d91007f16061008f11f7b096ffcc84c008e9713e98",
+        "decodeMs": 326.1000000014901,
+        "preprocessMs": 140.40000000596046,
+        "wordErrors": 1,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "חצי כף"
+        ]
+      },
+      "raw": {
+        "text": "חצי כפית מלח, לא חצי כף.",
+        "inputSha256": "dbb1b4482ecc8cc69f41682d1fe1f9b0398f4747b049160da44bca7919208010",
+        "decodeMs": 322.3999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p06",
+      "reference": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "anchors": [
+        "לא",
+        "בעצם",
+        "עוד לא",
+        "סיננתי",
+        "האורז"
+      ],
+      "condition": "clean",
+      "file": "noa-p06-clean.pcm",
+      "sha256": "53a167d7176a485a90041fb5118e99913d48c22250d3b5ce92e1d38c0b41fe2d",
+      "raw": {
+        "text": "אה, לא, בעצם עוד לא סיננתי את האורז",
+        "inputSha256": "53a167d7176a485a90041fb5118e99913d48c22250d3b5ce92e1d38c0b41fe2d",
+        "decodeMs": 324.3999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אה, לא, בעצם עוד לא סיננתי את האורז",
+        "inputSha256": "ed72fc098203878f70f47db86bbaf3a733b70c329d446404c177dd61a011d188",
+        "decodeMs": 341.29999999701977,
+        "preprocessMs": 183.39999999850988,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p06",
+      "reference": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "anchors": [
+        "לא",
+        "בעצם",
+        "עוד לא",
+        "סיננתי",
+        "האורז"
+      ],
+      "condition": "10",
+      "file": "noa-p06-10.pcm",
+      "sha256": "aab44cb87b33c9ffa880e604c4bc6c91ba09d298ffb4b7ee77e54f08864f3d13",
+      "filtered": {
+        "text": "אה, לא, בעצם עוד לא סיננתי את האורז",
+        "inputSha256": "8c4e3b81cba5fa8092ceef0729b10e6aaccd697ad66b2aec83ce83d5758cd3a1",
+        "decodeMs": 356.6000000014901,
+        "preprocessMs": 168.19999999552965,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "אה, לא, בעצם עוד לא סיננתי את האורס",
+        "inputSha256": "aab44cb87b33c9ffa880e604c4bc6c91ba09d298ffb4b7ee77e54f08864f3d13",
+        "decodeMs": 344.79999999701977,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "האורז"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p06",
+      "reference": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "anchors": [
+        "לא",
+        "בעצם",
+        "עוד לא",
+        "סיננתי",
+        "האורז"
+      ],
+      "condition": "0",
+      "file": "noa-p06-0.pcm",
+      "sha256": "a9692a0d4e8d46e8bf82f37c856245e5b7d2c03873852ea07fe98a56a50c2799",
+      "raw": {
+        "text": "אה, לא, בעצם עוד לא סיננטית אורז.",
+        "inputSha256": "a9692a0d4e8d46e8bf82f37c856245e5b7d2c03873852ea07fe98a56a50c2799",
+        "decodeMs": 334.80000000447035,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סיננתי",
+          "האורז"
+        ]
+      },
+      "filtered": {
+        "text": "אה, לא, בעצם עוד לא סיננטית פה וזה",
+        "inputSha256": "1fa5a1e75dc13faf78d7cc829926158b84e52f6a5cc6882fa424149a1fe23952",
+        "decodeMs": 313.6000000014901,
+        "preprocessMs": 164,
+        "wordErrors": 3,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "סיננתי",
+          "האורז"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p07",
+      "reference": "הבצק כבר בקערה. ללוש עכשיו או לחכות?",
+      "anchors": [
+        "הבצק",
+        "בקערה",
+        "ללוש",
+        "לחכות"
+      ],
+      "condition": "clean",
+      "file": "omer-p07-clean.pcm",
+      "sha256": "4fd9d99a40b6d938209cfff5aeacef5b3f692ee678c74e404081bfb58785a1fb",
+      "filtered": {
+        "text": "הבצק כבר בקרה, ללוש עכשיו או לחכות.",
+        "inputSha256": "5c4b1dd9da9227914a2da19e01e75a10d0d9899cc4b665a6b8279e6cd3b0a822",
+        "decodeMs": 474.79999999701977,
+        "preprocessMs": 181.5,
+        "wordErrors": 1,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה"
+        ]
+      },
+      "raw": {
+        "text": "הבצק כבר בקרה, ללוש עכשיו או לחכות.",
+        "inputSha256": "4fd9d99a40b6d938209cfff5aeacef5b3f692ee678c74e404081bfb58785a1fb",
+        "decodeMs": 429.5,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p07",
+      "reference": "הבצק כבר בקערה. ללוש עכשיו או לחכות?",
+      "anchors": [
+        "הבצק",
+        "בקערה",
+        "ללוש",
+        "לחכות"
+      ],
+      "condition": "10",
+      "file": "omer-p07-10.pcm",
+      "sha256": "c8ffcda272d9d34fe3a23c393585d306913ba610a542b3beefa92b17aea6274b",
+      "raw": {
+        "text": "הבצק כבר בקרה, ללוש עכשיו או לחכות.",
+        "inputSha256": "c8ffcda272d9d34fe3a23c393585d306913ba610a542b3beefa92b17aea6274b",
+        "decodeMs": 455.3999999985099,
+        "preprocessMs": 0.10000000149011612,
+        "wordErrors": 1,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה"
+        ]
+      },
+      "filtered": {
+        "text": "הבצק כבר בקרה, ללוש עכשיו או לפחות.",
+        "inputSha256": "0138062d4fd0b3f01de1cd94c180a2c68030f49c4f33ab84b841c4b388d87ce8",
+        "decodeMs": 422.70000000298023,
+        "preprocessMs": 201.5,
+        "wordErrors": 2,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה",
+          "לחכות"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p07",
+      "reference": "הבצק כבר בקערה. ללוש עכשיו או לחכות?",
+      "anchors": [
+        "הבצק",
+        "בקערה",
+        "ללוש",
+        "לחכות"
+      ],
+      "condition": "0",
+      "file": "omer-p07-0.pcm",
+      "sha256": "10a0b6046abd82dc066e66cb03ba2c4b2e60a7867f5f22dadc3267635433c036",
+      "filtered": {
+        "text": "הבצק כבר בקרה, לנוש עכשיו או לפחות.",
+        "inputSha256": "c0be32fa431526f77b0f0cbe8245abdcc3ce7ce21c1b94c5fb3cffac6449fde2",
+        "decodeMs": 429.19999999552965,
+        "preprocessMs": 213.29999999701977,
+        "wordErrors": 3,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה",
+          "ללוש",
+          "לחכות"
+        ]
+      },
+      "raw": {
+        "text": "הבצק כבר בקרה, ללוש עכשיו או לפחות.",
+        "inputSha256": "10a0b6046abd82dc066e66cb03ba2c4b2e60a7867f5f22dadc3267635433c036",
+        "decodeMs": 423.20000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 7,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "בקערה",
+          "לחכות"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p08",
+      "reference": "רק שטפתי את העדשים, לבשל עוד לא התחלתי.",
+      "anchors": [
+        "רק שטפתי",
+        "העדשים",
+        "לבשל",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "condition": "clean",
+      "file": "liat-p08-clean.pcm",
+      "sha256": "89b34a085e564efe8064f30f425e4d47662b3038767876c482744e8ce9be0957",
+      "raw": {
+        "text": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+        "inputSha256": "89b34a085e564efe8064f30f425e4d47662b3038767876c482744e8ce9be0957",
+        "decodeMs": 423.5,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי"
+        ]
+      },
+      "filtered": {
+        "text": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+        "inputSha256": "ba821161ca49190ff410f30aba6b7737b9b45f86fb2f83797612670466c0c61b",
+        "decodeMs": 448.80000000447035,
+        "preprocessMs": 206.5,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p08",
+      "reference": "רק שטפתי את העדשים, לבשל עוד לא התחלתי.",
+      "anchors": [
+        "רק שטפתי",
+        "העדשים",
+        "לבשל",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "condition": "10",
+      "file": "liat-p08-10.pcm",
+      "sha256": "3902bae57ee67f4efd6dc7574648e5b5d0e8f4b66924697f71cb9f8a95bfa131",
+      "filtered": {
+        "text": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+        "inputSha256": "d3f317cad1413a730a34188eeab259d78bef3ac0f41fd4ed598693faeebbb1fa",
+        "decodeMs": 485.30000000447035,
+        "preprocessMs": 208.39999999850988,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי"
+        ]
+      },
+      "raw": {
+        "text": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+        "inputSha256": "3902bae57ee67f4efd6dc7574648e5b5d0e8f4b66924697f71cb9f8a95bfa131",
+        "decodeMs": 439,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p08",
+      "reference": "רק שטפתי את העדשים, לבשל עוד לא התחלתי.",
+      "anchors": [
+        "רק שטפתי",
+        "העדשים",
+        "לבשל",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "condition": "0",
+      "file": "liat-p08-0.pcm",
+      "sha256": "be55b071113282ade9bdafd570055f0e1b375d1e38967a98f4014d0b2276266d",
+      "raw": {
+        "text": "רק שתפתי את העגשים, יבשל עוד לא התחלתי.",
+        "inputSha256": "be55b071113282ade9bdafd570055f0e1b375d1e38967a98f4014d0b2276266d",
+        "decodeMs": 445.19999999552965,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי",
+          "העדשים",
+          "לבשל"
+        ]
+      },
+      "filtered": {
+        "text": "רק שתפתי את העדשים, יבשל עוד לא התחלתי.",
+        "inputSha256": "1a10b8890c3585fbb72df3944d1dec89b900addf882c255599355ff89d752583",
+        "decodeMs": 442,
+        "preprocessMs": 206.19999999552965,
+        "wordErrors": 2,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "רק שטפתי",
+          "לבשל"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p09",
+      "reference": "טרפתי ביצה אחת ושפכתי אותה למחבת.",
+      "anchors": [
+        "טרפתי",
+        "ביצה",
+        "אחת|1",
+        "ושפכתי",
+        "למחבת"
+      ],
+      "condition": "clean",
+      "file": "noa-p09-clean.pcm",
+      "sha256": "634a1ac3c6dd5ae34e7883cc4e6ab4c29508966e2203ae14f5566c6406b0d96e",
+      "filtered": {
+        "text": "הצטרפתי בעצה אחת ושפכתי אותה למחבת.",
+        "inputSha256": "1ee905f3f859fd1e2866bfd825df8c259bfe865582851fc25ed5fd3b3c2a822e",
+        "decodeMs": 381.09999999403954,
+        "preprocessMs": 170.5,
+        "wordErrors": 2,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי",
+          "ביצה"
+        ]
+      },
+      "raw": {
+        "text": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+        "inputSha256": "634a1ac3c6dd5ae34e7883cc4e6ab4c29508966e2203ae14f5566c6406b0d96e",
+        "decodeMs": 328.20000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p09",
+      "reference": "טרפתי ביצה אחת ושפכתי אותה למחבת.",
+      "anchors": [
+        "טרפתי",
+        "ביצה",
+        "אחת|1",
+        "ושפכתי",
+        "למחבת"
+      ],
+      "condition": "10",
+      "file": "noa-p09-10.pcm",
+      "sha256": "40f96db86beeeebd215294411d5dc0a6c804c1c7558e120a68124866b7914ef7",
+      "raw": {
+        "text": "התקרבתי בעצה אחת ושפכתי אותה למחזת.",
+        "inputSha256": "40f96db86beeeebd215294411d5dc0a6c804c1c7558e120a68124866b7914ef7",
+        "decodeMs": 314.1000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי",
+          "ביצה",
+          "למחבת"
+        ]
+      },
+      "filtered": {
+        "text": "התקרבתי בעצה אחת ושפכתי אותה למחזית.",
+        "inputSha256": "c7aba309f283c84dee0aef4a590f5e05887f796356015c3f89ffe83211e0cedd",
+        "decodeMs": 308.5,
+        "preprocessMs": 162,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי",
+          "ביצה",
+          "למחבת"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p09",
+      "reference": "טרפתי ביצה אחת ושפכתי אותה למחבת.",
+      "anchors": [
+        "טרפתי",
+        "ביצה",
+        "אחת|1",
+        "ושפכתי",
+        "למחבת"
+      ],
+      "condition": "0",
+      "file": "noa-p09-0.pcm",
+      "sha256": "79d17cfae209263b950ae6a4f8034245dfef2760a17b7ff2a3a6436cffe6548b",
+      "filtered": {
+        "text": "התקרבתי בעצה אחת ושפכתי אותה למוחרת.",
+        "inputSha256": "da0469b28ae44f82c14d4233627b20da1b9ab138c7daab29dc904423b49c16fa",
+        "decodeMs": 340.29999999701977,
+        "preprocessMs": 161.79999999701977,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי",
+          "ביצה",
+          "למחבת"
+        ]
+      },
+      "raw": {
+        "text": "התכנסתי בהצעה אחת ושפכתי אותה לנחלת.",
+        "inputSha256": "79d17cfae209263b950ae6a4f8034245dfef2760a17b7ff2a3a6436cffe6548b",
+        "decodeMs": 352.30000000447035,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "טרפתי",
+          "ביצה",
+          "למחבת"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p10",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "condition": "clean",
+      "file": "omer-p10-clean.pcm",
+      "sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "raw": {
+        "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+        "inputSha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+        "decodeMs": 456.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "עוד רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+        "inputSha256": "c8c1ed2ae2f493813e9cd82292598610e1ccf5f781642e6d3c0c1576ebf5ae9f",
+        "decodeMs": 421,
+        "preprocessMs": 200.09999999403954,
+        "wordErrors": 1,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p10",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "condition": "10",
+      "file": "omer-p10-10.pcm",
+      "sha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+      "filtered": {
+        "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+        "inputSha256": "2af6b5346dfa7c1af5cfc95c8c982ed928fbc69fda837bf3c095892dde0cf3c5",
+        "decodeMs": 443.19999999552965,
+        "preprocessMs": 210.10000000149012,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו.",
+        "inputSha256": "8073a82415775e1d2a70755669f44bc1fdf90347d85a6b1643cc626d2ba40dbf",
+        "decodeMs": 423.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "omer-p10",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "anchors": [
+        "אמרתי",
+        "קמח",
+        "התכוונתי",
+        "לקקאו"
+      ],
+      "condition": "0",
+      "file": "omer-p10-0.pcm",
+      "sha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+      "raw": {
+        "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+        "inputSha256": "c210fdf4a64426eddd3da0a50cab8513ebb2e630c97c0b8ac81ef897fdd52bb5",
+        "decodeMs": 408.70000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+        "inputSha256": "74dc7c38fe77be8483d4c5b7fb3e4b5a361d0afca96aa9d999ac98eb1429d7a1",
+        "decodeMs": 412.5,
+        "preprocessMs": 218,
+        "wordErrors": 0,
+        "words": 6,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p11",
+      "reference": "את העגבניות חתכתי דק דק, את המלפפון השארתי שלם.",
+      "anchors": [
+        "העגבניות",
+        "חתכתי",
+        "המלפפון",
+        "השארתי שלם"
+      ],
+      "condition": "clean",
+      "file": "liat-p11-clean.pcm",
+      "sha256": "9511790fd16858655c99bd7fd487b1591ffd17c9adb0d14768c558d4007e0477",
+      "filtered": {
+        "text": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+        "inputSha256": "26581b7658ee530a965813214d4ae2b067d4a1f2bdc3e1908b86176184487a12",
+        "decodeMs": 430.5,
+        "preprocessMs": 227.09999999403954,
+        "wordErrors": 1,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השארתי שלם"
+        ]
+      },
+      "raw": {
+        "text": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+        "inputSha256": "9511790fd16858655c99bd7fd487b1591ffd17c9adb0d14768c558d4007e0477",
+        "decodeMs": 412.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "השארתי שלם"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p11",
+      "reference": "את העגבניות חתכתי דק דק, את המלפפון השארתי שלם.",
+      "anchors": [
+        "העגבניות",
+        "חתכתי",
+        "המלפפון",
+        "השארתי שלם"
+      ],
+      "condition": "10",
+      "file": "liat-p11-10.pcm",
+      "sha256": "6eb16ef3d8affa7f7c551bf7dc715530f47bf90605a3a6df368eff11d80bbc84",
+      "raw": {
+        "text": "את העגבניות חטפתי דק דק, את המלפפון השארתי שלם",
+        "inputSha256": "6eb16ef3d8affa7f7c551bf7dc715530f47bf90605a3a6df368eff11d80bbc84",
+        "decodeMs": 444,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "חתכתי"
+        ]
+      },
+      "filtered": {
+        "text": "את העדבניות חטפתי דק דק, את המלפפון השארתי שלם",
+        "inputSha256": "775dfb2337927e918e940764b4220eb0a89112acb8574b6116401a595c8755f4",
+        "decodeMs": 432.19999999552965,
+        "preprocessMs": 233.39999999850988,
+        "wordErrors": 2,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "העגבניות",
+          "חתכתי"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "liat-p11",
+      "reference": "את העגבניות חתכתי דק דק, את המלפפון השארתי שלם.",
+      "anchors": [
+        "העגבניות",
+        "חתכתי",
+        "המלפפון",
+        "השארתי שלם"
+      ],
+      "condition": "0",
+      "file": "liat-p11-0.pcm",
+      "sha256": "82dd0fe3b19abe746a87326bc998aa18a4c7dda9efbb81a09f25b237befe11e3",
+      "filtered": {
+        "text": "את העגבניות חטפתי דף דק. כי המלטפון השארתי שלם",
+        "inputSha256": "a471b2713c713a652d9037083a1f453d4dea0d10742d0427993be3aac2cd967c",
+        "decodeMs": 498,
+        "preprocessMs": 228.60000000149012,
+        "wordErrors": 4,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "חתכתי",
+          "המלפפון"
+        ]
+      },
+      "raw": {
+        "text": "את העדבניות חטפתי דק דק, את המלצפון השארתי שלם",
+        "inputSha256": "82dd0fe3b19abe746a87326bc998aa18a4c7dda9efbb81a09f25b237befe11e3",
+        "decodeMs": 419,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 9,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "העגבניות",
+          "חתכתי",
+          "המלפפון"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p12",
+      "reference": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר?",
+      "anchors": [
+        "אולי",
+        "שכחתי",
+        "הלימון",
+        "לבדוק",
+        "נשאר"
+      ],
+      "condition": "clean",
+      "file": "noa-p12-clean.pcm",
+      "sha256": "0d20a96213db9bccaaa77eda4e4b9b1318cd8621721413899e3005d405b81488",
+      "raw": {
+        "text": "אולי שכחתי את אלימון, אפשר לבדוק מה נשאר",
+        "inputSha256": "0d20a96213db9bccaaa77eda4e4b9b1318cd8621721413899e3005d405b81488",
+        "decodeMs": 309.29999999701977,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "הלימון"
+        ]
+      },
+      "filtered": {
+        "text": "אולי שכחתי את אלימון, אפשר לבדוק מה נשאר",
+        "inputSha256": "3242bc94c3cc7fcba3f8d165f2201fc029b47dfe5d7aa18de8d06ab5354f24b6",
+        "decodeMs": 306.30000000447035,
+        "preprocessMs": 168.79999999701977,
+        "wordErrors": 1,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "הלימון"
+        ]
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p12",
+      "reference": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר?",
+      "anchors": [
+        "אולי",
+        "שכחתי",
+        "הלימון",
+        "לבדוק",
+        "נשאר"
+      ],
+      "condition": "10",
+      "file": "noa-p12-10.pcm",
+      "sha256": "51355de0a4cf80b20c8312c11739f530573a1065fd3c024ed9804e6da8eccd2f",
+      "filtered": {
+        "text": "אולי שכחתי את הלימון, אפשר לבדוק מה נשאר",
+        "inputSha256": "1c33874a4b6d0ca21a97bbcffccbeb581cbea76e5bbd420a0435724f99239b94",
+        "decodeMs": 376.8999999985099,
+        "preprocessMs": 170.10000000149012,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר",
+        "inputSha256": "51355de0a4cf80b20c8312c11739f530573a1065fd3c024ed9804e6da8eccd2f",
+        "decodeMs": 312.3999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "tts",
+      "clip": "noa-p12",
+      "reference": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר?",
+      "anchors": [
+        "אולי",
+        "שכחתי",
+        "הלימון",
+        "לבדוק",
+        "נשאר"
+      ],
+      "condition": "0",
+      "file": "noa-p12-0.pcm",
+      "sha256": "7c8cd40aeda31815d864753be22c3b0be16e05050e8304549aa232e966adc366",
+      "raw": {
+        "text": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר",
+        "inputSha256": "7c8cd40aeda31815d864753be22c3b0be16e05050e8304549aa232e966adc366",
+        "decodeMs": 309.20000000298023,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אלעד שכחתי את הדימוי. אפשר לבדוק מה נשאר",
+        "inputSha256": "8a0deca58013a3c2f17690e59342669c8dcf6f231da8221ba001e813b41a116c",
+        "decodeMs": 327.40000000596046,
+        "preprocessMs": 174.39999999850988,
+        "wordErrors": 2,
+        "words": 8,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "אולי",
+          "הלימון"
+        ]
+      }
+    }
+  ]
+}

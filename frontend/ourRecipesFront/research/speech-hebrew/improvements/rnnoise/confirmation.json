@@ -1,0 +1,763 @@
+{
+  "browser": "156.0.8078.79",
+  "filterBytes": 1933102,
+  "initMs": 52.600000001490116,
+  "filterHeapBytes": 16777216,
+  "externalRequests": [],
+  "records": [
+    {
+      "group": "appliance",
+      "clip": "5003424012824870622",
+      "reference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "clean",
+      "file": "5003424012824870622-clean.pcm",
+      "sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "raw": {
+        "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+        "inputSha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+        "decodeMs": 738.7999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות.",
+        "inputSha256": "08f504d154be71c4b0c71f6dc0107e31dd074788e985af577686d1784b847f1b",
+        "decodeMs": 588.2000000029802,
+        "preprocessMs": 290.09999999403954,
+        "wordErrors": 0,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "5003424012824870622",
+      "reference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "5",
+      "file": "5003424012824870622-5.pcm",
+      "sha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+      "filtered": {
+        "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה ואחרים נדרשות מספר דקות.",
+        "inputSha256": "7aa0fc6c647992ce82a0a53225540d4167b81d760acceb8d1deddaabfb2b8b47",
+        "decodeMs": 524.8999999985099,
+        "preprocessMs": 286,
+        "wordErrors": 1,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים לדרשות מספר דקות.",
+        "inputSha256": "b9831ec1117bbccf0ed7701c1d24c13f1ba8ecbc43157e7193e5f3a6065873b0",
+        "decodeMs": 552.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 11,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17171468810841175967",
+      "reference": "בגלל הטופולוגיה התת-מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+      "anchors": [
+        "למים"
+      ],
+      "condition": "clean",
+      "file": "17171468810841175967-clean.pcm",
+      "sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "raw": {
+        "text": "בגלל הטופולוגיה התת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+        "inputSha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+        "decodeMs": 592.3000000044703,
+        "preprocessMs": 0,
+        "wordErrors": 4,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "בגלל הטופולוגיה תת-מימית, אז היום החוזה מרוכז בכמה קטעים עמוקים יותר, וזרם העיר למים עמוקים עלול להיווצר שם",
+        "inputSha256": "c105f8e26797572fe8a8077b5c89adc37713cce2ace5a56a6039c2ec309ceaef",
+        "decodeMs": 606.1000000014901,
+        "preprocessMs": 295,
+        "wordErrors": 5,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17171468810841175967",
+      "reference": "בגלל הטופולוגיה התת-מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+      "anchors": [
+        "למים"
+      ],
+      "condition": "5",
+      "file": "17171468810841175967-5.pcm",
+      "sha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+      "filtered": {
+        "text": "הרבה יותר באותה תמונת, אז אני חוזר בכמה קטעים נימוקים יותר, וזה גם העיר לא נימוקים גם לבצע השם.",
+        "inputSha256": "4f0d2ad6bd17215e9c858b866a60d698f2755a3b11479380b9fa96a8120ff481",
+        "decodeMs": 561.5,
+        "preprocessMs": 311.8999999985099,
+        "wordErrors": 16,
+        "words": 18,
+        "negationCountDelta": 1,
+        "missingAnchors": [
+          "למים"
+        ]
+      },
+      "raw": {
+        "text": "אני לא אטופולוגיה תת-מינית, אז היום חוזר מפה בכמה קטעי נימוקים, וזה גם היה נימוקים לנגד סליחה.",
+        "inputSha256": "c1657fd4384c50efd775e48ae5c19bfdf94b482f5621e3d10e5298b549dd51d0",
+        "decodeMs": 540.5,
+        "preprocessMs": 0,
+        "wordErrors": 18,
+        "words": 18,
+        "negationCountDelta": 1,
+        "missingAnchors": [
+          "למים"
+        ]
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "3625786575614857833",
+      "reference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+      "anchors": [
+        "החלב"
+      ],
+      "condition": "clean",
+      "file": "3625786575614857833-clean.pcm",
+      "sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "raw": {
+        "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל בשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+        "inputSha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+        "decodeMs": 991,
+        "preprocessMs": 0,
+        "wordErrors": 4,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית סגיטריוס.",
+        "inputSha256": "c3e141960060f174f370a8345be66f078ad9e3c79dc4a5d8c78388306ce7f45d",
+        "decodeMs": 963,
+        "preprocessMs": 538.5999999940395,
+        "wordErrors": 4,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "3625786575614857833",
+      "reference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+      "anchors": [
+        "החלב"
+      ],
+      "condition": "5",
+      "file": "3625786575614857833-5.pcm",
+      "sha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+      "filtered": {
+        "text": "כשם שהירח מפיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב, מפעיל כוח על גלקסיה, סאג גיטרי",
+        "inputSha256": "7b1b94d187b47adb395b6f9ddf29e12a828a0de85f519387092891abc30ec089",
+        "decodeMs": 917.5,
+        "preprocessMs": 514.3999999985099,
+        "wordErrors": 8,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "כשם שהירח מפעיל כוח משיכה לכדור הארץ וגורם נגיעות ולשפל ובשביל החלב מפעיל כוח על גלקסיית, סגיטריוס.",
+        "inputSha256": "180c3c0b73b89dbb6c37956fd4fb714eb72a82405079d806b8bec878a1c7b9c3",
+        "decodeMs": 931.5,
+        "preprocessMs": 0,
+        "wordErrors": 4,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17425601106312478953",
+      "reference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+      "anchors": [
+        "לחלב"
+      ],
+      "condition": "clean",
+      "file": "17425601106312478953-clean.pcm",
+      "sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "raw": {
+        "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+        "inputSha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+        "decodeMs": 447.59999999403954,
+        "preprocessMs": 0,
+        "wordErrors": 1,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה, בשר ואורות",
+        "inputSha256": "2beb62676b64d5e38351dbb92432a191adbfb7eff59152f63d061dd5fc1ea4a7",
+        "decodeMs": 419,
+        "preprocessMs": 219.5,
+        "wordErrors": 1,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17425601106312478953",
+      "reference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+      "anchors": [
+        "לחלב"
+      ],
+      "condition": "5",
+      "file": "17425601106312478953-5.pcm",
+      "sha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+      "filtered": {
+        "text": "התרבויות בשבטים קדומים החלו להחזיק להם לשון גישיון הפועל לחלב פרגווה בשר ועובר",
+        "inputSha256": "560fa30669460f1945a692b425f0643f4e6a7129a6e6d5eb985621b5ec4d26f2",
+        "decodeMs": 401.79999999701977,
+        "preprocessMs": 215.60000000149012,
+        "wordErrors": 8,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "התרבויות ושבטים קדומים החלו להחזיק בהם בשביל הנוחה לחלב בעבר בשר ועולות",
+        "inputSha256": "047c81fb4ab46cce214853e3674bef9a17d404b256cf18f56396c592ae29574a",
+        "decodeMs": 421.6000000014901,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "3445988181539980871",
+      "reference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "clean",
+      "file": "3445988181539980871-clean.pcm",
+      "sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "raw": {
+        "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וצופות תקלון.",
+        "inputSha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+        "decodeMs": 822.1999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 7,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "רוחות הזאת ברד, משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופות רעמים, סופות טורנה, דונו די מים וסופות תקלון",
+        "inputSha256": "2a503737e3743ea8e0994b810b8bc4efc3299a1fc74533f6cb8f0a5f7fbe5341",
+        "decodeMs": 830.6999999955297,
+        "preprocessMs": 482.29999999701977,
+        "wordErrors": 6,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "3445988181539980871",
+      "reference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "5",
+      "file": "3445988181539980871-5.pcm",
+      "sha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+      "filtered": {
+        "text": "יוצפות השדות ברד, משקעים בודקים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם סופוטר נאדו די מים לצפות כלום",
+        "inputSha256": "57c609fd6f5789bcc4d68d67f0439c2dc4a8f48fb0b06ccd867b9fbcc6dcc728",
+        "decodeMs": 811.7999999970198,
+        "preprocessMs": 478.1000000014901,
+        "wordErrors": 11,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "רוחות הזאת ברד משקעים עודפים ושרפות משתוללות הן צורה והשפעות של מזג אוויר קשה, כמו גם שפות רעמים, שפות טור נאדון בדי מים ושפות תקלות.",
+        "inputSha256": "75d6eb850b4b17c4b3f9c99f2f49a0e85a501aae38902225df31d4636f6ad936",
+        "decodeMs": 823.6999999955297,
+        "preprocessMs": 0,
+        "wordErrors": 9,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "11245875030612691124",
+      "reference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה-pa amb oli: לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו'",
+      "anchors": [
+        "שמן"
+      ],
+      "condition": "clean",
+      "file": "11245875030612691124-clean.pcm",
+      "sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "raw": {
+        "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וקו, פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, אי-הא.",
+        "inputSha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+        "decodeMs": 1103.2000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 24,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "לחם עם שמן זית עגבניה וכל תוספת זמינה כגון גבינה, טונה וכו פעם בעולי ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איה.",
+        "inputSha256": "c2c1bc99fbf2eeddcde301a916d1c94ef5f5936195a6fc3706971d20bc98f74c",
+        "decodeMs": 1117.8999999985099,
+        "preprocessMs": 593.6999999955297,
+        "wordErrors": 23,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "11245875030612691124",
+      "reference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה-pa amb oli: לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו'",
+      "anchors": [
+        "שמן"
+      ],
+      "condition": "5",
+      "file": "11245875030612691124-5.pcm",
+      "sha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+      "filtered": {
+        "text": "לחם עם שמן זית עגבניה וכל תוספת דמינה כל מנהג, מונה וקוב, פעם עם בפולין, ארוחת ערב פופולרית פשוטה, במיוחד במהלך הקיץ, אימא.",
+        "inputSha256": "dfb490a1066983950595e5ee964f87fa9beea9ad4304100698374bc6bb82639e",
+        "decodeMs": 1127.7999999970198,
+        "preprocessMs": 606.3000000044703,
+        "wordErrors": 23,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "לחם עם שמן זית, עגבניה וכל תוספת זה מנהג הכל, הנה, תמונה וחוף פעם בעולי, ארוחת ערב פופולרית ופשוטה, במיוחד במהלך הקיץ, איהא.",
+        "inputSha256": "0323c42de08f1cdab32388adde00ba62c273a2bd8c32e11e725fa477da32c4b3",
+        "decodeMs": 1101,
+        "preprocessMs": 0,
+        "wordErrors": 24,
+        "words": 24,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17103514183588460100",
+      "reference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "anchors": [
+        "לכוס"
+      ],
+      "condition": "clean",
+      "file": "17103514183588460100-clean.pcm",
+      "sha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+      "raw": {
+        "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+        "inputSha256": "1314edb0d752781dc2c215d851207fbb3c0518eb33555e5cfba96a33a276cb7c",
+        "decodeMs": 957.5,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק.",
+        "inputSha256": "4ecbb1c96c8ed6c3f7b9f19bd6672aeddd67a781827e24727a9274a5384357fd",
+        "decodeMs": 893.2000000029802,
+        "preprocessMs": 495.1000000014901,
+        "wordErrors": 2,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17103514183588460100",
+      "reference": "מאפים גרמניים רבים מכילים גם שקדים אגוזי לוז ואגוזים אחרים עוגות פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+      "anchors": [
+        "לכוס"
+      ],
+      "condition": "5",
+      "file": "17103514183588460100-5.pcm",
+      "sha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+      "filtered": {
+        "text": "מרשים גרמנים רבים מכינים גם שגדים, אגוזי דמות ואגוזים אחרים. מאוד פופולריות והטוב מתאימות במיוחד בחוסר דפי חרדה.",
+        "inputSha256": "3533ee5f799c4029c1d2fd8afa1c175bde39ff38611b0ecd1e55ae92bced131f",
+        "decodeMs": 882,
+        "preprocessMs": 497.6000000014901,
+        "wordErrors": 11,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "לכוס"
+        ]
+      },
+      "raw": {
+        "text": "מאפים גרמנים רבים מכינים גם שקדים, אגוזי לוז ואגוזים אחרים, גוד פופולריות בדרך כלל מתאימות במיוחד לכוס קפה חזק",
+        "inputSha256": "879003553cf9575b72da2868c0c0f8aa59ecec88c74578ba98b9935ab9c95bc1",
+        "decodeMs": 951.2000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "9854665193577160905",
+      "reference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+      "anchors": [
+        "תבלינים"
+      ],
+      "condition": "clean",
+      "file": "9854665193577160905-clean.pcm",
+      "sha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+      "raw": {
+        "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+        "inputSha256": "fa41f170c756f19d6c6438d7843395fea5baed1cbe081d5ab6ed385be1333f94",
+        "decodeMs": 537.6999999955297,
+        "preprocessMs": 0.10000000149011612,
+        "wordErrors": 3,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "תבשיל קארי הוא מנה מבוססת על תבלינים והסבי טיבול, בנוסף לבשר או ירקות.",
+        "inputSha256": "b9c7d9bc7ac250797ac2ff014a06612d976b89bfbac28168592b426276fb3011",
+        "decodeMs": 526.7000000029802,
+        "preprocessMs": 286.1000000014901,
+        "wordErrors": 3,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "9854665193577160905",
+      "reference": "תבשיל קארי הוא מנה המבוססת על תבלינים ועשבי תיבול בנוסף לבשר או ירקות",
+      "anchors": [
+        "תבלינים"
+      ],
+      "condition": "5",
+      "file": "9854665193577160905-5.pcm",
+      "sha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+      "filtered": {
+        "text": "רבשיל קארי הוא מנה מבוססת על תביני ואת בני התנגדות, בנוסף לבשר או ירקות",
+        "inputSha256": "3a543ec66509f5a6510741c289dee6fe96d0cefc5b7961c7987115328bc791f4",
+        "decodeMs": 547.6000000014901,
+        "preprocessMs": 374.1000000014901,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": [
+          "תבלינים"
+        ]
+      },
+      "raw": {
+        "text": "תבשיל קרי ובמנה מבוססת על תבלינים והסבי תרגון, בנוסף לבשר או ירקות",
+        "inputSha256": "d7ab8b086bb70a95be91ebce47fcb54f5c9ab49dcfaa434f5875072d7a22f325",
+        "decodeMs": 528.7000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 13,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17616472487509301569",
+      "reference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+      "anchors": [
+        "מהמים"
+      ],
+      "condition": "clean",
+      "file": "17616472487509301569-clean.pcm",
+      "sha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+      "raw": {
+        "text": "20% מהמים שנשפכים מנערות כדור הארץ לאוקיינוסים מגיעים מאמזונס",
+        "inputSha256": "49c4a0d332888a05b714af5244e9707dddfe5bc90ffed97a392975b67085cfcb",
+        "decodeMs": 536.9000000059605,
+        "preprocessMs": 0,
+        "wordErrors": 3,
+        "words": 10,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "20% מהמים שנשפכים מן הערות כדור הארץ לאוקיינוסים מגיעים מאמזונס.",
+        "inputSha256": "213070a67a352e5972b93d8c0a3275cdd116a38dbeef618181b68eeb58a06e00",
+        "decodeMs": 528.5999999940395,
+        "preprocessMs": 301.8999999985099,
+        "wordErrors": 4,
+        "words": 10,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "17616472487509301569",
+      "reference": "20 אחוזים מהמים שנשפכים מנהרות כדור הארץ לאוקיינוסים מגיעים מהאמזונס",
+      "anchors": [
+        "מהמים"
+      ],
+      "condition": "5",
+      "file": "17616472487509301569-5.pcm",
+      "sha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+      "filtered": {
+        "text": "20% מהמים שנשפכים להערות כדור האסיה, כי הם עושים מגינה, מה זה?",
+        "inputSha256": "822ffc3a35e72177c39d9e3ed203bd75f8c7f97e545a62077a48f7719195c8de",
+        "decodeMs": 514.6000000014901,
+        "preprocessMs": 265.30000000447035,
+        "wordErrors": 9,
+        "words": 10,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "20% מהמים שנשפכים להערות כדור האזר, כי הם עושים הגינה, מה זה אומר?",
+        "inputSha256": "eecc729d090c73965a1b20f673dd94de7592bdd570a977bc82316259e43a3292",
+        "decodeMs": 509.79999999701977,
+        "preprocessMs": 0,
+        "wordErrors": 10,
+        "words": 10,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "13665306490465162429",
+      "reference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי-רקס לא יכול היה לעמוד מולו",
+      "anchors": [
+        "למים"
+      ],
+      "condition": "clean",
+      "file": "13665306490465162429-clean.pcm",
+      "sha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+      "raw": {
+        "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+        "inputSha256": "2bbf667a49116d00c588688c93964fe3ea9aeb13ecb4224814fbe574d79ba1de",
+        "decodeMs": 659.5999999940395,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק כמו הטירקס לא יכול היה לעמוד מולו.",
+        "inputSha256": "17840c2b17efd29ff5a6433d5c1bf7f277dc7e206b20aa7397d7495503b11391",
+        "decodeMs": 603.1000000014901,
+        "preprocessMs": 361.29999999701977,
+        "wordErrors": 2,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "13665306490465162429",
+      "reference": "בנוסף הוא תקף כל יצור שנכנס למים אפילו דינוזאור ענק כמו הטי-רקס לא יכול היה לעמוד מולו",
+      "anchors": [
+        "למים"
+      ],
+      "condition": "5",
+      "file": "13665306490465162429-5.pcm",
+      "sha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+      "filtered": {
+        "text": "בנוסף, הוא דקה כל יצום שנכנס למים, אפילו דינוזאוב ענק, כמו בפיריק לא יכול היה לעבוד מולו",
+        "inputSha256": "d59cc249a3337010bf236f6aca901f1c158ae9cdbb4b91cfc7ee46878283ff66",
+        "decodeMs": 697.6000000014901,
+        "preprocessMs": 340.8999999985099,
+        "wordErrors": 6,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "בנוסף, הוא תקף כל יצור שנכנס למים, אפילו דינוזאור ענק, כמו התירקס, לא יכול היה לעמוד מולו",
+        "inputSha256": "9117b9c19d2a1d93e33421e31a50b7e768668728610310720179bb91aaa3443e",
+        "decodeMs": 647.2000000029802,
+        "preprocessMs": 0,
+        "wordErrors": 2,
+        "words": 18,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "16399478934663246649",
+      "reference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+      "anchors": [
+        "כפות",
+        "ביצים"
+      ],
+      "condition": "clean",
+      "file": "16399478934663246649-clean.pcm",
+      "sha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+      "raw": {
+        "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טיר אקס.",
+        "inputSha256": "a153acb018656e15b11a8e822981ae2fe98e2859648c264a9fecdd09c151ff0a",
+        "decodeMs": 721,
+        "preprocessMs": 0,
+        "wordErrors": 4,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים על שתי רגליהם אחוריות כמו טירקס.",
+        "inputSha256": "b76aab646c8544ea2628a7c7a8edf659d26dd3df802d8e4ab4177be60af706a9",
+        "decodeMs": 716.8000000044703,
+        "preprocessMs": 450.30000000447035,
+        "wordErrors": 4,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "16399478934663246649",
+      "reference": "יש להם כפות רגליים עם קשקשים וטופרים הם מטילים ביצים והם הולכים על שתי רגליהם האחוריות כמו טי רקס",
+      "anchors": [
+        "כפות",
+        "ביצים"
+      ],
+      "condition": "5",
+      "file": "16399478934663246649-5.pcm",
+      "sha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+      "filtered": {
+        "text": "יש להם כפות רגליים, קשקשים ותופרים, הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טילים.",
+        "inputSha256": "53a7a1bec14a82308ba7f0b9e6227e809f6e131fc84625de235533e594bb0d49",
+        "decodeMs": 803.7000000029802,
+        "preprocessMs": 413.29999999701977,
+        "wordErrors": 6,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "יש להם כפות רגליים עם קשקשים ותופרים, הם מטילים ביצים והם הולכים לו שתי רגליהם אחוריות כמו טירת.",
+        "inputSha256": "0f59b4b2dcfec2c006bd19b0a15e3596eca8070d03d3dab8d65a29d3e1c481e8",
+        "decodeMs": 747.7999999970198,
+        "preprocessMs": 0,
+        "wordErrors": 5,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "7220901400489669549",
+      "reference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "clean",
+      "file": "7220901400489669549-clean.pcm",
+      "sha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+      "raw": {
+        "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים, אוויר ואש.",
+        "inputSha256": "2deb0f392557dc04401d720408b6d4d1484c7ec8ff0191a1eedc14cbecf935e9",
+        "decodeMs": 1060.8999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 5,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "filtered": {
+        "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים אוויר ואש.",
+        "inputSha256": "0d863ad6e1f618c884635c916d614b43a6cf4691b86b8bf9fd94541fd295fcb4",
+        "decodeMs": 1132.5,
+        "preprocessMs": 577.4000000059605,
+        "wordErrors": 5,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    },
+    {
+      "group": "appliance",
+      "clip": "7220901400489669549",
+      "reference": "אריסטו פילוסוף פיתח את התאוריה שהכול מורכב מאחד או יותר מתוך ארבעה יסודות הם היו אדמה מים אוויר ואש",
+      "anchors": [
+        "מים"
+      ],
+      "condition": "5",
+      "file": "7220901400489669549-5.pcm",
+      "sha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+      "filtered": {
+        "text": "אריסטו, פילוסוף, פיתחו את התיאוריה של הפועל מורכב מאחד, או יותר מתוך הרפאת היסודות. הם היו אדמה, מים אוויר ואש.",
+        "inputSha256": "0f9718cf6c9c2d625ac7b3fd841a3d0021f1a698023607b54a0c9e8698711cd4",
+        "decodeMs": 1137.4000000059605,
+        "preprocessMs": 652.0999999940395,
+        "wordErrors": 6,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      },
+      "raw": {
+        "text": "אריסטו, פילוסוף, פיתחו את התיאוריה שהכל מורכב מאחד, או יותר מתוך ארבעת היסודות. הם היו אדמה, מים עבירות ואש.",
+        "inputSha256": "f86e5a6b5d6203dd363692fdaf37fa54f869560c7223ec2d7e381333c76b93be",
+        "decodeMs": 996.3999999985099,
+        "preprocessMs": 0,
+        "wordErrors": 6,
+        "words": 19,
+        "negationCountDelta": 0,
+        "missingAnchors": []
+      }
+    }
+  ]
+}
