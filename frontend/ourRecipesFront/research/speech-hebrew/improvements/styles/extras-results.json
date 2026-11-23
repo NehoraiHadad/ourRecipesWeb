@@ -1,0 +1,1374 @@
+{
+  "browser": "156.0.8078.79",
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "greedy",
+      "filename": "omer-p01-metallic-robot",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 574.5,
+      "pcm_sha256": "d5d9e34a044b229c040f3fa0b4522e8fbc4659f1da1ca6c1936974d575599eda",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p01-theatrical-pause",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 581.2999999998137,
+      "pcm_sha256": "9fb1f43acdbe7c8f323ce48d3b08d0a784f8c4c45791d9b7a4a3db03e814bc54",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p02-metallic-robot",
+      "text": "שמתי פלפל שחור, סליחה, פלפל אדום",
+      "ms": 472.79999999981374,
+      "pcm_sha256": "41e7974551942ad54641b6cf7430432466c90cedb22843ea7b421e81a96971f1",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פלפל שחור סליחה פלפל אדום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p02-theatrical-pause",
+      "text": "שמתי פלפל שחור, סליחה, פלפל אדום",
+      "ms": 416.1000000005588,
+      "pcm_sha256": "1e724d3e352da89033ece02f2934136206deaece218e0f57da204ddba376e132",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פלפל שחור סליחה פלפל אדום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p03-metallic-robot",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי",
+      "ms": 399.40000000037253,
+      "pcm_sha256": "634523c42d7bbd7a4fe02fc85b03ef2c949295c03ddfffaa0f9175dfcffa1032",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p03-theatrical-pause",
+      "text": "את השום כבר כטשתי, ואת הגזר רק קילפתי",
+      "ms": 397,
+      "pcm_sha256": "be92a939d369881480f5fce2ad8230a0af5d566c8f1ca67331e9b50b3db6b04a",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר כטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-metallic-robot",
+      "text": "במקום סוכה הוספתי דבש, זה בסדר",
+      "ms": 312.70000000018626,
+      "pcm_sha256": "c9338f3750327cd9c3c2b7232155bbe60c21f8a9f744a2e8ad84687fb73d043e",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכה הוספתי דבש זה בסדר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p04-theatrical-pause",
+      "text": "במקום סוכר הוספתי דבש. זה בסדר",
+      "ms": 408.59999999962747,
+      "pcm_sha256": "eb42c8fee58bf7562a00d6c8a0b999d7c4de440435dd6d291c7ae1b1d9dda2a4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p05-metallic-robot",
+      "text": "חצי כפית מלח, לא חצי כף",
+      "ms": 314.3999999994412,
+      "pcm_sha256": "684750bfa57d4ca48a78996c88eb4849c17c58c178f1b0d18d4329dfb23515bb",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p05-theatrical-pause",
+      "text": "חצי כפית מלח, לא חצי כף",
+      "ms": 318.90000000037253,
+      "pcm_sha256": "773ee0dc00b0e16b17daffae56e10223e0d9272624e678cf85e6925ea4cfbeed",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p06-metallic-robot",
+      "text": "אה, לא, בעצם עוד לא סיננתי את האורז",
+      "ms": 306.5,
+      "pcm_sha256": "bdb212952eb9cbb53862a83eccfcfdd68ddf865eb1e25ff6db63a58243517561",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את האורז",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p06-theatrical-pause",
+      "text": "אה, לא. בעצם עוד לא סיננתי את ה-Oways",
+      "ms": 386,
+      "pcm_sha256": "729a728f67eedaa0452af5298f141f8e9770a5975b70f7fb206b6ab6df60afc7",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את ה oways",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 5,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p07-metallic-robot",
+      "text": "הבצק כבר בקרה, ללוש עכשיו או לחכות",
+      "ms": 501.29999999981374,
+      "pcm_sha256": "33c5ea27bb278000beec0d9231bf6349b20bf8c42c6d0952f6dd263168c2ee11",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקרה ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p07-theatrical-pause",
+      "text": "הבצק כבר בקרה. ללוש עכשיו או לחכות",
+      "ms": 412.80000000074506,
+      "pcm_sha256": "478e7bd488a616c16cf7c08db88821ee871ecdae0eb13a0288a6bf3cfb517e0b",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקרה ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p08-metallic-robot",
+      "text": "רק שטפתי את העדשים, לבשל עוד לא התחלתי",
+      "ms": 306.20000000018626,
+      "pcm_sha256": "3b288f1aa90494e12c65b7f6e12700ac0c42c8a9ccc22a6c681bf57417ddc9b9",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p08-theatrical-pause",
+      "text": "רק שתפתי את העדשים. לבשל עוד לא התחלתי",
+      "ms": 391.70000000018626,
+      "pcm_sha256": "43e6aba0a5b13e74fcfbcf53bdbe39d5f3867addf3d1bcc7c7677aad86ac659d",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתי את העדשים לבשל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p09-metallic-robot",
+      "text": "הצטרפתי ביצה אחת ושפכתי אותה למחרת.",
+      "ms": 286.5,
+      "pcm_sha256": "a73d5ed289f6fd3b0c69614991dfab5622a3a90bb712c699a9b7ae8c9ce44353",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "הצטרפתי ביצה אחת ושפכתי אותה למחרת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p09-theatrical-pause",
+      "text": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+      "ms": 302.3999999994412,
+      "pcm_sha256": "035907370c44f60af1779bb5c59a59440d1c033d004dcd0cdb6b60cfe9c2e2f5",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-metallic-robot",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 392.09999999962747,
+      "pcm_sha256": "1bbe4300ca027faaefc6cd1a4685b5dfc89258c3f3bc639cb09148a3beb453ae",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p10-theatrical-pause",
+      "text": "עוד רגע, רגע, אמרתי קמח. התכוונתי לקקאו",
+      "ms": 418,
+      "pcm_sha256": "cc2598e710331c28ff46726abd27ae0a16abdfe0e0616f36bc057943f6567d2c",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "עוד רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p11-metallic-robot",
+      "text": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+      "ms": 447.79999999981374,
+      "pcm_sha256": "69fd40906c9558f4e1d770b13ca154b2e343c5c497b1ef4b3dc3cce226d077d7",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p11-theatrical-pause",
+      "text": "את העגבניות חתכתי דק דק. את המלפפון נשארתי שלם",
+      "ms": 549,
+      "pcm_sha256": "6f14e0d0dddc6d4dfcf1ca0e1739a0a6d4ac185b303efc0fb9e90509a51bc225",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p12-metallic-robot",
+      "text": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר",
+      "ms": 326.29999999981374,
+      "pcm_sha256": "04b7a15931c96bf708a288722e172222ba3e40d00b5d6189253704c20e95050d",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "omer-p12-theatrical-pause",
+      "text": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר",
+      "ms": 429.90000000037253,
+      "pcm_sha256": "32dca0fc754d5dbfd8a769863bb4a588f51037addaf949565bdd61d4459a0e99",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p01-metallic-robot",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 446.20000000018626,
+      "pcm_sha256": "d5d26522827a6ad968dde42f1d2405a8b6ad1d1ab7df9648b7cbc3c9595eb923",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p01-theatrical-pause",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 394.69999999925494,
+      "pcm_sha256": "1ac5b054b4ef64ec78db83446b78d7b4e5995e7a62483c7a5df901b784002540",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p02-metallic-robot",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 315.09999999962747,
+      "pcm_sha256": "051154ef67734adc8a353a527bb23fd0f53327570196fa1da9b404f82a269606",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p02-theatrical-pause",
+      "text": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "ms": 413.79999999981374,
+      "pcm_sha256": "2f4e765a3e461c1a22618808d49c55eb3690d2ea6c6ec822db6f23287810d51e",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פיפל שחור סליחה פיפל אדום",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p03-metallic-robot",
+      "text": "את השום קוו הקטשתי, ואת הגזר רק קילפתי.",
+      "ms": 401.69999999925494,
+      "pcm_sha256": "65839d75b9c24164059e4ff3f9e501c36dd56f80156cfa93a8cb2219ea1eb716",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום קוו הקטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 6,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p03-theatrical-pause",
+      "text": "את השום כבר קטשתי, ואת הגזר רק קילפתי",
+      "ms": 423.59999999962747,
+      "pcm_sha256": "223549469fbba7b755b476e2ed2f367f4baafb7f17d184f8fc4103554c81074b",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 2,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p04-metallic-robot",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 287,
+      "pcm_sha256": "05f590af058333bfc4615b557e24587fd69a85f39f5a4e04ec1034080270b79a",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p04-theatrical-pause",
+      "text": "במקום סוכר הוספתי דבש. זה בסדר",
+      "ms": 386.20000000018626,
+      "pcm_sha256": "d433ffe0cafb57fa0717b8aa205a48810dbe04b096f3cd2f26245ff031bb8ad6",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p05-metallic-robot",
+      "text": "חצי כפית מלח, לא חצי כף.",
+      "ms": 298.79999999981374,
+      "pcm_sha256": "f82b9e8c926513d0f6ccd15b44f1c5df839ffab9c0ed25337407ecd6d5d88850",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p05-theatrical-pause",
+      "text": "חצי כפית מלח, לא חצי כף",
+      "ms": 292.5,
+      "pcm_sha256": "9fb77e990f0857dce870405b4ea864ed56edd990f54aa54de7a500e2bffd14d6",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כפית מלח לא חצי כף",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p06-metallic-robot",
+      "text": "אה, לא. בעצם עוד לא סיננתי את האורז.",
+      "ms": 406.3999999994412,
+      "pcm_sha256": "2db3c2a86279f7c78f6023cc08814cf1a4c29236dd0cdf91a178a354feca6e53",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את האורז",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p06-theatrical-pause",
+      "text": "אה, לא. בעצם עוד לא סיננתי את האורז",
+      "ms": 401.8999999994412,
+      "pcm_sha256": "8cb27a14306737860453753696bbb79c35046696ab820512672160e5fe7f05b3",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את האורז",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p07-metallic-robot",
+      "text": "הבצק כבר בקרה, ללוש עכשיו או לחכות",
+      "ms": 287.70000000018626,
+      "pcm_sha256": "8a37ed20282ac94f96554aeb404229deb7a6b371646e8eb73ae3663ea657ffc4",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקרה ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p07-theatrical-pause",
+      "text": "הבצק כבר בקרה. ללוש עכשיו או לחכות",
+      "ms": 400.79999999981374,
+      "pcm_sha256": "e0ddebb81cc1f4e818c693fc9a392496321b6b956f61d3fdf7a73a1d35082a1c",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקרה ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 1,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p08-metallic-robot",
+      "text": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+      "ms": 402.59999999962747,
+      "pcm_sha256": "8a8bd77a401be51f0123b0bb2c97a3b239317588d8a008e23643ad85096147d6",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתי את העדשים לבשל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p08-theatrical-pause",
+      "text": "רק שתפתי את העדשים. לבשל עוד לא התחלתי",
+      "ms": 396.3999999994412,
+      "pcm_sha256": "287abcca83a92db622c783a43addde04781a951ccf0b8e27a3d5a4d3ff75659c",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתי את העדשים לבשל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p09-metallic-robot",
+      "text": "טרפתי ביצה אחת ושפפתי אותה למחבת",
+      "ms": 336.79999999981374,
+      "pcm_sha256": "ab4e47ad233e8d1a6353230133f3af75102122548ec4c0fed7665faad5222aa4",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "טרפתי ביצה אחת ושפפתי אותה למחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p09-theatrical-pause",
+      "text": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+      "ms": 308.79999999981374,
+      "pcm_sha256": "a67c95542839222273c90688cc9c2f253feb465e0c34720f93b301583aa2bb4c",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p10-metallic-robot",
+      "text": "רגע, רגע, אמרתי קמח, התכוונתי לקכאו",
+      "ms": 393.29999999981374,
+      "pcm_sha256": "47fe9ebc04851325ad7b98e6d91ae1943addc06fffbe0e33e4226dbfdcf03e71",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקכאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p10-theatrical-pause",
+      "text": "רגע, רגע, אמרתי קמח. התכוונתי לקכאו",
+      "ms": 380.09999999962747,
+      "pcm_sha256": "3b674206b6454dca9714fb819ba8628d72b6c7e7d6c622733479c1880ff401d4",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע אמרתי קמח התכוונתי לקכאו",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p11-metallic-robot",
+      "text": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+      "ms": 397.90000000037253,
+      "pcm_sha256": "79409beaf055bad2cf6e2a30a6dcd9b8a36298bb335a70b373ae02daa28f96c6",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p11-theatrical-pause",
+      "text": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+      "ms": 512.2000000001863,
+      "pcm_sha256": "71c8a48c1a9dcc3aa9ccbff97bde8abc1740ed93463c17ebd993502f3cfd9665",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p12-metallic-robot",
+      "text": "אולי שכחתי את הלימון, אפשר לבדוק מה נשאר",
+      "ms": 325.79999999981374,
+      "pcm_sha256": "e1787be1d3d9f03b84cb0bbc1d9d02953986d71dc1e5177909b4fdc9d463a250",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "liat-p12-theatrical-pause",
+      "text": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר",
+      "ms": 406.3999999994412,
+      "pcm_sha256": "3f920e44004da6a49fc1fb37c4017e6b0e7db6e359068d6424938a8499d46c86",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p01-metallic-robot",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 293.59999999962747,
+      "pcm_sha256": "5601d6012089a5a3991772a50b6969c2f8e533629649a6615053d2a756853a90",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p01-theatrical-pause",
+      "text": "רגע, קצצתי את הבצל, אבל עוד לא טיגנתי אותו",
+      "ms": 293.3999999994412,
+      "pcm_sha256": "39ec54004cf959755104839b2d83474a5715e65ce1b5833f8d98ebaa049d32dd",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 9,
+        "characterErrors": 0,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p02-metallic-robot",
+      "text": "שמתי פלפל שחור, סליחה, פלפל אדום",
+      "ms": 293.5,
+      "pcm_sha256": "0c4ad317ec1d3d15c9b6f5053b1a8bb269c270dafe9e24c0eb51e5ec431cd7bb",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פלפל שחור סליחה פלפל אדום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p02-theatrical-pause",
+      "text": "שמתי פלפל שחור, סליחה, פלפל אדום",
+      "ms": 347.6000000005588,
+      "pcm_sha256": "4e55c7f874cae1b68dd83756b590a26db756656e03c57d2590e6b30b5f48704e",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "שמתי פלפל שחור סליחה פלפל אדום",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-metallic-robot",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "ms": 317.8999999994412,
+      "pcm_sha256": "401137885a459fc6441c69eb48f830be6997bdc0596293a34b5f0063d6a9a369",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p03-theatrical-pause",
+      "text": "את השוק כבר קטשתי, ואת הגזר רק קילפתי",
+      "ms": 384,
+      "pcm_sha256": "2e4f84a3eeb6ed3f59e021f81f1a2d0e09c06588a19ac52a8b654a5dadf2b499",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השוק כבר קטשתי ואת הגזר רק קילפתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p04-metallic-robot",
+      "text": "במקום סוכר הוספתי דבש, זה בסדר",
+      "ms": 299.20000000018626,
+      "pcm_sha256": "1123d36ab72b1ef2830a1fe219f9e426bba869860b18072bdbbad1f7b9f683d1",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר הוספתי דבש זה בסדר",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 6,
+        "characterErrors": 0,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p04-theatrical-pause",
+      "text": "במקום סוכר או סף. תדבש, זה בסדר",
+      "ms": 290.3999999994412,
+      "pcm_sha256": "d3fb473051cfb60a5e15922ed16e1092361c15511b5321afe6f8ec8a6a96fbac",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במקום סוכר או סף תדבש זה בסדר",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p05-metallic-robot",
+      "text": "חצי כבית מלח, לא חצי כף",
+      "ms": 297.59999999962747,
+      "pcm_sha256": "1855b274127ff5b7e9b4e136b6acdfe6c17ad1c3ec6cf0666c43d773893c7dd9",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כבית מלח לא חצי כף",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p05-theatrical-pause",
+      "text": "חצי כבית מלח, לא חצי כף",
+      "ms": 310.5,
+      "pcm_sha256": "949bd7861c87d662619cd4e4a64a7ea8b4ae0d43cc43169a68bfd9863c62de04",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חצי כבית מלח לא חצי כף",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 1,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p06-metallic-robot",
+      "text": "אה, לא, בעצם עוד לא סיננתי את האורס",
+      "ms": 313.09999999962747,
+      "pcm_sha256": "3997a45bd45d8a9c8e3b57e34f266c74e0b802954b0da17c220716e1d347dab0",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את האורס",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p06-theatrical-pause",
+      "text": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "ms": 474.5,
+      "pcm_sha256": "30e77f30192e12dc0ec263fa8d10e1e7ea0c65e7716d3f338f254012e73a6e51",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אה לא בעצם עוד לא סיננתי את האורז",
+        "exact": true,
+        "wordErrors": 0,
+        "referenceWords": 8,
+        "characterErrors": 0,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p07-metallic-robot",
+      "text": "הבצק כבר בקבע, ללוש עכשיו או לחכות",
+      "ms": 340.59999999962747,
+      "pcm_sha256": "7be02f0ae83e7d80ac84028b1cd47cc2c4c42143682af49ae59bfb6e24000f2d",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקבע ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 3,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p07-theatrical-pause",
+      "text": "הבצק כבר בקבע, ללוש עכשיו או לחכות",
+      "ms": 386,
+      "pcm_sha256": "81002fe0e018bfb922e12038d00f6eb306d1715d0ced67cdc3849c88bb626a4e",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבצק כבר בקבע ללוש עכשיו או לחכות",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 7,
+        "characterErrors": 3,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p08-metallic-robot",
+      "text": "רק שתפתי את האנשים לבשל עוד לא התחלתי",
+      "ms": 275.79999999981374,
+      "pcm_sha256": "1eb704817cc30cb06cc2b920060612148b9e960e389f3662ab5f824ad3cfac93",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתי את האנשים לבשל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 8,
+        "characterErrors": 3,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p08-theatrical-pause",
+      "text": "רק שתפתי את העדשים לבשל, עוד לא התחלתי",
+      "ms": 297.6000000005588,
+      "pcm_sha256": "c03b61dc9ce7fc7e43edd40b05f5b606d7970083498b3508811d4398120fef5f",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתי את העדשים לבשל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p09-metallic-robot",
+      "text": "הצטרפתי בעצה אחת ושפכתי אותה למחבת",
+      "ms": 359,
+      "pcm_sha256": "1da0f752860ed1bf687d1db399323b5837ba80ff6f219954652f0b577c5fde52",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "הצטרפתי בעצה אחת ושפכתי אותה למחבת",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p09-theatrical-pause",
+      "text": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+      "ms": 375.8999999994412,
+      "pcm_sha256": "0418a073b7ac5eb394d3dedbba9015c2b5cc69baa564b6048fc170e8a3f9827c",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 6,
+        "characterErrors": 2,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p10-metallic-robot",
+      "text": "ליידר ליידר, אמרתי קמח, התכוונתי לקקאו",
+      "ms": 321.1000000005588,
+      "pcm_sha256": "c822fa5d4630b335fdf5cb2a2f2756a7e05496212f76ad17f6ac1efc42a35233",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "ליידר ליידר אמרתי קמח התכוונתי לקקאו",
+        "exact": false,
+        "wordErrors": 2,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p10-theatrical-pause",
+      "text": "לידה לידה, אמרתי קמח, התכוונתי לקכאו",
+      "ms": 429.1000000005588,
+      "pcm_sha256": "7e99db4cdb909bf61ef45fb4c87de7391b08b695841bb687916ae50deddeb625",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לידה לידה אמרתי קמח התכוונתי לקכאו",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p11-metallic-robot",
+      "text": "את העגבניות חתכתי, דק דק, את המלפפון, נשארתי שלם",
+      "ms": 444.5,
+      "pcm_sha256": "018a33e688d2035889984ba8d783182fd78f69a9af1ad0feb05729ed0394e55d",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p11-theatrical-pause",
+      "text": "את העגבניות חתכתי, דק דק, את המלפפון, נשארתי שלם",
+      "ms": 462.3999999994412,
+      "pcm_sha256": "3b4345f3db0c4dff4d52da95bab5ada2232a957b0e94ddae83320d9ece38cf40",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את העגבניות חתכתי דק דק את המלפפון נשארתי שלם",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 9,
+        "characterErrors": 1,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p12-metallic-robot",
+      "text": "אולי שכחתי את אלימון, אפשר לבדוק מה נשאר",
+      "ms": 368.70000000018626,
+      "pcm_sha256": "f93c555cb6fbc9e0a0baf0a7edce2430317e5e4d99bf496f33530c6229632c9d",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את אלימון אפשר לבדוק מה נשאר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "greedy",
+      "filename": "noa-p12-theatrical-pause",
+      "text": "אולי שכחתי את אלימון. אפשר לבדוק מה נשאר.",
+      "ms": 415.19999999925494,
+      "pcm_sha256": "89c2d219c5caaf1cff0127eef9954441a21c51c35fdbd412236e93f1702bcb14",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שכחתי את אלימון אפשר לבדוק מה נשאר",
+        "exact": false,
+        "wordErrors": 1,
+        "referenceWords": 8,
+        "characterErrors": 1,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

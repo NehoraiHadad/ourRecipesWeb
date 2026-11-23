@@ -1,0 +1,339 @@
+{
+  "groups": {
+    "plain/raw": {
+      "clips": 36,
+      "wordErrors": 25,
+      "words": 261,
+      "anchorsMissed": 22,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 18
+    },
+    "all/raw": {
+      "clips": 180,
+      "wordErrors": 146,
+      "words": 1305,
+      "anchorsMissed": 132,
+      "anchors": 780,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 78
+    },
+    "plain/highpass140": {
+      "clips": 36,
+      "wordErrors": 25,
+      "words": 261,
+      "anchorsMissed": 22,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 18
+    },
+    "all/highpass140": {
+      "clips": 180,
+      "wordErrors": 144,
+      "words": 1305,
+      "anchorsMissed": 130,
+      "anchors": 780,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 79
+    },
+    "rushed-high/raw": {
+      "clips": 36,
+      "wordErrors": 26,
+      "words": 261,
+      "anchorsMissed": 23,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 16
+    },
+    "rushed-high/highpass140": {
+      "clips": 36,
+      "wordErrors": 26,
+      "words": 261,
+      "anchorsMissed": 23,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 16
+    },
+    "drawn-low/raw": {
+      "clips": 36,
+      "wordErrors": 28,
+      "words": 261,
+      "anchorsMissed": 25,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 14
+    },
+    "drawn-low/highpass140": {
+      "clips": 36,
+      "wordErrors": 29,
+      "words": 261,
+      "anchorsMissed": 26,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 13
+    },
+    "phone/raw": {
+      "clips": 36,
+      "wordErrors": 29,
+      "words": 261,
+      "anchorsMissed": 27,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 15
+    },
+    "phone/highpass140": {
+      "clips": 36,
+      "wordErrors": 27,
+      "words": 261,
+      "anchorsMissed": 25,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 16
+    },
+    "fan-room/raw": {
+      "clips": 36,
+      "wordErrors": 38,
+      "words": 261,
+      "anchorsMissed": 35,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 15
+    },
+    "fan-room/highpass140": {
+      "clips": 36,
+      "wordErrors": 37,
+      "words": 261,
+      "anchorsMissed": 34,
+      "anchors": 156,
+      "negationFlags": 0,
+      "allAnchorsPreserved": 16
+    }
+  },
+  "passes": true,
+  "changed": [
+    {
+      "key": "omer/p02/phone/highpass140",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "raw": "שמתי פלפל שחור, סליחה פלפל אדום",
+      "filtered": "שמתי פלפל שחור, סליחה, פלפל אדום",
+      "rawMissing": [],
+      "filteredMissing": [],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "omer/p04/drawn-low/highpass140",
+      "reference": "במקום סוכר הוספתי דבש, זה בסדר?",
+      "raw": "במקום סוכר הוספתי דבש, זה בסדר",
+      "filtered": "במקום סוכה הוספתי דבש, זה בסדר",
+      "rawMissing": [],
+      "filteredMissing": [
+        "סוכר"
+      ],
+      "wordErrorDelta": 1
+    },
+    {
+      "key": "omer/p11/fan-room/highpass140",
+      "reference": "את העגבניות חתכתי דק דק, את המלפפון השארתי שלם.",
+      "raw": "את העגבניות חתכתי דק דק, את המלפפון נשארתי שלם",
+      "filtered": "את העגבניות חתכתי דק דק, את המלפפון השארתי שלם",
+      "rawMissing": [
+        "השארתי שלם"
+      ],
+      "filteredMissing": [],
+      "wordErrorDelta": -1
+    },
+    {
+      "key": "liat/p02/rushed-high/highpass140",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "raw": "שמתי פיפל שחור, סליחה, פיבל אדום.",
+      "filtered": "שמתי פיפל שחור, סליחה, פיבל אדום",
+      "rawMissing": [
+        "פלפל שחור",
+        "פלפל אדום"
+      ],
+      "filteredMissing": [
+        "פלפל שחור",
+        "פלפל אדום"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "liat/p02/drawn-low/highpass140",
+      "reference": "שמתי פלפל שחור. סליחה, פלפל אדום.",
+      "raw": "שמתי פיפל שחור, סליחה, פלפל אדום",
+      "filtered": "שמתי פיפל שחור, סליחה, פיפל אדום",
+      "rawMissing": [
+        "פלפל שחור"
+      ],
+      "filteredMissing": [
+        "פלפל שחור",
+        "פלפל אדום"
+      ],
+      "wordErrorDelta": 1
+    },
+    {
+      "key": "liat/p08/phone/highpass140",
+      "reference": "רק שטפתי את העדשים, לבשל עוד לא התחלתי.",
+      "raw": "רק שתפתי את העדשים, לבשל עוד לא התחלתי",
+      "filtered": "רק שתפתי את העדשים, לבשל עוד לא התחלתי.",
+      "rawMissing": [
+        "רק שטפתי"
+      ],
+      "filteredMissing": [
+        "רק שטפתי"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p03/plain/highpass140",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "raw": "את השוק כבר קטשתי, ואת הגזר רק קילפתי",
+      "filtered": "את השוק כבר קטשתי, ואת הגזר רק קילפתי.",
+      "rawMissing": [
+        "השום",
+        "כתשתי"
+      ],
+      "filteredMissing": [
+        "השום",
+        "כתשתי"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p03/drawn-low/highpass140",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "raw": "את השוק כבר קטשתי, ואת הגזר רק קילפתי",
+      "filtered": "את השום כבר קטשתי, ואת הגזר רק קילפתי",
+      "rawMissing": [
+        "השום",
+        "כתשתי"
+      ],
+      "filteredMissing": [
+        "כתשתי"
+      ],
+      "wordErrorDelta": -1
+    },
+    {
+      "key": "noa/p03/fan-room/highpass140",
+      "reference": "את השום כבר כתשתי, ואת הגזר רק קילפתי.",
+      "raw": "את השוק כבר קטשתי ואת הגזל רק קילפתי",
+      "filtered": "את השוק כבר קטשתי ואת הגזל רק קילפתי.",
+      "rawMissing": [
+        "השום",
+        "כתשתי",
+        "הגזר"
+      ],
+      "filteredMissing": [
+        "השום",
+        "כתשתי",
+        "הגזר"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p06/plain/highpass140",
+      "reference": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "raw": "אה, לא, בעצם עוד לא סיננתי את האורס",
+      "filtered": "אה, לא, בעצם עוד לא סיננתי את האורז",
+      "rawMissing": [
+        "האורז"
+      ],
+      "filteredMissing": [],
+      "wordErrorDelta": -1
+    },
+    {
+      "key": "noa/p06/rushed-high/highpass140",
+      "reference": "אה, לא, בעצם עוד לא סיננתי את האורז.",
+      "raw": "אה, לא, בעצם עוד לא סיננתי את העובס.",
+      "filtered": "אה, לא, בעצם עוד לא סיננתי את העובס",
+      "rawMissing": [
+        "האורז"
+      ],
+      "filteredMissing": [
+        "האורז"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p08/phone/highpass140",
+      "reference": "רק שטפתי את העדשים, לבשל עוד לא התחלתי.",
+      "raw": "רק שתפתי את האנשים לבשל עוד לא התחלתי",
+      "filtered": "רק שתפתי את האנשים לבשל עוד, לא התחלתי",
+      "rawMissing": [
+        "רק שטפתי",
+        "העדשים"
+      ],
+      "filteredMissing": [
+        "רק שטפתי",
+        "העדשים"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p09/phone/highpass140",
+      "reference": "טרפתי ביצה אחת ושפכתי אותה למחבת.",
+      "raw": "הצטרפתי בעצה אחת ושפכתי אותה למחבת",
+      "filtered": "הצטרפתי ביצה אחת ושפכתי אותה למחבת",
+      "rawMissing": [
+        "טרפתי",
+        "ביצה"
+      ],
+      "filteredMissing": [
+        "טרפתי"
+      ],
+      "wordErrorDelta": -1
+    },
+    {
+      "key": "noa/p09/fan-room/highpass140",
+      "reference": "טרפתי ביצה אחת ושפכתי אותה למחבת.",
+      "raw": "התערבתי בעצה אחת ושפכתי אותה למחזת",
+      "filtered": "התערבתי בעצה אחת ושפכתי אותה למחדת",
+      "rawMissing": [
+        "טרפתי",
+        "ביצה",
+        "למחבת"
+      ],
+      "filteredMissing": [
+        "טרפתי",
+        "ביצה",
+        "למחבת"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p10/plain/highpass140",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "raw": "לידה לידה, אמרתי קמח, התכוונתי לקקאו",
+      "filtered": "לידה לידה, אמרתי קמח, התכוונתי לקכאו",
+      "rawMissing": [],
+      "filteredMissing": [
+        "לקקאו"
+      ],
+      "wordErrorDelta": 1
+    },
+    {
+      "key": "noa/p10/fan-room/highpass140",
+      "reference": "רגע רגע, אמרתי קמח? התכוונתי לקקאו.",
+      "raw": "ליידר לידה, אמרתי קמח, התכוונתי לכקעות",
+      "filtered": "לידה לידה, אמרתי קמח, התכוונתי לקיקאור",
+      "rawMissing": [
+        "לקקאו"
+      ],
+      "filteredMissing": [
+        "לקקאו"
+      ],
+      "wordErrorDelta": 0
+    },
+    {
+      "key": "noa/p12/phone/highpass140",
+      "reference": "אולי שכחתי את הלימון. אפשר לבדוק מה נשאר?",
+      "raw": "אולי שכחתי את אלימון, אפשר לבדוק מה נשאר",
+      "filtered": "אולי שכחתי את הלימון, אפשר לבדוק מה נשאר",
+      "rawMissing": [
+        "הלימון"
+      ],
+      "filteredMissing": [],
+      "wordErrorDelta": -1
+    }
+  ]
+}

@@ -3,7 +3,8 @@ import {readFile, writeFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';
 import path from 'node:path';
 import assert from 'node:assert/strict';
-import {normalize,score} from '../../metrics.mjs';
+import {missing} from './anchors.mjs';
+import {score} from '../../metrics.mjs';
 const root=path.dirname(fileURLToPath(import.meta.url));
 const read=async name=>JSON.parse(await readFile(path.join(root,name),'utf8'));
 const manifest=await read('manifest.json'), result=await read('results.json');
@@ -11,20 +12,6 @@ const cases=await read('cases.json');
 const byId=new Map(result.records.map(row=>[row.filename,row]));
 assert.equal(byId.size,360);assert.equal(result.records.length,360);assert.equal(manifest.records.length,360);
 assert.deepEqual(result.externalRequests,[]);
-function missing(text,anchors){
-  const words=normalize(text).split(' ');
-  let next=0; const lost=[];
-  for(const anchor of anchors){
-    const options=anchor.split('|').map(term=>normalize(term).split(' '));
-    let found=false;
-    for(let i=next;i<words.length&&!found;i++){
-      const match=options.find(option=>option.every((w,j)=>words[i+j]===w));
-      if(match){next=i+match.length;found=true;}
-    }
-    if(!found)lost.push(anchor);
-  }
-  return lost;
-}
 const groups={}, slots=new Set(), changed=[];
 for(const row of manifest.records){
   const record=byId.get(row.filename), prompt=cases.find(c=>c.id===row.prompt);

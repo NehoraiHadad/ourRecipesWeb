@@ -1,0 +1,40 @@
+{
+  "extras": {
+    "metallic-robot": {
+      "clips": 36,
+      "wordErrors": 28,
+      "words": 261,
+      "negationFlags": 0,
+      "anchorsMissed": 25,
+      "anchors": 156
+    },
+    "theatrical-pause": {
+      "clips": 36,
+      "wordErrors": 30,
+      "words": 261,
+      "negationFlags": 0,
+      "anchorsMissed": 25,
+      "anchors": 156
+    }
+  },
+  "human": {
+    "raw": {
+      "clips": 52,
+      "wordErrors": 264,
+      "words": 849,
+      "negationFlags": 0
+    },
+    "highpass140": {
+      "clips": 52,
+      "wordErrors": 263,
+      "words": 849,
+      "negationFlags": 0
+    }
+  },
+  "humanControlMatchesPrevious": 52,
+  "humanPairedClips": {
+    "better": 3,
+    "worse": 2,
+    "same": 47
+  }
+}
