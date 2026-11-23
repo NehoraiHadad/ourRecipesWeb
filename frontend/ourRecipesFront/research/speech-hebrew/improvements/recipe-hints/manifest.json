@@ -1,0 +1,491 @@
+{
+  "records": [
+    {
+      "id": "s1",
+      "recipe": "salad",
+      "text": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "anchors": [
+        "מעכתי",
+        "השום",
+        "גירדתי",
+        "הגזר"
+      ],
+      "reference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "filename": "omer-s1",
+      "voice": "omer",
+      "pcm_sha256": "ef0a096bc54ab24895c95f3868d2db6c6eac54fbeb2949f146707d9fd00a66b4",
+      "wav_sha256": "2b9fe837e57e5bff597af42e0999175863f9d44fd1ee816f40de407569adc36d"
+    },
+    {
+      "id": "s2",
+      "recipe": "salad",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "anchors": [
+        "העדשים",
+        "שטפתי",
+        "הלימון",
+        "עוד לא",
+        "סחטתי"
+      ],
+      "reference": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "filename": "omer-s2",
+      "voice": "omer",
+      "pcm_sha256": "b4de6298123a5804a8193cb7333d2c07d41daf21191a1ea959aa34dd6eefe3c4",
+      "wav_sha256": "133ab3829a9d03dfcb27a2d2b766a9966d7bb3bc3f1630268cdb261dbc7c1e66"
+    },
+    {
+      "id": "s3",
+      "recipe": "salad",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "anchors": [
+        "מהשוק",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "reference": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "filename": "omer-s3",
+      "voice": "omer",
+      "pcm_sha256": "5470aff5272f3efc6438c2b6a6b34515a454afa71e6eacecc6513d7c0501b5d9",
+      "wav_sha256": "7e1e03fcaef20b47f3d3fa94008cd3a72440eb3343f866b56650310b426c11e8"
+    },
+    {
+      "id": "s4",
+      "recipe": "salad",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "anchors": [
+        "לא",
+        "מלח",
+        "פלפל שחור",
+        "במקום"
+      ],
+      "reference": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "filename": "omer-s4",
+      "voice": "omer",
+      "pcm_sha256": "1b3c71366475d65702316b311d3b7ee184c673935066832508526837888b7c29",
+      "wav_sha256": "1b12f31780c55469c08666ce85084065f1b11f735a9a6cb6b3a3cb201c5cbec9"
+    },
+    {
+      "id": "s5",
+      "recipe": "salad",
+      "text": "רגע, כיביתי את הגז, זה הכול.",
+      "anchors": [
+        "כיביתי",
+        "הגז"
+      ],
+      "reference": "רגע, כיביתי את הגז, זה הכול.",
+      "filename": "omer-s5",
+      "voice": "omer",
+      "pcm_sha256": "ea6c3d6c09a109dfef5e69056b03d716a3d070af1bbe5e7fba7838037309577d",
+      "wav_sha256": "14f87d58e9f345cb11209e0927833e5af6617edba3a5558073afc1d7a88fc422"
+    },
+    {
+      "id": "c1",
+      "recipe": "cookies",
+      "text": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "anchors": [
+        "הוספתי",
+        "הקקאו",
+        "הקמח"
+      ],
+      "reference": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "filename": "omer-c1",
+      "voice": "omer",
+      "pcm_sha256": "6bc6bd79167a16a89ed0b5d6c5a8946b770281d4ec3f1f7691727ff13e8004ed",
+      "wav_sha256": "be8a1492ba1af9b0d8e00b02b046633cf5d6f731acf0fa415190c0d9c2079dda"
+    },
+    {
+      "id": "c2",
+      "recipe": "cookies",
+      "text": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "anchors": [
+        "החמאה",
+        "ריככתי",
+        "עוד לא",
+        "שברתי",
+        "ביצה"
+      ],
+      "reference": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "filename": "omer-c2",
+      "voice": "omer",
+      "pcm_sha256": "b9f42f43bb0611ca464a80493a265dabc35fa89c97057d61672e73e8691e0a38",
+      "wav_sha256": "018c8d4c3c43eaf52ef9edfc12f7ab0b2344bd8447b249ef7765002b6cb51c42"
+    },
+    {
+      "id": "c3",
+      "recipe": "cookies",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "anchors": [
+        "התכוונתי",
+        "סוכר",
+        "בסוף",
+        "דבש"
+      ],
+      "reference": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "filename": "omer-c3",
+      "voice": "omer",
+      "pcm_sha256": "16f72e7f27d6718e3092237efe0f34196f3519ece5d97930bf187cd9ac8869f5",
+      "wav_sha256": "8a56569ce2b26743420fa942bd93fd55f6ec396e3f67e643bcbf95b0a627c137"
+    },
+    {
+      "id": "c4",
+      "recipe": "cookies",
+      "text": "לא וניל. סליחה, זה היה קינמון.",
+      "anchors": [
+        "לא",
+        "וניל",
+        "סליחה",
+        "קינמון"
+      ],
+      "reference": "לא וניל. סליחה, זה היה קינמון.",
+      "filename": "omer-c4",
+      "voice": "omer",
+      "pcm_sha256": "4648782910e3e2988066440d51da8f3e6faf7cf3e692e8e52200a2253dd41c8a",
+      "wav_sha256": "0f6de406aa301dd1f6c5aa8325fc9e9de1b55aaad503eae4cdb5cc7ffadb80bf"
+    },
+    {
+      "id": "c5",
+      "recipe": "cookies",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "anchors": [
+        "רק",
+        "שטפתי",
+        "ידיים"
+      ],
+      "reference": "חכי רגע, רק שטפתי ידיים.",
+      "filename": "omer-c5",
+      "voice": "omer",
+      "pcm_sha256": "d9911d4752e375c650a38e8681dfc8d709194a78d56b7d4bc6a714f7811addc1",
+      "wav_sha256": "38629b469cc98575879b311d034ef94f190df12eb06f0e7e1516a67bccc534ee"
+    },
+    {
+      "id": "s1",
+      "recipe": "salad",
+      "text": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "anchors": [
+        "מעכתי",
+        "השום",
+        "גירדתי",
+        "הגזר"
+      ],
+      "reference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "filename": "liat-s1",
+      "voice": "liat",
+      "pcm_sha256": "5fa5eac429583a2a6401bff663d07b5f6a34c0aa6fb52449dad8254cf48c8a09",
+      "wav_sha256": "da97b2858d29a2b57a5f0495291a4d5264a4063131cadc8bd4d6b7a9ed6fcb77"
+    },
+    {
+      "id": "s2",
+      "recipe": "salad",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "anchors": [
+        "העדשים",
+        "שטפתי",
+        "הלימון",
+        "עוד לא",
+        "סחטתי"
+      ],
+      "reference": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "filename": "liat-s2",
+      "voice": "liat",
+      "pcm_sha256": "0d3c853747dd68afbf020a1bbfd60ac1ae0c63b04f0674d910b5ab8738711980",
+      "wav_sha256": "bb0a8da2978a2ddabf6f659de7c69d70153d119a9446dbdc1e703e763fca9031"
+    },
+    {
+      "id": "s3",
+      "recipe": "salad",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "anchors": [
+        "מהשוק",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "reference": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "filename": "liat-s3",
+      "voice": "liat",
+      "pcm_sha256": "858c35183bab4206ab662c337f614e5e14f49e0740e1da009bc6452cc1233e62",
+      "wav_sha256": "b068ab505bf686402e9b15f176df5caef509fa6f69b8b935f84dffeb0096fde5"
+    },
+    {
+      "id": "s4",
+      "recipe": "salad",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "anchors": [
+        "לא",
+        "מלח",
+        "פלפל שחור",
+        "במקום"
+      ],
+      "reference": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "filename": "liat-s4",
+      "voice": "liat",
+      "pcm_sha256": "a8cddf383984121f541f3ba7cb937a8f9ed77e6a4de9477e151fea23a1b7200e",
+      "wav_sha256": "f6ef81832a97202965ec65312b9b1dd332914f67864338a3a28f2a514fb42c88"
+    },
+    {
+      "id": "s5",
+      "recipe": "salad",
+      "text": "רגע, כיביתי את הגז, זה הכול.",
+      "anchors": [
+        "כיביתי",
+        "הגז"
+      ],
+      "reference": "רגע, כיביתי את הגז, זה הכול.",
+      "filename": "liat-s5",
+      "voice": "liat",
+      "pcm_sha256": "bfa84327b41c5c429040a03bcea91848fe654d6a8e587746279496f7199da172",
+      "wav_sha256": "a5b514650f473697a1568848fb971d1c1cda537bb6660764e5ff901e20e43847"
+    },
+    {
+      "id": "c1",
+      "recipe": "cookies",
+      "text": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "anchors": [
+        "הוספתי",
+        "הקקאו",
+        "הקמח"
+      ],
+      "reference": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "filename": "liat-c1",
+      "voice": "liat",
+      "pcm_sha256": "7607cc3696e047b2da6cb95d0a88231afec71d44fa32c4f0758983e8bc82314d",
+      "wav_sha256": "30116777bd141fb36a4999c90f09c120a102edf922f776b475e6340a565f4939"
+    },
+    {
+      "id": "c2",
+      "recipe": "cookies",
+      "text": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "anchors": [
+        "החמאה",
+        "ריככתי",
+        "עוד לא",
+        "שברתי",
+        "ביצה"
+      ],
+      "reference": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "filename": "liat-c2",
+      "voice": "liat",
+      "pcm_sha256": "f710ff80f58638cad23796261ad7e95800fbcc82239aff0f99e98cef64cd922a",
+      "wav_sha256": "e9a2f5619cdbce890911365bf1d0dfdcc7382fe7c999d87eee837f7c4e4ca80d"
+    },
+    {
+      "id": "c3",
+      "recipe": "cookies",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "anchors": [
+        "התכוונתי",
+        "סוכר",
+        "בסוף",
+        "דבש"
+      ],
+      "reference": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "filename": "liat-c3",
+      "voice": "liat",
+      "pcm_sha256": "ed89bf76c6f0953c5c1e4cfc99d03d9293d99a251c68beb3aeb7d8870af11fe5",
+      "wav_sha256": "a63891f8ea737d1931e1d7162e08827a03b5b6f50e7009a702595cb78d385284"
+    },
+    {
+      "id": "c4",
+      "recipe": "cookies",
+      "text": "לא וניל. סליחה, זה היה קינמון.",
+      "anchors": [
+        "לא",
+        "וניל",
+        "סליחה",
+        "קינמון"
+      ],
+      "reference": "לא וניל. סליחה, זה היה קינמון.",
+      "filename": "liat-c4",
+      "voice": "liat",
+      "pcm_sha256": "5562c4a95e507a694238737dbc99c6c1525e2cfb72f1dc4543e1790f7468e7ac",
+      "wav_sha256": "6b284f27d2d1ebb18cc37d6dd935a058fdbddb387f4a608b6c375e0e1fca4fc8"
+    },
+    {
+      "id": "c5",
+      "recipe": "cookies",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "anchors": [
+        "רק",
+        "שטפתי",
+        "ידיים"
+      ],
+      "reference": "חכי רגע, רק שטפתי ידיים.",
+      "filename": "liat-c5",
+      "voice": "liat",
+      "pcm_sha256": "e25652eee0cd73e4fbac7134355b05ac2df406d8ac5c335eea68aa1d35f28e7e",
+      "wav_sha256": "169affa70af3800615b509bacf7726b13e2117a8d241702854ead3add284343c"
+    },
+    {
+      "id": "s1",
+      "recipe": "salad",
+      "text": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "anchors": [
+        "מעכתי",
+        "השום",
+        "גירדתי",
+        "הגזר"
+      ],
+      "reference": "קודם מעכתי את השום ואחר כך גירדתי את הגזר.",
+      "filename": "noa-s1",
+      "voice": "noa",
+      "pcm_sha256": "849af8754cfe8f8576a24545629421fab62493c986fb959b1b291c468b2a2fa0",
+      "wav_sha256": "9f09aff891c8ac28dacbe54e21e4f80c8c6f331fb090fa7de181a5ded2916f1d"
+    },
+    {
+      "id": "s2",
+      "recipe": "salad",
+      "text": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "anchors": [
+        "העדשים",
+        "שטפתי",
+        "הלימון",
+        "עוד לא",
+        "סחטתי"
+      ],
+      "reference": "את העדשים שטפתי, אבל את הלימון עוד לא סחטתי.",
+      "filename": "noa-s2",
+      "voice": "noa",
+      "pcm_sha256": "ab57c32c812530f9bd6d47b92e52405262b084dc36033860cab90c92c8471b8a",
+      "wav_sha256": "f1a266a164f9671ba298160f896da087e3e1d48383de1c726d93f56a278a4e55"
+    },
+    {
+      "id": "s3",
+      "recipe": "salad",
+      "text": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "anchors": [
+        "מהשוק",
+        "עוד לא",
+        "התחלתי"
+      ],
+      "reference": "חזרתי מהשוק, ועוד לא התחלתי להכין כלום.",
+      "filename": "noa-s3",
+      "voice": "noa",
+      "pcm_sha256": "cb9daa035df2772490038dc18efc006f2bbe7c39fdec9dfd099ebd14bcf2b282",
+      "wav_sha256": "02ae9b1bdf2f5ecc6ba0ce8a1611905d4c32866b75ba9c8dc0d05ab3f37546d8"
+    },
+    {
+      "id": "s4",
+      "recipe": "salad",
+      "text": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "anchors": [
+        "לא",
+        "מלח",
+        "פלפל שחור",
+        "במקום"
+      ],
+      "reference": "לא שמתי מלח, שמתי פלפל שחור במקום.",
+      "filename": "noa-s4",
+      "voice": "noa",
+      "pcm_sha256": "a5f752a259305680d978c03ba3779ad8ff3120644c2397bdb5ceb786c1f1a530",
+      "wav_sha256": "a4b64eae449a4deaaf993b78711618602df4bf1163b4f9dbbc3b862dfc6d9815"
+    },
+    {
+      "id": "s5",
+      "recipe": "salad",
+      "text": "רגע, כיביתי את הגז, זה הכול.",
+      "anchors": [
+        "כיביתי",
+        "הגז"
+      ],
+      "reference": "רגע, כיביתי את הגז, זה הכול.",
+      "filename": "noa-s5",
+      "voice": "noa",
+      "pcm_sha256": "546862412fcd6397b6e8ae5fd89d7767843d0c3e75ca355e4a876ab29b616124",
+      "wav_sha256": "053f7d051eed296548f7ae7eb5e82c577b9d8aefadd001851abdf794156cd3b3"
+    },
+    {
+      "id": "c1",
+      "recipe": "cookies",
+      "text": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "anchors": [
+        "הוספתי",
+        "הקקאו",
+        "הקמח"
+      ],
+      "reference": "לקערה הוספתי את הקקאו ואת הקמח.",
+      "filename": "noa-c1",
+      "voice": "noa",
+      "pcm_sha256": "301d27d21b2dfbd2d4e0c33536acd893f1baced7cb111c79d76e37833a516aa8",
+      "wav_sha256": "6a098ab122db972a2bbc48860a631f39fa517cdf37df1c8aa8bb0532e01e4bf5"
+    },
+    {
+      "id": "c2",
+      "recipe": "cookies",
+      "text": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "anchors": [
+        "החמאה",
+        "ריככתי",
+        "עוד לא",
+        "שברתי",
+        "ביצה"
+      ],
+      "reference": "את החמאה ריככתי אבל עוד לא שברתי ביצה.",
+      "filename": "noa-c2",
+      "voice": "noa",
+      "pcm_sha256": "5a23c266ea1879937fe1047c9bf6c463b6f9d89636891482403039862acec082",
+      "wav_sha256": "7c412d37aa4a285520a4841a7af7e66729215ef0b05b51c5fc06cc00e5aae156"
+    },
+    {
+      "id": "c3",
+      "recipe": "cookies",
+      "text": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "anchors": [
+        "התכוונתי",
+        "סוכר",
+        "בסוף",
+        "דבש"
+      ],
+      "reference": "התכוונתי לשים סוכר, בסוף שמתי דבש.",
+      "filename": "noa-c3",
+      "voice": "noa",
+      "pcm_sha256": "3bcdbbddd4d5ccf62294e99ce5e79e9e3981f06cd8f3e2d702f5f426f69c307f",
+      "wav_sha256": "3dc5724e2dbaa0d7f5fefb0f21a590718cad353229966e3f4c09b3a8e0e9fd44"
+    },
+    {
+      "id": "c4",
+      "recipe": "cookies",
+      "text": "לא וניל. סליחה, זה היה קינמון.",
+      "anchors": [
+        "לא",
+        "וניל",
+        "סליחה",
+        "קינמון"
+      ],
+      "reference": "לא וניל. סליחה, זה היה קינמון.",
+      "filename": "noa-c4",
+      "voice": "noa",
+      "pcm_sha256": "f48d492704c20f699c84c13541080e81c4dad893b38b6d5712c56c28c19674bb",
+      "wav_sha256": "a0b212f168e8ca3378500f819cb7ab0705ffc536db5765aaf72dfb789c576770"
+    },
+    {
+      "id": "c5",
+      "recipe": "cookies",
+      "text": "חכי רגע, רק שטפתי ידיים.",
+      "anchors": [
+        "רק",
+        "שטפתי",
+        "ידיים"
+      ],
+      "reference": "חכי רגע, רק שטפתי ידיים.",
+      "filename": "noa-c5",
+      "voice": "noa",
+      "pcm_sha256": "a8c081d589e50af96e383c833092cfbe30cef466e5aa4b52a486bb0914d960bc",
+      "wav_sha256": "8c80511fae9d66b1c904a26e38c70f09b0ea86b8a3f3f62edfde7e7aa30100fb"
+    },
+    {
+      "id": "silence",
+      "filename": "silence",
+      "recipe": null,
+      "reference": "",
+      "anchors": [],
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5"
+    },
+    {
+      "id": "noise",
+      "filename": "noise",
+      "recipe": null,
+      "reference": "",
+      "anchors": [],
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919"
+    }
+  ]
+}
