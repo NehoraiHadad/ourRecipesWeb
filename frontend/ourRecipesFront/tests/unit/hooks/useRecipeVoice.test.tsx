@@ -54,6 +54,15 @@ describe('recipe voice navigation', () => {
     expect(speak.mock.lastCall?.[0].text).toContain(steps[1]);
   });
 
+  it('routes a mixed cooking report to the active engine before advancing steps', () => {
+    const report = vi.fn(() => true);
+    const { result } = renderHook(() => useRecipeVoice(steps, report));
+    act(() => result.current.toggleMicrophone());
+    act(() => FakeRecognition.instance.say('שמתי קמח, מה עכשיו?'));
+    expect(report).toHaveBeenCalledWith('שמתי קמח, מה עכשיו?', 0, expect.any(Function));
+    expect(result.current.stepIndex).toBe(0);
+  });
+
   it('handles previous, unknown, last-step and stop commands without inventing steps', () => {
     const { result } = renderHook(() => useRecipeVoice(steps));
     const recognition = FakeRecognition.instance;
