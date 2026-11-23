@@ -60,6 +60,11 @@ if (hebrewExport) {
   assert.equal(sha(await readFile(file)), metadata.sha256);
   files.set('/models/' + basename, file);
 }
+const recipeHints = process.env.SPEECH_RECIPE_HINTS === '1';
+if (recipeHints) {
+  assert(!whisper && !hebrewExport);
+  for (const file of ['bpe.vocab','salad.txt','cookies.txt']) files.set('/hints/'+file,join(cache,file));
+}
 for (const row of manifest.records) {
   const file = join(cache, row.filename + '.pcm');
   assert.equal(sha(await readFile(file)), row.pcm_sha256);
@@ -97,7 +102,7 @@ try {
   });
   const page = await context.newPage();
   await page.goto(origin);
-  for (const arm of (hebrewExport ? ['whisper-he'] : whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
+  for (const arm of (recipeHints ? ['greedy','beam4','hints-salad','hints-cookies'] : hebrewExport ? ['whisper-he'] : whisper ? ['whisper-tiny'] : process.env.SPEECH_GREEDY_ONLY === '1' ? ['greedy'] : ['greedy', 'beam4'])) {
     const loaded = await page.evaluate(async arm => {
       window.worker = new Worker('/worker.mjs', {type: 'module'});
       window.ask = payload => new Promise((resolve, reject) => {

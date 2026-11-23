@@ -14,7 +14,22 @@ self.onmessage=async({data})=>{
    const config={featConfig:{sampleRate:16000,featureDim:80},modelConfig:{transducer:{encoder:'/model/encoder.int8.onnx',decoder:'/model/decoder.int8.onnx',joiner:'/model/joiner.int8.onnx'},
     tokens:'/model/tokens.txt',numThreads:1,provider:'cpu',modelType:'zipformer2',debug:0},
     decodingMethod:data.arm==='beam4'?'modified_beam_search':'greedy_search',maxActivePaths:4,enableEndpoint:0,hotwordsFile:'',blankPenalty:0};
+   if (data.arm.startsWith('hints-')) {
+    const recipe = data.arm.slice('hints-'.length);
+    if (!['salad','cookies'].includes(recipe)) throw Error('Unknown recipe fixture');
+    for (const file of ['bpe.vocab', recipe+'.txt']) {
+      const response = await fetch('/hints/'+file);
+      if (!response.ok) throw Error('Missing hotword fixture '+file);
+      module.FS_createDataFile('/model',file,new Uint8Array(await response.arrayBuffer()),true,false,false);
+    }
+    config.decodingMethod='modified_beam_search';
+    config.modelConfig.modelingUnit='bpe';
+    config.modelConfig.bpeVocab='/model/bpe.vocab';
+    config.hotwordsFile='/model/'+recipe+'.txt';
+    config.hotwordsScore=1.5;
+   }
    recognizer=createOnlineRecognizer(module,config);
+   if (!recognizer.handle) throw Error('Failed to create Zipformer recognizer');
    self.postMessage({type:'ready',arm:data.arm,ms:performance.now()-start,wasmHeapBytes:module.HEAPU8?.buffer.byteLength,config:recognizer.config});
   }else{
    const pcm=Float32Array.from(data.pcm);

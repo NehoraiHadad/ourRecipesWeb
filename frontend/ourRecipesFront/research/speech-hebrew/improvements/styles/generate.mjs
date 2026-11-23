@@ -14,7 +14,7 @@ const app = path.resolve(research,'../..');
 const cache = process.env.STYLE_CACHE || '/dev/shm/kitchen-styles';
 const extra = process.env.SPEECH_EXTRA_DIR || '/dev/shm/ourrecipes-speech-models';
 const runtime = process.env.SPEECH_RUNTIME_DIR || '/workspace/ourRecipesWeb/frontend/ourRecipesFront/public/voice/runtime';
-const prompts = JSON.parse(await readFile(path.join(here,'cases.json')));
+const prompts = JSON.parse(await readFile(process.env.SPEECH_PROMPTS || path.join(here,'cases.json')));
 const dist = path.dirname(createRequire(import.meta.url).resolve('pocket-tts-onnx/package.json'))+'/dist';
 await mkdir(cache,{recursive:true});
 const bundle = path.join(cache,'runtime.js');
