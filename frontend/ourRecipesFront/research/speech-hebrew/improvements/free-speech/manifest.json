@@ -1,0 +1,1984 @@
+{
+  "records": [
+    {
+      "filename": "omer-oil-fluent",
+      "case": "oil",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "שמתי שמן קנולה במקום שמן זית.",
+      "critical": [
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 3.04,
+      "pcm_sha256": "b1eb8460e872ff339af132811cea4ba37ab399396217404d212ad5a1a9c09518",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-oil-steady",
+      "case": "oil",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 7.3,
+      "pcm_sha256": "ca53fe241b12b9a659a2c1ddcec1df0b24b5319f395dbc58e1e037349d6ea929",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-oil-varied",
+      "case": "oil",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 7.262625,
+      "pcm_sha256": "855b6cd210c3a98d89814df856c6b5e24be5d9375a024b3067459b959d5bc2ba",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "omer-oil-water",
+      "case": "oil",
+      "voice": "omer",
+      "style": "water",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 7.262625,
+      "pcm_sha256": "e6b99bec59100fa9b4b9705e8ac7a35f52a44ea6184b430af4705409799a7460",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "liat-oil-fluent",
+      "case": "oil",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "שמתי שמן קנולה במקום שמן זית.",
+      "critical": [
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 2.88,
+      "pcm_sha256": "68999e38edfa99a621d4da53940279ad9b1c6b9a41255b1d78773e2251e8c65a",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-oil-steady",
+      "case": "oil",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.74,
+      "pcm_sha256": "34cdd228aa87a1777f7f1d3ebf35ffec60ab5c7301f9ecca855871db5fbb78ad",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-oil-varied",
+      "case": "oil",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.922875,
+      "pcm_sha256": "87550175b419616d487e03da9fd4706ee74962d0c35fd5412590a2c2481366ee",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-oil-water",
+      "case": "oil",
+      "voice": "liat",
+      "style": "water",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.922875,
+      "pcm_sha256": "47d7231ad72d283de38f95675f152cdd103f3e15579b8d7a6d6c61bff1f2a1af",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "noa-oil-fluent",
+      "case": "oil",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "שמתי שמן קנולה במקום שמן זית.",
+      "critical": [
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 2.8560625,
+      "pcm_sha256": "85ebf4cfcfe5a19daae2114bfb00a4b3a8db63aecae0b9f9ee14d597cf09f30e",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-oil-steady",
+      "case": "oil",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.056,
+      "pcm_sha256": "727c88b576c5c33f5343a924e89525402f6c4689c3bb57a60c8fe7ad1c1ac38c",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-oil-varied",
+      "case": "oil",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.321875,
+      "pcm_sha256": "750b1498285b05fc8d1a131a89ca3c5b37e24f33cb835717da6f41c2a80a1730",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-oil-water",
+      "case": "oil",
+      "voice": "noa",
+      "style": "water",
+      "reference": "טוב, שמתי שמן זית, מה פתאום, זה היה שמן קנולה, הבקבוק עם הפקק הירוק.",
+      "critical": [
+        "שמתי",
+        "שמן זית",
+        "מה פתאום",
+        "שמן קנולה"
+      ],
+      "final": [
+        "שמן קנולה"
+      ],
+      "seconds": 6.321875,
+      "pcm_sha256": "f30f92e01cbeeadde6aa4d56b5f4e313c2247ec97646e15cf4ca5664f068300a",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "omer-garlic-fluent",
+      "case": "garlic",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "קילפתי את השום אבל עוד לא טיגנתי אותו.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 2.88,
+      "pcm_sha256": "dc7024ae381c77f004ee04ae1bdae66e61ef98c082b9f3f09969415480eaafbf",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-garlic-steady",
+      "case": "garlic",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 9.06,
+      "pcm_sha256": "e5d100e9b881153fc88630bd2c048f59bfb995c06f5a99e3cc121cf26845db51",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-garlic-varied",
+      "case": "garlic",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 9.351875,
+      "pcm_sha256": "ac76016ae68ad2e32968e644f5ee49d5e3377b53a8dd61a05fd382cf456bfbc7",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "omer-garlic-water",
+      "case": "garlic",
+      "voice": "omer",
+      "style": "water",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 9.351875,
+      "pcm_sha256": "faeef3e2cc3c66b8855de85bbf054ec6bf15d72e85e689c40903ed7c46101dba",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-garlic-fluent",
+      "case": "garlic",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "קילפתי את השום אבל עוד לא טיגנתי אותו.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 2.96,
+      "pcm_sha256": "5df7ee07de70857e71a58962783384cc60dd61c71f4266610943d44c1d1d64ca",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-garlic-steady",
+      "case": "garlic",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 8.34,
+      "pcm_sha256": "3e85d5996469af59beeddd68c2e887b32422ba4bf24393df62a1c56e709f32da",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-garlic-varied",
+      "case": "garlic",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 8.339375,
+      "pcm_sha256": "94c3d4a31468c1b740b22b66073015bd74faf45950ac1256d5b97ef4e9a79acf",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "liat-garlic-water",
+      "case": "garlic",
+      "voice": "liat",
+      "style": "water",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 8.339375,
+      "pcm_sha256": "c2a2171a408440c0deec0f7988389893f50e89034813fbda313a708fc24386ac",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-garlic-fluent",
+      "case": "garlic",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "קילפתי את השום אבל עוד לא טיגנתי אותו.",
+      "critical": [
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 2.7631875,
+      "pcm_sha256": "4a7e10afe3104f112dd687c3de34210cc9e0e5be93b3c2bf6d86354ca3c352f6",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-garlic-steady",
+      "case": "garlic",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 8.2038125,
+      "pcm_sha256": "b9b241739145bc5e812183ab872a6e132dbb260e4f0d29c5de700e9100d05ceb",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-garlic-varied",
+      "case": "garlic",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 7.9998125,
+      "pcm_sha256": "c06ba0455ad74c6aff3d894ef729da2f9955bb857177bb5869cfea28a2af318f",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "noa-garlic-water",
+      "case": "garlic",
+      "voice": "noa",
+      "style": "water",
+      "reference": "השום כבר במחבת, כאילו, מה אני אומר, הוא על הקרש. קילפתי אותו אבל עוד לא טיגנתי אותו, אז מה עכשיו?",
+      "critical": [
+        "על הקרש",
+        "קילפתי",
+        "עוד לא טיגנתי"
+      ],
+      "final": [
+        "עוד לא טיגנתי"
+      ],
+      "seconds": 7.9998125,
+      "pcm_sha256": "c8041197483e00f9b99c5655b2e2652eecf84cf69f17b2e870bcd449d8eda6f4",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "omer-quantity-fluent",
+      "case": "quantity",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "הוספתי חצי כפית מלח.",
+      "critical": [
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 2.08,
+      "pcm_sha256": "6c8b94a71401382ad0a0466d647601014256fada7cb02b16f714c4a100ee6f75",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-quantity-steady",
+      "case": "quantity",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.62,
+      "pcm_sha256": "b849b32b44acd7907d5eeb652358cd801b7789463cdbcc69d716cbf8f1eb4e30",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-quantity-varied",
+      "case": "quantity",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.68425,
+      "pcm_sha256": "f610d793c39af9fd7393132405f89a2b6e05c308878fc24a8a498f51bfdf0d43",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "omer-quantity-water",
+      "case": "quantity",
+      "voice": "omer",
+      "style": "water",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.68425,
+      "pcm_sha256": "433764dc71e649505230ed2af36a41e9be8976af192a13cbe055d0ed2d1fcce1",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "liat-quantity-fluent",
+      "case": "quantity",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "הוספתי חצי כפית מלח.",
+      "critical": [
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 2.08,
+      "pcm_sha256": "73fd4738e825838809f77539b353782bfb96109e1c687dec69d9538d751274e3",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-quantity-steady",
+      "case": "quantity",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.62,
+      "pcm_sha256": "485d438eae1c7e97a40dc71228bdb31c73a3138e8e6ea7c5fe67c53e512c05c0",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-quantity-varied",
+      "case": "quantity",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.53,
+      "pcm_sha256": "3b6cc6026e602d373f503212105d2dc99e3a412f760a0a4ac507fa21d86da324",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "liat-quantity-water",
+      "case": "quantity",
+      "voice": "liat",
+      "style": "water",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.53,
+      "pcm_sha256": "3565d814f9b5035cca04010dcecbefc74a9399c9cb3d51070015b2734252a76a",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "noa-quantity-fluent",
+      "case": "quantity",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "הוספתי חצי כפית מלח.",
+      "critical": [
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 1.962125,
+      "pcm_sha256": "23f79863cb11bad5db320fb13274833427e41392561425587755f0e0ac63d70a",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-quantity-steady",
+      "case": "quantity",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 6.9731875,
+      "pcm_sha256": "f8477895dae0d2f31926ea32bd652593ab5f8e9630fb1c19cdd47068d9452f72",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-quantity-varied",
+      "case": "quantity",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.14325,
+      "pcm_sha256": "c5257823dbc5856b05da93b9238a2cc3b792f0c5eea592193430e26299aeb0d3",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "noa-quantity-water",
+      "case": "quantity",
+      "voice": "noa",
+      "style": "water",
+      "reference": "כמה מלח שמתי? כפית, נראה לי, רגע, רק חצי כפית מלח, השאר עדיין פה בכפית.",
+      "critical": [
+        "רק",
+        "חצי כפית מלח"
+      ],
+      "final": [
+        "חצי כפית מלח"
+      ],
+      "seconds": 7.14325,
+      "pcm_sha256": "6a8fbb612d8c467bd2184615a20b50e300c527142452e0ff2be0f956c90e563f",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "omer-pepper-fluent",
+      "case": "pepper",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "הוספתי פלפל לבן כי נגמר הפלפל השחור.",
+      "critical": [
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 3.52,
+      "pcm_sha256": "d7248b2b90fe7134608e27f4683a59e8c59a7ee50c9dfdc04a5a7afd94d64d92",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-pepper-steady",
+      "case": "pepper",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.98,
+      "pcm_sha256": "ae4d2dfc5c89208724b6b2f6b9e62d567d6ea73eb31d17b12456ef529e359945",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-pepper-varied",
+      "case": "pepper",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.872625,
+      "pcm_sha256": "8b985d26936d0f022c4dcb2e4bef3546a710438dd513ccb5a9e2cc3ff97eb250",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "omer-pepper-water",
+      "case": "pepper",
+      "voice": "omer",
+      "style": "water",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.872625,
+      "pcm_sha256": "2f6861cd619d6f3b591f2a8bdf20b1d2bc5e333f336889d56ddffcea6e1cd21c",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "liat-pepper-fluent",
+      "case": "pepper",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "הוספתי פלפל לבן כי נגמר הפלפל השחור.",
+      "critical": [
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 3.52,
+      "pcm_sha256": "aa446b34ef0c876b181797596a436730d2abbdaf2bab6113472d888585fb213b",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-pepper-steady",
+      "case": "pepper",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 7.22,
+      "pcm_sha256": "67256fd3af1bb490814e79b93d9b6b410135a878a0e9bb71f4520ee3017460ef",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-pepper-varied",
+      "case": "pepper",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 7.575375,
+      "pcm_sha256": "d4fab7dda44732a9a1163e3f00e5304233dbc03a682be5244729bef9bc37d6b1",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-pepper-water",
+      "case": "pepper",
+      "voice": "liat",
+      "style": "water",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 7.575375,
+      "pcm_sha256": "f4cff5189da15e5374e015aa9e2ef4d119d45c8a6b87af68331a174a115af334",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "noa-pepper-fluent",
+      "case": "pepper",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "הוספתי פלפל לבן כי נגמר הפלפל השחור.",
+      "critical": [
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 3.227625,
+      "pcm_sha256": "63c04b945b37420322f50604a088c4f7d9e5b5e0d0167d90c54e60bbae1cfdf8",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-pepper-steady",
+      "case": "pepper",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.4623125,
+      "pcm_sha256": "b8c62c0d285a8c02339baf626ad0ecfe9e80173474b36b7f4fc9b065a807442c",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-pepper-varied",
+      "case": "pepper",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.7320625,
+      "pcm_sha256": "5281f672d20c6b5b22e9f1ac6cbaeb9d4dc85497dac874b66368d62c7ba48ca5",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-pepper-water",
+      "case": "pepper",
+      "voice": "noa",
+      "style": "water",
+      "reference": "נו, הפלפל הזה שכתוב במתכון, נגמר לי. אז בסוף הוספתי פלפל לבן, זה משנה?",
+      "critical": [
+        "נגמר לי",
+        "הוספתי פלפל לבן"
+      ],
+      "final": [
+        "הוספתי פלפל לבן"
+      ],
+      "seconds": 6.7320625,
+      "pcm_sha256": "380d4e3699ec3590946f79dabeecff7b85cbcdf987e1abe58c75e722fe13332e",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "omer-stir-fluent",
+      "case": "stir",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "הוספתי את המים אבל עוד לא ערבבתי.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 2.64,
+      "pcm_sha256": "5404618b6e71df36c3d5844a42d2af57c9ecdc7884effd9038e8bceaa9ef94d9",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-stir-steady",
+      "case": "stir",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.54,
+      "pcm_sha256": "5d15591e76214339ae33bb1f33520dc7e25c2f59283dbee1cf58f5f53145c94f",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-stir-varied",
+      "case": "stir",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.9220625,
+      "pcm_sha256": "10355759c04a536f29d442a7f1eac8e4464a66248b3cffde517b9d70e43b965b",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "omer-stir-water",
+      "case": "stir",
+      "voice": "omer",
+      "style": "water",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.9220625,
+      "pcm_sha256": "a66902df45078796a932d72daeb709347dff799ffd93851c405dd0f2c2e58ff1",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-stir-fluent",
+      "case": "stir",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "הוספתי את המים אבל עוד לא ערבבתי.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 2.8,
+      "pcm_sha256": "973deb20bc4ceb4d2624513d63702f600813c7263955391e31bc90be75539b43",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-stir-steady",
+      "case": "stir",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.46,
+      "pcm_sha256": "c6c95be526d354eddbf317345ecdf4caa1cd76190a6fb9105dcc2f0b9354cd8f",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-stir-varied",
+      "case": "stir",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.615625,
+      "pcm_sha256": "45548048bd55bbbf6601f8d6c8695047efd4630d1530a261385d158c1beb36ec",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "liat-stir-water",
+      "case": "stir",
+      "voice": "liat",
+      "style": "water",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 7.615625,
+      "pcm_sha256": "9afd099afe65cda78547dfdcb42742d5d4c5fe7b5a5fdc9378e7dc41584dbd2f",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-stir-fluent",
+      "case": "stir",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "הוספתי את המים אבל עוד לא ערבבתי.",
+      "critical": [
+        "עוד לא ערבבתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 2.61225,
+      "pcm_sha256": "05f3c7f8df7756dfc607e5759bef1786ca423c923fdbe0cf4ce2f33894f132fb",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-stir-steady",
+      "case": "stir",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 6.19525,
+      "pcm_sha256": "3e8407465b0137eaa2d713ce6d96c4fef738940dafe747b89cc3d88c7ee337d0",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-stir-varied",
+      "case": "stir",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 6.08275,
+      "pcm_sha256": "bcba8423f0fdfa267ee03095ec64152277f6a41d9d58bf65ff9c8894f153e7f3",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "noa-stir-water",
+      "case": "stir",
+      "voice": "noa",
+      "style": "water",
+      "reference": "המים בפנים, כן, כן, שנייה, הכף נפלה לי. עוד לא ערבבתי, רק מזגתי את המים.",
+      "critical": [
+        "המים בפנים",
+        "עוד לא ערבבתי",
+        "רק מזגתי"
+      ],
+      "final": [
+        "עוד לא ערבבתי"
+      ],
+      "seconds": 6.08275,
+      "pcm_sha256": "166efe0cfafbe1c905b9bc8751330eae7619235b1405ada7d7abfaa85962ad5e",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "omer-question-fluent",
+      "case": "question",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "עוד לא הוספתי את הרוטב. להוסיף אותו עכשיו?",
+      "critical": [
+        "עוד לא הוספתי"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 3.36,
+      "pcm_sha256": "90d926438c9a89b34d387525b7abbaabcad1a89890a8a915188c204d57e62749",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-question-steady",
+      "case": "question",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.62,
+      "pcm_sha256": "34f0532fc60b144eb888da678b4e16081e96ae543e1cff53514b1a47000ddbda",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-question-varied",
+      "case": "question",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.7548125,
+      "pcm_sha256": "8c501718019d77d4e1f348ffd77b30b52036e260b1bddc351f235abf263188c6",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "omer-question-water",
+      "case": "question",
+      "voice": "omer",
+      "style": "water",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.7548125,
+      "pcm_sha256": "4b2dc2507ab0122fef74db3a46af8e1c3e3e0b356bfefab9290f343ecbf5a4be",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "liat-question-fluent",
+      "case": "question",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "עוד לא הוספתי את הרוטב. להוסיף אותו עכשיו?",
+      "critical": [
+        "עוד לא הוספתי"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 3.44,
+      "pcm_sha256": "28d1bb9c381852c2c236e608dc69708c1419e4a95a05e531d0eeb79ff7b87501",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-question-steady",
+      "case": "question",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.22,
+      "pcm_sha256": "20552c0e09d298f1ef7d51235a964b4d27842b9e3b0ae04c70891376cabfebd1",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-question-varied",
+      "case": "question",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.031625,
+      "pcm_sha256": "4eabe3e48d0ac2d368acd5a136a2d16dbb5b840fa451066ada9203b60ef4a095",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "liat-question-water",
+      "case": "question",
+      "voice": "liat",
+      "style": "water",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.031625,
+      "pcm_sha256": "e84ffb0e7d24d04d636adc23006e4061376b7818dd6aa978d42d2aef0cc7a59a",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "noa-question-fluent",
+      "case": "question",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "עוד לא הוספתי את הרוטב. להוסיף אותו עכשיו?",
+      "critical": [
+        "עוד לא הוספתי"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 3.13475,
+      "pcm_sha256": "0de05a60c0b738242294310e30a6673315d5ebef59f1f7058a9990ad24aab26b",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-question-steady",
+      "case": "question",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 7.66975,
+      "pcm_sha256": "20f8cfa5231a6dbcca5ea9b5121ee89770f2557b93c346f93cd51e0ed362cff4",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-question-varied",
+      "case": "question",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 8.2040625,
+      "pcm_sha256": "757a810c096f1f7ecc773cadedafb4cc342a086e5d82a10f56119cf48ae88d1c",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "noa-question-water",
+      "case": "question",
+      "voice": "noa",
+      "style": "water",
+      "reference": "אז את הרוטב אני שמה עכשיו? רגע, שלא תבין שכבר שמתי. עוד לא הוספתי אותו, אני רק שואלת.",
+      "critical": [
+        "עוד לא הוספתי",
+        "רק שואלת"
+      ],
+      "final": [
+        "עוד לא הוספתי"
+      ],
+      "seconds": 8.2040625,
+      "pcm_sha256": "679f61e79db85c61cb5c60b349493195a1198f1a14689c828cbe410fe84685e4",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "omer-uncertain-fluent",
+      "case": "uncertain",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "אני לא זוכרת אם שמתי מלח.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 2.24,
+      "pcm_sha256": "0e41b0f20b70a91834992c5bf8f760ff48fc97ec65c4c30f2cd4bef9766a924a",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-uncertain-steady",
+      "case": "uncertain",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.58,
+      "pcm_sha256": "44f5e288c0158992b99bf23d4e67d27f21242aec8264271e0b88740497100f66",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-uncertain-varied",
+      "case": "uncertain",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.303375,
+      "pcm_sha256": "c8fa5ed5f6e53af3f7f12aee3ba080ba39cd693e597e8434c67cc29db85bc73c",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "omer-uncertain-water",
+      "case": "uncertain",
+      "voice": "omer",
+      "style": "water",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.303375,
+      "pcm_sha256": "dc65856d2bbed63b1e2c69bc35911b1d0585e63d7ce2bf72a717c76c8327f24e",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "liat-uncertain-fluent",
+      "case": "uncertain",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "אני לא זוכרת אם שמתי מלח.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 2.32,
+      "pcm_sha256": "7ee281f8ff3406f2ec3e6fed0b106479b57fc9a539d463c87aae91253c3c55b5",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-uncertain-steady",
+      "case": "uncertain",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.18,
+      "pcm_sha256": "9c81b1e58fe9e3bdfae54506b585c29efeefd34bbd06fedc947a83705f451173",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-uncertain-varied",
+      "case": "uncertain",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.54875,
+      "pcm_sha256": "cf32f67870e21a444567f5fb02f0fba98afc2cf2aae79cf8bdc4f2bfafc09f2b",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-uncertain-water",
+      "case": "uncertain",
+      "voice": "liat",
+      "style": "water",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.54875,
+      "pcm_sha256": "a5628ff3993ce7f2887613b3eee4393342b6da14c7dda04aa92c39cae8de3c99",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "noa-uncertain-fluent",
+      "case": "uncertain",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "אני לא זוכרת אם שמתי מלח.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 2.2059375,
+      "pcm_sha256": "0842e5da48418933dba27badf60b2144ff1ccd9e6827bca73f5eb76982d8e81b",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-uncertain-steady",
+      "case": "uncertain",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.0413125,
+      "pcm_sha256": "c198d7c92a2b82db2e0ab2e4a73d63437ee8afe91bdca4f43be4912ccda0a13e",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-uncertain-varied",
+      "case": "uncertain",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.1179375,
+      "pcm_sha256": "d0e56336fa959ef5f9ed3d1db02778bfda0ac37bc458f758b6ebd5ccd98c6627",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-uncertain-water",
+      "case": "uncertain",
+      "voice": "noa",
+      "style": "water",
+      "reference": "המלח פה פתוח, אבל הייתי בטלפון ובאמת שאין לי מושג. אני לא זוכרת אם שמתי מלח או רק הוצאתי אותו.",
+      "critical": [
+        "לא זוכרת אם שמתי מלח",
+        "רק הוצאתי"
+      ],
+      "final": [
+        "לא זוכרת אם שמתי מלח"
+      ],
+      "seconds": 8.1179375,
+      "pcm_sha256": "57940dfcecd915da4aaf332ae99c82fa80a7733ec2be8d3bc9f293e385d8528c",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "omer-sauce-fluent",
+      "case": "sauce",
+      "voice": "omer",
+      "style": "fluent",
+      "reference": "שמתי רוטב סויה במקום רוטב עגבניות.",
+      "critical": [
+        "רוטב סויה"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 3.2,
+      "pcm_sha256": "2b4afe80294134fc079916469b54279c56ad4b5e3a54cf0ee96d46d94821a504",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "omer-sauce-steady",
+      "case": "sauce",
+      "voice": "omer",
+      "style": "steady",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.9,
+      "pcm_sha256": "13fa5a3147bb94fae7bab95bb76cf9b371f06f3fb8e274a62bbfaf5b8938b11f",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "omer-sauce-varied",
+      "case": "sauce",
+      "voice": "omer",
+      "style": "varied",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.9560625,
+      "pcm_sha256": "66390fafba5403fd1bbc4fd11593a20ace84feaf35a826e858b7668ad6825fd2",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "omer-sauce-water",
+      "case": "sauce",
+      "voice": "omer",
+      "style": "water",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.9560625,
+      "pcm_sha256": "c0c42dd86bacf319406abbf470386e94077e377705bda56ec80387f8d9ea3d2a",
+      "speeds": [
+        0.94,
+        1.24
+      ],
+      "insertedGapMs": 790
+    },
+    {
+      "filename": "liat-sauce-fluent",
+      "case": "sauce",
+      "voice": "liat",
+      "style": "fluent",
+      "reference": "שמתי רוטב סויה במקום רוטב עגבניות.",
+      "critical": [
+        "רוטב סויה"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 2.88,
+      "pcm_sha256": "1c6a5b2fd2d9d55ff2d6f36a115269c36e8785a5444a641dafc8c832c1837599",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "liat-sauce-steady",
+      "case": "sauce",
+      "voice": "liat",
+      "style": "steady",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.74,
+      "pcm_sha256": "4bbaf42556b77c3dc9fe5e36589894db200ac4f1e9c759b99dc5467df217ea6b",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "liat-sauce-varied",
+      "case": "sauce",
+      "voice": "liat",
+      "style": "varied",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.6335625,
+      "pcm_sha256": "f708a933ab201538b07fb61bf6a09d0e4ddab551abe86b78005be7e1b2964a7d",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "liat-sauce-water",
+      "case": "sauce",
+      "voice": "liat",
+      "style": "water",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.6335625,
+      "pcm_sha256": "72b66e7656e1d6bc4f363f5c12d40e505d562af7290b634c9d2436915a6ed44c",
+      "speeds": [
+        1.12,
+        1.22
+      ],
+      "insertedGapMs": 1250
+    },
+    {
+      "filename": "noa-sauce-fluent",
+      "case": "sauce",
+      "voice": "noa",
+      "style": "fluent",
+      "reference": "שמתי רוטב סויה במקום רוטב עגבניות.",
+      "critical": [
+        "רוטב סויה"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 2.8909375,
+      "pcm_sha256": "ebd20baf469826c395d3a8096961c251525da4eb5bbbde13edca11ca25eafc27",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 0
+    },
+    {
+      "filename": "noa-sauce-steady",
+      "case": "sauce",
+      "voice": "noa",
+      "style": "steady",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.1225,
+      "pcm_sha256": "bee967d4518c43e1123d1969649576a4439edc34247a10ac7a647a8df0015158",
+      "speeds": [
+        1
+      ],
+      "insertedGapMs": 100
+    },
+    {
+      "filename": "noa-sauce-varied",
+      "case": "sauce",
+      "voice": "noa",
+      "style": "varied",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.0818125,
+      "pcm_sha256": "980f18f940c0f2b9750aa047679c02c210e94692bf209481a46df2896efe4fde",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    },
+    {
+      "filename": "noa-sauce-water",
+      "case": "sauce",
+      "voice": "noa",
+      "style": "water",
+      "reference": "הוספתי רוטב, איך קוראים לזה, ההוא של הסושי. רוטב סויה שמתי, לא רוטב עגבניות. הלך על הפסטה?",
+      "critical": [
+        "רוטב סויה",
+        "לא רוטב עגבניות"
+      ],
+      "final": [
+        "רוטב סויה"
+      ],
+      "seconds": 8.0818125,
+      "pcm_sha256": "3e619d9633202922a33d46e1ed9bae50e1489ef8c13f9e61af43d0d9b02b901d",
+      "speeds": [
+        1.18,
+        0.95
+      ],
+      "insertedGapMs": 420
+    }
+  ]
+}
