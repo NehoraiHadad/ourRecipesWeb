@@ -1,0 +1,169 @@
+{
+  "zipformer": {
+    "browser": "156.0.8078.79",
+    "loads": [
+      {
+        "arm": "greedy",
+        "ms": 2098.800000000745,
+        "heapBytes": 536870912
+      }
+    ],
+    "groups": {
+      "plain": {
+        "clips": 36,
+        "wordErrors": 25,
+        "words": 261,
+        "missingAnchors": 22,
+        "anchors": 156,
+        "negationFlags": 0,
+        "nonempty": 36,
+        "medianMs": 313.09999999962747,
+        "p95Ms": 460
+      },
+      "fan-room": {
+        "clips": 12,
+        "wordErrors": 18,
+        "words": 87,
+        "missingAnchors": 18,
+        "anchors": 52,
+        "negationFlags": 0,
+        "nonempty": 12,
+        "medianMs": 329.69999999925494,
+        "p95Ms": 419
+      },
+      "human": {
+        "clips": 12,
+        "wordErrors": 54,
+        "words": 205,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 0,
+        "nonempty": 12,
+        "medianMs": 552.2000000011176,
+        "p95Ms": 925.7999999988824
+      },
+      "control": {
+        "clips": 2,
+        "wordErrors": 0,
+        "words": 0,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 0,
+        "nonempty": 0,
+        "medianMs": 273.40000000037253,
+        "p95Ms": 275.30000000074506
+      }
+    }
+  },
+  "whisper": {
+    "browser": "156.0.8078.79",
+    "loads": [
+      {
+        "arm": "whisper-tiny",
+        "ms": 3205.4000000003725,
+        "heapBytes": 536870912
+      }
+    ],
+    "groups": {
+      "plain": {
+        "clips": 36,
+        "wordErrors": 180,
+        "words": 261,
+        "missingAnchors": 121,
+        "anchors": 156,
+        "negationFlags": 0,
+        "nonempty": 36,
+        "medianMs": 1190.0999999996275,
+        "p95Ms": 1542.199999999255
+      },
+      "fan-room": {
+        "clips": 12,
+        "wordErrors": 63,
+        "words": 87,
+        "missingAnchors": 42,
+        "anchors": 52,
+        "negationFlags": 0,
+        "nonempty": 12,
+        "medianMs": 1120,
+        "p95Ms": 1600.9000000003725
+      },
+      "human": {
+        "clips": 12,
+        "wordErrors": 170,
+        "words": 205,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 2,
+        "nonempty": 12,
+        "medianMs": 2249.0999999996275,
+        "p95Ms": 3620.699999999255
+      },
+      "control": {
+        "clips": 2,
+        "wordErrors": 11,
+        "words": 0,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 0,
+        "nonempty": 2,
+        "medianMs": 1078.5,
+        "p95Ms": 1117.9000000003725
+      }
+    }
+  },
+  "whisper-he": {
+    "browser": "156.0.8078.79",
+    "loads": [
+      {
+        "arm": "whisper-he",
+        "ms": 2488.699999999255
+      }
+    ],
+    "groups": {
+      "plain": {
+        "clips": 36,
+        "wordErrors": 86,
+        "words": 261,
+        "missingAnchors": 61,
+        "anchors": 156,
+        "negationFlags": 0,
+        "nonempty": 36,
+        "medianMs": 1735.9000000003725,
+        "p95Ms": 1965.2000000011176
+      },
+      "fan-room": {
+        "clips": 12,
+        "wordErrors": 41,
+        "words": 87,
+        "missingAnchors": 29,
+        "anchors": 52,
+        "negationFlags": 0,
+        "nonempty": 12,
+        "medianMs": 1694,
+        "p95Ms": 1857.3999999985099
+      },
+      "human": {
+        "clips": 12,
+        "wordErrors": 119,
+        "words": 205,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 1,
+        "nonempty": 12,
+        "medianMs": 2086.800000000745,
+        "p95Ms": 2288.5999999996275
+      },
+      "control": {
+        "clips": 2,
+        "wordErrors": 4,
+        "words": 0,
+        "missingAnchors": 0,
+        "anchors": 0,
+        "negationFlags": 0,
+        "nonempty": 2,
+        "medianMs": 1415.199999999255,
+        "p95Ms": 1450.5
+      }
+    }
+  }
+}

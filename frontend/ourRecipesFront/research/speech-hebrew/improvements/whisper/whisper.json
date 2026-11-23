@@ -1,0 +1,1191 @@
+{
+  "browser": "156.0.8078.79",
+  "loads": [
+    {
+      "arm": "whisper-tiny",
+      "ms": 3205.4000000003725,
+      "heapBytes": 536870912
+    }
+  ],
+  "externalRequests": [],
+  "records": [
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p01-plain-raw",
+      "text": "רגע, קצת סיטה בלב על עוד לא תינ",
+      "ms": 1396.7000000011176,
+      "pcm_sha256": "8d3cb8068d590ad1612416382610db528398f4ce236d2288fb1da177f4904a2f",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצת סיטה בלב על עוד לא תינ",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 9,
+        "characterErrors": 15,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p01-fan-room-raw",
+      "text": "רגע, קצת סליטה בלאל עוד לא תג",
+      "ms": 1279.4000000003725,
+      "pcm_sha256": "34eddecf5fd170a5bbc43b608196bb2cb3b0b0ae2f55f85bd6915e1a44d9a541",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצת סליטה בלאל עוד לא תג",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 9,
+        "characterErrors": 16,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p02-plain-raw",
+      "text": "סמי בלפל שחור. סליחה בלפל א",
+      "ms": 1295.5,
+      "pcm_sha256": "ed0b0177be902c8785855cdbeb4f0457d3e7fdf15e1ae1000e05c7045fe9eff2",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "סמי בלפל שחור סליחה בלפל א",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 7,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזרק כילבתי.",
+      "ms": 1220.5,
+      "pcm_sha256": "5df3579c6184a70b7726b33a7f1dfd9d4d0ad33d1eb4991d9f4b885b7dc78534",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזרק כילבתי",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 5,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p04-plain-raw",
+      "text": "במום סוכה עוספתית וש זה בסדר",
+      "ms": 1088.5,
+      "pcm_sha256": "a1cc7d0c0e0cf6ad329c837d31efc9e225bb5b790312c9cc09c107fe90605cb4",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במום סוכה עוספתית וש זה בסדר",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p04-fan-room-raw",
+      "text": "פעם כום סוכה עוסף תדבר, זה בסדר",
+      "ms": 1054.5999999996275,
+      "pcm_sha256": "7f9ba6cda0372aa97d60e0305552023f2c7f9ee632b01951144c60ca115eb82f",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "פעם כום סוכה עוסף תדבר זה בסדר",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p05-plain-raw",
+      "text": "חציקפית מלך, לא חציקף.",
+      "ms": 972.8000000007451,
+      "pcm_sha256": "5a45a8b361d05f71a76217874c466fb128f9d2d2f17c71d9bdffb354dd42463b",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חציקפית מלך לא חציקף",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p06-plain-raw",
+      "text": "לא, בעצם עוד לא סיננטית האווו",
+      "ms": 1007,
+      "pcm_sha256": "f33e4779313fce4bc6fca8dd037dee09b14d8e0a861487788081160abe72553f",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "לא בעצם עוד לא סיננטית האווו",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 6,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p07-plain-raw",
+      "text": "הבק ורברה, לוש עכשיו עולך הקות.",
+      "ms": 1252,
+      "pcm_sha256": "4fd9d99a40b6d938209cfff5aeacef5b3f692ee678c74e404081bfb58785a1fb",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבק ורברה לוש עכשיו עולך הקות",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 7,
+        "characterErrors": 10,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p07-fan-room-raw",
+      "text": "הבק והברה, ללוש עכשיו או לחקות.",
+      "ms": 1088.199999999255,
+      "pcm_sha256": "037a2fe7e73527f3d12b3825ab45e6c0f95e5470c5ffe57f6925a1b1e3e85081",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבק והברה ללוש עכשיו או לחקות",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 7,
+        "characterErrors": 7,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p08-plain-raw",
+      "text": "רק שאתה תהתעדשים, לל עוד לא התחל",
+      "ms": 1210.4000000003725,
+      "pcm_sha256": "a7874680cd37145b749a98e79cebbbe90dabba2f0cc6c749dcd5c5ff0eafe72e",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שאתה תהתעדשים לל עוד לא התחל",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p09-plain-raw",
+      "text": "תרפתי ביצה, אחת ושפחתי אותה",
+      "ms": 1033.7000000011176,
+      "pcm_sha256": "a6e23bdf269b1cf4a3b1c191cc487cfd258ba5a026406c3d9ad896f0a7bd31b2",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "תרפתי ביצה אחת ושפחתי אותה",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 7,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p10-plain-raw",
+      "text": "רגע רגע, ארתי כמר, התקווןתי לכיקאו.",
+      "ms": 1325.5999999996275,
+      "pcm_sha256": "8e1f5153791416bfb6ecb5fea1915695563c95db6655f187fb73370fdd0ffcaf",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "רגע רגע ארתי כמר התקווןתי לכיקאו",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 7,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p10-fan-room-raw",
+      "text": "וגר רגע, ארתי כמה, התקווןתי נקקעו",
+      "ms": 1357,
+      "pcm_sha256": "8103cd6c8455007f13d654f516de54429f414e70ec31778f0453f21a0dfda09f",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "וגר רגע ארתי כמה התקווןתי נקקעו",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p11-plain-raw",
+      "text": "את ההגביות חתחתי דק דק. אתם אלפפון יש אל תשלם.",
+      "ms": 1601.8999999985099,
+      "pcm_sha256": "c84c32dd2c8d57456d4307125e9a32ae0f02e852cf91dc144408e03057977537",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את ההגביות חתחתי דק דק אתם אלפפון יש אל תשלם",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 9,
+        "characterErrors": 8,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "omer-p12-plain-raw",
+      "text": "אולי שאתית עלימון, אפשר לוק מישא",
+      "ms": 1254,
+      "pcm_sha256": "d70cda8250c65e7e82d26f20f33122ede8178dd211cc7a58a115ec94c405f243",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שאתית עלימון אפשר לוק מישא",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p01-plain-raw",
+      "text": "עוד איה, קצת סיטה בל אל עוד לא",
+      "ms": 1275,
+      "pcm_sha256": "1a8a6b70f3ac0f6bc60d4f00e702963401f070f84fb1c39cb3339e42d526d5e8",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "עוד איה קצת סיטה בל אל עוד לא",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 9,
+        "characterErrors": 22,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p02-plain-raw",
+      "text": "סמי פפש אחור. סליחה פפילתום.",
+      "ms": 1177.2999999988824,
+      "pcm_sha256": "b5d28850370a398de6189b84c12c7ece270128d57f259f2bb5c5756ca580a1d3",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "סמי פפש אחור סליחה פפילתום",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p02-fan-room-raw",
+      "text": "סמי פפש שחול, סיכה פפל אום",
+      "ms": 1157.699999999255,
+      "pcm_sha256": "da409edeff2508a316c3e659c20b469e4dbc1a4ea065c6e1f27c902813cb1132",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "סמי פפש שחול סיכה פפל אום",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 6,
+        "characterErrors": 9,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הגזרק קילבתי.",
+      "ms": 1228.300000000745,
+      "pcm_sha256": "3816270650b7e76b55b38c0900458ced513c9d3b38e94c7ff214477e3f084e15",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הגזרק קילבתי",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 4,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p04-plain-raw",
+      "text": "במום סוכרוספת עד וש זה בסדר",
+      "ms": 975.5,
+      "pcm_sha256": "fba7fb181c36dfee78beeae6444880c7246f0d596d070a727db7ff85b2e2fb01",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במום סוכרוספת עד וש זה בסדר",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p05-plain-raw",
+      "text": "חציקפית מלך, לא חציקף",
+      "ms": 924.6999999992549,
+      "pcm_sha256": "bc0d668b302464fdcecf894a80e2abb5f18aa7222d284da32236601d4941092d",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חציקפית מלך לא חציקף",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 3,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p05-fan-room-raw",
+      "text": "חציקפית מלא, לא חציקה.",
+      "ms": 1021.0999999996275,
+      "pcm_sha256": "79964e1f21da0fae3ed6cb03727210219fe0526c8bc778c1c04996980574c239",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חציקפית מלא לא חציקה",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p06-plain-raw",
+      "text": "\"ה\" לא בעצם עוד לא סיננטית רוביס.",
+      "ms": 1211.9000000003725,
+      "pcm_sha256": "abe51cfa987639e447a459b63a5662c77ea958801756c127d51ca6b953a5208d",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "ה לא בעצם עוד לא סיננטית רוביס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 8,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p07-plain-raw",
+      "text": "\"הבק ועברה\" \"ללושך שב-אול",
+      "ms": 1207.199999999255,
+      "pcm_sha256": "d094256e937c42a48a8ff726448440b25bb041e96519e9c650c053ea8b093a44",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבק ועברה ללושך שב אול",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 7,
+        "characterErrors": 14,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p08-plain-raw",
+      "text": "על הקשתפתית האשים לל עוד לא התחלתי.",
+      "ms": 1275.0999999996275,
+      "pcm_sha256": "89b34a085e564efe8064f30f425e4d47662b3038767876c482744e8ce9be0957",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "על הקשתפתית האשים לל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p08-fan-room-raw",
+      "text": "על הקשתפתית האשים לל עוד לא התחלתי.",
+      "ms": 1279.9000000003725,
+      "pcm_sha256": "616273a356a8c1ec1253b1d0a66d7fac612f64dc5f3ac2b0cc792fccb6dad3ee",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "על הקשתפתית האשים לל עוד לא התחלתי",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p09-plain-raw",
+      "text": "תרבתי ביצה אחת ושפחתי אותה למבית",
+      "ms": 1111.5999999996275,
+      "pcm_sha256": "6785b96d28a2f815cca005276a42787e4b59978236a2b540e247557c7cf2147f",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "תרבתי ביצה אחת ושפחתי אותה למבית",
+        "exact": false,
+        "wordErrors": 3,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p10-plain-raw",
+      "text": "וגע, זה ג'ה, ארתי כמ'ך, התקוון לי לי",
+      "ms": 1334.4000000003725,
+      "pcm_sha256": "8f285462c0e6e562086cd82480ad4d0c5efb228d0bf00233ca1196230bd50486",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "וגע זה ג ה ארתי כמ ך התקוון לי לי",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 6,
+        "characterErrors": 14,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p11-plain-raw",
+      "text": "את ההגביות חתחתי דק דק, את המלפפון יש אלתי שלם.",
+      "ms": 1542.199999999255,
+      "pcm_sha256": "9511790fd16858655c99bd7fd487b1591ffd17c9adb0d14768c558d4007e0477",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את ההגביות חתחתי דק דק את המלפפון יש אלתי שלם",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 9,
+        "characterErrors": 5,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p11-fan-room-raw",
+      "text": "את ההגביות חתה סידק דק, אתם אל הספון יש אלפישלים",
+      "ms": 1600.9000000003725,
+      "pcm_sha256": "8424c3a7728fb59f3208a1c7093e8dd766cf3eba23dbcafd5379abcd885b4a76",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את ההגביות חתה סידק דק אתם אל הספון יש אלפישלים",
+        "exact": false,
+        "wordErrors": 8,
+        "referenceWords": 9,
+        "characterErrors": 12,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "liat-p12-plain-raw",
+      "text": "אולי שחכתית עלימון, אפשר עבוק מישא",
+      "ms": 1265.699999999255,
+      "pcm_sha256": "9e9c73b08a0ecbab105b4c315af3e2cadd3e51103558161975bf2468a9b979e1",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "אולי שחכתית עלימון אפשר עבוק מישא",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p01-plain-raw",
+      "text": "רגע קצת סטית בל אל עוד לא ת",
+      "ms": 1143.2000000011176,
+      "pcm_sha256": "7d9a61e0a20536c77baef90b10b2a831ae3d61e1f7d1808616c6c52352962b26",
+      "metrics": {
+        "normalizedReference": "רגע קצצתי את הבצל אבל עוד לא טיגנתי אותו",
+        "normalizedHypothesis": "רגע קצת סטית בל אל עוד לא ת",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 9,
+        "characterErrors": 16,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p02-plain-raw",
+      "text": "סנטיפיל פל שחוס, לכה, תיל פל",
+      "ms": 1100.5999999996275,
+      "pcm_sha256": "8b10dcf1e038db0abfb3487c4d54162ec1e07ee9feb377b6a50ea9547757859b",
+      "metrics": {
+        "normalizedReference": "שמתי פלפל שחור סליחה פלפל אדום",
+        "normalizedHypothesis": "סנטיפיל פל שחוס לכה תיל פל",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 6,
+        "characterErrors": 13,
+        "referenceCharacters": 25,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p03-plain-raw",
+      "text": "את השום כבר קטשתי, ואת הדזלת כילבתי.",
+      "ms": 1190.0999999996275,
+      "pcm_sha256": "5980b8dd3abfdecb4e38ce836d2525df10cd43f1725020cbdff847424c4bc8a2",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת הדזלת כילבתי",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 8,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p03-fan-room-raw",
+      "text": "את השום כבר קטשתי, ואת את זה רק כילבתי.",
+      "ms": 1120,
+      "pcm_sha256": "a2f81740d75c48165161b566f9300a2e1d748f5bd6945890a3c48eca9edeba64",
+      "metrics": {
+        "normalizedReference": "את השום כבר כתשתי ואת הגזר רק קילפתי",
+        "normalizedHypothesis": "את השום כבר קטשתי ואת את זה רק כילבתי",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 7,
+        "referenceCharacters": 29,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p04-plain-raw",
+      "text": "במום סוכרוספתית וש זה בסדר",
+      "ms": 931.1999999992549,
+      "pcm_sha256": "06a0ed9b4ef247b0f5b487cafe25aef4ee115ab502d96d83830f665e5100c490",
+      "metrics": {
+        "normalizedReference": "במקום סוכר הוספתי דבש זה בסדר",
+        "normalizedHypothesis": "במום סוכרוספתית וש זה בסדר",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 4,
+        "referenceCharacters": 24,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p05-plain-raw",
+      "text": "חציק הבית מלך, לא חציקף.",
+      "ms": 986,
+      "pcm_sha256": "41dbabbea15d5207f411d844c4e5c38cc8e4b77a0c20a7c2471722a40ddc9401",
+      "metrics": {
+        "normalizedReference": "חצי כפית מלח לא חצי כף",
+        "normalizedHypothesis": "חציק הבית מלך לא חציקף",
+        "exact": false,
+        "wordErrors": 5,
+        "referenceWords": 6,
+        "characterErrors": 5,
+        "referenceCharacters": 17,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p06-plain-raw",
+      "text": "\"ה\" לא בעצם עוד לא סיננטית אס.",
+      "ms": 1083.7999999988824,
+      "pcm_sha256": "53a167d7176a485a90041fb5118e99913d48c22250d3b5ce92e1d38c0b41fe2d",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "ה לא בעצם עוד לא סיננטית אס",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 7,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p06-fan-room-raw",
+      "text": "אז לא בעצם עוד לא סייינטית עוב",
+      "ms": 1072.2999999988824,
+      "pcm_sha256": "cd4c4671f949455bca841d67a0294f790a0622ee026529d01bfd30505e75ad52",
+      "metrics": {
+        "normalizedReference": "אה לא בעצם עוד לא סיננתי את האורז",
+        "normalizedHypothesis": "אז לא בעצם עוד לא סייינטית עוב",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 26,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p07-plain-raw",
+      "text": "הבק והרבבה ללוש עכשיו או לחקות.",
+      "ms": 1149.4000000003725,
+      "pcm_sha256": "d2700d2d886a277185819be1e905bfbcdc3c1dd5fb87b6b0cc22f93876e13ed2",
+      "metrics": {
+        "normalizedReference": "הבצק כבר בקערה ללוש עכשיו או לחכות",
+        "normalizedHypothesis": "הבק והרבבה ללוש עכשיו או לחקות",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 7,
+        "characterErrors": 7,
+        "referenceCharacters": 28,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p08-plain-raw",
+      "text": "רק שתפתית האשים לל עוד לא את חל",
+      "ms": 1117.5,
+      "pcm_sha256": "6a16e32d77542a5caa5d8c03aff6e21b84d5a7bf7b657946ee6487e02ec83296",
+      "metrics": {
+        "normalizedReference": "רק שטפתי את העדשים לבשל עוד לא התחלתי",
+        "normalizedHypothesis": "רק שתפתית האשים לל עוד לא את חל",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 8,
+        "characterErrors": 9,
+        "referenceCharacters": 30,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p09-plain-raw",
+      "text": "תרבתי בעצה אחת ושפחתי אותה למב",
+      "ms": 1104.5,
+      "pcm_sha256": "634a1ac3c6dd5ae34e7883cc4e6ab4c29508966e2203ae14f5566c6406b0d96e",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "תרבתי בעצה אחת ושפחתי אותה למב",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 6,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p09-fan-room-raw",
+      "text": "תרפתי בה אחת ושפחתי אותה למ",
+      "ms": 1085.6000000014901,
+      "pcm_sha256": "0e006af6d6cbab7394bea4cf093a0e0c4b48ea3c2b9cdb90c672c1d64c34ce2f",
+      "metrics": {
+        "normalizedReference": "טרפתי ביצה אחת ושפכתי אותה למחבת",
+        "normalizedHypothesis": "תרפתי בה אחת ושפחתי אותה למ",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 6,
+        "characterErrors": 7,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p10-plain-raw",
+      "text": "לל לע, המיקה הם א, התקווינט",
+      "ms": 1212.9000000003725,
+      "pcm_sha256": "521ee8ed4fe1799d28e978c05716a796e43d61fe3b49ab46dfcf2a44aab727ac",
+      "metrics": {
+        "normalizedReference": "רגע רגע אמרתי קמח התכוונתי לקקאו",
+        "normalizedHypothesis": "לל לע המיקה הם א התקווינט",
+        "exact": false,
+        "wordErrors": 6,
+        "referenceWords": 6,
+        "characterErrors": 20,
+        "referenceCharacters": 27,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p11-plain-raw",
+      "text": "את הגביות חטחתי דק דק, את המלפפון ישאתי של",
+      "ms": 1325.199999999255,
+      "pcm_sha256": "32e5cec44a6f67f413083e42a9d4f57bb4476ae8a1609e635111d3827a5641d1",
+      "metrics": {
+        "normalizedReference": "את העגבניות חתכתי דק דק את המלפפון השארתי שלם",
+        "normalizedHypothesis": "את הגביות חטחתי דק דק את המלפפון ישאתי של",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 9,
+        "characterErrors": 7,
+        "referenceCharacters": 37,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p12-plain-raw",
+      "text": "ולשחחתי את הלימון אפשר לוק מה נש",
+      "ms": 1130.9000000003725,
+      "pcm_sha256": "0d20a96213db9bccaaa77eda4e4b9b1318cd8621721413899e3005d405b81488",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "ולשחחתי את הלימון אפשר לוק מה נש",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 8,
+        "characterErrors": 7,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "noa-p12-fan-room-raw",
+      "text": "ולשחחתי דלימון, אפשר לוק מהנש",
+      "ms": 1174,
+      "pcm_sha256": "153b8a1257c8318a47e3ad751bd600094d068fe11acee5093dd4f7833b3bee8c",
+      "metrics": {
+        "normalizedReference": "אולי שכחתי את הלימון אפשר לבדוק מה נשאר",
+        "normalizedHypothesis": "ולשחחתי דלימון אפשר לוק מהנש",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 8,
+        "characterErrors": 10,
+        "referenceCharacters": 32,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1929-raw",
+      "text": "דל פוטור, איך זה? ביתרון מוקדם במרכש, ניה, אגם מהרחזור, אריך השובר שוויון, נחר תוצאה של 6.",
+      "ms": 3113.199999999255,
+      "pcm_sha256": "0bf8801e923c8b7452ce62579faa557c666560a7ed1ea5fccb44558295c63590",
+      "metrics": {
+        "normalizedReference": "דל פוטרו החזיק ביתרון מוקדם במערכה השנייה אך גם מערכה זו הצריכה שובר שוויון לאחר תוצאה של 6 6",
+        "normalizedHypothesis": "דל פוטור איך זה ביתרון מוקדם במרכש ניה אגם מהרחזור אריך השובר שוויון נחר תוצאה של 6",
+        "exact": false,
+        "wordErrors": 13,
+        "referenceWords": 19,
+        "characterErrors": 20,
+        "referenceCharacters": 75,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1672-raw",
+      "text": "איה עושה ב-19-19",
+      "ms": 846.7999999988824,
+      "pcm_sha256": "0bea1e9be5b6a62b66e0b948e7b09135bc5724ecde94e6cb749669f0762d5077",
+      "metrics": {
+        "normalizedReference": "היזהרו שהבד לא יתחמם יותר מידי מה שיכול לגרום לכיווץ או במקרים קיצוניים לחריכה",
+        "normalizedHypothesis": "איה עושה ב 19 19",
+        "exact": false,
+        "wordErrors": 14,
+        "referenceWords": 14,
+        "characterErrors": 59,
+        "referenceCharacters": 65,
+        "negationCountDelta": -1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1711-raw",
+      "text": "תראו, תלב.co.m. /97/1970, נרצות את הדברים שהם עושים ולותברים בביבה של המרמולם לעשות או לא לעשות דברים מסוימים.",
+      "ms": 3057.4000000003725,
+      "pcm_sha256": "5a0a5018421e3bfb9927bf888eb6e497b16921c2d9d5b7778049c0e2670c7076",
+      "metrics": {
+        "normalizedReference": "תיאוריות אלה בודקות מה יש באנשים מסוימים שגורם להם לרצות את הדברים שהם עושים ואילו דברים בסביבה שלהם יגרמו להם לעשות או לא לעשות דברים מסוימים",
+        "normalizedHypothesis": "תראו תלב co m 97 1970 נרצות את הדברים שהם עושים ולותברים בביבה של המרמולם לעשות או לא לעשות דברים מסוימים",
+        "exact": false,
+        "wordErrors": 16,
+        "referenceWords": 26,
+        "characterErrors": 44,
+        "referenceCharacters": 117,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1881-raw",
+      "text": "שטוב של תהיהול ורטואיים שותיו ווגם דרך נהדרת, נהדרת, נהדרת ביתיהול ולשתף, כתות עד ידיות, בכויות.",
+      "ms": 3089.5,
+      "pcm_sha256": "cc0be4cfb8436023f8bed3f3c4c8cbab2bca132d013f5042e9af97e914b9c8d0",
+      "metrics": {
+        "normalizedReference": "שיתוף של טיול וירטואלי משותף הוא גם דרך נהדרת להתבונן בטיול ולשתף כיתות עתידיות בחוויות",
+        "normalizedHypothesis": "שטוב של תהיהול ורטואיים שותיו ווגם דרך נהדרת נהדרת נהדרת ביתיהול ולשתף כתות עד ידיות בכויות",
+        "exact": false,
+        "wordErrors": 13,
+        "referenceWords": 15,
+        "characterErrors": 27,
+        "referenceCharacters": 73,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1966-raw",
+      "text": "\"הבה, הייתה תגובותו של מרתי, למרות רחבות או, נגיד המתר של חיל",
+      "ms": 2249.0999999996275,
+      "pcm_sha256": "0c5884276e05884abd8c10a589450bb9d865f8091521c5e982ac8e481ec3cdc1",
+      "metrics": {
+        "normalizedReference": "הוועדה הייתה תגובתו של מרטלי למחאות רחבות היקף נגד המשטר שהחלו באוקטובר",
+        "normalizedHypothesis": "הבה הייתה תגובותו של מרתי למרות רחבות או נגיד המתר של חיל",
+        "exact": false,
+        "wordErrors": 9,
+        "referenceWords": 12,
+        "characterErrors": 27,
+        "referenceCharacters": 60,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1945-raw",
+      "text": "כזה בלנק, היחד מהם כמו תחיפחות מעניינים לעשות מק להיות פעם האורק",
+      "ms": 1856.7000000011176,
+      "pcm_sha256": "a5fd9b62caf8be9a0fe601d66c4f836592471a99dd8d29bd27490e43c59015ad",
+      "metrics": {
+        "normalizedReference": "קזבלנקה היא אחד מהמקומות הכי פחות מעניינים לעשות בהם קניות במרוקו",
+        "normalizedHypothesis": "כזה בלנק היחד מהם כמו תחיפחות מעניינים לעשות מק להיות פעם האורק",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 11,
+        "characterErrors": 22,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1674-raw",
+      "text": "בעזור עם הסיימים מספיק להרתייח מהיולמש עדקה בהחרים עד הרשות מספר",
+      "ms": 1751.800000000745,
+      "pcm_sha256": "84152c2f47a39a930f26f079bd85393d72d4c9b669f6d4ffff87abb23941a5af",
+      "metrics": {
+        "normalizedReference": "באזורים מסוימים מספיק להרתיח מים למשך דקה באחרים נדרשות מספר דקות",
+        "normalizedHypothesis": "בעזור עם הסיימים מספיק להרתייח מהיולמש עדקה בהחרים עד הרשות מספר",
+        "exact": false,
+        "wordErrors": 10,
+        "referenceWords": 11,
+        "characterErrors": 15,
+        "referenceCharacters": 55,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1717-raw",
+      "text": "בירת הפולוגיה את התמימית הזה הם חוזן וכאן הכתיים ומים וזה מלי לה",
+      "ms": 1902.199999999255,
+      "pcm_sha256": "7977db51165395b682188b0574ab64a1e864e505156c952d7ca6c1620cd78303",
+      "metrics": {
+        "normalizedReference": "בגלל הטופולוגיה התת מימית הזרם החוזר מרוכז בכמה קטעים עמוקים יותר וזרם מהיר למים עמוקים עלול להיווצר שם",
+        "normalizedHypothesis": "בירת הפולוגיה את התמימית הזה הם חוזן וכאן הכתיים ומים וזה מלי לה",
+        "exact": false,
+        "wordErrors": 18,
+        "referenceWords": 18,
+        "characterErrors": 51,
+        "referenceCharacters": 86,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1763-raw",
+      "text": "כשמש שהיירך מהיל כוח, משיכה לדור האץ וגורם ליות ולשפל ושביל החלב מהיל כוח על גלאסיות סגיטרius",
+      "ms": 3146.800000000745,
+      "pcm_sha256": "3013fff07e0dc5863b2e14d0174896a76f5184eb2e9d799802d395600990bac2",
+      "metrics": {
+        "normalizedReference": "כשם שהירח מפעיל כוח משיכה על כדור הארץ וגורם לגאות ולשפל שביל החלב מפעיל כוח על גלקסיית סגיטריוס",
+        "normalizedHypothesis": "כשמש שהיירך מהיל כוח משיכה לדור האץ וגורם ליות ולשפל ושביל החלב מהיל כוח על גלאסיות סגיטרius",
+        "exact": false,
+        "wordErrors": 11,
+        "referenceWords": 18,
+        "characterErrors": 19,
+        "referenceCharacters": 79,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1886-raw",
+      "text": "תרבות ושפתים גדומים מכילו לחזיק בין בשביל גישן נוכ",
+      "ms": 1469.800000000745,
+      "pcm_sha256": "f7c997ce038294123d7b2f617215ed0ec5b3ca3e88b8383f4b811dcfd1e4a9f3",
+      "metrics": {
+        "normalizedReference": "תרבויות ושבטים קדומים החלו להחזיק בהן בשביל גישה נוחה לחלב פרווה בשר ועורות",
+        "normalizedHypothesis": "תרבות ושפתים גדומים מכילו לחזיק בין בשביל גישן נוכ",
+        "exact": false,
+        "wordErrors": 12,
+        "referenceWords": 13,
+        "characterErrors": 31,
+        "referenceCharacters": 63,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1971-raw",
+      "text": "הוא חט הזאת ברד משקעיםות 1540 לא תנצורה ושפהות של מה גביר כשהקמו גם ספות רעמים ספות תרונדות נדי מייפות ט",
+      "ms": 3059.2999999988824,
+      "pcm_sha256": "edfecd1dbe2c973a8b65c504a350f4c0b18f10aaaf476c0a63b0c3071d8db6ae",
+      "metrics": {
+        "normalizedReference": "רוחות עזות ברד משקעים עודפים ושרפות משתוללות הן צורות והשפעות של מזג אוויר קשה כמו גם סופות רעמים סופות טורנדו נדי מים וסופות ציקלון",
+        "normalizedHypothesis": "הוא חט הזאת ברד משקעיםות 1540 לא תנצורה ושפהות של מה גביר כשהקמו גם ספות רעמים ספות תרונדות נדי מייפות ט",
+        "exact": false,
+        "wordErrors": 20,
+        "referenceWords": 24,
+        "characterErrors": 50,
+        "referenceCharacters": 109,
+        "negationCountDelta": 1,
+        "markerChecks": [],
+        "markerWarning": true
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "human-1695-raw",
+      "text": "לכם עם שם, את הגביים, וכל תוספת, מה קרקון, מה תונו וכל, פעם באולי, או אחת אירופה פולרית, ופשוט, במד, במלך הק",
+      "ms": 3620.699999999255,
+      "pcm_sha256": "ff899605e0bef7a20f2655bcdf62adb25933418fc6da6ceb3a6ed00a2841147a",
+      "metrics": {
+        "normalizedReference": "ארוחת ערב פופולרית ופשוטה במיוחד במהלך הקיץ היא ה pa amb oli לחם עם שמן זית עגבנייה וכל תוספת זמינה כגון גבינה טונה וכו",
+        "normalizedHypothesis": "לכם עם שם את הגביים וכל תוספת מה קרקון מה תונו וכל פעם באולי או אחת אירופה פולרית ופשוט במד במלך הק",
+        "exact": false,
+        "wordErrors": 24,
+        "referenceWords": 24,
+        "characterErrors": 77,
+        "referenceCharacters": 96,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "whisper-control-silence",
+      "text": "‫אי ‫אי ‫אי ‫א",
+      "ms": 1117.9000000003725,
+      "pcm_sha256": "ea0787f65f73b0013d03b359490e3125211b28ad5c1502ffb1544c0ded4192f5",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "אי אי אי א",
+        "exact": false,
+        "wordErrors": 4,
+        "referenceWords": 0,
+        "characterErrors": 7,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    },
+    {
+      "arm": "whisper-tiny",
+      "filename": "whisper-control-noise",
+      "text": "תהיה שאני חושב שאני חושב שאני חושב",
+      "ms": 1078.5,
+      "pcm_sha256": "005500ae47b20a9720a4406ba32e1e992406fb3e21571a69fb6b74d739dc5919",
+      "metrics": {
+        "normalizedReference": "",
+        "normalizedHypothesis": "תהיה שאני חושב שאני חושב שאני חושב",
+        "exact": false,
+        "wordErrors": 7,
+        "referenceWords": 0,
+        "characterErrors": 28,
+        "referenceCharacters": 0,
+        "negationCountDelta": 0,
+        "markerChecks": [],
+        "markerWarning": false
+      }
+    }
+  ]
+}

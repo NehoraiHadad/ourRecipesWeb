@@ -1,0 +1,14 @@
+{
+  "zipformer": {
+    "wholeBrowserPeakPssMiB": 610.982421875,
+    "samples": 10
+  },
+  "whisper": {
+    "wholeBrowserPeakPssMiB": 830.958984375,
+    "samples": 9
+  },
+  "whisper-he": {
+    "wholeBrowserPeakPssMiB": 818.5517578125,
+    "samples": 12
+  }
+}
