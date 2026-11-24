@@ -9,7 +9,7 @@ interface Recognition {
   lang: string;
   continuous: boolean;
   interimResults: boolean;
-  onresult: ((event: { results: ArrayLike<ArrayLike<{ transcript: string }>> }) => void) | null;
+  onresult: ((event: { resultIndex?: number; results: ArrayLike<ArrayLike<{ transcript: string }> & {isFinal?: boolean}> }) => void) | null;
   onerror: ((event: { error: string }) => void) | null;
   onend: (() => void) | null;
   start(): void;
@@ -20,7 +20,8 @@ type VoiceWindow = Window & {
   webkitSpeechRecognition?: new () => Recognition;
 };
 
-export function useRecipeVoice(steps: string[], onUtterance?: (text: string, step: number, speak: (text: string) => void) => boolean, interrupt?: MutableRefObject<(() => void) | null>) {
+export function useRecipeVoice(steps: string[], onUtterance?: (text: string, step: number, speak: (text: string) => void) => boolean, interrupt?: MutableRefObject<(() => void) | null>,
+  conversation?: MutableRefObject<{ stop(): void; mute(value: boolean): void } | null>) {
   const [systemVoice, setSystemVoice] = useState(false);
   const [installed, setInstalled] = useState(false);
   const [preferNoa, setPreferNoa] = useState(false);
@@ -35,6 +36,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   const [microphoneOn, setMicrophoneOn] = useState(false);
   const [status, setStatus] = useState('');
   const [transcript, setTranscript] = useState('');
+  const [interim, setInterim] = useState('');
   const stepsRef = useRef(steps);
   stepsRef.current = steps;
   const recognitionRef = useRef<Recognition | null>(null);
@@ -46,6 +48,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
 
   const stopBrowser = useCallback(() => {
     generation.current++;
+    setInterim('');
     narrator.current?.stop();
     wantsMic.current = false;
     if (restartRef.current) clearTimeout(restartRef.current);
@@ -58,9 +61,10 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     setMicrophoneOn(false);
   }, []);
   const stop = useCallback(() => {
+    conversation?.current?.stop();
     interrupt?.current?.();
     stopBrowser();
-  }, [interrupt, stopBrowser]);
+  }, [conversation, interrupt, stopBrowser]);
 
   const speak = useCallback((text: string) => {
     interrupt?.current?.();
@@ -69,6 +73,8 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
     if (!usingNoa && (!local || typeof window.SpeechSynthesisUtterance !== 'function')) return;
     const utterance = usingNoa ? null : new SpeechSynthesisUtterance(text);
     const token = utterance ?? Symbol('noa');
+    conversation?.current?.mute(true);
+    setInterim('');
     speechRef.current = token;
     recognitionRef.current?.abort();
     window.speechSynthesis?.cancel();
@@ -77,6 +83,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       speechRef.current = null;
       if (error) setStatus(error);
       setSpeaking(false);
+      conversation?.current?.mute(false);
       startRef.current();
     };
     setSpeaking(true);
@@ -90,15 +97,15 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       void narrator.current.play(text).then(() => finish(),
         e => finish(e instanceof Error ? e.message : 'ההקראה נכשלה. אפשר לקרוא את הטקסט במסך.'));
     }
-  }, [interrupt,usingNoa]);
+  }, [conversation,interrupt,usingNoa]);
 
   // Unlock Web Audio inside the mic gesture, before the asynchronous ASR and brain turn.
-  const primeNoa = () => {
-    if (!usingNoa) return;
+  const primeNoa = (force = false) => {
+    if (!usingNoa && !force) return;
     narrator.current ??= new LocalNarrator();
     void narrator.current.unlock().catch(() => {});
   };
-  const startLocalMic = () => {stopBrowser(); primeNoa();};
+  const startLocalMic = () => {conversation?.current?.stop(); stopBrowser(); primeNoa();};
   const chooseVoice = (noa: boolean) => {stop(); narrator.current?.close(); narrator.current = null; setPreferNoa(noa);};
 
   const readStep = useCallback((index: number) => {
@@ -148,7 +155,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       const recognition = new Constructor();
       recognition.lang = 'he-IL';
       recognition.continuous = false;
-      recognition.interimResults = false;
+      recognition.interimResults = true;
       recognitionRef.current = recognition;
       let running = false;
       startRef.current = () => {
@@ -165,7 +172,13 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
         }
       };
       recognition.onresult = event => {
-        if (wantsMic.current && !speechRef.current) commandRef.current(event.results[0][0].transcript);
+        if (!wantsMic.current || speechRef.current) return;
+        for (let i = event.resultIndex ?? 0; i < event.results.length; i++) {
+          const result = event.results[i];
+          const text = result[0].transcript;
+          if (result.isFinal === false) setInterim(text);
+          else { setInterim(''); commandRef.current(text); }
+        }
       };
       recognition.onerror = event => {
         if (event.error === 'aborted' || event.error === 'no-speech') return;
@@ -178,6 +191,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       };
       recognition.onend = () => {
         running = false;
+        setInterim('');
         setListening(false);
         if (restartRef.current) clearTimeout(restartRef.current);
         if (wantsMic.current && !speechRef.current) restartRef.current = setTimeout(() => startRef.current(), 300);
@@ -213,6 +227,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
       return;
     }
     setStatus('');
+    conversation?.current?.stop();
     interrupt?.current?.();
     primeNoa();
     wantsMic.current = true;
@@ -223,7 +238,7 @@ export function useRecipeVoice(steps: string[], onUtterance?: (text: string, ste
   const acceptTranscript = (text: string) => {
     if (!speechRef.current && document.visibilityState !== 'hidden') commandRef.current(text, true);
   };
-  return { acceptTranscript, startLocalMic, systemVoice, installed, setInstalled, usingNoa, chooseVoice, canSpeak: systemVoice || installed, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript,
+  return { acceptTranscript, primeNoa, startLocalMic, systemVoice, installed, setInstalled, usingNoa, chooseVoice, canSpeak: systemVoice || installed, canListen, stepIndex, speaking, listening, microphoneOn, status, transcript, interim,
     read: () => readStep(indexRef.current), next, previous: () => readStep(indexRef.current - 1),
     restart: () => readStep(0), stop, speak, toggleMicrophone,
     focus: (step: number) => { indexRef.current = step; setStepIndex(step); } };

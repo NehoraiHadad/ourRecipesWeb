@@ -66,6 +66,9 @@ export class RecipeTranscriber {
   transcribe(pcm: Float32Array<ArrayBuffer>) {
     return this.request<Transcript>({ type:'transcribe', pcm }, [pcm.buffer]);
   }
+  feed(pcm: Float32Array<ArrayBuffer>, reset: boolean) {
+    return this.request<{partial?: string; final?: Transcript}>({type:'feed', pcm, reset}, [pcm.buffer]);
+  }
   close() { this.rejectPending?.(); this.worker.terminate(); }
 }
 

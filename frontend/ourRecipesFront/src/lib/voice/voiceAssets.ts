@@ -13,7 +13,7 @@ export async function modelStorage({ cacheName, base, files }: AssetGroup): Prom
 }
 
 export async function prepareVoiceAssets({ cacheName, base, files }: AssetGroup, signal: AbortSignal, progress: (bytes: number) => void) {
-  await navigator.serviceWorker.register('/sw.js');
+  if (!(await navigator.serviceWorker.getRegistration('/'))?.active) await navigator.serviceWorker.register('/sw.js');
   const cache = await caches.open(cacheName);
   let loaded = 0;
   for (const file of files) {
