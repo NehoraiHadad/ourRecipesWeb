@@ -137,7 +137,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
             <Typography variant="h3" className="text-base font-medium text-secondary-700 mb-1">
               הוראות הכנה
             </Typography>
-            <RecipeVoiceGuide key={cookingRecipe.id + ':' + cookingRecipe.version} steps={instructionLines} recipe={cookingRecipe} />
+            <RecipeVoiceGuide key={cookingRecipe.id + ':' + cookingRecipe.version} steps={instructionLines} recipe={cookingRecipe} ingredients={recipe.ingredients.map(i => i.name)} />
             <div className="space-y-1 leading-relaxed">
               {instructionLines.map((line, index) => (
                 <p key={index}>{line}</p>
