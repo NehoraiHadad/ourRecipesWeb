@@ -15,8 +15,15 @@ function resolve(recipe, phrase) {
   return matches.length === 1 ? matches[0] : undefined;
 }
 function lastMention(recipe, history) {
-  const answer = ' ' + bare((history.at(-1)?.content || '').replace(/[.,:()?!]/g,' ')).replace(/\s+/g,' ') + ' ';
-  const hits = recipe.ingredients.filter(i => answer.includes(' '+bare(i.name)+' '));
+  const tokens = (history.at(-1)?.content || '').match(/[א-ת]+/g) || [];
+  const hits = recipe.ingredients.filter(item => {
+    const name = bare(item.name).split(' ');
+    return tokens.some((word, start) => {
+      const first = ['', 'ו', 'ב', 'ל', 'מ', 'וב', 'ול', 'ומ'].some(prefix =>
+        word.startsWith(prefix) && bare(word.slice(prefix.length)) === name[0]);
+      return first && name.slice(1).every((part,i) => bare(tokens[start+i+1] || '') === part);
+    });
+  });
   return hits.length === 1 ? hits[0] : undefined;
 }
 function amountLeft(item, share) {
@@ -71,6 +78,20 @@ export function ingredientTurn(recipe,state,step,utterance,history,portions) {
     return read(share > 0 && share < 1 ? amountLeft(item,share) : item.name + ' סומן חלקית. לא תועד כמה הוספת.');
   }
 
+  const unsure = /^(?:(?:רגע|שנייה)[, ]+)?(?:נראה לי|נדמה לי) ש(.+?) כבר (?:אצלי )?(?:בקערה|בסיר|בפנים)(?:[, ]+(?:נכון|שמת לב))?$/.exec(text);
+  if (unsure) return status(known(unsure[1]));
+  const separate = /^(?:(?:רק )?שלא נתבלבל[, ]+)?(?:הכנסתי|הוספתי|שמתי) (?:את )?([^,?!]+?)(?: (?:לקערה|לסיר))?[, ]+אבל (?:עדיין |עוד )?לא (ערבבתי|ערבבנו)$/.exec(text);
+  if (separate) {
+    const item = known(separate[1]);
+    if (!item || question) return clarify();
+    const update = recipeTurn(recipe,state,step,'שמתי ' + item.name);
+    if (!update?.writes.length) return clarify();
+    const mixing = recipe.actions.filter(a => a.step === step && /^(?:לערבב|מערבבים)(?: |$)/.test(a.source));
+    if (mixing.length === 1 && state[mixing[0].id] !== 'pending') {
+      update.writes.push({recipe_id:recipe.id,recipe_version:recipe.version,action:mixing[0].id,status:'pending'});
+    }
+    return {...update,reply:'רשמתי שהוספת ' + item.name + '. הערבוב עדיין לפניך.'};
+  }
   const fronted = /^(?:את )?([^,?!]+?) (?:כבר )?(?:הכנסתי|שמתי|הוספתי|הכנסנו|הוספנו) (?:ל(?:תוך ה)?קערה|בקערה|לסיר)(?:[, ]+(?:עוד )?נשאר (?:לי |לנו )?להוסיף (.+))?$/.exec(text);
   if (fronted) {
     const item = known(fronted[1]);
@@ -84,7 +105,8 @@ export function ingredientTurn(recipe,state,step,utterance,history,portions) {
   }
   const report = /^(?:(?:רגע[, ]+)?(?:בעצם|תיקון)[, ]+)?(?:אני )?(?:שמתי|הוספתי|מזגתי|שמנו|הוספנו) (.+)$/.exec(text);
   if (!report) return;
-  let object = report[1].replace(/^רק /,'');
+  const explicitTotal = /^(?:רגע[, ]+)?(?:בעצם|תיקון)[, ]/.test(text) || /^בסך (?:הכל|הכול) /.test(report[1]);
+  let object = report[1].replace(/^בסך (?:הכל|הכול) /,'').replace(/^רק /,'');
   const more = object.startsWith('עוד ');
   if (more) object = object.slice(4);
   const fraction = /^(חצי|רבע|שלושה רבעים) מ(?:הכמות של )?(.+)$/.exec(object);
@@ -102,6 +124,9 @@ export function ingredientTurn(recipe,state,step,utterance,history,portions) {
   const total = quantityAsNumber(original);
   if (!fraction && (unit(original.unit) !== unit(measured.unit) || !(total > 0))) {
     return read('הכמות במתכון היא ' + item.label + '. כמה מהכמות הזאת כבר הוספת?');
+  }
+  if (!more && !explicitTotal && state[item.id] !== 'pending') {
+    return read('זו תוספת או הכמות הכוללת של ' + item.name + ' שהוספת עד עכשיו?');
   }
   let share = fraction ? fractions.get(fraction[1]) : measuredQty/total;
   if (more) {

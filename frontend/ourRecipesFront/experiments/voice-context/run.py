@@ -24,7 +24,9 @@ def meets_expectations(case, result):
 
 def main(output, repeats, compare_portions=False):
     modes_to_test = ['focused','portions'] if compare_portions else arms
-    from portion_dialogues import FRESH, FRESH_RECIPES
+    if compare_portions:
+        from portion_dialogues import FRESH, FRESH_RECIPES
+        from portion_holdout import HOLDOUT
     rows = []
     rng = random.Random(82)
     with tempfile.TemporaryDirectory() as tmp, sync_playwright() as pw:
@@ -54,7 +56,7 @@ def main(output, repeats, compare_portions=False):
                     rows.append(dict(arm=arm,case=case['id'],repeat=n,correct=meets_expectations(case,r),**r))
             print('completed pass',n+1,flush=True)
         dialogues = []
-        for num, dialogue in enumerate(DIALOGUES + (FRESH if compare_portions else [])):
+        for num, dialogue in enumerate(DIALOGUES + (FRESH + HOLDOUT if compare_portions else [])):
             for arm in modes_to_test:
                 state, history, portions = {}, [], {}
                 for case in dialogue:
@@ -107,10 +109,18 @@ def main(output, repeats, compare_portions=False):
         for r in dialogues:
             r['current_correct'] = meets_expectations(known_amount,r) if r['case']=='milk_remaining' else r['correct']
         for arm in modes_to_test:
-            for name,numbers in [('replay',range(1,5)),('fresh',range(5,5+len(FRESH)))]:
+            for name,numbers in [('replay',range(1,5)),('fresh',range(5,5+len(FRESH))),('holdout',range(5+len(FRESH),5+len(FRESH)+len(HOLDOUT)))]:
                 group=[r for r in dialogues if r['arm']==arm and r['dialogue'] in numbers]
                 summary[arm][name] = dict(passed=sum(r['current_correct'] for r in group),total=len(group),
                     whole=sum(all(r['current_correct'] for r in group if r['dialogue']==i) for i in numbers),dialogs=len(numbers))
+            turns = [r for r in dialogues if r['arm']==arm]
+            summary[arm]['dialogue_turns_correct'] = sum(r['current_correct'] for r in turns)
+            summary[arm]['complete_dialogues'] = sum(summary[arm][name]['whole'] for name in ('replay','fresh','holdout'))
+            targets = {case['id']:case['writes'] for group in DIALOGUES+FRESH+HOLDOUT for case in group}
+            summary[arm]['unexpected_dialogue_writes'] = [
+                r['case'] for r in turns if set(map(tuple,r['writes'])) - set(map(tuple,targets[r['case']]))]
+        out['candidate_sha256']=hashlib.sha256((here/'portions.mjs').read_bytes()).hexdigest()
+        out['holdout_sha256']=hashlib.sha256((here/'portion_holdout.py').read_bytes()).hexdigest()
         out['fresh_sha256']=hashlib.sha256((here/'portion_dialogues.py').read_bytes()).hexdigest()
     output.write_text(json.dumps(out,ensure_ascii=False,indent=1)+'\n')
     print(json.dumps(summary,ensure_ascii=False,indent=1))
