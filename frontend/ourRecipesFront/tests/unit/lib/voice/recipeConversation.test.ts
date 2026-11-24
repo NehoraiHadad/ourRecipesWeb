@@ -9,8 +9,8 @@ describe('cooking with the ingredient list', () => {
   it('tracks a listed ingredient independently of the mixing step', () => {
     const response = recipeTurn(pancake, {}, 0, 'שמתי את הקמח, מה עכשיו?')!;
     expect(response.writes.map(w => [w.action, w.status])).toEqual([['i0', 'done']]);
-    expect(response.reply).toContain('לערבב הכל');
-    expect(response.reply).toContain('סוכר, ביצים');
+    expect(response.reply).toContain('לערבב יחד קמח, סוכר וביצים');
+    expect(response.reply).toContain('עוד לא סומנו במלואם: סוכר וביצים');
   });
   it.each(['מה צריך לעשות?', 'אז מה אני צריכה לעשות עכשיו', 'מה עושים הלאה?'])('answers %s without writing', q => {
     expect(recipeTurn(pancake, {i0:'done'}, 0, q)).toEqual(expect.objectContaining({ focus:0, writes:[] }));

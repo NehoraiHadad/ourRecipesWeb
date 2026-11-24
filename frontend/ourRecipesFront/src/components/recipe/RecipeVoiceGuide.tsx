@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useId, useRef, useState } from 'react';
+import { useEffect, useId, useMemo, useRef, useState } from 'react';
 import { useCompactCooking, progressLabel } from '@/hooks/useCompactCooking';
 import { assetBytes, type ActiveRecipe, type Progress } from '@/lib/voice/compactEngine';
+import { narratedSteps } from '@/lib/voice/stepGuidance';
 import { recipeVoiceCommand } from '@/lib/recipes/voiceCommands';
 import { Button } from '@/components/ui/Button';
 import { useRecipeVoice } from '@/hooks/useRecipeVoice';
@@ -30,7 +31,8 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
   const conversation = useRef<{ stop(): void; mute(value: boolean): void } | null>(null);
   type SpokenTurn = { text: string; step: number; speak: (message: string) => void };
   const [queue, setQueue] = useState<SpokenTurn[]>([]);
-  const voice = useRecipeVoice(steps, (heard, step, speak): boolean => {
+  const guidance = useMemo(() => narratedSteps(recipe, steps, cooking.progress), [recipe, steps, cooking.progress]);
+  const voice = useRecipeVoice(guidance, (heard, step, speak): boolean => {
     const command = heard.trim().replace(/[.!?״]+$/g, '');
     // Pure navigation remains available even before downloading the model.
     if (recipeVoiceCommand(heard) === 'stop') { setQueue([]); return false; }
@@ -191,7 +193,7 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
         {expanded ? 'צמצום פרטי הליווי' : 'הצגת פרטי הליווי ואפשרויות נוספות'}
       </button>
       <div id={contentId} hidden={!expanded}><fieldset disabled={phase === 'setup'} className="space-y-3">
-      <p className="leading-relaxed">{steps[voice.stepIndex]}</p>
+      <p className="leading-relaxed">{guidance[voice.stepIndex]}</p>
       <div className="flex flex-wrap gap-2">
         <Button variant="primary" size="sm" disabled={!voice.canSpeak} onClick={voice.read}>
           {voice.speaking ? 'הקרא שוב' : 'הקרא את השלב'}
