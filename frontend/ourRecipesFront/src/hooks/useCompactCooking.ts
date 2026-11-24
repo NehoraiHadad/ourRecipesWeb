@@ -5,20 +5,17 @@ import { CompactEngine, isProgress, prepareCompact, type ActiveRecipe, type Answ
 
 import { nextInstruction, questionOnly, recipeTurn } from '@/lib/voice/recipeConversation';
 
+import { ingredientTurn, type IngredientReply, type Portions } from '@/lib/voice/ingredientConversation';
+import { applyCookingChanges, readCookingProgress } from '@/lib/voice/cookingProgress';
+
 type States = Record<string, Progress>;
 type Proposal = { answer: Answer; text: string; before: States };
 export const progressLabel: Record<Progress, string> = { pending: 'ממתין', partial: 'בוצע חלקית', done: 'בוצע' };
 
-function loadProgress(key: string, recipe: ActiveRecipe): States {
-  let saved: States = {};
-  try { saved = JSON.parse(localStorage.getItem(key) || '{}') || {}; } catch { /* First use or unavailable storage. */ }
-  return Object.fromEntries([...recipe.actions, ...recipe.ingredients].map(({ id }) => [id, isProgress(saved[id]) ? saved[id] : 'pending']));
-}
-
 // The guide is keyed by recipe and source revision, so another recipe starts a new session.
 export function useCompactCooking(recipe: ActiveRecipe) {
   const key = 'recipe-cooking:' + recipe.id + ':' + recipe.version;
-  const [progress, setProgress] = useState<States>({});
+  const [{ progress, portions }, setCookingState] = useState<{progress: States; portions: Portions}>({progress:{}, portions:{}});
   const [stage, setStage] = useState<'idle' | 'loading' | 'ready' | 'thinking'>('idle');
   const [bytes, setBytes] = useState(0);
   const [reply, setReply] = useState('');
@@ -35,7 +32,9 @@ export function useCompactCooking(recipe: ActiveRecipe) {
     lifetime.current = controller;
     function restore() {
       revision.current++;
-      setProgress(loadProgress(key, recipe));
+      let raw = null;
+      try { raw = localStorage.getItem(key); } catch { /* Storage is optional. */ }
+      setCookingState(readCookingProgress(recipe, raw));
       setProposal(null);
       setReply('');
       history.current = [];
@@ -93,7 +92,8 @@ export function useCompactCooking(recipe: ActiveRecipe) {
     busy.current = true;
     setStage('thinking'); setError(''); setReply(''); setProposal(null);
     try {
-      const direct = recipeTurn(recipe, progress, step, text.trim());
+      const direct: IngredientReply | undefined = ingredientTurn(recipe, progress, step, text.trim(), history.current, portions)
+        ?? recipeTurn(recipe, progress, step, text.trim());
       let answer = direct ?? await engine.current.answer(recipe, progress, step, text.trim(), history.current, signal);
       if (!direct && answer.writes.length && questionOnly(text)) {
         answer = { writes: [], reply: 'לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.' };
@@ -101,7 +101,7 @@ export function useCompactCooking(recipe: ActiveRecipe) {
       if (signal.aborted || turn !== revision.current) return;
       if (direct?.focus !== undefined) focus?.(direct.focus);
       if (direct?.writes.length) {
-        save({ ...progress, ...Object.fromEntries(direct.writes.map(w => [w.action, w.status])) });
+        save(applyCookingChanges(progress, portions, direct.writes, direct.portions));
         setReply(answer.reply); remember(text, answer.reply); speak?.(answer.reply);
       } else if (answer.writes.length) {
         setProposal({ answer, text, before: progress });
@@ -117,20 +117,19 @@ export function useCompactCooking(recipe: ActiveRecipe) {
       if (!signal.aborted) setStage(engine.current ? 'ready' : 'idle');
     }
   }
-  function save(next: States) {
+  function save(next: {progress: States; portions: Portions}) {
     revision.current++;
-    setProgress(next); setProposal(null);
-    try { localStorage.setItem(key, JSON.stringify(next)); }
+    setCookingState(next); setProposal(null);
+    try { localStorage.setItem(key, JSON.stringify({...next.progress, portions:next.portions})); }
     catch { setError('ההתקדמות זמינה במסך הזה. השמירה במכשיר נכשלה.'); }
   }
   function confirm(step: number, focus: (step: number) => void) {
     if (!proposal || proposal.before !== progress) return;
-    const next = { ...progress };
-    for (const w of proposal.answer.writes) next[w.action] = w.status;
+    const next = applyCookingChanges(progress, portions, proposal.answer.writes);
     let reply = proposal.answer.reply;
     const current = recipe.actions.filter(a => a.step === step);
-    if (current.some(a => progress[a.id] !== 'done') && current.every(a => next[a.id] === 'done')) {
-      const following = nextInstruction(recipe, next, step);
+    if (current.some(a => progress[a.id] !== 'done') && current.every(a => next.progress[a.id] === 'done')) {
+      const following = nextInstruction(recipe, next.progress, step);
       if (following.focus !== undefined) focus(following.focus);
       reply += ' ' + following.reply;
     }
@@ -139,7 +138,7 @@ export function useCompactCooking(recipe: ActiveRecipe) {
   }
   function manual(id: string, status: Progress) {
     if (!isProgress(status) || !Object.hasOwn(progress, id)) return;
-    save({ ...progress, [id]: status }); setReply(''); history.current = [];
+    save(applyCookingChanges(progress, portions, [{action:id, status}])); setReply(''); history.current = [];
   }
-  return { stage, bytes, progress, reply, error, proposal, start, submit, confirm, manual, dismiss: () => setProposal(null) };
+  return { stage, bytes, progress, portions, reply, error, proposal, start, submit, confirm, manual, dismiss: () => setProposal(null) };
 }

@@ -216,7 +216,7 @@ export default function RecipeVoiceGuide({ steps, recipe, ingredients }: { steps
         {recipe.ingredients.length > 0 && <details className="rounded border bg-white p-2">
           <summary>מצרכים שסומנו ({recipe.ingredients.filter(i => cooking.progress[i.id] === 'done').length}/{recipe.ingredients.length})</summary>
           <ul>{recipe.ingredients.map(i => <li key={i.id} className="flex items-center justify-between gap-2 py-1">
-            <span>{i.label}</span>
+            <span>{i.label}{cooking.portions[i.id] !== undefined && <small> · נוספו {Number((100*cooking.portions[i.id]).toFixed(1))}%</small>}</span>
             <select aria-label={'מצב המצרך ' + i.name} value={cooking.progress[i.id] ?? 'pending'} disabled={cooking.stage === 'thinking'}
               onChange={e => cooking.manual(i.id, e.target.value as Progress)}>
               {Object.entries(progressLabel).map(([value, label]) => <option key={value} value={value}>{label}</option>)}

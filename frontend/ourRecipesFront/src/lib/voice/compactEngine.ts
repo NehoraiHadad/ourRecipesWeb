@@ -97,7 +97,10 @@ export class CompactEngine {
   async answer(recipe: ActiveRecipe, progress: Record<string, Progress>, currentStep: number,
                utterance: string, history: Turn[], signal: AbortSignal) {
     const actionProgress = Object.fromEntries(recipe.actions.map(a => [a.id, progress[a.id]]));
-    const result = await this.ask({ id: String(++this.sequence), input: { recipe, progress: actionProgress, currentStep, utterance, history } }, signal);
+    const ingredientProgress = Object.fromEntries(recipe.ingredients.map(i => [i.id, progress[i.id] ?? 'pending']));
+    const result = await this.ask({ id: String(++this.sequence), input: {
+      recipe, progress: actionProgress, ingredientProgress, currentStep, utterance, history
+    } }, signal);
     if (!result || typeof result.reply !== 'string' || !Array.isArray(result.writes) ||
         result.writes.some(w => w.recipe_id !== recipe.id || w.recipe_version !== recipe.version ||
           !Object.hasOwn(actionProgress, w.action) || !isProgress(w.status))) throw new Error('התקבל עדכון שלא תואם למתכון.');

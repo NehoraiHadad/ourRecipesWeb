@@ -142,6 +142,7 @@ const RecipeDisplay: React.FC<RecipeDisplayProps> = ({ recipe, onPrepTimeClick, 
                 <p key={index}>{line}</p>
               ))}
             </div>
+            {multiplier !== 1 && <p className="text-sm text-secondary-600">הליווי הקולי מחשב לפי הכמויות במתכון המקורי.</p>}
             <RecipeVoiceGuide key={cookingRecipe.id + ':' + cookingRecipe.version} steps={instructionLines} recipe={cookingRecipe} ingredients={recipe.ingredients.map(i => i.name)} />
           </div>
         )}
