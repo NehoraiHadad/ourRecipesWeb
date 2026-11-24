@@ -1,0 +1,5543 @@
+{
+ "build": "5a62688f1e85071091203892b0d99a77e175c400",
+ "chromium": "156.0.8078.79",
+ "cold_worker_ms": 4627.7,
+ "cases_sha256": "955e941a1eca4c1edfacde15a39ee95e83ea4bd6e2713bf5482ba202e883064a",
+ "repeats": 5,
+ "summary": {
+  "focused": {
+   "correct": 24,
+   "cases": 26,
+   "misses": [
+    "named_unseen_form",
+    "qualified_question"
+   ],
+   "unexpected_writes": [],
+   "latency": {
+    "n": 130,
+    "median_ms": 0.03,
+    "p95_ms": 24.64
+   },
+   "worker_latency": {
+    "n": 15,
+    "median_ms": 18.88,
+    "p95_ms": 69.95
+   },
+   "skipped_encoder": [],
+   "dialogue_turns_correct": 27,
+   "dialogue_turns_total": 51,
+   "complete_dialogues": 1,
+   "replay": {
+    "passed": 14,
+    "total": 18,
+    "whole": 0,
+    "dialogs": 4
+   },
+   "fresh": {
+    "passed": 12,
+    "total": 33,
+    "whole": 0,
+    "dialogs": 8
+   }
+  },
+  "portions": {
+   "correct": 25,
+   "cases": 26,
+   "misses": [
+    "ambiguous_correction"
+   ],
+   "unexpected_writes": [
+    "ambiguous_correction"
+   ],
+   "latency": {
+    "n": 130,
+    "median_ms": 0.05,
+    "p95_ms": 1.15
+   },
+   "worker_latency": {
+    "n": 5,
+    "median_ms": 20.46,
+    "p95_ms": 24.45
+   },
+   "skipped_encoder": [],
+   "dialogue_turns_correct": 48,
+   "dialogue_turns_total": 51,
+   "complete_dialogues": 3,
+   "replay": {
+    "passed": 18,
+    "total": 18,
+    "whole": 4,
+    "dialogs": 4
+   },
+   "fresh": {
+    "passed": 31,
+    "total": 33,
+    "whole": 7,
+    "dialogs": 8
+   }
+  }
+ },
+ "rows": [
+  {
+   "arm": "focused",
+   "case": "unstated_duration",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.39500001072883606,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "unstated_duration",
+   "repeat": 0,
+   "correct": true,
+   "ms": 1.1500000059604645,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "whole_left",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.13500000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "whole_left",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.08499999344348907,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_still_true",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_still_true",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.07499998807907104,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן במלואו.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_multiple",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_multiple",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "qualified_question",
+   "repeat": 0,
+   "correct": false,
+   "ms": 16.50499999523163,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 709,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "qualified_question",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.07500000298023224,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "המתכון מציין 2 כוסות חלב. לא כתוב אם כמות קטנה יותר תספיק.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "explicit_amount",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.26500000059604645,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "explicit_amount",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.1550000011920929,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_no_topic",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.08000001311302185,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_no_topic",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "corrected_current",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.03500001132488251,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "corrected_current",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.17000000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_partial",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.06999999284744263,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_partial",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.09999999403953552,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "combined_report",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.7800000011920929,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "combined_report",
+   "repeat": 0,
+   "correct": true,
+   "ms": 1.0049999952316284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_topic_not_current",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_topic_not_current",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "report_two",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.12999999523162842,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "report_two",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.14500001072883606,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "new_recipe_reference",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "new_recipe_reference",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_unseen_form",
+   "repeat": 0,
+   "correct": false,
+   "ms": 69.94999998807907,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 762,
+   "reply": "לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_unseen_form",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדשים כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_flour",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.20000000298023224,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_flour",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.17000000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_overridden",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_overridden",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_done",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.08499999344348907,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_done",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "correct_report",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.5700000077486038,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "correct_report",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.1850000023841858,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_milk",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_milk",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_correction",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_correction",
+   "repeat": 0,
+   "correct": false,
+   "ms": 0.39000000059604645,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "portions",
+   "case": "stated_duration",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "stated_duration",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_oil",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_oil",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "nothing_left",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "nothing_left",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "unspecified_partial",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "unspecified_partial",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.13500000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "long_substitution_control",
+   "repeat": 0,
+   "correct": true,
+   "ms": 22.810000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "long_substitution_control",
+   "repeat": 0,
+   "correct": true,
+   "ms": 24.640000000596046,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "next_after_mixing",
+   "repeat": 0,
+   "correct": true,
+   "ms": 1.8800000101327896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "next_after_mixing",
+   "repeat": 0,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "whole_left",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "whole_left",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_correction",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_correction",
+   "repeat": 1,
+   "correct": false,
+   "ms": 0.17000000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_milk",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_milk",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.040000006556510925,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "stated_duration",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "stated_duration",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_partial",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.05499999225139618,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_partial",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "report_two",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.10999999940395355,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "report_two",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.1300000101327896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "next_after_mixing",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.0650000125169754,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "next_after_mixing",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.07500000298023224,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "nothing_left",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "nothing_left",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "combined_report",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.13500000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "combined_report",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.08500000834465027,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "unspecified_partial",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unspecified_partial",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_flour",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_flour",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.08499999344348907,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_done",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_done",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_still_true",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן במלואו.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_still_true",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.06999999284744263,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_unseen_form",
+   "repeat": 1,
+   "correct": false,
+   "ms": 27.304999992251396,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 762,
+   "reply": "לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_unseen_form",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.040000006556510925,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדשים כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "qualified_question",
+   "repeat": 1,
+   "correct": false,
+   "ms": 9.900000005960464,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 709,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "qualified_question",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.050000011920928955,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "המתכון מציין 2 כוסות חלב. לא כתוב אם כמות קטנה יותר תספיק.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "unstated_duration",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unstated_duration",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.0299999862909317,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_no_topic",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.15000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_no_topic",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_oil",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_oil",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "long_substitution_control",
+   "repeat": 1,
+   "correct": true,
+   "ms": 17.435000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "long_substitution_control",
+   "repeat": 1,
+   "correct": true,
+   "ms": 20.46000000834465,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_overridden",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_overridden",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "old_topic_not_current",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_topic_not_current",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "corrected_current",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "corrected_current",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "explicit_amount",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "explicit_amount",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_multiple",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_multiple",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "new_recipe_reference",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "new_recipe_reference",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "correct_report",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.07500000298023224,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "correct_report",
+   "repeat": 1,
+   "correct": true,
+   "ms": 0.125,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_no_topic",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.01000000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_no_topic",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "report_two",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.10500000417232513,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "report_two",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "old_topic_not_current",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_topic_not_current",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_unseen_form",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.13500000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדשים כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_unseen_form",
+   "repeat": 2,
+   "correct": false,
+   "ms": 38.310000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 762,
+   "reply": "לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "explicit_amount",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.08499999344348907,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "explicit_amount",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_done",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.040000006556510925,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_done",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_still_true",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_still_true",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן במלואו.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "nothing_left",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "nothing_left",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unstated_duration",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.08000001311302185,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "unstated_duration",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.10999999940395355,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "correct_report",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "correct_report",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.09999999403953552,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_overridden",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_overridden",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.03999999165534973,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "stated_duration",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "stated_duration",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_milk",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_milk",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "combined_report",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.1599999964237213,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "combined_report",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "whole_left",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "whole_left",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_oil",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_oil",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "unspecified_partial",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unspecified_partial",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_multiple",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_multiple",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_correction",
+   "repeat": 2,
+   "correct": false,
+   "ms": 0.14000000059604645,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_correction",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.009999990463256836,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "qualified_question",
+   "repeat": 2,
+   "correct": false,
+   "ms": 25.875,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 709,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "qualified_question",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.03500001132488251,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "המתכון מציין 2 כוסות חלב. לא כתוב אם כמות קטנה יותר תספיק.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_partial",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_partial",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "next_after_mixing",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "next_after_mixing",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "corrected_current",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "corrected_current",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_flour",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_flour",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "long_substitution_control",
+   "repeat": 2,
+   "correct": true,
+   "ms": 24.450000002980232,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "long_substitution_control",
+   "repeat": 2,
+   "correct": true,
+   "ms": 15.894999995827675,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "new_recipe_reference",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "new_recipe_reference",
+   "repeat": 2,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_still_true",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן במלואו.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_still_true",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.09000000357627869,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_multiple",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.03999999165534973,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_multiple",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "nothing_left",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.07500000298023224,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "nothing_left",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "stated_duration",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.0949999988079071,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "stated_duration",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "corrected_current",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "corrected_current",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_oil",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.07500000298023224,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_oil",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_correction",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.014999985694885254,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_correction",
+   "repeat": 3,
+   "correct": false,
+   "ms": 0.14499999582767487,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "portions",
+   "case": "correct_report",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.08000001311302185,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "correct_report",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "long_substitution_control",
+   "repeat": 3,
+   "correct": true,
+   "ms": 16.484999999403954,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "long_substitution_control",
+   "repeat": 3,
+   "correct": true,
+   "ms": 15.580000013113022,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_done",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.13500000536441803,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_done",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_topic_not_current",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_topic_not_current",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "combined_report",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.08500000834465027,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "combined_report",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.09000000357627869,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "qualified_question",
+   "repeat": 3,
+   "correct": false,
+   "ms": 13.350000008940697,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 709,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "qualified_question",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.11999998986721039,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "המתכון מציין 2 כוסות חלב. לא כתוב אם כמות קטנה יותר תספיק.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "next_after_mixing",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "next_after_mixing",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "unstated_duration",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unstated_duration",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "whole_left",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "whole_left",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_overridden",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.014999985694885254,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_overridden",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "explicit_amount",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "explicit_amount",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_milk",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_milk",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.01000000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_flour",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.040000006556510925,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_flour",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_partial",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_partial",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "report_two",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "report_two",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.10500000417232513,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_no_topic",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.01000000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_no_topic",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "unspecified_partial",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unspecified_partial",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "new_recipe_reference",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.014999985694885254,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "new_recipe_reference",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "named_unseen_form",
+   "repeat": 3,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדשים כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_unseen_form",
+   "repeat": 3,
+   "correct": false,
+   "ms": 25.310000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 762,
+   "reply": "לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "correct_report",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.18000000715255737,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "correct_report",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_correction",
+   "repeat": 4,
+   "correct": false,
+   "ms": 0.10999999940395355,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   }
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_correction",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "nothing_left",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.07000000774860382,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "nothing_left",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "כבר הוספת את כל הכמות של חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "unstated_duration",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "unstated_duration",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.12999999523162842,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "משך הזמן לא מצוין בהוראה. כך כתוב במתכון: לטגן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_still_true",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_still_true",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן במלואו.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_partial",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.0949999988079071,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_partial",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "ambiguous_flour",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.10500000417232513,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "ambiguous_flour",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.12000000476837158,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_oil",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.12000000476837158,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_oil",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כף שמן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "old_report_overridden",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_report_overridden",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "report_two",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.06999999284744263,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "report_two",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.08500000834465027,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "old_topic_not_current",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "old_topic_not_current",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "whole_left",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.009999990463256836,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "whole_left",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_no_topic",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_no_topic",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.01000000536441803,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "named_unseen_form",
+   "repeat": 4,
+   "correct": false,
+   "ms": 26.194999992847443,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 762,
+   "reply": "לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "named_unseen_form",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדשים כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "next_after_mixing",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.10000000894069672,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "next_after_mixing",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לטגן את התערובת מהשלב הקודם.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "corrected_current",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "corrected_current",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "new_recipe_reference",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "new_recipe_reference",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כוס עדשים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "qualified_question",
+   "repeat": 4,
+   "correct": false,
+   "ms": 10.974999994039536,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 709,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "qualified_question",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.03999999165534973,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "המתכון מציין 2 כוסות חלב. לא כתוב אם כמות קטנה יותר תספיק.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "stated_duration",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "stated_duration",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי ההוראה, לאפות במשך 20 דקות.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "combined_report",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.14999999105930328,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "combined_report",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח וביצים. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ],
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "explicit_amount",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "explicit_amount",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "long_substitution_control",
+   "repeat": 4,
+   "correct": true,
+   "ms": 18.88000001013279,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "long_substitution_control",
+   "repeat": 4,
+   "correct": true,
+   "ms": 16.42000000178814,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 928,
+   "reply": "בהוראות שיש לי אין מספיק מידע כדי לקבוע אם התחליף מתאים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_multiple",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_multiple",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "named_status_done",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "named_status_done",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב כבר סומן.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "focused",
+   "case": "pronoun_milk",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false
+  },
+  {
+   "arm": "portions",
+   "case": "pronoun_milk",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "2 כוסות חלב.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "portions",
+   "case": "unspecified_partial",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {}
+  },
+  {
+   "arm": "focused",
+   "case": "unspecified_partial",
+   "repeat": 4,
+   "correct": true,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false
+  }
+ ],
+ "dialogues": [
+  {
+   "dialogue": 1,
+   "arm": "focused",
+   "case": "milk_add",
+   "correct": true,
+   "ms": 0.10999999940395355,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלב.",
+   "writes": [
+    [
+     "i2",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "focused",
+   "case": "milk_revise",
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "focused",
+   "case": "milk_state",
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "focused",
+   "case": "milk_remaining",
+   "correct": true,
+   "ms": 0.08500000834465027,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 1,
+   "arm": "portions",
+   "case": "milk_add",
+   "correct": true,
+   "ms": 0.12999999523162842,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלב.",
+   "writes": [
+    [
+     "i2",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "portions",
+   "case": "milk_revise",
+   "correct": true,
+   "ms": 0.11500000953674316,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "portions",
+   "case": "milk_state",
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב סומן חלקית.",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 1,
+   "arm": "portions",
+   "case": "milk_remaining",
+   "correct": false,
+   "ms": 0.17000000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 1 כוס חלב (חצי מהכמות של חלב).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "focused",
+   "case": "soup_intro",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 3 כוסות מים.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "focused",
+   "case": "soup_refer",
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "3 כוסות מים.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "focused",
+   "case": "soup_change",
+   "correct": true,
+   "ms": 0.10000000894069672,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת מלח.",
+   "writes": [
+    [
+     "i3",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "focused",
+   "case": "soup_refer_new",
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כפית מלח.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "focused",
+   "case": "soup_informal",
+   "correct": false,
+   "ms": 38.74500000476837,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 964,
+   "reply": "אין פעולות פתוחות בשלבים שלפני השלב הנוכחי.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 2,
+   "arm": "portions",
+   "case": "soup_intro",
+   "correct": true,
+   "ms": 0.20499999821186066,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 3 כוסות מים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "portions",
+   "case": "soup_refer",
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "3 כוסות מים.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "portions",
+   "case": "soup_change",
+   "correct": true,
+   "ms": 0.125,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת מלח.",
+   "writes": [
+    [
+     "i3",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "portions",
+   "case": "soup_refer_new",
+   "correct": true,
+   "ms": 0.02000001072883606,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "1 כפית מלח.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 2,
+   "arm": "portions",
+   "case": "soup_informal",
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "מלח כבר סומן במלואו.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "focused",
+   "case": "two_flours",
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "focused",
+   "case": "flour_ambiguous",
+   "correct": true,
+   "ms": 0.009999990463256836,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "focused",
+   "case": "specify_flour",
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 1 כוס קמח מלא.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "focused",
+   "case": "negative_flour",
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שעדיין לא הוספת קמח מלא.",
+   "writes": [
+    [
+     "i1",
+     "pending"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "focused",
+   "case": "excluded_flour",
+   "correct": false,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 3,
+   "arm": "portions",
+   "case": "two_flours",
+   "correct": true,
+   "ms": 0.0599999874830246,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת? קמח לבן או קמח מלא?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "portions",
+   "case": "flour_ambiguous",
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "portions",
+   "case": "specify_flour",
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 1 כוס קמח מלא.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "portions",
+   "case": "negative_flour",
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שעדיין לא הוספת קמח מלא.",
+   "writes": [
+    [
+     "i1",
+     "pending"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 3,
+   "arm": "portions",
+   "case": "excluded_flour",
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "קמח לבן עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "focused",
+   "case": "report_eggs",
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת ביצים.",
+   "writes": [
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "focused",
+   "case": "hypothetical_oil",
+   "correct": true,
+   "ms": 17.355000004172325,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 841,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "focused",
+   "case": "check_oil",
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "שמן עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "focused",
+   "case": "longer_report",
+   "correct": false,
+   "ms": 31.84000000357628,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 1070,
+   "reply": "עדכנתי: לערבב הכל — בוצע. לאיזו פעולה התכוונת?",
+   "writes": [
+    [
+     "s0a0",
+     "done"
+    ]
+   ],
+   "proposal": true,
+   "current_correct": false
+  },
+  {
+   "dialogue": 4,
+   "arm": "portions",
+   "case": "report_eggs",
+   "correct": true,
+   "ms": 0.0950000137090683,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת ביצים.",
+   "writes": [
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "portions",
+   "case": "hypothetical_oil",
+   "correct": true,
+   "ms": 14.689999997615814,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 841,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "portions",
+   "case": "check_oil",
+   "correct": true,
+   "ms": 0.07999999821186066,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "שמן עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 4,
+   "arm": "portions",
+   "case": "longer_report",
+   "correct": true,
+   "ms": 0.2900000065565109,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת קמח. עדיין לא סומן: חלב, שמן.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 5,
+   "arm": "focused",
+   "case": "cup_not_recipe_half",
+   "correct": false,
+   "ms": 12.424999997019768,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 691,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 5,
+   "arm": "focused",
+   "case": "cup_remainder",
+   "correct": false,
+   "ms": 16.72000001370907,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 829,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 5,
+   "arm": "focused",
+   "case": "another_cup",
+   "correct": false,
+   "ms": 0.2900000065565109,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא הצלחתי להתאים את ״עוד כוס חלב״ לרשימת המצרכים. איך הוא מופיע במתכון?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 5,
+   "arm": "focused",
+   "case": "cup_after_increment",
+   "correct": false,
+   "ms": 30.224999994039536,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 1114,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 5,
+   "arm": "portions",
+   "case": "cup_not_recipe_half",
+   "correct": true,
+   "ms": 0.16500000655651093,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת רבע מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 5,
+   "arm": "portions",
+   "case": "cup_remainder",
+   "correct": true,
+   "ms": 0.0599999874830246,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 1.5 כוסות חלב (שלושה רבעים מהכמות של חלב).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i2": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 5,
+   "arm": "portions",
+   "case": "another_cup",
+   "correct": true,
+   "ms": 0.09999999403953552,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת שלושה רבעים מהכמות של חלב.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.75
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 5,
+   "arm": "portions",
+   "case": "cup_after_increment",
+   "correct": true,
+   "ms": 0.03999999165534973,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 0.5 כוס חלב (רבע מהכמות של חלב).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i2": 0.75
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "focused",
+   "case": "grams",
+   "correct": false,
+   "ms": 0.09999999403953552,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא הצלחתי להתאים את ״50 גרם שוקולד״ לרשימת המצרכים. איך הוא מופיע במתכון?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 6,
+   "arm": "focused",
+   "case": "grams_change_topic",
+   "correct": true,
+   "ms": 0.025000005960464478,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 100 גרם חמאה.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "focused",
+   "case": "grams_amount",
+   "correct": false,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "200 גרם שוקולד.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 6,
+   "arm": "focused",
+   "case": "grams_correction",
+   "correct": false,
+   "ms": 28.390000000596046,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 923,
+   "reply": "הצעד הבא לפי המתכון: לערבב הכל.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 6,
+   "arm": "focused",
+   "case": "grams_amount_corrected",
+   "correct": false,
+   "ms": 21.685000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 936,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 6,
+   "arm": "portions",
+   "case": "grams",
+   "correct": true,
+   "ms": 0.18000000715255737,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת רבע מהכמות של שוקולד.",
+   "writes": [
+    [
+     "i0",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i0": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "portions",
+   "case": "grams_change_topic",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "במתכון המקורי רשום 100 גרם חמאה.",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i0": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "portions",
+   "case": "grams_amount",
+   "correct": true,
+   "ms": 0.08500000834465027,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 150 גרם שוקולד (שלושה רבעים מהכמות של שוקולד).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i0": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "portions",
+   "case": "grams_correction",
+   "correct": true,
+   "ms": 0.10999999940395355,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של שוקולד.",
+   "writes": [
+    [
+     "i0",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i0": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 6,
+   "arm": "portions",
+   "case": "grams_amount_corrected",
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 100 גרם שוקולד (חצי מהכמות של שוקולד).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i0": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "focused",
+   "case": "unknown_partial",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של מים.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "focused",
+   "case": "unknown_increment",
+   "correct": false,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא הצלחתי להתאים את ״עוד רבע מהמים״ לרשימת המצרכים. איך הוא מופיע במתכון?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 7,
+   "arm": "focused",
+   "case": "still_unknown",
+   "correct": true,
+   "ms": 0.024999991059303284,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "מים סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "focused",
+   "case": "explicit_total",
+   "correct": false,
+   "ms": 0.07500000298023224,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של מים.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 7,
+   "arm": "focused",
+   "case": "known_now",
+   "correct": false,
+   "ms": 35.46999999880791,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 1047,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 7,
+   "arm": "portions",
+   "case": "unknown_partial",
+   "correct": true,
+   "ms": 0.14000000059604645,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חלק מהכמות של מים.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "portions",
+   "case": "unknown_increment",
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא תועד כמה הוספת קודם. מה הכמות הכוללת שהוספת עד עכשיו?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "portions",
+   "case": "still_unknown",
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "מים סומן חלקית. לא תועד כמה הוספת.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "portions",
+   "case": "explicit_total",
+   "correct": true,
+   "ms": 0.13499999046325684,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של מים.",
+   "writes": [
+    [
+     "i2",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 7,
+   "arm": "portions",
+   "case": "known_now",
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 1.5 כוסות מים (חצי מהכמות של מים).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i2": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 8,
+   "arm": "focused",
+   "case": "fronted_soup",
+   "correct": false,
+   "ms": 14.200000002980232,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 734,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 8,
+   "arm": "focused",
+   "case": "did_not_chop",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לקצוץ בצל.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 8,
+   "arm": "focused",
+   "case": "fronted_mix",
+   "correct": false,
+   "ms": 41.679999992251396,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 1059,
+   "reply": "עדכנתי: להוסיף עדשים ומים — בוצע חלקית.",
+   "writes": [
+    [
+     "s1a0",
+     "partial"
+    ]
+   ],
+   "proposal": true,
+   "current_correct": false
+  },
+  {
+   "dialogue": 8,
+   "arm": "portions",
+   "case": "fronted_soup",
+   "correct": true,
+   "ms": 0.09000000357627869,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת בצל.",
+   "writes": [
+    [
+     "i0",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 8,
+   "arm": "portions",
+   "case": "did_not_chop",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לקצוץ בצל.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 8,
+   "arm": "portions",
+   "case": "fronted_mix",
+   "correct": true,
+   "ms": 0.05499999225139618,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת מלח. עדיין לא סומן: עדשים, מים.",
+   "writes": [
+    [
+     "i3",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "focused",
+   "case": "question_about_putting",
+   "correct": false,
+   "ms": 11.379999995231628,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 705,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 9,
+   "arm": "focused",
+   "case": "flour_unchanged",
+   "correct": true,
+   "ms": 0.05500000715255737,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "קמח עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "focused",
+   "case": "measure_question",
+   "correct": false,
+   "ms": 21.70499999821186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 952,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 9,
+   "arm": "focused",
+   "case": "measure_unchanged",
+   "correct": true,
+   "ms": 0.06000000238418579,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "portions",
+   "case": "question_about_putting",
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "קמח עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "portions",
+   "case": "flour_unchanged",
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "קמח עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "portions",
+   "case": "measure_question",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "האם זו הכמות שכבר הוספת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 9,
+   "arm": "portions",
+   "case": "measure_unchanged",
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "חלב עדיין לא סומן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "focused",
+   "case": "partial_before_reset",
+   "correct": false,
+   "ms": 0.05499999225139618,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא הצלחתי להתאים את ״רבע מהחמאה״ לרשימת המצרכים. איך הוא מופיע במתכון?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 10,
+   "arm": "focused",
+   "case": "negative_repair",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שעדיין לא הוספת חמאה.",
+   "writes": [
+    [
+     "i1",
+     "pending"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "focused",
+   "case": "after_reset",
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "100 גרם חמאה.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "focused",
+   "case": "measurement_wrong_unit",
+   "correct": false,
+   "ms": 0.03999999165534973,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לא הצלחתי להתאים את ״2 כפיות חמאה״ לרשימת המצרכים. איך הוא מופיע במתכון?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 10,
+   "arm": "portions",
+   "case": "partial_before_reset",
+   "correct": true,
+   "ms": 0.11499999463558197,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת רבע מהכמות של חמאה.",
+   "writes": [
+    [
+     "i1",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i1": 0.25
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "portions",
+   "case": "negative_repair",
+   "correct": true,
+   "ms": 0.06499999761581421,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שעדיין לא הוספת חמאה.",
+   "writes": [
+    [
+     "i1",
+     "pending"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "portions",
+   "case": "after_reset",
+   "correct": true,
+   "ms": 0.019999995827674866,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לפי הסימון נשאר להוסיף 100 גרם חמאה.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 10,
+   "arm": "portions",
+   "case": "measurement_wrong_unit",
+   "correct": true,
+   "ms": 0.04500000178813934,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "הכמות במתכון היא 100 גרם חמאה. כמה מהכמות הזאת כבר הוספת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 11,
+   "arm": "focused",
+   "case": "natural_spoken",
+   "correct": false,
+   "ms": 32.21999999880791,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 737,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 11,
+   "arm": "focused",
+   "case": "natural_disambiguation",
+   "correct": false,
+   "ms": 25.445000007748604,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 920,
+   "reply": "עדכנתי: לערבב הכל — טרם בוצע.",
+   "writes": [
+    [
+     "s0a0",
+     "pending"
+    ]
+   ],
+   "proposal": true,
+   "current_correct": false
+  },
+  {
+   "dialogue": 11,
+   "arm": "focused",
+   "case": "natural_followup",
+   "correct": true,
+   "ms": 0.6899999976158142,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לערבב יחד קמח, ביצים, חלב ושמן.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 11,
+   "arm": "portions",
+   "case": "natural_spoken",
+   "correct": false,
+   "ms": 16.689999997615814,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 737,
+   "reply": "לאיזו פעולה התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": false
+  },
+  {
+   "dialogue": 11,
+   "arm": "portions",
+   "case": "natural_disambiguation",
+   "correct": false,
+   "ms": 31.33500000834465,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 920,
+   "reply": "עדכנתי: לערבב הכל — טרם בוצע.",
+   "writes": [
+    [
+     "s0a0",
+     "pending"
+    ]
+   ],
+   "proposal": true,
+   "portions": {},
+   "current_correct": false
+  },
+  {
+   "dialogue": 11,
+   "arm": "portions",
+   "case": "natural_followup",
+   "correct": true,
+   "ms": 0.2199999988079071,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "השלב הבא הוא לערבב יחד קמח, ביצים, חלב ושמן.",
+   "writes": [],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "focused",
+   "case": "butter_only",
+   "correct": true,
+   "ms": 0.06999999284744263,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חמאה.",
+   "writes": [
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "focused",
+   "case": "backtrack",
+   "correct": false,
+   "ms": 0.015000000596046448,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 12,
+   "arm": "focused",
+   "case": "follow_topic",
+   "correct": false,
+   "ms": 18.849999994039536,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 874,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": false
+  },
+  {
+   "dialogue": 12,
+   "arm": "focused",
+   "case": "many_topics",
+   "correct": true,
+   "ms": 0.040000006556510925,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדיין לא סומן: שוקולד, ביצה.",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "focused",
+   "case": "ambiguous_topic",
+   "correct": true,
+   "ms": 20.435000002384186,
+   "route": "worker",
+   "calls": 1,
+   "bytes": 941,
+   "reply": "לאיזו פעולה או לאיזה מרכיב במתכון התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "portions",
+   "case": "butter_only",
+   "correct": true,
+   "ms": 0.09000000357627869,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חמאה.",
+   "writes": [
+    [
+     "i1",
+     "done"
+    ]
+   ],
+   "proposal": false,
+   "portions": {},
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "portions",
+   "case": "backtrack",
+   "correct": true,
+   "ms": 0.11999998986721039,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "רשמתי שהוספת חצי מהכמות של חמאה.",
+   "writes": [
+    [
+     "i1",
+     "partial"
+    ]
+   ],
+   "proposal": false,
+   "portions": {
+    "i1": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "portions",
+   "case": "follow_topic",
+   "correct": true,
+   "ms": 0.04999999701976776,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "נשאר להוסיף 50 גרם חמאה (חצי מהכמות של חמאה).",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i1": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "portions",
+   "case": "many_topics",
+   "correct": true,
+   "ms": 0.030000001192092896,
+   "route": "app",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "עדיין לא סומן: שוקולד, חמאה, ביצה.",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i1": 0.5
+   },
+   "current_correct": true
+  },
+  {
+   "dialogue": 12,
+   "arm": "portions",
+   "case": "ambiguous_topic",
+   "correct": true,
+   "ms": 0.034999996423721313,
+   "route": "focused",
+   "calls": 0,
+   "bytes": 0,
+   "reply": "לאיזה מצרך או לכמות של איזה מצרך התכוונת?",
+   "writes": [],
+   "proposal": false,
+   "portions": {
+    "i1": 0.5
+   },
+   "current_correct": true
+  }
+ ],
+ "history_length_probe": [],
+ "fresh_sha256": "90df6704a513170a2701cb5afc1377360264923bd2d669ce717063e5135d88f1"
+}

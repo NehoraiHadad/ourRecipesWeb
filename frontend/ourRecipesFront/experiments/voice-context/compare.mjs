@@ -3,6 +3,8 @@ import { activeRecipe } from '../../src/lib/voice/compactEngine';
 import { parseIngredientLine } from '../../src/lib/recipes/ingredientParser';
 import { questionOnly, recipeTurn } from '../../src/lib/voice/recipeConversation';
 
+import {ingredientTurn, nextPortions} from './portions.mjs';
+
 const clean = text => text.replace(/[.,!?]/g, ' ').replace(/\s+/g, ' ').trim();
 const states = { done: 'סומן במלואו', partial: 'סומן חלקית', pending: 'עדיין לא סומן' };
 function ingredientNames(text, items) {
@@ -62,7 +64,9 @@ window.trial = async (mode, item, recipe) => {
   const start = performance.now();
   const state = Object.fromEntries([...recipe.actions,...recipe.ingredients].map(i=>[i.id,item.state[i.id] || 'pending']));
   const history = mode.startsWith('full') ? item.history : item.history.slice(-4);
-  let result = mode === 'focused' ? focused(recipe,state,item.step,item.text,history) : undefined;
+  const portions = item.portions || {};
+  let result = mode === 'portions' ? ingredientTurn(recipe,state,item.step,item.text,history,portions) : undefined;
+  if (!result && (mode === 'focused' || mode === 'portions')) result = focused(recipe,state,item.step,item.text,history);
   let route = 'focused';
   if (!result) { result = recipeTurn(recipe,state,item.step,item.text); route = 'app'; }
   let calls = 0, bytes = 0;
@@ -75,7 +79,7 @@ window.trial = async (mode, item, recipe) => {
       const summary = recipe.ingredients.map(i=>i.name + ' ' + states[state[i.id]]).join(', ');
       input.history = [{role:'assistant',content:'מצב המצרכים המעודכן: ' + summary}, ...history];
     }
-    if (mode === 'focused' || mode === 'structured') input.ingredientProgress = Object.fromEntries(recipe.ingredients.map(i=>[i.id,state[i.id]]));
+    if (mode === 'focused' || mode === 'structured' || mode === 'portions') input.ingredientProgress = Object.fromEntries(recipe.ingredients.map(i=>[i.id,state[i.id]]));
     bytes = new TextEncoder().encode(JSON.stringify(input)).byteLength;
     result = await request({id:String(++seq),input});
     calls = result.modelCalls;
@@ -83,7 +87,8 @@ window.trial = async (mode, item, recipe) => {
         !(w.action in progress) || !(w.status in states))) throw Error('Invalid worker write');
     if (result.writes.length && questionOnly(item.text)) result = {writes:[], reply:'לא ברור לי מה רצית לדעת. אפשר לשאול מה השלב הבא או כמה צריך ממצרך מסוים.'};
   }
-  const ms = performance.now()-start;
-  return {ms, route, calls, bytes, reply:result.reply, writes:result.writes.map(w=>[w.action,w.status]),
-    proposal:route==='worker' && result.writes.length>0};
+  const writes = result.writes.map(w=>[w.action,w.status]);
+  const proposal = route==='worker' && writes.length>0;
+  const after = mode === 'portions' ? {portions:proposal ? portions : nextPortions(portions,{writes,portions:result.portions})} : {};
+  return {ms:performance.now()-start, route, calls, bytes, reply:result.reply, writes, proposal, ...after};
 };
