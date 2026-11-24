@@ -1,6 +1,8 @@
 // Resolve explicit reports and recipe lookups against stable ingredient and instruction IDs.
 import type { ActiveRecipe, Answer, Progress } from './compactEngine';
 
+import { describeAction, stepClarification } from './stepGuidance';
+
 type States = Record<string, Progress>;
 export type RecipeTurn = Answer & { focus?: number };
 const nextQuestion = /^(?:(?:אז|ועכשיו|עכשיו|אוקיי|טוב) )*(?:מה (?:אני |אנחנו )?(?:צריך|צריכה|צריכים|אמור|אמורה) לעשות(?: עכשיו| בהמשך)?|מה (?:צריך|נותר|נשאר) לעשות|מה עושים(?: עכשיו| הלאה)?|מה (?:עכשיו|הלאה|השלב הבא|הצעד הבא)|איך ממשיכים)$/;
@@ -12,11 +14,7 @@ export function nextInstruction(recipe: ActiveRecipe, states: States, step: numb
   const open = recipe.actions.filter(a => states[a.id] !== 'done');
   const next = open.find(a => a.step >= step) ?? open[0];
   if (!next) return { reply: 'כל פעולות המתכון סומנו כבוצעו.', writes: [] };
-  let reply = 'השלב הבא הוא ' + next.source.replace(/[.!]+$/, '') + '.';
-  if (mixAll.test(tidy(next.source))) {
-    const remaining = recipe.ingredients.filter(i => states[i.id] !== 'done');
-    if (remaining.length) reply += ' מצרכים שעדיין לא סומנו במלואם: ' + remaining.map(i => i.name).join(', ') + '.';
-  }
+  const reply = 'השלב הבא הוא ' + describeAction(recipe, next, states);
   return { reply, writes: [], focus: next.step };
 }
 
@@ -33,6 +31,8 @@ function ingredientMatches(recipe: ActiveRecipe, phrase: string) {
 export function recipeTurn(recipe: ActiveRecipe, states: States, step: number, text: string): RecipeTurn | undefined {
   const clean = tidy(text);
   if (nextQuestion.test(clean)) return nextInstruction(recipe, states, step);
+  const explanation = stepClarification(recipe, step, clean);
+  if (explanation) return { reply: explanation, writes: [] };
 
   if (recipe.ingredients.length && /^(?:מה (?:המצרכים|המרכיבים)|איזה (?:מצרכים|מרכיבים) צריך)(?: למתכון)?$/.test(clean))
     return { reply: 'המצרכים במתכון המקורי: ' + recipe.ingredients.map(i => i.label).join(', ') + '.', writes: [] };
