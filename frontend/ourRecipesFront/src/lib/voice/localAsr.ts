@@ -1,3 +1,4 @@
+import { modelStorage, prepareVoiceAssets } from './voiceAssets';
 import files from './asr-v1.json';
 
 export const asrBase = '/voice/asr/v1/';
@@ -11,51 +12,11 @@ export function supportsAsr() {
     window.MediaRecorder && window.OfflineAudioContext);
 }
 
-export async function asrStorage(): Promise<'empty' | 'partial' | 'complete'> {
-  if (!await caches.has(asrCache)) return 'empty';
-  const cache = await caches.open(asrCache);
-  const hits = await Promise.all(files.map(async f =>
-    (await cache.match(asrBase + f.path))?.headers.get('X-Recipe-SHA256') === f.sha256));
-  return hits.every(Boolean) ? 'complete' : hits.some(Boolean) ? 'partial' : 'empty';
-}
-
-export async function prepareAsr(signal: AbortSignal, progress: (bytes: number) => void) {
-  await navigator.serviceWorker.register('/sw.js');
-  const cache = await caches.open(asrCache);
-  let loaded = 0;
-  for (const file of files) {
-    signal.throwIfAborted();
-    const key = asrBase + file.path;
-    if ((await cache.match(key))?.headers.get('X-Recipe-SHA256') !== file.sha256) {
-      const remote = 'remote' in file;
-      const response = await fetch(remote ? source + file.path : key, {
-        signal, credentials: 'omit', referrerPolicy: 'no-referrer', cache: 'no-store',
-        headers: remote ? {} : { 'X-Recipe-Download': '1' },
-      });
-      if (!response.ok || !response.body) throw Error('הורדת התמלול נכשלה. אפשר לנסות שוב.');
-      const reader = response.body.getReader(), bytes = new Uint8Array(file.bytes);
-      let offset = 0;
-      try {
-        for (;;) {
-          const { done, value } = await reader.read();
-          if (done) break;
-          bytes.set(value, offset); offset += value.length;
-          progress(loaded + offset);
-        }
-      } finally { reader.releaseLock(); }
-      const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
-      if (offset !== file.bytes || Array.from(digest, b => b.toString(16).padStart(2,'0')).join('') !== file.sha256)
-        throw Error('אימות קובץ התמלול נכשל. נסו שוב.');
-      signal.throwIfAborted();
-      await cache.put(key, new Response(bytes, { headers: {
-        'X-Recipe-SHA256': file.sha256, 'Content-Type': response.headers.get('Content-Type') || 'application/octet-stream',
-      } }));
-    }
-    loaded += file.bytes;
-    progress(loaded);
-  }
-  signal.throwIfAborted();
-}
+const assets = {cacheName:asrCache, base:asrBase, files:files.map(f =>
+  'remote' in f ? {...f, source:source + f.path} : f)};
+export const asrStorage = () => modelStorage(assets);
+export const prepareAsr = (signal: AbortSignal, progress: (bytes: number) => void) =>
+  prepareVoiceAssets(assets, signal, progress);
 
 const kitchenVerbs = ['הרטבתי','ניגבתי','ניערתי','ייבשתי','קיררתי','חיממתי','קילפתי','שטפתי','סיננתי',
   'פיררתי','קיצצתי','שימנתי','תיבלתי','פרסתי','סידרתי','כיסיתי','ריסקתי','גירדתי','פיזרתי','מזגתי','טבלתי','הקצפתי','הפשרתי'];

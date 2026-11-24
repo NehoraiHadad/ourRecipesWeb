@@ -1,0 +1,6 @@
+Piper Hebrew Noa voice and configuration, thewh1teagle and contributors, CC BY 4.0:
+https://huggingface.co/thewh1teagle/piper-he-noa/tree/23f8e06909e9a1e562a50f99df63e3785451379a
+ReNikud ONNX, thewh1teagle and contributors, CC BY 4.0:
+https://huggingface.co/thewh1teagle/pocket-tts-onnx/tree/110f5251188e9407b4f724acdd8b0dfd0b20692a/he
+Hebrew G2P and ONNX metadata reader from pocket-tts-onnx 0.1.0, CC BY 4.0; the local import and execution provider were adapted for the browser worker. See vendor/CC-BY-4.0.txt.
+ONNX Runtime Web, Microsoft Corporation and contributors. See vendor/LICENSE.
