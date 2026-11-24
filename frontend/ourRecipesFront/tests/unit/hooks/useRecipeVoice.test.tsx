@@ -55,6 +55,19 @@ describe('recipe voice navigation', () => {
     expect(speak.mock.lastCall?.[0].text).toContain(steps[1]);
   });
 
+  it('displays a browser interim hypothesis without sending it to the recipe', () => {
+    const report = vi.fn(() => true);
+    const { result } = renderHook(() => useRecipeVoice(steps, report));
+    act(() => result.current.toggleMicrophone());
+    const recognition = FakeRecognition.instance;
+    act(() => recognition.onresult?.({ results: [Object.assign([{transcript:'הוספתי'}], {isFinal:false})] }));
+    expect(result.current.interim).toBe('הוספתי');
+    expect(report).not.toHaveBeenCalled();
+    act(() => recognition.say('עוד לא הוספתי קמח'));
+    expect(result.current.interim).toBe('');
+    expect(report).toHaveBeenCalledOnce();
+  });
+
   it('routes a mixed cooking report to the active engine before advancing steps', () => {
     const report = vi.fn(() => true);
     const { result } = renderHook(() => useRecipeVoice(steps, report));

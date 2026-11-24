@@ -51,9 +51,15 @@ export function useCompactCooking(recipe: ActiveRecipe) {
     };
   }, [key, recipe]);
 
-  async function start() {
-    const signal = lifetime.current?.signal;
-    if (!signal || busy.current || engine.current) return;
+  async function start(session?: AbortSignal) {
+    const lifetimeSignal = lifetime.current?.signal;
+    const controller = new AbortController();
+    const cancel = () => controller.abort();
+    const signal = controller.signal;
+    if (engine.current && !busy.current) return true;
+    if (!lifetimeSignal || lifetimeSignal.aborted || session?.aborted || busy.current) return false;
+    lifetimeSignal.addEventListener('abort', cancel, {once:true});
+    session?.addEventListener('abort', cancel, {once:true});
     busy.current = true;
     setStage('loading'); setError(''); setBytes(0);
     try {
@@ -61,10 +67,21 @@ export function useCompactCooking(recipe: ActiveRecipe) {
       signal.throwIfAborted();
       engine.current = new CompactEngine();
       await engine.current.start(signal);
+      signal.throwIfAborted();
       setStage('ready');
+      return true;
     } catch (e) {
-      if (!signal.aborted) { engine.current?.close(); engine.current = null; setError(String(e instanceof Error ? e.message : e)); setStage('idle'); }
-    } finally { busy.current = false; }
+      engine.current?.close(); engine.current = null;
+      if (!lifetimeSignal.aborted) {
+        if (!signal.aborted) setError(String(e instanceof Error ? e.message : e));
+        setStage('idle');
+      }
+      return false;
+    } finally {
+      lifetimeSignal.removeEventListener('abort', cancel);
+      session?.removeEventListener('abort', cancel);
+      busy.current = false;
+    }
   }
   function remember(text: string, answer: string) {
     history.current = [...history.current, { role: 'user' as const, content: text }, { role: 'assistant' as const, content: answer }].slice(-4);

@@ -36,8 +36,8 @@
   },
   {
     "path": "worker.mjs",
-    "bytes": 2991,
-    "sha256": "77fbd49e50526082c5bc3cb49cbf52dfee0719cd101fe2e41550f294baf6ff34"
+    "bytes": 4573,
+    "sha256": "f5fa6e3543392a6d314ee71b6d498e7fe7c95d0f8140754dc6fea9ffafeb3932"
   },
   {
     "path": "tokens.txt",
@@ -62,5 +62,10 @@
     "bytes": 771805,
     "sha256": "1d2c6d8e6dabc5eb52de52e95718e9bdfbffbfe7ead3808fb5ffd74e83bd9cae",
     "remote": true
+  },
+  {
+    "path": "capture-worklet.js",
+    "bytes": 1422,
+    "sha256": "eee7d721ee58bc4d12b403a72c7de6c6f465b42ca9e6541f49988aae60cf7d0e"
   }
 ]
